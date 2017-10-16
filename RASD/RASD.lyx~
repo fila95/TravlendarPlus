@@ -147,6 +147,7 @@ This document is the Requirements Analysis Specification Document (RASD)
 
 \begin_layout Subsection
 Purpose
+<<<<<<< HEAD
 \end_layout
 
 \begin_layout Standard
@@ -156,6 +157,8 @@ The main goals of the proposed system will be:
 \begin_layout Standard
 1.
  
+=======
+>>>>>>> d53d92a2e430be6bf3d2ab29d2f6340642e1cf37
 \end_layout
 
 \begin_layout Subsection
@@ -163,6 +166,7 @@ Scope
 \end_layout
 
 \begin_layout Standard
+<<<<<<< HEAD
 Nowadays, time is becoming the most precious resources that every individual
  has.
  The answer to an efficient schedule in our busy life is any mean that provides
@@ -179,6 +183,57 @@ Moreover, the automatization of all the processes that can be inferred through
 \begin_layout Standard
 To answer all this issues we want to introduce a new platform on the market
  that will
+=======
+The goal of this project is to create a calendar-based application that
+ benefits of this features:
+\end_layout
+
+\begin_layout Enumerate
+Automatically computes travel time between appointments to make sure that
+ the user will never be late;
+\end_layout
+
+\begin_layout Enumerate
+Supports people providing informations about the best mobility solution;
+\end_layout
+
+\begin_layout Enumerate
+Allow people to buy public transportation tickets or locating the nearest
+ bike;
+\end_layout
+
+\begin_layout Enumerate
+Allow people to create meetings;
+\end_layout
+
+\begin_layout Enumerate
+Suggest travel solutions depending on the type of appointment;
+\end_layout
+
+\begin_layout Enumerate
+Check forecast to provide the best mobility solution;
+\end_layout
+
+\begin_layout Enumerate
+Allow people to define various kind of preferences;
+\end_layout
+
+\begin_layout Enumerate
+Allow people to choose whether to combine transportation means in order
+ to lower carbon emissions;
+\end_layout
+
+\begin_layout Enumerate
+Allow people to select a flexible lunch time.
+\end_layout
+
+\begin_layout Subsection
+Scope
+\end_layout
+
+\begin_layout Standard
+In the days of the 
+>>>>>>> d53d92a2e430be6bf3d2ab29d2f6340642e1cf37
 \end_layout
 
 \begin_layout Subsection
@@ -189,6 +244,13 @@ Definitions, Acronyms, Abbreviations
 Revision history
 \end_layout
 
+<<<<<<< HEAD
+=======
+\begin_layout Itemize
+1.0 - Initial Version (16/10/2017 
+\end_layout
+
+>>>>>>> d53d92a2e430be6bf3d2ab29d2f6340642e1cf37
 \begin_layout Subsection
 Reference Documents 
 \end_layout
