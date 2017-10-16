@@ -75,7 +75,7 @@
 \align center
 
 \size giant
-mytaxy
+Travlendar+
 \end_layout
 
 \begin_layout Quote
@@ -89,7 +89,7 @@ Requirement Analysis Specification Document
 \begin_layout Quote
 \noindent
 \align center
-Matteo Maria Fusi, Matteo Locatelli
+Calzavara Filippo, Filaferro Giovanni, Benedetto Maria Nespoli
 \end_layout
 
 \begin_layout Standard
@@ -113,7 +113,15 @@ LatexCommand tableofcontents
 \end_layout
 
 \begin_layout Section
-Document Overview
+Introduction
+\end_layout
+
+\begin_layout Subsection
+Document Purpose
+\end_layout
+
+\begin_layout Standard
+
 \end_layout
 
 \end_body
