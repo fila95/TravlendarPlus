@@ -209,8 +209,11 @@ Nowadays, time is becoming the most precious resources that every individual
 Moreover, the automatization of all the processes that can be inferred through
  algorithms could ease the pressure of our daily life allowing us to have
  less tense days.
- Travlendar+ answer the needs described above combining a good software
- with a good User Interface.
+ 
+\series bold
+Introducing: Travlendar+
+\series default
+ The smart scheduler for out daily usage
 \end_layout
 
 \begin_layout Subsection
@@ -241,12 +244,9 @@ The paper includes six areas.
  the features, the characteristics and the constraints that its development
  implies.
  The main body of this paper is contained in the third section, which assert
- the requirements and the design constraints.
- The paper is equipped with a fourth section that contains a formal analysis
- using Alloy.
- Finally, a fifth and a sixth section allows the reader to learn the effort
- spent on this project by each team member and the references made in the
- whole paper.
+ the interface requirements (External interface The paper is equipped with
+ a third section that con A fourth section is included.
+ Finnally inthe sisth
 \end_layout
 
 \begin_layout Section

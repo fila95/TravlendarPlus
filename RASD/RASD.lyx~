@@ -147,43 +147,9 @@ This document is the Requirements Analysis Specification Document (RASD)
 
 \begin_layout Subsection
 Purpose
-<<<<<<< HEAD
 \end_layout
 
 \begin_layout Standard
-The main goals of the proposed system will be:
-\end_layout
-
-\begin_layout Standard
-1.
- 
-=======
->>>>>>> d53d92a2e430be6bf3d2ab29d2f6340642e1cf37
-\end_layout
-
-\begin_layout Subsection
-Scope
-\end_layout
-
-\begin_layout Standard
-<<<<<<< HEAD
-Nowadays, time is becoming the most precious resources that every individual
- has.
- The answer to an efficient schedule in our busy life is any mean that provides
- us useful information at the right time.
- 
-\end_layout
-
-\begin_layout Standard
-Moreover, the automatization of all the processes that can be inferred through
- learning algorithms ease the pressure of our daily life and allows us to
- have a less tense days.
-\end_layout
-
-\begin_layout Standard
-To answer all this issues we want to introduce a new platform on the market
- that will
-=======
 The goal of this project is to create a calendar-based application that
  benefits of this features:
 \end_layout
@@ -232,8 +198,22 @@ Scope
 \end_layout
 
 \begin_layout Standard
-In the days of the 
->>>>>>> d53d92a2e430be6bf3d2ab29d2f6340642e1cf37
+Nowadays, time is becoming the most precious resources that every individual
+ has.
+ The answer to an efficient schedule in our busy life is any mean that provides
+ us useful information at the right time.
+ 
+\end_layout
+
+\begin_layout Standard
+Moreover, the automatization of all the processes that can be inferred through
+ algorithms could ease the pressure of our daily life allowing us to have
+ less tense days.
+ 
+\series bold
+Introducing: Travlendar+
+\series default
+ The smart scheduler for out daily usage
 \end_layout
 
 \begin_layout Subsection
@@ -244,19 +224,32 @@ Definitions, Acronyms, Abbreviations
 Revision history
 \end_layout
 
-<<<<<<< HEAD
-=======
 \begin_layout Itemize
-1.0 - Initial Version (16/10/2017 
+1.0 - Initial Version (16/10/2017) 
 \end_layout
 
->>>>>>> d53d92a2e430be6bf3d2ab29d2f6340642e1cf37
 \begin_layout Subsection
 Reference Documents 
 \end_layout
 
 \begin_layout Subsection
 Document Structure
+\end_layout
+
+\begin_layout Standard
+The paper includes six areas.
+ The first one, is composed by the introductory information provided in
+ order to give an orientative view of what this document is about.
+ The second one, provides an overall description of the project including
+ the features, the characteristics and the constraints that its development
+ implies.
+ The main body of this paper is contained in the third section, which assert
+ the requirements and the design constraints.
+ The paper is equipped with a fourth section that contains a formal analysis
+ using Alloy.
+ Finally, a fifth and a sixth section allows the reader to learn the effort
+ spent on this project by each team member and the references made in the
+ whole paper.
 \end_layout
 
 \begin_layout Section
@@ -357,6 +350,18 @@ Formal analysis using Alloy
 
 \begin_layout Section
 Effort spent
+\end_layout
+
+\begin_layout Itemize
+Filippo Calzavara: 1.30h
+\end_layout
+
+\begin_layout Itemize
+Giovanni Filaferro: 1.30h
+\end_layout
+
+\begin_layout Itemize
+Benedetto Maria Nespoli: 1.30h
 \end_layout
 
 \begin_layout Section
