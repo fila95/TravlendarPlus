@@ -71,6 +71,29 @@
 \begin_body
 
 \begin_layout Quote
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align right
+\begin_inset Graphics
+	filename images/PolimiLogo.png
+	width 5cm
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Quote
 \noindent
 \align center
 
@@ -140,7 +163,23 @@ Scope
 \end_layout
 
 \begin_layout Standard
-In the days of the 
+Nowadays, time is becoming the most precious resources that every individual
+ has.
+ The answer to an efficient schedule in our busy life is any mean that provides
+ us useful information at the right time.
+ 
+\end_layout
+
+\begin_layout Standard
+Moreover, the automatization of all the processes that can be inferred through
+ learning algorithms ease the pressure of our daily life and allows us to
+ have a less tense days.
+\end_layout
+
+\begin_layout Standard
+To answer all this issues we would like to introduce a new platform on the
+ market: Travelendar+.
+ 
 \end_layout
 
 \begin_layout Subsection

@@ -71,6 +71,29 @@
 \begin_body
 
 \begin_layout Quote
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align right
+\begin_inset Graphics
+	filename images/PolimiLogo.png
+	width 5cm
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Quote
 \noindent
 \align center
 
@@ -116,34 +139,23 @@ LatexCommand tableofcontents
 Introduction
 \end_layout
 
-\begin_layout Subsection
-Document Purpose
-\end_layout
-
 \begin_layout Standard
 This document is the Requirements Analysis Specification Document (RASD)
  for Travlendar+, the system assigned to be developed on the mandatory project.
  
 \end_layout
 
-\begin_layout Standard
-The main purpose of this document is to describe the requirements of the
- general system to identify its main goals and the users that will mainly
- interact with it, especially its stakeholders.
- 
+\begin_layout Subsection
+Purpose
 \end_layout
 
 \begin_layout Standard
-This document will analyze the environments in which the system will be
- used and the constraints that need to be addressed.
- The main application scenarios will be analyzed to clearly explain how
- the system works.
- 
+The main goals of the proposed system will be:
 \end_layout
 
 \begin_layout Standard
-It is also intended for developers and other people that will work on this
- system and need to know the fundamental information about it.
+1.
+ 
 \end_layout
 
 \begin_layout Subsection
@@ -151,7 +163,10 @@ Scope
 \end_layout
 
 \begin_layout Standard
-In the days of the 
+Nowadays, time is becoming the most precious resources that every individual
+ has.
+ The answer to an efficient schedule in our daily life is any mean that
+ provides us useful information about in o
 \end_layout
 
 \begin_layout Subsection
@@ -198,20 +213,80 @@ Specific Requirements
 External Interface Requirements
 \end_layout
 
+\begin_layout Subsubsection
+User Interfaces 
+\end_layout
+
+\begin_layout Subsubsection
+Hardware Interfaces 
+\end_layout
+
+\begin_layout Subsubsection
+Software Interfaces 
+\end_layout
+
+\begin_layout Subsubsection
+Communication Interfaces
+\end_layout
+
 \begin_layout Subsection
 Functional Requirements
 \end_layout
 
 \begin_layout Subsection
-External Interface Requirements
+Performance Requirements
 \end_layout
 
 \begin_layout Subsection
-External Interface Requirements
+Design Constraints
+\end_layout
+
+\begin_layout Subsubsection
+Standards compliance
+\end_layout
+
+\begin_layout Subsubsection
+Hardware limitations
+\end_layout
+
+\begin_layout Subsubsection
+Any other constraint
 \end_layout
 
 \begin_layout Subsection
-External Interface Requirements
+Software System Attributes
+\end_layout
+
+\begin_layout Subsubsection
+Reliability
+\end_layout
+
+\begin_layout Subsubsection
+Availability
+\end_layout
+
+\begin_layout Subsubsection
+Security
+\end_layout
+
+\begin_layout Subsubsection
+Maintainability
+\end_layout
+
+\begin_layout Subsubsection
+Portability
+\end_layout
+
+\begin_layout Section
+Formal analysis using Alloy
+\end_layout
+
+\begin_layout Section
+Effort spent
+\end_layout
+
+\begin_layout Section
+References
 \end_layout
 
 \end_body
