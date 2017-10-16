@@ -121,7 +121,97 @@ Document Purpose
 \end_layout
 
 \begin_layout Standard
+This document is the Requirements Analysis Specification Document (RASD)
+ for Travlendar+, the system assigned to be developed on the mandatory project.
+ 
+\end_layout
 
+\begin_layout Standard
+The main purpose of this document is to describe the requirements of the
+ general system to identify its main goals and the users that will mainly
+ interact with it, especially its stakeholders.
+ 
+\end_layout
+
+\begin_layout Standard
+This document will analyze the environments in which the system will be
+ used and the constraints that need to be addressed.
+ The main application scenarios will be analyzed to clearly explain how
+ the system works.
+ 
+\end_layout
+
+\begin_layout Standard
+It is also intended for developers and other people that will work on this
+ system and need to know the fundamental information about it.
+\end_layout
+
+\begin_layout Subsection
+Scope
+\end_layout
+
+\begin_layout Standard
+In the days of the 
+\end_layout
+
+\begin_layout Subsection
+Definitions, Acronyms, Abbreviations
+\end_layout
+
+\begin_layout Subsection
+Revision history
+\end_layout
+
+\begin_layout Subsection
+Reference Documents 
+\end_layout
+
+\begin_layout Subsection
+Document Structure
+\end_layout
+
+\begin_layout Section
+Overall Description
+\end_layout
+
+\begin_layout Subsection
+Product perspective
+\end_layout
+
+\begin_layout Subsection
+Product functions
+\end_layout
+
+\begin_layout Subsection
+User characteristics
+\end_layout
+
+\begin_layout Subsection
+Assumptions, dependencies and constraints
+\end_layout
+
+\begin_layout Section
+Specific Requirements
+\end_layout
+
+\begin_layout Subsection
+External Interface Requirements
+\end_layout
+
+\begin_layout Subsection
+Functional Requirements
+\end_layout
+
+\begin_layout Subsection
+External Interface Requirements
+\end_layout
+
+\begin_layout Subsection
+External Interface Requirements
+\end_layout
+
+\begin_layout Subsection
+External Interface Requirements
 \end_layout
 
 \end_body
