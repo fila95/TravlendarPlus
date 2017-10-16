@@ -127,12 +127,47 @@ Purpose
 \end_layout
 
 \begin_layout Standard
-The main goals of the proposed system will be:
+The goal of this project is to create a calendar-based application that
+ benefits of this features:
 \end_layout
 
-\begin_layout Standard
-1.
- 
+\begin_layout Enumerate
+Automatically computes travel time between appointments to make sure that
+ the user will never be late;
+\end_layout
+
+\begin_layout Enumerate
+Supports people providing informations about the best mobility solution;
+\end_layout
+
+\begin_layout Enumerate
+Allow people to buy public transportation tickets or locating the nearest
+ bike;
+\end_layout
+
+\begin_layout Enumerate
+Allow people to create meetings;
+\end_layout
+
+\begin_layout Enumerate
+Suggest travel solutions depending on the type of appointment;
+\end_layout
+
+\begin_layout Enumerate
+Check forecast to provide the best mobility solution;
+\end_layout
+
+\begin_layout Enumerate
+Allow people to define various kind of preferences;
+\end_layout
+
+\begin_layout Enumerate
+Allow people to choose whether to combine transportation means in order
+ to lower carbon emissions;
+\end_layout
+
+\begin_layout Enumerate
+Allow people to select a flexible lunch time.
 \end_layout
 
 \begin_layout Subsection
@@ -149,6 +184,10 @@ Definitions, Acronyms, Abbreviations
 
 \begin_layout Subsection
 Revision history
+\end_layout
+
+\begin_layout Itemize
+1.0 - Initial Version (16/10/2017) 
 \end_layout
 
 \begin_layout Subsection
