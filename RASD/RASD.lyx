@@ -70,23 +70,12 @@
 
 \begin_body
 
-\begin_layout Quote
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
+\begin_layout Standard
 \noindent
-\align right
+\align center
 \begin_inset Graphics
 	filename images/PolimiLogo.png
 	width 5cm
-
-\end_inset
-
-
-\end_layout
 
 \end_inset
 
@@ -177,7 +166,7 @@ Suggest travel solutions depending on the type of appointment;
 \end_layout
 
 \begin_layout Enumerate
-Check forecast to provide the best mobility solution;
+Check the weather forecast in order to provide the best mobility solution;
 \end_layout
 
 \begin_layout Enumerate
