@@ -208,6 +208,7 @@ Nowadays, time is becoming the most precious resources that every individual
 
 \begin_layout Standard
 Moreover, the automatization of all the processes that can be inferred through
+<<<<<<< HEAD
  learning algorithms ease the pressure of our daily life and allows us to
  have a less tense days.
 \end_layout
@@ -216,6 +217,15 @@ Moreover, the automatization of all the processes that can be inferred through
 To answer all this issues we would like to introduce a new platform on the
  market: Travelendar+.
  
+=======
+ algorithms could ease the pressure of our daily life allowing us to have
+ less tense days.
+ 
+\series bold
+Introducing: Travlendar+
+\series default
+ The smart scheduler for out daily usage
+>>>>>>> 9096f5ffae0532e048c35a9ecd7f0fb7d6c3f969
 \end_layout
 
 \begin_layout Subsection
@@ -236,6 +246,22 @@ Reference Documents
 
 \begin_layout Subsection
 Document Structure
+\end_layout
+
+\begin_layout Standard
+The paper includes six areas.
+ The first one, is composed by the introductory information provided in
+ order to give an orientative view of what this document is about.
+ The second one, provides an overall description of the project including
+ the features, the characteristics and the constraints that its development
+ implies.
+ The main body of this paper is contained in the third section, which assert
+ the requirements and the design constraints.
+ The paper is equipped with a fourth section that contains a formal analysis
+ using Alloy.
+ Finally, a fifth and a sixth section allows the reader to learn the effort
+ spent on this project by each team member and the references made in the
+ whole paper.
 \end_layout
 
 \begin_layout Section
@@ -336,6 +362,18 @@ Formal analysis using Alloy
 
 \begin_layout Section
 Effort spent
+\end_layout
+
+\begin_layout Itemize
+Filippo Calzavara: 1.30h
+\end_layout
+
+\begin_layout Itemize
+Giovanni Filaferro: 1.30h
+\end_layout
+
+\begin_layout Itemize
+Benedetto Maria Nespoli: 1.30h
 \end_layout
 
 \begin_layout Section
