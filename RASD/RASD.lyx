@@ -71,7 +71,6 @@
 \begin_body
 
 \begin_layout Standard
-
 \noindent
 \align center
 \begin_inset Graphics
@@ -207,6 +206,15 @@ Moreover, the automatization of all the processes that can be inferred through
 Definitions, Acronyms, Abbreviations
 \end_layout
 
+\begin_layout Itemize
+Appointment: a period of time in which something take place at a certain
+ time
+\end_layout
+
+\begin_layout Itemize
+Event: synonym for appointment 
+\end_layout
+
 \begin_layout Subsection
 Revision history
 \end_layout
@@ -285,6 +293,89 @@ Communication Interfaces
 
 \begin_layout Subsection
 Functional Requirements
+\end_layout
+
+\begin_layout Enumerate
+Allow the user to insert an event in the calendar
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Manually, when the user inserts on his own the date and place of the event
+ 
+\end_layout
+
+\begin_layout Enumerate
+Automatically, looking for some events in the user's accounts, for example
+ in his e-mail
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Allow the users to choose his transportation preferences
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Valid options are bike, car and public transportation, and sharing services
+ like bike's sharing, car's sharing and Uber-like services
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Allow the user to buy public transportation tickets or searching for the
+ nearest bike/car of a sharing service
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Integrate the system with local public transportation interfaces in order
+ to buy tickets directly from the application
+\end_layout
+
+\begin_layout Enumerate
+Integrate the system with known bike's and car's sharing services, allowing
+ the user to search the nearest vehicle, according to him transport preferences
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Allow the user to create meetings, with same event characteristics, but
+ different transportation preferences, accordingly to each user
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Allow the user to share existing events, transforming them into meetings,
+ or directly create new meetings
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Suggest the best travel solutions based on
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+the type of event
+\end_layout
+
+\begin_layout Enumerate
+the user preferences
+\end_layout
+
+\begin_layout Enumerate
+the weather forecast
+\end_layout
+
+\begin_layout Enumerate
+the will of the user to lower carbon emission
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Calculate the best lunch time reserving at least 30 minutes a day from the
+ 11.30am to the 2.30pm
 \end_layout
 
 \begin_layout Subsection
