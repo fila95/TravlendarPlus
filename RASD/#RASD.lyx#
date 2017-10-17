@@ -70,23 +70,12 @@
 
 \begin_body
 
-\begin_layout Quote
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
+\begin_layout Standard
 \noindent
-\align right
+\align center
 \begin_inset Graphics
 	filename images/PolimiLogo.png
 	width 5cm
-
-\end_inset
-
-
-\end_layout
 
 \end_inset
 
@@ -177,7 +166,7 @@ Suggest travel solutions depending on the type of appointment;
 \end_layout
 
 \begin_layout Enumerate
-Check forecast to provide the best mobility solution;
+Check the weather forecast in order to provide the best mobility solution;
 \end_layout
 
 \begin_layout Enumerate
@@ -198,26 +187,30 @@ Scope
 \end_layout
 
 \begin_layout Standard
-Nowadays, time is becoming the most precious resources that every individual
- has.
- The answer to an efficient schedule in our busy life is any mean that provides
- us useful information at the right time.
- 
-\end_layout
-
-\begin_layout Standard
-Moreover, the automatization of all the processes that can be inferred through
- algorithms could ease the pressure of our daily life allowing us to have
- less tense days.
- 
-\series bold
-Introducing: Travlendar+
-\series default
- The smart scheduler for out daily usage
+The scope of the project is to provide every person of a valuable tools
+ that they can use in order to have a better schedule.
+ We can identify the external world as every entity, aspect or occurrence
+ relevant for the case that happen unconditionally from the system and its
+ utilization.
+ If the occurrence could be abstracted then it is includible in this system,
+ and it could be labeled as shared phenomena.
 \end_layout
 
 \begin_layout Subsection
 Definitions, Acronyms, Abbreviations
+\end_layout
+
+\begin_layout Itemize
+Appointment: a period of time in which something take place at a certain
+ time
+\end_layout
+
+\begin_layout Itemize
+Event: synonym for appointment 
+\end_layout
+
+\begin_layout Itemize
+System: a synonym of Travlendar+
 \end_layout
 
 \begin_layout Subsection
@@ -244,9 +237,12 @@ The paper includes six areas.
  the features, the characteristics and the constraints that its development
  implies.
  The main body of this paper is contained in the third section, which assert
- the interface requirements (External interface The paper is equipped with
- a third section that con A fourth section is included.
- Finnally inthe sisth
+ the requirements and the design constraints.
+ The paper is equipped with a fourth section that contains a formal analysis
+ using Alloy.
+ Finally, a fifth and a sixth section allows the reader to learn the effort
+ spent on this project by each team member and the references made in the
+ whole paper.
 \end_layout
 
 \begin_layout Section
@@ -263,6 +259,22 @@ Product functions
 
 \begin_layout Subsection
 User characteristics
+\end_layout
+
+\begin_layout Standard
+Nowadays, time is becoming the most precious resources that every individual
+ has.
+ The answer to an efficient schedule in our busy life is any mean that provides
+ us useful information at the right time.
+ 
+\end_layout
+
+\begin_layout Standard
+Moreover, the automatization of all the processes that can be inferred through
+ algorithms could ease the pressure of our daily life allowing us to have
+ less tense days.
+ Travlendar+ answer the needs described above combining a good software
+ with a good User Interface.
 \end_layout
 
 \begin_layout Subsection
@@ -295,6 +307,89 @@ Communication Interfaces
 
 \begin_layout Subsection
 Functional Requirements
+\end_layout
+
+\begin_layout Enumerate
+Allow the user to insert an event in the calendar
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Manually, when the user inserts on his own the date and place of the event
+ 
+\end_layout
+
+\begin_layout Enumerate
+Automatically, looking for some events in the user's accounts, for example
+ in his e-mail
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Allow the users to choose his transportation preferences
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Valid options are bike, car and public transportation, and sharing services
+ like bike's sharing, car's sharing and Uber-like services
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Allow the user to buy public transportation tickets or searching for the
+ nearest bike/car of a sharing service
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Integrate the system with local public transportation interfaces in order
+ to buy tickets directly from the application
+\end_layout
+
+\begin_layout Enumerate
+Integrate the system with known bike's and car's sharing services, allowing
+ the user to search the nearest vehicle, according to him transport preferences
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Allow the user to create meetings, with same event characteristics, but
+ different transportation preferences, accordingly to each user
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Allow the user to share existing events, transforming them into meetings,
+ or directly create new meetings
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Suggest the best travel solutions based on
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+the type of event
+\end_layout
+
+\begin_layout Enumerate
+the user preferences
+\end_layout
+
+\begin_layout Enumerate
+the weather forecast
+\end_layout
+
+\begin_layout Enumerate
+the will of the user to lower carbon emission
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Calculate the best lunch time reserving at least 30 minutes a day from the
+ 11.30am to the 2.30pm
 \end_layout
 
 \begin_layout Subsection

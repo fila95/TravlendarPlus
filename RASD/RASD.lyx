@@ -187,19 +187,13 @@ Scope
 \end_layout
 
 \begin_layout Standard
-Nowadays, time is becoming the most precious resources that every individual
- has.
- The answer to an efficient schedule in our busy life is any mean that provides
- us useful information at the right time.
- 
-\end_layout
-
-\begin_layout Standard
-Moreover, the automatization of all the processes that can be inferred through
- algorithms could ease the pressure of our daily life allowing us to have
- less tense days.
- Travlendar+ answer the needs described above combining a good software
- with a good User Interface.
+The scope of the project is to provide every person of a valuable tools
+ that they can use in order to have a better schedule.
+ We can identify the external world as every entity, aspect or occurrence
+ relevant for the case that happen unconditionally from the system and its
+ utilization.
+ If the occurrence could be abstracted then it is includible in this system,
+ and it could be labeled as shared phenomena.
 \end_layout
 
 \begin_layout Subsection
@@ -213,6 +207,10 @@ Appointment: a period of time in which something take place at a certain
 
 \begin_layout Itemize
 Event: synonym for appointment 
+\end_layout
+
+\begin_layout Itemize
+System: a synonym of Travlendar+
 \end_layout
 
 \begin_layout Subsection
@@ -261,6 +259,22 @@ Product functions
 
 \begin_layout Subsection
 User characteristics
+\end_layout
+
+\begin_layout Standard
+Nowadays, time is becoming the most precious resources that every individual
+ has.
+ The answer to an efficient schedule in our busy life is any mean that provides
+ us useful information at the right time.
+ 
+\end_layout
+
+\begin_layout Standard
+Moreover, the automatization of all the processes that can be inferred through
+ algorithms could ease the pressure of our daily life allowing us to have
+ less tense days.
+ Travlendar+ answer the needs described above combining a good software
+ with a good User Interface.
 \end_layout
 
 \begin_layout Subsection
