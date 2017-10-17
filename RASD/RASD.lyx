@@ -206,12 +206,12 @@ Moreover, the automatization of all the processes that can be inferred through
 Definitions, Acronyms, Abbreviations
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Description
 Appointment: a period of time in which something take place at a certain
  time
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Description
 Event: synonym for appointment 
 \end_layout
 
@@ -291,28 +291,357 @@ Software Interfaces
 Communication Interfaces
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Functional Requirements
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Subsubsection
+Definition of use cases
+\end_layout
+
+\begin_layout Subsection*
+InsertEvent
+\end_layout
+
+\begin_layout Standard
 Allow the user to insert an event in the calendar
 \end_layout
 
-\begin_deeper
-\begin_layout Enumerate
-Manually, when the user inserts on his own the date and place of the event
- 
+\begin_layout Standard
+\begin_inset VSpace bigskip*
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="middle" width="20text%">
+<column alignment="left" valignment="middle" width="80text%">
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Name
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+InsertEvent
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Actors
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+User
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Flow of Events
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Initiation
+\series default
+: blabla
+\end_layout
+
+\begin_layout Plain Layout
+blabla
+\end_layout
+
+\begin_layout Plain Layout
+blabla
+\end_layout
+
+\begin_layout Plain Layout
+
+\series bold
+Termination
+\series default
+: blabla
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Exceptions
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The 
+\series bold
+user
+\series default
+ is notified immediately with a warning if he's inserting an event in which
+ he cannot arrive in time
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Special Requirements
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+blabla
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/UC_insertEvent.png
+	lyxscale 30
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+InsertEvent
+\end_layout
+
+\begin_layout Standard
+Allow the user to insert an event in the calendar
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip*
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="middle" width="20text%">
+<column alignment="left" valignment="middle" width="80text%">
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Name
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+InsertEvent
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Actors
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+User
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Flow of Events
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Initiation
+\series default
+: blabla
+\end_layout
+
+\begin_layout Plain Layout
+blabla
+\end_layout
+
+\begin_layout Plain Layout
+blabla
+\end_layout
+
+\begin_layout Plain Layout
+
+\series bold
+Termination
+\series default
+: blabla
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Exceptions
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The 
+\series bold
+user
+\series default
+ is notified immediately with a warning if he's inserting an event in which
+ he cannot arrive in time
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Special Requirements
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+blabla
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/UC_insertEvent.png
+	lyxscale 30
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Definition of use case: EditPreferences
 \end_layout
 
 \begin_layout Enumerate
-Automatically, looking for some events in the user's accounts, for example
- in his e-mail
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-Allow the users to choose his transportation preferences
+EditPreferences: Allow the users to choose his transportation preferences
 \end_layout
 
 \begin_deeper
@@ -322,9 +651,21 @@ Valid options are bike, car and public transportation, and sharing services
 \end_layout
 
 \end_deeper
+\begin_layout Subsubsection
+Definition of use case: MonitorInboxForNewEvent
+\end_layout
+
 \begin_layout Enumerate
-Allow the user to buy public transportation tickets or searching for the
- nearest bike/car of a sharing service
+MonitorInboxForNewEvent: Search in the user's inbox in order to find some
+ events
+\end_layout
+
+\begin_layout Subsubsection
+Definition of use case: BuyTickets
+\end_layout
+
+\begin_layout Enumerate
+BuyTickets: Allow the user to buy public transportation tickets
 \end_layout
 
 \begin_deeper
@@ -333,26 +674,46 @@ Integrate the system with local public transportation interfaces in order
  to buy tickets directly from the application
 \end_layout
 
+\end_deeper
+\begin_layout Subsubsection
+Definition of use case: FindVehicle
+\end_layout
+
+\begin_layout Enumerate
+FindVehicle: Allow the user to search for the nearest bike/car of a sharing
+ service
+\end_layout
+
+\begin_deeper
 \begin_layout Enumerate
 Integrate the system with known bike's and car's sharing services, allowing
  the user to search the nearest vehicle, according to him transport preferences
 \end_layout
 
 \end_deeper
-\begin_layout Enumerate
-Allow the user to create meetings, with same event characteristics, but
- different transportation preferences, accordingly to each user
+\begin_layout Subsubsection
+Definition of use case: CreateMeeting
 \end_layout
 
-\begin_deeper
 \begin_layout Enumerate
-Allow the user to share existing events, transforming them into meetings,
- or directly create new meetings
+CreateMeeting: Allow the user to create meetings, with same event characteristic
+s, but different transportation preferences, accordingly to each user
 \end_layout
 
-\end_deeper
+\begin_layout Subsubsection
+Definition of use case: ShareEvent
+\end_layout
+
 \begin_layout Enumerate
-Suggest the best travel solutions based on
+ShareEvent: Allow the user to share an event and transform it into a meeting
+\end_layout
+
+\begin_layout Subsubsection
+Definition of use case: SuggestTravel
+\end_layout
+
+\begin_layout Enumerate
+SuggestTravel: Suggest the best travel solutions based on
 \end_layout
 
 \begin_deeper
@@ -373,9 +734,13 @@ the will of the user to lower carbon emission
 \end_layout
 
 \end_deeper
+\begin_layout Subsubsection
+Definition of use case: CalcLunchTime
+\end_layout
+
 \begin_layout Enumerate
-Calculate the best lunch time reserving at least 30 minutes a day from the
- 11.30am to the 2.30pm
+CalcLunchTime: Calculate the best lunch time reserving at least 30 minutes
+ a day from the 11.30am to the 2.30pm
 \end_layout
 
 \begin_layout Subsection
