@@ -190,10 +190,10 @@ Scope
 The scope of the project is to provide every person of a valuable tools
  that they can use in order to have a better schedule.
  We can identify the external world as every entity, aspect or occurrence
- that happens unconditionally from the system and its utilization, however
- their occurrence is relevant for the case and could be abstracted thus
- includible in this system.
- 
+ relevant for the case that happen unconditionally from the system and its
+ utilization.
+ If the occurrence could be abstracted then it is includible in this system,
+ and it could be labeled as shared phenomena.
 \end_layout
 
 \begin_layout Subsection
@@ -210,7 +210,7 @@ Event: synonym for appointment
 \end_layout
 
 \begin_layout Itemize
-Application: a synonym of Travlendar+
+System: a synonym of Travlendar+
 \end_layout
 
 \begin_layout Subsection
@@ -251,6 +251,10 @@ Overall Description
 
 \begin_layout Subsection
 Product perspective
+\end_layout
+
+\begin_layout Standard
+The following occurrences are identifiable as share phenomenas:
 \end_layout
 
 \begin_layout Subsection
