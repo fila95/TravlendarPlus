@@ -188,29 +188,41 @@ Scope
 
 \begin_layout Standard
 The scope of the project is to provide every person of a valuable tools
- that they can use in order to have a better schedule.
+ that they can use in order to have a better schedule of their daily life.
  We can identify the external world as every entity, aspect or occurrence
  relevant for the case that happen unconditionally from the system and its
  utilization.
- If the occurrence could be abstracted then it is includible in this system,
- and it could be labeled as shared phenomena.
+ If the occurrence could be abstracted, then it is includible in this project,
+ and therefore labeled as shared phenomena.
 \end_layout
 
 \begin_layout Subsection
 Definitions, Acronyms, Abbreviations
 \end_layout
 
-\begin_layout Description
+\begin_layout Itemize
 Appointment: a period of time in which something take place at a certain
  time
 \end_layout
 
-\begin_layout Description
+\begin_layout Itemize
 Event: synonym for appointment 
 \end_layout
 
 \begin_layout Itemize
 System: a synonym of Travlendar+
+\end_layout
+
+\begin_layout Itemize
+User: a potential utilizer of this project
+\end_layout
+
+\begin_layout Itemize
+GUI: Graphic User Interface
+\end_layout
+
+\begin_layout Itemize
+App: a synonym of Travlendar+
 \end_layout
 
 \begin_layout Subsection
@@ -254,7 +266,13 @@ Product perspective
 \end_layout
 
 \begin_layout Standard
-The following occurrences are identifiable as share phenomenas:
+Travlendar+ is a standalone system that provides the functionality described
+ in the Product function section.
+ It must include interfaces to the to the external system (in order to fetch
+ data from third-party services such as Car Sharing platforms) and to the
+ external world, in order to capture the shared phenomenas.
+ The system also need to assume user's information, hence we could identify
+ the following occurrences as shared phenomenas:
 \end_layout
 
 \begin_layout Itemize
@@ -281,8 +299,17 @@ Sharing system interactions
 User preferences' settings
 \end_layout
 
+\begin_layout Standard
+The system has to be provided of an user-friendly GUI able to address the
+ interactions with the users.
+\end_layout
+
 \begin_layout Subsection
 Product function
+\end_layout
+
+\begin_layout Standard
+The most important function that the final product have to address is 
 \end_layout
 
 \begin_layout Subsection
@@ -307,6 +334,14 @@ Moreover, the automatization of all the processes that can be inferred through
 
 \begin_layout Subsection
 Assumptions, dependencies and constraints
+\end_layout
+
+\begin_layout Standard
+We assume that the user is using the app through a new generation smartphone
+ and that it has installed a browser such as Google Chrome or Safari that
+ supports HTML5 and Javascript.
+ For the correct functioning of the app, the mobile device needs to have
+ a GPS system and a regular internet connection available.
 \end_layout
 
 \begin_layout Section
