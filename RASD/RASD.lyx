@@ -955,11 +955,16 @@ Flow of Events
 \series bold
 Initiation
 \series default
-: TODO
+: The users choose to buy a ticket
 \end_layout
 
 \begin_layout Plain Layout
-TODO
+The users specify which tickets they wants, and they insert some details
+ accordingly to the type of tickets
+\end_layout
+
+\begin_layout Plain Layout
+The system connect to the right service in order to buy the tickets
 \end_layout
 
 \begin_layout Plain Layout
@@ -967,7 +972,8 @@ TODO
 \series bold
 Termination
 \series default
-: TODO
+: The user is notified if the tickets are successfully bought or if an error
+ occurred
 \end_layout
 
 \end_inset
@@ -987,7 +993,7 @@ Exceptions
 \begin_inset Text
 
 \begin_layout Plain Layout
-TODO
+The user is notified if something goes wrong in the payment
 \end_layout
 
 \end_inset
@@ -1007,7 +1013,7 @@ Special Requirements
 \begin_inset Text
 
 \begin_layout Plain Layout
-TODO
+Integration with public transportation in order to buy tickets
 \end_layout
 
 \end_inset
@@ -1032,48 +1038,747 @@ TODO
 
 \end_layout
 
-\begin_layout Subsubsection
-Definition of use case: FindVehicle
+\begin_layout Subsection*
+AutoBuyTickets
 \end_layout
 
-\begin_layout Enumerate
-FindVehicle: Allow the user to search for the nearest bike/car of a sharing
- service
+\begin_layout Standard
+Allow the system, after asking the permission to the user, to buy public
+ transportation tickets.
 \end_layout
 
-\begin_deeper
-\begin_layout Enumerate
-Integrate the system with known bike's and car's sharing services, allowing
- the user to search the nearest vehicle, according to him transport preferences
+\begin_layout Standard
+\begin_inset VSpace bigskip*
+\end_inset
+
+
 \end_layout
 
-\end_deeper
-\begin_layout Subsubsection
-Definition of use case: CreateMeeting
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="middle" width="20text%">
+<column alignment="left" valignment="middle" width="80text%">
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Name
 \end_layout
 
-\begin_layout Enumerate
-CreateMeeting: Allow the user to create meetings, with same event characteristic
-s, but different transportation preferences, accordingly to each user
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AutoBuyTickets
 \end_layout
 
-\begin_layout Subsubsection
-Definition of use case: ShareEvent
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Actors
 \end_layout
 
-\begin_layout Enumerate
-ShareEvent: Allow the user to share an event and transform it into a meeting
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No active actors
 \end_layout
 
-\begin_layout Subsubsection
-Definition of use case: SuggestTravel
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Flow of Events
 \end_layout
 
-\begin_layout Enumerate
-SuggestTravel: Suggest the best travel solutions based on
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Initiation
+\series default
+: The system detects that the user will need a ticket
 \end_layout
 
-\begin_deeper
+\begin_layout Plain Layout
+The system, if it's previously enabled by the user, contact the right service
+ and it chooses the best ticket
+\end_layout
+
+\begin_layout Plain Layout
+The system asks to the user for permission to buy the chosen ticket
+\end_layout
+
+\begin_layout Plain Layout
+
+\series bold
+Termination
+\series default
+: If the user gives the permission to the system, it buys the ticket, or
+ abort otherwise
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Exceptions
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The user is notified if something goes wrong in the payment
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Special Requirements
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Integration with public transportation in order to buy tickets
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/UC_insertEvent.png
+	lyxscale 30
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+FindVehicle
+\end_layout
+
+\begin_layout Standard
+Allow the user to search for the nearest bike/car of a sharing service
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip*
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="middle" width="20text%">
+<column alignment="left" valignment="middle" width="80text%">
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Name
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+FindVehicle
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Actors
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+User
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Flow of Events
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Initiation
+\series default
+: The users want to find the nearest bike or car of a sharing service
+\end_layout
+
+\begin_layout Plain Layout
+The system acquires the GPS location of the users
+\end_layout
+
+\begin_layout Plain Layout
+The system connect to the sharing services in order to find the nearest
+ vehicles
+\end_layout
+
+\begin_layout Plain Layout
+
+\series bold
+Termination
+\series default
+: The system shows to the users the nearest vehicles if there are, or a
+ warning if there aren't
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Exceptions
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No vehicles found or error in contacting sharing services
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Special Requirements
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Integration with sharing services in order to find nearest vehicles
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/UC_insertEvent.png
+	lyxscale 30
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+CreateMeeting
+\end_layout
+
+\begin_layout Standard
+Allow the user to create meetings, with same event characteristics, but
+ different transportation preferences, accordingly to each user
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip*
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="middle" width="20text%">
+<column alignment="left" valignment="middle" width="80text%">
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Name
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CreateMeeting
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Actors
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Users
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Flow of Events
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Initiation
+\series default
+: A user creates a special Event called 
+\begin_inset Quotes eld
+\end_inset
+
+Meeting
+\begin_inset Quotes erd
+\end_inset
+
+ and invites other users to join it
+\end_layout
+
+\begin_layout Plain Layout
+The system system receives the invites and sends them to the users
+\end_layout
+
+\begin_layout Plain Layout
+When a user accept, the same Meeting is added to the user calendar, and
+ all the users participating to that meeting will have this user as participant
+ in their calendars
+\end_layout
+
+\begin_layout Plain Layout
+
+\series bold
+Termination
+\series default
+: The system register the meeting
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Exceptions
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+None.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Special Requirements
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+None.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/UC_insertEvent.png
+	lyxscale 30
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+ShareEvent
+\end_layout
+
+\begin_layout Standard
+Allow the user to share a previously created event editing it as a Meeting
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip*
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="middle" width="20text%">
+<column alignment="left" valignment="middle" width="80text%">
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Name
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ShareEvent
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Actors
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Users
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Flow of Events
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Initiation
+\series default
+: A user edit a previously created event and share it with other users
+\end_layout
+
+\begin_layout Plain Layout
+The system edit the Event in a Meeting, and it receives the invites and
+ sends them to the users
+\end_layout
+
+\begin_layout Plain Layout
+When a user accept, the same Meeting is added to the user calendar, and
+ all the users participating to that meeting will have this user as participant
+ in their calendars
+\end_layout
+
+\begin_layout Plain Layout
+
+\series bold
+Termination
+\series default
+: The system register the meeting
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Exceptions
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+None.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Special Requirements
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+None.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/UC_insertEvent.png
+	lyxscale 30
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+SuggestTravel
+\end_layout
+
+\begin_layout Standard
+Suggest the best travel solutions based some user preferences
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip*
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="middle" width="20text%">
+<column alignment="left" valignment="middle" width="80text%">
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Name
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SuggestTravel
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Actors
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No active actors
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Flow of Events
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Initiation
+\series default
+: When an event is registered, the system checks:
+\end_layout
+
 \begin_layout Enumerate
 the type of event
 \end_layout
@@ -1090,14 +1795,236 @@ the weather forecast
 the will of the user to lower carbon emission
 \end_layout
 
-\end_deeper
-\begin_layout Subsubsection
-Definition of use case: CalcLunchTime
+\begin_layout Plain Layout
+and it chooses the best travel solution.
 \end_layout
 
-\begin_layout Enumerate
-CalcLunchTime: Calculate the best lunch time reserving at least 30 minutes
- a day from the 11.30am to the 2.30pm
+\begin_layout Plain Layout
+
+\series bold
+Termination
+\series default
+: The system finds (or not) the travel solution
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Exceptions
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+If no travel solution is found
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Special Requirements
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+None.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/UC_insertEvent.png
+	lyxscale 30
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+CalcLunchTime
+\end_layout
+
+\begin_layout Standard
+Calculate the best lunch time reserving at least 30 minutes a day from the
+ 11.30am to the 2.30pm
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip*
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="middle" width="20text%">
+<column alignment="left" valignment="middle" width="80text%">
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Name
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CalcLunchTime
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Actors
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No active actors
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Flow of Events
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Initiation
+\series default
+: When an event is registered, the system checks if there is a period of
+ time in which the user can have lunch.
+\end_layout
+
+\begin_layout Plain Layout
+If the system doesn't finds it, an exception is thrown.
+\end_layout
+
+\begin_layout Plain Layout
+
+\series bold
+Termination
+\series default
+: The system finds (or not) the lunch solution
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Exceptions
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+If no lunch solution is found
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Special Requirements
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+None.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/UC_insertEvent.png
+	lyxscale 30
+	scale 30
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
