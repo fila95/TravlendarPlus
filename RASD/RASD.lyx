@@ -462,15 +462,21 @@ Flow of Events
 \series bold
 Initiation
 \series default
-: blabla
+: The user decide to insert a new Event on a specified date
 \end_layout
 
 \begin_layout Plain Layout
-blabla
+The system checks if the event can be reached in time with the user's preferred
+ vehicles.
 \end_layout
 
 \begin_layout Plain Layout
-blabla
+If the event can't be reached in time, the system sends a warning to the
+ User
+\end_layout
+
+\begin_layout Plain Layout
+Otherwise the event is added to the user's calendar
 \end_layout
 
 \begin_layout Plain Layout
@@ -478,7 +484,7 @@ blabla
 \series bold
 Termination
 \series default
-: blabla
+: Event added to the calendar, or warning sent to the user
 \end_layout
 
 \end_inset
@@ -523,7 +529,7 @@ Special Requirements
 \begin_inset Text
 
 \begin_layout Plain Layout
-blabla
+None
 \end_layout
 
 \end_inset
@@ -549,11 +555,14 @@ blabla
 \end_layout
 
 \begin_layout Subsection*
-InsertEvent
+EditPreferences
 \end_layout
 
 \begin_layout Standard
-Allow the user to insert an event in the calendar
+Allow the users to edit their settings: preferred vehicles (cars, bikes,
+ public transportation, trains, airplanes, sharing services), depending
+ on the weather, if help lowering carbon emission or not, and specify a
+ preferred lunch time
 \end_layout
 
 \begin_layout Standard
@@ -583,7 +592,7 @@ Name
 \begin_inset Text
 
 \begin_layout Plain Layout
-InsertEvent
+EditPreferences
 \end_layout
 
 \end_inset
@@ -627,15 +636,12 @@ Flow of Events
 \series bold
 Initiation
 \series default
-: blabla
+: The user wants to edit some preferences
 \end_layout
 
 \begin_layout Plain Layout
-blabla
-\end_layout
-
-\begin_layout Plain Layout
-blabla
+The system checks if the settings are valid, and if they are it registers
+ them
 \end_layout
 
 \begin_layout Plain Layout
@@ -643,7 +649,7 @@ blabla
 \series bold
 Termination
 \series default
-: blabla
+: Save the settings or show a warning to the user
 \end_layout
 
 \end_inset
@@ -667,8 +673,7 @@ The
 \series bold
 user
 \series default
- is notified immediately with a warning if he's inserting an event in which
- he cannot arrive in time
+ is notified immediately with a warning if he's inserting some invalid settings
 \end_layout
 
 \end_inset
@@ -688,7 +693,7 @@ Special Requirements
 \begin_inset Text
 
 \begin_layout Plain Layout
-blabla
+None
 \end_layout
 
 \end_inset
@@ -713,45 +718,320 @@ blabla
 
 \end_layout
 
-\begin_layout Subsubsection
-Definition of use case: EditPreferences
+\begin_layout Subsection*
+MonitorInboxForNewEvent
 \end_layout
 
-\begin_layout Enumerate
-EditPreferences: Allow the users to choose his transportation preferences
+\begin_layout Standard
+The system, when allowed by the user, check the inbox looking for some emails
+ containing an Event, like airplane or train tickets.
 \end_layout
 
-\begin_deeper
-\begin_layout Enumerate
-Valid options are bike, car and public transportation, and sharing services
- like bike's sharing, car's sharing and Uber-like services
+\begin_layout Standard
+\begin_inset VSpace bigskip*
+\end_inset
+
+
 \end_layout
 
-\end_deeper
-\begin_layout Subsubsection
-Definition of use case: MonitorInboxForNewEvent
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="middle" width="20text%">
+<column alignment="left" valignment="middle" width="80text%">
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Name
 \end_layout
 
-\begin_layout Enumerate
-MonitorInboxForNewEvent: Search in the user's inbox in order to find some
- events
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MonitorInboxForNewEvent
 \end_layout
 
-\begin_layout Subsubsection
-Definition of use case: BuyTickets
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Actors
 \end_layout
 
-\begin_layout Enumerate
-BuyTickets: Allow the user to buy public transportation tickets
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No active actors
 \end_layout
 
-\begin_deeper
-\begin_layout Enumerate
-Integrate the system with local public transportation interfaces in order
- to buy tickets directly from the application
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Flow of Events
 \end_layout
 
-\end_deeper
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Initiation
+\series default
+: The system scan the user's inbox searching some predefined email templates
+\end_layout
+
+\begin_layout Plain Layout
+If an event is found, the system add a new event to the calendar
+\end_layout
+
+\begin_layout Plain Layout
+
+\series bold
+Termination
+\series default
+: When all the emails are scanned, the system pause the scan
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Exceptions
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+None
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Special Requirements
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Integration with email services
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/UC_insertEvent.png
+	lyxscale 30
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+BuyTickets
+\end_layout
+
+\begin_layout Standard
+Allow the user to buy public transportation tickets directly from the applicatio
+n.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip*
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="middle" width="20text%">
+<column alignment="left" valignment="middle" width="80text%">
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Name
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+BuyTickets
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Actors
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+User
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Flow of Events
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Initiation
+\series default
+: TODO
+\end_layout
+
+\begin_layout Plain Layout
+TODO
+\end_layout
+
+\begin_layout Plain Layout
+
+\series bold
+Termination
+\series default
+: TODO
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Exceptions
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TODO
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Special Requirements
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TODO
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/UC_insertEvent.png
+	lyxscale 30
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection
 Definition of use case: FindVehicle
 \end_layout
@@ -873,15 +1153,15 @@ Effort spent
 \end_layout
 
 \begin_layout Itemize
-Filippo Calzavara: 1.30h
+Filippo Calzavara: 4.30h
 \end_layout
 
 \begin_layout Itemize
-Giovanni Filaferro: 1.30h
+Giovanni Filaferro: 4.30h
 \end_layout
 
 \begin_layout Itemize
-Benedetto Maria Nespoli: 1.30h
+Benedetto Maria Nespoli: 4.30h
 \end_layout
 
 \begin_layout Section
