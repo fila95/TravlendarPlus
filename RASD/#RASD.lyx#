@@ -212,15 +212,15 @@ The ETA needed to reach a destination
 \end_layout
 
 \begin_layout Itemize
-User preferences' settings
-\end_layout
-
-\begin_layout Itemize
 Invoice of a transit ticket acquisition
 \end_layout
 
 \begin_layout Itemize
-Sharing services status
+Sharing system interactions
+\end_layout
+
+\begin_layout Itemize
+User preferences' settings
 \end_layout
 
 \begin_layout Subsection
@@ -305,18 +305,13 @@ The events (meetings and dates): This phenomena connects the appointment
 \end_layout
 
 \begin_layout Itemize
-The weather forecasts: Connects weather phenomenas with an instance in our
- database
+The weather forecasts: It connects weather phenomenas with an instance in
+ our database
 \end_layout
 
 \begin_layout Itemize
 The ETA needed to reach a destination: Defined by time in the real word
  and by a number in the machines word
-\end_layout
-
-\begin_layout Itemize
-User preferences' settings: The phenomena that connects users' choices with
- profiling actions and instances of actions in the machine's wolds
 \end_layout
 
 \begin_layout Itemize
@@ -329,19 +324,14 @@ Sharing services status: Phenomena moldable with a set of renting actions
  in real life and a set of GPS locations on the machine's world
 \end_layout
 
+\begin_layout Itemize
+User preferences' settings: The phenomena that connects users' choices with
+ profiling actions 
+\end_layout
+
 \begin_layout Standard
 The system has to be provided of an user-friendly GUI able to address the
  interactions with the users.
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-FORSE È UN NON-FUNCTIONAL REQUIREMENT - PHIL
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Subsection
