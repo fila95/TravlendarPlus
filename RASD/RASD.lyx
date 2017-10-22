@@ -497,7 +497,7 @@ Flow of Events
 <cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 
 \series bold
 Initiation
@@ -505,21 +505,21 @@ Initiation
 : The user decide to insert a new Event on a specified date
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 The system checks if the event can be reached in time with the user's preferred
  vehicles.
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 If the event can't be reached in time, the system sends a warning to the
  User
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 Otherwise the event is added to the user's calendar
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 
 \series bold
 Termination
@@ -671,7 +671,7 @@ Flow of Events
 <cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 
 \series bold
 Initiation
@@ -679,12 +679,12 @@ Initiation
 : The user wants to edit some preferences
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 The system checks if the settings are valid, and if they are it registers
  them
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 
 \series bold
 Termination
@@ -833,7 +833,7 @@ Flow of Events
 <cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 
 \series bold
 Initiation
@@ -841,11 +841,11 @@ Initiation
 : The system scan the user's inbox searching some predefined email templates
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 If an event is found, the system add a new event to the calendar
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 
 \series bold
 Termination
@@ -990,7 +990,7 @@ Flow of Events
 <cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 
 \series bold
 Initiation
@@ -998,16 +998,16 @@ Initiation
 : The users choose to buy a ticket
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 The users specify which tickets they wants, and they insert some details
  accordingly to the type of tickets
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 The system connect to the right service in order to buy the tickets
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 
 \series bold
 Termination
@@ -1153,7 +1153,7 @@ Flow of Events
 <cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 
 \series bold
 Initiation
@@ -1161,16 +1161,16 @@ Initiation
 : The system detects that the user will need a ticket
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 The system, if it's previously enabled by the user, contact the right service
  and it chooses the best ticket
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 The system asks to the user for permission to buy the chosen ticket
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 
 \series bold
 Termination
@@ -1315,7 +1315,7 @@ Flow of Events
 <cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 
 \series bold
 Initiation
@@ -1323,16 +1323,16 @@ Initiation
 : The users want to find the nearest bike or car of a sharing service
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 The system acquires the GPS location of the users
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 The system connect to the sharing services in order to find the nearest
  vehicles
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 
 \series bold
 Termination
@@ -1478,7 +1478,7 @@ Flow of Events
 <cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 
 \series bold
 Initiation
@@ -1494,17 +1494,17 @@ Meeting
  and invites other users to join it
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 The system system receives the invites and sends them to the users
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 When a user accept, the same Meeting is added to the user calendar, and
  all the users participating to that meeting will have this user as participant
  in their calendars
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 
 \series bold
 Termination
@@ -1648,7 +1648,7 @@ Flow of Events
 <cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 
 \series bold
 Initiation
@@ -1656,18 +1656,18 @@ Initiation
 : A user edit a previously created event and share it with other users
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 The system edit the Event in a Meeting, and it receives the invites and
  sends them to the users
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 When a user accept, the same Meeting is added to the user calendar, and
  all the users participating to that meeting will have this user as participant
  in their calendars
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 
 \series bold
 Termination
@@ -1984,7 +1984,7 @@ Flow of Events
 <cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 
 \series bold
 Initiation
@@ -1993,11 +1993,11 @@ Initiation
  time in which the user can have lunch.
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 If the system doesn't finds it, an exception is thrown.
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 
 \series bold
 Termination
