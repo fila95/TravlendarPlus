@@ -133,33 +133,18 @@ LatexCommand tableofcontents
 Introduction
 \end_layout
 
-\begin_layout Standard
-This document is the Requirements Analysis Specification Document (RASD)
- for Travlendar+, the system assigned to be developed for the mandatory
- project.
- This document the scope of the system, both functional and non-functional
- requirements for the software, design constrains and system interfaces
-\end_layout
-
 \begin_layout Subsection
 Purpose
 \end_layout
 
 \begin_layout Standard
-The goal of this project is to create a calendar-based application that
- tackles the following challenges : 
-\end_layout
-
-\begin_layout Itemize
-Reduce delays at the appointments
-\end_layout
-
-\begin_layout Itemize
-Improve efficiency of transportation
-\end_layout
-
-\begin_layout Itemize
-Implement an efficient schedule
+This document is the Requirements Analysis Specification Document (RASD)
+ for Travlendar+, the system assigned to be developed for the mandatory
+ project.
+ The document describes the characteristics of the system, both functional
+ and non-functional requirements for the software, design constrains and
+ system interfaces.
+ It is addressed to the developers that will implement the final system.
 \end_layout
 
 \begin_layout Subsection
@@ -167,14 +152,37 @@ Scope
 \end_layout
 
 \begin_layout Standard
-The scope of the project is to provide every person of a valuable tools
+The aim of this project is to create a smart calendar-based application
+ that people can use to reduce delays at the appointments and supporting
+ the the users by identifying the best mobility option.
+ Moreover, peoples need to be able to create meetings that notify the user
+ in case he/she will not be on time for it.
+ The system needs to take into account weather forecast as well as strike
+ days.
+ Furthermore, the users should be able to adapt settings based on their
+ preferences, such as walking-time constrains or a more eco-friendly way
+ of transportation, and the possibility to define flexible appointments
+ that given a window of time and a duration an arrangement of the schedule
+ is proposed to the user.
+ Finally, the system should provide the user a ticket or locate the closest
+ car/bike sharing vehicle if it is the mean of transportation chosen.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+of the efficiency on transportation and the implementation of an effective
+ and reliable schedule.
+ The scope of the project is to provide every person of a valuable tools
  that they can use in order to have a better schedule of their daily life.
  We can identify the external world as every entity, aspect or occurrence
  relevant for the case that happen unconditionally from the system and its
  utilization.
  If the relevant occurrence could be abstracted, then it is includible in
- this project, and therefore labeled as shared phenomena.
- We have identified the following phenomenas:
+ this project, and therefore identifiable as shared phenomena.
+ The following shared phenomenas are relevant for the case:
 \end_layout
 
 \begin_layout Itemize
@@ -183,10 +191,6 @@ The events (meetings and dates)
 
 \begin_layout Itemize
 The weather forecasts
-\end_layout
-
-\begin_layout Itemize
-The ETA needed to reach a destination
 \end_layout
 
 \begin_layout Itemize
@@ -201,13 +205,213 @@ Invoice of a transit ticket acquisition
 Sharing services status
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Goals
+\end_layout
+
+\begin_layout Itemize
+[G1] Allow people to view the daily schedule with coming up events at the
+ top
+\end_layout
+
+\begin_layout Itemize
+[G2] Allow people to view every recorded event
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[G2.1] Allow the people to view the detail of each event
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[G.2.1.1] If the mean of transportation is a public transit: allow the people
+ to purchase and view the transit ticket
+\end_layout
+
+\begin_layout Itemize
+[G 2.1.2] If the mean of transportation is ride with a car sharing :
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+[G3] Allow people to get information on the travel mean chosen for a particular
+ event
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[G3.1] Allow people to get the ETA to the appointment
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G4] Allow the users to make an event
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[G4.1] Allow the user to define a name/description of the appointment
+\end_layout
+
+\begin_layout Itemize
+[G.4.2] Allow the user to define the location
+\end_layout
+
+\begin_layout Itemize
+[G.4.3] Allow users to set a flexible timing
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[G.4.3.1] Allow the user to select a time window in which the event will occur
+\end_layout
+
+\begin_layout Itemize
+[G.4.3.2] Allow the user to select how long the event will last
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G.4.4] Allow the user to set a starting time and ending time 
+\end_layout
+
+\begin_layout Itemize
+[G.4.5] Allow the user to repeat the event regularly throughout the week
+\end_layout
+
+\begin_layout Itemize
+[G.4.6] Allow the user to assign the event to a specific calendar
+\end_layout
+
+\begin_layout Itemize
+[G.4.7] Allow the user to define the mean of transportations that he/she wants
+ to use for the event
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G5] Allow the use to see today events on a map
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[G.5.1] Allow the user to have information about the status of the journey
+ to make in order to reach the appointment's location 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G6] Allow the user to see monthly events on a map
+\end_layout
+
+\begin_layout Itemize
+[G7] Allow the user to set preferences
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[G7.1] Allow the user to set the eco-friendly mode
+\end_layout
+
+\begin_layout Itemize
+[G.7.2] Allow the user to set the walkable distance limit
+\end_layout
+
+\begin_layout Itemize
+[G.7.3] Allow the user to set the maximum biking range
+\end_layout
+
+\begin_layout Itemize
+[G.7.4] Allow the users to set the owned bike and/or bike sharing providers
+\end_layout
+
+\begin_layout Itemize
+[G.7.5] Allow the users to set a time range in which they can take public
+ transits
+\end_layout
+
+\begin_layout Itemize
+[G.7.6] Allow the users to set if they own a car and/or their favorite car
+ sharing providers
+\end_layout
+
+\begin_layout Itemize
+[G.7.7] Allow the users to set the preferred ride sharing service
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G8] Allow the users to create calendars
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[G8.1] Allow the users to color calendar
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Enumerate
+Automatically computes travel time between appointments to make sure that
+ the user will never be late
+\end_layout
+
+\begin_layout Enumerate
+Supports people providing informations about the best mobility solution
+\end_layout
+
+\begin_layout Enumerate
+Allow people to buy public transportation tickets or locating the nearest
+ bike
+\end_layout
+
+\begin_layout Enumerate
+Suggest travel solutions depending on the type of appointment
+\end_layout
+
+\begin_layout Enumerate
+Check the weather forecast in order to provide the best mobility solution
+\end_layout
+
+\begin_layout Enumerate
+Allow people to define various kind of preferences
+\end_layout
+
+\begin_layout Enumerate
+Allow people to choose whether to combine transportation means in order
+ to lower carbon emissions
+\end_layout
+
+\begin_layout Enumerate
+Allow people to select a flexible lunch time
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Definitions, Acronyms, Abbreviations
 \end_layout
 
+\begin_layout Subsubsection
+Definitions
+\end_layout
+
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="8" columns="2">
+<lyxtabular version="3" rows="7" columns="2">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -216,7 +420,7 @@ Definitions, Acronyms, Abbreviations
 \begin_inset Text
 
 \begin_layout Plain Layout
-Acronym/Abbreviation
+Definition
 \end_layout
 
 \end_inset
@@ -225,7 +429,7 @@ Acronym/Abbreviation
 \begin_inset Text
 
 \begin_layout Plain Layout
-Definition
+Explanation
 \end_layout
 
 \end_inset
@@ -246,6 +450,26 @@ Appointment
 
 \begin_layout Plain Layout
 A period of time in which something take place at a certain time
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Travlendar+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The name of the platform to develop
 \end_layout
 
 \end_inset
@@ -312,6 +536,63 @@ A potential utilizer of this project
 </cell>
 </row>
 <row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ride
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A service performed by a ride-sharing company and Cabs
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Acronyms
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Acronym
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Explanation
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
 <cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
@@ -326,6 +607,143 @@ GUI
 
 \begin_layout Plain Layout
 Graphic User Interface
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ETA
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Estimated time of arrival
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+API
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Application programming interface
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+RASD
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Requirement Analysis and Specification Document
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PNR
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Passenger name record
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Abbreviations
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Abbreviation
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Explanation
 \end_layout
 
 \end_inset
@@ -352,11 +770,71 @@ A synonym of Travlendar+
 </cell>
 </row>
 <row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+[Gn]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+N-goal
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+[Dn]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+N-domain assumption
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+[Rn]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+N-functional requirement
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-ETA
+
 \end_layout
 
 \end_inset
@@ -365,7 +843,7 @@ ETA
 \begin_inset Text
 
 \begin_layout Plain Layout
-Estimated time of arrival
+
 \end_layout
 
 \end_inset
@@ -390,6 +868,26 @@ Revision history
 Reference Documents 
 \end_layout
 
+\begin_layout Itemize
+Specifications document 
+\begin_inset Quotes eld
+\end_inset
+
+Mandatory Project Assignments.pdf
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+ISO/IEC/IEEE 29148 - IEEE Standard on Requirements Engineering
+\end_layout
+
+\begin_layout Itemize
+Software Abstractions, MIT Press
+\end_layout
+
 \begin_layout Subsection
 Document Structure
 \end_layout
@@ -405,7 +903,8 @@ The paper includes six areas.
  the requirements and the design constraints.
  The paper is equipped with a fourth section that contains a formal analysis
  using Alloy.
- Finally, a fifth and a sixth section allows the reader to learn the effort
+ The fifth section contains the mockup of the final work.
+ Finally, a sixth and a seventh section allows the reader to learn the effort
  spent on this project by each team member and the references made in the
  whole paper.
 \end_layout
@@ -420,24 +919,27 @@ Product perspective
 
 \begin_layout Standard
 Travlendar+ is a standalone system that provides the functionality described
- in the product function section.
- It must include API calls to the external services in order to fetch data
- from third-party platforms such as car sharing's.
+ in the Product Function Section 2.2.
+ It would implement external services in order to offer weather forecast,
+ maps services, sharing systems information, transits and strike information.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Subsubsection
+Description of the Shared Phenomenas
 \end_layout
 
 \begin_layout Itemize
-The events (meetings and dates): This phenomena connects the appointment
- phenomena with the creation of its instance on the system's database
+The events (meetings and dates): This phenomena connects the appointments
+ with the creation of its instance on the system's database
 \end_layout
 
 \begin_layout Itemize
-The weather forecasts: Connects weather phenomenas with an instance in our
- database
-\end_layout
-
-\begin_layout Itemize
-The ETA needed to reach a destination: Defined by time in the real word
- and by a number in the machines word
+The weather forecasts: Connects weather phenomenas with a specific recommendatio
+n policy
 \end_layout
 
 \begin_layout Itemize
@@ -455,16 +957,46 @@ Sharing services status: Phenomena moldable with a set of renting actions
  in real life and a set of GPS locations on the machine's world
 \end_layout
 
-\begin_layout Standard
-The system has to be provided of an user-friendly GUI able to address the
- interactions with the users.
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-FORSE È UN NON-FUNCTIONAL REQUIREMENT - PHIL
+\begin_layout Subsubsection
+Domain analysis
 \end_layout
 
+\begin_layout Itemize
+D1 Reduction of delays at the appointments: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+At the event creation, a record is consequentially generated into the system
+\end_layout
+
+\begin_layout Itemize
+The shortest path is calculated by taking into account the following criteria:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Distance to be traveled
+\end_layout
+
+\begin_layout Itemize
+Strikes
+\end_layout
+
+\begin_layout Itemize
+Weather forecast
+\end_layout
+
+\begin_layout Itemize
+Availability of a transits (and eventually a pass)
+\end_layout
+
+\begin_layout Itemize
+Availability of a car sharing accounts
+\end_layout
+
+\end_deeper
+\end_deeper
 \end_inset
 
 
@@ -476,10 +1008,12 @@ Class Diagram
 
 \begin_layout Standard
 \align center
-\begin_inset Graphics
-	filename images/CD.png
-	lyxscale 40
-	scale 35
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+New version to be added
+\end_layout
 
 \end_inset
 
@@ -491,47 +1025,29 @@ Product functions
 \end_layout
 
 \begin_layout Standard
-We identify the following functions as tools that our system need to have
- in order to fulfill the goals described in Section 1.1.
+Each goal described in Section 1.2.1 is function that will be implemented
+ in the system.
+ We report below the functionalities that require a further explanation
+ and the boundaries between the system to be developed and thirty party
+ system.
 \end_layout
 
-\begin_layout Enumerate
-Automatically computes travel time between appointments to make sure that
- the user will never be late
+\begin_layout Subsubsection
+[G.2.1.1] Allow the people to purchase and view the transit ticket
 \end_layout
 
-\begin_layout Enumerate
-Supports people providing informations about the best mobility solution
+\begin_layout Standard
+The ticket buying system will use regular text messages to send a purchasing
+ request at the local transit company which reply to our app with the PNR
+ code of the ticket.
+ This choice of designing was made to ensure compatibility among every transit
+ provider and to allow users to pay it by charging the cost of the ticket
+ on their cell phone credit/bill, letting the carrier provider handling
+ the payment.
 \end_layout
 
-\begin_layout Enumerate
-Allow people to buy public transportation tickets or locating the nearest
- bike
-\end_layout
-
-\begin_layout Enumerate
-Allow people to create meetings
-\end_layout
-
-\begin_layout Enumerate
-Suggest travel solutions depending on the type of appointment
-\end_layout
-
-\begin_layout Enumerate
-Check the weather forecast in order to provide the best mobility solution
-\end_layout
-
-\begin_layout Enumerate
-Allow people to define various kind of preferences
-\end_layout
-
-\begin_layout Enumerate
-Allow people to choose whether to combine transportation means in order
- to lower carbon emissions
-\end_layout
-
-\begin_layout Enumerate
-Allow people to select a flexible lunch time
+\begin_layout Standard
+Completed t
 \end_layout
 
 \begin_layout Subsection
@@ -566,6 +1082,14 @@ The mobile device needs to have a GPS system
 The mobile device needs to have a regular 3G internet connection available
 \end_layout
 
+\begin_layout Enumerate
+The software will be used in Italy, precisely in the region of Lombardy
+\end_layout
+
+\begin_layout Enumerate
+Public transits provide a sms-based purchasing system
+\end_layout
+
 \begin_layout Section
 Specific Requirements
 \end_layout
@@ -579,19 +1103,67 @@ User Interfaces
 \end_layout
 
 \begin_layout Standard
-The 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Gio
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
 Hardware Interfaces 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Phil
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection
 Software Interfaces 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Phil
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection
 Communication Interfaces
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Phil
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -603,6 +1175,29 @@ Communication Interfaces
 
 \begin_layout Subsection
 Functional Requirements
+\end_layout
+
+\begin_layout Itemize
+It must include API calls to the external services in order to fetch data
+ from third-party platforms such as car sharing's
+\end_layout
+
+\begin_layout Itemize
+The system has to be provided of an user-friendly GUI able to address the
+ interactions with the users
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Gio
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
@@ -2257,8 +2852,34 @@ None.
 Performance Requirements
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Gio
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Design Constraints
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Gio
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
@@ -2275,6 +2896,19 @@ Any other constraint
 
 \begin_layout Subsection
 Software System Attributes
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Phil
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
@@ -2301,20 +2935,37 @@ Portability
 Formal analysis using Alloy
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Smilzo
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Mockup
+\end_layout
+
 \begin_layout Section
 Effort spent
 \end_layout
 
 \begin_layout Itemize
-Filippo Calzavara: 4.30h
+Filippo Calzavara: 9.30h
 \end_layout
 
 \begin_layout Itemize
-Giovanni Filaferro: 4.30h
+Giovanni Filaferro: 9.30h
 \end_layout
 
 \begin_layout Itemize
-Benedetto Maria Nespoli: 4.30h
+Benedetto Maria Nespoli: 9.30h
 \end_layout
 
 \begin_layout Section
