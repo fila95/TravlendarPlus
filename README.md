@@ -1,5 +1,5 @@
 
-![Travlendar+ Icon](https://github.com/fila95/CalzavaraFilaferroNespoli/blob/master/Assets/Icon/App%20Icon-512.png)
+![Travlendar+ Icon](https://github.com/fila95/CalzavaraFilaferroNespoli/blob/master/Assets/GitHub%20Banner.png)
 
 
 # Travlendar+
