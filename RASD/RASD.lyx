@@ -1426,6 +1426,13 @@ Information on which mean of transportation is preferred can be also specified
  in each event with some buttons
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Definition of use cases
 \end_layout
@@ -1592,9 +1599,9 @@ None
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename images/UC_insertEvent.png
+	filename images/UC1.png
 	lyxscale 30
-	scale 30
+	scale 40
 
 \end_inset
 
@@ -2021,169 +2028,6 @@ Termination
 \series default
 : The user is notified if the tickets are successfully bought or if an error
  occurred
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Exceptions
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-The user is notified if something goes wrong in the payment
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Special Requirements
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Integration with public transportation in order to buy tickets
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset Graphics
-	filename images/UC_insertEvent.png
-	lyxscale 30
-	scale 30
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection*
-AutoBuyTickets
-\end_layout
-
-\begin_layout Standard
-Allow the system, after asking the permission to the user, to buy public
- transportation tickets.
-\end_layout
-
-\begin_layout Standard
-\begin_inset VSpace bigskip*
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Tabular
-<lyxtabular version="3" rows="5" columns="2">
-<features tabularvalignment="middle">
-<column alignment="left" valignment="middle" width="20text%">
-<column alignment="left" valignment="middle" width="80text%">
-<row>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Name
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-AutoBuyTickets
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Actors
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-No active actors
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Flow of Events
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Itemize
-
-\series bold
-Initiation
-\series default
-: The system detects that the user will need a ticket
-\end_layout
-
-\begin_layout Itemize
-The system, if it's previously enabled by the user, contact the right service
- and it chooses the best ticket
-\end_layout
-
-\begin_layout Itemize
-The system asks to the user for permission to buy the chosen ticket
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-Termination
-\series default
-: If the user gives the permission to the system, it buys the ticket, or
- abort otherwise
 \end_layout
 
 \end_inset
