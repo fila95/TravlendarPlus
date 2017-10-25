@@ -228,7 +228,7 @@ Goals
 \end_layout
 
 \begin_layout Itemize
-[G3] Allow the people to view the detail of each event
+[G3] Allow people to view the details of each event
 \end_layout
 
 \begin_deeper
@@ -243,17 +243,17 @@ Goals
 
 \end_deeper
 \begin_layout Itemize
-[G.3.2] Allow the people to purchase and view the transit ticket
+[G.3.2] Allow people to purchase and view the transit ticket
 \end_layout
 
 \begin_layout Itemize
-[G 3.3] Allow people to open the car sharing/ride provider's app and call
- the vehicle
+[G 3.3] Allow people to open the sharing services/ride provider's app and
+ call the vehicle
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
-[G4] Allow the users to make an event
+[G4] Allow the users to create an event
 \end_layout
 
 \begin_deeper
@@ -280,7 +280,8 @@ Goals
 
 \end_deeper
 \begin_layout Itemize
-[G.4.4] Allow the user to set a starting time and ending time 
+[G.4.4] Allow the user to set a starting time and ending time on non-flexible
+ events
 \end_layout
 
 \begin_layout Itemize
@@ -1033,7 +1034,7 @@ Each goal described in Section 1.2.1 is function that will be implemented
 \end_layout
 
 \begin_layout Subsubsection
-Allow the people to purchase and view the transit ticket
+Allow people to purchase and view the transit ticket
 \end_layout
 
 \begin_layout Standard
@@ -1076,7 +1077,7 @@ We assume that:
 \end_layout
 
 \begin_layout Enumerate
-The client is using the app through a new generation iPhone
+The client is using the app through a new generation smartphone
 \end_layout
 
 \begin_layout Enumerate
@@ -1285,7 +1286,7 @@ When the app is lunched for the first time, the system recognizes the new
 \end_layout
 
 \begin_layout Itemize
-App data are stored locally and therefore retrieved by only one device
+App data are stored remotely and retrieved by multiple devices
 \end_layout
 
 \begin_layout Subsubsection
@@ -1319,13 +1320,8 @@ Later on
 \end_layout
 
 \begin_layout Itemize
-Information of event's location, description, calendar saved and time must
- always be provided
-\end_layout
-
-\begin_layout Itemize
-Up coming events' section needs to contain appointments planned to happen
- 2h before 
+Information of event's description, calendar saved and time must always
+ be shown, while the location of the event is optional
 \end_layout
 
 \begin_layout Itemize
@@ -1339,6 +1335,11 @@ Button add event must always be visible
 
 \end_layout
 
+\begin_layout Itemize
+Up coming events' section needs to contain appointments planned to happen
+ 2h before
+\end_layout
+
 \begin_layout Subsubsection
 [G2] Allow people to view previous events
 \end_layout
@@ -1348,8 +1349,8 @@ A calendar screen must be shown
 \end_layout
 
 \begin_layout Itemize
-Information of event's location, description, calendar saved and time must
- always be provided
+Information of event's description, calendar saved and time must always
+ be shown, while the location of the event is optional
 \end_layout
 
 \begin_layout Itemize
@@ -1388,7 +1389,9 @@ Tickets services must be shown
 
 \begin_layout Itemize
 Indications on the ETA, calculated mean of transportation and time-to-leave
- are calculated on the current approximative position
+ are calculated on the current approximative position.
+ Then, they are re-calculated every 2 hours, or when a significant change
+ in GPS position is discovered
 \end_layout
 
 \begin_layout Subsubsection
@@ -1589,9 +1592,9 @@ EditPreferences
 
 \begin_layout Standard
 Allow the users to edit their settings: preferred vehicles (cars, bikes,
- public transportation, trains, airplanes, sharing services), depending
- on the weather, if help lowering carbon emission or not, and specify a
- preferred lunch time
+ public transportation, trains, sharing services), depending on the weather,
+ if help lowering carbon emission or not, and specify a preferred lunch
+ time
 \end_layout
 
 \begin_layout Standard
@@ -1753,7 +1756,7 @@ MonitorInboxForNewEvent
 
 \begin_layout Standard
 The system, when allowed by the user, check the inbox looking for some emails
- containing an Event, like airplane or train tickets.
+ containing an Event, like train tickets.
 \end_layout
 
 \begin_layout Standard
