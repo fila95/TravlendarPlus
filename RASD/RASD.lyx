@@ -243,22 +243,22 @@ Goals
 
 \end_deeper
 \begin_layout Itemize
-[G.3.2] Allow people to explore a specific route
+[G3.2] Allow people to explore a specific route
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-[G.3.2.1] Allow people to purchase the transit ticket
+[G3.2.1] Allow people to purchase the transit ticket
 \end_layout
 
 \begin_layout Itemize
-[G.3.2.2] Allow people to open the sharing services/ride provider's app and
+[G3.2.2] Allow people to open the sharing services/ride provider's app and
  call the vehicle
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
-[G.3.3] Allow people to eventually view the purchased transit ticket
+[G3.3] Allow people to eventually view the purchased transit ticket
 \end_layout
 
 \end_deeper
@@ -272,38 +272,38 @@ Goals
 \end_layout
 
 \begin_layout Itemize
-[G.4.2] Allow the user to define the location
+[G4.2] Allow the user to define the location
 \end_layout
 
 \begin_layout Itemize
-[G.4.3] Allow users to set a flexible timing
+[G4.3] Allow users to set a flexible timing
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-[G.4.3.1] Allow the user to select a time window in which the event will occur
+[G4.3.1] Allow the user to select a time window in which the event will occur
 \end_layout
 
 \begin_layout Itemize
-[G.4.3.2] Allow the user to select how long the event will last
+[G4.3.2] Allow the user to select how long the event will last
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
-[G.4.4] Allow the user to set a starting time and ending time on non-flexible
+[G4.4] Allow the user to set a starting time and ending time on non-flexible
  events
 \end_layout
 
 \begin_layout Itemize
-[G.4.5] Allow the user to repeat the event regularly throughout the week
+[G4.5] Allow the user to repeat the event regularly throughout the week
 \end_layout
 
 \begin_layout Itemize
-[G.4.6] Allow the user to assign the event to a specific calendar
+[G4.6] Allow the user to assign the event to a specific calendar
 \end_layout
 
 \begin_layout Itemize
-[G.4.7] Allow the user to define the mean of transportations that he/she wants
+[G4.7] Allow the user to define the mean of transportations that he/she wants
  to use for the event
 \end_layout
 
@@ -314,58 +314,58 @@ Goals
 
 \begin_deeper
 \begin_layout Itemize
-[G.5.1] Allow the user to have information about the status of the journey
+[G5.1] Allow the user to have information about the status of the journey
  to make in order to reach the appointment's location 
+\end_layout
+
+\begin_layout Itemize
+[G5.2] Allow the user to see previous daily events on a map
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
-[G6] Allow the user to see monthly events on a map
-\end_layout
-
-\begin_layout Itemize
-[G7] Allow the user to set preferences
+[G6] Allow the user to set preferences
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-[G7.1] Allow the user to set the eco-friendly mode
+[G6.1] Allow the user to set the eco-friendly mode
 \end_layout
 
 \begin_layout Itemize
-[G.7.2] Allow the user to set the walkable distance limit
+[G6.2] Allow the user to set the walkable distance limit
 \end_layout
 
 \begin_layout Itemize
-[G.7.3] Allow the user to set the maximum biking range
+[G6.3] Allow the user to set the maximum biking range
 \end_layout
 
 \begin_layout Itemize
-[G.7.4] Allow the users to set the owned bike and/or bike sharing providers
+[G6.4] Allow the users to set the owned bike and/or bike sharing providers
 \end_layout
 
 \begin_layout Itemize
-[G.7.5] Allow the users to set a time range in which they can take public
+[G6.5] Allow the users to set a time range in which they can take public
  transits
 \end_layout
 
 \begin_layout Itemize
-[G.7.6] Allow the users to set if they own a car and/or their favorite car
+[G6.6] Allow the users to set if they own a car and/or their favorite car
  sharing providers
 \end_layout
 
 \begin_layout Itemize
-[G.7.7] Allow the users to set the preferred ride sharing service
+[G6.7] Allow the users to set the preferred ride sharing service
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
-[G8] Allow the users to create calendars
+[G7] Allow the users to create calendars
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-[G8.1] Allow the users to color calendar
+[G7.1] Allow the users to color calendar
 \end_layout
 
 \end_deeper
@@ -1430,7 +1430,19 @@ Tickets services must be shown
 \end_layout
 
 \begin_layout Itemize
-Different suggested routes have to be shown, if available
+Different suggested routes can be explored, if available
+\end_layout
+
+\begin_layout Itemize
+The system must provide a way to buy tickets or book a sharing service vehicle
+\end_layout
+
+\begin_layout Itemize
+The system must show the purchased ticket
+\end_layout
+
+\begin_layout Itemize
+The paths color in the map changes accordingly to the means of transportation
 \end_layout
 
 \begin_layout Standard
@@ -1449,6 +1461,18 @@ Indications on the ETA, calculated mean of transportation and time-to-leave
 \begin_layout Itemize
 Position is re-calculated every 2 hours, or when a significant change in
  GPS position is discovered
+\end_layout
+
+\begin_layout Itemize
+The map can be browsed by the user
+\end_layout
+
+\begin_layout Itemize
+The localization service is available and functionally working
+\end_layout
+
+\begin_layout Itemize
+The map service is reliable
 \end_layout
 
 \begin_layout Subsubsection
@@ -1509,7 +1533,7 @@ All the events must be shown on a interactive map
 \end_layout
 
 \begin_layout Itemize
-The paths color in the map changes accordingly to the means of transportation
+The map must show a path to the next event 
 \end_layout
 
 \begin_layout Standard
@@ -1532,7 +1556,47 @@ The map service is reliable
 \end_layout
 
 \begin_layout Subsubsection
-[G6] Allow the user to see monthly events on a map
+[G6] Allow the user to set preferences
+\end_layout
+
+\begin_layout Itemize
+The system must provide of a way to change the maximum distance that could
+ be traveled by bike or walk
+\end_layout
+
+\begin_layout Itemize
+The system must provide a time window in which public transits can be taken
+\end_layout
+
+\begin_layout Itemize
+All the available calendars must be shown
+\end_layout
+
+\begin_layout Itemize
+The app should allow the user to add a new calendar
+\end_layout
+
+\begin_layout Itemize
+The system allows to change the name of a calendar and eventually its color
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Every preference agrees with the actual record saved in the database 
+\end_layout
+
+\begin_layout Itemize
+The user has always at least one calendar
+\end_layout
+
+\begin_layout Itemize
+Allowed services have been preinstalled by the system administrator
 \end_layout
 
 \begin_layout Standard
