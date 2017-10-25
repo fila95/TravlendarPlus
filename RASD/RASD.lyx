@@ -1217,10 +1217,18 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /Users/giovannifilaferro/Desktop/University/Magistrale/Software Engineering 2 Project/Assets/Home Screen@3x.png
+	scale 20
+
+\end_inset
+
+
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
+Image
 \end_layout
 
 \end_inset
