@@ -1126,17 +1126,9 @@ Public transits companies provide a sms-based purchasing system
 \end_layout
 
 \begin_layout Enumerate
-The user logs in automatically using an iCloud account 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-GIO CONTROLLA QUESTA PARTE
-\end_layout
-
-\end_inset
-
-
+The user has already logged in to his/her iCloud account (which is compulsory
+ on all iOS and macOS devices) so that we can identify him/her by using
+ the unique iCloud Keychain identifier
 \end_layout
 
 \begin_layout Enumerate
