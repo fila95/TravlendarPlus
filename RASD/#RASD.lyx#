@@ -258,7 +258,17 @@ Goals
 
 \end_deeper
 \begin_layout Itemize
-[G.3.3] Allow people to eventually view the purchased transit ticket
+[G.3.3] Allow people to eventually view the purchased transit ticket 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+FIXME
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper
@@ -1506,10 +1516,6 @@ The localization service is available and functionally working
 
 \begin_layout Itemize
 The map service is reliable
-\end_layout
-
-\begin_layout Subsubsection
-[G6] Allow the user to see monthly events on a map
 \end_layout
 
 \begin_layout Standard
