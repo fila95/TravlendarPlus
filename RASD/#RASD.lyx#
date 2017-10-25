@@ -235,7 +235,8 @@ Goals
 \end_layout
 
 \begin_layout Itemize
-[G 2.1.2] If the mean of transportation is ride with a car sharing :
+[G 2.1.2] If the mean of transportation is ride with a car sharing/ride: allow
+ people to open the car sharing/ride provider's app and call the vehicle
 \end_layout
 
 \end_deeper
@@ -1047,16 +1048,20 @@ The ticket buying system will use regular text messages to send a purchasing
 \end_layout
 
 \begin_layout Standard
-Completed t
+When the purchasing is completed, a QR code representing the ticket's PNR
+ will be displayed on the user's screen.
 \end_layout
 
 \begin_layout Subsection
 User characteristics
 \end_layout
 
+\begin_layout Subsubsection
+Actors
+\end_layout
+
 \begin_layout Standard
-The system is designed to be utilized by any person who wants to have a
- more efficient schedule and planning throughout the day.
+
 \end_layout
 
 \begin_layout Subsection
