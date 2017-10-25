@@ -698,7 +698,7 @@ Passenger name record
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+QR
 \end_layout
 
 \end_inset
@@ -707,7 +707,7 @@ Passenger name record
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+QR Code
 \end_layout
 
 \end_inset
@@ -1060,8 +1060,12 @@ User characteristics
 Actors
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
+User: An utilizer of system
+\end_layout
 
+\begin_layout Itemize
+System Manager: The manager of the app
 \end_layout
 
 \begin_layout Subsection
@@ -1073,26 +1077,81 @@ We assume that:
 \end_layout
 
 \begin_layout Enumerate
-The user is using the app through a new generation smartphone and that it
- has installed a browser such as Google Chrome or Safari that supports HTML5
- and Javascript.
- 
+The client is using the app through a new generation iPhone
 \end_layout
 
 \begin_layout Enumerate
-The mobile device needs to have a GPS system
+The mobile device has a GPS system
 \end_layout
 
 \begin_layout Enumerate
-The mobile device needs to have a regular 3G internet connection available
+The mobile device has a regular 3G internet connection available
 \end_layout
 
 \begin_layout Enumerate
-The software will be used in Italy, precisely in the region of Lombardy
+The software is designed to be utilized in Italy, precisely in the region
+ of Lombardy
 \end_layout
 
 \begin_layout Enumerate
-Public transits provide a sms-based purchasing system
+Public transits companies provide a sms-based purchasing system
+\end_layout
+
+\begin_layout Enumerate
+The user logs in automatically using an iCloud account 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+GIO CONTROLLA QUESTA PARTE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Vehicle-sharing/ride-sharing companies' will provide APIs to locate the
+ nearest vehicle available
+\end_layout
+
+\begin_layout Enumerate
+Weather forecast are provided from an external service through API
+\end_layout
+
+\begin_layout Enumerate
+The system follows a time-based criteria instead of a cost-based one
+\end_layout
+
+\begin_layout Subsubsection
+Interfaces to other applications
+\end_layout
+
+\begin_layout Standard
+At the first stages of the project, Travlendar+ will not release API interfaces
+ to the public
+\end_layout
+
+\begin_layout Subsubsection
+Domain assumption
+\end_layout
+
+\begin_layout Itemize
+[D1] User's position is retrieved using GPS system
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+QUI VANNO LE SPECIFICHE DI BENNES
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -1112,7 +1171,7 @@ User Interfaces
 status open
 
 \begin_layout Plain Layout
-Gio
+Gio - Qui includi i mockup con spiegazione
 \end_layout
 
 \end_inset

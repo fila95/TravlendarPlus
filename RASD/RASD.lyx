@@ -220,7 +220,7 @@ Goals
 \end_layout
 
 \begin_layout Itemize
-[G2] Allow people to view every event saved
+[G2] Allow people to view every recorded event
 \end_layout
 
 \begin_deeper
@@ -235,7 +235,8 @@ Goals
 \end_layout
 
 \begin_layout Itemize
-[G 2.1.2] If the mean of transportation is ride with a car sharing :
+[G 2.1.2] If the mean of transportation is ride with a car sharing/ride: allow
+ people to open the car sharing/ride provider's app and call the vehicle
 \end_layout
 
 \end_deeper
@@ -677,7 +678,7 @@ Requirement Analysis and Specification Document
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+PNR
 \end_layout
 
 \end_inset
@@ -686,7 +687,7 @@ Requirement Analysis and Specification Document
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+Passenger name record
 \end_layout
 
 \end_inset
@@ -697,7 +698,7 @@ Requirement Analysis and Specification Document
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+QR
 \end_layout
 
 \end_inset
@@ -706,7 +707,7 @@ Requirement Analysis and Specification Document
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+QR Code
 \end_layout
 
 \end_inset
@@ -920,8 +921,13 @@ Product perspective
 \begin_layout Standard
 Travlendar+ is a standalone system that provides the functionality described
  in the Product Function Section 2.2.
- 
+ It would implement external services in order to offer weather forecast,
+ maps services, sharing systems information, transits and strike information.
 \end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
 
 \begin_layout Subsubsection
 Description of the Shared Phenomenas
@@ -992,8 +998,9 @@ Availability of a car sharing accounts
 
 \end_deeper
 \end_deeper
-\begin_layout Itemize
-D2 
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
@@ -1019,56 +1026,46 @@ Product functions
 \end_layout
 
 \begin_layout Standard
-We identify the following functions as tools that our system need to have
- in order to fulfill the goals described in Section 1.1.
+Each goal described in Section 1.2.1 is function that will be implemented
+ in the system.
+ We report below the functionalities that require a further explanation
+ and the boundaries between the system to be developed and thirty party
+ system.
 \end_layout
 
-\begin_layout Enumerate
-Automatically computes travel time between appointments to make sure that
- the user will never be late
+\begin_layout Subsubsection
+[G.2.1.1] Allow the people to purchase and view the transit ticket
 \end_layout
 
-\begin_layout Enumerate
-Supports people providing informations about the best mobility solution
+\begin_layout Standard
+The ticket buying system will use regular text messages to send a purchasing
+ request at the local transit company which reply to our app with the PNR
+ code of the ticket.
+ This choice of designing was made to ensure compatibility among every transit
+ provider and to allow users to pay it by charging the cost of the ticket
+ on their cell phone credit/bill, letting the carrier provider handling
+ the payment.
 \end_layout
 
-\begin_layout Enumerate
-Allow people to buy public transportation tickets or locating the nearest
- bike
-\end_layout
-
-\begin_layout Enumerate
-Allow people to create meetings
-\end_layout
-
-\begin_layout Enumerate
-Suggest travel solutions depending on the type of appointment
-\end_layout
-
-\begin_layout Enumerate
-Check the weather forecast in order to provide the best mobility solution
-\end_layout
-
-\begin_layout Enumerate
-Allow people to define various kind of preferences
-\end_layout
-
-\begin_layout Enumerate
-Allow people to choose whether to combine transportation means in order
- to lower carbon emissions
-\end_layout
-
-\begin_layout Enumerate
-Allow people to select a flexible lunch time
+\begin_layout Standard
+When the purchasing is completed, a QR code representing the ticket's PNR
+ will be displayed on the user's screen.
 \end_layout
 
 \begin_layout Subsection
 User characteristics
 \end_layout
 
-\begin_layout Standard
-The system is designed to be utilized by any person who wants to have a
- more efficient schedule and planning throughout the day.
+\begin_layout Subsubsection
+Actors
+\end_layout
+
+\begin_layout Itemize
+User: An utilizer of system
+\end_layout
+
+\begin_layout Itemize
+System Manager: The manager of the app
 \end_layout
 
 \begin_layout Subsection
@@ -1080,18 +1077,81 @@ We assume that:
 \end_layout
 
 \begin_layout Enumerate
-The user is using the app through a new generation smartphone and that it
- has installed a browser such as Google Chrome or Safari that supports HTML5
- and Javascript.
- 
+The client is using the app through a new generation iPhone
 \end_layout
 
 \begin_layout Enumerate
-The mobile device needs to have a GPS system
+The mobile device has a GPS system
 \end_layout
 
 \begin_layout Enumerate
-The mobile device needs to have a regular 3G internet connection available
+The mobile device has a regular 3G internet connection available
+\end_layout
+
+\begin_layout Enumerate
+The software is designed to be utilized in Italy, precisely in the region
+ of Lombardy
+\end_layout
+
+\begin_layout Enumerate
+Public transits companies provide a sms-based purchasing system
+\end_layout
+
+\begin_layout Enumerate
+The user logs in automatically using an iCloud account 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+GIO CONTROLLA QUESTA PARTE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Vehicle-sharing/ride-sharing companies' will provide APIs to locate the
+ nearest vehicle available
+\end_layout
+
+\begin_layout Enumerate
+Weather forecast are provided from an external service through API
+\end_layout
+
+\begin_layout Enumerate
+The system follows a time-based criteria instead of a cost-based one
+\end_layout
+
+\begin_layout Subsubsection
+Interfaces to other applications
+\end_layout
+
+\begin_layout Standard
+At the first stages of the project, Travlendar+ will not release API interfaces
+ to the public
+\end_layout
+
+\begin_layout Subsubsection
+Domain assumption
+\end_layout
+
+\begin_layout Itemize
+[D1] User's position is retrieved using GPS system
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+QUI VANNO LE SPECIFICHE DI BENNES
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -1111,7 +1171,7 @@ User Interfaces
 status open
 
 \begin_layout Plain Layout
-Gio
+Gio - Qui includi i mockup con spiegazione
 \end_layout
 
 \end_inset
@@ -1128,7 +1188,7 @@ Hardware Interfaces
 status open
 
 \begin_layout Plain Layout
-Phil
+Gio
 \end_layout
 
 \end_inset
@@ -1145,7 +1205,7 @@ Software Interfaces
 status open
 
 \begin_layout Plain Layout
-Phil
+Gio
 \end_layout
 
 \end_inset
@@ -1162,7 +1222,7 @@ Communication Interfaces
 status open
 
 \begin_layout Plain Layout
-Phil
+Gio
 \end_layout
 
 \end_inset
@@ -1196,7 +1256,7 @@ The system has to be provided of an user-friendly GUI able to address the
 status open
 
 \begin_layout Plain Layout
-Gio
+PHIL
 \end_layout
 
 \end_inset
