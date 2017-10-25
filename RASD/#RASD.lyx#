@@ -261,6 +261,10 @@ Goals
 [G3.3] Allow people to eventually view the purchased transit ticket
 \end_layout
 
+\begin_layout Itemize
+[G3.4] Automatically calculate the shortest paths based on objective criterias
+\end_layout
+
 \end_deeper
 \begin_layout Itemize
 [G4] Allow the users to create an event
@@ -943,84 +947,6 @@ Travlendar+ is a standalone system that provides the functionality described
  maps services, sharing systems information, transits and strike information.
 \end_layout
 
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Subsubsection
-Description of the Shared Phenomenas
-\end_layout
-
-\begin_layout Itemize
-The events (meetings and dates): This phenomena connects the appointments
- with the creation of its instance on the system's database
-\end_layout
-
-\begin_layout Itemize
-The weather forecasts: Connects weather phenomenas with a specific recommendatio
-n policy
-\end_layout
-
-\begin_layout Itemize
-User preferences' settings: The phenomena that connects users' choices with
- profiling actions and instances of actions in the machine's wolds
-\end_layout
-
-\begin_layout Itemize
-Invoice of a transit ticket acquisition: Action that links a purchase with
- its record
-\end_layout
-
-\begin_layout Itemize
-Sharing services status: Phenomena moldable with a set of renting actions
- in real life and a set of GPS locations on the machine's world
-\end_layout
-
-\begin_layout Subsubsection
-Domain analysis
-\end_layout
-
-\begin_layout Itemize
-D1 Reduction of delays at the appointments: 
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-At the event creation, a record is consequentially generated into the system
-\end_layout
-
-\begin_layout Itemize
-The shortest path is calculated by taking into account the following criteria:
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Distance to be traveled
-\end_layout
-
-\begin_layout Itemize
-Strikes
-\end_layout
-
-\begin_layout Itemize
-Weather forecast
-\end_layout
-
-\begin_layout Itemize
-Availability of a transits (and eventually a pass)
-\end_layout
-
-\begin_layout Itemize
-Availability of a car sharing accounts
-\end_layout
-
-\end_deeper
-\end_deeper
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsubsection
 Class Diagram
 \end_layout
@@ -1062,7 +988,7 @@ Active mode:
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename images/SC.png
+	filename images/SC-active.png
 	lyxscale 50
 	scale 50
 
@@ -1078,6 +1004,14 @@ Passive mode:
 \end_layout
 
 \begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/SC-passive.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
 
 \end_layout
 
@@ -1193,7 +1127,7 @@ Public transit pass
 \begin_layout Standard
 The system will not take into consideration whether the person owns a transit's
  pass, however it always allows to buy a transit ticket via text-message
- if asked by the user
+ if asked by the user.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1650,8 +1584,8 @@ The localization service is available and functionally working
 Definition of use cases
 \end_layout
 
-\begin_layout Subsection*
-AddEvent
+\begin_layout Subsubsection
+AddStandardEvent
 \end_layout
 
 \begin_layout Standard
@@ -1667,7 +1601,7 @@ Allow the user to insert an event in the calendar
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="5" columns="2">
+<lyxtabular version="3" rows="6" columns="2">
 <features tabularvalignment="middle">
 <column alignment="left" valignment="middle" width="20text%">
 <column alignment="left" valignment="middle" width="80text%">
@@ -1685,14 +1619,14 @@ Name
 \begin_inset Text
 
 \begin_layout Plain Layout
-AddEvent
+AddStandardEvent
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1712,6 +1646,26 @@ User
 </cell>
 </row>
 <row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Input conditions
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+None
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
 <cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
@@ -1724,34 +1678,69 @@ Flow of Events
 <cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
-\begin_layout Itemize
+\begin_layout Enumerate
+The user selects 
+\begin_inset Quotes eld
+\end_inset
 
-\series bold
-Initiation
-\series default
-: The user decide to insert a new Event on a specified date
+Add event
+\begin_inset Quotes erd
+\end_inset
+
+ from the 
+\begin_inset Quotes eld
+\end_inset
+
+schedule
+\begin_inset Quotes erd
+\end_inset
+
+ view
 \end_layout
 
-\begin_layout Itemize
-The system checks if the event can be reached in time with the user's preferred
- vehicles.
+\begin_layout Enumerate
+A pop-up is shown with a form to fill out
 \end_layout
 
-\begin_layout Itemize
-If the event can't be reached in time, the system sends a warning to the
- User
+\begin_layout Enumerate
+The user choose the location and a description
 \end_layout
 
-\begin_layout Itemize
-Otherwise the event is added to the user's calendar
+\begin_layout Enumerate
+The user selects the starting and ending date-time
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Enumerate
+Eventual repetitions during the week and type of calendar are chosen
+\end_layout
 
-\series bold
-Termination
-\series default
-: Event added to the calendar, or warning sent to the user
+\begin_layout Enumerate
+Preferred means of transportation are selected
+\end_layout
+
+\begin_layout Enumerate
+The system checks if the appointment can be reached in time with the user's
+ preferred vehicles
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Output conditions
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The event is added to the calendar
 \end_layout
 
 \end_inset
@@ -1767,12 +1756,100 @@ Exceptions
 
 \end_inset
 </cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Users are notified immediately with a warning if their event will not be
+ reached on time
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+AddFlexibleEvent
+\end_layout
+
+\begin_layout Standard
+Allow the user to insert a flexible event in the calendar
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip*
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="middle" width="20text%">
+<column alignment="left" valignment="middle" width="80text%">
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Name
+\end_layout
+
+\end_inset
+</cell>
 <cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Users are notified immediately with a warning if their event won't be reached
- on time
+AddFlexibleEvent
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Actors
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+User
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Input conditions
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+None
 \end_layout
 
 \end_inset
@@ -1783,7 +1860,100 @@ Users are notified immediately with a warning if their event won't be reached
 \begin_inset Text
 
 \begin_layout Plain Layout
-Special Requirements
+Flow of Events
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Enumerate
+The user selects 
+\begin_inset Quotes eld
+\end_inset
+
+Add event
+\begin_inset Quotes erd
+\end_inset
+
+ from the 
+\begin_inset Quotes eld
+\end_inset
+
+schedule
+\begin_inset Quotes erd
+\end_inset
+
+ view
+\end_layout
+
+\begin_layout Enumerate
+A pop-up is shown with a form to fill out
+\end_layout
+
+\begin_layout Enumerate
+The user choose the location and a description
+\end_layout
+
+\begin_layout Enumerate
+The user toggle the switch for a Flexible Event
+\end_layout
+
+\begin_layout Enumerate
+The user selects the starting and ending date-time window
+\end_layout
+
+\begin_layout Enumerate
+The user choose the duration of the event
+\end_layout
+
+\begin_layout Enumerate
+Eventual repetitions during the week and type of calendar are chosen
+\end_layout
+
+\begin_layout Enumerate
+Preferred means of transportation are selected
+\end_layout
+
+\begin_layout Enumerate
+The system checks if the appointment can be reached in time with the user's
+ preferred vehicles
+\end_layout
+
+\begin_layout Enumerate
+The system rea
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Output conditions
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The event is added to the calendar
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Exceptions
 \end_layout
 
 \end_inset
@@ -1792,7 +1962,8 @@ Special Requirements
 \begin_inset Text
 
 \begin_layout Plain Layout
-None
+Users are notified immediately with a warning if their event will not be
+ reached on time
 \end_layout
 
 \end_inset
