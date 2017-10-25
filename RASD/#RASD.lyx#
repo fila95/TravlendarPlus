@@ -215,40 +215,40 @@ Goals
 \end_layout
 
 \begin_layout Itemize
+[G0] Allow people to use the app without a login function
+\end_layout
+
+\begin_layout Itemize
 [G1] Allow people to view the daily schedule with coming up events at the
  top
 \end_layout
 
 \begin_layout Itemize
-[G2] Allow people to view every recorded event
+[G2] Allow people to view previous events
+\end_layout
+
+\begin_layout Itemize
+[G3] Allow the people to view the detail of each event
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-[G2.1] Allow the people to view the detail of each event
+[G3.1] Allow people to get travel information for a particular event
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-[G.2.1.1] If the mean of transportation is a public transit: allow the people
- to purchase and view the transit ticket
-\end_layout
-
-\begin_layout Itemize
-[G 2.1.2] If the mean of transportation is ride with a car sharing/ride: allow
- people to open the car sharing/ride provider's app and call the vehicle
+[G3.1.1] Allow people to get the ETA to the appointment
 \end_layout
 
 \end_deeper
-\end_deeper
 \begin_layout Itemize
-[G3] Allow people to get information on the travel mean chosen for a particular
- event
+[G.3.2] Allow the people to purchase and view the transit ticket
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
-[G3.1] Allow people to get the ETA to the appointment
+[G 3.3] Allow people to open the car sharing/ride provider's app and call
+ the vehicle
 \end_layout
 
 \end_deeper
@@ -1034,7 +1034,7 @@ Each goal described in Section 1.2.1 is function that will be implemented
 \end_layout
 
 \begin_layout Subsubsection
-[G.2.1.1] Allow the people to purchase and view the transit ticket
+Allow the people to purchase and view the transit ticket
 \end_layout
 
 \begin_layout Standard
@@ -1124,6 +1124,19 @@ Weather forecast are provided from an external service through API
 The system follows a time-based criteria instead of a cost-based one
 \end_layout
 
+\begin_layout Enumerate
+The system will not buy automatically the user's ticket if the choice is
+ moving with public transits
+\end_layout
+
+\begin_layout Enumerate
+The system will not take into consideration whether the person own a transit's
+ pass.
+ This was made to give an extended possibility to purchase a ticket for
+ a third person using the app, given the fact that subscription's cards
+ must always be carried on and shown at demand of a public officer.
+\end_layout
+
 \begin_layout Subsubsection
 Interfaces to other applications
 \end_layout
@@ -1188,7 +1201,7 @@ Hardware Interfaces
 status open
 
 \begin_layout Plain Layout
-Phil
+Gio
 \end_layout
 
 \end_inset
@@ -1205,7 +1218,7 @@ Software Interfaces
 status open
 
 \begin_layout Plain Layout
-Phil
+Gio
 \end_layout
 
 \end_inset
@@ -1222,7 +1235,7 @@ Communication Interfaces
 status open
 
 \begin_layout Plain Layout
-Phil
+Gio
 \end_layout
 
 \end_inset
@@ -1241,27 +1254,142 @@ Phil
 Functional Requirements
 \end_layout
 
-\begin_layout Itemize
-It must include API calls to the external services in order to fetch data
- from third-party platforms such as car sharing's
-\end_layout
-
-\begin_layout Itemize
-The system has to be provided of an user-friendly GUI able to address the
- interactions with the users
-\end_layout
-
 \begin_layout Standard
 \begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
-Gio
+References to each requirement and domain must be written at the final stages.
+ Ex.
+ [Rx], [Dx],...
 \end_layout
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsubsection
+[G0] Allow people to use the app without a login function
+\end_layout
+
+\begin_layout Itemize
+When the app is lunched for the first time, the system recognizes the new
+ users and create a record of their data to be locally updated on the phone
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+App data are stored locally and therefore retrieved by only one device
+\end_layout
+
+\begin_layout Subsubsection
+[G1] Allow people to view the daily schedule with coming up events at the
+ top
+\end_layout
+
+\begin_layout Itemize
+The system must be able to provide the list of daily events scheduled by
+ the user
+\end_layout
+
+\begin_layout Itemize
+The events must be divided between 
+\begin_inset Quotes eld
+\end_inset
+
+Up coming
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+Later on
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Information of event's location, description, calendar saved and time must
+ always be provided
+\end_layout
+
+\begin_layout Itemize
+Up coming events' section needs to contain appointments planned to happen
+ 2h before 
+\end_layout
+
+\begin_layout Itemize
+Button add event must always be visible
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+[G2] Allow people to view previous events
+\end_layout
+
+\begin_layout Itemize
+A calendar screen must be shown
+\end_layout
+
+\begin_layout Itemize
+Information of event's location, description, calendar saved and time must
+ always be provided
+\end_layout
+
+\begin_layout Itemize
+Button add event must always be visible
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Transportation information are not shown for the past events
+\end_layout
+
+\begin_layout Subsubsection
+[G3] Allow the people to view the detail of each event
+\end_layout
+
+\begin_layout Itemize
+ETA and trip information must be provided
+\end_layout
+
+\begin_layout Itemize
+Tickets services must be shown
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Indications on the ETA, calculated mean of transportation and time-to-leave
+ are calculated on the current approximative position
 \end_layout
 
 \begin_layout Subsubsection
