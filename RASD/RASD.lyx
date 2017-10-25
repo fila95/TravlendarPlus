@@ -253,7 +253,7 @@ Goals
 
 \end_deeper
 \begin_layout Itemize
-[G4] Allow the users to make an event
+[G4] Allow the users to create an event
 \end_layout
 
 \begin_deeper
@@ -1120,20 +1120,8 @@ Weather forecast are provided from an external service through API
 \end_layout
 
 \begin_layout Enumerate
-The system follows a time-based criteria instead of a cost-based one
-\end_layout
-
-\begin_layout Enumerate
-The system will not buy automatically the user's ticket if the choice is
- moving with public transits
-\end_layout
-
-\begin_layout Enumerate
-The system will not take into consideration whether the person own a transit's
- pass.
- This was made to give an extended possibility to purchase a ticket for
- a third person using the app, given the fact that subscription's cards
- must always be carried on and shown at demand of a public officer.
+While calculating the shortest path, follows a time-based criteria instead
+ of a cost-based one
 \end_layout
 
 \begin_layout Subsubsection
@@ -1143,6 +1131,16 @@ Interfaces to other applications
 \begin_layout Standard
 At the first stages of the project, Travlendar+ will not release API interfaces
  to the public
+\end_layout
+
+\begin_layout Subsubsection
+Public transit pass
+\end_layout
+
+\begin_layout Standard
+The system will not take into consideration whether the person owns a transit's
+ pass, however it always allows to buy a transit ticket via text-message
+ if asked by the user
 \end_layout
 
 \begin_layout Subsubsection
@@ -1392,7 +1390,7 @@ Indications on the ETA, calculated mean of transportation and time-to-leave
 \end_layout
 
 \begin_layout Subsubsection
-[G4] Allow the users to make an event
+[G4] Allow the users to create an event
 \end_layout
 
 \begin_layout Standard
