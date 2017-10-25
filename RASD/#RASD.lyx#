@@ -943,6 +943,84 @@ Travlendar+ is a standalone system that provides the functionality described
  maps services, sharing systems information, transits and strike information.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Subsubsection
+Description of the Shared Phenomenas
+\end_layout
+
+\begin_layout Itemize
+The events (meetings and dates): This phenomena connects the appointments
+ with the creation of its instance on the system's database
+\end_layout
+
+\begin_layout Itemize
+The weather forecasts: Connects weather phenomenas with a specific recommendatio
+n policy
+\end_layout
+
+\begin_layout Itemize
+User preferences' settings: The phenomena that connects users' choices with
+ profiling actions and instances of actions in the machine's wolds
+\end_layout
+
+\begin_layout Itemize
+Invoice of a transit ticket acquisition: Action that links a purchase with
+ its record
+\end_layout
+
+\begin_layout Itemize
+Sharing services status: Phenomena moldable with a set of renting actions
+ in real life and a set of GPS locations on the machine's world
+\end_layout
+
+\begin_layout Subsubsection
+Domain analysis
+\end_layout
+
+\begin_layout Itemize
+D1 Reduction of delays at the appointments: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+At the event creation, a record is consequentially generated into the system
+\end_layout
+
+\begin_layout Itemize
+The shortest path is calculated by taking into account the following criteria:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Distance to be traveled
+\end_layout
+
+\begin_layout Itemize
+Strikes
+\end_layout
+
+\begin_layout Itemize
+Weather forecast
+\end_layout
+
+\begin_layout Itemize
+Availability of a transits (and eventually a pass)
+\end_layout
+
+\begin_layout Itemize
+Availability of a car sharing accounts
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection
 Class Diagram
 \end_layout
@@ -984,7 +1062,7 @@ Active mode:
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename images/SC-active.png
+	filename images/SC.png
 	lyxscale 50
 	scale 50
 
@@ -1000,14 +1078,6 @@ Passive mode:
 \end_layout
 
 \begin_layout Standard
-\align center
-\begin_inset Graphics
-	filename images/SC-passive.png
-	lyxscale 50
-	scale 50
-
-\end_inset
-
 
 \end_layout
 
