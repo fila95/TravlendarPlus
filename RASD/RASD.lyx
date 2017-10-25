@@ -228,7 +228,7 @@ Goals
 \end_layout
 
 \begin_layout Itemize
-[G3] Allow the people to view the detail of each event
+[G3] Allow people to view the details of each event
 \end_layout
 
 \begin_deeper
@@ -243,12 +243,12 @@ Goals
 
 \end_deeper
 \begin_layout Itemize
-[G.3.2] Allow the people to purchase and view the transit ticket
+[G.3.2] Allow people to purchase and view the transit ticket
 \end_layout
 
 \begin_layout Itemize
-[G 3.3] Allow people to open the car sharing/ride provider's app and call
- the vehicle
+[G 3.3] Allow people to open the sharing services/ride provider's app and
+ call the vehicle
 \end_layout
 
 \end_deeper
@@ -280,7 +280,8 @@ Goals
 
 \end_deeper
 \begin_layout Itemize
-[G.4.4] Allow the user to set a starting time and ending time 
+[G.4.4] Allow the user to set a starting time and ending time on non-flexible
+ events
 \end_layout
 
 \begin_layout Itemize
@@ -1051,7 +1052,7 @@ Each goal described in Section 1.2.1 is function that will be implemented
 \end_layout
 
 \begin_layout Subsubsection
-Allow the people to purchase and view the transit ticket
+Allow people to purchase and view the transit ticket
 \end_layout
 
 \begin_layout Standard
@@ -1094,7 +1095,7 @@ We assume that:
 \end_layout
 
 \begin_layout Enumerate
-The client is using the app through a new generation iPhone
+The client is using the app through a new generation smartphone
 \end_layout
 
 \begin_layout Enumerate
@@ -1301,7 +1302,7 @@ When the app is lunched for the first time, the system recognizes the new
 \end_layout
 
 \begin_layout Itemize
-App data are stored locally and therefore retrieved by only one device
+App data are stored remotely and retrieved by multiple devices
 \end_layout
 
 \begin_layout Subsubsection
@@ -1335,13 +1336,8 @@ Later on
 \end_layout
 
 \begin_layout Itemize
-Information of event's location, description, calendar saved and time must
- always be provided
-\end_layout
-
-\begin_layout Itemize
-Up coming events' section needs to contain appointments planned to happen
- 2h before 
+Information of event's description, calendar saved and time must always
+ be shown, while the location of the event is optional
 \end_layout
 
 \begin_layout Itemize
@@ -1355,6 +1351,11 @@ Button add event must always be visible
 
 \end_layout
 
+\begin_layout Itemize
+Up coming events' section needs to contain appointments planned to happen
+ 2h before
+\end_layout
+
 \begin_layout Subsubsection
 [G2] Allow people to view previous events
 \end_layout
@@ -1364,8 +1365,8 @@ A calendar screen must be shown
 \end_layout
 
 \begin_layout Itemize
-Information of event's location, description, calendar saved and time must
- always be provided
+Information of event's description, calendar saved and time must always
+ be shown, while the location of the event is optional
 \end_layout
 
 \begin_layout Itemize
@@ -1404,21 +1405,47 @@ Tickets services must be shown
 
 \begin_layout Itemize
 Indications on the ETA, calculated mean of transportation and time-to-leave
- are calculated on the current approximative position
+ are calculated on the current approximative position.
+ Then, they are re-calculated every 2 hours, or when a significant change
+ in GPS position is discovered
 \end_layout
 
 \begin_layout Subsubsection
 [G4] Allow the users to create an event
 \end_layout
 
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-TODO
+\begin_layout Itemize
+Information of event's description, calendar saved and time must always
+ be provided, while the location of the event is optional
 \end_layout
 
+\begin_layout Itemize
+Button for repeating an event weekly must be shown
+\end_layout
+
+\begin_layout Itemize
+Button for choosing the calendar in which the event will be must be shown
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The button to choose the calendar is, by default, the last calendar chosen,
+ or the first calendar if the user has never added an event
+\end_layout
+
+\begin_layout Itemize
+Information on which mean of transportation is preferred can be also specified
+ in each event with some buttons
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
 \end_inset
 
 
@@ -1590,9 +1617,9 @@ None
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename images/UC_insertEvent.png
+	filename images/UC1.png
 	lyxscale 30
-	scale 30
+	scale 40
 
 \end_inset
 
@@ -1605,9 +1632,9 @@ EditPreferences
 
 \begin_layout Standard
 Allow the users to edit their settings: preferred vehicles (cars, bikes,
- public transportation, trains, airplanes, sharing services), depending
- on the weather, if help lowering carbon emission or not, and specify a
- preferred lunch time
+ public transportation, trains, sharing services), depending on the weather,
+ if help lowering carbon emission or not, and specify a preferred lunch
+ time
 \end_layout
 
 \begin_layout Standard
@@ -1769,7 +1796,7 @@ MonitorInboxForNewEvent
 
 \begin_layout Standard
 The system, when allowed by the user, check the inbox looking for some emails
- containing an Event, like airplane or train tickets.
+ containing an Event, like train tickets.
 \end_layout
 
 \begin_layout Standard
@@ -2019,169 +2046,6 @@ Termination
 \series default
 : The user is notified if the tickets are successfully bought or if an error
  occurred
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Exceptions
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-The user is notified if something goes wrong in the payment
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Special Requirements
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Integration with public transportation in order to buy tickets
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset Graphics
-	filename images/UC_insertEvent.png
-	lyxscale 30
-	scale 30
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection*
-AutoBuyTickets
-\end_layout
-
-\begin_layout Standard
-Allow the system, after asking the permission to the user, to buy public
- transportation tickets.
-\end_layout
-
-\begin_layout Standard
-\begin_inset VSpace bigskip*
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Tabular
-<lyxtabular version="3" rows="5" columns="2">
-<features tabularvalignment="middle">
-<column alignment="left" valignment="middle" width="20text%">
-<column alignment="left" valignment="middle" width="80text%">
-<row>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Name
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-AutoBuyTickets
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Actors
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-No active actors
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Flow of Events
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Itemize
-
-\series bold
-Initiation
-\series default
-: The system detects that the user will need a ticket
-\end_layout
-
-\begin_layout Itemize
-The system, if it's previously enabled by the user, contact the right service
- and it chooses the best ticket
-\end_layout
-
-\begin_layout Itemize
-The system asks to the user for permission to buy the chosen ticket
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-Termination
-\series default
-: If the user gives the permission to the system, it buys the ticket, or
- abort otherwise
 \end_layout
 
 \end_inset
