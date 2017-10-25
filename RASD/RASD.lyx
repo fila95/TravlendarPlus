@@ -1396,17 +1396,34 @@ Indications on the ETA, calculated mean of transportation and time-to-leave
 [G4] Allow the users to create an event
 \end_layout
 
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-TODO
+\begin_layout Itemize
+Information of event's description, calendar saved and time must always
+ be provided, while the location of the event is optional
 \end_layout
 
+\begin_layout Itemize
+Button for repeating an event weekly must be shown
+\end_layout
+
+\begin_layout Itemize
+Button for choosing the calendar in which the event will be must be shown
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
 \end_inset
 
 
+\end_layout
+
+\begin_layout Itemize
+The button to choose the calendar is, by default, the last calendar chosen,
+ or the first calendar if the user has never added an event
+\end_layout
+
+\begin_layout Itemize
+Information on which mean of transportation is preferred can be also specified
+ in each event with some buttons
 \end_layout
 
 \begin_layout Subsection
