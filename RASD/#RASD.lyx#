@@ -1147,6 +1147,13 @@ QUI VANNO LE SPECIFICHE DI BENNES
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Specific Requirements
 \end_layout
@@ -1157,6 +1164,13 @@ External Interface Requirements
 
 \begin_layout Subsubsection
 User Interfaces 
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace smallskip*
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1172,13 +1186,18 @@ Gio - Qui includi i mockup con spiegazione
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
+\begin_layout Subparagraph
+Home Screen
+\end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\begin_inset VSpace bigskip*
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \align center
 \begin_inset Graphics
 	filename images/Wireframe/2-HomeScr_wired@3x.png
@@ -1200,22 +1219,66 @@ status open
 \end_inset
 
 
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-That's the main page that will appear once opened the app.
- People have
 \end_layout
+
+\begin_layout Standard
+That's the main page that will appear once opened the app.
+ People can now see directly their upcoming events of the day and just by
+ pulling down the top view (where 16 december 2017 is written) they can
+ access the calendar view (Right Picture) and simply by tapping on a particular
+ day the UI re-adapts to that day and shows its regarding events.
+\end_layout
+
+\begin_layout Standard
+The first event of the day shows the suggested route informationa and the
+ ETA.
+\end_layout
+
+\begin_layout Standard
+There is also a green, yelow
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subparagraph
+Event Detail
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip*
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/Wireframe/4-EventDet_wired@3x.png
+	lyxscale 10
+	scale 15
 
 \end_inset
 
 
 \end_layout
 
-\begin_layout Plain Layout
-
+\begin_layout Standard
+This is the place where, once tapped on an event in the Home Screen, people
+ can have a fast look at its more interesting details:
 \end_layout
 
+\begin_layout Standard
+- 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
 \end_inset
 
 
@@ -1548,7 +1611,7 @@ All the available calendars must be shown
 \end_layout
 
 \begin_layout Itemize
-The system must allow to toggle the available external services services
+The system must allow to toggle the available external sharing services
 \end_layout
 
 \begin_layout Standard
