@@ -1204,14 +1204,15 @@ status open
 
 \begin_layout Plain Layout
 That's the main page that will appear once opened the app.
- People can now see directly their upcoming events of the day and just by
- pulling down the top view (where 16 december 2017 is written) they can
- access the calendar view (Right Picture) and simply by tapping on a particular
- day the UI re-adapts to that day and shows its regarding events.
+ People have
 \end_layout
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Plain Layout
 
 \end_layout
 
@@ -1547,7 +1548,7 @@ All the available calendars must be shown
 \end_layout
 
 \begin_layout Itemize
-The system must allow to toggle the available external sharing services
+The system must allow to toggle the available external services services
 \end_layout
 
 \begin_layout Standard
