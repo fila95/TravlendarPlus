@@ -310,6 +310,7 @@ Goals
 \end_deeper
 \begin_layout Itemize
 [G5] Allow the people to see daily events on a map
+[G5] Allow people to see daily events on a map
 \end_layout
 
 \begin_deeper
@@ -2678,6 +2679,26 @@ Gio
 
 \begin_layout Subsubsection
 Standards compliance
+\end_layout
+
+\begin_layout Standard
+The app must comply to the standard 
+\begin_inset Quotes eld
+\end_inset
+
+iOS Human Interface Guidelines
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+App Store Review Guidelines
+\begin_inset Quotes erd
+\end_inset
+
+ by Apple.
 \end_layout
 
 \begin_layout Subsubsection
