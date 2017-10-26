@@ -168,48 +168,6 @@ The aim of this project is to create a smart calendar-based application
  car/bike sharing vehicle if it is the mean of transportation chosen.
 \end_layout
 
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-of the efficiency on transportation and the implementation of an effective
- and reliable schedule.
- The scope of the project is to provide every person of a valuable tools
- that they can use in order to have a better schedule of their daily life.
- We can identify the external world as every entity, aspect or occurrence
- relevant for the case that happen unconditionally from the system and its
- utilization.
- If the relevant occurrence could be abstracted, then it is includible in
- this project, and therefore identifiable as shared phenomena.
- The following shared phenomenas are relevant for the case:
-\end_layout
-
-\begin_layout Itemize
-The events (meetings and dates)
-\end_layout
-
-\begin_layout Itemize
-The weather forecasts
-\end_layout
-
-\begin_layout Itemize
-User preferences' settings
-\end_layout
-
-\begin_layout Itemize
-Invoice of a transit ticket acquisition
-\end_layout
-
-\begin_layout Itemize
-Sharing services status
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsubsection
 Goals
 \end_layout
@@ -949,12 +907,10 @@ Class Diagram
 
 \begin_layout Standard
 \align center
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-New version to be added
-\end_layout
+\begin_inset Graphics
+	filename images/CD.png
+	lyxscale 55
+	scale 55
 
 \end_inset
 
@@ -1147,13 +1103,6 @@ QUI VANNO LE SPECIFICHE DI BENNES
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset Newpage pagebreak
-\end_inset
-
-
-\end_layout
-
 \begin_layout Section
 Specific Requirements
 \end_layout
@@ -1167,13 +1116,6 @@ User Interfaces
 \end_layout
 
 \begin_layout Standard
-\begin_inset VSpace smallskip*
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 \begin_inset Note Note
 status open
 
@@ -1181,6 +1123,17 @@ status open
 Gio - Qui includi i mockup con spiegazione
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Continues on the next page.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
 \end_inset
 
 
@@ -1230,12 +1183,46 @@ That's the main page that will appear once opened the app.
 \end_layout
 
 \begin_layout Standard
-The first event of the day shows the suggested route informationa and the
+In this page people can have a look if they chose to enable ECO-Friendly
+ mode (Green Leaf on top) and the current weather.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip*
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Regarding Events:
+\end_layout
+
+\begin_layout Standard
+The first event of the day shows the suggested route informations and the
  ETA.
 \end_layout
 
 \begin_layout Standard
-There is also a green, yelow
+There is also a little dot at the upper right side of the cell in which
+ people can see if they'll arrive early, late or on time at the event:
+\end_layout
+
+\begin_layout Standard
+- Green dot means on time / early.
+\end_layout
+
+\begin_layout Standard
+- Yellow dot means that the user will be late if he/she doesn't hurry up.
+\end_layout
+
+\begin_layout Standard
+- Red dot means he'll be late or that there is a problem in that route.
+\end_layout
+
+\begin_layout Standard
+In each cell there is a small bar on the bottom which color depends on the
+ calendar color where the event is saved to.
 \end_layout
 
 \begin_layout Standard
@@ -1687,8 +1674,8 @@ The localization service is available and functionally working
 Definition of use cases
 \end_layout
 
-\begin_layout Subsection*
-AddEvent
+\begin_layout Subsubsection
+AddStandardEvent
 \end_layout
 
 \begin_layout Standard
@@ -1704,7 +1691,7 @@ Allow the user to insert an event in the calendar
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="5" columns="2">
+<lyxtabular version="3" rows="7" columns="2">
 <features tabularvalignment="middle">
 <column alignment="left" valignment="middle" width="20text%">
 <column alignment="left" valignment="middle" width="80text%">
@@ -1722,14 +1709,14 @@ Name
 \begin_inset Text
 
 \begin_layout Plain Layout
-AddEvent
+AddStandardEvent
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1749,6 +1736,46 @@ User
 </cell>
 </row>
 <row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Goals
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+[G4]
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Input conditions
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+None
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
 <cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
@@ -1761,34 +1788,73 @@ Flow of Events
 <cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
-\begin_layout Itemize
+\begin_layout Enumerate
+The user selects 
+\begin_inset Quotes eld
+\end_inset
 
-\series bold
-Initiation
-\series default
-: The user decide to insert a new Event on a specified date
+Add event
+\begin_inset Quotes erd
+\end_inset
+
+ from the 
+\begin_inset Quotes eld
+\end_inset
+
+schedule
+\begin_inset Quotes erd
+\end_inset
+
+ view
+\end_layout
+
+\begin_layout Enumerate
+A pop-up is shown with a form to fill out
+\end_layout
+
+\begin_layout Enumerate
+The user choose the location and a description
+\end_layout
+
+\begin_layout Enumerate
+The user selects the starting and ending date-time
+\end_layout
+
+\begin_layout Enumerate
+Eventual repetitions during the week and type of calendar are chosen
+\end_layout
+
+\begin_layout Enumerate
+Preferred means of transportation are selected
+\end_layout
+
+\begin_layout Enumerate
+The system checks if the appointment can be reached in time with the user's
+ preferred vehicles
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Output conditions
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Itemize
+The event is added to the calendar
 \end_layout
 
 \begin_layout Itemize
-The system checks if the event can be reached in time with the user's preferred
- vehicles.
-\end_layout
-
-\begin_layout Itemize
-If the event can't be reached in time, the system sends a warning to the
- User
-\end_layout
-
-\begin_layout Itemize
-Otherwise the event is added to the user's calendar
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-Termination
-\series default
-: Event added to the calendar, or warning sent to the user
+Flexible events are rearranged to fit the schedule
 \end_layout
 
 \end_inset
@@ -1804,32 +1870,12 @@ Exceptions
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Users are notified immediately with a warning if their event won't be reached
- on time
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Special Requirements
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-None
+Users are notified immediately with a warning if their event will not be
+ reached on time
 \end_layout
 
 \end_inset
@@ -1842,7 +1888,233 @@ None
 
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsubsection
+AddFlexibleEvent
+\end_layout
+
+\begin_layout Standard
+Allow the user to insert a flexible event in the calendar
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip*
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="middle" width="20text%">
+<column alignment="left" valignment="middle" width="80text%">
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Name
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AddFlexibleEvent
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Actors
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+User
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Goals
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+[G4], [G4.3]
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Input conditions
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+None
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Flow of Events
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Enumerate
+The user selects 
+\begin_inset Quotes eld
+\end_inset
+
+Add event
+\begin_inset Quotes erd
+\end_inset
+
+ from the 
+\begin_inset Quotes eld
+\end_inset
+
+schedule
+\begin_inset Quotes erd
+\end_inset
+
+ view
+\end_layout
+
+\begin_layout Enumerate
+A pop-up is shown with a form to fill out
+\end_layout
+
+\begin_layout Enumerate
+The user choose the location and a description
+\end_layout
+
+\begin_layout Enumerate
+The user toggle the switch for a Flexible Event
+\end_layout
+
+\begin_layout Enumerate
+The user selects the starting and ending date-time window
+\end_layout
+
+\begin_layout Enumerate
+The user choose the duration of the event
+\end_layout
+
+\begin_layout Enumerate
+Eventual repetitions during the week and type of calendar are chosen
+\end_layout
+
+\begin_layout Enumerate
+Preferred means of transportation are selected
+\end_layout
+
+\begin_layout Enumerate
+The system checks if the appointment can be reached in time with the user's
+ preferred vehicles
+\end_layout
+
+\begin_layout Enumerate
+The system rearrange this and other flexible event in order to fit the schedule
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Output conditions
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Itemize
+The event is added to the calendar
+\end_layout
+
+\begin_layout Itemize
+Flexible events are rearranged to fit the schedule
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Exceptions
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Users are notified immediately with a warning if their event will not be
+ reached on time
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
 EditPreferences
 \end_layout
 
@@ -1862,7 +2134,7 @@ Allow the users to edit their settings: preferred vehicles (cars, bikes,
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="5" columns="2">
+<lyxtabular version="3" rows="7" columns="2">
 <features tabularvalignment="middle">
 <column alignment="left" valignment="middle" width="20text%">
 <column alignment="left" valignment="middle" width="80text%">
@@ -1887,7 +2159,7 @@ EditPreferences
 </cell>
 </row>
 <row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1907,6 +2179,46 @@ User
 </cell>
 </row>
 <row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Goals
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+[G6]
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Input conditions
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+None
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
 <cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
@@ -1919,25 +2231,48 @@ Flow of Events
 <cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
-\begin_layout Itemize
+\begin_layout Enumerate
+The user selects the 
+\begin_inset Quotes eld
+\end_inset
 
-\series bold
-Initiation
-\series default
-: The user wants to edit some preferences
+Settings
+\begin_inset Quotes erd
+\end_inset
+
+ tab
 \end_layout
 
-\begin_layout Itemize
-The system checks if the settings are valid, and if they are it registers
- them
+\begin_layout Enumerate
+A window with all the available settings is displayed
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Enumerate
+The user choose preferences
+\end_layout
 
-\series bold
-Termination
-\series default
-: Save the settings or show a warning to the user
+\begin_layout Enumerate
+The setting is automatically saved
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Output conditions
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The preference set is saved into user's profile
 \end_layout
 
 \end_inset
@@ -1949,30 +2284,6 @@ Termination
 
 \begin_layout Plain Layout
 Exceptions
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-The 
-\series bold
-user
-\series default
- is notified immediately with a warning if he's inserting some invalid settings
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Special Requirements
 \end_layout
 
 \end_inset
