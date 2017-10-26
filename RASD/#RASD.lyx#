@@ -261,10 +261,6 @@ Goals
 [G3.3] Allow people to eventually view the purchased transit ticket
 \end_layout
 
-\begin_layout Itemize
-[G3.4] Automatically calculate the shortest paths based on objective criterias
-\end_layout
-
 \end_deeper
 \begin_layout Itemize
 [G4] Allow the users to create an event
@@ -1127,7 +1123,7 @@ Public transit pass
 \begin_layout Standard
 The system will not take into consideration whether the person owns a transit's
  pass, however it always allows to buy a transit ticket via text-message
- if asked by the user.
+ if asked by the user
 \end_layout
 
 \begin_layout Subsubsection
@@ -1181,16 +1177,13 @@ Hardware Interfaces
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Gio
+The system will require, in order to work properly, one or more dedicated
+ servers in which the server management software (API) will run.
 \end_layout
 
-\end_inset
-
-
+\begin_layout Standard
+It also requires the user to have a smartphone in order to download and
+ use the app.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1198,16 +1191,21 @@ Software Interfaces
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Gio
+The system will need:
 \end_layout
 
-\end_inset
+\begin_layout Standard
+- A server database where it will store user data like calendars, events
+ and preferences.
+\end_layout
 
+\begin_layout Standard
+- A client database where it will store user data on device so that tha
+ pp will work offline too.
+\end_layout
 
+\begin_layout Standard
+- The App that will be installed on the users's smartphones.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1215,16 +1213,9 @@ Communication Interfaces
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Gio
-\end_layout
-
-\end_inset
-
-
+In order to establish a communication between the app and the server, there
+ will be needed to build an API that lets the app to store and / or retrieve
+ data from the database.
 \end_layout
 
 \begin_layout Standard
@@ -1584,8 +1575,8 @@ The localization service is available and functionally working
 Definition of use cases
 \end_layout
 
-\begin_layout Subsubsection
-AddStandardEvent
+\begin_layout Subsection*
+AddEvent
 \end_layout
 
 \begin_layout Standard
@@ -1601,7 +1592,7 @@ Allow the user to insert an event in the calendar
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="6" columns="2">
+<lyxtabular version="3" rows="5" columns="2">
 <features tabularvalignment="middle">
 <column alignment="left" valignment="middle" width="20text%">
 <column alignment="left" valignment="middle" width="80text%">
@@ -1619,14 +1610,14 @@ Name
 \begin_inset Text
 
 \begin_layout Plain Layout
-AddStandardEvent
+AddEvent
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1646,26 +1637,6 @@ User
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Input conditions
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-None
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
 <cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
@@ -1678,69 +1649,34 @@ Flow of Events
 <cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
-\begin_layout Enumerate
-The user selects 
-\begin_inset Quotes eld
-\end_inset
+\begin_layout Itemize
 
-Add event
-\begin_inset Quotes erd
-\end_inset
-
- from the 
-\begin_inset Quotes eld
-\end_inset
-
-schedule
-\begin_inset Quotes erd
-\end_inset
-
- view
+\series bold
+Initiation
+\series default
+: The user decide to insert a new Event on a specified date
 \end_layout
 
-\begin_layout Enumerate
-A pop-up is shown with a form to fill out
+\begin_layout Itemize
+The system checks if the event can be reached in time with the user's preferred
+ vehicles.
 \end_layout
 
-\begin_layout Enumerate
-The user choose the location and a description
+\begin_layout Itemize
+If the event can't be reached in time, the system sends a warning to the
+ User
 \end_layout
 
-\begin_layout Enumerate
-The user selects the starting and ending date-time
+\begin_layout Itemize
+Otherwise the event is added to the user's calendar
 \end_layout
 
-\begin_layout Enumerate
-Eventual repetitions during the week and type of calendar are chosen
-\end_layout
+\begin_layout Itemize
 
-\begin_layout Enumerate
-Preferred means of transportation are selected
-\end_layout
-
-\begin_layout Enumerate
-The system checks if the appointment can be reached in time with the user's
- preferred vehicles
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Output conditions
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-The event is added to the calendar
+\series bold
+Termination
+\series default
+: Event added to the calendar, or warning sent to the user
 \end_layout
 
 \end_inset
@@ -1756,214 +1692,32 @@ Exceptions
 
 \end_inset
 </cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Users are notified immediately with a warning if their event won't be reached
+ on time
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Special Requirements
+\end_layout
+
+\end_inset
+</cell>
 <cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Users are notified immediately with a warning if their event will not be
- reached on time
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsubsection
-AddFlexibleEvent
-\end_layout
-
-\begin_layout Standard
-Allow the user to insert a flexible event in the calendar
-\end_layout
-
-\begin_layout Standard
-\begin_inset VSpace bigskip*
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Tabular
-<lyxtabular version="3" rows="6" columns="2">
-<features tabularvalignment="middle">
-<column alignment="left" valignment="middle" width="20text%">
-<column alignment="left" valignment="middle" width="80text%">
-<row>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Name
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-AddFlexibleEvent
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Actors
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-User
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Input conditions
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 None
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Flow of Events
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Enumerate
-The user selects 
-\begin_inset Quotes eld
-\end_inset
-
-Add event
-\begin_inset Quotes erd
-\end_inset
-
- from the 
-\begin_inset Quotes eld
-\end_inset
-
-schedule
-\begin_inset Quotes erd
-\end_inset
-
- view
-\end_layout
-
-\begin_layout Enumerate
-A pop-up is shown with a form to fill out
-\end_layout
-
-\begin_layout Enumerate
-The user choose the location and a description
-\end_layout
-
-\begin_layout Enumerate
-The user toggle the switch for a Flexible Event
-\end_layout
-
-\begin_layout Enumerate
-The user selects the starting and ending date-time window
-\end_layout
-
-\begin_layout Enumerate
-The user choose the duration of the event
-\end_layout
-
-\begin_layout Enumerate
-Eventual repetitions during the week and type of calendar are chosen
-\end_layout
-
-\begin_layout Enumerate
-Preferred means of transportation are selected
-\end_layout
-
-\begin_layout Enumerate
-The system checks if the appointment can be reached in time with the user's
- preferred vehicles
-\end_layout
-
-\begin_layout Enumerate
-The system rea
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Output conditions
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-The event is added to the calendar
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Exceptions
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Users are notified immediately with a warning if their event will not be
- reached on time
 \end_layout
 
 \end_inset
@@ -3195,16 +2949,24 @@ Performance Requirements
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Gio
+The system must be able to fulfill a big number of requests in the shortest
+ time possible.
+ Approximately a request should not last more than a second.
 \end_layout
 
-\end_inset
+\begin_layout Standard
+The server database should be fast enough to store and search data in order
+ of milliseconds even if millione of records are stored.
+\end_layout
 
+\begin_layout Standard
+The server should be located near the maximum concentration of final users,
+ in this case in Lombardy so that network latency will be minimized.
+\end_layout
 
+\begin_layout Standard
+The application should not present any kind of lag in any situation and
+ should never crash.
 \end_layout
 
 \begin_layout Subsection
@@ -3226,6 +2988,26 @@ Gio
 
 \begin_layout Subsubsection
 Standards compliance
+\end_layout
+
+\begin_layout Standard
+The app must comply to the standard 
+\begin_inset Quotes eld
+\end_inset
+
+iOS Human Interface Guidelines
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+App Store Review Guidelines
+\begin_inset Quotes erd
+\end_inset
+
+ by Apple.
 \end_layout
 
 \begin_layout Subsubsection
@@ -3295,15 +3077,15 @@ Effort spent
 \end_layout
 
 \begin_layout Itemize
-Filippo Calzavara: 13.00h
+Filippo Calzavara: 20.00h
 \end_layout
 
 \begin_layout Itemize
-Giovanni Filaferro: 13.30h
+Giovanni Filaferro: 20.00h
 \end_layout
 
 \begin_layout Itemize
-Benedetto Maria Nespoli: 13.30h
+Benedetto Maria Nespoli: 20.00h
 \end_layout
 
 \begin_layout Section
