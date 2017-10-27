@@ -607,7 +607,7 @@ Acronyms
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="7" columns="2">
+<lyxtabular version="3" rows="8" columns="2">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -732,7 +732,7 @@ Passenger name record
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -741,11 +741,31 @@ QR
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 QR Code
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+OS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Operative System
 \end_layout
 
 \end_inset
@@ -1092,9 +1112,8 @@ Public transits companies provide a sms-based purchasing system
 \end_layout
 
 \begin_layout Enumerate
-The user has already logged in to his/her iCloud account (which is compulsory
- on all iOS and macOS devices) so that we can identify him/her by using
- the unique iCloud Keychain identifier
+The user has already logged in to his/her device account (Google or Apple)
+ so that we can identify him/her by using his / her unique identifier.
 \end_layout
 
 \begin_layout Enumerate
@@ -1285,7 +1304,7 @@ In this page people can have a look if they chose to enable ECO-Friendly
 \end_layout
 
 \begin_layout Standard
-\begin_inset VSpace bigskip*
+\begin_inset VSpace smallskip*
 \end_inset
 
 
@@ -3701,7 +3720,15 @@ App Store Review Guidelines
 \begin_inset Quotes erd
 \end_inset
 
- by Apple.
+ by Apple regarding the iOS App and 
+\begin_inset Quotes eld
+\end_inset
+
+Google Play Guidelines
+\begin_inset Quotes erd
+\end_inset
+
+ for Android.
 \end_layout
 
 \begin_layout Standard
@@ -3720,7 +3747,7 @@ Mobile App
 
 \begin_deeper
 \begin_layout Itemize
-iOS Smartphone 
+iOS, Android or Windows Phone Smartphone 
 \end_layout
 
 \end_deeper
@@ -3751,12 +3778,6 @@ The user won't require login because it will use the iCloud unique identifier
  in order to synchronize events and calendars to the server.
 \end_layout
 
-\begin_layout Standard
-This identifier is kept secret on the iCloud Keychain and won't be stored
- on the server for promotional or ambiguous purposes.
- It is just needed to identify the user.
-\end_layout
-
 \begin_layout Subsection
 Software System Attributes
 \end_layout
@@ -3766,7 +3787,7 @@ Software System Attributes
 status open
 
 \begin_layout Plain Layout
-Phil
+Review Needed
 \end_layout
 
 \end_inset
@@ -3778,20 +3799,74 @@ Phil
 Reliability
 \end_layout
 
+\begin_layout Standard
+The system must guarantee a 24 hours per day and 7 days per week service.
+\end_layout
+
+\begin_layout Standard
+The server should never be offline.
+\end_layout
+
+\begin_layout Standard
+Very small deviations will be accepted only if the system will go in maintenance
+ mode.
+\end_layout
+
 \begin_layout Subsubsection
 Availability
+\end_layout
+
+\begin_layout Standard
+The app will be available worldwide but since it is focused more on Lombardy,
+ transit information and search services (Enjoy, Mobike, ...) won't be available
+ elsewhere.
 \end_layout
 
 \begin_layout Subsubsection
 Security
 \end_layout
 
+\begin_layout Standard
+The app will use the iCloud unique identifier to identify the user also
+ when he / she uninstalls the app and reinstalls it.
+\end_layout
+
+\begin_layout Standard
+This identifier is kept secret on the iCloud Keychain and won't be stored
+ on the server for promotional or ambiguous purposes.
+ It is just needed to identify the user.
+\end_layout
+
+\begin_layout Standard
+Security of the user data is the primary concern.
+\end_layout
+
+\begin_layout Standard
+The app will communicate with the server via SSL certificates enabling HTTPS
+ secure requests.
+\end_layout
+
 \begin_layout Subsubsection
 Maintainability
 \end_layout
 
+\begin_layout Standard
+The system will be developed using a modular architecture that represents
+ an important aspect to make it more maintainable and stable.
+\end_layout
+
+\begin_layout Standard
+The app and the server will be developed keeping a big eye on this aspect.
+\end_layout
+
 \begin_layout Subsubsection
 Portability
+\end_layout
+
+\begin_layout Standard
+Portability will be highly guaranteed by the fact that the app will be distribut
+ed in multiple OS such as Android and iOS which represents 98% of the smartphone
+ market.
 \end_layout
 
 \begin_layout Section
@@ -3829,6 +3904,21 @@ Benedetto Maria Nespoli: 20.00h
 
 \begin_layout Section
 References
+\end_layout
+
+\begin_layout Itemize
+iOS Human Interface Guidelines (https://developer.apple.com/ios/human-interface-gu
+idelines/)
+\end_layout
+
+\begin_layout Itemize
+App Store Review Guidelines (https://developer.apple.com/app-store/review/guidelin
+es/)
+\end_layout
+
+\begin_layout Itemize
+Google Play Guidelines (https://play.google.com/about/developer-content-policy/#!?
+modal_active=none)
 \end_layout
 
 \end_body
