@@ -74,8 +74,9 @@
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/PolimiLogo.png
-	width 5cm
+	filename images/GitHub Banner.png
+	lyxscale 30
+	scale 15
 
 \end_inset
 
@@ -107,6 +108,25 @@ Calzavara Filippo, Filaferro Giovanni, Benedetto Maria Nespoli
 \begin_layout Standard
 \align center
 Version 1.0.0
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align right
+\begin_inset Graphics
+	filename images/PolimiLogo.png
+	width 3cm
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1171,19 +1191,6 @@ User Interfaces
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Gio - Qui includi i mockup con spiegazione
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 Continues on the next page.
 \end_layout
 
@@ -1194,7 +1201,7 @@ Continues on the next page.
 
 \end_layout
 
-\begin_layout Subparagraph
+\begin_layout Paragraph
 Home Screen
 \end_layout
 
@@ -1263,16 +1270,16 @@ There is also a little dot at the upper right side of the cell in which
  people can see if they'll arrive early, late or on time at the event:
 \end_layout
 
-\begin_layout Standard
-- Green dot means on time / early.
+\begin_layout Itemize
+Green dot means on time / early.
 \end_layout
 
-\begin_layout Standard
-- Yellow dot means that the user will be late if he/she doesn't hurry up.
+\begin_layout Itemize
+Yellow dot means that the user will be late if he/she doesn't hurry up.
 \end_layout
 
-\begin_layout Standard
-- Red dot means he'll be late or that there is a problem in that route.
+\begin_layout Itemize
+Red dot means he'll be late or that there is a problem in that route.
 \end_layout
 
 \begin_layout Standard
@@ -1287,7 +1294,7 @@ In each cell there is a small bar on the bottom which color depends on the
 
 \end_layout
 
-\begin_layout Subparagraph
+\begin_layout Paragraph
 Event Detail
 \end_layout
 
@@ -1315,8 +1322,674 @@ This is the place where, once tapped on an event in the Home Screen, people
  can have a fast look at its more interesting details:
 \end_layout
 
+\begin_layout Itemize
+Basic details of the event such as day, time, position and name.
+\end_layout
+
+\begin_layout Itemize
+There will be a map view where the location of the event will be shown.
+\end_layout
+
+\begin_layout Itemize
+Suggested routes (compound ones too) to take based on the user preferences
+\end_layout
+
 \begin_layout Standard
-- 
+From this view the user is allowed also to edit the event by tapping the
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Edit
+\begin_inset Quotes erd
+\end_inset
+
+ button.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Event Detail / Route Detail
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip*
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/Wireframe/6-EventDetail-RouteDet_wired@3x.png
+	lyxscale 10
+	scale 15
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Just by tapping to one suggested route from 
+\begin_inset Quotes eld
+\end_inset
+
+Event Detail
+\begin_inset Quotes erd
+\end_inset
+
+ view, the app will present to the user this view in which he / she are
+ allowed to have a look at the routes to reach the event.
+\end_layout
+
+\begin_layout Standard
+In particular all the parts composing the route are shown on map and just
+ by tapping the button on the right of each cell the app will prompt the
+ user to buy a ticket.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Event Detail / Ticket Bought
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip*
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/Wireframe/5-EventDetail-Tick_wired@3x.png
+	lyxscale 10
+	scale 15
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If the user has bought a ticket it will appear then in this view which is
+ the main 
+\begin_inset Quotes eld
+\end_inset
+
+Event Detail
+\begin_inset Quotes erd
+\end_inset
+
+ view so that he can just show the ticket or have a fast look to the QR
+ code.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Add Event
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip*
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/Wireframe/7-AddEv_wired@3x.png
+	lyxscale 10
+	scale 15
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now let's go back to the main view.
+\end_layout
+
+\begin_layout Standard
+Once the user taps the add button this is the view that the app will present
+ to him.
+\end_layout
+
+\begin_layout Standard
+In here he can set:
+\end_layout
+
+\begin_layout Itemize
+Name of the event.
+\end_layout
+
+\begin_layout Itemize
+Location of the event.
+\end_layout
+
+\begin_layout Itemize
+Start time and end time.
+\end_layout
+
+\begin_layout Itemize
+If he / she toggles the 
+\begin_inset Quotes eld
+\end_inset
+
+Flexible Timing
+\begin_inset Quotes erd
+\end_inset
+
+ switch a new cell called 
+\begin_inset Quotes eld
+\end_inset
+
+Duration
+\begin_inset Quotes erd
+\end_inset
+
+ will appear so that he can just say that 
+\begin_inset Quotes eld
+\end_inset
+
+From start time to end time this event will last for Duration minutes
+\begin_inset Quotes erd
+\end_inset
+
+.
+ This is useful if the user will set breaks during the day.
+\end_layout
+
+\begin_layout Itemize
+An Extra section where the user can set repeating days and choose a calendar
+ where to save the event.
+\end_layout
+
+\begin_layout Itemize
+There is also an additional section where the user can choose the vehicles
+ and travel means so that the app can compute the best route based on them.
+\end_layout
+
+\begin_layout Itemize
+Tapping an save will store the event locally and synchronize it on the server.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Add Event / Repetitions
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip*
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/Wireframe/8-AddEvent-Repetiti_wired@3x.png
+	lyxscale 10
+	scale 15
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This is the pop-up that will appear once the user taps on the 
+\begin_inset Quotes eld
+\end_inset
+
+Repeats
+\begin_inset Quotes erd
+\end_inset
+
+ cell from the 
+\begin_inset Quotes eld
+\end_inset
+
+Add Event
+\begin_inset Quotes erd
+\end_inset
+
+ screen.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Add Event / Start Date Time
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip*
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/Wireframe/9-AddEvent-StartDateT_wired@3x.png
+	lyxscale 10
+	scale 15
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This is the pop-up that will appear once the user taps on the 
+\begin_inset Quotes eld
+\end_inset
+
+Starts
+\begin_inset Quotes erd
+\end_inset
+
+ cell from the 
+\begin_inset Quotes eld
+\end_inset
+
+Add Event
+\begin_inset Quotes erd
+\end_inset
+
+ screen.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Add Event / End Date Time
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip*
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/Wireframe/10-AddEvent-EndDateT_wired@3x.png
+	lyxscale 10
+	scale 15
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This is the pop-up that will appear once the user taps on the 
+\begin_inset Quotes eld
+\end_inset
+
+Ends
+\begin_inset Quotes erd
+\end_inset
+
+ cell from the 
+\begin_inset Quotes eld
+\end_inset
+
+Add Event
+\begin_inset Quotes erd
+\end_inset
+
+ screen.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Add Event / Calendar Pick
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip*
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/Wireframe/11-AddEvent-CalendarP_wired@3x.png
+	lyxscale 10
+	scale 15
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This is the pop-up that will appear once the user taps on the 
+\begin_inset Quotes eld
+\end_inset
+
+Calendar
+\begin_inset Quotes erd
+\end_inset
+
+ cell from the 
+\begin_inset Quotes eld
+\end_inset
+
+Add Event
+\begin_inset Quotes erd
+\end_inset
+
+ screen.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Map
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip*
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/Wireframe/12-_wired@3x.png
+	lyxscale 10
+	scale 15
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Swiping right from the main view or by tapping on the bottom icon the app
+ will present this view.
+\end_layout
+
+\begin_layout Standard
+In here the user is allowed to have a look at his / her daily events on
+ a map and it shows also the suggested route from her / his position to
+ the first event location.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Map / Expanded
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip*
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/Wireframe/13-MapExpan_wired@3x.png
+	lyxscale 10
+	scale 15
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pulling down the calendar the user can change day and have a look at that
+ specific events.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Settings
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip*
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/Wireframe/14-Setti_wired@3x.png
+	lyxscale 10
+	scale 15
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Swiping right from the map view or by tapping on the bottom icon the app
+ will present this view.
+\end_layout
+
+\begin_layout Standard
+In this view we can find 5 sections:
+\end_layout
+
+\begin_layout Subparagraph
+Eco Mode
+\end_layout
+
+\begin_layout Standard
+By enabling it the app will minimize routes powered by cars or vehicles
+ that produce carbon.
+\end_layout
+
+\begin_layout Subparagraph
+Maximum Distances
+\end_layout
+
+\begin_layout Standard
+Here the user is allowed to set a maximum amount of distance walking or
+ biking so that the app will re arrange its calculations based on this new
+ values.
+\end_layout
+
+\begin_layout Subparagraph
+Timing
+\end_layout
+
+\begin_layout Standard
+Here the user can just set the protected times where he / she wants the
+ app to propose him transit vehicles.
+\end_layout
+
+\begin_layout Subparagraph
+Calendars
+\end_layout
+
+\begin_layout Standard
+In this section the user can edit his existing calendars or create a new
+ one by tapping 
+\begin_inset Quotes eld
+\end_inset
+
+Add New...
+\begin_inset Quotes erd
+\end_inset
+
+ button.
+\end_layout
+
+\begin_layout Subparagraph
+Allowed Services
+\end_layout
+
+\begin_layout Standard
+Here the user can just activate or de-activate services (
+\begin_inset Quotes eld
+\end_inset
+
+Enjoy
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+Mobike
+\begin_inset Quotes erd
+\end_inset
+
+, ...) so that he can just disable them and the app won't consider them.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Settings / Add Calendar
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip*
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/Wireframe/15-Settings-AddCalen_wired@3x.png
+	lyxscale 10
+	scale 15
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This is the view that will be presented when the user wants to add a new
+ calendar.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Settings / Add Calendar / Color
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip*
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/Wireframe/16-Settings-EditCalendarCo_wired@3x.png
+	lyxscale 10
+	scale 15
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This is the view where the user is allowed to edit the color of an existing
+ or new calendar just by adjusting the RGB Sliders.
 \end_layout
 
 \begin_layout Standard
@@ -1348,18 +2021,18 @@ Software Interfaces
 The system will need:
 \end_layout
 
-\begin_layout Standard
-- A server database where it will store user data like calendars, events
- and preferences.
+\begin_layout Itemize
+A server database where it will store user data like calendars, events and
+ preferences.
 \end_layout
 
-\begin_layout Standard
-- A client database where it will store user data on device so that the
- app will work offline too.
+\begin_layout Itemize
+A client database where it will store user data on device so that the app
+ will work offline too.
 \end_layout
 
-\begin_layout Standard
-- The App that will be installed on the users's smartphones.
+\begin_layout Itemize
+The App that will be installed on the users's smartphones.
 \end_layout
 
 \begin_layout Subsubsection
