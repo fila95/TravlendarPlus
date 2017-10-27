@@ -567,7 +567,7 @@ Acronyms
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="7" columns="2">
+<lyxtabular version="3" rows="8" columns="2">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -692,7 +692,7 @@ Passenger name record
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -701,11 +701,31 @@ QR
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 QR Code
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+OS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Operative System
 \end_layout
 
 \end_inset
@@ -1072,9 +1092,8 @@ Public transits companies provide a sms-based purchasing system
 \end_layout
 
 \begin_layout Enumerate
-The user has already logged in to his/her iCloud account (which is compulsory
- on all iOS and macOS devices) so that we can identify him/her by using
- the unique iCloud Keychain identifier
+The user has already logged in to his/her device account (Google or Apple)
+ so that we can identify him/her by using his / her unique identifier.
 \end_layout
 
 \begin_layout Enumerate
@@ -3681,7 +3700,15 @@ App Store Review Guidelines
 \begin_inset Quotes erd
 \end_inset
 
- by Apple.
+ by Apple regarding the iOS App and 
+\begin_inset Quotes eld
+\end_inset
+
+Google Play Guidelines
+\begin_inset Quotes erd
+\end_inset
+
+ for Android.
 \end_layout
 
 \begin_layout Standard
@@ -3700,7 +3727,7 @@ Mobile App
 
 \begin_deeper
 \begin_layout Itemize
-iOS Smartphone 
+iOS, Android or Windows Phone Smartphone 
 \end_layout
 
 \end_deeper
@@ -3740,7 +3767,7 @@ Software System Attributes
 status open
 
 \begin_layout Plain Layout
-Phil
+Review Needed
 \end_layout
 
 \end_inset
@@ -3767,6 +3794,12 @@ Very small deviations will be accepted only if the system will go in maintenance
 
 \begin_layout Subsubsection
 Availability
+\end_layout
+
+\begin_layout Standard
+The app will be available worldwide but since it is focused more on Lombardy,
+ transit information and search services (Enjoy, Mobike, ...) won't be available
+ elsewhere.
 \end_layout
 
 \begin_layout Subsubsection
@@ -3797,8 +3830,23 @@ The app will communicate with the server via SSL certificates enabling HTTPS
 Maintainability
 \end_layout
 
+\begin_layout Standard
+The system will be developed using a modular architecture that represents
+ an important aspect to make it more maintainable and stable.
+\end_layout
+
+\begin_layout Standard
+The app and the server will be developed keeping a big eye on this aspect.
+\end_layout
+
 \begin_layout Subsubsection
 Portability
+\end_layout
+
+\begin_layout Standard
+Portability will be highly guaranteed by the fact that the app will be distribut
+ed in multiple OS such as Android and iOS which represents 98% of the smartphone
+ market.
 \end_layout
 
 \begin_layout Section
@@ -3846,6 +3894,11 @@ idelines/)
 \begin_layout Itemize
 App Store Review Guidelines (https://developer.apple.com/app-store/review/guidelin
 es/)
+\end_layout
+
+\begin_layout Itemize
+Google Play Guidelines (https://play.google.com/about/developer-content-policy/#!?
+modal_active=none)
 \end_layout
 
 \end_body
