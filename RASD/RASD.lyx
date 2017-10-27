@@ -3833,19 +3833,6 @@ The application should not present any kind of lag in any situation and
 Design Constraints
 \end_layout
 
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Gio
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsubsection
 Standards compliance
 \end_layout
@@ -3870,12 +3857,57 @@ App Store Review Guidelines
  by Apple.
 \end_layout
 
+\begin_layout Standard
+Regarding the interconnections between the app and the server the system
+ will use some APIs which will be REST-Compliant and they should output
+ data using XML or JSON.
+\end_layout
+
 \begin_layout Subsubsection
 Hardware limitations
 \end_layout
 
+\begin_layout Itemize
+Mobile App 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+iOS Smartphone 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Connectivity
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+2G, 3G or LTE
+\end_layout
+
+\begin_layout Itemize
+GPS
+\end_layout
+
+\end_deeper
 \begin_layout Subsubsection
 Any other constraint
+\end_layout
+
+\begin_layout Standard
+The system will ask the user permissions to get her / his current position.
+\end_layout
+
+\begin_layout Standard
+The user won't require login because it will use the iCloud unique identifier
+ in order to synchronize events and calendars to the server.
+\end_layout
+
+\begin_layout Standard
+This identifier is kept secret on the iCloud Keychain and won't be stored
+ on the server for promotional or ambiguous purposes.
+ It is just needed to identify the user.
 \end_layout
 
 \begin_layout Subsection
