@@ -52,10 +52,9 @@ fact {
   all e: Event | gt[e.end, e.start]
 }
 
-// FIXME questo fact e il precedente sono in contrapposizione secondo alloy. perche'?
-// Eventi nello stesso calendario non possono sovrapporsi
+// Due eventi non possono sovrapporsi temporalmente se sono nello stesso calendario
 fact {
-  all e1, e2: Event, c: Calendar | e1 in c.events and e2 in c.events
+  all e1, e2: Event, c: Calendar | e1!=e2 and e1 in c.events and e2 in c.events
     implies
   gt[e1.start, e2.end] or gt[e2.start, e1.end]
 }
