@@ -120,7 +120,7 @@ Version 1.0.0
 
 \begin_layout Standard
 \noindent
-\align right
+\align center
 \begin_inset Graphics
 	filename images/PolimiLogo.png
 	width 3cm
@@ -410,7 +410,7 @@ Definitions
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="7" columns="2">
+<lyxtabular version="3" rows="9" columns="2">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -509,6 +509,46 @@ System
 
 \begin_layout Plain Layout
 A synonym of Travlendar+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Up Coming Event
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A particular event that is expected to occur soon
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Up Next Event
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A synonym of Up Coming
 \end_layout
 
 \end_inset
@@ -724,7 +764,7 @@ Abbreviations
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="6" columns="2">
+<lyxtabular version="3" rows="5" columns="2">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -809,7 +849,7 @@ N-domain assumption
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -818,31 +858,11 @@ N-domain assumption
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-N-functional requirement
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+N-functional requirement
 \end_layout
 
 \end_inset
@@ -3435,8 +3455,8 @@ NotifyUser
 \end_layout
 
 \begin_layout Standard
-Calculate the best lunch time reserving at least 30 minutes a day from the
- 11.30am to the 2.30pm
+When an upcoming event is detected, the system sends a notification to the
+ user
 \end_layout
 
 \begin_layout Standard
@@ -3466,7 +3486,7 @@ Name
 \begin_inset Text
 
 \begin_layout Plain Layout
-CalcLunchTime
+NotifyUser
 \end_layout
 
 \end_inset
@@ -3486,7 +3506,7 @@ Actors
 \begin_inset Text
 
 \begin_layout Plain Layout
-No active actors
+User, System
 \end_layout
 
 \end_inset
@@ -3506,7 +3526,7 @@ Goals
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+[G8]
 \end_layout
 
 \end_inset
@@ -3526,7 +3546,7 @@ Input Conditions
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+The event was created by the user
 \end_layout
 
 \end_inset
@@ -3545,25 +3565,20 @@ Flow of Events
 <cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
-\begin_layout Itemize
-
-\series bold
-Initiation
-\series default
-: When an event is registered, the system checks if there is a period of
- time in which the user can have lunch.
+\begin_layout Enumerate
+The system checks the current user position
 \end_layout
 
-\begin_layout Itemize
-If the system doesn't finds it, an exception is thrown.
+\begin_layout Enumerate
+The system checks wether there is an upcoming event
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Enumerate
+When an event is found the system plans the travel
+\end_layout
 
-\series bold
-Termination
-\series default
-: The system finds (or not) the lunch solution
+\begin_layout Enumerate
+If it's time to go, the system sends the notification to the user
 \end_layout
 
 \end_inset
@@ -3583,7 +3598,7 @@ Output conditions
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+The user is now aware to leave to the appointment
 \end_layout
 
 \end_inset
@@ -3602,8 +3617,13 @@ Exceptions
 <cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
-\begin_layout Plain Layout
-If no lunch solution is found
+\begin_layout Itemize
+The system waits for the next cycle if there is no upcoming event
+\end_layout
+
+\begin_layout Itemize
+The system waits for the next cycle if it's too early to leave to the appointmen
+t
 \end_layout
 
 \end_inset
