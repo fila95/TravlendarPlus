@@ -1766,6 +1766,18 @@ Map
 \end_inset
 
 
+\begin_inset space \enskip{}
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/Wireframe/13-MapExpan_wired@3x.png
+	lyxscale 10
+	scale 15
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1777,36 +1789,6 @@ Swiping right from the main view or by tapping on the bottom icon the app
 In here the user is allowed to have a look at his / her daily events on
  a map and it shows also the suggested route from her / his position to
  the first event location.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage pagebreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Paragraph
-Map / Expanded
-\end_layout
-
-\begin_layout Standard
-\begin_inset VSpace bigskip*
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset Graphics
-	filename images/Wireframe/13-MapExpan_wired@3x.png
-	lyxscale 10
-	scale 15
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
