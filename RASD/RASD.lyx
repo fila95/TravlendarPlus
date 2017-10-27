@@ -27,6 +27,7 @@
 \bibtex_command default
 \index_command default
 \paperfontsize default
+\spacing single
 \use_hyperref false
 \papersize default
 \use_geometry false
@@ -930,7 +931,7 @@ Class Diagram
 \begin_inset Graphics
 	filename images/CD.png
 	lyxscale 55
-	scale 55
+	scale 50
 
 \end_inset
 
@@ -961,8 +962,8 @@ Active mode:
 \align center
 \begin_inset Graphics
 	filename images/SC-active.png
-	lyxscale 50
-	scale 50
+	lyxscale 30
+	scale 30
 
 \end_inset
 
@@ -976,11 +977,25 @@ Passive mode:
 \end_layout
 
 \begin_layout Standard
+\noindent
 \align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{-3.5cm}
+\end_layout
+
+\end_inset
+
+
 \begin_inset Graphics
 	filename images/SC-passive.png
-	lyxscale 50
-	scale 50
+	lyxscale 30
+	scale 40
 
 \end_inset
 
@@ -2389,6 +2404,200 @@ Definition of use cases
 \end_layout
 
 \begin_layout Subsubsection
+CreateCalendar
+\end_layout
+
+\begin_layout Standard
+Allow the user to create a new calendar with a name and a color chosen by
+ the user
+\begin_inset VSpace bigskip*
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="middle" width="20text%">
+<column alignment="left" valignment="middle" width="80text%">
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Name
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CreateCalendar
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Actors
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+User
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Goals
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+[G7]
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Input conditions
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+None
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Flow of Events
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Enumerate
+The user selects 
+\begin_inset Quotes eld
+\end_inset
+
+Create Calendar
+\begin_inset Quotes erd
+\end_inset
+
+ from the 
+\begin_inset Quotes eld
+\end_inset
+
+settings
+\begin_inset Quotes erd
+\end_inset
+
+ view
+\end_layout
+
+\begin_layout Enumerate
+A pop-up is shown with a name input
+\end_layout
+
+\begin_layout Enumerate
+The user chooses the calendar name and its color
+\end_layout
+
+\begin_layout Enumerate
+The system records the new calendar in the database
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Output conditions
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The calendar is saved in the database
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Exceptions
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+None
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
 AddStandardEvent
 \end_layout
 
@@ -2527,7 +2736,7 @@ A pop-up is shown with a form to fill out
 \end_layout
 
 \begin_layout Enumerate
-The user choose the location and a description
+The user chooses the location and a description
 \end_layout
 
 \begin_layout Enumerate
@@ -2962,11 +3171,11 @@ A window with all the available settings is displayed
 \end_layout
 
 \begin_layout Enumerate
-The user choose preferences
+The user chooses preferences
 \end_layout
 
 \begin_layout Enumerate
-The setting is automatically saved
+The settings are automatically saved
 \end_layout
 
 \end_inset
@@ -2986,7 +3195,7 @@ Output conditions
 \begin_inset Text
 
 \begin_layout Plain Layout
-The preference set is saved into user's profile
+The preferences are saved into user's profile
 \end_layout
 
 \end_inset
@@ -3019,152 +3228,7 @@ None
 
 \end_layout
 
-\begin_layout Subsection*
-MonitorInboxForNewEvent
-\end_layout
-
-\begin_layout Standard
-The system, when allowed by the user, check the inbox looking for some emails
- containing an Event, like train tickets.
-\end_layout
-
-\begin_layout Standard
-\begin_inset VSpace bigskip*
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Tabular
-<lyxtabular version="3" rows="5" columns="2">
-<features tabularvalignment="middle">
-<column alignment="left" valignment="middle" width="20text%">
-<column alignment="left" valignment="middle" width="80text%">
-<row>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Name
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-MonitorInboxForNewEvent
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Actors
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-No active actors
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Flow of Events
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Itemize
-
-\series bold
-Initiation
-\series default
-: The system scan the user's inbox searching some predefined email templates
-\end_layout
-
-\begin_layout Itemize
-If an event is found, the system add a new event to the calendar
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-Termination
-\series default
-: When all the emails are scanned, the system pause the scan
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Exceptions
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-None
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Special Requirements
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Integration with email services
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection*
+\begin_layout Subsubsection
 BuyTickets
 \end_layout
 
@@ -3182,7 +3246,7 @@ n.
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="5" columns="2">
+<lyxtabular version="3" rows="7" columns="2">
 <features tabularvalignment="middle">
 <column alignment="left" valignment="middle" width="20text%">
 <column alignment="left" valignment="middle" width="80text%">
@@ -3207,7 +3271,7 @@ BuyTickets
 </cell>
 </row>
 <row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3227,160 +3291,58 @@ User
 </cell>
 </row>
 <row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Flow of Events
+Goals
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
-\begin_layout Itemize
-
-\series bold
-Initiation
-\series default
-: The users choose to buy a ticket
-\end_layout
-
-\begin_layout Itemize
-The users specify which tickets they wants, and they insert some details
- accordingly to the type of tickets
-\end_layout
-
-\begin_layout Itemize
-The system connect to the right service in order to buy the tickets
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-Termination
-\series default
-: The user is notified if the tickets are successfully bought or if an error
- occurred
+\begin_layout Plain Layout
+[G3.2.1]
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Exceptions
+Input conditions
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
-\begin_layout Plain Layout
-The user is notified if something goes wrong in the payment
+\begin_layout Itemize
+The event has already been created
 \end_layout
 
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Special Requirements
+\begin_layout Itemize
+The user is seeing a suggested route
 \end_layout
 
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Integration with public transportation in order to buy tickets
+\begin_layout Itemize
+The suggested route has a public transit option
 \end_layout
 
 \end_inset
 </cell>
 </row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection*
-FindVehicle
-\end_layout
-
-\begin_layout Standard
-Allow the user to search for the nearest bike/car of a sharing service
-\end_layout
-
-\begin_layout Standard
-\begin_inset VSpace bigskip*
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Tabular
-<lyxtabular version="3" rows="5" columns="2">
-<features tabularvalignment="middle">
-<column alignment="left" valignment="middle" width="20text%">
-<column alignment="left" valignment="middle" width="80text%">
 <row>
 <cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Name
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-FindVehicle
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Actors
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-User
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
 Flow of Events
 \end_layout
 
@@ -3389,30 +3351,53 @@ Flow of Events
 <cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
-\begin_layout Itemize
+\begin_layout Enumerate
+The user taps on the 
+\begin_inset Quotes eld
+\end_inset
 
-\series bold
-Initiation
-\series default
-: The users want to find the nearest bike or car of a sharing service
+Purchase ticket
+\begin_inset Quotes erd
+\end_inset
+
+ button
 \end_layout
 
-\begin_layout Itemize
-The system acquires the GPS location of the users
+\begin_layout Enumerate
+The text message app is displayed in foreground with a predefined text and
+ the local transit company number as receiver
 \end_layout
 
-\begin_layout Itemize
-The system connect to the sharing services in order to find the nearest
- vehicles
+\begin_layout Enumerate
+The user sends the text message
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Enumerate
+The user receives a reply from the local transit company with a PNR code
+\end_layout
 
-\series bold
-Termination
-\series default
-: The system shows to the users the nearest vehicles if there are, or a
- warning if there aren't
+\begin_layout Enumerate
+The text message sent from the local transit company is read by the application
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Output conditions
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The ticket is recorded in the database
 \end_layout
 
 \end_inset
@@ -3428,31 +3413,11 @@ Exceptions
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-No vehicles found or error in contacting sharing services
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Special Requirements
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Integration with sharing services in order to find nearest vehicles
+The purchased is aborted if the user doesn't have enough credit on the phone
 \end_layout
 
 \end_inset
@@ -3465,168 +3430,8 @@ Integration with sharing services in order to find nearest vehicles
 
 \end_layout
 
-\begin_layout Subsection*
-SuggestTravel
-\end_layout
-
-\begin_layout Standard
-Suggest the best travel solutions based some user preferences
-\end_layout
-
-\begin_layout Standard
-\begin_inset VSpace bigskip*
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Tabular
-<lyxtabular version="3" rows="5" columns="2">
-<features tabularvalignment="middle">
-<column alignment="left" valignment="middle" width="20text%">
-<column alignment="left" valignment="middle" width="80text%">
-<row>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Name
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-SuggestTravel
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Actors
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-No active actors
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Flow of Events
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-Initiation
-\series default
-: When an event is registered, the system checks:
-\end_layout
-
-\begin_layout Enumerate
-the type of event
-\end_layout
-
-\begin_layout Enumerate
-the user preferences
-\end_layout
-
-\begin_layout Enumerate
-the weather forecast
-\end_layout
-
-\begin_layout Enumerate
-the will of the user to lower carbon emission
-\end_layout
-
-\begin_layout Plain Layout
-and it chooses the best travel solution.
-\end_layout
-
-\begin_layout Plain Layout
-
-\series bold
-Termination
-\series default
-: The system finds (or not) the travel solution
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Exceptions
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-If no travel solution is found
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Special Requirements
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-None.
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection*
-CalcLunchTime
+\begin_layout Subsubsection
+NotifyUser
 \end_layout
 
 \begin_layout Standard
@@ -3643,7 +3448,7 @@ Calculate the best lunch time reserving at least 30 minutes a day from the
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="5" columns="2">
+<lyxtabular version="3" rows="7" columns="2">
 <features tabularvalignment="middle">
 <column alignment="left" valignment="middle" width="20text%">
 <column alignment="left" valignment="middle" width="80text%">
@@ -3668,7 +3473,7 @@ CalcLunchTime
 </cell>
 </row>
 <row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3688,7 +3493,47 @@ No active actors
 </cell>
 </row>
 <row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Goals
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Input Conditions
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3725,20 +3570,20 @@ Termination
 </cell>
 </row>
 <row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Exceptions
+Output conditions
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-If no lunch solution is found
+
 \end_layout
 
 \end_inset
@@ -3749,7 +3594,7 @@ If no lunch solution is found
 \begin_inset Text
 
 \begin_layout Plain Layout
-Special Requirements
+Exceptions
 \end_layout
 
 \end_inset
@@ -3758,7 +3603,7 @@ Special Requirements
 \begin_inset Text
 
 \begin_layout Plain Layout
-None.
+If no lunch solution is found
 \end_layout
 
 \end_inset
