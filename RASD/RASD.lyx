@@ -3886,12 +3886,6 @@ The user won't require login because it will use the iCloud unique identifier
  in order to synchronize events and calendars to the server.
 \end_layout
 
-\begin_layout Standard
-This identifier is kept secret on the iCloud Keychain and won't be stored
- on the server for promotional or ambiguous purposes.
- It is just needed to identify the user.
-\end_layout
-
 \begin_layout Subsection
 Software System Attributes
 \end_layout
@@ -3913,12 +3907,45 @@ Phil
 Reliability
 \end_layout
 
+\begin_layout Standard
+The system must guarantee a 24 hours per day and 7 days per week service.
+\end_layout
+
+\begin_layout Standard
+The server should never be offline.
+\end_layout
+
+\begin_layout Standard
+Very small deviations will be accepted only if the system will go in maintenance
+ mode.
+\end_layout
+
 \begin_layout Subsubsection
 Availability
 \end_layout
 
 \begin_layout Subsubsection
 Security
+\end_layout
+
+\begin_layout Standard
+The app will use the iCloud unique identifier to identify the user also
+ when he / she uninstalls the app and reinstalls it.
+\end_layout
+
+\begin_layout Standard
+This identifier is kept secret on the iCloud Keychain and won't be stored
+ on the server for promotional or ambiguous purposes.
+ It is just needed to identify the user.
+\end_layout
+
+\begin_layout Standard
+Security of the user data is the primary concern.
+\end_layout
+
+\begin_layout Standard
+The app will communicate with the server via SSL certificates enabling HTTPS
+ secure requests.
 \end_layout
 
 \begin_layout Subsubsection
@@ -3964,6 +3991,16 @@ Benedetto Maria Nespoli: 20.00h
 
 \begin_layout Section
 References
+\end_layout
+
+\begin_layout Itemize
+iOS Human Interface Guidelines (https://developer.apple.com/ios/human-interface-gu
+idelines/)
+\end_layout
+
+\begin_layout Itemize
+App Store Review Guidelines (https://developer.apple.com/app-store/review/guidelin
+es/)
 \end_layout
 
 \end_body
