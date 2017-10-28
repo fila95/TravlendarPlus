@@ -42,15 +42,7 @@ sig Event {
   eventId: one Int,
   start: one Time,
   end: one Time,
-  location: lone Location,
-  areTransitAvailable: one Bool
-}
-
-// Mezzi di trasporto non disponibili dopo un tempo specificato dalle impostazioni
-fact {
-  all u: User, e: Event | e in u.calendars.events && lt[e.start, u.settings.transitStart] && gt[e.end, u.settings.transitEnd]
-    implies
-  e.areTransitAvailable=False
+  location: lone Location
 }
 
 // ID evento univoco
@@ -61,44 +53,51 @@ fact {
 // ---
 // Ogni evento appartiene ad uno ed un solo calendario
 fact {
-  all c1, c2: Calendar, e: Event | e in c1.events && e in c2.events implies c1=c2
+  all e: Event | e in Calendar.events
 }
 fact {
-  all c: Calendar, e: Event | e in c.events
+  all c1, c2: Calendar, e: Event | e in c1.events and e in c2.events implies c1=c2
 }
 // ---
 
+// Ogni utente appartiene ad almeno un db
+fact {
+  all u: User | u in DB.users
+}
 
-// ---
 // Ogni location appartiene ad almeno un evento
 fact {
-  all l: Location, e: Event | l in e.location
+  all l: Location | l in Event.location
 }
-// ---
 
 // ---
 // Ogni calendario appartiene ad uno ed un solo utente
 fact {
-  all u: User, c: Calendar | c in u.calendars
+  all c: Calendar | c in User.calendars
 }
 fact {
-  all u1, u2: User, c: Calendar | c in u1.calendars && c in u2.calendars implies u1=u2
+  all u1, u2: User, c: Calendar | c in u1.calendars and c in u2.calendars implies u1=u2
 }
 // ---
 
 // ---
 // Ogni setting appartiene ad uno ed un solo utente
 fact {
-  all u: User, s: Settings | s in u.settings
+  all s: Settings | s in User.settings
 }
 fact {
-  all u1, u2: User, s: Settings | s in u1.settings && s in u2.settings implies u1=u2
+  all u1, u2: User, s: Settings | s in u1.settings and s in u2.settings implies u1=u2
 }
 // ---
 
 // l'inizio di un evento deve precedere la fine
 fact {
   all e: Event | gt[e.end, e.start]
+}
+
+// l'inizio di transit in Setting deve precedere la fine
+fact {
+  all s: Settings | gt[s.transitEnd, s.transitStart]
 }
 
 // Due eventi non possono sovrapporsi temporalmente se sono nello stesso calendario
@@ -108,11 +107,22 @@ fact {
   gt[e1.start, e2.end] or gt[e2.start, e1.end]
 }
 
-pred show [u: User] {
+pred show {
   #DB=1
-  #users>1
-  #u.calendars>0
-  #u.calendars.events>0
+  #users>1 and #users<6
+  #User.calendars>0 and #User.calendars<4
+  #User.calendars.events>3 and #User.calendars.events<8
 }
 
-run show for 7
+// Mezzi di trasporto non disponibili dopo un tempo specificato dalle impostazioni
+pred isTransitAvailable[u: User] {
+  all e: Event | e in u.calendars.events
+    implies
+  gt[e.start, u.settings.transitStart] and lt[e.end, u.settings.transitEnd]
+
+  #DB.users<3
+  #u.calendars>0 and #u.calendars.events>0
+  #u.calendars<3 and #u.calendars.events<7
+}
+
+run isTransitAvailable for 5 but exactly 1 DB
