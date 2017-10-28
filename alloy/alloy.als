@@ -9,13 +9,6 @@ sig Location {
   lng: one Int
 }
 
-/*
-sig TransitPath {
-  start: Location,
-  end: Location,
-  number: Int
-}*/
-
 sig Settings {
   transitStart: one Time,
   transitEnd: one Time
@@ -42,77 +35,78 @@ sig Event {
   eventId: one Int,
   start: one Time,
   end: one Time,
-  location: lone Location,
-  areTransitAvailable: one Bool
+  location: lone Location
 }
 
-// Mezzi di trasporto non disponibili dopo un tempo specificato dalle impostazioni
-fact {
-  all u: User, e: Event | e in u.calendars.events && lt[e.start, u.settings.transitStart] && gt[e.end, u.settings.transitEnd]
-    implies
-  e.areTransitAvailable=False
-}
-
-// ID evento univoco
+// event ID unique
 fact {
   all e1, e2: Event | e1.eventId=e2.eventId implies e1=e2
 }
 
-// ---
-// Ogni evento appartiene ad uno ed un solo calendario
+// Each event belong to one and only one calendar
 fact {
-  all c1, c2: Calendar, e: Event | e in c1.events && e in c2.events implies c1=c2
+  all e: Event | e in Calendar.events
+  all c1, c2: Calendar, e: Event | e in c1.events and e in c2.events implies c1=c2
 }
-fact {
-  all c: Calendar, e: Event | e in c.events
-}
-// ---
 
-
-// ---
-// Ogni location appartiene ad almeno un evento
+// Each user belong to one DB
 fact {
-  all l: Location, e: Event | l in e.location
+  all u: User | u in DB.users
 }
-// ---
+
+// Each location belong to one event
+fact {
+  all l: Location | l in Event.location
+}
 
 // ---
-// Ogni calendario appartiene ad uno ed un solo utente
+// Each calendar belong to one and only one user
 fact {
-  all u: User, c: Calendar | c in u.calendars
+  all c: Calendar | c in User.calendars
+  all u1, u2: User, c: Calendar | c in u1.calendars and c in u2.calendars implies u1=u2
 }
-fact {
-  all u1, u2: User, c: Calendar | c in u1.calendars && c in u2.calendars implies u1=u2
-}
-// ---
 
-// ---
-// Ogni setting appartiene ad uno ed un solo utente
+// Each setting belong to one and only one user
 fact {
-  all u: User, s: Settings | s in u.settings
+  all s: Settings | s in User.settings
+  all u1, u2: User, s: Settings | s in u1.settings and s in u2.settings implies u1=u2
 }
-fact {
-  all u1, u2: User, s: Settings | s in u1.settings && s in u2.settings implies u1=u2
-}
-// ---
 
-// l'inizio di un evento deve precedere la fine
+// The beginning of an event must precede its end
 fact {
   all e: Event | gt[e.end, e.start]
 }
 
-// Due eventi non possono sovrapporsi temporalmente se sono nello stesso calendario
+// The beginning of the transitStart must precede transitEnd
+fact {
+  all s: Settings | gt[s.transitEnd, s.transitStart]
+}
+
+// If two events belong to the same calendar, they cannot overlap
 fact {
   all e1, e2: Event, c: Calendar | e1!=e2 and e1 in c.events and e2 in c.events
     implies
   gt[e1.start, e2.end] or gt[e2.start, e1.end]
 }
 
-pred show [u: User] {
+// Show
+pred show {
   #DB=1
-  #users>1
-  #u.calendars>0
-  #u.calendars.events>0
+  #users>1 and #users<6
+  #User.calendars>0 and #User.calendars<4
+  #User.calendars.events>3 and #User.calendars.events<8
 }
 
-run show for 7
+// Determine if transit are available, based on user settings
+pred isTransitAvailable[u: User] {
+  all e: Event | e in u.calendars.events
+    implies
+  gt[e.start, u.settings.transitStart] and lt[e.end, u.settings.transitEnd]
+
+  #DB.users<3
+  #u.calendars>0 and #u.calendars.events>0
+  #u.calendars<3 and #u.calendars.events<7
+}
+
+run show for 8 but 8 Int, exactly 1 DB
+run isTransitAvailable for 5 but 8 Int, exactly 1 DB

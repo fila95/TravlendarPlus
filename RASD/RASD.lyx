@@ -358,7 +358,7 @@ Goals
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Enumerate
 Automatically computes travel time between appointments to make sure that
@@ -745,7 +745,7 @@ QR
 \begin_inset Text
 
 \begin_layout Plain Layout
-QR Code
+Quick Response Code
 \end_layout
 
 \end_inset
@@ -945,6 +945,13 @@ The paper includes six areas.
  Finally, a fifth and a sixth section allows the reader to learn the effort
  spent on this project by each team member and the references made in the
  whole paper.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -1238,6 +1245,13 @@ status open
 QUI VANNO LE SPECIFICHE DI BENNES
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
 \end_inset
 
 
@@ -2643,6 +2657,13 @@ None
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection
 AddStandardEvent
 \end_layout
@@ -2860,6 +2881,13 @@ Users are notified immediately with a warning if their event will not be
 </row>
 </lyxtabular>
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
 \end_inset
 
 
@@ -3096,6 +3124,13 @@ Users are notified immediately with a warning if their event will not be
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection
 EditPreferences
 \end_layout
@@ -3282,6 +3317,13 @@ None
 </row>
 </lyxtabular>
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
 \end_inset
 
 
@@ -3489,6 +3531,13 @@ The purchased is aborted if the user doesn't have enough credit on the phone
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection
 NotifyUser
 \end_layout
@@ -3675,6 +3724,13 @@ t
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Use Case Diagram
 \end_layout
@@ -3685,6 +3741,13 @@ Use Case Diagram
 	lyxscale 55
 	scale 55
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
 \end_inset
 
 
@@ -3889,18 +3952,78 @@ ed in multiple OS such as Android and iOS which represents 98% of the smartphone
  market.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Formal analysis using Alloy
 \end_layout
 
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Smilzo
+\begin_layout Subsection
+Signatures
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Facts
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Dynamic Model
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Results
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Proof of Consistency
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Generated world
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
 \end_inset
 
 
