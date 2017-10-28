@@ -9,13 +9,6 @@ sig Location {
   lng: one Int
 }
 
-/*
-sig TransitPath {
-  start: Location,
-  end: Location,
-  number: Int
-}*/
-
 sig Settings {
   transitStart: one Time,
   transitEnd: one Time
@@ -45,68 +38,58 @@ sig Event {
   location: lone Location
 }
 
-// ID evento univoco
+// event ID unique
 fact {
   all e1, e2: Event | e1.eventId=e2.eventId implies e1=e2
 }
 
-// ---
-// Ogni evento appartiene ad uno ed un solo calendario
+// Each event belong to one and only one calendar
 fact {
   all e: Event | e in Calendar.events
-}
-fact {
   all c1, c2: Calendar, e: Event | e in c1.events and e in c2.events implies c1=c2
 }
-// ---
 
-// Ogni utente appartiene ad almeno un db
+// Each user belong to one DB
 fact {
   all u: User | u in DB.users
 }
 
-// Ogni location appartiene ad almeno un evento
+// Each location belong to one event
 fact {
   all l: Location | l in Event.location
 }
 
 // ---
-// Ogni calendario appartiene ad uno ed un solo utente
+// Each calendar belong to one and only one user
 fact {
   all c: Calendar | c in User.calendars
-}
-fact {
   all u1, u2: User, c: Calendar | c in u1.calendars and c in u2.calendars implies u1=u2
 }
-// ---
 
-// ---
-// Ogni setting appartiene ad uno ed un solo utente
+// Each setting belong to one and only one user
 fact {
   all s: Settings | s in User.settings
-}
-fact {
   all u1, u2: User, s: Settings | s in u1.settings and s in u2.settings implies u1=u2
 }
-// ---
 
-// l'inizio di un evento deve precedere la fine
+// The beginning of an event must precede its end
 fact {
   all e: Event | gt[e.end, e.start]
 }
 
-// l'inizio di transit in Setting deve precedere la fine
+// The beginning of the transitStart must precede transitEnd
 fact {
   all s: Settings | gt[s.transitEnd, s.transitStart]
 }
 
-// Due eventi non possono sovrapporsi temporalmente se sono nello stesso calendario
+// If two events belong to the same calendar, they cannot overlap
 fact {
   all e1, e2: Event, c: Calendar | e1!=e2 and e1 in c.events and e2 in c.events
     implies
   gt[e1.start, e2.end] or gt[e2.start, e1.end]
 }
 
+// Show
 pred show {
   #DB=1
   #users>1 and #users<6
@@ -114,7 +97,7 @@ pred show {
   #User.calendars.events>3 and #User.calendars.events<8
 }
 
-// Mezzi di trasporto non disponibili dopo un tempo specificato dalle impostazioni
+// Determine if transit are available, based on user settings
 pred isTransitAvailable[u: User] {
   all e: Event | e in u.calendars.events
     implies
@@ -125,4 +108,5 @@ pred isTransitAvailable[u: User] {
   #u.calendars<3 and #u.calendars.events<7
 }
 
-run isTransitAvailable for 5 but exactly 1 DB
+run show for 8 but 8 Int, exactly 1 DB
+run isTransitAvailable for 5 but 8 Int, exactly 1 DB
