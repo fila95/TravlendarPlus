@@ -165,7 +165,8 @@ This document is the Requirements Analysis Specification Document (RASD)
  The document describes the characteristics of the system, both functional
  and non-functional requirements for the software, design constrains and
  system interfaces.
- It is addressed to the developers that will implement the final system.
+ It is addressed to be read by the developers that will implement the final
+ system.
 \end_layout
 
 \begin_layout Subsection
@@ -175,17 +176,17 @@ Scope
 \begin_layout Standard
 The aim of this project is to create a smart calendar-based application
  that people can use to reduce delays at the appointments and supporting
- the the users by identifying the best mobility option.
- Moreover, peoples need to be able to create meetings that notify the user
- in case he/she will not be on time for it.
- The system needs to take into account weather forecast as well as strike
- days.
+ the users by identifying the best mobility option.
+ People create appointments and they get notified in case they will not
+ be on time for it.
+ Moreover, the system needs to take into account weather forecast as well
+ as strike days.
  Furthermore, the users should be able to adapt settings based on their
  preferences, such as walking-time constrains or a more eco-friendly way
  of transportation, and the possibility to define flexible appointments
  that given a window of time and a duration an arrangement of the schedule
- is proposed to the user.
- Finally, the system should provide the user a ticket or locate the closest
+ is proposed.
+ Finally, the system should provide the user of a ticket or locate the closest
  car/bike sharing vehicle if it is the mean of transportation chosen.
 \end_layout
 
@@ -354,50 +355,6 @@ Goals
 \end_deeper
 \begin_layout Itemize
 [G8] Notify the user that it's time to leave for the appointment
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Enumerate
-Automatically computes travel time between appointments to make sure that
- the user will never be late
-\end_layout
-
-\begin_layout Enumerate
-Supports people providing informations about the best mobility solution
-\end_layout
-
-\begin_layout Enumerate
-Allow people to buy public transportation tickets or locating the nearest
- bike
-\end_layout
-
-\begin_layout Enumerate
-Suggest travel solutions depending on the type of appointment
-\end_layout
-
-\begin_layout Enumerate
-Check the weather forecast in order to provide the best mobility solution
-\end_layout
-
-\begin_layout Enumerate
-Allow people to define various kind of preferences
-\end_layout
-
-\begin_layout Enumerate
-Allow people to choose whether to combine transportation means in order
- to lower carbon emissions
-\end_layout
-
-\begin_layout Enumerate
-Allow people to select a flexible lunch time
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Subsection
@@ -978,7 +935,7 @@ Class Diagram
 \begin_inset Graphics
 	filename images/CD.png
 	lyxscale 55
-	scale 50
+	scale 45
 
 \end_inset
 
@@ -995,8 +952,8 @@ The system is based on two different modes: The active function and the
  The first is in place when the person is actively using the application
  and its functionality.
  The latter is a background service that runs in order to keep track of
- the position and other information and it attract user's attention when
- a notification is risen.
+ the position, other information and it attract user's attention when a
+ notification is risen.
 \end_layout
 
 \begin_layout Standard
@@ -1010,7 +967,7 @@ Active mode:
 \begin_inset Graphics
 	filename images/SC-active.png
 	lyxscale 30
-	scale 30
+	scale 27
 
 \end_inset
 
@@ -1033,7 +990,7 @@ status open
 
 
 \backslash
-hspace*{-3.5cm}
+hspace*{-2.0cm}
 \end_layout
 
 \end_inset
@@ -1042,7 +999,7 @@ hspace*{-3.5cm}
 \begin_inset Graphics
 	filename images/SC-passive.png
 	lyxscale 30
-	scale 40
+	scale 36
 
 \end_inset
 
@@ -1089,7 +1046,7 @@ While creating an event, the system automatically rearrange the schedule
  in order to fit all the events in the calendar.
  In case an event overlaps another event of the same calendar, an exception
  is thrown.
- In case an event overlaps another event of another calendar nothing happen.
+ In case an event overlaps one event of another calendar nothing happen.
 \end_layout
 
 \begin_layout Standard
@@ -1137,7 +1094,7 @@ Public transits companies provide a sms-based purchasing system
 
 \begin_layout Enumerate
 The user has already logged in to his/her device account (Google or Apple)
- so that we can identify him/her by using his / her unique identifier.
+ so that we can identify him/her by using their unique identifier.
 \end_layout
 
 \begin_layout Enumerate
@@ -1150,8 +1107,8 @@ Weather forecast are provided from an external service through API
 \end_layout
 
 \begin_layout Enumerate
-While calculating the shortest path, follows a time-based criteria instead
- of a cost-based one
+Calculating the shortest path follows a time-based criteria instead of a
+ cost-based one
 \end_layout
 
 \begin_layout Subsubsection
@@ -1169,7 +1126,7 @@ Public transit pass
 
 \begin_layout Standard
 The system will not take into consideration whether the person owns a transit's
- pass, however it always allows to buy a transit ticket via text-message
+ pass, however it will always allows to buy one or more transit tickets
  if asked by the user
 \end_layout
 
@@ -1274,17 +1231,6 @@ External Interface Requirements
 User Interfaces 
 \end_layout
 
-\begin_layout Standard
-Continues on the next page.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage pagebreak
-\end_inset
-
-
-\end_layout
-
 \begin_layout Paragraph
 Home Screen
 \end_layout
@@ -1301,7 +1247,7 @@ Home Screen
 \begin_inset Graphics
 	filename images/Wireframe/2-HomeScr_wired@3x.png
 	lyxscale 10
-	scale 14
+	scale 13
 
 \end_inset
 
@@ -1313,7 +1259,7 @@ Home Screen
 \begin_inset Graphics
 	filename images/Wireframe/3-HomeScreenCalendarExpan_wired@3x.png
 	lyxscale 10
-	scale 14
+	scale 13
 
 \end_inset
 
@@ -1321,61 +1267,46 @@ Home Screen
 \end_layout
 
 \begin_layout Standard
-That's the main page that will appear once opened the app.
- People can now see directly their upcoming events of the day and just by
- pulling down the top view (where 16 December 2017 is written) they can
- access the calendar view (Right Picture) and simply by tapping on a particular
- day the UI re-adapts to that day and shows its regarding events.
-\end_layout
-
-\begin_layout Standard
-In this page people can have a look if they chose to enable ECO-Friendly
- mode (Green Leaf on top) and the current weather.
-\end_layout
-
-\begin_layout Standard
-\begin_inset VSpace smallskip*
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Regarding Events:
-\end_layout
-
-\begin_layout Standard
-The first event of the day shows the suggested route informations and the
- ETA.
-\end_layout
-
-\begin_layout Standard
-There is also a little dot at the upper right side of the cell in which
- people can see if they'll arrive early, late or on time at the event:
+Here is shown the main page that will appear once opened the app.
+ People can see directly their upcoming events of the day.
+ By pulling down the top view (where 16 December 2017 is written) they can
+ access the calendar view (Right Picture) and by tapping on a particular
+ day the UI re-adapts to that day showing its regarding events.
+ Onto this page users may see wether the ECO-Friendly mode is enabled (Green
+ Leaf on top) and the current weather.
+ Furthermore, on the mockup here proposed the reader may see a suggested
+ route and an ETA for the up coming event.
+ It is also shown a little dot at the upper right side of the cell that
+ becomes:
 \end_layout
 
 \begin_layout Itemize
-Green dot means on time / early.
+
+\series bold
+Green
+\series default
+ when the user is on time/early.
 \end_layout
 
 \begin_layout Itemize
-Yellow dot means that the user will be late if he/she doesn't hurry up.
+
+\series bold
+Yellow
+\series default
+ when the user will be late if he/she doesn't hurry up.
 \end_layout
 
 \begin_layout Itemize
-Red dot means he'll be late or that there is a problem in that route.
+
+\series bold
+Red
+\series default
+ when they will centrally be late or there is a problem in that route.
 \end_layout
 
 \begin_layout Standard
-In each cell there is a small bar on the bottom which color depends on the
- calendar color where the event is saved to.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage pagebreak
-\end_inset
-
-
+In each cell there is a small bar on the bottom whom color depends on calendar's
+ color where the event is saved to.
 \end_layout
 
 \begin_layout Paragraph
@@ -1470,8 +1401,8 @@ Event Detail
 \begin_inset Quotes erd
 \end_inset
 
- view, the app will present to the user this view in which he / she are
- allowed to have a look at the routes to reach the event.
+ view, the app will present to the user this view in which they can look
+ at the routes to reach the event.
 \end_layout
 
 \begin_layout Standard
@@ -1511,8 +1442,7 @@ Event Detail / Ticket Bought
 \end_layout
 
 \begin_layout Standard
-If the user has bought a ticket it will appear then in this view which is
- the main 
+When a user buys a ticket it appear in this view which is the main 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1520,8 +1450,8 @@ Event Detail
 \begin_inset Quotes erd
 \end_inset
 
- view so that he can just show the ticket or have a fast look to the QR
- code.
+.
+ A QR code containing the PNR code of the ticket is shown.
 \end_layout
 
 \begin_layout Standard
@@ -1555,32 +1485,27 @@ Add Event
 \end_layout
 
 \begin_layout Standard
-Now let's go back to the main view.
+On the main view, once the user taps the add button this pop-up is shown.
 \end_layout
 
 \begin_layout Standard
-Once the user taps the add button this is the view that the app will present
- to him.
-\end_layout
-
-\begin_layout Standard
-In here he can set:
+From this area, the person is able to choose:
 \end_layout
 
 \begin_layout Itemize
-Name of the event.
+Name of the event
 \end_layout
 
 \begin_layout Itemize
-Location of the event.
+Location of the event
 \end_layout
 
 \begin_layout Itemize
-Start time and end time.
+Start time and end time
 \end_layout
 
 \begin_layout Itemize
-If he / she toggles the 
+By toggling the 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1596,30 +1521,17 @@ Duration
 \begin_inset Quotes erd
 \end_inset
 
- will appear so that he can just say that 
-\begin_inset Quotes eld
-\end_inset
-
-From start time to end time this event will last for Duration minutes
-\begin_inset Quotes erd
-\end_inset
-
-.
- This is useful if the user will set breaks during the day.
+ would appear so that they can just say indicate the how long for this event
+ will last, given a time window.
+ This feature is useful to set breaks during the day.
 \end_layout
 
 \begin_layout Itemize
-An Extra section where the user can set repeating days and choose a calendar
- where to save the event.
+Repetition days and a calendar where the event will be saved
 \end_layout
 
 \begin_layout Itemize
-There is also an additional section where the user can choose the vehicles
- and travel means so that the app can compute the best route based on them.
-\end_layout
-
-\begin_layout Itemize
-Tapping an save will store the event locally and synchronize it on the server.
+Vehicles and travel means to compute the best route based on them
 \end_layout
 
 \begin_layout Standard
@@ -1653,7 +1565,7 @@ Add Event / Repetitions
 \end_layout
 
 \begin_layout Standard
-This is the pop-up that will appear once the user taps on the 
+Here is shown the pop-up that will appear once the user taps on the 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1870,14 +1782,14 @@ Swiping right from the main view or by tapping on the bottom icon the app
 \end_layout
 
 \begin_layout Standard
-In here the user is allowed to have a look at his / her daily events on
- a map and it shows also the suggested route from her / his position to
- the first event location.
+Here the user can have a look at their daily events on a map.
+ The screen shows also the suggested route from the actual position to the
+ first event location.
 \end_layout
 
 \begin_layout Standard
-Pulling down the calendar the user can change day and have a look at that
- specific events.
+By pulling down the calendar, the user can change day and have a look at
+ those specific events.
 \end_layout
 
 \begin_layout Standard
@@ -1916,43 +1828,41 @@ Swiping right from the map view or by tapping on the bottom icon the app
 \end_layout
 
 \begin_layout Standard
-In this view we can find 5 sections:
+Here we can find five sections:
 \end_layout
 
-\begin_layout Subparagraph
-Eco Mode
+\begin_layout Enumerate
+
+\series bold
+Eco Mode:
+\series default
+ By enabling it the system will differently weight routes that require fossil
+ fuel based vehicles
 \end_layout
 
-\begin_layout Standard
-By enabling it the app will minimize routes powered by cars or vehicles
- that produce carbon.
+\begin_layout Enumerate
+
+\series bold
+Maximum Distances:
+\series default
+ User is allowed to set a maximum amount of distance by walk or bike so
+ that the system will re arrange its calculations based on this new values.
 \end_layout
 
-\begin_layout Subparagraph
-Maximum Distances
+\begin_layout Enumerate
+
+\series bold
+Timing:
+\series default
+ Here the user can set the time window where transits will be available
 \end_layout
 
-\begin_layout Standard
-Here the user is allowed to set a maximum amount of distance walking or
- biking so that the app will re arrange its calculations based on this new
- values.
-\end_layout
+\begin_layout Enumerate
 
-\begin_layout Subparagraph
-Timing
-\end_layout
-
-\begin_layout Standard
-Here the user can just set the protected times where he / she wants the
- app to propose him transit vehicles.
-\end_layout
-
-\begin_layout Subparagraph
-Calendars
-\end_layout
-
-\begin_layout Standard
-In this section the user can edit his existing calendars or create a new
+\series bold
+Calendars:
+\series default
+ In this section the user can edit his existing calendars or create a new
  one by tapping 
 \begin_inset Quotes eld
 \end_inset
@@ -1961,31 +1871,17 @@ Add New...
 \begin_inset Quotes erd
 \end_inset
 
- button.
+ button
 \end_layout
 
-\begin_layout Subparagraph
-Allowed Services
-\end_layout
+\begin_layout Enumerate
 
-\begin_layout Standard
-Here the user can just activate or de-activate services (
-\begin_inset Quotes eld
-\end_inset
-
-Enjoy
-\begin_inset Quotes erd
-\end_inset
-
-, 
-\begin_inset Quotes eld
-\end_inset
-
-Mobike
-\begin_inset Quotes erd
-\end_inset
-
-, ...) so that he can just disable them and the app won't consider them.
+\series bold
+Allowed Services:
+\series default
+ Here the user can just activate or disable vehicle-sharing services (such
+ as Enjoy or Mobike) so that the app will not consider them on paths calculation
+s.
 \end_layout
 
 \begin_layout Standard
@@ -2019,8 +1915,7 @@ Settings / Add Calendar
 \end_layout
 
 \begin_layout Standard
-This is the view that will be presented when the user wants to add a new
- calendar.
+This is the view that will be shown when the user wants to add a new calendar.
 \end_layout
 
 \begin_layout Standard
@@ -2071,12 +1966,7 @@ Hardware Interfaces
 
 \begin_layout Standard
 The system will require, in order to work properly, one or more dedicated
- servers in which the server management software (API) will run.
-\end_layout
-
-\begin_layout Standard
-It also requires the user to have a smartphone in order to download and
- use the app.
+ servers in which the server management software will run.
 \end_layout
 
 \begin_layout Subsubsection
@@ -2107,7 +1997,7 @@ Communication Interfaces
 
 \begin_layout Standard
 In order to establish a communication between the app and the server, there
- will be needed to build an API that lets the app to store and / or retrieve
+ will be needed to build an API that lets the app to store and/or retrieve
  data from the database.
 \end_layout
 
@@ -2122,28 +2012,14 @@ In order to establish a communication between the app and the server, there
 Functional Requirements
 \end_layout
 
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-References to each requirement and domain must be written at the final stages.
- Ex.
- [Rx], [Dx],...
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsubsection
 [G0] Allow people to use the app without a login function
 \end_layout
 
 \begin_layout Itemize
-When the app is lunched for the first time, the system recognizes the new
- users and create a record of their data to be locally updated on the phone
+[R1] When the app is lunched for the first time, the system recognizes the
+ new users and create a record of their data to be locally updated on the
+ phone
 \end_layout
 
 \begin_layout Standard
@@ -2163,12 +2039,12 @@ When the app is lunched for the first time, the system recognizes the new
 \end_layout
 
 \begin_layout Itemize
-The system must be able to provide the list of daily events scheduled by
- the user
+[R2] The system must be able to provide the list of daily events scheduled
+ by the user
 \end_layout
 
 \begin_layout Itemize
-The events must be divided between 
+[R3] The events must be divided between 
 \begin_inset Quotes eld
 \end_inset
 
@@ -2188,12 +2064,12 @@ Later on
 \end_layout
 
 \begin_layout Itemize
-Information of event's description, calendar saved and time must always
+[R4] Information of event's description, calendar saved and time must always
  be shown, while the location of the event is optional
 \end_layout
 
 \begin_layout Itemize
-Button add event must always be visible
+[R5] Button add event must always be visible
 \end_layout
 
 \begin_layout Standard
@@ -2213,16 +2089,16 @@ Button add event must always be visible
 \end_layout
 
 \begin_layout Itemize
-A calendar screen must be shown
+[R6] A calendar screen must be shown
 \end_layout
 
 \begin_layout Itemize
-Information of event's description, calendar saved and time must always
+[R7] Information of event's description, calendar saved and time must always
  be shown, while the location of the event is optional
 \end_layout
 
 \begin_layout Itemize
-Button add event must always be visible
+[R8] Button add event must always be visible
 \end_layout
 
 \begin_layout Standard
@@ -2241,27 +2117,29 @@ Button add event must always be visible
 \end_layout
 
 \begin_layout Itemize
-ETA and trip information must be provided
+[R9] ETA and trip information must be provided
 \end_layout
 
 \begin_layout Itemize
-Tickets services must be shown
+[R10] Tickets services must be shown
 \end_layout
 
 \begin_layout Itemize
-Different suggested routes can be explored, if available
+[R11] Different suggested routes can be explored, if available
 \end_layout
 
 \begin_layout Itemize
-The system must provide a way to buy tickets or book a sharing service vehicle
+[R12] The system must provide a way to buy tickets or book a sharing service
+ vehicle
 \end_layout
 
 \begin_layout Itemize
-The system must show the purchased ticket
+[R13] The system must show the purchased ticket
 \end_layout
 
 \begin_layout Itemize
-The paths color in the map changes accordingly to the means of transportation
+[R14] The paths color in the map changes accordingly to the means of transportat
+ion
 \end_layout
 
 \begin_layout Standard
@@ -2302,31 +2180,33 @@ The paths color in the map changes accordingly to the means of transportation
 \end_layout
 
 \begin_layout Itemize
-Information of event's description, calendar saved and time must always
+[R15] Information of event's description, calendar saved and time must always
  be provided, while the location of the event is optional
 \end_layout
 
 \begin_layout Itemize
-The system must ask for the description and the location of the appointment
+[R16] The system must ask for the description and the location of the appointmen
+t
 \end_layout
 
 \begin_layout Itemize
-The system must ask whether the event should be time-flexible.
+[R17] The system must ask whether the event should be time-flexible.
  In this case it must require a time window and how long the appointment
  will last
 \end_layout
 
 \begin_layout Itemize
-Button for repeating an event weekly must be shown
+[R18] Button for repeating an event weekly must be shown
 \end_layout
 
 \begin_layout Itemize
-Button for choosing the calendar in which the event will be saved must be
- shown
+[R19] Button for choosing the calendar in which the event will be saved
+ must be shown
 \end_layout
 
 \begin_layout Itemize
-A multiple choice list of available means of transportation must be included
+[R20] A multiple choice list of available means of transportation must be
+ included
 \end_layout
 
 \begin_layout Standard
@@ -2359,11 +2239,11 @@ A multiple choice list of available means of transportation must be included
 \end_layout
 
 \begin_layout Itemize
-All the events must be shown on a interactive map
+[R21] All the events must be shown on a interactive map
 \end_layout
 
 \begin_layout Itemize
-The map must show a path to the next event 
+[R22] The map must show a path to the next event 
 \end_layout
 
 \begin_layout Standard
@@ -2390,20 +2270,21 @@ The map must show a path to the next event
 \end_layout
 
 \begin_layout Itemize
-The system must provide of a way to change the maximum distance that could
- be traveled by bike or walk
+[R23] The system must provide of a way to change the maximum distance that
+ could be traveled by bike or walk
 \end_layout
 
 \begin_layout Itemize
-The system must provide a time window in which public transits can be taken
+[R24] The system must provide a time window in which public transits can
+ be taken
 \end_layout
 
 \begin_layout Itemize
-All the available calendars must be shown
+[R25] All the available calendars must be shown
 \end_layout
 
 \begin_layout Itemize
-The system must allow to toggle the available external sharing services
+[R26] The system must allow to toggle the available external sharing services
 \end_layout
 
 \begin_layout Standard
@@ -2427,11 +2308,12 @@ The system must allow to toggle the available external sharing services
 \end_layout
 
 \begin_layout Itemize
-The app should allow the user to add a new calendar
+[R27] The app should allow the user to add a new calendar
 \end_layout
 
 \begin_layout Itemize
-The system allows to change the name of a calendar and eventually its color
+[R28] The system allows to change the name of a calendar and eventually
+ its color
 \end_layout
 
 \begin_layout Standard
@@ -2454,12 +2336,13 @@ The system allows to change the name of a calendar and eventually its color
 \end_layout
 
 \begin_layout Itemize
-The app must send a notification when it's time to leave for the appointment.
+[R29] The app must send a notification when it's time to leave for the appointme
+nt.
 \end_layout
 
 \begin_layout Itemize
-The system must take into account the means of transportation that the user
- has selected
+[R30] The system must take into account the means of transportation that
+ the user has selected
 \end_layout
 
 \begin_layout Standard
@@ -2481,6 +2364,99 @@ The system must take into account the means of transportation that the user
 \end_layout
 
 \begin_layout Subsection
+Scenarios
+\end_layout
+
+\begin_layout Subsubsection
+Scenario 1
+\end_layout
+
+\begin_layout Standard
+Mike was invited to John's Party in Los Angeles and he really wants to go
+ there.
+ Unfortunately he has a lot of memory problems...
+ That's the reason why John told him to use Travlendar+.
+\end_layout
+
+\begin_layout Standard
+Mike picked up his smartphone and installed it, added the event details
+ on the main calendar and saved!
+\end_layout
+
+\begin_layout Standard
+Later he received a notification that it was time to leave and so he could
+ arrive on time at his friend's birthday.
+\end_layout
+
+\begin_layout Subsubsection
+Scenario 2
+\end_layout
+
+\begin_layout Standard
+Steve is always too busy and he participates to a huge variety of events
+ so he needs to create new calendars in which he can store them.
+ He also cares a lot on tidiness he wants his calendars have great and appealing
+ colors in order to focus on his events in a better way.
+\end_layout
+
+\begin_layout Subsubsection
+Scenario 3
+\end_layout
+
+\begin_layout Standard
+Benedetto is a convinced environmentalist.
+ He wants to make the world a better place by reducing carbon emissions.
+ For this reason he downloaded and added all his events in Travlendar+.
+ He then enabled 
+\begin_inset Quotes eld
+\end_inset
+
+Eco Mode
+\begin_inset Quotes erd
+\end_inset
+
+ and now he can really help the environment.
+\end_layout
+
+\begin_layout Subsubsection
+Scenario 4
+\end_layout
+
+\begin_layout Standard
+Filippo is a man who doesn't like to walk and neither use a bike therefore
+ he wants to minimize his effort to reach an event.
+\end_layout
+
+\begin_layout Standard
+He now installed Travlendar+ on his smartphone and set 
+\begin_inset Quotes eld
+\end_inset
+
+Maximum Distance
+\begin_inset Quotes erd
+\end_inset
+
+ to the minimum value for bike and walk, so he now doesn't need to struggle
+ to reach an appointment.
+\end_layout
+
+\begin_layout Subsubsection
+Scenario 5
+\end_layout
+
+\begin_layout Standard
+Giovanni likes to travel a lot, for this reason he started using this app.
+ 
+\end_layout
+
+\begin_layout Standard
+He likes a lot to reach locations using public transport or rides, but he
+ is under age to be allowed to use car sharing providers so he just disabled
+ suggestions for car sharing services right on the app and now he is happy
+ more than ever.
+\end_layout
+
+\begin_layout Subsection
 Definition of use cases
 \end_layout
 
@@ -2491,6 +2467,9 @@ CreateCalendar
 \begin_layout Standard
 Allow the user to create a new calendar with a name and a color chosen by
  the user
+\end_layout
+
+\begin_layout Standard
 \begin_inset VSpace bigskip*
 \end_inset
 
@@ -3790,19 +3769,6 @@ Edit Preferences
 
 \begin_layout Standard
 \align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-hspace*{-3.5cm}
-\end_layout
-
-\end_inset
-
-
 \begin_inset Graphics
 	filename images/SD/EditPreferences.png
 	lyxscale 80
@@ -3965,7 +3931,7 @@ Any other constraint
 \end_layout
 
 \begin_layout Standard
-The system will ask the user permissions to get her / his current position.
+The system will ask the user permissions to get her/his current position.
 \end_layout
 
 \begin_layout Standard
@@ -3975,19 +3941,6 @@ The user won't require login because it will use the iCloud unique identifier
 
 \begin_layout Subsection
 Software System Attributes
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Review Needed
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Subsubsection
@@ -4012,9 +3965,7 @@ Availability
 \end_layout
 
 \begin_layout Standard
-The app will be available worldwide but since it is focused more on Lombardy,
- transit information and search services (Enjoy, Mobike, ...) won't be available
- elsewhere.
+The app will be available at worldwide level but can be used only in Lombardy.
 \end_layout
 
 \begin_layout Subsubsection
@@ -4029,11 +3980,7 @@ The app will use the iCloud unique identifier to identify the user also
 \begin_layout Standard
 This identifier is kept secret on the iCloud Keychain and won't be stored
  on the server for promotional or ambiguous purposes.
- It is just needed to identify the user.
-\end_layout
-
-\begin_layout Standard
-Security of the user data is the primary concern.
+ Its intent is to identify the user while using the system.
 \end_layout
 
 \begin_layout Standard
@@ -4200,15 +4147,15 @@ Effort spent
 \end_layout
 
 \begin_layout Itemize
-Filippo Calzavara: 28.00h
+Filippo Calzavara: 30.00h
 \end_layout
 
 \begin_layout Itemize
-Giovanni Filaferro: 28.00h
+Giovanni Filaferro: 30.00h
 \end_layout
 
 \begin_layout Itemize
-Benedetto Maria Nespoli: 28.00h
+Benedetto Maria Nespoli: 30.00h
 \end_layout
 
 \begin_layout Section
