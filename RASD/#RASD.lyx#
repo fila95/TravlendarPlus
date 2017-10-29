@@ -2142,9 +2142,8 @@ References to each requirement and domain must be written at the final stages.
 \end_layout
 
 \begin_layout Itemize
-[R1] When the app is lunched for the first time, the system recognizes the
- new users and create a record of their data to be locally updated on the
- phone
+When the app is lunched for the first time, the system recognizes the new
+ users and create a record of their data to be locally updated on the phone
 \end_layout
 
 \begin_layout Standard
@@ -2164,12 +2163,12 @@ References to each requirement and domain must be written at the final stages.
 \end_layout
 
 \begin_layout Itemize
-[R2] The system must be able to provide the list of daily events scheduled
- by the user
+The system must be able to provide the list of daily events scheduled by
+ the user
 \end_layout
 
 \begin_layout Itemize
-[R3] The events must be divided between 
+The events must be divided between 
 \begin_inset Quotes eld
 \end_inset
 
@@ -2189,12 +2188,12 @@ Later on
 \end_layout
 
 \begin_layout Itemize
-[R4] Information of event's description, calendar saved and time must always
+Information of event's description, calendar saved and time must always
  be shown, while the location of the event is optional
 \end_layout
 
 \begin_layout Itemize
-[R5] Button add event must always be visible
+Button add event must always be visible
 \end_layout
 
 \begin_layout Standard
@@ -2214,16 +2213,16 @@ Later on
 \end_layout
 
 \begin_layout Itemize
-[R6] A calendar screen must be shown
+A calendar screen must be shown
 \end_layout
 
 \begin_layout Itemize
-[R7] Information of event's description, calendar saved and time must always
+Information of event's description, calendar saved and time must always
  be shown, while the location of the event is optional
 \end_layout
 
 \begin_layout Itemize
-[R8] Button add event must always be visible
+Button add event must always be visible
 \end_layout
 
 \begin_layout Standard
@@ -2242,29 +2241,27 @@ Later on
 \end_layout
 
 \begin_layout Itemize
-[R9] ETA and trip information must be provided
+ETA and trip information must be provided
 \end_layout
 
 \begin_layout Itemize
-[R10] Tickets services must be shown
+Tickets services must be shown
 \end_layout
 
 \begin_layout Itemize
-[R11] Different suggested routes can be explored, if available
+Different suggested routes can be explored, if available
 \end_layout
 
 \begin_layout Itemize
-[R12] The system must provide a way to buy tickets or book a sharing service
- vehicle
+The system must provide a way to buy tickets or book a sharing service vehicle
 \end_layout
 
 \begin_layout Itemize
-[R13] The system must show the purchased ticket
+The system must show the purchased ticket
 \end_layout
 
 \begin_layout Itemize
-[R14] The paths color in the map changes accordingly to the means of transportat
-ion
+The paths color in the map changes accordingly to the means of transportation
 \end_layout
 
 \begin_layout Standard
@@ -2305,33 +2302,31 @@ ion
 \end_layout
 
 \begin_layout Itemize
-[R15] Information of event's description, calendar saved and time must always
+Information of event's description, calendar saved and time must always
  be provided, while the location of the event is optional
 \end_layout
 
 \begin_layout Itemize
-[R16] The system must ask for the description and the location of the appointmen
-t
+The system must ask for the description and the location of the appointment
 \end_layout
 
 \begin_layout Itemize
-[R17] The system must ask whether the event should be time-flexible.
+The system must ask whether the event should be time-flexible.
  In this case it must require a time window and how long the appointment
  will last
 \end_layout
 
 \begin_layout Itemize
-[R18] Button for repeating an event weekly must be shown
+Button for repeating an event weekly must be shown
 \end_layout
 
 \begin_layout Itemize
-[R19] Button for choosing the calendar in which the event will be saved
- must be shown
+Button for choosing the calendar in which the event will be saved must be
+ shown
 \end_layout
 
 \begin_layout Itemize
-[R20] A multiple choice list of available means of transportation must be
- included
+A multiple choice list of available means of transportation must be included
 \end_layout
 
 \begin_layout Standard
@@ -2364,11 +2359,11 @@ t
 \end_layout
 
 \begin_layout Itemize
-[R21] All the events must be shown on a interactive map
+All the events must be shown on a interactive map
 \end_layout
 
 \begin_layout Itemize
-[R22] The map must show a path to the next event 
+The map must show a path to the next event 
 \end_layout
 
 \begin_layout Standard
@@ -2395,21 +2390,20 @@ t
 \end_layout
 
 \begin_layout Itemize
-[R23] The system must provide of a way to change the maximum distance that
- could be traveled by bike or walk
+The system must provide of a way to change the maximum distance that could
+ be traveled by bike or walk
 \end_layout
 
 \begin_layout Itemize
-[R24] The system must provide a time window in which public transits can
- be taken
+The system must provide a time window in which public transits can be taken
 \end_layout
 
 \begin_layout Itemize
-[R25] All the available calendars must be shown
+All the available calendars must be shown
 \end_layout
 
 \begin_layout Itemize
-[R26] The system must allow to toggle the available external sharing services
+The system must allow to toggle the available external sharing services
 \end_layout
 
 \begin_layout Standard
@@ -2433,12 +2427,11 @@ t
 \end_layout
 
 \begin_layout Itemize
-[R27] The app should allow the user to add a new calendar
+The app should allow the user to add a new calendar
 \end_layout
 
 \begin_layout Itemize
-[R28] The system allows to change the name of a calendar and eventually
- its color
+The system allows to change the name of a calendar and eventually its color
 \end_layout
 
 \begin_layout Standard
@@ -2461,13 +2454,12 @@ t
 \end_layout
 
 \begin_layout Itemize
-[R29] The app must send a notification when it's time to leave for the appointme
-nt.
+The app must send a notification when it's time to leave for the appointment.
 \end_layout
 
 \begin_layout Itemize
-[R30] The system must take into account the means of transportation that
- the user has selected
+The system must take into account the means of transportation that the user
+ has selected
 \end_layout
 
 \begin_layout Standard
@@ -3798,6 +3790,19 @@ Edit Preferences
 
 \begin_layout Standard
 \align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{-3.5cm}
+\end_layout
+
+\end_inset
+
+
 \begin_inset Graphics
 	filename images/SD/EditPreferences.png
 	lyxscale 80

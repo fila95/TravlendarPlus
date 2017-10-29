@@ -36,9 +36,9 @@ Version 1.0.0
 \par\end{center}
 
 \bigskip{}
-\noindent \begin{flushright}
+\noindent \begin{center}
 \includegraphics[width=3cm]{images/PolimiLogo}
-\par\end{flushright}
+\par\end{center}
 
 \pagebreak{}\tableofcontents{}
 
@@ -153,6 +153,10 @@ Event & A synonym for appointment \tabularnewline
 \hline 
 System & A synonym of Travlendar+\tabularnewline
 \hline 
+Up Coming Event & A particular event that is expected to occur soon\tabularnewline
+\hline 
+Up Next Event & A synonym of Up Coming\tabularnewline
+\hline 
 User & A potential utilizer of this project\tabularnewline
 \hline 
 Ride & A service performed by a ride-sharing company and Cabs\tabularnewline
@@ -176,7 +180,9 @@ RASD & Requirement Analysis and Specification Document\tabularnewline
 \hline 
 PNR & Passenger name record\tabularnewline
 \hline 
-QR & QR Code\tabularnewline
+QR & Quick Response Code\tabularnewline
+\hline 
+OS & Operative Systemk\tabularnewline
 \hline 
 \end{tabular}
 
@@ -194,8 +200,6 @@ App & A synonym of Travlendar+\tabularnewline
 {[}Dn{]} & N-domain assumption\tabularnewline
 \hline 
 {[}Rn{]} & N-functional requirement\tabularnewline
-\hline 
- & \tabularnewline
 \hline 
 \end{tabular}
 
@@ -223,6 +227,8 @@ the design constraints. The paper is equipped with a fourth section
 that contains a formal analysis using Alloy. Finally, a fifth and
 a sixth section allows the reader to learn the effort spent on this
 project by each team member and the references made in the whole paper.
+
+\pagebreak{}
 
 \section{Overall Description}
 
@@ -276,6 +282,16 @@ credit/bill, letting the carrier provider handling the payment.
 When the purchasing is completed, a QR code representing the ticket's
 PNR will be displayed on the user's screen.
 
+\subsubsection{Overlapped events}
+
+While creating an event, the system automatically rearrange the schedule
+in order to fit all the events in the calendar. In case an event overlaps
+another event of the same calendar, an exception is thrown. In case
+an event overlaps another event of another calendar nothing happen.
+
+Moreover, an error is shown when the user tries to add an event that
+could not be reached in time.
+
 \subsection{User characteristics}
 
 This application is designed to be used by any person that would like
@@ -291,9 +307,8 @@ We assume that:
 \item The software is designed to be utilized in Italy, precisely in the
 region of Lombardy
 \item Public transits companies provide a sms-based purchasing system
-\item The user has already logged in to his/her iCloud account (which is
-compulsory on all iOS and macOS devices) so that we can identify him/her
-by using the unique iCloud Keychain identifier
+\item The user has already logged in to his/her device account (Google or
+Apple) so that we can identify him/her by using his / her unique identifier.
 \item Vehicle-sharing/ride-sharing companies' will provide APIs to locate
 the nearest vehicle available
 \item Weather forecast are provided from an external service through API
@@ -336,8 +351,11 @@ whether the eco mode has been turned on
 the database 
 \item {[}D14{]} Allowed services have been preinstalled
 \item {[}D15{]} The user has always at least one calendar
-\item 
+\item {[}D16{]} Each calendar belongs to only one user
+\item {[}D17{]} Each event belongs to only one calendar
+\item {[}D18{]} The user won't insert overlapping events
 \end{itemize}
+\pagebreak{}
 
 \section{Specific Requirements}
 
@@ -711,6 +729,8 @@ calendar chosen, or the first calendar if the user has never added
 an event
 \item {[}D11{]} While creating an event, the system must take into account
 whether the eco mode has been turned on
+\item {[}D17{]} Each event belongs to only one calendar
+\item {[}D18{]} The user won't insert overlapping events
 \end{itemize}
 
 \subsubsection{{[}G5{]} Allow people to see daily events on a map}
@@ -750,6 +770,7 @@ its color
 %
 \begin{itemize}
 \item {[}D15{]} The user has always at least one calendar
+\item {[}D16{]} Each calendar belongs to only one user
 \end{itemize}
 
 \subsubsection{{[}G8{]} Notify the user that it's time to leave for the appointment}
@@ -782,8 +803,9 @@ Goals & {[}G7{]}\tabularnewline
 Input conditions & None\tabularnewline
 \hline 
 Flow of Events & \begin{enumerate}
-\item The user selects ``Create Calendar'' from the ``settings'' view
-\item A pop-up is shown with a name input
+\item The users swipes to reach the settings tab
+\item Under the Calendar section, the user choses ``Add new''
+\item A pop-up is shown with a name and color input
 \item The user chooses the calendar name and its color
 \item The system records the new calendar in the database
 \end{enumerate}
@@ -794,6 +816,8 @@ Output conditions & The calendar is saved in the database\tabularnewline
 Exceptions & None\tabularnewline
 \hline 
 \end{tabular}
+
+\pagebreak{}
 
 \subsubsection{AddStandardEvent}
 
@@ -820,6 +844,8 @@ Flow of Events & \begin{enumerate}
 \item Preferred means of transportation are selected
 \item The system checks if the appointment can be reached in time with the
 user's preferred vehicles
+\item The system rearrange flexible events in order to fit the schedule
+\item Event's details are shown
 \end{enumerate}
 \tabularnewline
 \hline 
@@ -833,6 +859,8 @@ Exceptions & Users are notified immediately with a warning if their event will
 not be reached on time\tabularnewline
 \hline 
 \end{tabular}
+
+\pagebreak{}
 
 \subsubsection{AddFlexibleEvent}
 
@@ -861,8 +889,9 @@ Flow of Events & \begin{enumerate}
 \item Preferred means of transportation are selected
 \item The system checks if the appointment can be reached in time with the
 user's preferred vehicles
-\item The system rearrange this and other flexible event in order to fit
+\item The system rearrange this and other flexible events in order to fit
 the schedule
+\item Event's details are shown
 \end{enumerate}
 \tabularnewline
 \hline 
@@ -876,6 +905,8 @@ Exceptions & Users are notified immediately with a warning if their event will
 not be reached on time\tabularnewline
 \hline 
 \end{tabular}
+
+\pagebreak{}
 
 \subsubsection{EditPreferences}
 
@@ -909,6 +940,8 @@ Output conditions & The preferences are saved into user's profile\tabularnewline
 Exceptions & None\tabularnewline
 \hline 
 \end{tabular}
+
+\pagebreak{}
 
 \subsubsection{BuyTickets}
 
@@ -951,40 +984,74 @@ the phone\tabularnewline
 \hline 
 \end{tabular}
 
+\pagebreak{}
+
 \subsubsection{NotifyUser}
 
-Calculate the best lunch time reserving at least 30 minutes a day
-from the 11.30am to the 2.30pm
+When an upcoming event is detected, the system sends a notification
+to the user
 
 \vspace*{\bigskipamount}
 
 \begin{tabular}{|>{\raggedright}m{0.2\textwidth}|>{\raggedright}m{0.8\textwidth}|}
 \hline 
-Name & CalcLunchTime\tabularnewline
+Name & NotifyUser\tabularnewline
 \hline 
-Actors & No active actors\tabularnewline
+Actors & User, System\tabularnewline
 \hline 
-Goals & \tabularnewline
+Goals & {[}G8{]}\tabularnewline
 \hline 
-Input Conditions & \tabularnewline
+Input Conditions & The event was created by the user\tabularnewline
 \hline 
-Flow of Events & \begin{itemize}
-\item \textbf{Initiation}: When an event is registered, the system checks
-if there is a period of time in which the user can have lunch.
-\item If the system doesn't finds it, an exception is thrown.
-\item \textbf{Termination}: The system finds (or not) the lunch solution
+Flow of Events & \begin{enumerate}
+\item The system checks the current user position
+\item The system checks wether there is an upcoming event
+\item When an event is found the system plans the travel
+\item If it's time to go, the system sends the notification to the user
+\end{enumerate}
+\tabularnewline
+\hline 
+Output conditions & The user is now aware to leave to the appointment\tabularnewline
+\hline 
+Exceptions & \begin{itemize}
+\item The system waits for the next cycle if there is no upcoming event
+\item The system waits for the next cycle if it's too early to leave to
+the appointment
 \end{itemize}
 \tabularnewline
 \hline 
-Output conditions & \tabularnewline
-\hline 
-Exceptions & If no lunch solution is found\tabularnewline
-\hline 
 \end{tabular}
 
-\subsection{Use Case Diagram}
+\pagebreak{}
 
+\subsection{Sequence Diagrams}
+
+\subsubsection{AddStandardOrFlexibleEvent}
+\begin{center}
+\includegraphics[scale=0.52]{images/SD/AddStandardFlexibleEvent}
+\par\end{center}
+
+\subsubsection{CreateCalendar}
+\begin{center}
+\includegraphics[scale=0.55]{images/SD/CreatCalendar}
+\par\end{center}
+
+\subsubsection{Edit Preferences}
+\begin{center}
+\includegraphics[scale=0.5]{images/SD/EditPreferences}
+\par\end{center}
+
+\subsubsection{BuyTickets}
+\begin{center}
+\hspace*{-3.5cm}\includegraphics[scale=0.5]{images/SD/buyTicket}
+\par\end{center}
+
+\subsection{Use Case Diagram}
+\begin{center}
 \includegraphics[scale=0.55]{images/UC}
+\par\end{center}
+
+\pagebreak{}
 
 \subsection{Performance Requirements}
 
@@ -1006,7 +1073,8 @@ and should never crash.
 \subsubsection{Standards compliance}
 
 The app must comply to the standard ``iOS Human Interface Guidelines''
-and ``App Store Review Guidelines'' by Apple.
+and ``App Store Review Guidelines'' by Apple regarding the iOS App
+and ``Google Play Guidelines'' for Android.
 
 Regarding the interconnections between the app and the server the
 system will use some APIs which will be REST-Compliant and they should
@@ -1016,7 +1084,7 @@ output data using XML or JSON.
 \begin{itemize}
 \item Mobile App 
 \begin{itemize}
-\item iOS Smartphone 
+\item iOS, Android or Windows Phone Smartphone 
 \end{itemize}
 \item Connectivity
 \begin{itemize}
@@ -1047,6 +1115,10 @@ in maintenance mode.
 
 \subsubsection{Availability}
 
+The app will be available worldwide but since it is focused more on
+Lombardy, transit information and search services (Enjoy, Mobike,
+...) won't be available elsewhere.
+
 \subsubsection{Security}
 
 The app will use the iCloud unique identifier to identify the user
@@ -1063,22 +1135,66 @@ HTTPS secure requests.
 
 \subsubsection{Maintainability}
 
+The system will be developed using a modular architecture that represents
+an important aspect to make it more maintainable and stable.
+
+The app and the server will be developed keeping a big eye on this
+aspect.
+
 \subsubsection{Portability}
+
+Portability will be highly guaranteed by the fact that the app will
+be distributed in multiple OS such as Android and iOS which represents
+98\% of the smartphone market.
+
+\pagebreak{}
 
 \section{Formal analysis using Alloy}
 
+\subsection{Signatures}
+
+\includegraphics[scale=0.9]{images/alloy_sigs}
+
+\pagebreak{}
+
+\subsection{Facts}
+
+\includegraphics[scale=0.8]{images/alloy_facts}
+
+\pagebreak{}
+
+\subsection{Dynamic Model}
+
+\includegraphics[scale=0.8]{images/alloy_preds}
+
+\pagebreak{}
+
+\subsection{Results}
+
+\includegraphics[scale=0.8]{images/alloy_results}
+
+\subsubsection{Proof of Consistency}
+
+\includegraphics[scale=0.7]{images/alloy_proofs}
+
+\subsubsection{Generated world}
+
+\includegraphics[angle=270,scale=0.5]{images/alloy_world}
+
+\pagebreak{}
 
 \section{Effort spent}
 \begin{itemize}
-\item Filippo Calzavara: 20.00h
-\item Giovanni Filaferro: 20.00h
-\item Benedetto Maria Nespoli: 20.00h
+\item Filippo Calzavara: 28.00h
+\item Giovanni Filaferro: 28.00h
+\item Benedetto Maria Nespoli: 28.00h
 \end{itemize}
 
 \section{References}
 \begin{itemize}
 \item iOS Human Interface Guidelines (https://developer.apple.com/ios/human-interface-guidelines/)
 \item App Store Review Guidelines (https://developer.apple.com/app-store/review/guidelines/)
+\item Google Play Guidelines (https://play.google.com/about/developer-content-policy/\#!?modal\_active=none)
 \end{itemize}
 
 \end{document}
