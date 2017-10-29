@@ -52,23 +52,23 @@ This document is the Requirements Analysis Specification Document
 (RASD) for Travlendar+, the system assigned to be developed for the
 mandatory project. The document describes the characteristics of the
 system, both functional and non-functional requirements for the software,
-design constrains and system interfaces. It is addressed to the developers
-that will implement the final system.
+design constrains and system interfaces. It is addressed to be read
+by the developers that will implement the final system.
 
 \subsection{Scope}
 
 The aim of this project is to create a smart calendar-based application
 that people can use to reduce delays at the appointments and supporting
-the the users by identifying the best mobility option. Moreover, peoples
-need to be able to create meetings that notify the user in case he/she
-will not be on time for it. The system needs to take into account
-weather forecast as well as strike days. Furthermore, the users should
-be able to adapt settings based on their preferences, such as walking-time
-constrains or a more eco-friendly way of transportation, and the possibility
-to define flexible appointments that given a window of time and a
-duration an arrangement of the schedule is proposed to the user. Finally,
-the system should provide the user a ticket or locate the closest
-car/bike sharing vehicle if it is the mean of transportation chosen.
+the users by identifying the best mobility option. People create appointments
+and they get notified in case they will not be on time for it. Moreover,
+the system needs to take into account weather forecast as well as
+strike days. Furthermore, the users should be able to adapt settings
+based on their preferences, such as walking-time constrains or a more
+eco-friendly way of transportation, and the possibility to define
+flexible appointments that given a window of time and a duration an
+arrangement of the schedule is proposed. Finally, the system should
+provide the user of a ticket or locate the closest car/bike sharing
+vehicle if it is the mean of transportation chosen.
 
 \subsubsection{Goals}
 \begin{itemize}
@@ -241,7 +241,7 @@ sharing systems information, transits and strike information.
 
 \subsubsection{Class Diagram}
 \begin{center}
-\includegraphics[scale=0.5]{images/CD}
+\includegraphics[scale=0.45]{images/CD}
 \par\end{center}
 
 \subsubsection{Statechart}
@@ -249,18 +249,17 @@ sharing systems information, transits and strike information.
 The system is based on two different modes: The active function and
 the passive function. The first is in place when the person is actively
 using the application and its functionality. The latter is a background
-service that runs in order to keep track of the position and other
-information and it attract user's attention when a notification is
-risen.
+service that runs in order to keep track of the position, other information
+and it attract user's attention when a notification is risen.
 
 \textbf{Active mode:}
 \begin{center}
-\includegraphics[scale=0.3]{images/SC-active}
+\includegraphics[scale=0.27]{images/SC-active}
 \par\end{center}
 
 \textbf{Passive mode:}
 \noindent \begin{center}
-\hspace*{-3.5cm}\includegraphics[scale=0.4]{images/SC-passive}
+\hspace*{-2.0cm}\includegraphics[scale=0.36]{images/SC-passive}
 \par\end{center}
 
 \subsection{Product functions}
@@ -287,7 +286,7 @@ PNR will be displayed on the user's screen.
 While creating an event, the system automatically rearrange the schedule
 in order to fit all the events in the calendar. In case an event overlaps
 another event of the same calendar, an exception is thrown. In case
-an event overlaps another event of another calendar nothing happen.
+an event overlaps one event of another calendar nothing happen.
 
 Moreover, an error is shown when the user tries to add an event that
 could not be reached in time.
@@ -308,12 +307,12 @@ We assume that:
 region of Lombardy
 \item Public transits companies provide a sms-based purchasing system
 \item The user has already logged in to his/her device account (Google or
-Apple) so that we can identify him/her by using his / her unique identifier.
+Apple) so that we can identify him/her by using their unique identifier.
 \item Vehicle-sharing/ride-sharing companies' will provide APIs to locate
 the nearest vehicle available
 \item Weather forecast are provided from an external service through API
-\item While calculating the shortest path, follows a time-based criteria
-instead of a cost-based one
+\item Calculating the shortest path follows a time-based criteria instead
+of a cost-based one
 \end{enumerate}
 
 \subsubsection{Interfaces to other applications}
@@ -324,8 +323,8 @@ interfaces to the public
 \subsubsection{Public transit pass}
 
 The system will not take into consideration whether the person owns
-a transit's pass, however it always allows to buy a transit ticket
-via text-message if asked by the user
+a transit's pass, however it will always allows to buy one or more
+transit tickets if asked by the user
 
 \subsubsection{Domain assumption}
 \begin{itemize}
@@ -363,47 +362,32 @@ the database
 
 \subsubsection{User Interfaces }
 
-Continues on the next page.
-
-\pagebreak{}
-
 \paragraph{Home Screen}
 
 \vspace*{\bigskipamount}
 \begin{center}
-\includegraphics[scale=0.14]{images/Wireframe/2-HomeScr_wired@3x}\enskip{}\includegraphics[scale=0.14]{images/Wireframe/3-HomeScreenCalendarExpan_wired@3x}
+\includegraphics[scale=0.13]{images/Wireframe/2-HomeScr_wired@3x}\enskip{}\includegraphics[scale=0.13]{images/Wireframe/3-HomeScreenCalendarExpan_wired@3x}
 \par\end{center}
 
-That's the main page that will appear once opened the app. People
-can now see directly their upcoming events of the day and just by
-pulling down the top view (where 16 December 2017 is written) they
-can access the calendar view (Right Picture) and simply by tapping
-on a particular day the UI re-adapts to that day and shows its regarding
-events.
-
-In this page people can have a look if they chose to enable ECO-Friendly
-mode (Green Leaf on top) and the current weather.
-
-\vspace*{\smallskipamount}
-
-Regarding Events:
-
-The first event of the day shows the suggested route informations
-and the ETA.
-
-There is also a little dot at the upper right side of the cell in
-which people can see if they'll arrive early, late or on time at the
-event:
+Here is shown the main page that will appear once opened the app.
+People can see directly their upcoming events of the day. By pulling
+down the top view (where 16 December 2017 is written) they can access
+the calendar view (Right Picture) and by tapping on a particular day
+the UI re-adapts to that day showing its regarding events. Onto this
+page users may see wether the ECO-Friendly mode is enabled (Green
+Leaf on top) and the current weather. Furthermore, on the mockup here
+proposed the reader may see a suggested route and an ETA for the up
+coming event. It is also shown a little dot at the upper right side
+of the cell that becomes:
 \begin{itemize}
-\item Green dot means on time / early.
-\item Yellow dot means that the user will be late if he/she doesn't hurry
+\item \textbf{Green} when the user is on time/early.
+\item \textbf{Yellow} when the user will be late if he/she doesn't hurry
 up.
-\item Red dot means he'll be late or that there is a problem in that route.
+\item \textbf{Red} when they will centrally be late or there is a problem
+in that route.
 \end{itemize}
-In each cell there is a small bar on the bottom which color depends
-on the calendar color where the event is saved to.
-
-\pagebreak{}
+In each cell there is a small bar on the bottom whom color depends
+on calendar's color where the event is saved to.
 
 \paragraph{Event Detail}
 
@@ -432,8 +416,8 @@ the ``Edit'' button.
 \par\end{center}
 
 Just by tapping to one suggested route from ``Event Detail'' view,
-the app will present to the user this view in which he / she are allowed
-to have a look at the routes to reach the event.
+the app will present to the user this view in which they can look
+at the routes to reach the event.
 
 In particular all the parts composing the route are shown on map and
 just by tapping the button on the right of each cell the app will
@@ -448,9 +432,9 @@ prompt the user to buy a ticket.
 \includegraphics[scale=0.15]{images/Wireframe/5-EventDetail-Tick_wired@3x}
 \par\end{center}
 
-If the user has bought a ticket it will appear then in this view which
-is the main ``Event Detail'' view so that he can just show the ticket
-or have a fast look to the QR code.
+When a user buys a ticket it appear in this view which is the main
+``Event Detail''. A QR code containing the PNR code of the ticket
+is shown.
 
 \pagebreak{}
 
@@ -461,27 +445,20 @@ or have a fast look to the QR code.
 \includegraphics[scale=0.15]{images/Wireframe/7-AddEv_wired@3x}
 \par\end{center}
 
-Now let's go back to the main view.
+On the main view, once the user taps the add button this pop-up is
+shown.
 
-Once the user taps the add button this is the view that the app will
-present to him.
-
-In here he can set:
+From this area, the person is able to choose:
 \begin{itemize}
-\item Name of the event.
-\item Location of the event.
-\item Start time and end time.
-\item If he / she toggles the ``Flexible Timing'' switch a new cell called
-``Duration'' will appear so that he can just say that ``From start
-time to end time this event will last for Duration minutes''. This
-is useful if the user will set breaks during the day.
-\item An Extra section where the user can set repeating days and choose
-a calendar where to save the event.
-\item There is also an additional section where the user can choose the
-vehicles and travel means so that the app can compute the best route
-based on them.
-\item Tapping an save will store the event locally and synchronize it on
-the server.
+\item Name of the event
+\item Location of the event
+\item Start time and end time
+\item By toggling the ``Flexible Timing'' switch a new cell called ``Duration''
+would appear so that they can just say indicate the how long for this
+event will last, given a time window. This feature is useful to set
+breaks during the day.
+\item Repetition days and a calendar where the event will be saved
+\item Vehicles and travel means to compute the best route based on them
 \end{itemize}
 \pagebreak{}
 
@@ -492,8 +469,8 @@ the server.
 \includegraphics[scale=0.15]{images/Wireframe/8-AddEvent-Repetiti_wired@3x}
 \par\end{center}
 
-This is the pop-up that will appear once the user taps on the ``Repeats''
-cell from the ``Add Event'' screen.
+Here is shown the pop-up that will appear once the user taps on the
+``Repeats'' cell from the ``Add Event'' screen.
 
 \pagebreak{}
 
@@ -543,12 +520,12 @@ cell from the ``Add Event'' screen.
 Swiping right from the main view or by tapping on the bottom icon
 the app will present this view.
 
-In here the user is allowed to have a look at his / her daily events
-on a map and it shows also the suggested route from her / his position
-to the first event location.
+Here the user can have a look at their daily events on a map. The
+screen shows also the suggested route from the actual position to
+the first event location.
 
-Pulling down the calendar the user can change day and have a look
-at that specific events.
+By pulling down the calendar, the user can change day and have a look
+at those specific events.
 
 \pagebreak{}
 
@@ -562,35 +539,21 @@ at that specific events.
 Swiping right from the map view or by tapping on the bottom icon the
 app will present this view.
 
-In this view we can find 5 sections:
-
-\subparagraph{Eco Mode}
-
-By enabling it the app will minimize routes powered by cars or vehicles
-that produce carbon.
-
-\subparagraph{Maximum Distances}
-
-Here the user is allowed to set a maximum amount of distance walking
-or biking so that the app will re arrange its calculations based on
-this new values.
-
-\subparagraph{Timing}
-
-Here the user can just set the protected times where he / she wants
-the app to propose him transit vehicles.
-
-\subparagraph{Calendars}
-
-In this section the user can edit his existing calendars or create
-a new one by tapping ``Add New...'' button.
-
-\subparagraph{Allowed Services}
-
-Here the user can just activate or de-activate services (``Enjoy'',
-``Mobike'', ...) so that he can just disable them and the app won't
-consider them.
-
+Here we can find five sections:
+\begin{enumerate}
+\item \textbf{Eco Mode:} By enabling it the system will differently weight
+routes that require fossil fuel based vehicles
+\item \textbf{Maximum Distances:} User is allowed to set a maximum amount
+of distance by walk or bike so that the system will re arrange its
+calculations based on this new values.
+\item \textbf{Timing:} Here the user can set the time window where transits
+will be available
+\item \textbf{Calendars:} In this section the user can edit his existing
+calendars or create a new one by tapping ``Add New...'' button
+\item \textbf{Allowed Services:} Here the user can just activate or disable
+vehicle-sharing services (such as Enjoy or Mobike) so that the app
+will not consider them on paths calculations.
+\end{enumerate}
 \pagebreak{}
 
 \paragraph{Settings / Add Calendar}
@@ -600,8 +563,8 @@ consider them.
 \includegraphics[scale=0.15]{images/Wireframe/15-Settings-AddCalen_wired@3x}
 \par\end{center}
 
-This is the view that will be presented when the user wants to add
-a new calendar.
+This is the view that will be shown when the user wants to add a new
+calendar.
 
 \pagebreak{}
 
@@ -620,10 +583,7 @@ existing or new calendar just by adjusting the RGB Sliders.
 \subsubsection{Hardware Interfaces }
 
 The system will require, in order to work properly, one or more dedicated
-servers in which the server management software (API) will run.
-
-It also requires the user to have a smartphone in order to download
-and use the app.
+servers in which the server management software will run.
 
 \subsubsection{Software Interfaces }
 
@@ -639,17 +599,18 @@ the app will work offline too.
 \subsubsection{Communication Interfaces}
 
 In order to establish a communication between the app and the server,
-there will be needed to build an API that lets the app to store and
-/ or retrieve data from the database.
+there will be the need to build an API that lets the app to store
+and/or retrieve data from the database (located server-side). The
+connection will be created though the HTTPS protocol and the data
+will be exchanged with a JSON encoding.
 
 \pagebreak{}
 
 \subsection{Functional Requirements}
 
-
 \subsubsection{{[}G0{]} Allow people to use the app without a login function}
 \begin{itemize}
-\item When the app is lunched for the first time, the system recognizes
+\item {[}R1{]} When the app is lunched for the first time, the system recognizes
 the new users and create a record of their data to be locally updated
 on the phone
 \end{itemize}
@@ -661,12 +622,13 @@ on the phone
 \subsubsection{{[}G1{]} Allow people to view the daily schedule with coming up events
 at the top}
 \begin{itemize}
-\item The system must be able to provide the list of daily events scheduled
-by the user
-\item The events must be divided between ``Up coming'' and ``Later on''
-\item Information of event's description, calendar saved and time must always
-be shown, while the location of the event is optional
-\item Button add event must always be visible
+\item {[}R2{]} The system must be able to provide the list of daily events
+scheduled by the user
+\item {[}R3{]} The events must be divided between ``Up coming'' and ``Later
+on''
+\item {[}R4{]} Information of event's description, calendar saved and time
+must always be shown, while the location of the event is optional
+\item {[}R5{]} Button add event must always be visible
 \end{itemize}
 %
 \begin{itemize}
@@ -676,10 +638,10 @@ to happen 2h before
 
 \subsubsection{{[}G2{]} Allow people to view previous events}
 \begin{itemize}
-\item A calendar screen must be shown
-\item Information of event's description, calendar saved and time must always
-be shown, while the location of the event is optional
-\item Button add event must always be visible
+\item {[}R6{]} A calendar screen must be shown
+\item {[}R7{]} Information of event's description, calendar saved and time
+must always be shown, while the location of the event is optional
+\item {[}R8{]} Button add event must always be visible
 \end{itemize}
 %
 \begin{itemize}
@@ -688,13 +650,14 @@ be shown, while the location of the event is optional
 
 \subsubsection{{[}G3{]} Allow people to view the detail of each event}
 \begin{itemize}
-\item ETA and trip information must be provided
-\item Tickets services must be shown
-\item Different suggested routes can be explored, if available
-\item The system must provide a way to buy tickets or book a sharing service
-vehicle
-\item The system must show the purchased ticket
-\item The paths color in the map changes accordingly to the means of transportation
+\item {[}R9{]} ETA and trip information must be provided
+\item {[}R10{]} Tickets services must be shown
+\item {[}R11{]} Different suggested routes can be explored, if available
+\item {[}R12{]} The system must provide a way to buy tickets or book a sharing
+service vehicle
+\item {[}R13{]} The system must show the purchased ticket
+\item {[}R14{]} The paths color in the map changes accordingly to the means
+of transportation
 \end{itemize}
 %
 \begin{itemize}
@@ -710,17 +673,18 @@ change in GPS position is discovered
 
 \subsubsection{{[}G4{]} Allow the users to create an event}
 \begin{itemize}
-\item Information of event's description, calendar saved and time must always
-be provided, while the location of the event is optional
-\item The system must ask for the description and the location of the appointment
-\item The system must ask whether the event should be time-flexible. In
-this case it must require a time window and how long the appointment
+\item {[}R15{]} Information of event's description, calendar saved and time
+must always be provided, while the location of the event is optional
+\item {[}R16{]} The system must ask for the description and the location
+of the appointment
+\item {[}R17{]} The system must ask whether the event should be time-flexible.
+In this case it must require a time window and how long the appointment
 will last
-\item Button for repeating an event weekly must be shown
-\item Button for choosing the calendar in which the event will be saved
-must be shown
-\item A multiple choice list of available means of transportation must be
-included
+\item {[}R18{]} Button for repeating an event weekly must be shown
+\item {[}R19{]} Button for choosing the calendar in which the event will
+be saved must be shown
+\item {[}R20{]} A multiple choice list of available means of transportation
+must be included
 \end{itemize}
 %
 \begin{itemize}
@@ -735,8 +699,8 @@ whether the eco mode has been turned on
 
 \subsubsection{{[}G5{]} Allow people to see daily events on a map}
 \begin{itemize}
-\item All the events must be shown on a interactive map
-\item The map must show a path to the next event 
+\item {[}R21{]} All the events must be shown on a interactive map
+\item {[}R22{]} The map must show a path to the next event 
 \end{itemize}
 %
 \begin{itemize}
@@ -747,12 +711,13 @@ whether the eco mode has been turned on
 
 \subsubsection{{[}G6{]} Allow the user to set preferences}
 \begin{itemize}
-\item The system must provide of a way to change the maximum distance that
-could be traveled by bike or walk
-\item The system must provide a time window in which public transits can
-be taken
-\item All the available calendars must be shown
-\item The system must allow to toggle the available external sharing services
+\item {[}R23{]} The system must provide of a way to change the maximum distance
+that could be traveled by bike or walk
+\item {[}R24{]} The system must provide a time window in which public transits
+can be taken
+\item {[}R25{]} All the available calendars must be shown
+\item {[}R26{]} The system must allow to toggle the available external sharing
+services
 \end{itemize}
 %
 \begin{itemize}
@@ -763,8 +728,8 @@ the database
 
 \subsubsection{{[}G7{]} Allow the users to create calendars}
 \begin{itemize}
-\item The app should allow the user to add a new calendar
-\item The system allows to change the name of a calendar and eventually
+\item {[}R27{]} The app should allow the user to add a new calendar
+\item {[}R28{]} The system allows to change the name of a calendar and eventually
 its color
 \end{itemize}
 %
@@ -775,9 +740,10 @@ its color
 
 \subsubsection{{[}G8{]} Notify the user that it's time to leave for the appointment}
 \begin{itemize}
-\item The app must send a notification when it's time to leave for the appointment.
-\item The system must take into account the means of transportation that
-the user has selected
+\item {[}R29{]} The app must send a notification when it's time to leave
+for the appointment.
+\item {[}R30{]} The system must take into account the means of transportation
+that the user has selected
 \end{itemize}
 %
 \begin{itemize}
@@ -785,12 +751,61 @@ the user has selected
 \end{itemize}
 \pagebreak{}
 
+\subsection{Scenarios}
+
+\subsubsection{Scenario 1}
+
+Mike was invited to John's Party in Los Angeles and he really wants
+to go there. Unfortunately he has a lot of memory problems... That's
+the reason why John told him to use Travlendar+.
+
+Mike picked up his smartphone and installed it, added the event details
+on the main calendar and saved!
+
+Later he received a notification that it was time to leave and so
+he could arrive on time at his friend's birthday.
+
+\subsubsection{Scenario 2}
+
+Steve is always too busy and he participates to a huge variety of
+events so he needs to create new calendars in which he can store them.
+He also cares a lot on tidiness he wants his calendars have great
+and appealing colors in order to focus on his events in a better way.
+
+\subsubsection{Scenario 3}
+
+Benedetto is a convinced environmentalist. He wants to make the world
+a better place by reducing carbon emissions. For this reason he downloaded
+and added all his events in Travlendar+. He then enabled ``Eco Mode''
+and now he can really help the environment.
+
+\subsubsection{Scenario 4}
+
+Filippo is a man who doesn't like to walk and neither use a bike therefore
+he wants to minimize his effort to reach an event.
+
+He now installed Travlendar+ on his smartphone and set ``Maximum
+Distance'' to the minimum value for bike and walk, so he now doesn't
+need to struggle to reach an appointment.
+
+\subsubsection{Scenario 5}
+
+Giovanni likes to travel a lot, for this reason he started using this
+app. 
+
+He likes a lot to reach locations using public transport or rides,
+but he is under age to be allowed to use car sharing providers so
+he just disabled suggestions for car sharing services right on the
+app and now he is happy more than ever.
+
 \subsection{Definition of use cases}
 
 \subsubsection{CreateCalendar}
 
 Allow the user to create a new calendar with a name and a color chosen
-by the user\vspace*{\bigskipamount}
+by the user
+
+\vspace*{\bigskipamount}
 
 \begin{tabular}{|>{\raggedright}m{0.2\textwidth}|>{\raggedright}m{0.8\textwidth}|}
 \hline 
@@ -1095,14 +1110,12 @@ output data using XML or JSON.
 
 \subsubsection{Any other constraint}
 
-The system will ask the user permissions to get her / his current
-position.
+The system will ask the user permissions to get her/his current position.
 
 The user won't require login because it will use the iCloud unique
 identifier in order to synchronize events and calendars to the server.
 
 \subsection{Software System Attributes}
-
 
 \subsubsection{Reliability}
 
@@ -1115,37 +1128,31 @@ in maintenance mode.
 
 \subsubsection{Availability}
 
-The app will be available worldwide but since it is focused more on
-Lombardy, transit information and search services (Enjoy, Mobike,
-...) won't be available elsewhere.
+The app will be available at worldwide level but can be used only
+in Lombardy.
 
 \subsubsection{Security}
 
-The app will use the iCloud unique identifier to identify the user
-also when he / she uninstalls the app and reinstalls it.
+The app will use the Cloud-Service unique identifier (iCloud, Google)
+to identify the user also when he/she uninstalls the app and reinstalls
+it.
 
-This identifier is kept secret on the iCloud Keychain and won't be
-stored on the server for promotional or ambiguous purposes. It is
-just needed to identify the user.
-
-Security of the user data is the primary concern.
+This identifier is kept secret and it won't be stored on the server
+for promotional or ambiguous purposes. Its intent is to identify the
+user while using the system.
 
 The app will communicate with the server via SSL certificates enabling
 HTTPS secure requests.
 
 \subsubsection{Maintainability}
 
-The system will be developed using a modular architecture that represents
-an important aspect to make it more maintainable and stable.
-
-The app and the server will be developed keeping a big eye on this
-aspect.
+The whole system will be developed using a modular architecture that
+represents an important aspect to make it more maintainable and stable.
 
 \subsubsection{Portability}
 
-Portability will be highly guaranteed by the fact that the app will
-be distributed in multiple OS such as Android and iOS which represents
-98\% of the smartphone market.
+Portability will be highly guaranteed by distribution in OS such as
+Android and iOS that represents 98\% of the smartphone market.
 
 \pagebreak{}
 
@@ -1185,9 +1192,9 @@ be distributed in multiple OS such as Android and iOS which represents
 
 \section{Effort spent}
 \begin{itemize}
-\item Filippo Calzavara: 28.00h
-\item Giovanni Filaferro: 28.00h
-\item Benedetto Maria Nespoli: 28.00h
+\item Filippo Calzavara: 30.00h
+\item Giovanni Filaferro: 30.00h
+\item Benedetto Maria Nespoli: 30.00h
 \end{itemize}
 
 \section{References}
