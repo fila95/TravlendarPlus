@@ -3975,13 +3975,13 @@ Security
 \end_layout
 
 \begin_layout Standard
-The app will use the phone's account unique identifier to identify the user
- also when he/she uninstalls the app and reinstalls it.
+The app will use the Cloud-Service unique identifier (iCloud, Google) to
+ identify the user also when he/she uninstalls the app and reinstalls it.
 \end_layout
 
 \begin_layout Standard
-This identifier is kept secret on the keychain and won't be stored on the
- server for promotional or ambiguous purposes.
+This identifier is kept secret and it won't be stored on the server for
+ promotional or ambiguous purposes.
  Its intent is to identify the user while using the system.
 \end_layout
 
