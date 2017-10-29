@@ -358,7 +358,7 @@ Goals
 
 \begin_layout Standard
 \begin_inset Note Note
-status collapsed
+status open
 
 \begin_layout Enumerate
 Automatically computes travel time between appointments to make sure that
@@ -1238,16 +1238,15 @@ Domain assumption
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-QUI VANNO LE SPECIFICHE DI BENNES
+[D16] Each calendar belongs to only one user
 \end_layout
 
-\end_inset
+\begin_layout Itemize
+[D17] Each event belongs to only one calendar
+\end_layout
 
-
+\begin_layout Itemize
+[D18] The user won't insert overlapping events
 \end_layout
 
 \begin_layout Standard
@@ -2341,6 +2340,14 @@ A multiple choice list of available means of transportation must be included
  the eco mode has been turned on
 \end_layout
 
+\begin_layout Itemize
+[D17] Each event belongs to only one calendar
+\end_layout
+
+\begin_layout Itemize
+[D18] The user won't insert overlapping events
+\end_layout
+
 \begin_layout Subsubsection
 [G5] Allow people to see daily events on a map
 \end_layout
@@ -2430,6 +2437,10 @@ The system allows to change the name of a calendar and eventually its color
 
 \begin_layout Itemize
 [D15] The user has always at least one calendar
+\end_layout
+
+\begin_layout Itemize
+[D16] Each calendar belongs to only one user
 \end_layout
 
 \begin_layout Subsubsection
@@ -4034,15 +4045,15 @@ Effort spent
 \end_layout
 
 \begin_layout Itemize
-Filippo Calzavara: 20.00h
+Filippo Calzavara: 28.00h
 \end_layout
 
 \begin_layout Itemize
-Giovanni Filaferro: 20.00h
+Giovanni Filaferro: 28.00h
 \end_layout
 
 \begin_layout Itemize
-Benedetto Maria Nespoli: 20.00h
+Benedetto Maria Nespoli: 28.00h
 \end_layout
 
 \begin_layout Section
