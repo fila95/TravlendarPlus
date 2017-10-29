@@ -1,9 +1,5 @@
 open util/time
 
-abstract sig Bool {}
-sig True extends Bool{}
-sig False extends Bool{}
-
 sig Location {
   lat: one Int,
   lng: one Int
@@ -11,10 +7,8 @@ sig Location {
 
 sig Settings {
   transitStart: one Time,
-  transitEnd: one Time
-}
-
-sig Transit {
+  transitEnd: one Time,
+  maxWalkingDistance: Int
 }
 
 sig DB {
@@ -24,7 +18,7 @@ sig DB {
 sig User {
   userId: one Int,
   settings: one Settings,
-  calendars: set Calendar
+  calendars: some Calendar
 }
 
 sig Calendar {
@@ -108,5 +102,39 @@ pred isTransitAvailable[u: User] {
   #u.calendars<3 and #u.calendars.events<7
 }
 
+// Planar approximation for simplicity
+fun distanceSquare[l1, l2: Location] : Int {
+  ((l1.lat - l2.lat).mul[l1.lat - l2.lat] + (l1.lng - l2.lng).mul[l1.lng - l2.lng])
+}
+
+// Can walk to the event 'e', accordingly to user settings?
+pred canWalkToEvent[currentLocation: Location, e: Event, u: User] {
+  #e.location=1
+  u.settings.maxWalkingDistance.mul[u.settings.maxWalkingDistance] <= distanceSquare[currentLocation, e.location]
+}
+
+pred addEvent [e: Event, c, c1: Calendar] {
+  c1.events = c.events + e
+}
+
+pred delEvent [e: Event, c, c1: Calendar] {
+  c1.events = c.events - e
+}
+
+pred testAdd [e: Event, c, c1: Calendar] {
+  addEvent[e, c, c1]
+  e in c1.events
+}
+
+pred testDel [e: Event, c, c1: Calendar] {
+  delEvent[e, c, c1]
+  e not in c.events
+}
+
+/*run isTransitAvailable for 5 but 8 Int, exactly 1 DB
+run canWalkToEvent for 5 but 8 Int, exactly 1 DB
+
+run testAdd for 8 but 8 Int, exactly 1 DB
+run testDel for 8 but 8 Int, exactly 1 DB
+*/
 run show for 8 but 8 Int, exactly 1 DB
-run isTransitAvailable for 5 but 8 Int, exactly 1 DB
