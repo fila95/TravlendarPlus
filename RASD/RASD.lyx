@@ -2475,6 +2475,99 @@ The system must take into account the means of transportation that the user
 \end_layout
 
 \begin_layout Subsection
+Scenarios
+\end_layout
+
+\begin_layout Subsubsection
+Scenario 1
+\end_layout
+
+\begin_layout Standard
+Mike was invited to John's Party in Los Angeles and he really wants to go
+ there.
+ Unfortunately he has a lot of memory problems...
+ That's the reason why John told him to use Travlendar+.
+\end_layout
+
+\begin_layout Standard
+Mike picked up his smartphone and installed it, added the event details
+ on the main calendar and saved!
+\end_layout
+
+\begin_layout Standard
+Later he received a notification that it was time to leave and so he could
+ arrive on time at his friend's birthday.
+\end_layout
+
+\begin_layout Subsubsection
+Scenario 2
+\end_layout
+
+\begin_layout Standard
+Steve is always too busy and he participates to a huge variety of events
+ so he needs to create new calendars in which he can store them.
+ He also cares a lot on tidiness he wants his calendars have great and appealing
+ colors in order to focus on his events in a better way.
+\end_layout
+
+\begin_layout Subsubsection
+Scenario 3
+\end_layout
+
+\begin_layout Standard
+Benedetto is a convinced environmentalist.
+ He wants to make the world a better place by reducing carbon emissions.
+ For this reason he downloaded and added all his events in Travlendar+.
+ He then enabled 
+\begin_inset Quotes eld
+\end_inset
+
+Eco Mode
+\begin_inset Quotes erd
+\end_inset
+
+ and now he can really help the environment.
+\end_layout
+
+\begin_layout Subsubsection
+Scenario 4
+\end_layout
+
+\begin_layout Standard
+Filippo is a man who doesn't like to walk and neither use a bike therefore
+ he wants to minimize his effort to reach an event.
+\end_layout
+
+\begin_layout Standard
+He now installed Travlendar+ on his smartphone and set 
+\begin_inset Quotes eld
+\end_inset
+
+Maximum Distance
+\begin_inset Quotes erd
+\end_inset
+
+ to the minimum value for bike and walk, so he now doesn't need to struggle
+ to reach an appointment.
+\end_layout
+
+\begin_layout Subsubsection
+Scenario 5
+\end_layout
+
+\begin_layout Standard
+Giovanni likes to travel a lot, for this reason he started using this app.
+ 
+\end_layout
+
+\begin_layout Standard
+He likes a lot to reach locations using public transport or rides, but he
+ is under age to be allowed to use car sharing providers so he just disabled
+ suggestions for car sharing services right on the app and now he is happy
+ more than ever.
+\end_layout
+
+\begin_layout Subsection
 Definition of use cases
 \end_layout
 
@@ -2485,6 +2578,9 @@ CreateCalendar
 \begin_layout Standard
 Allow the user to create a new calendar with a name and a color chosen by
  the user
+\end_layout
+
+\begin_layout Standard
 \begin_inset VSpace bigskip*
 \end_inset
 
