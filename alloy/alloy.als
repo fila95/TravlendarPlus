@@ -131,7 +131,10 @@ pred testDel [e: Event, c, c1: Calendar] {
   e not in c.events
 }
 
+/*run isTransitAvailable for 5 but 8 Int, exactly 1 DB
+run canWalkToEvent for 5 but 8 Int, exactly 1 DB
+
 run testAdd for 8 but 8 Int, exactly 1 DB
 run testDel for 8 but 8 Int, exactly 1 DB
-//run show for 8 but 8 Int, exactly 1 DB
-//run isTransitAvailable for 5 but 8 Int, exactly 1 DB
+*/
+run show for 8 but 8 Int, exactly 1 DB

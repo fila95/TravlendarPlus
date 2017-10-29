@@ -3979,6 +3979,18 @@ Signatures
 \end_layout
 
 \begin_layout Standard
+\align block
+\begin_inset Graphics
+	filename images/alloy_sigs.png
+	lyxscale 50
+	scale 90
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Newpage pagebreak
 \end_inset
 
@@ -3987,6 +3999,17 @@ Signatures
 
 \begin_layout Subsection
 Facts
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/alloy_facts.png
+	lyxscale 50
+	scale 80
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -4001,6 +4024,17 @@ Dynamic Model
 \end_layout
 
 \begin_layout Standard
+\begin_inset Graphics
+	filename images/alloy_preds.png
+	lyxscale 50
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Newpage pagebreak
 \end_inset
 
@@ -4012,25 +4046,45 @@ Results
 \end_layout
 
 \begin_layout Standard
-\begin_inset Newpage pagebreak
+\begin_inset Graphics
+	filename images/alloy_results.png
+	lyxscale 50
+	scale 80
+
 \end_inset
 
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Proof of Consistency
 \end_layout
 
 \begin_layout Standard
-\begin_inset Newpage pagebreak
+\begin_inset Graphics
+	filename images/alloy_proofs.png
+	lyxscale 50
+	scale 70
+
 \end_inset
 
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Generated world
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/alloy_world.png
+	lyxscale 30
+	scale 50
+	rotateAngle 270
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
