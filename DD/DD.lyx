@@ -154,6 +154,19 @@ LatexCommand tableofcontents
 Introduction
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Gio
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Purpose
 \end_layout
@@ -186,44 +199,187 @@ Architectural Design
 Overview: High-level components and their interaction
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Fil
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Component view
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Fil
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
 Deployment view
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Gio
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Runtime view
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Fil
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
 Component interfaces
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Ben
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Selected architectural styles and patterns
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Ben
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
 Other design decisions
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Ben
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Algorythm Design
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Tutti e 3
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
 User Interface Design
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Gio
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Requirements Traceability
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Ben
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Implementation, Integration and Test Plan
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Fil
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -232,6 +388,19 @@ Effort Spent
 
 \begin_layout Section
 References
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+RASD
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body
