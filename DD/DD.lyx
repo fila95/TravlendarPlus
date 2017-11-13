@@ -183,12 +183,69 @@ Definitions, Acronyms, Abbreviations
 Revision History
 \end_layout
 
+\begin_layout Itemize
+1.0.0 - Initial Version (13/11/2017) 
+\end_layout
+
 \begin_layout Subsection
 Reference Documents
 \end_layout
 
+\begin_layout Itemize
+RASD document previously delivered.
+\end_layout
+
 \begin_layout Subsection
 Document Structure
+\end_layout
+
+\begin_layout Standard
+The paper includes eight areas.
+ 
+\end_layout
+
+\begin_layout Standard
+The first one, is composed by the introductory information provided in order
+ to give an orientative view of what this document is about.
+ 
+\end_layout
+
+\begin_layout Standard
+The second one provides an in-depth description of each Architectural Design
+ aspect which reflects the decisions that the team made.
+\end_layout
+
+\begin_layout Standard
+The third section is about the algorythms that are designed to make the
+ full system work.
+\end_layout
+
+\begin_layout Standard
+Then a 
+\begin_inset Quotes eld
+\end_inset
+
+User Interface Design
+\begin_inset Quotes erd
+\end_inset
+
+ section will go through the design decisions.
+\end_layout
+
+\begin_layout Standard
+Section five provides informations about how the requirements defined in
+ the RASD document map to the design elements defined in this document.
+\end_layout
+
+\begin_layout Standard
+The sixth section will identify the order in which the subcomponents of
+ the system will be implemented and tested.
+\end_layout
+
+\begin_layout Standard
+Finally, a seventh and a eight section allows the reader to learn the effort
+ spent on this project by each team member and the references made in the
+ whole paper.
 \end_layout
 
 \begin_layout Section
@@ -386,21 +443,24 @@ Fil
 Effort Spent
 \end_layout
 
+\begin_layout Itemize
+Filippo Calzavara: 3.00h
+\end_layout
+
+\begin_layout Itemize
+Giovanni Filaferro: 3.00h
+\end_layout
+
+\begin_layout Itemize
+Benedetto Maria Nespoli: 3.00h
+\end_layout
+
 \begin_layout Section
 References
 \end_layout
 
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-RASD
-\end_layout
-
-\end_inset
-
-
+\begin_layout Itemize
+RASD document previously delivered.
 \end_layout
 
 \end_body
