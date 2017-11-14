@@ -799,11 +799,33 @@ Overview: High-level components and their interaction
 
 \begin_layout Standard
 In order to maintain higher standard in terms of offline reliability, the
- client application is provided of presentation level, business logic and
- data management that synchronizes and fetch updates from the server through
- a non-faulty connection.
+ client application is provided of a presentation level, application logic
+ and data management that synchronizes and fetch updates from the server
+ through a non-faulty connection.
  Nevertheless, most of the computation burden, such as the scheduling, is
  performed sever-side.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/tiers.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+OLD IMG
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -814,15 +836,21 @@ The mobile application located on the client's phone connects to the central
 \end_layout
 
 \begin_layout Standard
-The centralized server is composed by three entities: the web server, the
- application logic, the database.
- The first is in charge of dealing with all HTTP/HTTPS requests in a consistent
- and systematic way and communicates with the application logic.
- The second is that entity that serves as middleware amid the two layers.
- Finally, the latter stores the model and the dataset available to the applicati
-on logic.
- The three active components hereinbefore described are located in the same
- machine 
+The engineering team of this project has identified Heroku Cloud as the
+ most suitable platform to host the server due its performance and scalability
+ features.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/heroku_world.png
+	lyxscale 70
+	scale 70
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -830,16 +858,36 @@ Component view
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Fil
-\end_layout
+\align center
+\begin_inset Graphics
+	filename images/heroku.png
+	lyxscale 50
+	scale 50
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+The centralized server is composed by three entities: the web server, the
+ database and the application logic.
+ The first is in charge of dealing with all HTTP/HTTPS requests in a consistent
+ and systematic way.
+ It also communicates with the application logic, which is the second layer
+ that stores the model and the dataset available to the application logic.
+ Finally, the latter is that entity serving as middleware amid the two layers.
+ 
+\end_layout
+
+\begin_layout Standard
+The application level is also connected to a backup database, useful in
+ case the main database faults.
+\end_layout
+
+\begin_layout Standard
+The three active components hereinbefore described are located onto the
+ same machine.
 \end_layout
 
 \begin_layout Subsection
