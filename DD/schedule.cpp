@@ -33,3 +33,14 @@ void schedule(User u, Event e) {
 void schedule(User u, Date d1, Date d2) {
 
 }
+
+
+// Given a set of events returns whether these overlaps
+bool overlap(vector<Event> *events) {
+    return false;
+}
+
+// Given a set of events returns an array of overlapping events if they exist
+vector<Event>* overlappingEvents(vector<Event> *events) {
+    return nullptr;
+}
