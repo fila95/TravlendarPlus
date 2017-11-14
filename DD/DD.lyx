@@ -171,12 +171,46 @@ Gio
 Purpose
 \end_layout
 
+\begin_layout Standard
+The Design Document (DD) contains a functional description of 
+\begin_inset Quotes eld
+\end_inset
+
+Travlendar+
+\begin_inset Quotes erd
+\end_inset
+
+'s System.
+\end_layout
+
+\begin_layout Standard
+This document explains each component that will be inserted into the system,
+ its architecture and the design patterns that will be implemented to ensure
+ that all the requirements are satisfied.
+\end_layout
+
+\begin_layout Standard
+Components will be described both at High Level and more in depth, illustrating
+ and explaning all the subcomponents every component is made of.
+\end_layout
+
+\begin_layout Standard
+The reader of this document will get a clear idea about its architecture
+ (hardware and software) whether he wants to have a detailed description
+ of the system or a more general one.
+\end_layout
+
 \begin_layout Subsection
 Scope
 \end_layout
 
 \begin_layout Subsection
 Definitions, Acronyms, Abbreviations
+\end_layout
+
+\begin_layout Standard
+For the definitions, acronyms and abbreviations look to the “Definitions,
+ Acronyms, Abbreviations” section of the RASD document.
 \end_layout
 
 \begin_layout Subsection
