@@ -788,9 +788,57 @@ Architectural Design
 \end_layout
 
 \begin_layout Standard
-Travlender+'s architecture is based on a two tiers system with distributed
+As shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:General-tier"
+
+\end_inset
+
+, Travlender+'s architecture is based on a two tiers system with distributed
  application and data.
  
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/tier.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:General-tier"
+
+\end_inset
+
+General tier
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -799,30 +847,69 @@ Overview: High-level components and their interaction
 
 \begin_layout Standard
 In order to maintain higher standard in terms of offline reliability, the
- client application is provided of presentation level, business logic and
- data management that synchronizes and fetch updates from the server through
- a non-faulty connection.
- Nevertheless, most of the computation burden, such as the scheduling, is
+ client application is provided of a presentation level, application logic
+ and data management that synchronizes and fetch updates from the server
+ through a non-faulty connection.
+ Nevertheless, most of the computation burden such as the scheduling, is
  performed sever-side.
 \end_layout
 
 \begin_layout Standard
 The mobile application located on the client's phone connects to the central
- server by sending REST api call in asynchronous mode with a separated thread.
+ server by sending REST Api calls in asynchronous mode with a separated
+ thread.
  The main server replies back with the information requested using the JSON
  encoding, which is reinterpreted locally by the application.
+ An example of this interaction is reported on Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:General-architecture"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-The centralized server is composed by three entities: the web server, the
- application logic, the database.
- The first is in charge of dealing with all HTTP/HTTPS requests in a consistent
- and systematic way and communicates with the application logic.
- The second is that entity that serves as middleware amid the two layers.
- Finally, the latter stores the model and the dataset available to the applicati
-on logic.
- The three active components hereinbefore described are located in the same
- machine 
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/application.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:General-architecture"
+
+\end_inset
+
+General architecture
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -830,11 +917,118 @@ Component view
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
+\align center
+\begin_inset Float figure
+wide false
+sideways false
 status open
 
 \begin_layout Plain Layout
-Fil
+\align center
+\begin_inset Graphics
+	filename images/heroku.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Heroku™-Server-Representation"
+
+\end_inset
+
+Heroku™ Server Representation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The engineering team of this project has identified Heroku™ Cloud as the
+ most suitable platform to host the main server due its performance and
+ scalability features.
+ A centralized server is composed by three entities: the web server, the
+ database and the application logic.
+ The first is in charge of dealing with all HTTP/HTTPS requests in a consistent
+ and systematic way.
+ It also communicates with the application logic, which is the second layer
+ that stores the model and the dataset available to the application logic.
+ Finally, the latter is that entity serving as middleware amid the two layers
+ (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Heroku™-Server-Representation"
+
+\end_inset
+
+).
+ The three active components hereinbefore described are located onto the
+ same machine.
+\end_layout
+
+\begin_layout Standard
+Furthermore, the application level is also connected to Directions API provided
+ by Google™ and to Apple Push Notification Server that handles the notification
+ system towards the mobile application.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{-1.0cm}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/highLevelComponent.png
+	lyxscale 40
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+High level components
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
