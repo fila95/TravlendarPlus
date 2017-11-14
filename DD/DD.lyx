@@ -201,12 +201,8 @@ Document Structure
 
 \begin_layout Standard
 The paper includes eight areas.
- 
-\end_layout
-
-\begin_layout Standard
-The first one, is composed by the introductory information provided in order
- to give an orientative view of what this document is about.
+ The first one, is composed by the introductory information provided in
+ order to give an orientative view of what this document is about.
  
 \end_layout
 
@@ -252,21 +248,23 @@ Finally, a seventh and a eight section allows the reader to learn the effort
 Architectural Design
 \end_layout
 
+\begin_layout Standard
+Travlender+'s architecture is based on a two tiers system with distributed
+ application and data.
+ 
+\end_layout
+
 \begin_layout Subsection
 Overview: High-level components and their interaction
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Fil
-\end_layout
-
-\end_inset
-
-
+In order to maintain higher standard in terms of offline reliability, the
+ client application is provided of presentation level, business logic and
+ data management that synchronizes and fetch updates from the server through
+ a non-faulty connection.
+ Nevertheless, most of the computation burden, such as the scheduling, is
+ performed sever-side.
 \end_layout
 
 \begin_layout Subsection
