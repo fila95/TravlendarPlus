@@ -213,7 +213,7 @@ Definitions
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="10" columns="2">
+<lyxtabular version="3" rows="11" columns="2">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -398,7 +398,7 @@ A service performed by a ride-sharing company and Cabs
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -407,11 +407,31 @@ Mockup
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 A scale or full-size model of a design or device
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+RESTful API
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+API that follow the REST paradigm
 \end_layout
 
 \end_inset
@@ -430,7 +450,11 @@ Acronyms
 
 \begin_layout Standard
 \begin_inset Tabular
+<<<<<<< HEAD
 <lyxtabular version="3" rows="9" columns="2">
+=======
+<lyxtabular version="3" rows="10" columns="2">
+>>>>>>> 8845de159442c6d96cf8f6223009523dd723569e
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -595,11 +619,38 @@ Operative System
 </cell>
 </row>
 <row>
+<<<<<<< HEAD
+=======
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+JSON
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+JavaScript Object Notation
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+>>>>>>> 8845de159442c6d96cf8f6223009523dd723569e
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+<<<<<<< HEAD
 APNS
+=======
+REST
+>>>>>>> 8845de159442c6d96cf8f6223009523dd723569e
 \end_layout
 
 \end_inset
@@ -608,7 +659,11 @@ APNS
 \begin_inset Text
 
 \begin_layout Plain Layout
+<<<<<<< HEAD
 Apple Push Notification Service
+=======
+REpresentational State Transfer
+>>>>>>> 8845de159442c6d96cf8f6223009523dd723569e
 \end_layout
 
 \end_inset
@@ -803,14 +858,77 @@ Finally, a seventh and a eight section allows the reader to learn the effort
  whole paper.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Architectural Design
 \end_layout
 
 \begin_layout Standard
-Travlender+'s architecture is based on a two tiers system with distributed
+As shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:General-tier"
+
+\end_inset
+
+, Travlendar+'s architecture is based on a two tiers system with distributed
  application and data.
- 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/tier.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:General-tier"
+
+\end_inset
+
+General tier
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -819,30 +937,70 @@ Overview: High-level components and their interaction
 
 \begin_layout Standard
 In order to maintain higher standard in terms of offline reliability, the
- client application is provided of presentation level, business logic and
- data management that synchronizes and fetch updates from the server through
- a non-faulty connection.
- Nevertheless, most of the computation burden, such as the scheduling, is
+ client application is provided of a presentation level, application logic
+ and data management that synchronizes and fetch updates from the server
+ through a non-faulty connection.
+ Nevertheless, most of the computation burden such as the scheduling, is
  performed sever-side.
 \end_layout
 
 \begin_layout Standard
 The mobile application located on the client's phone connects to the central
- server by sending REST api call in asynchronous mode with a separated thread.
+ server by sending REST Api calls in asynchronous mode with a separated
+ thread.
  The main server replies back with the information requested using the JSON
  encoding, which is reinterpreted locally by the application.
+ An example of this interaction is reported on Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:General-architecture"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-The centralized server is composed by three entities: the web server, the
- application logic, the database.
- The first is in charge of dealing with all HTTP/HTTPS requests in a consistent
- and systematic way and communicates with the application logic.
- The second is that entity that serves as middleware amid the two layers.
- Finally, the latter stores the model and the dataset available to the applicati
-on logic.
- The three active components hereinbefore described are located in the same
- machine 
+\align center
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/application.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:General-architecture"
+
+\end_inset
+
+General architecture
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -850,11 +1008,119 @@ Component view
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
+\align center
+\begin_inset Float figure
+placement H
+wide false
+sideways false
 status open
 
 \begin_layout Plain Layout
-Fil
+\align center
+\begin_inset Graphics
+	filename images/heroku.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Heroku™-Server-Representation"
+
+\end_inset
+
+Heroku™ Server Representation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The engineering team of this project has identified Heroku™ Cloud as the
+ most suitable platform to host the main server due its performance and
+ scalability features.
+ A centralized server is composed by three entities: the web server, the
+ database and the application logic.
+ The first is in charge of dealing with all HTTP/HTTPS requests in a consistent
+ and systematic way.
+ It also communicates with the application logic, which is the second layer
+ that stores the model and the dataset available to the application logic.
+ Finally, the latter is that entity serving as middleware amid the two layers
+ (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Heroku™-Server-Representation"
+
+\end_inset
+
+).
+ The three active components hereinbefore described are located onto the
+ same machine.
+\end_layout
+
+\begin_layout Standard
+Furthermore, the application level is also connected to Directions API provided
+ by Google™ and to Apple Push Notification Server that handles the notification
+ system towards the mobile application.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{-1.0cm}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/highLevelComponent.png
+	lyxscale 40
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+High level components
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -917,17 +1183,180 @@ Ben
 Selected architectural styles and patterns
 \end_layout
 
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Ben
+\begin_layout Subsubsection
+Overall Architecture
 \end_layout
 
-\end_inset
+\begin_layout Standard
+Our system will be composed of two tiers:
+\end_layout
 
+\begin_layout Enumerate
+A client executable, that will run on an iOS device
+\end_layout
 
+\begin_layout Enumerate
+A server part, that will be served on a scalable Heroku instance
+\end_layout
+
+\begin_layout Standard
+Each part will need a database: the server will store any piece of information
+ about users, calendars and events on its database, while the client's database
+ will have a cached copy of some events and calendars.
+\end_layout
+
+\begin_layout Subsubsection
+Protocols
+\end_layout
+
+\begin_layout Standard
+Our tiers will be connected through a network that will use a JSON RESTful
+ Application Programming Interface.
+\end_layout
+
+\begin_layout Standard
+The API will lie on a Web server and will be called on a HTTP channel with
+ a classic TLS encryption layer
+\end_layout
+
+\begin_layout Standard
+All the methods will require an authentication, but the login one.
+ The exposed methods are:
+\end_layout
+
+\begin_layout Itemize
+/api/v1/login
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+POST: Allow the user to get an authentication token.
+ If the user is not present on the server database, he/she will be registered
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Parameters: 
+\series bold
+user_id
+\series default
+ A user id that is generated client side by the application
+\end_layout
+
+\begin_layout Itemize
+Return: 
+\series bold
+device_token
+\series default
+ A token that will be used for future authentication on that device with
+ other APIs
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+/api/v1/pushNotification
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+POST: Update the current push notification
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+/api/v1/settings
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+GET: Retrieve the user settings
+\end_layout
+
+\begin_layout Itemize
+POST: Save some settings
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+/api/v1/calendars
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+GET: Retrieve the user calendars
+\end_layout
+
+\begin_layout Itemize
+POST: Save some calendars
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+/api/v1/events
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+GET: Retrieve the user events
+\end_layout
+
+\begin_layout Itemize
+POST: Save some events
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+/api/v1/schedule
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+GET: Retrieve the user schedule
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+/api/v1/position
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+POST: Update the current user position
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection
+Design Pattern
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Client-Server
+\series default
+: This is the most useful and common pattern, that allow us to process the
+ data acquisition and elaboration separately from the client logic.
+ Moreover, using this pattern we can create simpler clients, and make the
+ system more scalable: in fact, in order to scale the entire system, we
+ can simply add more server, and keep the client the same.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Singleton
+\series default
+: Server-side the server app will be a Singleton, while client side there
+ will be a API Manager as Singleton
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Publish/Subscribe
+\series default
+: Used for the push notifications between the clients and the server
 \end_layout
 
 \begin_layout Subsection
@@ -935,13 +1364,13 @@ Other design decisions
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Ben
+We'll also use an external map service, in order to find the best travel
+ route, and to show to the user the events in a map view.
+ To achieve this aim, we'll use the Google Maps Directions API.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
 \end_inset
 
 
@@ -965,6 +1394,7 @@ Gio
 \end_layout
 
 \begin_layout Standard
+<<<<<<< HEAD
 In this section will be presented a description and an example code of the
  main algorithms for the Travlendar+ platform.
 \end_layout
@@ -989,6 +1419,11 @@ This function will be called on a fixed time (2 hours or less for user)
 \end_layout
 
 \begin_layout Standard
+=======
+\begin_inset Newpage pagebreak
+\end_inset
+
+>>>>>>> 8845de159442c6d96cf8f6223009523dd723569e
 
 \end_layout
 
@@ -1014,6 +1449,13 @@ User Interfaces
  in the RASD document previously delivered.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Requirements Traceability
 \end_layout
@@ -1026,6 +1468,13 @@ status open
 Ben
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
 \end_inset
 
 
@@ -1048,20 +1497,34 @@ Fil
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Effort Spent
 \end_layout
 
 \begin_layout Itemize
-Filippo Calzavara: 3.00h
+Filippo Calzavara: 7.00h
 \end_layout
 
 \begin_layout Itemize
-Giovanni Filaferro: 3.00h
+Giovanni Filaferro: 7.00h
 \end_layout
 
 \begin_layout Itemize
-Benedetto Maria Nespoli: 3.00h
+Benedetto Maria Nespoli: 7.00h
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
