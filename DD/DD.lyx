@@ -864,14 +864,15 @@ reference "fig:General-tier"
 
 , Travlendar+'s architecture is based on a two tiers system with distributed
  application and data.
- 
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Float figure
+placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -903,6 +904,13 @@ General tier
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
 \end_inset
 
 
@@ -940,6 +948,7 @@ reference "fig:General-architecture"
 \begin_layout Standard
 \align center
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
@@ -986,6 +995,7 @@ Component view
 \begin_layout Standard
 \align center
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
