@@ -783,12 +783,19 @@ Finally, a seventh and a eight section allows the reader to learn the effort
  whole paper.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Architectural Design
 \end_layout
 
 \begin_layout Standard
-Travlender+'s architecture is based on a two tiers system with distributed
+Travlendar+'s architecture is based on a two tiers system with distributed
  application and data.
  
 \end_layout
@@ -969,6 +976,16 @@ device_token
 \end_deeper
 \end_deeper
 \begin_layout Itemize
+/api/v1/pushNotification
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+POST: Update the current push notification
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
 /api/v1/settings
 \end_layout
 
@@ -1020,25 +1037,68 @@ GET: Retrieve the user schedule
 \end_layout
 
 \end_deeper
+\begin_layout Itemize
+/api/v1/position
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+POST: Update the current user position
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection
+Design Pattern
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Client-Server
+\series default
+: This is the most useful and common pattern, that allow us to process the
+ data acquisition and elaboration separately from the client logic.
+ Moreover, using this pattern we can create simpler clients, and make the
+ system more scalable: in fact, in order to scale the entire system, we
+ can simply add more server, and keep the client the same.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Singleton
+\series default
+: Server-side the server app will be a Singleton, while client side there
+ will be a API Manager as Singleton
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Publish/Subscribe
+\series default
+: Used for the push notifications between the clients and the server
+\end_layout
+
 \begin_layout Subsection
 Other design decisions
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Ben
+We'll also use an external map service, in order to find the best travel
+ route, and to show to the user the events in a map view.
+ To achieve this aim, we'll use the Google Maps Directions API.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
 \end_inset
 
 
 \end_layout
 
 \begin_layout Section
-Algorythm Design
+Algorithm Design
 \end_layout
 
 \begin_layout Standard
@@ -1049,6 +1109,13 @@ status open
 Gio
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
 \end_inset
 
 
@@ -1076,6 +1143,13 @@ User Interfaces
  in the RASD document previously delivered.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Requirements Traceability
 \end_layout
@@ -1088,6 +1162,13 @@ status open
 Ben
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
 \end_inset
 
 
@@ -1110,20 +1191,34 @@ Fil
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Effort Spent
 \end_layout
 
 \begin_layout Itemize
-Filippo Calzavara: 3.00h
+Filippo Calzavara: 7.00h
 \end_layout
 
 \begin_layout Itemize
-Giovanni Filaferro: 3.00h
+Giovanni Filaferro: 7.00h
 \end_layout
 
 \begin_layout Itemize
-Benedetto Maria Nespoli: 3.00h
+Benedetto Maria Nespoli: 7.00h
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
