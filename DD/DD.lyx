@@ -450,11 +450,7 @@ Acronyms
 
 \begin_layout Standard
 \begin_inset Tabular
-<<<<<<< HEAD
-<lyxtabular version="3" rows="9" columns="2">
-=======
-<lyxtabular version="3" rows="10" columns="2">
->>>>>>> 8845de159442c6d96cf8f6223009523dd723569e
+<lyxtabular version="3" rows="11" columns="2">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -619,8 +615,6 @@ Operative System
 </cell>
 </row>
 <row>
-<<<<<<< HEAD
-=======
 <cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
@@ -641,16 +635,31 @@ JavaScript Object Notation
 </cell>
 </row>
 <row>
->>>>>>> 8845de159442c6d96cf8f6223009523dd723569e
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+REST
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+REpresentational State Transfer
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-<<<<<<< HEAD
 APNS
-=======
-REST
->>>>>>> 8845de159442c6d96cf8f6223009523dd723569e
 \end_layout
 
 \end_inset
@@ -659,11 +668,7 @@ REST
 \begin_inset Text
 
 \begin_layout Plain Layout
-<<<<<<< HEAD
 Apple Push Notification Service
-=======
-REpresentational State Transfer
->>>>>>> 8845de159442c6d96cf8f6223009523dd723569e
 \end_layout
 
 \end_inset
@@ -1394,7 +1399,6 @@ Gio
 \end_layout
 
 \begin_layout Standard
-<<<<<<< HEAD
 In this section will be presented a description and an example code of the
  main algorithms for the Travlendar+ platform.
 \end_layout
@@ -1419,11 +1423,9 @@ This function will be called on a fixed time (2 hours or less for user)
 \end_layout
 
 \begin_layout Standard
-=======
 \begin_inset Newpage pagebreak
 \end_inset
 
->>>>>>> 8845de159442c6d96cf8f6223009523dd723569e
 
 \end_layout
 
