@@ -1049,9 +1049,16 @@ reference "fig:Heroku™-Server-Representation"
 \end_layout
 
 \begin_layout Standard
-Furthermore, the application level is also connected to Directions API provided
- by Google™ and to Apple Push Notification Server that handles the notification
- system towards the mobile application.
+Furthermore, as shown in the high level component included at Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:High-level-components"
+
+\end_inset
+
+ the application level is also connected to Directions API provided by Google™
+ and to Apple Push Notification Server that handles the notification system
+ towards the mobile application.
 \end_layout
 
 \begin_layout Standard
@@ -1090,6 +1097,12 @@ hspace*{-1.0cm}
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:High-level-components"
+
+\end_inset
+
 High level components
 \end_layout
 
