@@ -450,7 +450,7 @@ Acronyms
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="10" columns="2">
+<lyxtabular version="3" rows="11" columns="2">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -635,7 +635,7 @@ JavaScript Object Notation
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -644,11 +644,31 @@ REST
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 REpresentational State Transfer
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+APNS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Apple Push Notification Service
 \end_layout
 
 \end_inset
@@ -864,14 +884,15 @@ reference "fig:General-tier"
 
 , Travlendar+'s architecture is based on a two tiers system with distributed
  application and data.
- 
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Float figure
+placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -903,6 +924,13 @@ General tier
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
 \end_inset
 
 
@@ -940,6 +968,7 @@ reference "fig:General-architecture"
 \begin_layout Standard
 \align center
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
@@ -986,6 +1015,7 @@ Component view
 \begin_layout Standard
 \align center
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
@@ -1378,6 +1408,30 @@ Gio
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Standard
+In this section will be presented a description and an example code of the
+ main algorithms for the Travlendar+ platform.
+\end_layout
+
+\begin_layout Subsection
+Event Schedule Algorithm
+\end_layout
+
+\begin_layout Standard
+This algorithm is the one who takes all users's events and tries to schedule
+ them whether possible according to user preferences and distance from places.
+ This will run Server Side.
+\end_layout
+
+\begin_layout Standard
+This function will be called on a fixed time (2 hours or less for user)
+ and when the server receives updates about events or user location changes.
+\end_layout
+
+\begin_layout Standard
 
 \end_layout
 
