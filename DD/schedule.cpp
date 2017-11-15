@@ -26,6 +26,36 @@ Lo schedule controlla:
 
 // ****** DATA CLASSES
 
+enum TransportMean {
+    walk,
+    bike,
+    public_transportation,
+    ride,
+    car
+}
+
+
+class Transportation {
+
+    int time; // In minutes
+    TransportMean transport;
+    vector<Coordinates> waypoints;
+    
+}
+
+class Route {
+
+    vector<Transportation> transportations;
+
+}
+
+class Coordinates {
+
+    float lat;
+    float lng;
+
+}
+
 class Settings {
 
     int id;
@@ -47,16 +77,19 @@ class Event {
     string title;
     string address;
 
-    double lat;
-    double lng;
+    Coordinates coords;
 
     // time
     unsigned long start;
     unsigned long end;
     int duration;
+    unsigned long suggested_start;  // not present in server database, just sent to client
+    unsigned long suggested_end;    // not present in server database, just sent to client
     
-    bool[7] repetitions;
+    byte repetitions;               // MSB 0, the others should be used as booleans for each weekday
     bool[5] transports;
+
+    vector<Route> routes;           // not present in server database, just sent to client
 
     Calendar *calendar;
 
@@ -93,6 +126,8 @@ class User {
     vector<Calendar> calendars;
     vector<Device> devices;
 
+    Coordinates last_known_position;
+
     Setting settings;
 
 }
@@ -100,17 +135,33 @@ class User {
 
 
 // Schedule function that checks the next hours, this can be called when user uploads his current position or the system calls it every 2 hours
-void schedule(User *u) {
-    
+vector<Event>* schedule(User *u) {
+    // Schedule from now to tomorrow
+    return schedule(u, now(), start_of_today() + 86400);
 }
 
 // Schedule function that checks just the 12 hours before and after the event as parameter that has been created, modified or deleted
-void schedule(User *u, Event e) {
-    
+vector<Event>* schedule(User *u, Event *e) {
+    // Schedule 12 hours before and after the event is created
+    if (e.repetitions || 0x0111111) {
+        vector<Event> *scheduled = new vector<Event>();
+        
+        for each(unsigned long day in daysNeedingReschedule(u, e)) {
+            vector<Event> *e = schedule(u, day, day + 86400);
+            scheduled->insert(scheduled->end(), e->begin(), e->end());
+        }
+
+        return scheduled;
+    }
+    else {
+        return schedule(u, e.start - 43200, e.start + 43200);
+    }
 }
 
 // Schedule an entire date interval, this can be called from the other schedule functions
-void schedule(User *u, Date d1, Date d2) {
+vector<Event>* schedule(User *u, unsigned long date1, unsigned long date2) {
+    vector<Event> *scheduled = new vector<Event>();
+
 
     // Check for each user's calendar overlapping and reachability
     for each(Calendar *c in u.calendars) {
@@ -122,12 +173,53 @@ void schedule(User *u, Date d1, Date d2) {
         if (overlap(events)) {
             vector<Event> *overlapping = overlappingEvents(events);
             notifyOverlapping(u, overlapping);
-            return;
+            break;
         }
     
-        // Now we need 
-        
+        // Now we need to make sure that each event is reachable
 
+        int s = events->size();
+        int count = 0;
+        for (count = 0; count < s; count++) {
+            
+            // Exit if inspecting last event
+            if (count == s-1) {
+                break;
+            }
+
+            if (eventIsToday(events[count])) {
+                // It's today
+
+                if (now() > e->start) {
+                    // The event is still running or has ended
+                    if (now() > e->end) {
+                        // Event has ended so go through the next
+                        break;
+                    }
+                    else {
+                        // Still running
+
+                    }
+
+                }
+                else {
+
+                }
+
+                if (eventIsFirstOfDay(events[count], c)) {
+                    // Check if reachable based on my current position
+                }
+            }
+            else {
+                // It's not today
+
+                if (eventIsFirstOfDay(events[count], c)) {
+                    // Always reachable so check the others
+                }
+            }
+
+
+        }
 
     }
 
@@ -135,8 +227,21 @@ void schedule(User *u, Date d1, Date d2) {
 }
 
 
+// ******** Utilities
+
 // Returns current timestamp
 unsigned long now();
+
+// Returns today's start timestamp
+unsigned long start_of_today();
+
+// Returns timestamp of the start of the day of a given timestamp
+unsigned long start_of_day(unsigned long time);
+
+// Foreach day in which events that are not e exist returns an array of dates in which schedule function should be called
+vector<unsigned long> daysNeedingReschedule(User *u, Event *e);
+
+// ******** Events
 
 // Given a set of events returns whether these overlaps
 bool overlap(vector<Event> *events);
@@ -147,8 +252,21 @@ vector<Event>* overlappingEvents(vector<Event> *events);
 // Returns a set of Calendar's events between some dates ordered by startdate.
 vector<Event>* getCalendarEventsInRange(Calendar *calendar, Date d1, Date d2);
 
+// Returns true if the event is today
+bool eventIsToday(Event *e);
+
+// Returns true if this event is scheduled as first of the day
+bool eventIsFirstOfDay(Event *e, Calendar *c);
+
+// Check if an event is reachable from specific coordinates
+bool eventIsReachable(Coordinates coords, Event *e);
+
+// Check if an event e2 is reachable from previous event e1
+bool eventIsReachable(Event *e1, Event *e2);
 
 
-
-// Sends back a notification that overlapping events exists.
+// ********* Notifications
+// Sends back a notifications
 void notifyOverlapping(User *u, vector<Event> *events);
+void notifyUnreachable(User *u, vector<Event> *events);
+void notifyUnreachable(User *u, Event* event);
