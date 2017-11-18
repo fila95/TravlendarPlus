@@ -1278,9 +1278,9 @@ POST: Allow the user to get an authentication token.
 \begin_layout Itemize
 Parameters: 
 \series bold
-user_id
+user_token
 \series default
- A user id that is generated client side by the application
+ A user token that is generated client side by the application
 \end_layout
 
 \begin_layout Itemize
