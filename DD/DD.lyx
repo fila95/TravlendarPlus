@@ -213,7 +213,7 @@ Definitions
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="11" columns="2">
+<lyxtabular version="3" rows="12" columns="2">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -418,7 +418,7 @@ A scale or full-size model of a design or device
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -427,11 +427,31 @@ RESTful API
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 API that follow the REST paradigm
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Direction API
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The name of Google Maps™ API service
 \end_layout
 
 \end_inset
@@ -648,7 +668,7 @@ REST
 \begin_inset Text
 
 \begin_layout Plain Layout
-REpresentational State Transfer
+Representational State Transfer
 \end_layout
 
 \end_inset
@@ -875,15 +895,19 @@ Architectural Design
 \end_layout
 
 \begin_layout Standard
-As shown in Figure 
+Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:General-tier"
 
 \end_inset
 
-, Travlendar+'s architecture is based on a two tiers system with distributed
- application and data.
+ represents Travlendar+'s architecture, based on a two physical tiers system
+ with distributed application and data.
+ In order to maintain higher standard in terms of offline reliability, the
+ client application is provided of a presentation level, application logic
+ and data management that merely synchronizes and fetch updates from the
+ server through a non-faulty connection.
 \end_layout
 
 \begin_layout Standard
@@ -916,7 +940,9 @@ name "fig:General-tier"
 
 \end_inset
 
-General tier
+General tier architecture for Travlendar+.
+ An application logic and data management layer is provided to the client
+ application for offline reliability
 \end_layout
 
 \end_inset
@@ -927,6 +953,53 @@ General tier
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Nevertheless, most of the computation burden such as the scheduling, is
+ performed sever-side.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The following subsections are presented as follows:
+\end_layout
+
+\begin_layout Enumerate
+The first section, 
+\emph on
+High-level components overview and their interaction
+\emph default
+, contains details on how the communication works and how the server is
+ structured
+\end_layout
+
+\begin_layout Enumerate
+The second section describes the components of the application logic, including
+ the external services called via API and the ER diagram
+\end_layout
+
+\begin_layout Enumerate
+The 
+\emph on
+Deployment view
+\emph default
+ section contain a diagram with the interactions between several components
+\end_layout
+
+\begin_layout Enumerate
+The 
+\emph on
+Runtime view 
+\emph default
+chapter includes more detailed sequence diagram of most important interaction
+ with the system
 \end_layout
 
 \begin_layout Standard
@@ -937,16 +1010,7 @@ General tier
 \end_layout
 
 \begin_layout Subsection
-Overview: High-level components and their interaction
-\end_layout
-
-\begin_layout Standard
-In order to maintain higher standard in terms of offline reliability, the
- client application is provided of a presentation level, application logic
- and data management that synchronizes and fetch updates from the server
- through a non-faulty connection.
- Nevertheless, most of the computation burden such as the scheduling, is
- performed sever-side.
+High-level components overview and their interaction
 \end_layout
 
 \begin_layout Standard
@@ -1008,8 +1072,26 @@ General architecture
 
 \end_layout
 
-\begin_layout Subsection
-Component view
+\begin_layout Standard
+The engineering team of this project has identified Heroku™ Cloud as the
+ most suitable platform to host the main server due its performance and
+ scalability features.
+ As shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Central-Server-Representation"
+
+\end_inset
+
+, a centralized server is composed by three entities: the web server, the
+ application logic and the database.
+ The first is in charge of dealing with all HTTP/HTTPS API requests in a
+ consistent and systematic way.
+ It also communicates with the application logic, which is the second layer,
+ also called Mobile App Services as it contains the logic to run the computation.
+ Finally, the last layer is the database which stores the dataset making
+ it available to the application logic.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -1038,11 +1120,12 @@ status open
 \begin_layout Plain Layout
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:Heroku™-Server-Representation"
+name "fig:Central-Server-Representation"
 
 \end_inset
 
-Heroku™ Server Representation
+Central Server relies on Heroku Cloud.
+ Its representation includes three layer connected to each other 
 \end_layout
 
 \end_inset
@@ -1056,50 +1139,51 @@ Heroku™ Server Representation
 \end_layout
 
 \begin_layout Standard
-The engineering team of this project has identified Heroku™ Cloud as the
- most suitable platform to host the main server due its performance and
- scalability features.
- A centralized server is composed by three entities: the web server, the
- database and the application logic.
- The first is in charge of dealing with all HTTP/HTTPS requests in a consistent
- and systematic way.
- It also communicates with the application logic, which is the second layer
- that stores the model and the dataset available to the application logic.
- Finally, the latter is that entity serving as middleware amid the two layers
- (Figure 
+All three active parts hereinbefore described are could be located into
+ several machines: replication and load balancing issues are transparent
+ services provided by the Heroku platform
+\end_layout
+
+\begin_layout Subsection
+Component view
+\end_layout
+
+\begin_layout Standard
+The of the Application Logic is composed by three major modules and three
+ external entities (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:Heroku™-Server-Representation"
+reference "fig:The-main-component"
 
 \end_inset
 
 ).
- The three active components hereinbefore described are located onto the
- same machine.
+ The calendar module works as calendar manager and offers the methods to
+ edit, add and remove calendar.
+ It is its responsibility to check calendar constrains such as duplicates.
+ 
 \end_layout
 
 \begin_layout Standard
-Furthermore, as shown in the high level component included at Figure 
+The EventManager module allows the creation and managing of the events and
+ handles the rescheduling when necessary (see section 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:High-level-components"
+reference "subsec:Event-Schedule-Algorithm"
 
 \end_inset
 
- the application level is also connected to Directions API provided by Google™
- and to Apple Push Notification Server that handles the notification system
- towards the mobile application.
+ for more details).
+ It also offers the historical interface which allows to fetch information
+ about previous events.
+ This module is connected to Directions API provided by Google, weather
+ API provided by The Weather Channel™ and to ApplePush Notification Server,
+ that handles the notification system towards the mobile application.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Graphics
-	filename images/highComponent.png
-	lyxscale 50
-	scale 50
-
-\end_inset
-
-
+Moreover, a setting module provides tools for setting managing such as the
+ eco-friendly mode or the external services available
 \end_layout
 
 \begin_layout Standard
@@ -1110,10 +1194,11 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename images/component.png
 	lyxscale 30
-	scale 30
+	scale 40
 
 \end_inset
 
@@ -1124,12 +1209,85 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Component View
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-main-component"
+
+\end_inset
+
+The main component view of the application logic (Mobile App Services)
 \end_layout
 
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Furthermore, each module is interfaced with the DataBase (specifically the
+ DBMS) in order to let each part work independently and simultaneously.
+\end_layout
+
+\begin_layout Subsubsection
+Entity relationship diagram
+\end_layout
+
+\begin_layout Standard
+The following diagram provides a graphical representation of the Database
+ Schema that will be adopted by the system
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/er.png
+	lyxscale 35
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+ER Diagram of the database
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Further clarification regarding the schema:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Bennes spiega la roba dei bit sui transports
 \end_layout
 
 \end_inset
@@ -1144,6 +1302,7 @@ Deployment view
 \begin_layout Standard
 \align center
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
@@ -1200,13 +1359,38 @@ High level components
 Runtime view
 \end_layout
 
+\begin_layout Subsubsection
+Add events
+\end_layout
+
 \begin_layout Standard
-\begin_inset Note Note
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
 status open
 
 \begin_layout Plain Layout
-Fil
+
+
+\backslash
+vspace*{-4cm}
+\backslash
+hspace*{-1cm}
 \end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/AddStandardOrFlexibleEvent.png
+	lyxscale 25
+	scale 45
+	rotateAngle 90
 
 \end_inset
 
@@ -1289,9 +1473,9 @@ POST: Allow the user to get an authentication token.
 \begin_layout Itemize
 Parameters: 
 \series bold
-user_id
+user_token
 \series default
- A user id that is generated client side by the application
+ A user token that is generated client side by the application
 \end_layout
 
 \begin_layout Itemize
@@ -1450,6 +1634,12 @@ In this section will be presented a description and an example code of the
 \end_layout
 
 \begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Event-Schedule-Algorithm"
+
+\end_inset
+
 Event Schedule Algorithm
 \end_layout
 
@@ -1494,7 +1684,7 @@ User Interfaces
 \begin_inset Quotes erd
 \end_inset
 
- in the RASD document previously delivered.
+ of the RASD document previously delivered.
 \end_layout
 
 \begin_layout Standard
