@@ -197,7 +197,7 @@ vector<Event>* schedule(User *u, unsigned long date1, unsigned long date2) {
                         break;
                     }
                     else {
-                        // Still running
+                        // Was in the past
 
                     }
 
@@ -211,11 +211,9 @@ vector<Event>* schedule(User *u, unsigned long date1, unsigned long date2) {
                 }
             }
             else {
-                // It's not today
+                // It's not today so just check the events separatedly
 
-                if (eventIsFirstOfDay(events[count], c)) {
-                    // Always reachable so check the others
-                }
+                
             }
 
 
@@ -263,6 +261,12 @@ bool eventIsReachable(Coordinates coords, Event *e);
 
 // Check if an event e2 is reachable from previous event e1
 bool eventIsReachable(Event *e1, Event *e2);
+
+// Check if in a given set of events, flexible events are present
+bool containsFlexibleEvents(vector<Event> *events);
+
+// Returns a set of flexible events if they are contained in the given set
+vector<Event>* flexibleEvents(vector<Event> *events);
 
 
 // ********* Notifications
