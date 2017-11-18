@@ -1002,6 +1002,32 @@ chapter includes more detailed sequence diagram of most important interaction
  with the system
 \end_layout
 
+\begin_layout Enumerate
+
+\emph on
+Component interfaces
+\emph default
+ section contains information regarding the interface to be built in order
+ to make intelligible different system
+\end_layout
+
+\begin_layout Enumerate
+Section 
+\emph on
+Selected architectural styles and patterns
+\emph default
+ contains the major settings of the implementation of the system 
+\end_layout
+
+\begin_layout Enumerate
+Finally, a chapter named 
+\emph on
+Other design decisions
+\emph default
+ describes further decision detail taken into account during the developing
+ of this document
+\end_layout
+
 \begin_layout Standard
 \begin_inset Newpage pagebreak
 \end_inset
@@ -1360,14 +1386,35 @@ Runtime view
 \end_layout
 
 \begin_layout Subsubsection
-Add events
+Create Calendar
 \end_layout
 
 \begin_layout Standard
-\begin_inset Newpage pagebreak
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{-3.5cm}
+\end_layout
+
 \end_inset
 
 
+\begin_inset Graphics
+	filename images/CreateCalendar.png
+	lyxscale 30
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Add event
 \end_layout
 
 \begin_layout Standard
@@ -1380,7 +1427,7 @@ status open
 \backslash
 vspace*{-4cm}
 \backslash
-hspace*{-1cm}
+hspace*{-0.5cm}
 \end_layout
 
 \end_inset
@@ -1388,8 +1435,8 @@ hspace*{-1cm}
 
 \begin_inset Graphics
 	filename images/AddStandardOrFlexibleEvent.png
-	lyxscale 25
-	scale 45
+	lyxscale 40
+	scale 40
 	rotateAngle 90
 
 \end_inset
@@ -1703,7 +1750,7 @@ Requirements Traceability
 status open
 
 \begin_layout Plain Layout
-Ben
+FIL
 \end_layout
 
 \end_inset
@@ -1727,7 +1774,7 @@ Implementation, Integration and Test Plan
 status open
 
 \begin_layout Plain Layout
-Fil
+Ben
 \end_layout
 
 \end_inset
@@ -1747,15 +1794,15 @@ Effort Spent
 \end_layout
 
 \begin_layout Itemize
-Filippo Calzavara: 10.30h
+Filippo Calzavara: 14.30h
 \end_layout
 
 \begin_layout Itemize
-Giovanni Filaferro: 10.30h
+Giovanni Filaferro: 14.30h
 \end_layout
 
 \begin_layout Itemize
-Benedetto Maria Nespoli: 10.30h
+Benedetto Maria Nespoli: 14.30h
 \end_layout
 
 \begin_layout Standard
@@ -1771,6 +1818,30 @@ References
 
 \begin_layout Itemize
 RASD document previously delivered.
+\end_layout
+
+\begin_layout Subsection
+Tools used
+\end_layout
+
+\begin_layout Standard
+The tools used to developed this document are:
+\end_layout
+
+\begin_layout Itemize
+GitHub: to versioning this document
+\end_layout
+
+\begin_layout Itemize
+Source Tree: for a better use of Git Hub
+\end_layout
+
+\begin_layout Itemize
+Drow.io: to make all the schemas shown in this document
+\end_layout
+
+\begin_layout Itemize
+LyX: to make this LaTeX document
 \end_layout
 
 \end_body
