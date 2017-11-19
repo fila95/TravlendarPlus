@@ -1175,44 +1175,29 @@ Component view
 \end_layout
 
 \begin_layout Standard
-The of the Application Logic is composed by three major modules and three
- external entities (Figure 
+A high level component view and related interfaces are represented at Figure
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:The-main-component"
 
 \end_inset
 
-).
- The calendar module works as calendar manager and offers the methods to
- edit, add and remove calendar.
- It is its responsibility to check calendar constrains such as duplicates.
+.
+ The system is composed of a major component, namely the 
+\emph on
+Mobile Application
+\emph default
+, that interacts with two subsystems, 
+\emph on
+Scheduling Services
+\emph default
+ and 
+\emph on
+User Services
+\emph default
+.
  
-\end_layout
-
-\begin_layout Standard
-The EventManager module allows the creation and managing of the events and
- handles the rescheduling when necessary (see section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Event-Schedule-Algorithm"
-
-\end_inset
-
- for more details).
- It also offers the historical interface which allows to fetch information
- about previous events.
- This module is connected to Directions API provided by Google, weather
- API provided by The Weather Channel™ and to ApplePush Notification Server,
- that handles the notification system towards the mobile application.
-\end_layout
-
-\begin_layout Standard
-Moreover, a setting module provides tools for setting managing such as the
- eco-friendly mode or the external services available
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 placement H
 wide false
@@ -1222,7 +1207,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename images/component.png
+	filename images/component-1.png
 	lyxscale 30
 	scale 40
 
@@ -1241,7 +1226,50 @@ name "fig:The-main-component"
 
 \end_inset
 
-The main component view of the application logic (Mobile App Services)
+The high level component view of the system
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Each module that compose the subsystems is interfaced with the DataBase
+ (specifically the DBMS) in order to let each part work independently and
+ simultaneously.
+\end_layout
+
+\begin_layout Subsubsection
+Component view of the Scheduling Services
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/component-2.png
+	lyxscale 30
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The Scheduling Services: includes details on 
 \end_layout
 
 \end_inset
@@ -1255,8 +1283,96 @@ The main component view of the application logic (Mobile App Services)
 \end_layout
 
 \begin_layout Standard
-Furthermore, each module is interfaced with the DataBase (specifically the
- DBMS) in order to let each part work independently and simultaneously.
+The 
+\emph on
+Calendar Module
+\emph default
+ works as calendar manager and offers the methods to edit, add and remove
+ calendar.
+ It is its responsibility to check calendar constrains such as duplicates.
+ The 
+\emph on
+Event Manager
+\emph default
+ module allows the creation and managing of the events and handles the reschedul
+ing when necessary (see section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Event-Schedule-Algorithm"
+
+\end_inset
+
+ for more details).
+ It also offers the interface that allows to fetch information about previous
+ events.
+ This module is connected to Google Maps API, Weather API provided by The
+ Weather Channel™ and to Apple Push Notification Server, that handles the
+ notification system towards the mobile application.
+\end_layout
+
+\begin_layout Subsubsection
+Component view of the User Serivces
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/component-3.png
+	lyxscale 30
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+User Services in detail
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+User services contains an 
+\emph on
+Account Manager Module
+\emph default
+ that handles the login/auto-login functions (cf.
+ Section 3.2.1 RASD document).
+ The 
+\emph on
+Tickets module
+\emph default
+ provide tools to store the ticket provided by the local transit company
+ into the database.
+ Moreover, a setting module provides tools for setting managing such as
+ the eco-friendly mode or the external services available.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
@@ -1383,6 +1499,19 @@ High level components
 
 \begin_layout Subsection
 Runtime view
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Diagrammi possibilmente da riesportare
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
@@ -1762,18 +1891,199 @@ Requirements Traceability
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-FIL
+The choices presented in this document have the aim to achieve the goals
+ described on the 
+\emph on
+Requirements Analysis and Specification Document
+\emph default
+.
+ Follow a list of goals with each component and 
 \end_layout
 
-\end_inset
-
-
+\begin_layout Itemize
+[G0] Allow people to use the app without a login function 
 \end_layout
 
+\begin_deeper
+\begin_layout Itemize
+[R1] User Services: Account Manager Module through the 
+\emph on
+AutologinService
+\emph default
+ interface
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G1] Allow people to view the daily schedule with coming up events at the
+ top
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R2][R4][R5] Scheduling Services: Event Manager Module through 
+\emph on
+EventHistory
+\emph default
+ interface
+\end_layout
+
+\begin_layout Itemize
+[R3] Scheduling Services: Event Manager Module through 
+\emph on
+ActivitiesScheduler
+\emph default
+ interface
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G2] Allow people to view previous events
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R6] Scheduling Services: Calendar Module through 
+\emph on
+ManageCalendars
+\emph default
+ interface
+\end_layout
+
+\begin_layout Itemize
+[R7] Scheduling Services: Event Manager Module through 
+\emph on
+EventHistory
+\emph default
+ interface
+\end_layout
+
+\begin_layout Itemize
+[R8] Scheduling Services: Event Manager Module through 
+\emph on
+ManageEvents
+\emph default
+ interface
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G3] Allow people to view the detail of each event
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R9][R11] Scheduling Services: Event Manager Module through 
+\emph on
+EventHistory
+\emph default
+ interface
+\end_layout
+
+\begin_layout Itemize
+[R10][R12][R13] User Services: Tickets Module through 
+\emph on
+TicketsManaging
+\emph default
+ interface
+\end_layout
+
+\begin_layout Itemize
+[R9][R14] Scheduling Services: Event Manager Module through 
+\emph on
+ActivitiesScheduler
+\emph default
+ interface
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G4] Allow the users to create an event
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R15][R16][R17][R18][R19][R20] Scheduling Services: Event Manager Module
+ through 
+\emph on
+ManageEvents
+\emph default
+ interface
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G5] Allow people to see daily events on a map
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R21] Scheduling Services: Event Manager Module through 
+\emph on
+EventHistory
+\emph default
+ interface
+\end_layout
+
+\begin_layout Itemize
+[R22] Scheduling Services: Event Manager Module through 
+\emph on
+ActivitiesScheduler
+\emph default
+ interface
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G6] Allow the user to set preferences
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R22][R23][R24][R26] User Services: Setting Module through 
+\emph on
+ManageSetting
+\emph default
+ interface
+\end_layout
+
+\begin_layout Itemize
+[R25] Scheduling Services: Calendar Module through 
+\emph on
+ManageCalendars
+\emph default
+ interface
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G7] Allow the users to create calendars
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R27][R28] Scheduling Services: Calendar Module through 
+\emph on
+ManageCalendars
+\emph default
+ interface
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G8] Notify the user that it's time to leave for the appointment
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R29][R30] Scheduling Services: Event Manager Module through 
+\emph on
+ActivitiesScheduler
+\emph default
+ interface
+\end_layout
+
+\end_deeper
 \begin_layout Standard
 \begin_inset Newpage pagebreak
 \end_inset
