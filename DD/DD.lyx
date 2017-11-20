@@ -213,7 +213,7 @@ Definitions
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="11" columns="2">
+<lyxtabular version="3" rows="12" columns="2">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -418,7 +418,7 @@ A scale or full-size model of a design or device
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -427,11 +427,31 @@ RESTful API
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 API that follow the REST paradigm
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Direction API
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The name of Google Maps™ API service
 \end_layout
 
 \end_inset
@@ -648,7 +668,7 @@ REST
 \begin_inset Text
 
 \begin_layout Plain Layout
-REpresentational State Transfer
+Representational State Transfer
 \end_layout
 
 \end_inset
@@ -875,15 +895,19 @@ Architectural Design
 \end_layout
 
 \begin_layout Standard
-As shown in Figure 
+Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:General-tier"
 
 \end_inset
 
-, Travlendar+'s architecture is based on a two tiers system with distributed
- application and data.
+ represents Travlendar+'s architecture, based on a two physical tiers system
+ with distributed application and data.
+ In order to maintain higher standard in terms of offline reliability, the
+ client application is provided of a presentation level, application logic
+ and data management that merely synchronizes and fetch updates from the
+ server through a non-faulty connection.
 \end_layout
 
 \begin_layout Standard
@@ -916,7 +940,9 @@ name "fig:General-tier"
 
 \end_inset
 
-General tier
+General tier architecture for Travlendar+.
+ An application logic and data management layer is provided to the client
+ application for offline reliability
 \end_layout
 
 \end_inset
@@ -927,6 +953,79 @@ General tier
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Nevertheless, most of the computation burden such as the scheduling, is
+ performed sever-side.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The following subsections are presented as follows:
+\end_layout
+
+\begin_layout Enumerate
+The first section, 
+\emph on
+High-level components overview and their interaction
+\emph default
+, contains details on how the communication works and how the server is
+ structured
+\end_layout
+
+\begin_layout Enumerate
+The second section describes the components of the application logic, including
+ the external services called via API and the ER diagram
+\end_layout
+
+\begin_layout Enumerate
+The 
+\emph on
+Deployment view
+\emph default
+ section contain a diagram with the interactions between several components
+\end_layout
+
+\begin_layout Enumerate
+The 
+\emph on
+Runtime view 
+\emph default
+chapter includes more detailed sequence diagram of most important interaction
+ with the system
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Component interfaces
+\emph default
+ section contains information regarding the interface to be built in order
+ to make intelligible different system
+\end_layout
+
+\begin_layout Enumerate
+Section 
+\emph on
+Selected architectural styles and patterns
+\emph default
+ contains the major settings of the implementation of the system 
+\end_layout
+
+\begin_layout Enumerate
+Finally, a chapter named 
+\emph on
+Other design decisions
+\emph default
+ describes further decision detail taken into account during the developing
+ of this document
 \end_layout
 
 \begin_layout Standard
@@ -937,16 +1036,7 @@ General tier
 \end_layout
 
 \begin_layout Subsection
-Overview: High-level components and their interaction
-\end_layout
-
-\begin_layout Standard
-In order to maintain higher standard in terms of offline reliability, the
- client application is provided of a presentation level, application logic
- and data management that synchronizes and fetch updates from the server
- through a non-faulty connection.
- Nevertheless, most of the computation burden such as the scheduling, is
- performed sever-side.
+High-level components overview and their interaction
 \end_layout
 
 \begin_layout Standard
@@ -1008,8 +1098,26 @@ General architecture
 
 \end_layout
 
-\begin_layout Subsection
-Component view
+\begin_layout Standard
+The engineering team of this project has identified Heroku™ Cloud as the
+ most suitable platform to host the main server due its performance and
+ scalability features.
+ As shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Central-Server-Representation"
+
+\end_inset
+
+, a centralized server is composed by three entities: the web server, the
+ application logic and the database.
+ The first is in charge of dealing with all HTTP/HTTPS API requests in a
+ consistent and systematic way.
+ It also communicates with the application logic, which is the second layer,
+ also called Mobile App Services as it contains the logic to run the computation.
+ Finally, the last layer is the database which stores the dataset making
+ it available to the application logic.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -1038,11 +1146,12 @@ status open
 \begin_layout Plain Layout
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:Heroku™-Server-Representation"
+name "fig:Central-Server-Representation"
 
 \end_inset
 
-Heroku™ Server Representation
+Central Server relies on Heroku Cloud.
+ Its representation includes three layer connected to each other 
 \end_layout
 
 \end_inset
@@ -1056,39 +1165,276 @@ Heroku™ Server Representation
 \end_layout
 
 \begin_layout Standard
-The engineering team of this project has identified Heroku™ Cloud as the
- most suitable platform to host the main server due its performance and
- scalability features.
- A centralized server is composed by three entities: the web server, the
- database and the application logic.
- The first is in charge of dealing with all HTTP/HTTPS requests in a consistent
- and systematic way.
- It also communicates with the application logic, which is the second layer
- that stores the model and the dataset available to the application logic.
- Finally, the latter is that entity serving as middleware amid the two layers
- (Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Heroku™-Server-Representation"
+All three active parts hereinbefore described are could be located into
+ several machines: replication and load balancing issues are transparent
+ services provided by the Heroku platform
+\end_layout
 
-\end_inset
-
-).
- The three active components hereinbefore described are located onto the
- same machine.
+\begin_layout Subsection
+Component view
 \end_layout
 
 \begin_layout Standard
-Furthermore, as shown in the high level component included at Figure 
+A high level component view and related interfaces are represented at Figure
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:High-level-components"
+reference "fig:The-main-component"
 
 \end_inset
 
- the application level is also connected to Directions API provided by Google™
- and to Apple Push Notification Server that handles the notification system
- towards the mobile application.
+.
+ The system is composed of a major component, namely the 
+\emph on
+Mobile Application
+\emph default
+, that interacts with two subsystems, 
+\emph on
+Scheduling Services
+\emph default
+ and 
+\emph on
+User Services
+\emph default
+.
+ 
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/component-1.png
+	lyxscale 30
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-main-component"
+
+\end_inset
+
+The high level component view of the system
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Each module that compose the subsystems is interfaced with the DataBase
+ (specifically the DBMS) in order to let each part work independently and
+ simultaneously.
+\end_layout
+
+\begin_layout Subsubsection
+Component view of the Scheduling Services
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/component-2.png
+	lyxscale 30
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The Scheduling Services: includes details on 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The 
+\emph on
+Calendar Module
+\emph default
+ works as calendar manager and offers the methods to edit, add and remove
+ calendar.
+ It is its responsibility to check calendar constrains such as duplicates.
+ The 
+\emph on
+Event Manager
+\emph default
+ module allows the creation and managing of the events and handles the reschedul
+ing when necessary (see section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Event-Schedule-Algorithm"
+
+\end_inset
+
+ for more details).
+ It also offers the interface that allows to fetch information about previous
+ events.
+ This module is connected to Google Maps API, Weather API provided by The
+ Weather Channel™ and to Apple Push Notification Server, that handles the
+ notification system towards the mobile application.
+\end_layout
+
+\begin_layout Subsubsection
+Component view of the User Serivces
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/component-3.png
+	lyxscale 30
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+User Services in detail
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+User services contains an 
+\emph on
+Account Manager Module
+\emph default
+ that handles the login/auto-login functions (cf.
+ Section 3.2.1 RASD document).
+ The 
+\emph on
+Tickets module
+\emph default
+ provide tools to store the ticket provided by the local transit company
+ into the database.
+ Moreover, a setting module provides tools for setting managing such as
+ the eco-friendly mode or the external services available.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Entity relationship diagram
+\end_layout
+
+\begin_layout Standard
+The following diagram provides a graphical representation of the Database
+ Schema that will be adopted by the system
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/er.png
+	lyxscale 35
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+ER Diagram of the database
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Further clarification regarding the schema:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Bennes spiega la roba dei bit sui transports
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -1098,6 +1444,7 @@ Deployment view
 \begin_layout Standard
 \align center
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
@@ -1159,8 +1506,83 @@ Runtime view
 status open
 
 \begin_layout Plain Layout
-Fil
+Diagrammi possibilmente da riesportare
 \end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Create Calendar
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{-3.5cm}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/CreateCalendar.png
+	lyxscale 30
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Add event
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace*{-4cm}
+\backslash
+hspace*{-0.5cm}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/AddStandardOrFlexibleEvent.png
+	lyxscale 40
+	scale 40
+	rotateAngle 90
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Edit Preferences
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/EditPreferences.png
+	lyxscale 40
+	scale 40
+	rotateAngle 90
 
 \end_inset
 
@@ -1243,9 +1665,9 @@ POST: Allow the user to get an authentication token.
 \begin_layout Itemize
 Parameters: 
 \series bold
-user_id
+user_token
 \series default
- A user id that is generated client side by the application
+ A user token that is generated client side by the application
 \end_layout
 
 \begin_layout Itemize
@@ -1404,6 +1826,12 @@ In this section will be presented a description and an example code of the
 \end_layout
 
 \begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Event-Schedule-Algorithm"
+
+\end_inset
+
 Event Schedule Algorithm
 \end_layout
 
@@ -1448,7 +1876,7 @@ User Interfaces
 \begin_inset Quotes erd
 \end_inset
 
- in the RASD document previously delivered.
+ of the RASD document previously delivered.
 \end_layout
 
 \begin_layout Standard
@@ -1460,6 +1888,211 @@ User Interfaces
 
 \begin_layout Section
 Requirements Traceability
+\end_layout
+
+\begin_layout Standard
+The choices presented in this document have the aim to achieve the goals
+ described on the 
+\emph on
+Requirements Analysis and Specification Document
+\emph default
+.
+ Follow a list of goals with each component and 
+\end_layout
+
+\begin_layout Itemize
+[G0] Allow people to use the app without a login function 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R1] User Services: Account Manager Module through the 
+\emph on
+AutologinService
+\emph default
+ interface
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G1] Allow people to view the daily schedule with coming up events at the
+ top
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R2][R4][R5] Scheduling Services: Event Manager Module through 
+\emph on
+EventHistory
+\emph default
+ interface
+\end_layout
+
+\begin_layout Itemize
+[R3] Scheduling Services: Event Manager Module through 
+\emph on
+ActivitiesScheduler
+\emph default
+ interface
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G2] Allow people to view previous events
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R6] Scheduling Services: Calendar Module through 
+\emph on
+ManageCalendars
+\emph default
+ interface
+\end_layout
+
+\begin_layout Itemize
+[R7] Scheduling Services: Event Manager Module through 
+\emph on
+EventHistory
+\emph default
+ interface
+\end_layout
+
+\begin_layout Itemize
+[R8] Scheduling Services: Event Manager Module through 
+\emph on
+ManageEvents
+\emph default
+ interface
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G3] Allow people to view the detail of each event
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R9][R11] Scheduling Services: Event Manager Module through 
+\emph on
+EventHistory
+\emph default
+ interface
+\end_layout
+
+\begin_layout Itemize
+[R10][R12][R13] User Services: Tickets Module through 
+\emph on
+TicketsManaging
+\emph default
+ interface
+\end_layout
+
+\begin_layout Itemize
+[R9][R14] Scheduling Services: Event Manager Module through 
+\emph on
+ActivitiesScheduler
+\emph default
+ interface
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G4] Allow the users to create an event
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R15][R16][R17][R18][R19][R20] Scheduling Services: Event Manager Module
+ through 
+\emph on
+ManageEvents
+\emph default
+ interface
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G5] Allow people to see daily events on a map
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R21] Scheduling Services: Event Manager Module through 
+\emph on
+EventHistory
+\emph default
+ interface
+\end_layout
+
+\begin_layout Itemize
+[R22] Scheduling Services: Event Manager Module through 
+\emph on
+ActivitiesScheduler
+\emph default
+ interface
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G6] Allow the user to set preferences
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R22][R23][R24][R26] User Services: Setting Module through 
+\emph on
+ManageSetting
+\emph default
+ interface
+\end_layout
+
+\begin_layout Itemize
+[R25] Scheduling Services: Calendar Module through 
+\emph on
+ManageCalendars
+\emph default
+ interface
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G7] Allow the users to create calendars
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R27][R28] Scheduling Services: Calendar Module through 
+\emph on
+ManageCalendars
+\emph default
+ interface
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G8] Notify the user that it's time to leave for the appointment
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R29][R30] Scheduling Services: Event Manager Module through 
+\emph on
+ActivitiesScheduler
+\emph default
+ interface
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Implementation, Integration and Test Plan
 \end_layout
 
 \begin_layout Standard
@@ -1483,43 +2116,19 @@ Ben
 \end_layout
 
 \begin_layout Section
-Implementation, Integration and Test Plan
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Fil
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage pagebreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
 Effort Spent
 \end_layout
 
 \begin_layout Itemize
-Filippo Calzavara: 7.00h
+Filippo Calzavara: 14.30h
 \end_layout
 
 \begin_layout Itemize
-Giovanni Filaferro: 7.00h
+Giovanni Filaferro: 14.30h
 \end_layout
 
 \begin_layout Itemize
-Benedetto Maria Nespoli: 7.00h
+Benedetto Maria Nespoli: 14.30h
 \end_layout
 
 \begin_layout Standard
@@ -1535,6 +2144,30 @@ References
 
 \begin_layout Itemize
 RASD document previously delivered.
+\end_layout
+
+\begin_layout Subsection
+Tools used
+\end_layout
+
+\begin_layout Standard
+The tools used to developed this document are:
+\end_layout
+
+\begin_layout Itemize
+GitHub: to versioning this document
+\end_layout
+
+\begin_layout Itemize
+Source Tree: for a better use of Git Hub
+\end_layout
+
+\begin_layout Itemize
+Drow.io: to make all the schemas shown in this document
+\end_layout
+
+\begin_layout Itemize
+LyX: to make this LaTeX document
 \end_layout
 
 \end_body
