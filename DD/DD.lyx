@@ -1425,16 +1425,30 @@ Further clarification regarding the schema:
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Bennes spiega la roba dei bit sui transports
+The column 
+\emph on
+transports
+\emph default
+ is of type BIT(5) for simplicity.
+ If the bit is 1, the corresponding mean of transportation is enabled for
+ that event.
+ From the leftmost to the rightmost bit, there are: Walking, Biking, Public
+ Transport, Sharing Services and Car.
 \end_layout
 
-\end_inset
+\begin_layout Itemize
+The column 
+\emph on
+repetitions
+\emph default
+ is of type BIT(7) for simplicity.
+ If the bit is 1, the event will repeat for the corresponding day of the
+ week.
+ The leftmost bit is for Monday, and the rightmost is for Sunday.
+\end_layout
 
-
+\begin_layout Itemize
+The other BITs are BIT(1) meaning TRUE for 1 and FALSE for 0.
 \end_layout
 
 \begin_layout Subsection
