@@ -22,9 +22,12 @@ Lo schedule controlla:
 
 */
 
+// ****** Utility
 
-
-// ****** DATA CLASSES
+struct TimeSlot {
+    unsigned long start;
+    unsigned long end;
+}
 
 enum TransportMean {
     walk,
@@ -34,12 +37,7 @@ enum TransportMean {
     car
 }
 
-enum EventTiming {
-    past,
-    running,
-    future
-}
-
+// ****** DATA CLASSES
 
 class Transportation {
 
@@ -51,7 +49,7 @@ class Transportation {
 
 class Route {
 
-    vector<Transportation> transportations;
+    vector<Transportation> *transportations;
 
 }
 
@@ -147,6 +145,8 @@ class Schedule {
 
 
 
+
+
 // Schedule function that checks the next hours, this can be called when user uploads his current position or the system calls it every 2 hours
 Schedule* schedule(User *u) {
     // Schedule from now to tomorrow
@@ -182,61 +182,175 @@ Schedule* schedule(User *u, unsigned long date1, unsigned long date2) {
     // Check for each user's calendar overlapping and reachability
     for each(Calendar *c in u.calendars) {
 
-        // Get all the events on the calendar between that dates
+        // Get all the events on the calendar between that dates making sure they are all now or in the future
         vector<Event> *events = getCalendarEventsInRange(c, d1, d2);
-    
+        events = nextEvents(events);
+        resetEvents(events);
+        
         // Ensure events does not overlap
         if (overlap(events)) {
             vector<Event> *overlapping = overlappingEvents(events);
             notifyOverlapping(u, overlapping);
             break;
         }
-    
-        // Now we need to make sure that each event is reachable
 
-        int s = events->size();
-        int count = 0;
-        for (count = 0; count < s; count++) {
+
+        // Just filter events ordering them based on filterEvent() rules
+        vector<Event> *fixed;
+        vector<Event> *flexible;
+        filterEvents(events, fixed, flexible);
+
+        // Try to fit each flexible event
+        for each(Event *e in flexible) {
+            // Get available time slots from fixed event array relative to this event
+            vector<TimeSlot> *timeSlots = timeSlots(fixed, e);
+
+            // For each time slot I try to fit the events
+            for (int j = 0; j<timeSlots->size(); j++) {
+                
+                long eDuration = (long)e->duration;                         // Event Duration
+                long sDuration = timeSlots[j]->end - timeSlots[j]->start;   // Time slot duration
+
+                if (eDuration > sDuration) {
+                    // Can't fit so try another one
+                    continue;
+                }
+
+                // We can try to know if it is reachable
+                if (eventIsToday(e)) {
+                    // Consider user latest reliable position
+                    Event *prev = siblingTimeSlotEvent(c, timeSlots[j]);
+                    if (prev == null) {
+                        // no previous event, try user location
+                        Coordinates *userPos = reliableUserPosition(u);
+                        if (userPos == null) {
+                            // No user position, try another time slot
+                            continue;
+                        }
+                        else {
+                            if (eventIsReachable(userPos, e)) {
+                                // REACHABLE
+                                insert(fixed, e);
+                                remove(flexible, e);
+                                break;
+                            }
+                            else {
+                                // Try another time slot
+                                continue;
+                            }
+                        }
+
+                    }
+                    else {
+                        if (eventIsReachable(prev, e)) {
+                            // REACHABLE
+                            insert(fixed, e);
+                            remove(flexible, e);
+                            break;
+                        }
+                        else {
+                            // Try another time slot
+                            continue;
+                        }
+                    }
+                }
+                else {
+                    // Don't consider last reliable user position
+
+                    Event *prev = siblingTimeSlotEvent(c, timeSlots[j]);
+                    if (prev == null) {
+                        // no previous event try another time slot
+                        continue;
+                    }
+                    else {
+                        if (eventIsReachable(prev, e)) {
+                            // REACHABLE
+                            insert(fixed, e);
+                            remove(flexible, e);
+                            break;
+                        }
+                        else {
+                            // Try another time slot
+                            continue;
+                        }
+                    }
+                }
+
+            }
             
-            // Exit if inspecting last event
-            if (count == s-1) {
+
+        }
+
+        if (flexible->size() > 0) {
+            notifyUnreachable(u, flexible);
+            return null;
+        }
+
+        // Now we need to make sure that unscheduled and unfitted events are reachable
+        
+        for each(int i = 0; i<events->size(); i++) {
+            if (i == events->size()-1) {
+                // last one so exit
                 break;
             }
 
-            if (eventIsToday(events[count])) {
-                // It's today
+            if (events[i]->routes == null || events[i]->suggested_start == null || events[i]->suggested_end == null) {
+                // Unscheduled
 
-                switch (eventTiming(events[count])) {
+                if (eventIsFirstOfDay(events[i], c)) {
+                    if (eventIsToday(events[i])) {
+                        // Try with user location
 
-                    case past:
-                        // We don't care about
-                    break;
-
-                    case running:
-
-                    break;
-
-                    case future:
-
-                    break;
-
-                    default:
-                    break;
-
+                        Coordinates *userPos = reliableUserPosition(u);
+                        if (userPos == null) {
+                            // No user position, unreachable then
+                            notifyUnreachable(u, events[i]);
+                            return null;
+                        }
+                        else {
+                            if (eventIsReachable(userPos, events[i])) {
+                                // REACHABLE
+                                scheduled->push_back(event[i]);
+                                continue;
+                            }
+                            else {
+                                // Not Reachable
+                                notifyUnreachable(u, events[i]);
+                                return null;
+                            }
+                        }
+                    }
+                    else {
+                        // Always reachable so go next
+                        scheduled->push_back(event[i]);
+                        continue;
+                    }
                 }
+                else {
+                    // Check if next event is reachable from this one
 
-                if (eventIsFirstOfDay(events[count], c)) {
-                    // Check if reachable based on my current position
+                    if (eventIsReachable(events[i+1], events[i])) {
+                        // REACHABLE
+                        scheduled->push_back(event[i+1]);
+                        continue;
+                    }
+                    else {
+                        // Not Reachable
+                        notifyUnreachable(u, events[i+1]);
+                        return null;
+                    }
                 }
-            }
-            else {
-                // It's not today so just check the events separatedly
 
                 
             }
-
+            else {
+                // Already scheduled
+                scheduled->push_back(e);
+            }
 
         }
+            
+        
 
     }
 
@@ -259,6 +373,11 @@ unsigned long start_of_day(unsigned long time);
 // Foreach day in which events that are not e exist returns an array of dates in which schedule function should be called
 vector<unsigned long> daysNeedingReschedule(User *u, Event *e);
 
+// ******** User
+
+// Returns last reliable user position
+Coordinates* reliableUserPosition(User *u);
+
 // ******** Events
 
 // Given a set of events returns whether these overlaps
@@ -270,30 +389,48 @@ vector<Event>* overlappingEvents(vector<Event> *events);
 // Returns a set of Calendar's events between some dates ordered by startdate.
 vector<Event>* getCalendarEventsInRange(Calendar *calendar, Date d1, Date d2);
 
+// Returns Present / future events from a set of events
+vector<Event>* nextEvents(vector<Event>*);
+
 // Returns true if the event is today
 bool eventIsToday(Event *e);
 
 // Returns true if this event is scheduled as first of the day
 bool eventIsFirstOfDay(Event *e, Calendar *c);
 
-// Check if an event is reachable from specific coordinates
+// Check if an event is reachable from specific coordinates and saves in it routes informations and sets suggested_start / suggested_end
 bool eventIsReachable(Coordinates coords, Event *e);
 
-// Check if an event e2 is reachable from previous event e1
+// Check if an event e2 is reachable from previous event e1  and saves in it routes informations and sets suggested_start / suggested_end
 bool eventIsReachable(Event *e1, Event *e2);
 
-// Check if in a given set of events, flexible events are present
-bool containsFlexibleEvents(vector<Event> *events);
+// Filters events to flexible and fixed and puts then in order of happening. For flexible events it orders them by their fitness function.
+void filterEvents(vector<Event> *main, vector<Event> *fixed, vector<Event> *flexible);
 
-// Get timing informations about the event
-EventTiming eventTiming(Event *event);
+// Removes travel data in an array of events, removing previously calculated routes and suggestions
+void resetEvents(vector<Event> events);
 
-// Returns a set of flexible events if they are contained in the given set
-vector<Event>* flexibleEvents(vector<Event> *events);
+
+// ******** TimeSlot
+
+// Returns available time slots from a set of events relative to a single flexible event ordered from the smallest to the tallest
+vector<TimeSlot> timeSlots(vector<Event> *events , Event *relative);
+
+// Returns the event prior to a time slot
+Event* siblingTimeSlotEvent(Calendar *c, TimeSlot *t);
+
+// ******** Routes
+
+// Returns time to reach event which is the mean value between all routes time
+long routeTime(vector<Route> *routes);
 
 // ******** Schedule
 // Appends a schedule to an existing one
 Schedule* appendSchedule(Schedule *s1, Schedule *s2);
+
+// ******** Vector help
+void insert(vector<Event> *e, Event *e);
+void remove(vector<Event> *e, Event *e);
 
 
 // ********* Notifications
