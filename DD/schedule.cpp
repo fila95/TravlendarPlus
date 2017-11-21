@@ -22,6 +22,17 @@ Lo schedule controlla:
 
 */
 
+/**
+ * 
+ * 
+ * 
+ * ********** Data Structures
+ * 
+ * 
+ * 
+ * 
+*/
+
 // ****** Utility
 
 struct TimeSlot {
@@ -144,6 +155,110 @@ class Schedule {
 }
 
 
+/**
+ * 
+ * 
+ * 
+ * ********** Prototypes
+ * 
+ * 
+ * 
+ * 
+*/
+
+// ******** Utilities
+
+// Returns current timestamp
+unsigned long now();
+
+// Returns today's start timestamp
+unsigned long start_of_today();
+
+// Returns timestamp of the start of the day of a given timestamp
+unsigned long start_of_day(unsigned long time);
+
+// Foreach day in which events that are not e exist returns an array of dates in which schedule function should be called
+vector<unsigned long> daysNeedingReschedule(User *u, Event *e);
+
+// ******** User
+
+// Returns last reliable user position
+Coordinates* reliableUserPosition(User *u);
+
+// ******** Events
+
+// Given a set of events returns whether these overlaps
+bool overlap(vector<Event> *events);
+
+// Given a set of events returns an array of overlapping events if they exist
+vector<Event>* overlappingEvents(vector<Event> *events);
+
+// Returns a set of Calendar's events between some dates ordered by startdate.
+vector<Event>* getCalendarEventsInRange(Calendar *calendar, Date d1, Date d2);
+
+// Returns Present / future events from a set of events
+vector<Event>* nextEvents(vector<Event>*);
+
+// Returns true if the event is today
+bool eventIsToday(Event *e);
+
+// Returns true if this event is scheduled as first of the day
+bool eventIsFirstOfDay(Event *e, Calendar *c);
+
+// Check if an event is reachable from specific coordinates and saves in it routes informations and sets suggested_start / suggested_end
+bool eventIsReachable(Coordinates coords, Event *e);
+
+// Check if an event e2 is reachable from previous event e1  and saves in it routes informations and sets suggested_start / suggested_end
+bool eventIsReachable(Event *e1, Event *e2);
+
+// Filters events to flexible and fixed and puts then in order of happening. For flexible events it orders them by their fitness function.
+void filterEvents(vector<Event> *main, vector<Event> *fixed, vector<Event> *flexible);
+
+// Removes travel data in an array of events, removing previously calculated routes and suggestions
+void resetEvents(vector<Event> events);
+
+
+// ******** TimeSlot
+
+// Returns available time slots from a set of events relative to a single flexible event ordered from the smallest to the tallest
+vector<TimeSlot> timeSlots(vector<Event> *events , Event *relative);
+
+// Returns the event prior to a time slot
+Event* siblingTimeSlotEvent(Calendar *c, TimeSlot *t);
+
+// ******** Routes
+
+// Returns time to reach event which is the mean value between all routes time
+long routeTime(vector<Route> *routes);
+
+// ******** Schedule
+// Appends a schedule to an existing one
+Schedule* appendSchedule(Schedule *s1, Schedule *s2);
+
+// ******** Vector help
+void insert(vector<Event> *e, Event *e);
+void remove(vector<Event> *e, Event *e);
+
+
+// ********* Notifications
+// Sends back a notifications
+void notifyOverlapping(User *u, vector<Event> *events);
+void notifyUnreachable(User *u, vector<Event> *events);
+void notifyUnreachable(User *u, Event* event);
+
+
+/**
+ * 
+ * 
+ * 
+ * ********** Main Functions
+ * 
+ * 
+ * 
+ * 
+*/
+
+
 
 
 
@@ -156,7 +271,7 @@ Schedule* schedule(User *u) {
 // Schedule function that checks just the 12 hours before and after the event as parameter that has been created, modified or deleted
 Schedule* schedule(User *u, Event *e) {
     // Schedule 12 hours before and after the event is created
-    if (e.repetitions || 0x0111111) {
+    if (e.repetitions & 0x0111111) {
         Schedule *scheduled = new Schedule();
         
         for each(unsigned long day in daysNeedingReschedule(u, e)) {
@@ -357,84 +472,3 @@ Schedule* schedule(User *u, unsigned long date1, unsigned long date2) {
     return s;
 
 }
-
-
-// ******** Utilities
-
-// Returns current timestamp
-unsigned long now();
-
-// Returns today's start timestamp
-unsigned long start_of_today();
-
-// Returns timestamp of the start of the day of a given timestamp
-unsigned long start_of_day(unsigned long time);
-
-// Foreach day in which events that are not e exist returns an array of dates in which schedule function should be called
-vector<unsigned long> daysNeedingReschedule(User *u, Event *e);
-
-// ******** User
-
-// Returns last reliable user position
-Coordinates* reliableUserPosition(User *u);
-
-// ******** Events
-
-// Given a set of events returns whether these overlaps
-bool overlap(vector<Event> *events);
-
-// Given a set of events returns an array of overlapping events if they exist
-vector<Event>* overlappingEvents(vector<Event> *events);
-
-// Returns a set of Calendar's events between some dates ordered by startdate.
-vector<Event>* getCalendarEventsInRange(Calendar *calendar, Date d1, Date d2);
-
-// Returns Present / future events from a set of events
-vector<Event>* nextEvents(vector<Event>*);
-
-// Returns true if the event is today
-bool eventIsToday(Event *e);
-
-// Returns true if this event is scheduled as first of the day
-bool eventIsFirstOfDay(Event *e, Calendar *c);
-
-// Check if an event is reachable from specific coordinates and saves in it routes informations and sets suggested_start / suggested_end
-bool eventIsReachable(Coordinates coords, Event *e);
-
-// Check if an event e2 is reachable from previous event e1  and saves in it routes informations and sets suggested_start / suggested_end
-bool eventIsReachable(Event *e1, Event *e2);
-
-// Filters events to flexible and fixed and puts then in order of happening. For flexible events it orders them by their fitness function.
-void filterEvents(vector<Event> *main, vector<Event> *fixed, vector<Event> *flexible);
-
-// Removes travel data in an array of events, removing previously calculated routes and suggestions
-void resetEvents(vector<Event> events);
-
-
-// ******** TimeSlot
-
-// Returns available time slots from a set of events relative to a single flexible event ordered from the smallest to the tallest
-vector<TimeSlot> timeSlots(vector<Event> *events , Event *relative);
-
-// Returns the event prior to a time slot
-Event* siblingTimeSlotEvent(Calendar *c, TimeSlot *t);
-
-// ******** Routes
-
-// Returns time to reach event which is the mean value between all routes time
-long routeTime(vector<Route> *routes);
-
-// ******** Schedule
-// Appends a schedule to an existing one
-Schedule* appendSchedule(Schedule *s1, Schedule *s2);
-
-// ******** Vector help
-void insert(vector<Event> *e, Event *e);
-void remove(vector<Event> *e, Event *e);
-
-
-// ********* Notifications
-// Sends back a notifications
-void notifyOverlapping(User *u, vector<Event> *events);
-void notifyUnreachable(User *u, vector<Event> *events);
-void notifyUnreachable(User *u, Event* event);
