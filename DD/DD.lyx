@@ -1305,9 +1305,9 @@ reference "subsec:Event-Schedule-Algorithm"
  for more details).
  It also offers the interface that allows to fetch information about previous
  events.
- This module is connected to Google Maps API, Weather API provided by The
- Weather Channel™ and to Apple Push Notification Server, that handles the
- notification system towards the mobile application.
+ This module is connected to Google Maps API, Weather API provided by OpenWeathe
+rMap and to Apple Push Notification Server, that handles the notification
+ system towards the mobile application.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1395,7 +1395,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename images/er.png
-	lyxscale 35
+	lyxscale 75
 	scale 35
 
 \end_inset
@@ -1805,9 +1805,11 @@ Other design decisions
 \end_layout
 
 \begin_layout Standard
-We'll also use an external map service, in order to find the best travel
- route, and to show to the user the events in a map view.
- To achieve this aim, we'll use the Google Maps Directions API.
+We'll also use an external map service and a Weather API service, in order
+ to find the best travel route, and to show to the user the events in a
+ map view according to the weather forecast.
+ To achieve this aim, we'll use the Google Maps Directions API and OpenWeatherMa
+p.
 \end_layout
 
 \begin_layout Standard
@@ -2110,16 +2112,25 @@ Implementation, Integration and Test Plan
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Ben
+In this section it is described which it would be the most useful way to
+ proceed in the implementation.
+ It is assumed that the database has already been created with the previously
+ specified ER diagram and it's up and running on a PostgreSQL instance.
 \end_layout
 
-\end_inset
+\begin_layout Subsection
+Scheduling Service
+\end_layout
 
+\begin_layout Standard
+This component is the most complex of our system, and should be developed
+ as first, in order to prevent any bugs from appearing at the end of the
+ project, causing problems and propagating them in other parts of the applicatio
+n.
+\end_layout
 
+\begin_layout Subsection
+User Services
 \end_layout
 
 \begin_layout Standard
