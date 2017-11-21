@@ -470,7 +470,7 @@ Acronyms
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="11" columns="2">
+<lyxtabular version="3" rows="12" columns="2">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -675,7 +675,7 @@ Representational State Transfer
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -684,11 +684,31 @@ APNS
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 Apple Push Notification Service
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CRUD
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Create, Read, Update, Delete
 \end_layout
 
 \end_inset
@@ -1305,9 +1325,9 @@ reference "subsec:Event-Schedule-Algorithm"
  for more details).
  It also offers the interface that allows to fetch information about previous
  events.
- This module is connected to Google Maps API, Weather API provided by The
- Weather Channel™ and to Apple Push Notification Server, that handles the
- notification system towards the mobile application.
+ This module is connected to Google Maps API, Weather API provided by OpenWeathe
+rMap and to Apple Push Notification Server, that handles the notification
+ system towards the mobile application.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1395,7 +1415,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename images/er.png
-	lyxscale 35
+	lyxscale 75
 	scale 35
 
 \end_inset
@@ -1407,6 +1427,12 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ER-Diagram"
+
+\end_inset
+
 ER Diagram of the database
 \end_layout
 
@@ -1608,46 +1634,12 @@ Component interfaces
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Ben
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-Selected architectural styles and patterns
+In this section are described the interfaces that the Clients and the Server
+ will use in order to communicate
 \end_layout
 
 \begin_layout Subsubsection
-Overall Architecture
-\end_layout
-
-\begin_layout Standard
-Our system will be composed of two tiers:
-\end_layout
-
-\begin_layout Enumerate
-A client executable, that will run on an iOS device
-\end_layout
-
-\begin_layout Enumerate
-A server part, that will be served on a scalable Heroku instance
-\end_layout
-
-\begin_layout Standard
-Each part will need a database: the server will store any piece of information
- about users, calendars and events on its database, while the client's database
- will have a cached copy of some events and calendars.
-\end_layout
-
-\begin_layout Subsubsection
-Protocols
+RESTful API
 \end_layout
 
 \begin_layout Standard
@@ -1661,11 +1653,13 @@ The API will lie on a Web server and will be called on a HTTP channel with
 \end_layout
 
 \begin_layout Standard
-All the methods will require an authentication, but the login one.
+All the methods will require an authentication, except for the login one.
  The exposed methods are:
 \end_layout
 
 \begin_layout Itemize
+
+\series bold
 /api/v1/login
 \end_layout
 
@@ -1696,6 +1690,8 @@ device_token
 \end_deeper
 \end_deeper
 \begin_layout Itemize
+
+\series bold
 /api/v1/pushNotification
 \end_layout
 
@@ -1706,6 +1702,8 @@ POST: Update the current push notification
 
 \end_deeper
 \begin_layout Itemize
+
+\series bold
 /api/v1/settings
 \end_layout
 
@@ -1720,6 +1718,8 @@ POST: Save some settings
 
 \end_deeper
 \begin_layout Itemize
+
+\series bold
 /api/v1/calendars
 \end_layout
 
@@ -1734,6 +1734,8 @@ POST: Save some calendars
 
 \end_deeper
 \begin_layout Itemize
+
+\series bold
 /api/v1/events
 \end_layout
 
@@ -1748,6 +1750,8 @@ POST: Save some events
 
 \end_deeper
 \begin_layout Itemize
+
+\series bold
 /api/v1/schedule
 \end_layout
 
@@ -1758,6 +1762,8 @@ GET: Retrieve the user schedule
 
 \end_deeper
 \begin_layout Itemize
+
+\series bold
 /api/v1/position
 \end_layout
 
@@ -1767,6 +1773,32 @@ POST: Update the current user position
 \end_layout
 
 \end_deeper
+\begin_layout Subsection
+Selected architectural styles and patterns
+\end_layout
+
+\begin_layout Subsubsection
+Overall Architecture
+\end_layout
+
+\begin_layout Standard
+Our system will be composed of two tiers:
+\end_layout
+
+\begin_layout Enumerate
+A client executable, that will run on an iOS device
+\end_layout
+
+\begin_layout Enumerate
+A server part, that will be served on a scalable Heroku instance
+\end_layout
+
+\begin_layout Standard
+Each part will need a database: the server will store any piece of information
+ about users, calendars and events on its database, while the client's database
+ will have a cached copy of some events and calendars.
+\end_layout
+
 \begin_layout Subsubsection
 Design Pattern
 \end_layout
@@ -1805,9 +1837,11 @@ Other design decisions
 \end_layout
 
 \begin_layout Standard
-We'll also use an external map service, in order to find the best travel
- route, and to show to the user the events in a map view.
- To achieve this aim, we'll use the Google Maps Directions API.
+We'll also use an external map service and a Weather API service, in order
+ to find the best travel route, and to show to the user the events in a
+ map view according to the weather forecast.
+ To achieve this aim, we'll use the Google Maps Directions API and OpenWeatherMa
+p.
 \end_layout
 
 \begin_layout Standard
@@ -2110,16 +2144,67 @@ Implementation, Integration and Test Plan
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Ben
-\end_layout
+In this section it is described which it would be the most useful way to
+ proceed in the implementation.
+ It is assumed that the database has already been created with the previously
+ specified ER diagram in the Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ER-Diagram"
 
 \end_inset
 
+, and it's up and running on a PostgreSQL instance.
+ The Client and the Server part will be elaborated in the same time, starting
+ from the Scheduling Service.
+\end_layout
 
+\begin_layout Subsection
+Scheduling Services
+\end_layout
+
+\begin_layout Standard
+The first subcomponent that should be implemented is the EventManager Module,
+ since this subcomponent is the most complex of our system, and to prevent
+ any bugs from appearing at the end of the project, causing problems and
+ propagating them in other parts of the application.
+ It is composed of a simple CRUD API and of a scheduler.
+ The scheduler main algorithm is described in the Sub Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Event-Schedule-Algorithm"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The other subcomponent is the Calendar Module, that could be developed apart
+ from the EventManager, since it is simple and there is no need of a complex
+ logic.
+\end_layout
+
+\begin_layout Subsection
+User Services
+\end_layout
+
+\begin_layout Standard
+The Account Manager Module is one of the first used in the flow of a typical
+ connection made by the client application, so it should be implemented
+ as one of the first.
+ Since it is not related to the EventManager Module, it can be developed
+ in parallel.
+\end_layout
+
+\begin_layout Standard
+The Settings Module is a CRUD API, and it can be developed right after the
+ Account Manager Module.
+\end_layout
+
+\begin_layout Standard
+The Tickets Module is one of the last subcomponents that should be implemented,
+ since it's an enhancement of the application, and not strictly needed.
 \end_layout
 
 \begin_layout Standard
