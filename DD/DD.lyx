@@ -1407,6 +1407,12 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ER-Diagram"
+
+\end_inset
+
 ER Diagram of the database
 \end_layout
 
@@ -1608,46 +1614,12 @@ Component interfaces
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Ben
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-Selected architectural styles and patterns
+In this section are described the interfaces that the Clients and the Server
+ will use in order to communicate
 \end_layout
 
 \begin_layout Subsubsection
-Overall Architecture
-\end_layout
-
-\begin_layout Standard
-Our system will be composed of two tiers:
-\end_layout
-
-\begin_layout Enumerate
-A client executable, that will run on an iOS device
-\end_layout
-
-\begin_layout Enumerate
-A server part, that will be served on a scalable Heroku instance
-\end_layout
-
-\begin_layout Standard
-Each part will need a database: the server will store any piece of information
- about users, calendars and events on its database, while the client's database
- will have a cached copy of some events and calendars.
-\end_layout
-
-\begin_layout Subsubsection
-Protocols
+RESTful API
 \end_layout
 
 \begin_layout Standard
@@ -1661,11 +1633,13 @@ The API will lie on a Web server and will be called on a HTTP channel with
 \end_layout
 
 \begin_layout Standard
-All the methods will require an authentication, but the login one.
+All the methods will require an authentication, except for the login one.
  The exposed methods are:
 \end_layout
 
 \begin_layout Itemize
+
+\series bold
 /api/v1/login
 \end_layout
 
@@ -1696,6 +1670,8 @@ device_token
 \end_deeper
 \end_deeper
 \begin_layout Itemize
+
+\series bold
 /api/v1/pushNotification
 \end_layout
 
@@ -1706,6 +1682,8 @@ POST: Update the current push notification
 
 \end_deeper
 \begin_layout Itemize
+
+\series bold
 /api/v1/settings
 \end_layout
 
@@ -1720,6 +1698,8 @@ POST: Save some settings
 
 \end_deeper
 \begin_layout Itemize
+
+\series bold
 /api/v1/calendars
 \end_layout
 
@@ -1734,6 +1714,8 @@ POST: Save some calendars
 
 \end_deeper
 \begin_layout Itemize
+
+\series bold
 /api/v1/events
 \end_layout
 
@@ -1748,6 +1730,8 @@ POST: Save some events
 
 \end_deeper
 \begin_layout Itemize
+
+\series bold
 /api/v1/schedule
 \end_layout
 
@@ -1758,6 +1742,8 @@ GET: Retrieve the user schedule
 
 \end_deeper
 \begin_layout Itemize
+
+\series bold
 /api/v1/position
 \end_layout
 
@@ -1767,6 +1753,32 @@ POST: Update the current user position
 \end_layout
 
 \end_deeper
+\begin_layout Subsection
+Selected architectural styles and patterns
+\end_layout
+
+\begin_layout Subsubsection
+Overall Architecture
+\end_layout
+
+\begin_layout Standard
+Our system will be composed of two tiers:
+\end_layout
+
+\begin_layout Enumerate
+A client executable, that will run on an iOS device
+\end_layout
+
+\begin_layout Enumerate
+A server part, that will be served on a scalable Heroku instance
+\end_layout
+
+\begin_layout Standard
+Each part will need a database: the server will store any piece of information
+ about users, calendars and events on its database, while the client's database
+ will have a cached copy of some events and calendars.
+\end_layout
+
 \begin_layout Subsubsection
 Design Pattern
 \end_layout
@@ -2115,11 +2127,20 @@ Implementation, Integration and Test Plan
 In this section it is described which it would be the most useful way to
  proceed in the implementation.
  It is assumed that the database has already been created with the previously
- specified ER diagram and it's up and running on a PostgreSQL instance.
+ specified ER diagram in the Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ER-Diagram"
+
+\end_inset
+
+, and it's up and running on a PostgreSQL instance.
+ The Client and the Server part will be elaborated in the same time, starting
+ from the Scheduling Service.
 \end_layout
 
 \begin_layout Subsection
-Scheduling Service
+Scheduling Services
 \end_layout
 
 \begin_layout Standard
@@ -2127,6 +2148,15 @@ This component is the most complex of our system, and should be developed
  as first, in order to prevent any bugs from appearing at the end of the
  project, causing problems and propagating them in other parts of the applicatio
 n.
+ The scheduling server service main algorithm is described in the Sub Section
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Event-Schedule-Algorithm"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
