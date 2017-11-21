@@ -34,6 +34,12 @@ enum TransportMean {
     car
 }
 
+enum EventTiming {
+    past,
+    running,
+    future
+}
+
 
 class Transportation {
 
@@ -132,23 +138,30 @@ class User {
 
 }
 
+class Schedule {
+
+    unsigned long update_time;
+    vector<Event>* schedule;
+
+}
+
 
 
 // Schedule function that checks the next hours, this can be called when user uploads his current position or the system calls it every 2 hours
-vector<Event>* schedule(User *u) {
+Schedule* schedule(User *u) {
     // Schedule from now to tomorrow
     return schedule(u, now(), start_of_today() + 86400);
 }
 
 // Schedule function that checks just the 12 hours before and after the event as parameter that has been created, modified or deleted
-vector<Event>* schedule(User *u, Event *e) {
+Schedule* schedule(User *u, Event *e) {
     // Schedule 12 hours before and after the event is created
     if (e.repetitions || 0x0111111) {
-        vector<Event> *scheduled = new vector<Event>();
+        Schedule *scheduled = new Schedule();
         
         for each(unsigned long day in daysNeedingReschedule(u, e)) {
-            vector<Event> *e = schedule(u, day, day + 86400);
-            scheduled->insert(scheduled->end(), e->begin(), e->end());
+            Schedule *e = schedule(u, day, day + 86400);
+            appendSchedule(scheduled, e);
         }
 
         return scheduled;
@@ -159,8 +172,11 @@ vector<Event>* schedule(User *u, Event *e) {
 }
 
 // Schedule an entire date interval, this can be called from the other schedule functions
-vector<Event>* schedule(User *u, unsigned long date1, unsigned long date2) {
+Schedule* schedule(User *u, unsigned long date1, unsigned long date2) {
+    Schedule *s = new Schedule();
+    s->update_time = now();
     vector<Event> *scheduled = new vector<Event>();
+    s->schedule = scheduled;
 
 
     // Check for each user's calendar overlapping and reachability
@@ -190,19 +206,22 @@ vector<Event>* schedule(User *u, unsigned long date1, unsigned long date2) {
             if (eventIsToday(events[count])) {
                 // It's today
 
-                if (now() > e->start) {
-                    // The event is still running or has ended
-                    if (now() > e->end) {
-                        // Event has ended so go through the next
-                        break;
-                    }
-                    else {
-                        // Was in the past
+                switch (eventTiming(events[count])) {
 
-                    }
+                    case past:
+                        // We don't care about
+                    break;
 
-                }
-                else {
+                    case running:
+
+                    break;
+
+                    case future:
+
+                    break;
+
+                    default:
+                    break;
 
                 }
 
@@ -221,6 +240,7 @@ vector<Event>* schedule(User *u, unsigned long date1, unsigned long date2) {
 
     }
 
+    return s;
 
 }
 
@@ -265,8 +285,15 @@ bool eventIsReachable(Event *e1, Event *e2);
 // Check if in a given set of events, flexible events are present
 bool containsFlexibleEvents(vector<Event> *events);
 
+// Get timing informations about the event
+EventTiming eventTiming(Event *event);
+
 // Returns a set of flexible events if they are contained in the given set
 vector<Event>* flexibleEvents(vector<Event> *events);
+
+// ******** Schedule
+// Appends a schedule to an existing one
+Schedule* appendSchedule(Schedule *s1, Schedule *s2);
 
 
 // ********* Notifications
