@@ -2145,9 +2145,9 @@ Implementation, Integration and Test Plan
 
 \begin_layout Standard
 In this section it is described which it would be the most useful way to
- proceed in the implementation.
- It is assumed that the database has already been created with the previously
- specified ER diagram in the Figure 
+ proceed with the implementation.
+ It is assumed that the database has already been created according to the
+ previously specified ER diagram in the Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:ER-Diagram"
@@ -2156,7 +2156,7 @@ reference "fig:ER-Diagram"
 
 , and it's up and running on a PostgreSQL instance.
  The Client and the Server part will be elaborated in the same time, starting
- from the Scheduling Service.
+ from the Scheduling Services.
 \end_layout
 
 \begin_layout Subsection
@@ -2192,7 +2192,7 @@ User Services
 \begin_layout Standard
 The Account Manager Module is one of the first used in the flow of a typical
  connection made by the client application, so it should be implemented
- as one of the first.
+ at the beginning.
  Since it is not related to the EventManager Module, it can be developed
  in parallel.
 \end_layout
@@ -2204,7 +2204,8 @@ The Settings Module is a CRUD API, and it can be developed right after the
 
 \begin_layout Standard
 The Tickets Module is one of the last subcomponents that should be implemented,
- since it's an enhancement of the application, and not strictly needed.
+ since it's an enhancement of the application, and not strictly needed to
+ make the system work as intended.
 \end_layout
 
 \begin_layout Standard
