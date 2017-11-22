@@ -2241,7 +2241,7 @@ Overloads:
 \begin_inset Graphics
 	filename images/code/s_overload.png
 	lyxscale 20
-	scale 50
+	scale 40
 
 \end_inset
 
@@ -2533,9 +2533,71 @@ name "subsec:Reachability-Function"
 
 \end_inset
 
-Reachability Function
+Reachability Function Algorithm
 \end_layout
 
+\begin_layout Standard
+This algorithm is the one which takes an event and verifies if it is reachable
+ from another event or from a specified position.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language={C++},basicstyle={\small\rmfamily},breaklines=true"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+bool eventIsReachable(Event *e1, Event *e2);
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language={C++},basicstyle={\small\rmfamily},breaklines=true"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+bool eventIsReachable(Coordinates coords, Event *e);
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In order to check reachability this function does:
+\end_layout
+
+\begin_layout Enumerate
+Takes user preferences taking into account maximum walk distance, maximum
+ distance by bike, public transport timings;
+\end_layout
+
+\begin_layout Enumerate
+Queries Google Directions API to find the best routes;
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+If the time to get to the place is compatible with the start of the event
+ then it is reachable and so routes fields and suggested start/end time
+ will be populated;
+\end_layout
+
+\begin_layout Enumerate
+Otherwise it fails quits and returns false;
+\end_layout
+
+\end_deeper
 \begin_layout Subsection
 \begin_inset CommandInset label
 LatexCommand label
@@ -2543,7 +2605,169 @@ name "subsec:Other-Functions"
 
 \end_inset
 
-Other Used Functions
+Other Used Functions, Algorithms and Data Structures
+\end_layout
+
+\begin_layout Standard
+In this section can be found utility functions used by the main algorithms
+ to simplify the development.
+\end_layout
+
+\begin_layout Standard
+Images include function prototypes well comments so that they can be self-explan
+atory.
+\end_layout
+
+\begin_layout Subsubsection
+Data Structures
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Graphics
+	filename images/code/u_d_1.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Graphics
+	filename images/code/u_d_2.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Graphics
+	filename images/code/u_d_3.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Graphics
+	filename images/code/u_d_4.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Utility Functions
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Graphics
+	filename images/code/u_f_1.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Graphics
+	filename images/code/u_f_2.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Graphics
+	filename images/code/u_f_3.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Graphics
+	filename images/code/u_f_4.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Graphics
+	filename images/code/u_f_5.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Graphics
+	filename images/code/u_f_6.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Graphics
+	filename images/code/u_f_7.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Graphics
+	filename images/code/u_f_8.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
