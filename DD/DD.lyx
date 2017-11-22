@@ -1629,6 +1629,47 @@ Edit Preferences
 
 \end_layout
 
+\begin_layout Subsubsection
+Buy Ticket
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Da correggere le interazioni: mancano gli user_id
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{-3.0cm}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/buyTicket.png
+	lyxscale 40
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Component interfaces
 \end_layout
