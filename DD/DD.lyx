@@ -2232,6 +2232,74 @@ u
 Example of Implementation
 \end_layout
 
+\begin_layout Standard
+Overloads:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/code/s_overload.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Main Function:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/code/s__1.jpg
+	lyxscale 20
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/code/s__2.jpg
+	lyxscale 20
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/code/s__3.jpg
+	lyxscale 20
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/code/s__4.jpg
+	lyxscale 20
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 \begin_inset CommandInset label
 LatexCommand label
