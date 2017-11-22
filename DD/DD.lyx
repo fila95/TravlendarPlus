@@ -2635,8 +2635,10 @@ Retrieves weather data about the target event place;
 \end_layout
 
 \begin_layout Enumerate
-Queries Google Directions API to find the best routes paying attention to
- the target event's preferre travel means (according to weather data);
+Queries Google Directions API (Which already takes into account strike informati
+ons and traffic problems) to find the best routes paying also attention
+ to the target event's preferred travel means (according to weather data);
+ 
 \end_layout
 
 \begin_deeper
