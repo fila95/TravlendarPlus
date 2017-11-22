@@ -2830,6 +2830,30 @@ User Interface Design
 \end_layout
 
 \begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename ../RASD/images/Wireframe/2-HomeScr_wired@3x.png
+	lyxscale 10
+	scale 13
+
+\end_inset
+
+
+\begin_inset space \enskip{}
+\end_inset
+
+
+\begin_inset Graphics
+	filename ../RASD/images/Wireframe/13-MapExpan_wired@3x.png
+	lyxscale 10
+	scale 15
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 User Interface Design is very important to get a clear idea on how the final
  result of the application will appear to people.
 \end_layout
