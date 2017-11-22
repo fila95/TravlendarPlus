@@ -1687,7 +1687,7 @@ Buy Ticket
 status open
 
 \begin_layout Plain Layout
-Da correggere le interazioni: mancano gli user_id
+Da correggere le interazioni: mancano gli user_token
 \end_layout
 
 \end_inset
@@ -1950,19 +1950,6 @@ p.
 
 \begin_layout Section
 Algorithm Design
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Gio
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -2359,7 +2346,7 @@ void filterEvents(
 \end_layout
 
 \begin_layout Standard
-Such function willi do the following:
+Such function will do the following:
 \end_layout
 
 \begin_layout Enumerate
@@ -2828,7 +2815,7 @@ Requirements Analysis and Specification Document
 \begin_layout Itemize
 [R1] User Services: Account Manager Module through the 
 \emph on
-AutologinService
+Auto-login Service
 \emph default
  interface
 \end_layout
@@ -3168,15 +3155,15 @@ Effort Spent
 \end_layout
 
 \begin_layout Itemize
-Filippo Calzavara: 16.30h
+Filippo Calzavara: 24.30h
 \end_layout
 
 \begin_layout Itemize
-Giovanni Filaferro: 16.30h
+Giovanni Filaferro: 24.30h
 \end_layout
 
 \begin_layout Itemize
-Benedetto Maria Nespoli: 16.30h
+Benedetto Maria Nespoli: 24.30h
 \end_layout
 
 \begin_layout Standard
@@ -3211,7 +3198,7 @@ Source Tree: for a better use of Git Hub
 \end_layout
 
 \begin_layout Itemize
-Draw.io: to make all the schemas shown in this document
+draw.io: to make all the schemas shown in this document
 \end_layout
 
 \begin_layout Itemize
