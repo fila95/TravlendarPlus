@@ -1,0 +1,5 @@
+Cose da chiedere:
+
+- Implementazione va bene come l'abbiamo pensata?
+- Scioperi non aggiunti nel RASD, eventualmente da modificare
+- Component view deve essere spezzato lato server e client?
