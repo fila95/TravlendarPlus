@@ -1687,7 +1687,7 @@ Buy Ticket
 status open
 
 \begin_layout Plain Layout
-Da correggere le interazioni: mancano gli user_id
+Da correggere le interazioni: mancano gli user_token
 \end_layout
 
 \end_inset
@@ -1897,6 +1897,67 @@ Each part will need a database: the server will store any piece of information
 \end_layout
 
 \begin_layout Subsubsection
+Data Definition Language
+\end_layout
+
+\begin_layout Standard
+The following DDL in a SQL-like language is proposed for the database
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace*{-2cm}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/DDL.png
+	lyxscale 10
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+DDL
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
 Design Pattern
 \end_layout
 
@@ -1950,19 +2011,6 @@ p.
 
 \begin_layout Section
 Algorithm Design
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Gio
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -2241,7 +2289,7 @@ Overloads:
 \begin_inset Graphics
 	filename images/code/s_overload.png
 	lyxscale 20
-	scale 50
+	scale 40
 
 \end_inset
 
@@ -2359,7 +2407,7 @@ void filterEvents(
 \end_layout
 
 \begin_layout Standard
-Such function willi do the following:
+Such function will do the following:
 \end_layout
 
 \begin_layout Enumerate
@@ -2533,9 +2581,71 @@ name "subsec:Reachability-Function"
 
 \end_inset
 
-Reachability Function
+Reachability Function Algorithm
 \end_layout
 
+\begin_layout Standard
+This algorithm is the one which takes an event and verifies if it is reachable
+ from another event or from a specified position.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language={C++},basicstyle={\small\rmfamily},breaklines=true"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+bool eventIsReachable(Event *e1, Event *e2);
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language={C++},basicstyle={\small\rmfamily},breaklines=true"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+bool eventIsReachable(Coordinates coords, Event *e);
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In order to check reachability this function does:
+\end_layout
+
+\begin_layout Enumerate
+Takes user preferences taking into account maximum walk distance, maximum
+ distance by bike, public transport timings;
+\end_layout
+
+\begin_layout Enumerate
+Queries Google Directions API to find the best routes;
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+If the time to get to the place is compatible with the start of the event
+ then it is reachable and so routes fields and suggested start/end time
+ will be populated;
+\end_layout
+
+\begin_layout Enumerate
+Otherwise it fails quits and returns false;
+\end_layout
+
+\end_deeper
 \begin_layout Subsection
 \begin_inset CommandInset label
 LatexCommand label
@@ -2543,7 +2653,169 @@ name "subsec:Other-Functions"
 
 \end_inset
 
-Other Used Functions
+Other Used Functions, Algorithms and Data Structures
+\end_layout
+
+\begin_layout Standard
+In this section can be found utility functions used by the main algorithms
+ to simplify the development.
+\end_layout
+
+\begin_layout Standard
+Images include function prototypes well commented so that they can be self-expla
+natory.
+\end_layout
+
+\begin_layout Subsubsection
+Data Structures
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Graphics
+	filename images/code/u_d_1.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Graphics
+	filename images/code/u_d_2.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Graphics
+	filename images/code/u_d_3.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Graphics
+	filename images/code/u_d_4.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Utility Functions
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Graphics
+	filename images/code/u_f_1.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Graphics
+	filename images/code/u_f_2.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Graphics
+	filename images/code/u_f_3.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Graphics
+	filename images/code/u_f_4.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Graphics
+	filename images/code/u_f_5.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Graphics
+	filename images/code/u_f_6.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Graphics
+	filename images/code/u_f_7.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Graphics
+	filename images/code/u_f_8.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2604,7 +2876,7 @@ Requirements Analysis and Specification Document
 \begin_layout Itemize
 [R1] User Services: Account Manager Module through the 
 \emph on
-AutologinService
+Auto-login Service
 \emph default
  interface
 \end_layout
@@ -2944,15 +3216,15 @@ Effort Spent
 \end_layout
 
 \begin_layout Itemize
-Filippo Calzavara: 16.30h
+Filippo Calzavara: 24.30h
 \end_layout
 
 \begin_layout Itemize
-Giovanni Filaferro: 16.30h
+Giovanni Filaferro: 24.30h
 \end_layout
 
 \begin_layout Itemize
-Benedetto Maria Nespoli: 16.30h
+Benedetto Maria Nespoli: 24.30h
 \end_layout
 
 \begin_layout Standard
@@ -2987,7 +3259,7 @@ Source Tree: for a better use of Git Hub
 \end_layout
 
 \begin_layout Itemize
-Draw.io: to make all the schemas shown in this document
+draw.io: to make all the schemas shown in this document
 \end_layout
 
 \begin_layout Itemize
