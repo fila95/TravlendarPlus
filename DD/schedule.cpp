@@ -238,7 +238,6 @@ void filterEvents(vector<Event> *main, vector<Event> *fixed, vector<Event> *flex
         
     }
 
-
     // ** Now sort them
 
     // Sort fixed ones by start time
