@@ -937,7 +937,7 @@ User Interface Design
 \end_layout
 
 \begin_layout Standard
-Section five provides informations about how the requirements defined in
+Section five provides information about how the requirements defined in
  the RASD document map to the design elements defined in this document.
 \end_layout
 
@@ -2636,8 +2636,8 @@ Retrieves weather data about the target event place;
 
 \begin_layout Enumerate
 Queries Google Directions API (Which already takes into account strike informati
-ons and traffic problems) to find the best routes paying also attention
- to the target event's preferred travel means (according to weather data);
+on and traffic problems) to find the best routes paying also attention to
+ the target event's preferred travel means (according to weather data);
  
 \end_layout
 
