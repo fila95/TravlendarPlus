@@ -1,44 +1,48 @@
+#include <iostream>
 #include <stdlib.h>
 #include <ctime>
+#include <sstream>
+#include <vector>
+using namespace std;
 
 /*
-
-registrazione/login impliciti
-CRUD calendario + eventi + impostazioni
-retrieve info - calendari - eventi - schedule
-
-scheduler, chiamato quando avviene:
-	- l'aggiunta/modifica di un evento
-	- ogni X tempo per utente (variabile in base numero utenti)
-	- ogni modifica di posizione dell'utente
-
-Lo schedule controlla:
-	- eventi che non si overlappino temporalmente e che siano raggiungibili con i mezzi specificati nell'evento:
-		* se l'evento è il primo della giornata, la prima posizione è quella dell'utente, altrimenti è quella dell'evento precedente.
-		  Un evento è raggiungibile sse tempoPerPercorrere(posizione1, posizione2) < evento.start-(now or eventoPrecedente.end)
-		  Quindi se un evento non è raggiungibile, allora non è schedulabile, e viene segnalato il warning all'utente
-		  I means of transportation disponibili vengono scelti in base alle settings, e per ogni mezzo disponibile viene fatta
-		    una richiesta a google maps directions api, e viene scelta quella con tempo minimo
-
-*/
+ 
+ registrazione/login impliciti
+ CRUD calendario + eventi + impostazioni
+ retrieve info - calendari - eventi - schedule
+ 
+ scheduler, chiamato quando avviene:
+ - l'aggiunta/modifica di un evento
+ - ogni X tempo per utente (variabile in base numero utenti)
+ - ogni modifica di posizione dell'utente
+ 
+ Lo schedule controlla:
+ - eventi che non si overlappino temporalmente e che siano raggiungibili con i mezzi specificati nell'evento:
+ * se l'evento è il primo della giornata, la prima posizione è quella dell'utente, altrimenti è quella dell'evento precedente.
+ Un evento è raggiungibile sse tempoPerPercorrere(posizione1, posizione2) < evento.start-(now or eventoPrecedente.end)
+ Quindi se un evento non è raggiungibile, allora non è schedulabile, e viene segnalato il warning all'utente
+ I means of transportation disponibili vengono scelti in base alle settings, e per ogni mezzo disponibile viene fatta
+ una richiesta a google maps directions api, e viene scelta quella con tempo minimo
+ 
+ */
 
 /**
- * 
- * 
- * 
+ *
+ *
+ *
  * ********** Data Structures
- * 
- * 
- * 
- * 
-*/
+ *
+ *
+ *
+ *
+ */
 
 // ****** Utility
 
 struct TimeSlot {
     unsigned long start;
     unsigned long end;
-}
+};
 
 enum TransportMean {
     walk,
@@ -46,125 +50,130 @@ enum TransportMean {
     public_transportation,
     ride,
     car
-}
+};
 
 // ****** DATA CLASSES
 
-class Transportation {
-
-    int time; // In minutes
-    TransportMean transport;
-    vector<Coordinates> waypoints;
-    
-}
-
-class Route {
-
-    vector<Transportation> *transportations;
-
-}
-
 class Coordinates {
-
+    
     float lat;
     float lng;
+    
+};
 
-}
+class Transportation {
+    
+    int time; // In minutes
+    TransportMean transport;
+    vector<Coordinates> *waypoints;
+    
+};
+
+class Route {
+    
+    vector<Transportation> *transportations;
+    
+};
+
+class User {
+    
+    int id;
+    string user_id;
+    
+    vector<Calendar> calendars;
+    vector<Device> devices;
+    
+    Coordinates last_known_position;
+    
+    Setting settings;
+    
+};
+
 
 class Settings {
-
+    
     int id;
     bool eco_mode;
-
+    
     int max_walking_distance;
     int max_biking_distance;
-
+    
     unsigned long start_public_transportation;
     unsigned long end_public_transportation;
     
     User *user;
-
-}
-
-class Event {
-
-    int id;
-    string title;
-    string address;
-
-    Coordinates coords;
-
-    // time
-    unsigned long start;
-    unsigned long end;
-    int duration;
-    unsigned long suggested_start;  // not present in server database, just sent to client
-    unsigned long suggested_end;    // not present in server database, just sent to client
     
-    byte repetitions;               // MSB 0, the others should be used as booleans for each weekday
-    bool[5] transports;
-
-    vector<Route> routes;           // not present in server database, just sent to client
-
-    Calendar *calendar;
-
-}
+};
 
 class Calendar {
-
+    
     int id;
     string name;
     string color;
-
+    
     vector<Event> events;
-
+    
     User *user;
+    
+};
 
-}
+class Event {
+    
+    int id;
+    string title;
+    string address;
+    
+    Coordinates coords;
+    
+    // time
+    unsigned long start;
+    unsigned long end;
+    int duration;                       // 0 if fixed event
+    unsigned long suggested_start;      // not present in server database, just sent to client
+    unsigned long suggested_end;        // not present in server database, just sent to client
+    
+    uint8_t repetitions;                // MSB 0, the others should be used as booleans for each weekday
+    bool transports[5];
+    
+    vector<Route> *routes;              // not present in server database, just sent to client
+    
+    Calendar *calendar;
+    
+};
+
+
 
 class Device {
-
+    
     int id;
     string access_token;
     string push_token;
     string device_type;
-
+    
     User *user;
+    
+};
 
-}
 
-class User {
-
-    int id;
-    string user_id;
-
-    vector<Calendar> calendars;
-    vector<Device> devices;
-
-    Coordinates last_known_position;
-
-    Setting settings;
-
-}
 
 class Schedule {
-
+    
     unsigned long update_time;
     vector<Event>* schedule;
-
-}
+    
+};
 
 
 /**
- * 
- * 
- * 
+ *
+ *
+ *
  * ********** Prototypes
- * 
- * 
- * 
- * 
-*/
+ *
+ *
+ *
+ *
+ */
 
 // ******** Utilities
 
@@ -194,10 +203,13 @@ bool overlap(vector<Event> *events);
 vector<Event>* overlappingEvents(vector<Event> *events);
 
 // Returns a set of Calendar's events between some dates ordered by startdate.
-vector<Event>* getCalendarEventsInRange(Calendar *calendar, Date d1, Date d2);
+vector<Event>* getCalendarEventsInRange(Calendar *calendar, unsigned long d1, unsigned long d2);
 
 // Returns Present / future events from a set of events
 vector<Event>* nextEvents(vector<Event>*);
+
+// Removes travel data in an array of events, removing previously calculated routes and suggestions
+void resetEvents(vector<Event> events);
 
 // Returns true if the event is today
 bool eventIsToday(Event *e);
@@ -212,10 +224,43 @@ bool eventIsReachable(Coordinates coords, Event *e);
 bool eventIsReachable(Event *e1, Event *e2);
 
 // Filters events to flexible and fixed and puts then in order of happening. For flexible events it orders them by their fitness function.
-void filterEvents(vector<Event> *main, vector<Event> *fixed, vector<Event> *flexible);
+void filterEvents(vector<Event> *main, vector<Event> *fixed, vector<Event> *flexible) {
+    for (int i = 0; i < main->size(); i++) {
+        Event *e = main[i];
+        if (e->duration == 0) {
+            // It is fixed so add to fixed array
+            fixed->push_back(e);
+        }
+        else {
+            // It is flexible so add to flexible array
+            flexible->push_back(e);
+        }
+        
+    }
 
-// Removes travel data in an array of events, removing previously calculated routes and suggestions
-void resetEvents(vector<Event> events);
+
+    // ** Now sort them
+
+    // Sort fixed ones by start time
+    sort(fixed.begin(), fixed.end(), [](const Event &lhs, const Event &rhs) {
+       return lhs.start < rhs.start;
+    });
+
+    // Sort flexible ones by their fittability index
+    sort(flexible.begin(), flexible.end(), [](const Event &lhs, const Event &rhs) {
+        return fitness(lhs) < fitness(rhs);
+     });
+}
+
+// Returns the fitness value of an event
+double fitness(Event *e) {
+    return 1 - ((double)e->duration / ((double)e->end - (double)e->start - occupiedTime(e->calendar, e));
+}
+
+// Returns occupied time by other events in a calendar
+double occupiedTime(Calendar *c, Event *e);
+
+
 
 
 // ******** TimeSlot
@@ -236,8 +281,8 @@ long routeTime(vector<Route> *routes);
 Schedule* appendSchedule(Schedule *s1, Schedule *s2);
 
 // ******** Vector help
-void insert(vector<Event> *e, Event *e);
-void remove(vector<Event> *e, Event *e);
+void insert(vector<Event> *e, Event *ev);
+void remove(vector<Event> *e, Event *ev);
 
 
 // ********* Notifications
@@ -248,15 +293,15 @@ void notifyUnreachable(User *u, Event* event);
 
 
 /**
- * 
- * 
- * 
+ *
+ *
+ *
  * ********** Main Functions
- * 
- * 
- * 
- * 
-*/
+ *
+ *
+ *
+ *
+ */
 
 
 
