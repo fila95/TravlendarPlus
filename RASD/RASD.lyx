@@ -108,7 +108,7 @@ Calzavara Filippo, Filaferro Giovanni, Benedetto Maria Nespoli
 
 \begin_layout Standard
 \align center
-Version 1.0.0
+Version 1.1.0
 \end_layout
 
 \begin_layout Standard
@@ -860,6 +860,10 @@ Revision history
 1.0.0 - Initial Version (16/10/2017) 
 \end_layout
 
+\begin_layout Itemize
+1.1.0 - Minor bug correction
+\end_layout
+
 \begin_layout Subsection
 Reference Documents 
 \end_layout
@@ -1089,7 +1093,8 @@ The software is designed to be utilized in Italy, precisely in the region
 \end_layout
 
 \begin_layout Enumerate
-Public transits companies provide a sms-based purchasing system
+Most public transits companies provide a sms-based purchasing system.
+ If they don't, their app will be opened to complete the purchase.
 \end_layout
 
 \begin_layout Enumerate
@@ -1109,6 +1114,10 @@ Weather forecast are provided from an external service through API
 \begin_layout Enumerate
 Calculating the shortest path follows a time-based criteria instead of a
  cost-based one
+\end_layout
+
+\begin_layout Enumerate
+Google Maps API takes into account strikes information
 \end_layout
 
 \begin_layout Subsubsection
