@@ -1504,6 +1504,10 @@ The column
 \emph on
 transports
 \emph default
+ of the table 
+\emph on
+events
+\emph default
  is of type BIT(5) for simplicity.
  If the bit is 1, the corresponding mean of transportation is enabled for
  that event.
@@ -1516,6 +1520,10 @@ The column
 \emph on
 repetitions
 \emph default
+ of the table 
+\emph on
+events
+\emph default
  is of type BIT(7) for simplicity.
  If the bit is 1, the event will repeat for the corresponding day of the
  week.
@@ -1524,6 +1532,18 @@ repetitions
 
 \begin_layout Itemize
 The other BITs are BIT(1) meaning TRUE for 1 and FALSE for 0.
+\end_layout
+
+\begin_layout Itemize
+The column 
+\emph on
+transport_mean
+\emph default
+ of the table 
+\emph on
+travels
+\emph default
+ is an ENUM('WALKING', 'BIKING', 'PUBLIC', 'SHARING', 'CAR')
 \end_layout
 
 \begin_layout Subsection
