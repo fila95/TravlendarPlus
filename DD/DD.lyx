@@ -1462,6 +1462,19 @@ status open
 
 \begin_layout Plain Layout
 \align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{-2cm}
+\end_layout
+
+\end_inset
+
+
 \begin_inset Graphics
 	filename images/er.png
 	lyxscale 75
@@ -3214,6 +3227,13 @@ The Tickets Module is one of the last subcomponents that should be implemented,
  make the system work as intended.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Testing
 \end_layout
@@ -3302,15 +3322,15 @@ Effort Spent
 \end_layout
 
 \begin_layout Itemize
-Filippo Calzavara: 24.30h
+Filippo Calzavara: 30.30h
 \end_layout
 
 \begin_layout Itemize
-Giovanni Filaferro: 24.30h
+Giovanni Filaferro: 30.30h
 \end_layout
 
 \begin_layout Itemize
-Benedetto Maria Nespoli: 24.30h
+Benedetto Maria Nespoli: 30.30h
 \end_layout
 
 \begin_layout Standard
