@@ -1546,14 +1546,6 @@ travels
  is an ENUM('WALKING', 'BIKING', 'PUBLIC', 'SHARING', 'CAR')
 \end_layout
 
-\begin_layout Itemize
-The column 
-\emph on
-provider
-\emph default
- is an ENUM('ATM', 'TRENORD')
-\end_layout
-
 \begin_layout Subsection
 Deployment view
 \end_layout
