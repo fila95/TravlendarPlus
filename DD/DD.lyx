@@ -1960,8 +1960,24 @@ vspace*{-2cm}
 \end_inset
 
 
+\end_layout
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Graphics
-	filename images/DDL.png
+	filename images/DDL1.png
+	lyxscale 10
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/DDL2.png
 	lyxscale 10
 	scale 40
 
@@ -1979,10 +1995,6 @@ DDL
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
