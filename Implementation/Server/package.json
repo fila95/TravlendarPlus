@@ -1,0 +1,14 @@
+{
+  "name": "travlendarplus",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mysql": "^2.15.0",
+    "orm": "^4.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js"
+  }
+}
