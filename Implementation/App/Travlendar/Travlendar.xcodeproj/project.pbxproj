@@ -1,0 +1,787 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1EAA18DF1FC9CE9F001B3612 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAA18DE1FC9CE9F001B3612 /* AppDelegate.swift */; };
+		1EAA18E11FC9CE9F001B3612 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAA18E01FC9CE9F001B3612 /* ViewController.swift */; };
+		1EAA18E41FC9CE9F001B3612 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EAA18E21FC9CE9F001B3612 /* Main.storyboard */; };
+		1EAA18E71FC9CE9F001B3612 /* Travlendar.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1EAA18E51FC9CE9F001B3612 /* Travlendar.xcdatamodeld */; };
+		1EAA18E91FC9CE9F001B3612 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EAA18E81FC9CE9F001B3612 /* Assets.xcassets */; };
+		1EAA18EC1FC9CE9F001B3612 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EAA18EA1FC9CE9F001B3612 /* LaunchScreen.storyboard */; };
+		1EAA18F71FC9CEA0001B3612 /* TravlendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAA18F61FC9CEA0001B3612 /* TravlendarTests.swift */; };
+		1EAA19021FC9CEA0001B3612 /* TravlendarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAA19011FC9CEA0001B3612 /* TravlendarUITests.swift */; };
+		D69B4B3ECCA048FBC482A9FD /* Pods_Travlendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33D1DA7E3D37B92AEAB2957E /* Pods_Travlendar.framework */; };
+		DE2AB97E8BA02427C6E1DDFF /* Pods_TravlendarTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15DBA3F6C1AAE48C87D98E07 /* Pods_TravlendarTests.framework */; };
+		E8CF5A8A9712AC42A7ECC366 /* Pods_TravlendarUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 266CBB84939490CA830F8898 /* Pods_TravlendarUITests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1EAA18F31FC9CEA0001B3612 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1EAA18D31FC9CE9F001B3612 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1EAA18DA1FC9CE9F001B3612;
+			remoteInfo = Travlendar;
+		};
+		1EAA18FE1FC9CEA0001B3612 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1EAA18D31FC9CE9F001B3612 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1EAA18DA1FC9CE9F001B3612;
+			remoteInfo = Travlendar;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		15DBA3F6C1AAE48C87D98E07 /* Pods_TravlendarTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TravlendarTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1EAA18DB1FC9CE9F001B3612 /* Travlendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Travlendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1EAA18DE1FC9CE9F001B3612 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1EAA18E01FC9CE9F001B3612 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1EAA18E31FC9CE9F001B3612 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1EAA18E61FC9CE9F001B3612 /* Travlendar.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Travlendar.xcdatamodel; sourceTree = "<group>"; };
+		1EAA18E81FC9CE9F001B3612 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1EAA18EB1FC9CE9F001B3612 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1EAA18ED1FC9CE9F001B3612 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1EAA18F21FC9CEA0001B3612 /* TravlendarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TravlendarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1EAA18F61FC9CEA0001B3612 /* TravlendarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravlendarTests.swift; sourceTree = "<group>"; };
+		1EAA18F81FC9CEA0001B3612 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1EAA18FD1FC9CEA0001B3612 /* TravlendarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TravlendarUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1EAA19011FC9CEA0001B3612 /* TravlendarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravlendarUITests.swift; sourceTree = "<group>"; };
+		1EAA19031FC9CEA0001B3612 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		26302807732CB24685CE474C /* Pods-Travlendar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Travlendar.release.xcconfig"; path = "Pods/Target Support Files/Pods-Travlendar/Pods-Travlendar.release.xcconfig"; sourceTree = "<group>"; };
+		266CBB84939490CA830F8898 /* Pods_TravlendarUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TravlendarUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		33D1DA7E3D37B92AEAB2957E /* Pods_Travlendar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Travlendar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD04F6963F2F7F3D234BEA88 /* Pods-TravlendarTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravlendarTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TravlendarTests/Pods-TravlendarTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C6B85FC245A763B533A6D818 /* Pods-TravlendarUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravlendarUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TravlendarUITests/Pods-TravlendarUITests.release.xcconfig"; sourceTree = "<group>"; };
+		CC58FA8973D275AC2F27215B /* Pods-TravlendarUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravlendarUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TravlendarUITests/Pods-TravlendarUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		EF0721E6E6FD6A66F7F08180 /* Pods-TravlendarTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravlendarTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TravlendarTests/Pods-TravlendarTests.release.xcconfig"; sourceTree = "<group>"; };
+		FDF144E842DA787977E7D296 /* Pods-Travlendar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Travlendar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Travlendar/Pods-Travlendar.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1EAA18D81FC9CE9F001B3612 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D69B4B3ECCA048FBC482A9FD /* Pods_Travlendar.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EAA18EF1FC9CEA0001B3612 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE2AB97E8BA02427C6E1DDFF /* Pods_TravlendarTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EAA18FA1FC9CEA0001B3612 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8CF5A8A9712AC42A7ECC366 /* Pods_TravlendarUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1EAA18D21FC9CE9F001B3612 = {
+			isa = PBXGroup;
+			children = (
+				1EAA18DD1FC9CE9F001B3612 /* Travlendar */,
+				1EAA18F51FC9CEA0001B3612 /* TravlendarTests */,
+				1EAA19001FC9CEA0001B3612 /* TravlendarUITests */,
+				1EAA18DC1FC9CE9F001B3612 /* Products */,
+				25EEC440DCEEC54B82171ADC /* Pods */,
+				85FECD4C4125785F04191F7B /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		1EAA18DC1FC9CE9F001B3612 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1EAA18DB1FC9CE9F001B3612 /* Travlendar.app */,
+				1EAA18F21FC9CEA0001B3612 /* TravlendarTests.xctest */,
+				1EAA18FD1FC9CEA0001B3612 /* TravlendarUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1EAA18DD1FC9CE9F001B3612 /* Travlendar */ = {
+			isa = PBXGroup;
+			children = (
+				1EAA18DE1FC9CE9F001B3612 /* AppDelegate.swift */,
+				1EAA18E01FC9CE9F001B3612 /* ViewController.swift */,
+				1EAA18E21FC9CE9F001B3612 /* Main.storyboard */,
+				1EAA18E81FC9CE9F001B3612 /* Assets.xcassets */,
+				1EAA18EA1FC9CE9F001B3612 /* LaunchScreen.storyboard */,
+				1EAA18ED1FC9CE9F001B3612 /* Info.plist */,
+				1EAA18E51FC9CE9F001B3612 /* Travlendar.xcdatamodeld */,
+			);
+			path = Travlendar;
+			sourceTree = "<group>";
+		};
+		1EAA18F51FC9CEA0001B3612 /* TravlendarTests */ = {
+			isa = PBXGroup;
+			children = (
+				1EAA18F61FC9CEA0001B3612 /* TravlendarTests.swift */,
+				1EAA18F81FC9CEA0001B3612 /* Info.plist */,
+			);
+			path = TravlendarTests;
+			sourceTree = "<group>";
+		};
+		1EAA19001FC9CEA0001B3612 /* TravlendarUITests */ = {
+			isa = PBXGroup;
+			children = (
+				1EAA19011FC9CEA0001B3612 /* TravlendarUITests.swift */,
+				1EAA19031FC9CEA0001B3612 /* Info.plist */,
+			);
+			path = TravlendarUITests;
+			sourceTree = "<group>";
+		};
+		25EEC440DCEEC54B82171ADC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FDF144E842DA787977E7D296 /* Pods-Travlendar.debug.xcconfig */,
+				26302807732CB24685CE474C /* Pods-Travlendar.release.xcconfig */,
+				BD04F6963F2F7F3D234BEA88 /* Pods-TravlendarTests.debug.xcconfig */,
+				EF0721E6E6FD6A66F7F08180 /* Pods-TravlendarTests.release.xcconfig */,
+				CC58FA8973D275AC2F27215B /* Pods-TravlendarUITests.debug.xcconfig */,
+				C6B85FC245A763B533A6D818 /* Pods-TravlendarUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		85FECD4C4125785F04191F7B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				33D1DA7E3D37B92AEAB2957E /* Pods_Travlendar.framework */,
+				15DBA3F6C1AAE48C87D98E07 /* Pods_TravlendarTests.framework */,
+				266CBB84939490CA830F8898 /* Pods_TravlendarUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1EAA18DA1FC9CE9F001B3612 /* Travlendar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1EAA19061FC9CEA0001B3612 /* Build configuration list for PBXNativeTarget "Travlendar" */;
+			buildPhases = (
+				0E08AEDF91882A5C2281E28B /* [CP] Check Pods Manifest.lock */,
+				1EAA18D71FC9CE9F001B3612 /* Sources */,
+				1EAA18D81FC9CE9F001B3612 /* Frameworks */,
+				1EAA18D91FC9CE9F001B3612 /* Resources */,
+				6A91B2D7398A4CE54A25FED1 /* [CP] Embed Pods Frameworks */,
+				B63C4EFEF9D62B61E0215C46 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Travlendar;
+			productName = Travlendar;
+			productReference = 1EAA18DB1FC9CE9F001B3612 /* Travlendar.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1EAA18F11FC9CEA0001B3612 /* TravlendarTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1EAA19091FC9CEA0001B3612 /* Build configuration list for PBXNativeTarget "TravlendarTests" */;
+			buildPhases = (
+				2394922FA7A3DCAF09D9895E /* [CP] Check Pods Manifest.lock */,
+				1EAA18EE1FC9CEA0001B3612 /* Sources */,
+				1EAA18EF1FC9CEA0001B3612 /* Frameworks */,
+				1EAA18F01FC9CEA0001B3612 /* Resources */,
+				330D16B525727AB8B49400C2 /* [CP] Embed Pods Frameworks */,
+				329290AD16012E5594489A31 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1EAA18F41FC9CEA0001B3612 /* PBXTargetDependency */,
+			);
+			name = TravlendarTests;
+			productName = TravlendarTests;
+			productReference = 1EAA18F21FC9CEA0001B3612 /* TravlendarTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		1EAA18FC1FC9CEA0001B3612 /* TravlendarUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1EAA190C1FC9CEA0001B3612 /* Build configuration list for PBXNativeTarget "TravlendarUITests" */;
+			buildPhases = (
+				0F5B44E3187E0C7574D1EBFE /* [CP] Check Pods Manifest.lock */,
+				1EAA18F91FC9CEA0001B3612 /* Sources */,
+				1EAA18FA1FC9CEA0001B3612 /* Frameworks */,
+				1EAA18FB1FC9CEA0001B3612 /* Resources */,
+				7FD27865AA8BA0CBA3785FDB /* [CP] Embed Pods Frameworks */,
+				523445540A8158BEBE10DEAE /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1EAA18FF1FC9CEA0001B3612 /* PBXTargetDependency */,
+			);
+			name = TravlendarUITests;
+			productName = TravlendarUITests;
+			productReference = 1EAA18FD1FC9CEA0001B3612 /* TravlendarUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1EAA18D31FC9CE9F001B3612 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0900;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "Giovanni Filaferro";
+				TargetAttributes = {
+					1EAA18DA1FC9CE9F001B3612 = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+					};
+					1EAA18F11FC9CEA0001B3612 = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 1EAA18DA1FC9CE9F001B3612;
+					};
+					1EAA18FC1FC9CEA0001B3612 = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 1EAA18DA1FC9CE9F001B3612;
+					};
+				};
+			};
+			buildConfigurationList = 1EAA18D61FC9CE9F001B3612 /* Build configuration list for PBXProject "Travlendar" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1EAA18D21FC9CE9F001B3612;
+			productRefGroup = 1EAA18DC1FC9CE9F001B3612 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1EAA18DA1FC9CE9F001B3612 /* Travlendar */,
+				1EAA18F11FC9CEA0001B3612 /* TravlendarTests */,
+				1EAA18FC1FC9CEA0001B3612 /* TravlendarUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1EAA18D91FC9CE9F001B3612 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1EAA18EC1FC9CE9F001B3612 /* LaunchScreen.storyboard in Resources */,
+				1EAA18E91FC9CE9F001B3612 /* Assets.xcassets in Resources */,
+				1EAA18E41FC9CE9F001B3612 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EAA18F01FC9CEA0001B3612 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EAA18FB1FC9CEA0001B3612 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0E08AEDF91882A5C2281E28B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Travlendar-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0F5B44E3187E0C7574D1EBFE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TravlendarUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2394922FA7A3DCAF09D9895E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TravlendarTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		329290AD16012E5594489A31 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TravlendarTests/Pods-TravlendarTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		330D16B525727AB8B49400C2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TravlendarTests/Pods-TravlendarTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		523445540A8158BEBE10DEAE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TravlendarUITests/Pods-TravlendarUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6A91B2D7398A4CE54A25FED1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Travlendar/Pods-Travlendar-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/KeychainSwift/KeychainSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Travlendar/Pods-Travlendar-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7FD27865AA8BA0CBA3785FDB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TravlendarUITests/Pods-TravlendarUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B63C4EFEF9D62B61E0215C46 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Travlendar/Pods-Travlendar-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1EAA18D71FC9CE9F001B3612 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1EAA18E11FC9CE9F001B3612 /* ViewController.swift in Sources */,
+				1EAA18E71FC9CE9F001B3612 /* Travlendar.xcdatamodeld in Sources */,
+				1EAA18DF1FC9CE9F001B3612 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EAA18EE1FC9CEA0001B3612 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1EAA18F71FC9CEA0001B3612 /* TravlendarTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EAA18F91FC9CEA0001B3612 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1EAA19021FC9CEA0001B3612 /* TravlendarUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1EAA18F41FC9CEA0001B3612 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1EAA18DA1FC9CE9F001B3612 /* Travlendar */;
+			targetProxy = 1EAA18F31FC9CEA0001B3612 /* PBXContainerItemProxy */;
+		};
+		1EAA18FF1FC9CEA0001B3612 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1EAA18DA1FC9CE9F001B3612 /* Travlendar */;
+			targetProxy = 1EAA18FE1FC9CEA0001B3612 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1EAA18E21FC9CE9F001B3612 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1EAA18E31FC9CE9F001B3612 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		1EAA18EA1FC9CE9F001B3612 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1EAA18EB1FC9CE9F001B3612 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1EAA19041FC9CEA0001B3612 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1EAA19051FC9CEA0001B3612 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1EAA19071FC9CEA0001B3612 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FDF144E842DA787977E7D296 /* Pods-Travlendar.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 498K6C2R6K;
+				INFOPLIST_FILE = Travlendar/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.giovannifilaferro.Travlendar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1EAA19081FC9CEA0001B3612 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 26302807732CB24685CE474C /* Pods-Travlendar.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 498K6C2R6K;
+				INFOPLIST_FILE = Travlendar/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.giovannifilaferro.Travlendar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		1EAA190A1FC9CEA0001B3612 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BD04F6963F2F7F3D234BEA88 /* Pods-TravlendarTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 498K6C2R6K;
+				INFOPLIST_FILE = TravlendarTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.giovannifilaferro.TravlendarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Travlendar.app/Travlendar";
+			};
+			name = Debug;
+		};
+		1EAA190B1FC9CEA0001B3612 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EF0721E6E6FD6A66F7F08180 /* Pods-TravlendarTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 498K6C2R6K;
+				INFOPLIST_FILE = TravlendarTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.giovannifilaferro.TravlendarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Travlendar.app/Travlendar";
+			};
+			name = Release;
+		};
+		1EAA190D1FC9CEA0001B3612 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC58FA8973D275AC2F27215B /* Pods-TravlendarUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 498K6C2R6K;
+				INFOPLIST_FILE = TravlendarUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.giovannifilaferro.TravlendarUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Travlendar;
+			};
+			name = Debug;
+		};
+		1EAA190E1FC9CEA0001B3612 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C6B85FC245A763B533A6D818 /* Pods-TravlendarUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 498K6C2R6K;
+				INFOPLIST_FILE = TravlendarUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.giovannifilaferro.TravlendarUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Travlendar;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1EAA18D61FC9CE9F001B3612 /* Build configuration list for PBXProject "Travlendar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EAA19041FC9CEA0001B3612 /* Debug */,
+				1EAA19051FC9CEA0001B3612 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1EAA19061FC9CEA0001B3612 /* Build configuration list for PBXNativeTarget "Travlendar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EAA19071FC9CEA0001B3612 /* Debug */,
+				1EAA19081FC9CEA0001B3612 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1EAA19091FC9CEA0001B3612 /* Build configuration list for PBXNativeTarget "TravlendarTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EAA190A1FC9CEA0001B3612 /* Debug */,
+				1EAA190B1FC9CEA0001B3612 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1EAA190C1FC9CEA0001B3612 /* Build configuration list for PBXNativeTarget "TravlendarUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EAA190D1FC9CEA0001B3612 /* Debug */,
+				1EAA190E1FC9CEA0001B3612 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1EAA18E51FC9CE9F001B3612 /* Travlendar.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1EAA18E61FC9CE9F001B3612 /* Travlendar.xcdatamodel */,
+			);
+			currentVersion = 1EAA18E61FC9CE9F001B3612 /* Travlendar.xcdatamodel */;
+			path = Travlendar.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 1EAA18D31FC9CE9F001B3612 /* Project object */;
+}
