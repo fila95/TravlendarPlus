@@ -1408,6 +1408,18 @@ Event Detail / Route Detail
 \end_inset
 
 
+\begin_inset space \enskip{}
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/Wireframe/17-EventDetail-RouteDetail-BuyTic_wired@3x.png
+	lyxscale 10
+	scale 15
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1427,6 +1439,16 @@ Event Detail
 In particular all the parts composing the route are shown on map and just
  by tapping the button on the right of each cell the app will prompt the
  user to buy a ticket.
+\end_layout
+
+\begin_layout Standard
+The second mockup image appears when the user taps on the buy button.
+ This is the sheet that opens (the team used Apple Pay as an example, this
+ will work also with other providers such as Google Wallet or Samsung Pay).
+\end_layout
+
+\begin_layout Standard
+When the user confirms the payment he/she'll get a ticket back.
 \end_layout
 
 \begin_layout Standard
