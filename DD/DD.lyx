@@ -1827,7 +1827,7 @@ POST: Save some settings
 \begin_layout Itemize
 
 \series bold
-/api/v1/calendars
+/api/v1/calendars/
 \end_layout
 
 \begin_deeper
@@ -1843,7 +1843,7 @@ POST: Save some calendars
 \begin_layout Itemize
 
 \series bold
-/api/v1/events
+/api/v1/calendar/{calendar_id}/events
 \end_layout
 
 \begin_deeper
@@ -1877,6 +1877,30 @@ GET: Retrieve the user schedule
 \begin_deeper
 \begin_layout Itemize
 POST: Update the current user position
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+/api/v1/nearestSharingMeans
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+GET: Retrieve a list of sharing means near a specified coordinate
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+/api/v1/companies
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+GET: Retrieve a list of available companies
 \end_layout
 
 \end_deeper
@@ -1998,6 +2022,15 @@ Singleton
 Publish/Subscribe
 \series default
 : Used for the push notifications between the clients and the server
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Facade
+\series default
+: Used in the nearest sharing means API, that allows the clients to worry
+ less about the differents requests that has to be made
 \end_layout
 
 \begin_layout Subsection
