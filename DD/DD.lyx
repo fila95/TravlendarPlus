@@ -1590,19 +1590,6 @@ High level components
 Runtime view
 \end_layout
 
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Diagrammi possibilmente da riesportare
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsubsection
 Create Calendar
 \end_layout
@@ -1654,7 +1641,7 @@ hspace*{-0.5cm}
 \begin_inset Graphics
 	filename images/AddStandardOrFlexibleEvent.png
 	lyxscale 40
-	scale 40
+	scale 38
 	rotateAngle 90
 
 \end_inset
@@ -1667,10 +1654,23 @@ Edit Preferences
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace*{-4cm}
+\end_layout
+
+\end_inset
+
+
 \begin_inset Graphics
 	filename images/EditPreferences.png
 	lyxscale 40
-	scale 40
+	scale 38
 	rotateAngle 90
 
 \end_inset
@@ -1679,20 +1679,7 @@ Edit Preferences
 \end_layout
 
 \begin_layout Subsubsection
-Buy Ticket
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Da correggere le interazioni: mancano gli user_token
-\end_layout
-
-\end_inset
-
-
+Buy Ticket through SMS
 \end_layout
 
 \begin_layout Standard
@@ -1703,7 +1690,9 @@ status open
 
 
 \backslash
-hspace*{-3.0cm}
+vspace*{-4cm}
+\backslash
+hspace*{-0.5cm}
 \end_layout
 
 \end_inset
@@ -1713,6 +1702,7 @@ hspace*{-3.0cm}
 	filename images/buyTicket.png
 	lyxscale 40
 	scale 40
+	rotateAngle 90
 
 \end_inset
 
