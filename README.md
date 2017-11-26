@@ -20,12 +20,9 @@ Here we publish the final Design Document
 ## Contributors:
 - Calzavara Filippo
     - Matricola: `898526`
-    - Email: filippo.calzavara@mail.polimi.it
 - Filaferro Giovanni
     - Matricola: `898594`
-    - Email: giovanni.filaferro@mail.polimi.it
 - Nespoli Maria Benedetto
     - Matricola: `898884`
-    - Email: benedettomaria.nespoli@mail.polimi.it
 
 
