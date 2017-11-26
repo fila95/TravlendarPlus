@@ -3342,6 +3342,12 @@ Swift Unit Test
 \end_layout
 
 \begin_layout Standard
+The team decided also to use a continuous integration tool called Travis
+ CI, client side to automatically manage Swift builds and CocoaPods for
+  dependencies.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Newpage pagebreak
 \end_inset
 
