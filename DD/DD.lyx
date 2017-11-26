@@ -1706,7 +1706,7 @@ status open
 \backslash
 vspace*{-4cm}
 \backslash
-hspace*{-0.5cm}
+hspace*{-2.0cm}
 \end_layout
 
 \end_inset
@@ -1715,7 +1715,7 @@ hspace*{-0.5cm}
 \begin_inset Graphics
 	filename images/buyTicket.png
 	lyxscale 40
-	scale 40
+	scale 48
 	rotateAngle 90
 
 \end_inset
