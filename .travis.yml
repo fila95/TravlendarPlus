@@ -1,0 +1,5 @@
+language: swift
+xcode_workspace: Implementation/App/Travlendar/Travlendar.xcworkspace # path to your xcodeproj folder
+xcode_scheme: Tests
+osx_image: xcode9.1
+podfile: Implementation/App/Travlendar/Podfile
