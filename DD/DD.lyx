@@ -1087,8 +1087,7 @@ High-level components overview and their interaction
 
 \begin_layout Standard
 The mobile application located on the client's phone connects to the central
- server by sending REST Api calls in asynchronous mode with a separated
- thread.
+ server by sending REST Api calls in asynchronous mode in a separated thread.
  The main server replies back with the information requested using the JSON
  encoding, which is reinterpreted locally by the application.
  An example of this interaction is reported on Figure 
@@ -1114,7 +1113,7 @@ status open
 \begin_inset Graphics
 	filename images/application.png
 	lyxscale 50
-	scale 50
+	scale 25
 
 \end_inset
 
@@ -1155,8 +1154,8 @@ reference "fig:Central-Server-Representation"
 
 \end_inset
 
-, a centralized server is composed by three entities: the web server, the
- application logic and the database.
+, the main server is composed by two entities: the web server and the applicatio
+n logic while the database stays on another machine (Distributed Architecture).
  The first is in charge of dealing with all HTTP/HTTPS API requests in a
  consistent and systematic way.
  It also communicates with the application logic, which is the second layer,
@@ -1179,7 +1178,7 @@ status open
 \begin_inset Graphics
 	filename images/heroku.png
 	lyxscale 50
-	scale 50
+	scale 22
 
 \end_inset
 
@@ -1197,7 +1196,9 @@ name "fig:Central-Server-Representation"
 \end_inset
 
 Central Server relies on Heroku Cloud.
- Its representation includes three layer connected to each other 
+ Its representation includes two layers connected to each other, the database
+ will be separated and filters requests through a firewall.
+ 
 \end_layout
 
 \end_inset
@@ -1211,9 +1212,9 @@ Central Server relies on Heroku Cloud.
 \end_layout
 
 \begin_layout Standard
-All three active parts hereinbefore described are could be located into
- several machines: replication and load balancing issues are transparent
- services provided by the Heroku platform
+All the parts described before can be separated into more than one machines:
+ replication and load balancing issues are transparent services provided
+ by the Heroku platform.
 \end_layout
 
 \begin_layout Subsection
