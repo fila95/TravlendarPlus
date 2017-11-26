@@ -948,8 +948,8 @@ reference "fig:General-tier"
 
 \end_inset
 
- represents Travlendar+'s architecture, based on a two physical tiers system
- with distributed application and data.
+ represents Travlendar+'s architecture, based on a three physical tiers
+ system with distributed application and data.
  In order to maintain higher standard in terms of offline reliability, the
  client application is provided of a presentation level, application logic
  and data management that merely synchronizes and fetch updates from the
@@ -1036,7 +1036,7 @@ The
 \emph on
 Deployment view
 \emph default
- section contain a diagram with the interactions between several components
+ section contains more details regarding the physical tiers implementation
 \end_layout
 
 \begin_layout Enumerate
@@ -1546,16 +1546,24 @@ Deployment view
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Bennes verifica se ci sono moduli da inserire nel webSe
-\end_layout
-
-\end_inset
-
-i
+As stated before, the system is composed by a three tiers architecture over
+ the Herouk infrastructure.
+ The first tier is represented by the mobile application that works with
+ an own replica of the database over 
+\emph on
+Relam
+\emph default
+ DBMS.
+ The application logic connects to the web server (based on NodeJS) via
+ HTTP requests, that is located on an Heroku Machine (second tier).
+ Moreover, the application server located on the same machine is engaged
+ to connect to the DataBase Server (third tier) that contains the remote
+ DBMS (
+\emph on
+PostgreSQL
+\emph default
+),.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -1575,8 +1583,16 @@ status open
 
 
 \backslash
-hspace*{-1.0cm}
+hspace*{-3.0cm}
 \end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/deployment.png
+	lyxscale 30
+	scale 50
 
 \end_inset
 
@@ -1587,7 +1603,7 @@ hspace*{-1.0cm}
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-High level components
+Deployment view of the System
 \end_layout
 
 \end_inset
