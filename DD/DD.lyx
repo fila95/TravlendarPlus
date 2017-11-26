@@ -1410,7 +1410,7 @@ Account Manager Module
 Tickets module
 \emph default
  provides tools to check whether a specific mean of transportation allows
- the sms-purchasing and eventually generates the text message.
+ the sms-purchasing and eventually generates the text message or the URL.
  Moreover, a 
 \emph on
 Setting Module
@@ -1556,9 +1556,13 @@ Relam
  DBMS.
  The application logic connects to the web server (based on NodeJS) via
  HTTP requests, that is located on an Heroku Machine (second tier).
- Moreover, the application server located on the same machine is engaged
- to connect to the DataBase Server (third tier) that contains the remote
- DBMS (
+ Moreover, the application server located on the same machine connects to
+ the DataBase Server (third tier) through 
+\emph on
+orm
+\emph default
+ protocol.
+ This last tier contains the remote DBMS (
 \emph on
 PostgreSQL
 \emph default
@@ -1583,7 +1587,7 @@ status open
 
 
 \backslash
-hspace*{-3.0cm}
+hspace*{-3.5cm}
 \end_layout
 
 \end_inset
@@ -1592,7 +1596,7 @@ hspace*{-3.0cm}
 \begin_inset Graphics
 	filename images/deployment.png
 	lyxscale 30
-	scale 50
+	scale 37
 
 \end_inset
 
@@ -1751,8 +1755,38 @@ Component interfaces
 \end_layout
 
 \begin_layout Standard
-In this section are described the interfaces that the Clients and the Server
- will use in order to communicate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{-1.0cm}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/interface-2.png
+	lyxscale 30
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+\begin_inset Graphics
+	filename images/interface-1.png
+	lyxscale 30
+	scale 40
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
