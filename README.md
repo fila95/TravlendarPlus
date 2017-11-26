@@ -17,6 +17,12 @@ Here we publish the final Requirement Analysis and Specification Document
 Here we publish the final Design Document
 - `Version 1.0` file can be found [here](https://github.com/fila95/CalzavaraFilaferroNespoli/blob/master/DeliveryFolder/DD1.0.0.pdf)
 
+### Implementation and Testing
+
+#### iOS App
+[![Build Status](https://travis-ci.com/fila95/CalzavaraFilaferroNespoli.svg?token=pfastsPECNxUM9vMyqAd&branch=master)](https://travis-ci.com/fila95/CalzavaraFilaferroNespoli)
+
+
 ## Contributors:
 - Calzavara Filippo
     - Matricola: `898526`
