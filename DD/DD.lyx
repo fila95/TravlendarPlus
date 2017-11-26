@@ -1755,35 +1755,29 @@ Component interfaces
 \end_layout
 
 \begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-hspace*{-1.0cm}
-\end_layout
-
-\end_inset
-
-
 \begin_inset Graphics
 	filename images/interface-2.png
 	lyxscale 30
-	scale 40
+	scale 45
 
 \end_inset
 
 
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Standard
 \begin_inset Graphics
 	filename images/interface-1.png
 	lyxscale 30
-	scale 40
+	scale 45
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
 \end_inset
 
 
@@ -1948,6 +1942,13 @@ GET: Retrieve a list of available companies
 \end_layout
 
 \end_deeper
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Selected architectural styles and patterns
 \end_layout
