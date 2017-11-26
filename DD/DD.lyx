@@ -177,21 +177,12 @@ Travlendar+
 \end_inset
 
 's System.
-\end_layout
-
-\begin_layout Standard
-This document explains each component that will be inserted into the system,
+ This document explains each component that will be inserted into the system,
  its architecture and the design patterns that will be implemented to ensure
  that all the requirements are satisfied.
-\end_layout
-
-\begin_layout Standard
-Components will be described both at High Level and more in depth, illustrating
+ Components will be described both at High Level and more in depth, illustrating
  and explaining all the subcomponents every component is made of.
-\end_layout
-
-\begin_layout Standard
-The reader of this document will get a clear idea about its architecture
+ The reader of this document will get a clear idea about its architecture
  (hardware and software) whether he wants to have a detailed description
  of the system or a more general one.
 \end_layout
@@ -201,15 +192,20 @@ Scope
 \end_layout
 
 \begin_layout Standard
-To learn about the Scope of the project look to the 
-\begin_inset Quotes eld
-\end_inset
-
-1.2 Scope
-\begin_inset Quotes erd
-\end_inset
-
- section of the RASD document.
+The aim of this project is to create a smart calendar-based application
+ that people can use to reduce delays at the appointments and supporting
+ the users by identifying the best mobility option.
+ People create appointments and they get notified in case they will not
+ be on time for it.
+ Moreover, the system needs to take into account weather forecast as well
+ as strike days.
+ Furthermore, the users should be able to adapt settings based on their
+ preferences, such as walking-time constrains or a more eco-friendly way
+ of transportation, and the possibility to define flexible appointments
+ that given a window of time and a duration an arrangement of the schedule
+ is proposed.
+ Finally, the system should provide the user of a ticket or locate the closest
+ car/bike sharing vehicle if it is the mean of transportation chosen.
 \end_layout
 
 \begin_layout Subsection
@@ -911,21 +907,11 @@ Document Structure
 The paper includes eight areas.
  The first one, is composed by the introductory information provided in
  order to give an orientative view of what this document is about.
- 
-\end_layout
-
-\begin_layout Standard
-The second one provides an in-depth description of each Architectural Design
+ The second one provides an in-depth description of each Architectural Design
  aspect which reflects the decisions that the team made.
-\end_layout
-
-\begin_layout Standard
-The third section is about the algorithms that are designed to make the
+ The third section is about the algorithms that are designed to make the
  full system work.
-\end_layout
-
-\begin_layout Standard
-Then a 
+ Then a 
 \begin_inset Quotes eld
 \end_inset
 
@@ -934,20 +920,11 @@ User Interface Design
 \end_inset
 
  section will go through the design decisions.
-\end_layout
-
-\begin_layout Standard
-Section five provides information about how the requirements defined in
+ Section five provides information about how the requirements defined in
  the RASD document map to the design elements defined in this document.
-\end_layout
-
-\begin_layout Standard
-The sixth section will identify the order in which the subcomponents of
+ The sixth section will identify the order in which the subcomponents of
  the system will be implemented and tested.
-\end_layout
-
-\begin_layout Standard
-Finally, a seventh and a eight section allows the reader to learn the effort
+ Finally, a seventh and a eight section allows the reader to learn the effort
  spent on this project by each team member and the references made in the
  whole paper.
 \end_layout
@@ -1295,7 +1272,7 @@ name "fig:The-main-component"
 
 \end_inset
 
-The high level component view of the system
+The component view of the system
 \end_layout
 
 \end_inset
@@ -1431,10 +1408,14 @@ Account Manager Module
 \emph on
 Tickets module
 \emph default
- provide tools to store the ticket provided by the local transit company
- into the database.
- Moreover, a setting module provides tools for setting managing such as
- the eco-friendly mode or the external services available.
+ provides tools to check whether a specific mean of transportation allows
+ the sms-purchasing and eventually generates the text message.
+ Moreover, a 
+\emph on
+Setting Module
+\emph default
+ provides tools for settings managing such as the eco-friendly mode or the
+ external services available.
 \end_layout
 
 \begin_layout Standard
@@ -1564,6 +1545,19 @@ Deployment view
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Bennes verifica se ci sono moduli da inserire nel webSe
+\end_layout
+
+\end_inset
+
+i
+\end_layout
+
+\begin_layout Standard
 \align center
 \begin_inset Float figure
 placement H
@@ -1586,26 +1580,12 @@ hspace*{-1.0cm}
 \end_inset
 
 
-\begin_inset Graphics
-	filename images/highLevelComponent.png
-	lyxscale 40
-	scale 40
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:High-level-components"
-
-\end_inset
-
 High level components
 \end_layout
 
