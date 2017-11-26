@@ -21,6 +21,7 @@ Here we publish the final Design Document
 
 #### iOS App
 [![Build Status](https://travis-ci.com/fila95/CalzavaraFilaferroNespoli.svg?token=pfastsPECNxUM9vMyqAd&branch=master)](https://travis-ci.com/fila95/CalzavaraFilaferroNespoli)
+[![codecov](https://codecov.io/gh/fila95/CalzavaraFilaferroNespoli/branch/master/graph/badge.svg?token=j9U8t3J9rD)](https://codecov.io/gh/fila95/CalzavaraFilaferroNespoli)
 
 
 ## Contributors:
