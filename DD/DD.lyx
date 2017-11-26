@@ -1589,14 +1589,6 @@ hspace*{-3.0cm}
 \end_inset
 
 
-\begin_inset Graphics
-	filename images/deployment.png
-	lyxscale 30
-	scale 50
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Plain Layout
@@ -1923,7 +1915,7 @@ Overall Architecture
 \end_layout
 
 \begin_layout Standard
-Our system will be composed of two tiers:
+Our system will be composed of three tiers:
 \end_layout
 
 \begin_layout Enumerate
@@ -1931,13 +1923,17 @@ A client executable, that will run on an iOS device
 \end_layout
 
 \begin_layout Enumerate
-A server part, that will be served on a scalable Heroku instance
+A server application, that will be served on a scalable Heroku instance
+\end_layout
+
+\begin_layout Enumerate
+A PostgreSQL database that will communicate with the server application
 \end_layout
 
 \begin_layout Standard
-Each part will need a database: the server will store any piece of information
- about users, calendars and events on its database, while the client's database
- will have a cached copy of some events and calendars.
+The server will store any piece of information about users, calendars and
+ events on its own database, while the client's will have a smaller and
+ simpler database that will have a cached copy of some events and calendars.
 \end_layout
 
 \begin_layout Subsubsection
