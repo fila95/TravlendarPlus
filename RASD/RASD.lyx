@@ -117,7 +117,7 @@ Calzavara Filippo, Filaferro Giovanni, Benedetto Maria Nespoli
 
 \begin_layout Standard
 \align center
-Version 1.1.0
+Version 1.2.0
 \end_layout
 
 \begin_layout Standard
@@ -246,10 +246,6 @@ Goals
 \end_layout
 
 \end_deeper
-\begin_layout Itemize
-[G3.3] Allow people to eventually view the purchased transit ticket
-\end_layout
-
 \end_deeper
 \begin_layout Itemize
 [G4] Allow the users to create an event
@@ -330,21 +326,20 @@ Goals
 \end_layout
 
 \begin_layout Itemize
-[G6.4] Allow the users to set the owned bike and/or bike sharing providers
+[G6.4] Allow users to set the owned bike and/or bike sharing providers
 \end_layout
 
 \begin_layout Itemize
-[G6.5] Allow the users to set a time range in which they can take public
- transits
+[G6.5] Allow users to set a time range in which they can take public transits
 \end_layout
 
 \begin_layout Itemize
-[G6.6] Allow the users to set if they own a car and/or their favorite car
- sharing providers
+[G6.6] Allow users to set if they own a car and/or their favorite car sharing
+ providers
 \end_layout
 
 \begin_layout Itemize
-[G6.7] Allow the users to set the preferred ride sharing service
+[G6.7] Allow users to set the preferred ride sharing service
 \end_layout
 
 \end_deeper
@@ -354,11 +349,11 @@ Goals
 
 \begin_deeper
 \begin_layout Itemize
-[G7.1] Allow the users to color calendar
+[G7.1] Allow users to color calendar
 \end_layout
 
 \begin_layout Itemize
-[G7.2] Allow the users to change calendar's color and name
+[G7.2] Allow users to change calendar's color and name
 \end_layout
 
 \end_deeper
@@ -870,7 +865,11 @@ Revision history
 \end_layout
 
 \begin_layout Itemize
-1.1.0 - Minor bug correction
+1.1.0 - Minor bug correction (23/11/2017)
+\end_layout
+
+\begin_layout Itemize
+1.2.0 - Updated Class Diagram, Use Case and Sequence Diagram (25/11/2017)
 \end_layout
 
 \begin_layout Subsection
@@ -945,9 +944,22 @@ Class Diagram
 
 \begin_layout Standard
 \align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{-3.0cm}
+\end_layout
+
+\end_inset
+
+
 \begin_inset Graphics
-	filename images/CD.png
-	lyxscale 55
+	filename /Users/phil/git/CalzavaraFilaferroNespoli/RASD/images/CD.png
+	lyxscale 35
 	scale 45
 
 \end_inset
@@ -978,7 +990,7 @@ Active mode:
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename images/SC-active.png
+	filename /Users/phil/git/CalzavaraFilaferroNespoli/RASD/images/SC-active.png
 	lyxscale 30
 	scale 27
 
@@ -1010,7 +1022,7 @@ hspace*{-2.0cm}
 
 
 \begin_inset Graphics
-	filename images/SC-passive.png
+	filename /Users/phil/git/CalzavaraFilaferroNespoli/RASD/images/SC-passive.png
 	lyxscale 30
 	scale 36
 
@@ -1027,27 +1039,21 @@ Product functions
 Each goal described in Section 1.2.1 is function that will be implemented
  in the system.
  We report below the functionalities that require a further explanation
- and the boundaries between the system to be developed and thirty party
- system.
+ and the boundaries between the system to be developed and third party system.
 \end_layout
 
 \begin_layout Subsubsection
-Allow people to purchase and view the transit ticket
+Allow people to purchase transit ticket
 \end_layout
 
 \begin_layout Standard
-The ticket buying system will use regular text messages to send a purchasing
- request at the local transit company which reply to our app with the PNR
- code of the ticket.
+The ticket purchase can be implemented as SMS based system that sends a
+ purchasing request to the local transit company which reply to the user's
+ cell phone with the PNR code of the ticket.
  This choice of designing was made to ensure compatibility among every transit
  provider and to allow users to pay it by charging the cost of the ticket
  on their cell phone credit/bill, letting the carrier provider handling
  the payment.
-\end_layout
-
-\begin_layout Standard
-When the purchasing is completed, a QR code representing the ticket's PNR
- will be displayed on the user's screen.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1104,6 +1110,7 @@ The software is designed to be utilized in Italy, precisely in the region
 \begin_layout Enumerate
 Most public transits companies provide a sms-based purchasing system.
  If they don't, their app will be opened to complete the purchase.
+ If the app is not available the company's website will be opened
 \end_layout
 
 \begin_layout Enumerate
@@ -1127,15 +1134,6 @@ Calculating the shortest path follows a time-based criteria instead of a
 
 \begin_layout Enumerate
 Google Maps API takes into account strikes information
-\end_layout
-
-\begin_layout Subsubsection
-Interfaces to other applications
-\end_layout
-
-\begin_layout Standard
-At the first stages of the project, Travlendar+ will not release API interfaces
- to the public
 \end_layout
 
 \begin_layout Subsubsection
@@ -2117,10 +2115,6 @@ Later on
 \end_layout
 
 \begin_layout Itemize
-[R13] The system must show the purchased ticket
-\end_layout
-
-\begin_layout Itemize
 [R14] The paths color in the map changes accordingly to the means of transportat
 ion
 \end_layout
@@ -2355,7 +2349,7 @@ Scenario 1
 \end_layout
 
 \begin_layout Standard
-Mike was invited to John's Party in Los Angeles and he really wants to go
+Mike was invited to John's Party in Barabiago and he really wants to go
  there.
  Unfortunately he has a lot of memory problems...
  That's the reason why John told him to use Travlendar+.
@@ -3313,8 +3307,7 @@ BuyTickets
 \end_layout
 
 \begin_layout Standard
-Allow the user to buy public transportation tickets directly from the applicatio
-n.
+Allow the user to buy public transportation tickets.
 \end_layout
 
 \begin_layout Standard
@@ -3456,10 +3449,6 @@ The user sends the text message
 The user receives a reply from the local transit company with a PNR code
 \end_layout
 
-\begin_layout Enumerate
-The text message sent from the local transit company is read by the application
-\end_layout
-
 \end_inset
 </cell>
 </row>
@@ -3477,7 +3466,7 @@ Output conditions
 \begin_inset Text
 
 \begin_layout Plain Layout
-The ticket is recorded in the database
+The user has received a text message with the ticket PNR
 \end_layout
 
 \end_inset
@@ -3496,8 +3485,16 @@ Exceptions
 <cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 The purchased is aborted if the user doesn't have enough credit on the phone
+\end_layout
+
+\begin_layout Itemize
+If the provider doesn't support the SMS purchasing, their app is opened
+\end_layout
+
+\begin_layout Itemize
+If the app is not available the company's website will be opened
 \end_layout
 
 \end_inset
@@ -3738,7 +3735,7 @@ CreateCalendar
 \align center
 \begin_inset Graphics
 	filename images/SD/CreatCalendar.png
-	lyxscale 55
+	lyxscale 40
 	scale 55
 
 \end_inset
@@ -3754,7 +3751,7 @@ Edit Preferences
 \align center
 \begin_inset Graphics
 	filename images/SD/EditPreferences.png
-	lyxscale 80
+	lyxscale 40
 	scale 50
 
 \end_inset
@@ -3763,7 +3760,7 @@ Edit Preferences
 \end_layout
 
 \begin_layout Subsubsection
-BuyTickets
+BuyTickets SMS
 \end_layout
 
 \begin_layout Standard
@@ -3783,8 +3780,8 @@ hspace*{-3.5cm}
 
 \begin_inset Graphics
 	filename images/SD/buyTicket.png
-	lyxscale 40
-	scale 50
+	lyxscale 30
+	scale 43
 
 \end_inset
 
@@ -4125,15 +4122,15 @@ Effort spent
 \end_layout
 
 \begin_layout Itemize
-Filippo Calzavara: 30.00h
+Filippo Calzavara: 32.00h
 \end_layout
 
 \begin_layout Itemize
-Giovanni Filaferro: 30.00h
+Giovanni Filaferro: 32.00h
 \end_layout
 
 \begin_layout Itemize
-Benedetto Maria Nespoli: 30.00h
+Benedetto Maria Nespoli: 32.00h
 \end_layout
 
 \begin_layout Section

@@ -3,8 +3,13 @@
 \documentclass[english]{article}
 \usepackage[T1]{fontenc}
 \usepackage[latin9]{inputenc}
+\usepackage{babel}
 \usepackage{array}
 \usepackage{graphicx}
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
+ breaklinks=false,pdfborder={0 0 1},backref=false,colorlinks=false]
+ {hyperref}
 
 \makeatletter
 
@@ -14,7 +19,6 @@
 
 \makeatother
 
-\usepackage{babel}
 \begin{document}
 \noindent \begin{center}
 \includegraphics[scale=0.15]{\string"images/GitHub Banner\string".png}
@@ -32,7 +36,7 @@ Calzavara Filippo, Filaferro Giovanni, Benedetto Maria Nespoli
 
 \end{quote}
 \begin{center}
-Version 1.0.0
+Version 1.2.0
 \par\end{center}
 
 \bigskip{}
@@ -89,7 +93,6 @@ event
 \item {[}G3.2.2{]} Allow people to open the sharing services/ride provider's
 app and call the vehicle
 \end{itemize}
-\item {[}G3.3{]} Allow people to eventually view the purchased transit ticket
 \end{itemize}
 \item {[}G4{]} Allow the users to create an event
 \begin{itemize}
@@ -120,18 +123,17 @@ the journey to make in order to reach the appointment's location
 \item {[}G6.1{]} Allow the user to set the eco-friendly mode
 \item {[}G6.2{]} Allow the user to set the walkable distance limit
 \item {[}G6.3{]} Allow the user to set the maximum biking range
-\item {[}G6.4{]} Allow the users to set the owned bike and/or bike sharing
-providers
-\item {[}G6.5{]} Allow the users to set a time range in which they can take
+\item {[}G6.4{]} Allow users to set the owned bike and/or bike sharing providers
+\item {[}G6.5{]} Allow users to set a time range in which they can take
 public transits
-\item {[}G6.6{]} Allow the users to set if they own a car and/or their favorite
+\item {[}G6.6{]} Allow users to set if they own a car and/or their favorite
 car sharing providers
-\item {[}G6.7{]} Allow the users to set the preferred ride sharing service
+\item {[}G6.7{]} Allow users to set the preferred ride sharing service
 \end{itemize}
 \item {[}G7{]} Allow the users to create calendars
 \begin{itemize}
-\item {[}G7.1{]} Allow the users to color calendar
-\item {[}G7.2{]} Allow the users to change calendar's color and name
+\item {[}G7.1{]} Allow users to color calendar
+\item {[}G7.2{]} Allow users to change calendar's color and name
 \end{itemize}
 \item {[}G8{]} Notify the user that it's time to leave for the appointment
 \end{itemize}
@@ -206,6 +208,8 @@ App & A synonym of Travlendar+\tabularnewline
 \subsection{Revision history}
 \begin{itemize}
 \item 1.0.0 - Initial Version (16/10/2017) 
+\item 1.1.0 - Minor bug correction (23/11/2017)
+\item 1.2.0 - Updated Class Diagram, Use Case and Sequence Diagram (25/11/2017)
 \end{itemize}
 
 \subsection{Reference Documents }
@@ -241,7 +245,7 @@ sharing systems information, transits and strike information.
 
 \subsubsection{Class Diagram}
 \begin{center}
-\includegraphics[scale=0.45]{images/CD}
+\hspace*{-3.0cm}\includegraphics[scale=0.45]{/Users/phil/git/CalzavaraFilaferroNespoli/RASD/images/CD}
 \par\end{center}
 
 \subsubsection{Statechart}
@@ -254,12 +258,12 @@ and it attract user's attention when a notification is risen.
 
 \textbf{Active mode:}
 \begin{center}
-\includegraphics[scale=0.27]{images/SC-active}
+\includegraphics[scale=0.27]{/Users/phil/git/CalzavaraFilaferroNespoli/RASD/images/SC-active}
 \par\end{center}
 
 \textbf{Passive mode:}
 \noindent \begin{center}
-\hspace*{-2.0cm}\includegraphics[scale=0.36]{images/SC-passive}
+\hspace*{-2.0cm}\includegraphics[scale=0.36]{/Users/phil/git/CalzavaraFilaferroNespoli/RASD/images/SC-passive}
 \par\end{center}
 
 \subsection{Product functions}
@@ -267,19 +271,17 @@ and it attract user's attention when a notification is risen.
 Each goal described in Section 1.2.1 is function that will be implemented
 in the system. We report below the functionalities that require a
 further explanation and the boundaries between the system to be developed
-and thirty party system.
+and third party system.
 
-\subsubsection{Allow people to purchase and view the transit ticket}
+\subsubsection{Allow people to purchase transit ticket}
 
-The ticket buying system will use regular text messages to send a
-purchasing request at the local transit company which reply to our
-app with the PNR code of the ticket. This choice of designing was
-made to ensure compatibility among every transit provider and to allow
-users to pay it by charging the cost of the ticket on their cell phone
-credit/bill, letting the carrier provider handling the payment.
-
-When the purchasing is completed, a QR code representing the ticket's
-PNR will be displayed on the user's screen.
+The ticket purchase can be implemented as SMS based system that sends
+a purchasing request to the local transit company which reply to the
+user's cell phone with the PNR code of the ticket. This choice of
+designing was made to ensure compatibility among every transit provider
+and to allow users to pay it by charging the cost of the ticket on
+their cell phone credit/bill, letting the carrier provider handling
+the payment.
 
 \subsubsection{Overlapped events}
 
@@ -305,7 +307,9 @@ We assume that:
 \item The mobile device has a regular 3G internet connection available
 \item The software is designed to be utilized in Italy, precisely in the
 region of Lombardy
-\item Public transits companies provide a sms-based purchasing system
+\item Most public transits companies provide a sms-based purchasing system.
+If they don't, their app will be opened to complete the purchase.
+If the app is not available the company's website will be opened
 \item The user has already logged in to his/her device account (Google or
 Apple) so that we can identify him/her by using their unique identifier.
 \item Vehicle-sharing/ride-sharing companies' will provide APIs to locate
@@ -313,12 +317,8 @@ the nearest vehicle available
 \item Weather forecast are provided from an external service through API
 \item Calculating the shortest path follows a time-based criteria instead
 of a cost-based one
+\item Google Maps API takes into account strikes information
 \end{enumerate}
-
-\subsubsection{Interfaces to other applications}
-
-At the first stages of the project, Travlendar+ will not release API
-interfaces to the public
 
 \subsubsection{Public transit pass}
 
@@ -423,18 +423,10 @@ In particular all the parts composing the route are shown on map and
 just by tapping the button on the right of each cell the app will
 prompt the user to buy a ticket.
 
-\pagebreak{}
-
-\paragraph{Event Detail / Ticket Bought}
-
-\vspace*{\bigskipamount}
-\begin{center}
-\includegraphics[scale=0.15]{images/Wireframe/5-EventDetail-Tick_wired@3x}
-\par\end{center}
-
-When a user buys a ticket it appear in this view which is the main
-``Event Detail''. A QR code containing the PNR code of the ticket
-is shown.
+In this view, car sharing service's cars or bike sharing bikes, or
+means of transport derived by ride services will be shown on map.
+The user will have the ability to launch the relative app to use that
+service.
 
 \pagebreak{}
 
@@ -655,7 +647,6 @@ must always be shown, while the location of the event is optional
 \item {[}R11{]} Different suggested routes can be explored, if available
 \item {[}R12{]} The system must provide a way to buy tickets or book a sharing
 service vehicle
-\item {[}R13{]} The system must show the purchased ticket
 \item {[}R14{]} The paths color in the map changes accordingly to the means
 of transportation
 \end{itemize}
@@ -755,7 +746,7 @@ that the user has selected
 
 \subsubsection{Scenario 1}
 
-Mike was invited to John's Party in Los Angeles and he really wants
+Mike was invited to John's Party in Barabiago and he really wants
 to go there. Unfortunately he has a lot of memory problems... That's
 the reason why John told him to use Travlendar+.
 
@@ -960,8 +951,7 @@ Exceptions & None\tabularnewline
 
 \subsubsection{BuyTickets}
 
-Allow the user to buy public transportation tickets directly from
-the application.
+Allow the user to buy public transportation tickets.
 
 \vspace*{\bigskipamount}
 
@@ -987,15 +977,18 @@ text and the local transit company number as receiver
 \item The user sends the text message
 \item The user receives a reply from the local transit company with a PNR
 code
-\item The text message sent from the local transit company is read by the
-application
 \end{enumerate}
 \tabularnewline
 \hline 
-Output conditions & The ticket is recorded in the database\tabularnewline
+Output conditions & The user has received a text message with the ticket PNR\tabularnewline
 \hline 
-Exceptions & The purchased is aborted if the user doesn't have enough credit on
-the phone\tabularnewline
+Exceptions & \begin{itemize}
+\item The purchased is aborted if the user doesn't have enough credit on
+the phone
+\item If the provider doesn't support the SMS purchasing, their app is opened
+\item If the app is not available the company's website will be opened
+\end{itemize}
+\tabularnewline
 \hline 
 \end{tabular}
 
@@ -1056,9 +1049,9 @@ the appointment
 \includegraphics[scale=0.5]{images/SD/EditPreferences}
 \par\end{center}
 
-\subsubsection{BuyTickets}
+\subsubsection{BuyTickets SMS}
 \begin{center}
-\hspace*{-3.5cm}\includegraphics[scale=0.5]{images/SD/buyTicket}
+\hspace*{-3.5cm}\includegraphics[scale=0.43]{images/SD/buyTicket}
 \par\end{center}
 
 \subsection{Use Case Diagram}
@@ -1192,9 +1185,9 @@ Android and iOS that represents 98\% of the smartphone market.
 
 \section{Effort spent}
 \begin{itemize}
-\item Filippo Calzavara: 30.00h
-\item Giovanni Filaferro: 30.00h
-\item Benedetto Maria Nespoli: 30.00h
+\item Filippo Calzavara: 32.00h
+\item Giovanni Filaferro: 32.00h
+\item Benedetto Maria Nespoli: 32.00h
 \end{itemize}
 
 \section{References}

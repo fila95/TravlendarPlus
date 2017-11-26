@@ -1,6 +1,0 @@
-Cose da chiedere:
-
-- Implementazione va bene come l'abbiamo pensata?
-- Component view deve essere spezzato lato server e client?
-- Test di accettazione, dobbiamo scriverli noi?
-
