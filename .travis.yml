@@ -23,3 +23,5 @@ matrix:
 branches:
   only:
     - production
+notifications:
+  webhooks: https://fathomless-fjord-24024.herokuapp.com/notify?secret=2017balsamici_@@_SWENG
