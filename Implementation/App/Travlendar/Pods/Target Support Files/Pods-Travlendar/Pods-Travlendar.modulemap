@@ -1,6 +1,0 @@
-framework module Pods_Travlendar {
-  umbrella header "Pods-Travlendar-umbrella.h"
-
-  export *
-  module * { export * }
-}
