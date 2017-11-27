@@ -1,11 +1,11 @@
 matrix:
   include:
       - language: swift
-      xcode_workspace: Implementation/App/Travlendar/Travlendar.xcworkspace # path to your xcodeproj folder
-      xcode_scheme: Tests
-      osx_image: xcode9.1
-      podfile: Implementation/App/Travlendar/Podfile
-      script:
-        - xcodebuild -scheme Tests -workspace Implementation/App/Travlendar/Travlendar.xcworkspace -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone X,OS=11.1' build test
-      after_success:
-        - bash <(curl -s https://codecov.io/bash) -t $UPLOAD_TOKEN
+        xcode_workspace: Implementation/App/Travlendar/Travlendar.xcworkspace # path to your xcodeproj folder
+        xcode_scheme: Tests
+        osx_image: xcode9.1
+        podfile: Implementation/App/Travlendar/Podfile
+        script:
+          - xcodebuild -scheme Tests -workspace Implementation/App/Travlendar/Travlendar.xcworkspace -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone X,OS=11.1' build test
+        after_success:
+          - bash <(curl -s https://codecov.io/bash) -t $UPLOAD_TOKEN
