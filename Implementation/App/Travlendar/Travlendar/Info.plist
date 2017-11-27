@@ -68,6 +68,12 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Location needed for schedule operations.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Location needed for schedule operations.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Location needed for schedule operations.</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

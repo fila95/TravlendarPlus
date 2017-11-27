@@ -21,9 +21,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ = Secret.shared
         _ = API.shared
         
-        print(Secret.shared.appPreviouslyLaunched)
+        
         if !Secret.shared.appPreviouslyLaunched {
             Secret.shared.appPreviouslyLaunched = true
+        }
+        
+        Location.shared.subscribe { (coordinates) in
+            print(coordinates)
+        }
+        
+        
+        Location.shared.requestLocationUpdate()
+        delay(time: 10) {
+            Location.shared.requestLocationUpdate()
         }
         
         
