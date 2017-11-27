@@ -9,3 +9,8 @@ matrix:
           - xcodebuild -scheme Tests -workspace Implementation/App/Travlendar/Travlendar.xcworkspace -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone X,OS=11.1' build test
         after_success:
           - bash <(curl -s https://codecov.io/bash) -t $UPLOAD_TOKEN
+      - language: node_js
+        script:
+          - npm test
+        after_success:
+          - bash <(curl -s https://codecov.io/bash) -t $UPLOAD_TOKEN

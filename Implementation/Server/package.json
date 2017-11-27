@@ -7,8 +7,12 @@
     "mysql": "^2.15.0",
     "orm": "^4.0.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mocha": "^4.0.1",
+    "nyc": "^11.3.0"
+  },
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "nyc --reporter=lcov --reporter=text-lcov mocha"
   }
 }
