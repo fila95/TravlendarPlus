@@ -11,7 +11,7 @@ coverage:
     - ImageBorderAdder/*
     - RASD/*
     - Requirements/*
-    - Implementation/Server/*
+    - Implementation/Server/node_modules/*
     - readme.md
   status:
     patch:
