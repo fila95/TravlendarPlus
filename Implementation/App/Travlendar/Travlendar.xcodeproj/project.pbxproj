@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E21E86C1FCC08820009EFA9 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E21E86B1FCC08820009EFA9 /* Secret.swift */; };
 		1EAA18DF1FC9CE9F001B3612 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAA18DE1FC9CE9F001B3612 /* AppDelegate.swift */; };
 		1EAA18E11FC9CE9F001B3612 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAA18E01FC9CE9F001B3612 /* ViewController.swift */; };
 		1EAA18E41FC9CE9F001B3612 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EAA18E21FC9CE9F001B3612 /* Main.storyboard */; };
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		15DBA3F6C1AAE48C87D98E07 /* Pods_TravlendarTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TravlendarTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E21E86B1FCC08820009EFA9 /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		1EAA18DB1FC9CE9F001B3612 /* Travlendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Travlendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EAA18DE1FC9CE9F001B3612 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EAA18E01FC9CE9F001B3612 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			children = (
 				1EAA18DE1FC9CE9F001B3612 /* AppDelegate.swift */,
 				1EAA18E01FC9CE9F001B3612 /* ViewController.swift */,
+				1E21E86B1FCC08820009EFA9 /* Secret.swift */,
 				1EAA18E21FC9CE9F001B3612 /* Main.storyboard */,
 				1EAA18E81FC9CE9F001B3612 /* Assets.xcassets */,
 				1EAA18EA1FC9CE9F001B3612 /* LaunchScreen.storyboard */,
@@ -464,6 +467,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EAA18E11FC9CE9F001B3612 /* ViewController.swift in Sources */,
+				1E21E86C1FCC08820009EFA9 /* Secret.swift in Sources */,
 				1EAA18E71FC9CE9F001B3612 /* Travlendar.xcdatamodeld in Sources */,
 				1EAA18DF1FC9CE9F001B3612 /* AppDelegate.swift in Sources */,
 			);
