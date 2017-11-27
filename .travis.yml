@@ -1,10 +1,10 @@
 matrix:
   include:
       - language: node_js
+        before_install:
+          - cd Implementation/Server/
         install:
           - npm install --dev
-        before_script:
-          - cd Implementation/Server/
         script:
           - npm test
         after_success:
