@@ -5,4 +5,4 @@ osx_image: xcode9.1
 podfile: Implementation/App/Travlendar/Podfile
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash) -t 6eee328f-741e-4c4d-975b-dc96ee35d48c
+  - bash <(curl -s https://codecov.io/bash) -t $UPLOAD_TOKEN
