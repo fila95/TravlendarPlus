@@ -23,5 +23,3 @@ coverage:
         target: auto
         if_no_uploads: error
 comment: false
-codecov:
-  token: 6eee328f-741e-4c4d-975b-dc96ee35d48c
