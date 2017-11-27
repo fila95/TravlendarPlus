@@ -92,14 +92,14 @@ function model(db, cb) {
 		address: {type: 'string', size: 511, required: false},
 		lat: { type: 'coord_lat', required: false },
 		long: { type: 'coord_lng', required: false },
-		start_time: {type: 'date', required: true},
-		end_time: {type: 'date', required: true},
+		start_time: {type: 'date', required: true, time: true},
+		end_time: {type: 'date', required: true, time: true},
 		duration: {type: 'integer', size: 11, required: false},
 		repetitions: {type: 'binary', size: 7, required: true, defaultValue:'0000000'},
 		calendar_id: {type: 'integer', size: 11, required: true},
 		transports: {type: 'binary', size: 5, required: true, defaultValue:'1111111'},
-		suggested_start_time: {type: 'date', required: false},
-		suggested_end_time: {type: 'date', required: false}
+		suggested_start_time: {type: 'date', required: false, time: true},
+		suggested_end_time: {type: 'date', required: false, time: true}
 	});
 
 	return cb()
