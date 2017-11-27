@@ -1,7 +1,7 @@
 matrix:
   include:
       - language: node_js
-        before_deploy:
+        before_script:
           - cd Implementation/Server/
         script:
           - npm test
