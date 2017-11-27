@@ -18,7 +18,7 @@ function model(db, cb) {
 	});
 	db.defineType('transport_mean', {
 		datastoreType: function (prop) {
-			return 'ENUM("WALKING","BIKING","PUBLIC","SHARING","CAR")'
+			return "ENUM('WALKING','BIKING','PUBLIC','SHARING','CAR')"
 		}
 	});
 
@@ -37,7 +37,7 @@ function model(db, cb) {
 		}
 	});
 
-	db.define('setting', {
+	let Setting=db.define('setting', {
 		id: {type: 'integer', size: 11, required: true, key: true},
 		user_id: {type: 'integer', size: 11, required: true, key: true},
 		eco_mode: {type: 'boolean', defaultValue: false},
@@ -56,41 +56,40 @@ function model(db, cb) {
 		travel_id: {type: 'integer', size: 11, required: true, key: true}
 	})
 
-	db.define('travel', {
+	let Travel=db.define('travel', {
 		id: {type: 'integer', size: 11, required: true, key: true},
 		route: {type: 'integer', size: 11, required: true},
 		time: {type: 'integer', size: 11, required: true},
 		transport_mean: {type: 'transport_mean', required: false}
 	});
 
-	db.define('calendar', {
+	let Calendar=db.define('calendar', {
 		id: {type: 'integer', size: 11, required: true, key: true},
 		user_id: {type: 'integer', size: 11, required: true},
-		name: {type: 'string', size: 255, required: true, defaultValue:'' },
-		color: {type: 'string', size: 6, required: true, defaultValue:'' }		
+		name: {type: 'text', size: 255, required: true, defaultValue:'' },
+		color: {type: 'text', size: 6, required: true, defaultValue:'' }		
 	});
 
-
-	db.define('company', {
+	let Company=db.define('company', {
 		id: {type: 'integer', size: 11, required: true, key: true},
-		phone_number: {type: 'string', size: 32, required: false},
+		phone_number: {type: 'text', size: 32, required: false},
 		content: {type: 'text'},
 		url_redirect: {type: 'text'},
-		company_name: {type: 'string', size: 64, required: false}	
+		company_name: {type: 'text', size: 64, required: false}	
 	});
 
-	db.define('device', {
+	let Device=db.define('device', {
 		id: {type: 'integer', size: 11, required: true, key: true},
 		user_id: {type: 'integer', size: 11, required: true},
-		access_token: {type: 'string', size: 32, required: false},
+		access_token: {type: 'text', size: 32, required: false},
 		push_token: {type: 'text'},
-		device_type: {type: 'string', size: 32, required: false}	
+		device_type: {type: 'text', size: 32, required: false}	
 	});
 
-	db.define('event', {
+	let Event=db.define('event', {
 		id: {type: 'integer', size: 11, required: true, key: true},
-		title: {type: 'string', size: 255, required: true},
-		address: {type: 'string', size: 511, required: false},
+		title: {type: 'text', size: 255, required: true},
+		address: {type: 'text', size: 511, required: false},
 		lat: { type: 'coord_lat', required: false },
 		long: { type: 'coord_lng', required: false },
 		start_time: {type: 'date', required: true, time: true},
@@ -101,7 +100,8 @@ function model(db, cb) {
 		transports: {type: 'binary', size: 5, required: true, defaultValue:'1111111'},
 		suggested_start_time: {type: 'date', required: false, time: true},
 		suggested_end_time: {type: 'date', required: false, time: true}
-	});
+	})
+	.hasMany('travel', Travel, { reverse: 'event', key: true });
 
 	return cb()
 }
