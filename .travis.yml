@@ -7,6 +7,7 @@ matrix:
           - cd Implementation/Server/
         script:
           - npm test
+          - npm run test-cov
         after_success:
           - bash <(curl -s https://codecov.io/bash) -t $UPLOAD_TOKEN
       - language: swift
