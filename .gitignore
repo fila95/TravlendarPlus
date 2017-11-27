@@ -4,3 +4,4 @@
 node_modules/
 Pods/
 Podfile.lock
+coverage/

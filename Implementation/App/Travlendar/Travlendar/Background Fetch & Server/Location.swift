@@ -7,14 +7,76 @@
 //
 
 import UIKit
+import CoreLocation
 
-class Location: NSObject {
+public protocol LocationDelegate {
+    
+    func location(didUpdateLocation coordinates: CLLocationCoordinate2D)
+    
+}
+
+public class Location: NSObject {
     
     static let shared: Location = Location()
     
+    
+    private lazy var locationManager: CLLocationManager = {
+        let m = CLLocationManager()
+        m.activityType = .otherNavigation
+        m.desiredAccuracy = 50
+        m.allowsBackgroundLocationUpdates = true
+        m.delegate = self
+        return m
+    }()
+    
     override init() {
         super.init()
+        
+        
     }
     
+    public func requestAuthorizationIfNeeded(completion: ((_ success: Bool) -> Void)) {
+        guard CLLocationManager.locationServicesEnabled() || CLLocationManager.authorizationStatus() == CLAuthorizationStatus.denied else {
+            print("Location Services Not enabled...")
+            completion(false)
+            return
+        }
+        
+        if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.notDetermined {
+            locationManager.requestAlwaysAuthorization()
+        }
+        
+        completion(true)
+    }
+    
+    @objc
+    public func requestLocationUpdate() {
+        locationManager.startUpdatingLocation()
+    }
+    
+    // MARK: Blocks
+    
+    var handlers = [(coordinates: CLLocationCoordinate2D) -> Void]()
+    
+    func subscribe(completion: @escaping (_ coordinates: CLLocationCoordinate2D) -> Void) {
+        handlers += [completion]
+    }
+    
+    
+    
+}
+
+extension Location: CLLocationManagerDelegate {
+    
+    public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        locationManager.stopUpdatingLocation()
+        
+        guard locations.count > 0 else { return }
+        
+        for handle in handlers {
+            handle(locations[0].coordinate)
+        }
+        
+    }
     
 }
