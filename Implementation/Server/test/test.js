@@ -1,8 +1,13 @@
-var assert = require('assert');
-describe('Array', function() {
-  describe('#indexOf()', function() {
-    it('should return -1 when the value is not present', function() {
-      assert.equal(-1, [1,2,3].indexOf(4));
-    });
-  });
+const app = require("../index")
+const request = require('supertest');
+const assert = require('assert');
+
+describe('GET /hello', function () {
+	it('should return hello', function () {
+		request(app)
+			.get("/hello")
+			.then(response => {
+				assert(response, 'hello')
+			})
+	});
 });

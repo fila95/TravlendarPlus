@@ -9,10 +9,12 @@
   },
   "devDependencies": {
     "istanbul": "^0.4.5",
-    "mocha": "^4.0.1"
+    "mocha": "^4.0.1",
+    "supertest": "^3.0.0"
   },
   "scripts": {
     "start": "node index.js",
-    "test": "istanbul cover ./node_modules/mocha/bin/_mocha --reporter lcovonly -- -R spec && codecov"
+    "test": "mocha",
+    "test-cov": "istanbul cover _mocha"
   }
 }
