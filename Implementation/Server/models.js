@@ -23,7 +23,7 @@ function model(db, cb) {
 	});
 
 	db.define('user', {
-		id: {type: 'integer', size: 11, required: true},
+		id: {type: 'integer', size: 11, required: true, key: true},
 		user_token: {type: 'text', size: 24, required: true},
 		last_known_position_lat: { type: 'coord_lat' },
 		last_known_position_lng: { type: 'coord_lng' },
@@ -38,8 +38,8 @@ function model(db, cb) {
 	});
 
 	db.define('setting', {
-		id: {type: 'integer', size: 11, required: true},
-		user_id: {type: 'integer', size: 11, required: true},
+		id: {type: 'integer', size: 11, required: true, key: true},
+		user_id: {type: 'integer', size: 11, required: true, key: true},
 		eco_mode: {type: 'boolean', defaultValue: false},
 		max_walking_distance: { type: 'integer', size: 11, defaultValue: 2000},
 		max_biking_distance: { type: 'integer', size: 11, defaultValue: 4000},
@@ -52,26 +52,27 @@ function model(db, cb) {
 	});
 
 	db.define('events_travel', {
-		id: {type: 'integer', size: 11, required: true},
-		travel_id: {type: 'integer', size: 11, required: true}
-	});
+		id: {type: 'integer', size: 11, required: true, key: true},
+		travel_id: {type: 'integer', size: 11, required: true, key: true}
+	})
 
 	db.define('travel', {
-		id: {type: 'integer', size: 11, required: true},
+		id: {type: 'integer', size: 11, required: true, key: true},
 		route: {type: 'integer', size: 11, required: true},
 		time: {type: 'integer', size: 11, required: true},
 		transport_mean: {type: 'transport_mean', required: false}
 	});
 
 	db.define('calendar', {
-		id: {type: 'integer', size: 11, required: true},
+		id: {type: 'integer', size: 11, required: true, key: true},
 		user_id: {type: 'integer', size: 11, required: true},
 		name: {type: 'string', size: 255, required: true, defaultValue:'' },
 		color: {type: 'string', size: 6, required: true, defaultValue:'' }		
 	});
 
+
 	db.define('company', {
-		id: {type: 'integer', size: 11, required: true},
+		id: {type: 'integer', size: 11, required: true, key: true},
 		phone_number: {type: 'string', size: 32, required: false},
 		content: {type: 'text'},
 		url_redirect: {type: 'text'},
@@ -79,7 +80,7 @@ function model(db, cb) {
 	});
 
 	db.define('device', {
-		id: {type: 'integer', size: 11, required: true},
+		id: {type: 'integer', size: 11, required: true, key: true},
 		user_id: {type: 'integer', size: 11, required: true},
 		access_token: {type: 'string', size: 32, required: false},
 		push_token: {type: 'text'},
@@ -87,7 +88,7 @@ function model(db, cb) {
 	});
 
 	db.define('event', {
-		id: {type: 'integer', size: 11, required: true},
+		id: {type: 'integer', size: 11, required: true, key: true},
 		title: {type: 'string', size: 255, required: true},
 		address: {type: 'string', size: 511, required: false},
 		lat: { type: 'coord_lat', required: false },
