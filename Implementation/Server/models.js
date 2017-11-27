@@ -4,11 +4,13 @@ function model(db, cb) {
 			return 'FLOAT(9,7)'
 		}
 	});
+	
 	db.defineType('coord_lng', {
 		datastoreType: function (prop) {
 			return 'FLOAT(10,7)'
 		}
 	});
+
 	db.defineType('time', {
 		datastoreType: function (prop) {
 			return 'TIME'
