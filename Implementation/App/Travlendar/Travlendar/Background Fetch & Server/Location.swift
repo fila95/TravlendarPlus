@@ -1,5 +1,5 @@
 //
-//  Secret.swift
+//  Location.swift
 //  Travlendar
 //
 //  Created by Giovanni Filaferro on 27/11/2017.
@@ -7,12 +7,14 @@
 //
 
 import UIKit
-import KeychainSwift
 
-class Secret: NSObject {
+class Location: NSObject {
     
-    static let shared: Secret = Secret()
+    static let shared: Location = Location()
     
+    override init() {
+        super.init()
+    }
     
     
 }
