@@ -1,13 +1,13 @@
 function model(db, cb) {
 	db.defineType('coord_lat', {
 		datastoreType: function (prop) {
-			return 'FLOAT(9,7)'
+			return 'NUMERIC(9,7)'
 		}
 	});
 
 	db.defineType('coord_lng', {
 		datastoreType: function (prop) {
-			return 'FLOAT(10,7)'
+			return 'NUMERIC(10,7)'
 		}
 	});
 
@@ -31,15 +31,17 @@ function model(db, cb) {
 				r += ' NOT NULL'
 			}
 			if (prop.defaultValue) {
-				r += ' DEFAULT 0b' + prop.defaultValue
+				r += ' DEFAULT B\'' + prop.defaultValue + '\''
 			}
 			return r
 		}
 	});
 
+	db.driver.execQuery("CREATE TYPE transport_mean_type AS ENUM ('WALKING','BIKING','PUBLIC','SHARING','CAR')", (err, data) => {});
+
 	db.defineType('transport_mean', {
 		datastoreType: function (prop) {
-			return "ENUM('WALKING','BIKING','PUBLIC','SHARING','CAR')"
+			return "transport_mean_type"
 		}
 	});
 
