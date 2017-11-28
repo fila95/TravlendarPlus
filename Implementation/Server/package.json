@@ -5,7 +5,8 @@
   "dependencies": {
     "express": "^4.16.2",
     "mysql": "^2.15.0",
-    "orm": "^4.0.1"
+    "orm": "^4.0.1",
+    "postgresql": "0.0.1"
   },
   "devDependencies": {
     "istanbul": "^0.4.5",
