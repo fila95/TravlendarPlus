@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7913199D166D0A7CE424FE6A5E9D1865"
+               BlueprintIdentifier = "4F3FFA545A7B2F0A83900256BEF745F2"
                BuildableName = "Pods_Travlendar.framework"
                BlueprintName = "Pods-Travlendar"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -70,7 +70,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D5DA3DB51651650C08AD866893851CDA"
+               BlueprintIdentifier = "69990D777D7382E2D021F0F60F989766"
                BuildableName = "Realm.framework"
                BlueprintName = "Realm"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
