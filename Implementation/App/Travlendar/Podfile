@@ -7,7 +7,7 @@ target 'Travlendar' do
 
   # Pods for Travlendar
   pod "KeychainSwift"
-  pod "Realm"
+  pod "RealmSwift"
 
   target 'TravlendarTests' do
     inherit! :search_paths

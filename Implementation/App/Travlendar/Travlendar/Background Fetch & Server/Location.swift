@@ -54,14 +54,14 @@ public class Location: NSObject {
         locationManager.startUpdatingLocation()
     }
     
-    // MARK: Blocks
-    
+    // MARK: Subscriptions
     var handlers = [(coordinates: CLLocationCoordinate2D) -> Void]()
     
     func subscribe(completion: @escaping (_ coordinates: CLLocationCoordinate2D) -> Void) {
-        handlers += [completion]
+        DispatchQueue.init(label: "io.array").async {
+            self.handlers += [completion]
+        }
     }
-    
     
     
 }
@@ -74,7 +74,9 @@ extension Location: CLLocationManagerDelegate {
         guard locations.count > 0 else { return }
         
         for handle in handlers {
-            handle(locations[0].coordinate)
+            DispatchQueue.init(label: "io.array").async {
+                handle(locations[0].coordinate)
+            }
         }
         
     }
