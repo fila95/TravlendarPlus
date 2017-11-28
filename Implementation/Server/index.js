@@ -11,7 +11,7 @@ app.get("/hello", function (req, res) {
 if (require.main === module) {
 	app.use(orm.express(DB_URL, {
 		define: function (db, models, next) {
-			db.load("./models", function (err) { if (err) { throw err; } db.sync(); console.log("DB Synced"); next(); })
+			db.load("./models", function (err) { if (err) { throw err; } db.sync((err) => {if(err){throw err}}); console.log("DB Synced"); next(); })
 		}
 	}));
 
