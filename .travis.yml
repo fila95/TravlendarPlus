@@ -1,27 +1,34 @@
 matrix:
   include:
-      - language: node_js
-        node_js:
-          - "node"
-        before_install:
-          - cd Implementation/Server/
-        script:
-          - npm test
-          - npm run test-cov
-        after_success:
-          - bash <(curl -s https://codecov.io/bash) -t $UPLOAD_TOKEN
-      - language: swift
-        xcode_workspace: Implementation/App/Travlendar/Travlendar.xcworkspace # path to your xcodeproj folder
-        xcode_scheme: Tests
-        osx_image: xcode9.1
-        podfile: Implementation/App/Travlendar/Podfile
-        script:
-          - xcodebuild -scheme Tests -workspace Implementation/App/Travlendar/Travlendar.xcworkspace -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone X,OS=11.1' build test
-        after_success:
-          - bash <(curl -s https://codecov.io/bash) -t $UPLOAD_TOKEN
-
+  - language: node_js
+    node_js:
+    - node
+    before_install:
+    - cd Implementation/Server/
+    script:
+    - npm test
+    - npm run test-cov
+    after_success:
+    - bash <(curl -s https://codecov.io/bash) -t $UPLOAD_TOKEN
+    deploy:
+      provider: heroku
+      api_key:
+        secure: QfeG+fr0nxlk0TE53ar+ZOsNL7aDt/PpAPRSDL24exy6wVL6BA1cbrtIgDu+H/lShz9yE+bqmW2IZgFfuYj/PrI9hNe3qp+adXos0JY0VfBu0W5+tYL7JhXap0OO4kq/qHyMpzWw3qnehxLcfySoLf1rF13vOgX/AgUiu2nIS9rp6AtJpcjcOSMFUL9G/zaNJUk1rqwyAACmec80SSUl9oQ8APBLHAWLi37cRfYChZPDQioUaKi3Uvh+vco/fm/rkjWIQhGxP1ofnZAVl5G0RZSMLvyFuEMU+SmTyCdd4+wTKsE/sNuPiuKtcdUyGBg5Gi6WM5hrkp1xqh6O+iCEj6ZBtx1dHxII64ECkwuXjya07Ar1wuTFpDEQYM+HP4zBKgl1kxtMKVNzuFw8sqhTgOmdqV4mjtYFZoODUQMMB5mF6AhOi8I2rytEUSy9jgNBh4g3YHniL8hTjwZ3bGPYLiH9c4OV06CcOX1wFwshgLNHU2Z3AfOrpZAiAMTvA8O8GEgzVYL/R2Z09qblqFfW5XQGCo8gwiHdteJvtzu5HCAkcr/tgYj9vQnCUOOEAjb8c9iVK1iCIHrHFX9Yh/DZtioDOS6dVSE+mmdHPfBEJYjmC4PJP095+sGjNKwjmShtI0lLvoTUh5Rd3oDFhdGgbloYvGt7Hv4tGF/ck8hl33c=
+      app: polimi-travlendarplus
+      on: production
+  - language: swift
+    xcode_workspace: Implementation/App/Travlendar/Travlendar.xcworkspace
+    xcode_scheme: Tests
+    osx_image: xcode9.1
+    podfile: Implementation/App/Travlendar/Podfile
+    script:
+    - xcodebuild -scheme Tests -workspace Implementation/App/Travlendar/Travlendar.xcworkspace
+      -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone X,OS=11.1'
+      build test
+    after_success:
+    - bash <(curl -s https://codecov.io/bash) -t $UPLOAD_TOKEN
 branches:
   only:
-    - production
+  - production
 notifications:
   webhooks: https://fathomless-fjord-24024.herokuapp.com/notify?secret=2017balsamici_@@_SWENG
