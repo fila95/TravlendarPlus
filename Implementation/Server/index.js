@@ -34,12 +34,12 @@ let auth = (req, res, next) => {
 
 let defineDatabase = (db, models, next) => {
 	db.load("./models", (err) => {
-		if (err) { throw err; }
+		if (err) { throw err }
 		db.sync((err) => {
 			if (err) { throw err }
 			// copy db.models properties in models
 			Object.assign(models, db.models)
-			next();
+			next()
 		})
 	})
 }
@@ -50,17 +50,17 @@ app.use(auth)
 app.use(logger)
 
 // Disable express header
-app.disable('x-powered-by');
+app.disable('x-powered-by')
 
 // Routes
 app.get("/hello", (req, res) => {
 	res.end("hello")
-});
+})
 
 app.get("/helloWithAuth", (req, res) => {
 	res.json(req.user)
 	res.end()
-});
+})
 
 // Events endpoints:
 app.get('/api/v1/events', (req, res) => {
@@ -71,7 +71,7 @@ if (require.main === module) {
 	// Start listening
 	let server = app.listen(port, () => {
 		console.log("Listening on :" + port)
-	});
+	})
 
 	setTimeout(function(){server.close(function(){})}, 2000)
 } else {

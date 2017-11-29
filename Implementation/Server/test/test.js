@@ -1,6 +1,6 @@
 const app = require("../index")
-const request = require('supertest');
-const assert = require('assert');
+const request = require('supertest')
+const assert = require('assert')
 
 describe('GET /hello', function (t) {
 	it('should return hello', function () {
@@ -9,8 +9,8 @@ describe('GET /hello', function (t) {
 			.then(response => {
 				assert(response, 'hello')
 			})
-	});
-});
+	})
+})
 
 describe('Authorization', function () {
 	it('should expect a 401 if not authorization is provided', function (done) {
@@ -21,7 +21,7 @@ describe('Authorization', function () {
 				if (err) done(err)
 				else done()
 			})
-	});
+	})
 
 	it('should expect a 403 if invalid authorization is provided', function (done) {
 		request(app)
@@ -32,6 +32,6 @@ describe('Authorization', function () {
 				if (err) done(err)
 				else done()
 			})
-	});
-});
+	})
+})
 

@@ -3,13 +3,13 @@ function model(db, cb) {
 		datastoreType: function (prop) {
 			return 'NUMERIC(9,7)'
 		}
-	});
+	})
 
 	db.defineType('coord_lng', {
 		datastoreType: function (prop) {
 			return 'NUMERIC(10,7)'
 		}
-	});
+	})
 
 	db.defineType('time', {
 		datastoreType: function (prop) {
@@ -22,7 +22,7 @@ function model(db, cb) {
 			}
 			return r
 		}
-	});
+	})
 
 	db.defineType('bit', {
 		datastoreType: function (prop) {
@@ -35,15 +35,15 @@ function model(db, cb) {
 			}
 			return r
 		}
-	});
+	})
 
-	db.driver.execQuery("CREATE TYPE transport_mean_type AS ENUM ('WALKING','BIKING','PUBLIC','SHARING','CAR')", (err, data) => {});
+	db.driver.execQuery("CREATE TYPE transport_mean_type AS ENUM ('WALKING','BIKING','PUBLIC','SHARING','CAR')", (err, data) => {})
 
 	db.defineType('transport_mean', {
 		datastoreType: function (prop) {
 			return "transport_mean_type"
 		}
-	});
+	})
 
 	let User = db.define('users', {
 		id: { type: 'serial', required: true, key: true },
@@ -58,7 +58,7 @@ function model(db, cb) {
 					return next()
 				}
 			}
-		});
+		})
 
 	let Setting = db.define('settings', {
 		id: { type: 'serial', required: true, key: true },
@@ -71,7 +71,7 @@ function model(db, cb) {
 		car2go_enabled: { type: 'boolean', defaultValue: false, required: true },
 		uber_enabled: { type: 'boolean', defaultValue: false, required: true },
 		mobike_enabled: { type: 'boolean', defaultValue: false, required: true }
-	});
+	})
 
 	let Travel = db.define('travels', {
 		id: { type: 'serial', required: true, key: true },
@@ -79,13 +79,13 @@ function model(db, cb) {
 		time: { type: 'integer', required: true },
 		transport_mean: { type: 'transport_mean' },
 		waypoints: { type: 'text', big: true }
-	});
+	})
 
 	let Calendar = db.define('calendars', {
 		id: { type: 'serial', required: true, key: true },
 		name: { type: 'text', size: 255, required: true, defaultValue: '' },
 		color: { type: 'text', size: 6, required: true, defaultValue: '' }
-	});
+	})
 
 	let Company = db.define('companies', {
 		id: { type: 'serial', required: true, key: true },
@@ -93,14 +93,14 @@ function model(db, cb) {
 		content: { type: 'text', big: true },
 		url_redirect: { type: 'text', big: true },
 		company_name: { type: 'text', size: 64, required: true, unique: true }
-	});
+	})
 
 	let Device = db.define('devices', {
 		id: { type: 'serial', required: true, key: true },
 		access_token: { type: 'text', size: 32, required: true },
 		push_token: { type: 'text', big: true },
 		device_type: { type: 'text', size: 32 }
-	});
+	})
 
 	let Event = db.define('events', {
 		id: { type: 'serial', required: true, key: true },
