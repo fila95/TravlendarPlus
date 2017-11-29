@@ -5,7 +5,7 @@ matrix:
     - node
     services:
     - postgresql
-    before_installation:
+    before_install:
     - cd Implementation/Server/
     before_script:
     - psql -c 'create database travlendarplus;' -U postgres
