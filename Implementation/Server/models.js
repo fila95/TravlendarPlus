@@ -45,7 +45,7 @@ function model(db, cb) {
 		}
 	});
 
-	db.define('users', {
+	let User = db.define('users', {
 		id: { type: 'serial', required: true, key: true },
 		user_token: { type: 'text', size: 24, required: true },
 		last_known_position_lat: { type: 'coord_lat' },
@@ -62,7 +62,6 @@ function model(db, cb) {
 
 	let Setting = db.define('settings', {
 		id: { type: 'serial', required: true, key: true },
-		user_id: { type: 'integer', required: true, key: true },
 		eco_mode: { type: 'boolean', defaultValue: false, required: true },
 		max_walking_distance: { type: 'integer', defaultValue: 2000, required: true },
 		max_biking_distance: { type: 'integer', defaultValue: 4000, required: true },
@@ -84,7 +83,6 @@ function model(db, cb) {
 
 	let Calendar = db.define('calendars', {
 		id: { type: 'serial', required: true, key: true },
-		user_id: { type: 'integer', required: true },
 		name: { type: 'text', size: 255, required: true, defaultValue: '' },
 		color: { type: 'text', size: 6, required: true, defaultValue: '' }
 	});
@@ -99,7 +97,6 @@ function model(db, cb) {
 
 	let Device = db.define('devices', {
 		id: { type: 'serial', required: true, key: true },
-		user_id: { type: 'integer', required: true },
 		access_token: { type: 'text', size: 32, required: true },
 		push_token: { type: 'text', big: true },
 		device_type: { type: 'text', size: 32 }
@@ -121,7 +118,11 @@ function model(db, cb) {
 		suggested_end_time: { type: 'date', required: false, time: true }
 	})
 
-	Event.hasMany('travels', Travel);
+	Event.hasMany('travels', Travel)
+	Setting.hasOne('user', User)
+	Device.hasOne('user', User)
+	Calendar.hasOne('user', User)
+	Event.hasOne('calendar', Calendar)
 
 	return cb()
 }
