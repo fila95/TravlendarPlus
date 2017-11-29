@@ -72,8 +72,6 @@ if (require.main === module) {
 	let server = app.listen(port, () => {
 		console.log("Listening on :" + port)
 	})
-
-	setTimeout(function(){server.close(function(){})}, 2000)
 } else {
 	module.exports = app
 }
