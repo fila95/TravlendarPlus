@@ -1789,6 +1789,19 @@ Component interfaces
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{-2.0cm}
+\end_layout
+
+\end_inset
+
+
 \begin_inset Graphics
 	filename images/interface-2.png
 	lyxscale 30
@@ -1800,6 +1813,19 @@ Component interfaces
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{-2.0cm}
+\end_layout
+
+\end_inset
+
+
 \begin_inset Graphics
 	filename images/interface-1.png
 	lyxscale 30
@@ -1846,6 +1872,9 @@ All the methods will require an authentication, except for the login one.
 \begin_layout Itemize
 POST: Allow the user to get an authentication token.
  If the user is not present on the server database, he/she will be registered
+ - 
+\emph on
+login(·): String
 \end_layout
 
 \begin_deeper
@@ -1871,28 +1900,20 @@ device_token
 \begin_layout Itemize
 
 \series bold
-/api/v1/pushNotification
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-POST: Update the current push notification
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-
-\series bold
 /api/v1/settings
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-GET: Retrieve the user settings
+GET: Retrieve the user settings - 
+\emph on
+getSetting(·): Setting
 \end_layout
 
 \begin_layout Itemize
-POST: Save some settings
+POST: Save settings - 
+\emph on
+updateSetting(·)
 \end_layout
 
 \end_deeper
@@ -1904,11 +1925,27 @@ POST: Save some settings
 
 \begin_deeper
 \begin_layout Itemize
-GET: Retrieve the user calendars
+GET: Retrieve the user calendars - 
+\emph on
+getCalendars(·): List<Calendar>
 \end_layout
 
 \begin_layout Itemize
-POST: Save some calendars
+POST: Add new calendar - 
+\emph on
+newCalendar(·)
+\end_layout
+
+\begin_layout Itemize
+POST: Update existing calendar - 
+\emph on
+updateCalendar(·)
+\end_layout
+
+\begin_layout Itemize
+POST: Remove existing calendar - 
+\emph on
+removeCalendar(·)
 \end_layout
 
 \end_deeper
@@ -1920,11 +1957,21 @@ POST: Save some calendars
 
 \begin_deeper
 \begin_layout Itemize
-GET: Retrieve the user events
+GET: Retrieve the user events - 
+\emph on
+getEvents(·): List<Events>
 \end_layout
 
 \begin_layout Itemize
-POST: Save some events
+POST: Update existing event - 
+\emph on
+updateEvent(·)
+\end_layout
+
+\begin_layout Itemize
+POST: Remove existing event - 
+\emph on
+removeEvent(·)
 \end_layout
 
 \end_deeper
@@ -1936,7 +1983,9 @@ POST: Save some events
 
 \begin_deeper
 \begin_layout Itemize
-GET: Retrieve the user schedule
+GET: Retrieve the user schedule - 
+\emph on
+getSchedule(·): Schedule
 \end_layout
 
 \end_deeper
@@ -1948,7 +1997,9 @@ GET: Retrieve the user schedule
 
 \begin_deeper
 \begin_layout Itemize
-POST: Update the current user position
+POST: Update the current user position - 
+\emph on
+setPosition(·)
 \end_layout
 
 \end_deeper
@@ -1960,7 +2011,9 @@ POST: Update the current user position
 
 \begin_deeper
 \begin_layout Itemize
-GET: Retrieve a list of sharing means near a specified coordinate
+GET: Retrieve a list of sharing means near a specified coordinate - 
+\emph on
+getNearbySharingMean(·): List<TransportMean>
 \end_layout
 
 \end_deeper
@@ -1972,10 +2025,17 @@ GET: Retrieve a list of sharing means near a specified coordinate
 
 \begin_deeper
 \begin_layout Itemize
-GET: Retrieve a list of available companies
+GET: Retrieve a list of available companies - 
+\emph on
+getCompanies(·): List<Company>
 \end_layout
 
 \end_deeper
+\begin_layout Standard
+The operation mode of each API could be sent as POST parameter as well (when
+ needed).
+\end_layout
+
 \begin_layout Standard
 \begin_inset Newpage pagebreak
 \end_inset
