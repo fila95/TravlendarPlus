@@ -912,7 +912,7 @@ Revision History
 \end_layout
 
 \begin_layout Itemize
-1.1.0 - Further clarifications on the platform and Interfaces used (30/11/2017)
+1.1.0 - Further clarifications on the platform and Interfaces (30/11/2017)
 \end_layout
 
 \begin_layout Subsection
@@ -1323,7 +1323,7 @@ Each module that compose the subsystems is interfaced with the DataBase
 \end_layout
 
 \begin_layout Subsubsection
-Component view of the Scheduling Services
+Component view of the Event Services
 \end_layout
 
 \begin_layout Standard
@@ -1350,7 +1350,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-The Scheduling Services: includes details on 
+The Event Services: includes details on 
 \end_layout
 
 \end_inset
@@ -1387,8 +1387,8 @@ reference "subsec:Event-Schedule-Algorithm"
  It also offers the interface that allows to fetch information about previous
  events.
  This module is connected to Google Maps API, Weather API provided by OpenWeathe
-rMap and to Apple Push Notification Server, that handles the notification
- system towards the mobile application.
+rMap, to every Car Sharing service available and to Apple Push Notification
+ Server, that handles the notification system towards the mobile application.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1444,7 +1444,7 @@ Account Manager Module
 Tickets module
 \emph default
  provides tools to check whether a specific mean of transportation allows
- the sms-purchasing and eventually generates the text message or the URL.
+ the sms-purchasing.
  Moreover, a 
 \emph on
 Setting Module

@@ -15,6 +15,7 @@ Here we publish the final Requirement Analysis and Specification Document
 
 ### DD
 Here we publish the final Design Document
+- `Version 1.1` file can be found [here](https://github.com/fila95/CalzavaraFilaferroNespoli/blob/master/DeliveryFolder/DD1.1.0.pdf)
 - `Version 1.0` file can be found [here](https://github.com/fila95/CalzavaraFilaferroNespoli/blob/master/DeliveryFolder/DD1.0.0.pdf)
 
 ### Implementation and Testing
