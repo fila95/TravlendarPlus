@@ -117,7 +117,7 @@ Calzavara Filippo, Filaferro Giovanni, Benedetto Maria Nespoli
 
 \begin_layout Standard
 \align center
-Version 1.0.0
+Version 1.1.0
 \end_layout
 
 \begin_layout Standard
@@ -475,7 +475,7 @@ Acronyms
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="14" columns="2">
+<lyxtabular version="3" rows="15" columns="2">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -740,7 +740,7 @@ Entity Relationship
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -749,11 +749,31 @@ TDD
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 Test Driven Development
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PaaS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Platform as a Service
 \end_layout
 
 \end_inset
@@ -889,6 +909,10 @@ Revision History
 
 \begin_layout Itemize
 1.0.0 - Initial Version (13/11/2017) 
+\end_layout
+
+\begin_layout Itemize
+1.1.0 - Further clarifications on the platform and Interfaces used (30/11/2017)
 \end_layout
 
 \begin_layout Subsection
@@ -1217,13 +1241,23 @@ All the parts described before can be separated into more than one machines:
  by the Heroku platform.
 \end_layout
 
+\begin_layout Standard
+As stated before, the Heroku platform allows to achieve higher reliability
+ and scalability standard with the simplicity of a PaaS platform.
+ Nonetheless a major drawback is certainly losing control of settings as
+ hardware and OS, however in case such control would be required, we expect
+ the system administrator to migrate the whole to another service, such
+ as AWS.
+ The functionalities offered by Heroku meet the demand of our system.
+\end_layout
+
 \begin_layout Subsection
 Component view
 \end_layout
 
 \begin_layout Standard
-A high level component view and related interfaces are represented at Figure
- 
+A high level component view of system as a whole is represented with related
+ interfaces at Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:The-main-component"
@@ -1231,7 +1265,7 @@ reference "fig:The-main-component"
 \end_inset
 
 .
- The system is composed of a major component, namely the 
+ It is composed of a major component, namely the 
 \emph on
 Mobile Application
 \emph default
