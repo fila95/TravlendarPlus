@@ -57,6 +57,12 @@ class Travel: Object {
     
     @objc dynamic var waypoints = ""
     
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+    
+    let event = LinkingObjects(fromType: Event.self, property: "travels")
+    
 }
 
 class Event: Object {
@@ -78,7 +84,18 @@ class Event: Object {
     @objc dynamic var suggested_start_time: Int = 0
     @objc dynamic var suggested_end_time: Int = 0
     
-    let events = List<Travel>()
+    let travels = List<Travel>()
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+    
+    override static func indexedProperties() -> [String] {
+        return ["title", "address"]
+    }
+    
+    
+    let calendar = LinkingObjects(fromType: Calendar.self, property: "events")
     
 }
 
@@ -91,6 +108,14 @@ class Calendar: Object {
     
     let events = List<Event>()
     
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+    
+    override static func indexedProperties() -> [String] {
+        return ["name"]
+    }
+    
 }
 
 
@@ -101,5 +126,9 @@ class Company: Object {
     @objc dynamic var phone_number = ""
     @objc dynamic var content = ""
     @objc dynamic var url_redirect = ""
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
     
 }

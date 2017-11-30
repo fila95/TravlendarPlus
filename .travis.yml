@@ -3,8 +3,12 @@ matrix:
   - language: node_js
     node_js:
     - node
+    services:
+    - postgresql
     before_install:
     - cd Implementation/Server/
+    before_script:
+    - psql -c 'create database travlendarplus;' -U postgres
     script:
     - npm test
     - npm run test-cov

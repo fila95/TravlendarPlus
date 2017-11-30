@@ -21,7 +21,7 @@ public class Database {
         
         print("Realm Folder: \(folderPath)")
         
-        // Disable file protection for this directory
+        // Disable file protection for this directory to enable background fetch
         try! FileManager.default.setAttributes([FileAttributeKey.protectionKey: FileProtectionType.none], ofItemAtPath: folderPath)
     }
     
