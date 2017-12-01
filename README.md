@@ -24,11 +24,8 @@ Here we publish the final Design Document
 [![codecov](https://codecov.io/gh/fila95/CalzavaraFilaferroNespoli/branch/master/graph/badge.svg?token=j9U8t3J9rD)](https://codecov.io/gh/fila95/CalzavaraFilaferroNespoli)
 [![Maintainability](https://api.codeclimate.com/v1/badges/306ac0e1b68708d0a331/maintainability)](https://codeclimate.com/repos/5a1b17802d228202a5001226/maintainability)
 
-#### Server
-
-#### iOS App
-
-
+#### Test Coverage
+[![Test Coverage](https://codecov.io/gh/fila95/CalzavaraFilaferroNespoli/branch/production/graphs/sunburst.svg?token=j9U8t3J9rD)](https://codecov.io/gh/fila95/CalzavaraFilaferroNespoli/branch/production/graphs/sunburst.svg?token=j9U8t3J9rD)
 
 ## Contributors:
 - Calzavara Filippo
