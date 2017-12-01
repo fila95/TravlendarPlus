@@ -563,7 +563,7 @@ OS
 \begin_inset Text
 
 \begin_layout Plain Layout
-Operative Systemk
+Operative System
 \end_layout
 
 \end_inset
@@ -698,7 +698,7 @@ Revision history
 \end_layout
 
 \begin_layout Itemize
-1.0.0 - Initial Version (28/11/2017) 
+1.0.0 - Initial Version (01/12/2017) 
 \end_layout
 
 \begin_layout Subsection
@@ -706,23 +706,11 @@ Reference Documents
 \end_layout
 
 \begin_layout Itemize
-Specifications document 
-\begin_inset Quotes eld
-\end_inset
-
-Mandatory Project Assignments.pdf
-\begin_inset Quotes erd
-\end_inset
-
-
+RASD version 1.2.0
 \end_layout
 
 \begin_layout Itemize
-ISO/IEC/IEEE 29148 - IEEE Standard on Requirements Engineering
-\end_layout
-
-\begin_layout Itemize
-Software Abstractions, MIT Press
+Design Document 1.1.1
 \end_layout
 
 \begin_layout Subsection
@@ -730,6 +718,10 @@ Document Structure
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 The paper includes six areas.
  The first one, is composed by the introductory information provided in
  order to give an orientative view of what this document is about.
@@ -745,11 +737,216 @@ The paper includes six areas.
  whole paper.
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 \begin_inset Newpage pagebreak
 \end_inset
 
 
+\end_layout
+
+\begin_layout Section
+Implementation
+\end_layout
+
+\begin_layout Standard
+As described in the Design Document, Travlendar+ is composed of a two tier
+ architecture with distributed data and logic.
+ 
+\end_layout
+
+\begin_layout Standard
+The application developed for the iOS platform's smartphones (iPhone) could
+ be uploaded on the App Store in order to let the final user to install
+ it on their smartphone
+\end_layout
+
+\begin_layout Subsection
+General description of the functionalities
+\end_layout
+
+\begin_layout Standard
+In this section, the developing team states those goals/features described
+ on the RASD that are implemented within the first release of the project
+ and those that will (possibly) be implemented in the following updates.
+ The first set of functionalities are those considered essential for engaging
+ new users.
+\end_layout
+
+\begin_layout Subsubsection
+First release of Travlendar+
+\end_layout
+
+\begin_layout Standard
+As first release of the application, the developing team ensures to meet
+ the following features:
+\end_layout
+
+\begin_layout Itemize
+[G0][R1] Allow people to use the app without a login function
+\end_layout
+
+\begin_layout Itemize
+[G1][R2][R3][R4][R5] Allow people to view the daily schedule with coming
+ up events at the top
+\end_layout
+
+\begin_layout Itemize
+[G2][R6][R7][R8] Allow people to view previous events
+\end_layout
+
+\begin_layout Itemize
+[G3]Allow people to view the details of each event
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[G3.1][R9][R11] Allow people to get travel information for a particular event
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[G3.1.1] Allow people to get the ETA to the appointment
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G3.2][R14] Allow people to explore a specific route
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[G3.2.2] Allow people to open the sharing services/ride provider's app and
+ call the vehicle
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+[G4] Allow the users to create an event
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[G4.1] Allow the user to define a name/description of the appointment
+\end_layout
+
+\begin_layout Itemize
+[G4.2] Allow the user to define the location
+\end_layout
+
+\begin_layout Itemize
+[G4.3] Allow users to set a flexible timing
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[G4.3.1] Allow the user to select a time window in which the event will occur
+\end_layout
+
+\begin_layout Itemize
+[G4.3.2] Allow the user to select how long the event will last
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G4.4] Allow the user to set a starting time and ending time on non-flexible
+ events
+\end_layout
+
+\begin_layout Itemize
+[G4.5] Allow the user to repeat the event regularly throughout the week
+\end_layout
+
+\begin_layout Itemize
+[G4.6] Allow the user to assign the event to a specific calendar
+\end_layout
+
+\begin_layout Itemize
+[G4.7] Allow the user to define the mean of transportations that he/she wants
+ to use for the event
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G5] Allow people to see daily events on a map
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[G5.1] Allow the user to have information about the status of the journey
+ to make in order to reach the appointment's location 
+\end_layout
+
+\begin_layout Itemize
+[G5.2] Allow the user to see previous daily events on a map
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G6] Allow the user to set preferences
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[G6.1] Allow the user to set the eco-friendly mode
+\end_layout
+
+\begin_layout Itemize
+[G6.2] Allow the user to set the walkable distance limit
+\end_layout
+
+\begin_layout Itemize
+[G6.3] Allow the user to set the maximum biking range
+\end_layout
+
+\begin_layout Itemize
+[G6.4] Allow users to set the owned bike and/or bike sharing providers
+\end_layout
+
+\begin_layout Itemize
+[G6.5] Allow users to set a time range in which they can take public transits
+\end_layout
+
+\begin_layout Itemize
+[G6.6] Allow users to set if they own a car and/or their favorite car sharing
+ providers
+\end_layout
+
+\begin_layout Itemize
+[G6.7] Allow users to set the preferred ride sharing service
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G7] Allow the users to create calendars
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[G7.1] Allow users to color calendar
+\end_layout
+
+\begin_layout Itemize
+[G7.2] Allow users to change calendar's color and name
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G8] Notify the user that it's time to leave for the appointment
+\end_layout
+
+\begin_layout Subsubsection
+Second Release
+\end_layout
+
+\begin_layout Itemize
+[G3.2.2] Allow people to open the sharing services/ride provider's app and
+ call the vehicle
 \end_layout
 
 \begin_layout Standard
