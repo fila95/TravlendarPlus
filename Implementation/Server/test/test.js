@@ -28,15 +28,30 @@ describe('POST /login', (t) => {
 			.type('form')
 			.expect(200)
 			.expect(res => {
-				access_token = res.body.access_token
 				if (res.body.access_token == undefined) {
 					throw new Error("No access_token in response")
 				}
+				access_token = res.body.access_token
 			})
 			.end(done)
 	})
-})
 
+	it('should return an error 401 if no user token is provided', (done) => {
+		request(app)
+			.post("/api/v1/login")
+			.expect(401)
+			.end(done)
+	})
+
+	it('should return an error 403 if invalid user token is provided', (done) => {
+		request(app)
+			.post("/api/v1/login")
+			.send({ 'user_token': "fail" })
+			.type('form')
+			.expect(403)
+			.end(done)
+	})
+})
 
 describe('GET /calendars', (t) => {
 	it('should return an empty list of calendars if a valid access token is provided', (done) => {
@@ -67,4 +82,3 @@ describe('GET /calendars', (t) => {
 			.end(done)
 	})
 })
-

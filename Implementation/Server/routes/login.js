@@ -30,7 +30,7 @@ router.post('/login', function (req, res) {
 		if (users.length == 0) {
 			// Check if it's a valid UUID
 			if (!validate(req.body.user_token, 4)) {
-				return res.sendStatus(400).end()
+				return res.sendStatus(403).end()
 			}
 			// Create the user and the device
 			req.models.users.create({
