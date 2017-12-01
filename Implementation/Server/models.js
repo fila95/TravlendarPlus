@@ -46,11 +46,11 @@ function model(db, cb) {
 	})
 
 	let User = db.define('users', {
-		id: { type: 'serial', required: true, key: true },
+		id: { type: 'serial', key: true },
 		user_token: { type: 'text', size: 24, required: true },
-		last_known_position_lat: { type: 'coord_lat' },
-		last_known_position_lng: { type: 'coord_lng' },
-		updated_at: { type: 'date', time: true, required: true}
+		last_known_position_lat: { type: 'coord_lat', defaultValue: 0 },
+		last_known_position_lng: { type: 'coord_lng', defaultValue: 0 },
+		updated_at: { type: 'date', time: true}
 	}, {
 			hooks: {
 				beforeSave: function (next) {
@@ -61,7 +61,7 @@ function model(db, cb) {
 		})
 
 	let Setting = db.define('settings', {
-		id: { type: 'serial', required: true, key: true },
+		id: { type: 'serial', key: true },
 		eco_mode: { type: 'boolean', defaultValue: false, required: true },
 		max_walking_distance: { type: 'integer', defaultValue: 2000, required: true },
 		max_biking_distance: { type: 'integer', defaultValue: 4000, required: true },
@@ -74,7 +74,7 @@ function model(db, cb) {
 	})
 
 	let Travel = db.define('travels', {
-		id: { type: 'serial', required: true, key: true },
+		id: { type: 'serial', key: true },
 		route: { type: 'integer', required: true },
 		time: { type: 'integer', required: true },
 		transport_mean: { type: 'transport_mean' },
@@ -82,13 +82,13 @@ function model(db, cb) {
 	})
 
 	let Calendar = db.define('calendars', {
-		id: { type: 'serial', required: true, key: true },
+		id: { type: 'serial', key: true },
 		name: { type: 'text', size: 255, required: true, defaultValue: '' },
 		color: { type: 'text', size: 6, required: true, defaultValue: '' }
 	})
 
 	let Company = db.define('companies', {
-		id: { type: 'serial', required: true, key: true },
+		id: { type: 'serial', key: true },
 		phone_number: { type: 'text', size: 32, unique: true },
 		content: { type: 'text', big: true },
 		url_redirect: { type: 'text', big: true },
@@ -96,14 +96,14 @@ function model(db, cb) {
 	})
 
 	let Device = db.define('devices', {
-		id: { type: 'serial', required: true, key: true },
+		id: { type: 'serial', key: true },
 		access_token: { type: 'text', size: 32, required: true },
 		push_token: { type: 'text', big: true },
 		device_type: { type: 'text', size: 32 }
 	})
 
 	let Event = db.define('events', {
-		id: { type: 'serial', required: true, key: true },
+		id: { type: 'serial', key: true },
 		title: { type: 'text', size: 255, required: true },
 		address: { type: 'text', size: 511 },
 		lat: { type: 'coord_lat' },
