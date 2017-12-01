@@ -170,11 +170,8 @@ Purpose
 \begin_layout Standard
 This document is the Implementation and Test Document (ITD) for Travlendar+,
  the system assigned to be developed.
- The document describes the characteristics of the system, both functional
- and non-functional requirements for the software, design constrains and
- system interfaces.
- It is addressed to be read by the developers that will implement the final
- system.
+ The document describes the characteristics of the developed system, the
+ requirements that it meets
 \end_layout
 
 \begin_layout Subsection
@@ -818,13 +815,6 @@ As first release of the application, the developing team ensures to meet
 [G3.2][R14] Allow people to explore a specific route
 \end_layout
 
-\begin_deeper
-\begin_layout Itemize
-[G3.2.2] Allow people to open the sharing services/ride provider's app and
- call the vehicle
-\end_layout
-
-\end_deeper
 \end_deeper
 \begin_layout Itemize
 [G4] Allow the users to create an event
@@ -832,15 +822,15 @@ As first release of the application, the developing team ensures to meet
 
 \begin_deeper
 \begin_layout Itemize
-[G4.1] Allow the user to define a name/description of the appointment
+[G4.1][R15] Allow the user to define a name/description of the appointment
 \end_layout
 
 \begin_layout Itemize
-[G4.2] Allow the user to define the location
+[G4.2][R16] Allow the user to define the location
 \end_layout
 
 \begin_layout Itemize
-[G4.3] Allow users to set a flexible timing
+[G4.3][R17] Allow users to set a flexible timing
 \end_layout
 
 \begin_deeper
@@ -859,26 +849,26 @@ As first release of the application, the developing team ensures to meet
 \end_layout
 
 \begin_layout Itemize
-[G4.5] Allow the user to repeat the event regularly throughout the week
+[G4.5][R18] Allow the user to repeat the event regularly throughout the week
 \end_layout
 
 \begin_layout Itemize
-[G4.6] Allow the user to assign the event to a specific calendar
+[G4.6][R19] Allow the user to assign the event to a specific calendar
 \end_layout
 
 \begin_layout Itemize
-[G4.7] Allow the user to define the mean of transportations that he/she wants
- to use for the event
+[G4.7][R20] Allow the user to define the mean of transportations that he/she
+ wants to use for the event
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
-[G5] Allow people to see daily events on a map
+[G5][R22] Allow people to see daily events on a map
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-[G5.1] Allow the user to have information about the status of the journey
+[G5.1][R21] Allow the user to have information about the status of the journey
  to make in order to reach the appointment's location 
 \end_layout
 
@@ -888,7 +878,7 @@ As first release of the application, the developing team ensures to meet
 
 \end_deeper
 \begin_layout Itemize
-[G6] Allow the user to set preferences
+[G6][R25] Allow the user to set preferences
 \end_layout
 
 \begin_deeper
@@ -897,33 +887,25 @@ As first release of the application, the developing team ensures to meet
 \end_layout
 
 \begin_layout Itemize
-[G6.2] Allow the user to set the walkable distance limit
+[G6.2][R23] Allow the user to set the walkable distance limit
 \end_layout
 
 \begin_layout Itemize
-[G6.3] Allow the user to set the maximum biking range
+[G6.3][R23] Allow the user to set the maximum biking range
 \end_layout
 
 \begin_layout Itemize
-[G6.4] Allow users to set the owned bike and/or bike sharing providers
+[G6.5][R24] Allow users to set a time range in which they can take public
+ transits
 \end_layout
 
 \begin_layout Itemize
-[G6.5] Allow users to set a time range in which they can take public transits
-\end_layout
-
-\begin_layout Itemize
-[G6.6] Allow users to set if they own a car and/or their favorite car sharing
- providers
-\end_layout
-
-\begin_layout Itemize
-[G6.7] Allow users to set the preferred ride sharing service
+[G6.7][R26] Allow users to set the preferred ride sharing service
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
-[G7] Allow the users to create calendars
+[G7][R27][R28] Allow the users to create calendars
 \end_layout
 
 \begin_deeper
@@ -937,16 +919,34 @@ As first release of the application, the developing team ensures to meet
 
 \end_deeper
 \begin_layout Itemize
-[G8] Notify the user that it's time to leave for the appointment
+[G8][R29][R30] Notify the user that it's time to leave for the appointment
 \end_layout
 
 \begin_layout Subsubsection
-Second Release
+Second Release of Travlendar+
+\end_layout
+
+\begin_layout Standard
+A second release of the application will (eventually) include the following
+ features:
 \end_layout
 
 \begin_layout Itemize
-[G3.2.2] Allow people to open the sharing services/ride provider's app and
- call the vehicle
+[G3.2.1][R10] Allow people to purchase the transit ticket
+\end_layout
+
+\begin_layout Itemize
+[G3.2.2][R12] Allow people to open the sharing services/ride provider's app
+ and call the vehicle
+\end_layout
+
+\begin_layout Itemize
+[G6.4] Allow users to set the owned bike and/or bike sharing providers
+\end_layout
+
+\begin_layout Itemize
+[G6.6] Allow users to set if they own a car and/or their favorite car sharing
+ providers
 \end_layout
 
 \begin_layout Standard
