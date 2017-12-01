@@ -3,9 +3,10 @@ let auth = (req, res, next) => {
 	let access_token = req.get('X-Access-Token')
 	if (access_token != undefined) {
 		req.models.devices.find({ access_token: access_token }, (err, devices) => {
-			if (devices.length == 1) {
+			if (!err && devices.length == 1) {
 				let device = devices[0]
-				device.getUser((user) => {
+				device.getUser((err, user) => {
+					if(err) throw err
 					req.user = user
 					return next()
 				})
