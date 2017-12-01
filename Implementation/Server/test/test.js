@@ -1,37 +1,34 @@
 const app = require("../index")
 const request = require('supertest')
 const assert = require('assert')
+const uuidv4 = require('uuid/v4')
 
-describe('GET /hello', function (t) {
-	it('should return hello', function () {
+describe('POST /login', (t) => {
+	let user_token = uuidv4();
+
+	it('should create a user and return a new access_token', (done) => {
 		request(app)
-			.get("/hello")
-			.then(response => {
-				assert(response, 'hello')
+			.post("/api/v1/login")
+			.send({ 'user_token': user_token })
+			.type('form')
+			.expect(res => {
+				if(res.body.access_token==undefined) {
+					throw new Error(JSON.stringify(res.body))
+				}
 			})
+			.end(done)
+	})
+
+	it('should return a new access_token if a valid user_token is provided', (done) => {
+		request(app)
+			.post("/api/v1/login")
+			.send({ 'user_token': user_token })
+			.type('form')
+			.expect(res => {
+				if(res.body.access_token==undefined) {
+					throw new Error("No access_token in response")
+				}
+			})
+			.end(done)
 	})
 })
-
-describe('Authorization', function () {
-	it('should expect a 401 if not authorization is provided', function (done) {
-		request(app)
-			.get("/helloWithAuth")
-			.expect(401)
-			.end((err, res) => {
-				if (err) done(err)
-				else done()
-			})
-	})
-
-	it('should expect a 403 if invalid authorization is provided', function (done) {
-		request(app)
-			.get("/helloWithAuth")
-			.set("X-Access-Token", "fail")
-			.expect(403)
-			.end((err, res) => {
-				if (err) done(err)
-				else done()
-			})
-	})
-})
-
