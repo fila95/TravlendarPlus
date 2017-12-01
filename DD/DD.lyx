@@ -117,7 +117,7 @@ Calzavara Filippo, Filaferro Giovanni, Benedetto Maria Nespoli
 
 \begin_layout Standard
 \align center
-Version 1.1.0
+Version 1.1.1
 \end_layout
 
 \begin_layout Standard
@@ -913,6 +913,10 @@ Revision History
 
 \begin_layout Itemize
 1.1.0 - Further clarifications on the platform and Interfaces (30/11/2017)
+\end_layout
+
+\begin_layout Itemize
+1.1.1 - Added an API deleted by mistake (01/12/2017)
 \end_layout
 
 \begin_layout Subsection
@@ -2028,6 +2032,20 @@ getNearbySharingMean(·): List<TransportMean>
 GET: Retrieve a list of available companies - 
 \emph on
 getCompanies(·): List<Company>
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+/api/v1/pushNotificationToken
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+POST: Update the current push notification token -
+\emph on
+ pushNotificationToken(String user_token, String apns_token)
 \end_layout
 
 \end_deeper
