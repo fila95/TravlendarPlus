@@ -1,16 +1,18 @@
 function model(db, cb) {
+	/* istanbul ignore next */
 	db.defineType('coord_lat', {
 		datastoreType: function (prop) {
 			return 'NUMERIC(9,7)'
 		}
 	})
-
+	/* istanbul ignore next */
 	db.defineType('coord_lng', {
 		datastoreType: function (prop) {
 			return 'NUMERIC(10,7)'
 		}
 	})
 
+	/* istanbul ignore next */
 	db.defineType('time', {
 		datastoreType: function (prop) {
 			let r = 'TIME'
@@ -24,6 +26,7 @@ function model(db, cb) {
 		}
 	})
 
+	/* istanbul ignore next */
 	db.defineType('bit', {
 		datastoreType: function (prop) {
 			let r = 'BIT(' + (prop.size || 8) + ')'
@@ -39,6 +42,7 @@ function model(db, cb) {
 
 	db.driver.execQuery("CREATE TYPE transport_mean_type AS ENUM ('WALKING','BIKING','PUBLIC','SHARING','CAR')", (err, data) => {})
 
+	/* istanbul ignore next */
 	db.defineType('transport_mean', {
 		datastoreType: function (prop) {
 			return "transport_mean_type"
