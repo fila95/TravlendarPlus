@@ -9,6 +9,7 @@ const DB_URL = process.env.DATABASE_URL || "postgresql://postgres:postgres@local
 // Middleware that will log all the requests on the stdout.
 // ONLY FOR DEBUG PURPOSE
 let logger = (req, res, next) => {
+	/* istanbul ignore if  */
 	if (process.env.DEBUG) {
 		console.log(new Date().toISOString() + " " + req.statusCode + " " + req.method + " " + req.url)
 	}
@@ -38,6 +39,7 @@ app.use(require('./routes'))
 app.disable('x-powered-by')
 
 // If the app was not imported as a library, start the server
+/* istanbul ignore if  */
 if (require.main === module) {
 	let server = app.listen(port, () => {
 		console.log("Listening on :" + port)
