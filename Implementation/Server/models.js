@@ -87,8 +87,8 @@ function model(db, cb) {
 
 	let Calendar = db.define('calendars', {
 		id: { type: 'serial', key: true },
-		name: { type: 'text', size: 255, required: true, defaultValue: '' },
-		color: { type: 'text', size: 6, required: true, defaultValue: '' }
+		name: { type: 'text', size: 255, required: true, unique: true },
+		color: { type: 'text', size: 6, required: true }
 	})
 
 	let Company = db.define('companies', {
