@@ -171,7 +171,8 @@ Purpose
 This document is the Implementation and Test Document (ITD) for Travlendar+,
  the system assigned to be developed.
  The document describes the characteristics of the developed system, the
- requirements that it meets
+ requirements that it meets for its first release and the next advanced,
+ an overview of the testes 
 \end_layout
 
 \begin_layout Subsection
@@ -949,6 +950,52 @@ A second release of the application will (eventually) include the following
  providers
 \end_layout
 
+\begin_layout Subsection
+Description of Code's structure
+\end_layout
+
+\begin_layout Subsection
+Code developed
+\end_layout
+
+\begin_layout Standard
+The developed code, divided by type of implementation (Client/Server) is
+ available below.
+ Next section is: 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "subsec:Installation-instructions"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Installation-instructions"
+
+\end_inset
+
+Installation instructions
+\end_layout
+
+\begin_layout Subsection
+Development frameworks used
+\end_layout
+
+\begin_layout Section
+Test
+\end_layout
+
 \begin_layout Standard
 \begin_inset Newpage pagebreak
 \end_inset
@@ -961,15 +1008,15 @@ Effort spent
 \end_layout
 
 \begin_layout Itemize
-Filippo Calzavara: 32.00h
+Filippo Calzavara: 2.00h
 \end_layout
 
 \begin_layout Itemize
-Giovanni Filaferro: 32.00h
+Giovanni Filaferro: 2.00h
 \end_layout
 
 \begin_layout Itemize
-Benedetto Maria Nespoli: 32.00h
+Benedetto Maria Nespoli: 2.00h
 \end_layout
 
 \begin_layout Section
