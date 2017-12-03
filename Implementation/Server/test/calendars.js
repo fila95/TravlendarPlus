@@ -12,7 +12,7 @@ before((done) => {
 	// Connect to database
 	// Create a test user and device
 	const user_token = uuidv4()
-	app.on('db_connected', (_db)=>{
+	app.on('db_connected', (_db) => {
 		db = _db
 		db.models.users.create({
 			user_token: user_token
@@ -32,9 +32,9 @@ before((done) => {
 
 after((done) => {
 	// Delete the test user and device created before
-	db.models.users.find({ id: device.user_id }).remove(()=>{
-		db.models.devices.find({ id: device.id }).remove(()=>{
-			db.models.calendars.find({ name: calendarName }).remove((index)=>{
+	db.models.users.find({ id: device.user_id }).remove(() => {
+		db.models.devices.find({ id: device.id }).remove(() => {
+			db.models.calendars.find({ name: calendarName }).remove((index) => {
 				done()
 			})
 		})
@@ -56,10 +56,10 @@ describe('GET /calendars', () => {
 	})
 })
 
-describe('POST /calendars', () => {
+describe('PUT /calendar', () => {
 	it('should create a calendar if a valid access token is provided', (done) => {
 		request(app)
-			.post('/api/v1/calendars')
+			.put('/api/v1/calendar')
 			.set('X-Access-Token', device.access_token)
 			.send({
 				'name': calendarName,

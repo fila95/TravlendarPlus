@@ -37,7 +37,7 @@ router.post('/login', function (req, res) {
 				user_token: req.body.user_token
 			}, (err, result) => {
 				if (err) throw err
-			    createDevice(result, req, res)
+				createDevice(result, req, res)
 			})
 		} else {
 			// Create only the device

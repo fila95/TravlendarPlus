@@ -40,7 +40,7 @@ function model(db, cb) {
 		}
 	})
 
-	db.driver.execQuery("CREATE TYPE transport_mean_type AS ENUM ('WALKING','BIKING','PUBLIC','SHARING','CAR')", (err, data) => {})
+	db.driver.execQuery("CREATE TYPE transport_mean_type AS ENUM ('WALKING','BIKING','PUBLIC','SHARING','CAR')", (err, data) => { })
 
 	/* istanbul ignore next */
 	db.defineType('transport_mean', {
@@ -53,7 +53,7 @@ function model(db, cb) {
 		user_token: { type: 'text', size: 24, required: true },
 		last_known_position_lat: { type: 'coord_lat', defaultValue: 0 },
 		last_known_position_lng: { type: 'coord_lng', defaultValue: 0 },
-		updated_at: { type: 'date', time: true}
+		updated_at: { type: 'date', time: true }
 	}, {
 			hooks: {
 				beforeSave: function (next) {
