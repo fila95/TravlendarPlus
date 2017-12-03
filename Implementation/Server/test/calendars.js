@@ -1,13 +1,19 @@
 const app = require('../index')
 const request = require('supertest')
+const crypto = require('crypto')
 const uuidv4 = require('uuid/v4')
+const orm = require('orm')
 
-const db = app.get('db')
-const user_token = uuidv4()
-let access_token = null
+const calendarName = 'name test'
+let db = null
+let device = null
 
-describe('GET /calendars', () => {
-	it('should return an empty list of calendars if a valid access token is provided', (done) => {
+before((done) => {
+	// Connect to database
+	// Create a test user and device
+	const user_token = uuidv4()
+	app.on('db_connected', (_db)=>{
+		db = _db
 		db.models.users.create({
 			user_token: user_token
 		}, (err, user) => {
@@ -15,19 +21,38 @@ describe('GET /calendars', () => {
 			db.models.devices.create({
 				user_id: user.id,
 				access_token: crypto.randomBytes(48).toString('base64')
-			}, (err, device) => {
-				request(app)
-					.get('/api/v1/calendars')
-					.set('X-Access-Token', device.access_token)
-					.expect(200)
-					.expect(res => {
-						if (res.body === {}) {
-							throw new Error('No empty list')
-						}
-					})
-					.end(done)
+			}, (err, _device) => {
+				if (err) throw err
+				device = _device
+				done()
 			})
 		})
+	})
+})
+
+after((done) => {
+	// Delete the test user and device created before
+	db.models.users.find({ id: device.user_id }).remove(()=>{
+		db.models.devices.find({ id: device.id }).remove(()=>{
+			db.models.calendars.find({ name: calendarName }).remove((index)=>{
+				done()
+			})
+		})
+	})
+})
+
+describe('GET /calendars', () => {
+	it('should return an empty list of calendars if a valid access token is provided', (done) => {
+		request(app)
+			.get('/api/v1/calendars')
+			.set('X-Access-Token', device.access_token)
+			.expect(200)
+			.expect(res => {
+				if (res.body === {}) {
+					throw new Error('No empty list')
+				}
+			})
+			.end(done)
 	})
 })
 
@@ -35,9 +60,9 @@ describe('POST /calendars', () => {
 	it('should create a calendar if a valid access token is provided', (done) => {
 		request(app)
 			.post('/api/v1/calendars')
-			.set('X-Access-Token', access_token)
+			.set('X-Access-Token', device.access_token)
 			.send({
-				'name': 'name test',
+				'name': calendarName,
 				'color': '#1278EF'
 			})
 			.type('form')
