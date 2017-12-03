@@ -3,13 +3,12 @@ const request = require('supertest')
 const uuidv4 = require('uuid/v4')
 
 const user_token = uuidv4()
-let access_token = null
 let db = null
 
 describe('POST /login', () => {
 	before((done) => {
 		// Connect to database
-		if(!app.get('db')) {
+		if (!app.get('db')) {
 			app.on('db_connected', (_db) => {
 				db = _db
 				done()
@@ -22,14 +21,29 @@ describe('POST /login', () => {
 
 	after((done) => {
 		// Delete the test user and device created before
-		db.models.users.find({ user_token: user_token }).remove(() => {
-			db.models.devices.find({ access_token: access_token }).remove(() => {
+		db.models.users.find({ user_token: user_token }, (err, users) => {
+			users[0].getDevices().remove((err)=>{
+				if (err) throw err
 				done()
 			})
 		})
 	})
 
-	it('should return a new access_token if a valid user_token is provided', (done) => {
+	it('should create a new user and a new access_token if a valid user_token is provided', (done) => {
+		request(app)
+			.post('/api/v1/login')
+			.send({ 'user_token': user_token })
+			.type('form')
+			.expect(200)
+			.expect(res => {
+				if (res.body.access_token == undefined) {
+					throw new Error('No access_token in response')
+				}
+			})
+			.end(done)
+	})
+
+	it('should simply return a new access_token if a valid existing user_token is provided', (done) => {
 		request(app)
 			.post('/api/v1/login')
 			.send({ 'user_token': user_token })
