@@ -954,21 +954,45 @@ A second release of the application will (eventually) include the following
 Description of Code's structure
 \end_layout
 
-\begin_layout Subsection
-Code developed
-\end_layout
-
 \begin_layout Standard
 The developed code, divided by type of implementation (Client/Server) is
  available below.
- Next section is: 
+ Information on how run the code shown below are available in the next section
+ 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
+reference "subsec:Installation-instructions"
+
+\end_inset
+
+ 
+\begin_inset CommandInset ref
+LatexCommand nameref
 reference "subsec:Installation-instructions"
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+For the Client side we developed ...
+\end_layout
+
+\begin_layout Standard
+Regarding the server side ...
+\end_layout
+
+\begin_layout Subsection
+Client side implementation (iOS App)
+\end_layout
+
+\begin_layout Subsection
+Server side implementation (NodeJs)
+\end_layout
+
+\begin_layout Subsection
+Development frameworks adopted
 \end_layout
 
 \begin_layout Standard
@@ -994,6 +1018,10 @@ Development frameworks used
 
 \begin_layout Section
 Test
+\end_layout
+
+\begin_layout Standard
+
 \end_layout
 
 \begin_layout Standard
