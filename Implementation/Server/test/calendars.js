@@ -61,7 +61,7 @@ describe('Calendars API', () => {
 					'color': '#1278EF'
 				})
 				.type('form')
-				.expect(200)
+				.expect(201)
 				.expect(res => {
 					if (!res.body.id) {
 						throw new Error('No calendar returned')

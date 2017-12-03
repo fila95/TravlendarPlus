@@ -34,7 +34,7 @@ router.put('/calendar', (req, res) => {
 	}, (err, result) => {
 		if (err) return res.sendStatus(500).end()
 
-		return res.json(result).end()
+		return res.status(201).json(result).end()
 	})
 })
 
