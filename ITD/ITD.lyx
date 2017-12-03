@@ -708,7 +708,7 @@ RASD version 1.2.0
 \end_layout
 
 \begin_layout Itemize
-Design Document 1.1.1
+Design Document 1.2.0
 \end_layout
 
 \begin_layout Subsection
@@ -1018,10 +1018,6 @@ Development frameworks used
 
 \begin_layout Section
 Test
-\end_layout
-
-\begin_layout Standard
-
 \end_layout
 
 \begin_layout Standard

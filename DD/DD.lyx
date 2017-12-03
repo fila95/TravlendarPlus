@@ -117,7 +117,7 @@ Calzavara Filippo, Filaferro Giovanni, Benedetto Maria Nespoli
 
 \begin_layout Standard
 \align center
-Version 1.1.1
+Version 1.2.0
 \end_layout
 
 \begin_layout Standard
@@ -919,6 +919,10 @@ Revision History
 1.1.1 - Added an API deleted by mistake (01/12/2017)
 \end_layout
 
+\begin_layout Itemize
+1.2.0 - Updated API for RESTful compliance (03/12/2017)
+\end_layout
+
 \begin_layout Subsection
 Reference Documents
 \end_layout
@@ -1275,7 +1279,7 @@ Mobile Application
 \emph default
 , that interacts with two subsystems, 
 \emph on
-Scheduling Services
+Event Services
 \emph default
  and 
 \emph on
@@ -1915,7 +1919,7 @@ getSetting(·): Setting
 \end_layout
 
 \begin_layout Itemize
-POST: Save settings - 
+PATCH: Save settings - 
 \emph on
 updateSetting(·)
 \end_layout
@@ -1934,20 +1938,28 @@ GET: Retrieve the user calendars -
 getCalendars(·): List<Calendar>
 \end_layout
 
+\end_deeper
 \begin_layout Itemize
-POST: Add new calendar - 
+
+\series bold
+/api/v1/calendar/{calendar_id}
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+PUT: Add new calendar - 
 \emph on
 newCalendar(·)
 \end_layout
 
 \begin_layout Itemize
-POST: Update existing calendar - 
+PATCH: Update existing calendar - 
 \emph on
 updateCalendar(·)
 \end_layout
 
 \begin_layout Itemize
-POST: Remove existing calendar - 
+DELETE: Remove existing calendar - 
 \emph on
 removeCalendar(·)
 \end_layout
@@ -1967,13 +1979,13 @@ getEvents(·): List<Events>
 \end_layout
 
 \begin_layout Itemize
-POST: Update existing event - 
+PATCH: Update existing event - 
 \emph on
 updateEvent(·)
 \end_layout
 
 \begin_layout Itemize
-POST: Remove existing event - 
+DELETE: Remove existing event - 
 \emph on
 removeEvent(·)
 \end_layout
@@ -2001,7 +2013,7 @@ getSchedule(·): Schedule
 
 \begin_deeper
 \begin_layout Itemize
-POST: Update the current user position - 
+PATCH: Update the current user position - 
 \emph on
 setPosition(·)
 \end_layout
@@ -2043,17 +2055,12 @@ getCompanies(·): List<Company>
 
 \begin_deeper
 \begin_layout Itemize
-POST: Update the current push notification token -
+PATCH: Update the current push notification token -
 \emph on
- pushNotificationToken(String user_token, String apns_token)
+ pushNotificationToken(·)
 \end_layout
 
 \end_deeper
-\begin_layout Standard
-The operation mode of each API could be sent as POST parameter as well (when
- needed).
-\end_layout
-
 \begin_layout Standard
 \begin_inset Newpage pagebreak
 \end_inset
@@ -3136,7 +3143,7 @@ Auto-login Service
 
 \begin_deeper
 \begin_layout Itemize
-[R2][R4][R5] Scheduling Services: Event Manager Module through 
+[R2][R4][R5] Event Services: Event Manager Module through 
 \emph on
 EventHistory
 \emph default
@@ -3144,7 +3151,7 @@ EventHistory
 \end_layout
 
 \begin_layout Itemize
-[R3] Scheduling Services: Event Manager Module through 
+[R3] Event Services: Event Manager Module through 
 \emph on
 ActivitiesScheduler
 \emph default
@@ -3158,7 +3165,7 @@ ActivitiesScheduler
 
 \begin_deeper
 \begin_layout Itemize
-[R6] Scheduling Services: Calendar Module through 
+[R6] Event Services: Calendar Module through 
 \emph on
 ManageCalendars
 \emph default
@@ -3166,7 +3173,7 @@ ManageCalendars
 \end_layout
 
 \begin_layout Itemize
-[R7] Scheduling Services: Event Manager Module through 
+[R7] Event Services: Event Manager Module through 
 \emph on
 EventHistory
 \emph default
@@ -3174,7 +3181,7 @@ EventHistory
 \end_layout
 
 \begin_layout Itemize
-[R8] Scheduling Services: Event Manager Module through 
+[R8] Event Services: Event Manager Module through 
 \emph on
 ManageEvents
 \emph default
@@ -3188,7 +3195,7 @@ ManageEvents
 
 \begin_deeper
 \begin_layout Itemize
-[R9][R11] Scheduling Services: Event Manager Module through 
+[R9][R11] Event Services: Event Manager Module through 
 \emph on
 EventHistory
 \emph default
@@ -3204,7 +3211,7 @@ TicketsManaging
 \end_layout
 
 \begin_layout Itemize
-[R9][R14] Scheduling Services: Event Manager Module through 
+[R9][R14] Event Services: Event Manager Module through 
 \emph on
 ActivitiesScheduler
 \emph default
@@ -3218,8 +3225,8 @@ ActivitiesScheduler
 
 \begin_deeper
 \begin_layout Itemize
-[R15][R16][R17][R18][R19][R20] Scheduling Services: Event Manager Module
- through 
+[R15][R16][R17][R18][R19][R20] Event Services: Event Manager Module through
+ 
 \emph on
 ManageEvents
 \emph default
@@ -3233,7 +3240,7 @@ ManageEvents
 
 \begin_deeper
 \begin_layout Itemize
-[R21] Scheduling Services: Event Manager Module through 
+[R21] Event Services: Event Manager Module through 
 \emph on
 EventHistory
 \emph default
@@ -3241,7 +3248,7 @@ EventHistory
 \end_layout
 
 \begin_layout Itemize
-[R22] Scheduling Services: Event Manager Module through 
+[R22] Event Services: Event Manager Module through 
 \emph on
 ActivitiesScheduler
 \emph default
@@ -3263,7 +3270,7 @@ ManageSetting
 \end_layout
 
 \begin_layout Itemize
-[R25] Scheduling Services: Calendar Module through 
+[R25] Event Services: Calendar Module through 
 \emph on
 ManageCalendars
 \emph default
@@ -3277,7 +3284,7 @@ ManageCalendars
 
 \begin_deeper
 \begin_layout Itemize
-[R27][R28] Scheduling Services: Calendar Module through 
+[R27][R28] Event Services: Calendar Module through 
 \emph on
 ManageCalendars
 \emph default
@@ -3291,7 +3298,7 @@ ManageCalendars
 
 \begin_deeper
 \begin_layout Itemize
-[R29][R30] Scheduling Services: Event Manager Module through 
+[R29][R30] Event Services: Event Manager Module through 
 \emph on
 ActivitiesScheduler
 \emph default
@@ -3323,11 +3330,11 @@ reference "fig:ER-Diagram"
 
 , and it's up and running on a PostgreSQL instance.
  The Client and the Server part will be elaborated in the same time, starting
- from the Scheduling Services.
+ from the Event Services.
 \end_layout
 
 \begin_layout Subsection
-Scheduling Services
+Event Services
 \end_layout
 
 \begin_layout Standard
