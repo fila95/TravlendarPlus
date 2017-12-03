@@ -22,9 +22,12 @@ describe('POST /login', () => {
 	after((done) => {
 		// Delete the test user and device created before
 		db.models.users.find({ user_token: user_token }, (err, users) => {
-			users[0].getDevices().remove((err)=>{
+			users[0].getDevices().remove((err) => {
 				if (err) throw err
-				done()
+				users[0].remove((err) => {
+					if (err) throw err
+					done()
+				})
 			})
 		})
 	})
