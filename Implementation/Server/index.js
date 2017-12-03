@@ -3,8 +3,8 @@ const bodyParser = require('body-parser')
 const orm = require('orm')
 const app = express()
 
-const port = process.env.PORT || 8080
-const DB_URL = process.env.DATABASE_URL || "postgresql://postgres:postgres@localhost/travlendarplus"
+app.set('port', process.env.PORT || 8080)
+app.set('DB_URL', process.env.DATABASE_URL || "postgresql://postgres:postgres@localhost/travlendarplus")
 
 // Middleware that will log all the requests on the stdout.
 // ONLY FOR DEBUG PURPOSE
@@ -24,6 +24,7 @@ let defineDatabase = (db, models, next) => {
 			if (err) { throw err }
 			// copy db.models properties in models
 			Object.assign(models, db.models)
+			app.emit('db_connected', db)
 			next()
 		})
 	})
@@ -31,7 +32,7 @@ let defineDatabase = (db, models, next) => {
 
 // Set the middlewares
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(orm.express(DB_URL, { define: defineDatabase, debug: true }))
+app.use(orm.express(app.get('DB_URL'), { define: defineDatabase, debug: true }))
 app.use(logger)
 app.use(require('./routes'))
 
@@ -41,8 +42,8 @@ app.disable('x-powered-by')
 // If the app was not imported as a library, start the server
 /* istanbul ignore if  */
 if (require.main === module) {
-	let server = app.listen(port, () => {
-		console.log("Listening on :" + port)
+	let server = app.listen(app.get('port'), () => {
+		console.log("Listening on :" + app.get('port'))
 	})
 } else {
 	module.exports = app
