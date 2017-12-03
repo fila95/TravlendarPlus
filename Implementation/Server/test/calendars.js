@@ -54,7 +54,7 @@ describe('Calendars API', () => {
 				.set('X-Access-Token', device.access_token)
 				.expect(200)
 				.expect(res => {
-					if (res.body === {}) {
+					if (!res.body || res.body.length != 0) {
 						throw new Error('No empty list')
 					}
 				})
@@ -78,6 +78,45 @@ describe('Calendars API', () => {
 						throw new Error('No calendar returned')
 					}
 				})
+				.end(done)
+		})
+		
+		it('should throw a 500 error creating a calendar with the same name of the previous', (done) => {
+			request(app)
+				.put('/api/v1/calendar')
+				.set('X-Access-Token', device.access_token)
+				.send({
+					'name': calendarName,
+					'color': '#1278EF'
+				})
+				.type('form')
+				.expect(500)
+				.end(done)
+		})
+		
+		it('should throw a 400 error creating a calendar with an invalid name', (done) => {
+			request(app)
+				.put('/api/v1/calendar')
+				.set('X-Access-Token', device.access_token)
+				.send({
+					'name': '',
+					'color': '#1278EF'
+				})
+				.type('form')
+				.expect(400)
+				.end(done)
+		})
+		
+		it('should throw a 400 error creating a calendar with an invalid color', (done) => {
+			request(app)
+				.put('/api/v1/calendar')
+				.set('X-Access-Token', device.access_token)
+				.send({
+					'name': 'valid name',
+					'color': 'HELLO'
+				})
+				.type('form')
+				.expect(400)
 				.end(done)
 		})
 	})
