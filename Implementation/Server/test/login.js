@@ -16,7 +16,6 @@ describe('POST /login', () => {
 				if (res.body.access_token == undefined) {
 					throw new Error('No access_token in response')
 				}
-				access_token = res.body.access_token
 			})
 			.end(done)
 	})

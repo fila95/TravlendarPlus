@@ -15,14 +15,14 @@ let validColor = (color) => {
 }
 
 // Create a new Calendar with the name and color specified
-router.post('/calendars', (req, res) => {
+router.put('/calendar', (req, res) => {
 	// Validate inputs
 	if (!req.body.name || !req.body.color) {
 		return res.sendStatus(400).end()
 	}
 	let name = req.body.name.trim()
 	let color = req.body.color.trim()
-	if(!validColor(color)) {
+	if (!validColor(color)) {
 		return res.sendStatus(400).end()
 	}
 
@@ -33,7 +33,7 @@ router.post('/calendars', (req, res) => {
 		color: color
 	}, (err, result) => {
 		if (err) return res.sendStatus(500).end()
-		
+
 		return res.json(result).end()
 	})
 })
