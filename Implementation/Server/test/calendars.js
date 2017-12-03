@@ -8,31 +8,35 @@ const calendarName = 'valid name'
 let db = null
 let device = null
 
+let createData = (done) => {
+	const user_token = uuidv4()
+	db.models.users.create({
+		user_token: user_token
+	}, (err, user) => {
+		if (err) throw err
+		db.models.devices.create({
+			user_id: user.id,
+			access_token: crypto.randomBytes(48).toString('base64')
+		}, (err, _device) => {
+			if (err) throw err
+			device = _device
+			done()
+		})
+	})
+}
+
 describe('Calendars API', () => {
 	before((done) => {
 		// Connect to database
 		// Create a test user and device
-		const user_token = uuidv4()
 		if (!app.get('db')) {
 			app.on('db_connected', (_db) => {
 				db = _db
-				db.models.users.create({
-					user_token: user_token
-				}, (err, user) => {
-					if (err) throw err
-					db.models.devices.create({
-						user_id: user.id,
-						access_token: crypto.randomBytes(48).toString('base64')
-					}, (err, _device) => {
-						if (err) throw err
-						device = _device
-						done()
-					})
-				})
+				createData(done)
 			})
 		} else {
 			db = app.get('db')
-			done()
+			createData(done)
 		}
 	})
 
@@ -65,7 +69,7 @@ describe('Calendars API', () => {
 				})
 				.end(done)
 		})
-		
+
 		it('should throw a 500 error creating a calendar with the same name of the previous', (done) => {
 			request(app)
 				.put('/api/v1/calendar')
@@ -78,7 +82,7 @@ describe('Calendars API', () => {
 				.expect(500)
 				.end(done)
 		})
-		
+
 		it('should throw a 400 error creating a calendar with an invalid name', (done) => {
 			request(app)
 				.put('/api/v1/calendar')
@@ -91,7 +95,7 @@ describe('Calendars API', () => {
 				.expect(400)
 				.end(done)
 		})
-		
+
 		it('should throw a 400 error creating a calendar with an invalid color', (done) => {
 			request(app)
 				.put('/api/v1/calendar')

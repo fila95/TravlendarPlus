@@ -9,7 +9,7 @@ const endpoints = [
 	}
 ]
 
-describe('Security tests', () => {
+describe('Authorization', () => {
 	endpoints.forEach((obj) => {
 		let endpoint = obj.endpoint
 		obj.verbs.forEach((verb) => {

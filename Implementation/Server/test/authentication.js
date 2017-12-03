@@ -5,7 +5,7 @@ const uuidv4 = require('uuid/v4')
 const user_token = uuidv4()
 let db = null
 
-describe('POST /login', () => {
+describe('Authentication', () => {
 	before((done) => {
 		// Connect to database
 		if (!app.get('db')) {
