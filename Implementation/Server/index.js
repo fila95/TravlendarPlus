@@ -25,6 +25,7 @@ let defineDatabase = (db, models, next) => {
 			// copy db.models properties in models
 			Object.assign(models, db.models)
 			app.emit('db_connected', db)
+			app.set('db', db)
 			next()
 		})
 	})

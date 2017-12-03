@@ -4,8 +4,31 @@ const uuidv4 = require('uuid/v4')
 
 const user_token = uuidv4()
 let access_token = null
+let db = null
 
 describe('POST /login', () => {
+	before((done) => {
+		// Connect to database
+		if(!app.get('db')) {
+			app.on('db_connected', (_db) => {
+				db = _db
+				done()
+			})
+		} else {
+			db = app.get('db')
+			done()
+		}
+	})
+
+	after((done) => {
+		// Delete the test user and device created before
+		db.models.users.find({ user_token: user_token }).remove(() => {
+			db.models.devices.find({ access_token: access_token }).remove(() => {
+				done()
+			})
+		})
+	})
+
 	it('should return a new access_token if a valid user_token is provided', (done) => {
 		request(app)
 			.post('/api/v1/login')
