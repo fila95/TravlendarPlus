@@ -4,7 +4,7 @@ const crypto = require('crypto')
 const uuidv4 = require('uuid/v4')
 const orm = require('orm')
 
-const calendarName = 'name test'
+const calendarName = 'valid name'
 let db = null
 let device = null
 
@@ -37,28 +37,13 @@ describe('Calendars API', () => {
 	})
 
 	after((done) => {
-		// Delete the test user and device created before
+		// Delete the test user, device and calendar created during the test
 		db.models.users.find({ id: device.user_id }).remove(() => {
 			db.models.devices.find({ id: device.id }).remove(() => {
 				db.models.calendars.find({ name: calendarName }).remove((index) => {
 					done()
 				})
 			})
-		})
-	})
-
-	describe('GET /calendars', () => {
-		it('should return an empty list of calendars if a valid access token is provided', (done) => {
-			request(app)
-				.get('/api/v1/calendars')
-				.set('X-Access-Token', device.access_token)
-				.expect(200)
-				.expect(res => {
-					if (!res.body || res.body.length != 0) {
-						throw new Error('No empty list')
-					}
-				})
-				.end(done)
 		})
 	})
 
@@ -113,7 +98,7 @@ describe('Calendars API', () => {
 				.set('X-Access-Token', device.access_token)
 				.send({
 					'name': 'valid name',
-					'color': 'HELLO'
+					'color': 'invalid color'
 				})
 				.type('form')
 				.expect(400)
@@ -121,5 +106,19 @@ describe('Calendars API', () => {
 		})
 	})
 
+	describe('GET /calendars', () => {
+		it('should return a list of calendars if a valid access token is provided', (done) => {
+			request(app)
+				.get('/api/v1/calendars')
+				.set('X-Access-Token', device.access_token)
+				.expect(200)
+				.expect(res => {
+					if (!res.body || res.body.length != 1) {
+						throw new Error('No empty list')
+					}
+				})
+				.end(done)
+		})
+	})
 
 })
