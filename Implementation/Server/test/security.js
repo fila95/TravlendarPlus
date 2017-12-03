@@ -1,5 +1,4 @@
 const app = require('../index')
-const itParam = require('mocha-param').itParam;
 const request = require('supertest')
 
 const baseURL = "/api/v1/"
