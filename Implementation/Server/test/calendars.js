@@ -125,12 +125,12 @@ describe('Calendars API', () => {
 		})
 	})
 
-	describe('DELETE /calendars', () => {
-		it('should return a list of calendars if a valid access token is provided', (done) => {
+	describe('DELETE /calendars/:id', () => {
+		it('should delete the calendar if a valid access token is provided', (done) => {
 			request(app)
-				.delete('/api/v1/calendars/'+calendar.id)
+				.delete('/api/v1/calendars/' + calendar.id)
 				.set('X-Access-Token', device.access_token)
-				.expect(200)
+				.expect(204)
 				.end(done)
 		})
 	})

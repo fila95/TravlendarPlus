@@ -43,10 +43,8 @@ router.delete('/:calendar_id', (req, res) => {
 	req.models.calendars.find({
 		user_id: req.user.id,
 		id: req.params.calendar_id
-	}).remove((err, result) => {
-		if (err) return res.sendStatus(500).end()
-
-		return res.status(200).json(result).end()
+	}).remove( () => {
+		return res.status(204).end()
 	})
 })
 module.exports = router
