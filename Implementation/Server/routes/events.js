@@ -86,10 +86,8 @@ router.delete('/:event_id', (req, res) => {
 	// Delete the event
 	req.models.events.find({
 		id: req.params.event_id
-	}).remove((err, result) => {
-		if (err) return res.sendStatus(500).end()
-
-		return res.status(200).json(result).end()
+	}).remove(err => {
+		return res.status(204).end()
 	})
 })
 
