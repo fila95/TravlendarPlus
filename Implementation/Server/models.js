@@ -108,11 +108,10 @@ function model(db, cb) {
 		start_time: { type: 'date', required: true, time: true },
 		end_time: { type: 'date', required: true, time: true },
 		duration: { type: 'integer' },
-		repetitions: { type: 'bit', size: 7, required: true, defaultValue: '0000000', required: true },
-		calendar_id: { type: 'integer', required: true },
-		transports: { type: 'bit', size: 5, required: true, defaultValue: '11111', required: true },
-		suggested_start_time: { type: 'date', required: false, time: true },
-		suggested_end_time: { type: 'date', required: false, time: true }
+		repetitions: { type: 'bit', size: 7, defaultValue: '0000000' },
+		transports: { type: 'bit', size: 5,  defaultValue: '11111' },
+		suggested_start_time: { type: 'date', time: true },
+		suggested_end_time: { type: 'date', time: true }
 	})
 
 	Event.hasMany('travels', Travel)
