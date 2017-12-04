@@ -12,6 +12,7 @@ app.get("/helloWithAuth", (req, res) => {
 })*/
 
 router.use('/api/v1/', require('./login'))
-router.use('/api/v1/', auth, require('./calendars'))
+router.use('/api/v1/calendars', auth, require('./calendars'))
+router.use('/api/v1/calendars/:calendar_id/events', auth, require('./events'))
 
 module.exports = router

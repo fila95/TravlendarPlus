@@ -7,6 +7,7 @@ const orm = require('orm')
 const calendarName = 'valid name'
 let db = null
 let device = null
+let calendar = null
 
 let createData = (done) => {
 	const user_token = uuidv4()
@@ -44,9 +45,7 @@ describe('Calendars API', () => {
 		// Delete the test user, device and calendar created during the test
 		db.models.users.find({ id: device.user_id }).remove(() => {
 			db.models.devices.find({ id: device.id }).remove(() => {
-				db.models.calendars.find({ name: calendarName }).remove((index) => {
-					done()
-				})
+				done()
 			})
 		})
 	})
@@ -54,7 +53,7 @@ describe('Calendars API', () => {
 	describe('PUT /calendar', () => {
 		it('should create a calendar if a valid access token is provided', (done) => {
 			request(app)
-				.put('/api/v1/calendar')
+				.put('/api/v1/calendars')
 				.set('X-Access-Token', device.access_token)
 				.send({
 					'name': calendarName,
@@ -66,13 +65,14 @@ describe('Calendars API', () => {
 					if (!res.body.id) {
 						throw new Error('No calendar returned')
 					}
+					calendar = res.body
 				})
 				.end(done)
 		})
 
 		it('should throw a 500 error creating a calendar with the same name of the previous', (done) => {
 			request(app)
-				.put('/api/v1/calendar')
+				.put('/api/v1/calendars')
 				.set('X-Access-Token', device.access_token)
 				.send({
 					'name': calendarName,
@@ -85,7 +85,7 @@ describe('Calendars API', () => {
 
 		it('should throw a 400 error creating a calendar with an invalid name', (done) => {
 			request(app)
-				.put('/api/v1/calendar')
+				.put('/api/v1/calendars')
 				.set('X-Access-Token', device.access_token)
 				.send({
 					'name': '',
@@ -98,7 +98,7 @@ describe('Calendars API', () => {
 
 		it('should throw a 400 error creating a calendar with an invalid color', (done) => {
 			request(app)
-				.put('/api/v1/calendar')
+				.put('/api/v1/calendars')
 				.set('X-Access-Token', device.access_token)
 				.send({
 					'name': 'valid name',
@@ -118,11 +118,20 @@ describe('Calendars API', () => {
 				.expect(200)
 				.expect(res => {
 					if (!res.body || res.body.length != 1) {
-						throw new Error('No empty list')
+						throw new Error('No calendar list received')
 					}
 				})
 				.end(done)
 		})
 	})
 
+	describe('DELETE /calendars', () => {
+		it('should return a list of calendars if a valid access token is provided', (done) => {
+			request(app)
+				.delete('/api/v1/calendars/'+calendar.id)
+				.set('X-Access-Token', device.access_token)
+				.expect(200)
+				.end(done)
+		})
+	})
 })
