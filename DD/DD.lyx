@@ -117,7 +117,7 @@ Calzavara Filippo, Filaferro Giovanni, Benedetto Maria Nespoli
 
 \begin_layout Standard
 \align center
-Version 1.2.0
+Version 1.2.1
 \end_layout
 
 \begin_layout Standard
@@ -921,6 +921,10 @@ Revision History
 
 \begin_layout Itemize
 1.2.0 - Updated API for RESTful compliance (03/12/2017)
+\end_layout
+
+\begin_layout Itemize
+1.2.1 - Fix a typo in the API (04/12/2017)
 \end_layout
 
 \begin_layout Subsection
@@ -1942,7 +1946,7 @@ getCalendars(·): List<Calendar>
 \begin_layout Itemize
 
 \series bold
-/api/v1/calendar/{calendar_id}
+/api/v1/calendars/{calendar_id}
 \end_layout
 
 \begin_deeper
@@ -1968,7 +1972,7 @@ removeCalendar(·)
 \begin_layout Itemize
 
 \series bold
-/api/v1/calendar/{calendar_id}/events
+/api/v1/calendars/{calendar_id}/events
 \end_layout
 
 \begin_deeper
@@ -1976,6 +1980,12 @@ removeCalendar(·)
 GET: Retrieve the user events - 
 \emph on
 getEvents(·): List<Events>
+\end_layout
+
+\begin_layout Itemize
+PUT: Add new event - 
+\emph on
+newEvent(·)
 \end_layout
 
 \begin_layout Itemize
