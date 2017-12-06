@@ -71,9 +71,17 @@ describe('Events API', () => {
 
 	describe('PUT /events', () => {
 		let _event = {
+			// Mandatory:
 			'title': eventTitle,
 			'start_time': startTime,
-			'end_time': endTime
+			'end_time': endTime,
+			// Optional:
+			'address': 'main street',
+			'lat': 45.464211,
+			'lng': 9.191383,
+			'duration': 0,
+			'repetitions': 'B0000001',
+			'transports': 'B11111'
 		}
 
 		it('should create an event if a valid access token is provided', (done) => {

@@ -64,12 +64,12 @@ router.put('/', (req, res) => {
 	if (duration) event.duration = duration
 
 	let repetitions = (req.body.repetitions || '').trim()
-	if (repetitions.match("0b[01]{7}")) {
+	if (repetitions.match("B[01]{7}")) {
 		event.repetitions = repetitions
 	}
 
 	let transports = (req.body.transports || '').trim()
-	if (transports.match("0b[01]{5}")) {
+	if (transports.match("B[01]{5}")) {
 		event.transports = transports
 	}
 
