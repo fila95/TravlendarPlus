@@ -16,7 +16,7 @@ let createDevice = (user, req, res) => {
 		access_token: access_token,
 		device_type: req.body.device_type || null
 	}, err => {
-		if (err) throw err
+		//if (err) throw err
 		res.json({ access_token: access_token }).end()
 	})
 }
@@ -36,7 +36,7 @@ router.post('/login', function (req, res) {
 			req.models.users.create({
 				user_token: req.body.user_token
 			}, (err, result) => {
-				if (err) throw err
+				//if (err) throw err
 				createDevice(result, req, res)
 			})
 		} else {
