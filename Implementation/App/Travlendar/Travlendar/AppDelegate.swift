@@ -19,9 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         _ = Secret.shared
-        _ = API.shared
         _ = Database.shared
-        
+        _ = API.shared
         
         if !Secret.shared.appPreviouslyLaunched {
             Secret.shared.appPreviouslyLaunched = true

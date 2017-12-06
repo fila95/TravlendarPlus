@@ -24,13 +24,27 @@ public class API: NSObject {
         }
     }
     
+    
+    
+    private let queue: OperationQueue!
+    
     override public init() {
+        queue = OperationQueue()
         super.init()
         
-        let operation = LoginOperation()
+        queue.maxConcurrentOperationCount = 1
+        queue.qualityOfService = .background
         
-        OperationQueue.main.addOperation(operation)
-        OperationQueue.main.maxConcurrentOperationCount = 1
+        if self.request_token == nil {
+            print("Token Not Received: \n\tAsk Server...")
+            
+            let operation = LoginOperation()
+            queue.addOperation(operation)
+        }
+        else {
+            print("Already have token: \n\t\(request_token!)")
+        }
+        
         
     }
 

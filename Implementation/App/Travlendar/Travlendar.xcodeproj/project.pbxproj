@@ -13,6 +13,7 @@
 		1E21E8721FCC238F0009EFA9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E21E8711FCC238F0009EFA9 /* MapKit.framework */; };
 		1E21E8741FCC24C10009EFA9 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E21E8731FCC24C10009EFA9 /* Location.swift */; };
 		1E21E87C1FCC55310009EFA9 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E21E87B1FCC55310009EFA9 /* Utilities.swift */; };
+		1E4B69351FD80AE400DFFC66 /* GFPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4B69341FD80AE400DFFC66 /* GFPageControl.swift */; };
 		1E68BB8F1FD6895200ED4765 /* NetworkOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E68BB8E1FD6895200ED4765 /* NetworkOperations.swift */; };
 		1EAA18DF1FC9CE9F001B3612 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAA18DE1FC9CE9F001B3612 /* AppDelegate.swift */; };
 		1EAA18E11FC9CE9F001B3612 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAA18E01FC9CE9F001B3612 /* ViewController.swift */; };
@@ -54,6 +55,7 @@
 		1E21E8711FCC238F0009EFA9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1E21E8731FCC24C10009EFA9 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		1E21E87B1FCC55310009EFA9 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		1E4B69341FD80AE400DFFC66 /* GFPageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFPageControl.swift; sourceTree = "<group>"; };
 		1E68BB8E1FD6895200ED4765 /* NetworkOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkOperations.swift; sourceTree = "<group>"; };
 		1EAA18DB1FC9CE9F001B3612 /* Travlendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Travlendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EAA18DE1FC9CE9F001B3612 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +122,14 @@
 			path = "Background Fetch & Server";
 			sourceTree = "<group>";
 		};
+		1E4B69331FD80ACE00DFFC66 /* UI Components */ = {
+			isa = PBXGroup;
+			children = (
+				1E4B69341FD80AE400DFFC66 /* GFPageControl.swift */,
+			);
+			path = "UI Components";
+			sourceTree = "<group>";
+		};
 		1E68BB8C1FD688BF00ED4765 /* Persistency */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +178,7 @@
 				1EAA18DE1FC9CE9F001B3612 /* AppDelegate.swift */,
 				1EAA18E01FC9CE9F001B3612 /* ViewController.swift */,
 				1E21E87B1FCC55310009EFA9 /* Utilities.swift */,
+				1E4B69331FD80ACE00DFFC66 /* UI Components */,
 				1E21E86D1FCC1CA60009EFA9 /* Background Fetch & Server */,
 				1EAA18E21FC9CE9F001B3612 /* Main.storyboard */,
 				1EAA18E81FC9CE9F001B3612 /* Assets.xcassets */,
@@ -534,6 +545,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EB2ECE71FCD4F4600A50EC3 /* DataModel.swift in Sources */,
+				1E4B69351FD80AE400DFFC66 /* GFPageControl.swift in Sources */,
 				1EAA18E11FC9CE9F001B3612 /* ViewController.swift in Sources */,
 				1E21E86C1FCC08820009EFA9 /* Secret.swift in Sources */,
 				1E21E87C1FCC55310009EFA9 /* Utilities.swift in Sources */,

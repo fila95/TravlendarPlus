@@ -58,7 +58,6 @@ class LoginOperation: NetworkOperation {
         request.httpBody = ("user_token=\(Secret.shared.cloudId!)").data(using: .utf8)
 //        request.addValue("", forHTTPHeaderField: "")
         
-        
         let task = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
             
             if error != nil {
