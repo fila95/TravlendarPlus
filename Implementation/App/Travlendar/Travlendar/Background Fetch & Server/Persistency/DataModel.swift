@@ -40,7 +40,6 @@ class Settings: Object {
     @objc dynamic var uber_enabled: Bool = false
     @objc dynamic var mobike_enabled: Bool = false
     
-    
 }
 
 
