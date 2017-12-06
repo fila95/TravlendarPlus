@@ -4,7 +4,7 @@ const router = express.Router({ mergeParams: true })
 // Return a list of User's Events
 router.get('/', (req, res) => {
 	req.models.users.find({ id: req.user.id }, (err, users) => {
-		if (err) throw err
+		//if (err) throw err
 		let calendars = {}
 		/*users[0].getCalendars().each(calendar => {
 			calendar.getEvents((events) => {

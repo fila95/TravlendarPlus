@@ -70,25 +70,44 @@ describe('Events API', () => {
 	})
 
 	describe('PUT /events', () => {
-		let _event = {
-			// Mandatory:
-			'title': eventTitle,
-			'start_time': startTime,
-			'end_time': endTime,
-			// Optional:
-			'address': 'main street',
-			'lat': 45.464211,
-			'lng': 9.191383,
-			'duration': 0,
-			'repetitions': 'B0000001',
-			'transports': 'B11111'
-		}
-
-		it('should create an event if a valid access token is provided', (done) => {
+		it('should create an event with all the details if a valid access token is provided', (done) => {
 			request(app)
 				.put('/api/v1/calendars/' + calendar.id + '/events')
 				.set('X-Access-Token', device.access_token)
-				.send(_event)
+				.send({
+					// Mandatory:
+					'title': eventTitle,
+					'start_time': startTime,
+					'end_time': endTime,
+					// Optional:
+					'address': 'main street',
+					'lat': 45.464211,
+					'lng': 9.191383,
+					'duration': 10,
+					'repetitions': 'B0000001',
+					'transports': 'B11111'
+				})
+				.type('form')
+				.expect(201)
+				.expect(res => {
+					if (!res.body.id) {
+						throw new Error('No calendar returned')
+					}
+					event = res.body
+				})
+				.end(done)
+		})
+
+		it('should create an event with only the mandatory fields if a valid access token is provided', (done) => {
+			request(app)
+				.put('/api/v1/calendars/' + calendar.id + '/events')
+				.set('X-Access-Token', device.access_token)
+				.send({
+					// Mandatory:
+					'title': eventTitle,
+					'start_time': startTime,
+					'end_time': endTime
+				})
 				.type('form')
 				.expect(201)
 				.expect(res => {
@@ -117,9 +136,7 @@ describe('Events API', () => {
 				.put('/api/v1/calendars/' + calendar.id + '/events')
 				.set('X-Access-Token', device.access_token)
 				.send({
-					'name': '',
-					'start_time': startTime,
-					'end_time': endTime
+					'name': ''
 				})
 				.type('form')
 				.expect(400)
@@ -134,7 +151,7 @@ describe('Events API', () => {
 				.set('X-Access-Token', device.access_token)
 				.expect(200)
 				.expect(res => {
-					if (!res.body || res.body.length != 1) {
+					if (!res.body || res.body.length<=0) {
 						throw new Error('No event list received')
 					}
 				})
