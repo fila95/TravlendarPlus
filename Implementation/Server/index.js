@@ -19,9 +19,7 @@ let logger = (req, res, next) => {
 // Load the database schema explained in models.js
 let defineDatabase = (db, models, next) => {
 	db.load("./models", err => {
-		if (err) { throw err }
 		db.sync(err => {
-			if (err) { throw err }
 			// copy db.models properties in models
 			Object.assign(models, db.models)
 			app.emit('db_connected', db)

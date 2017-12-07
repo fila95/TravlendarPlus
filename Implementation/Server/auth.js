@@ -6,7 +6,6 @@ let auth = (req, res, next) => {
 			if (!err && devices.length == 1) {
 				let device = devices[0]
 				device.getUser((err, user) => {
-					if(err) throw err
 					req.user = user
 					return next()
 				})
