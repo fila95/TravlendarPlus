@@ -31,7 +31,7 @@ let createDevice = (user, req, cb) => {
 	}, cb)
 }
 
-router.post('/login', function (req, res) {
+router.post('/', function (req, res) {
 	if (!req.body.user_token) {
 		return res.sendStatus(401).end()
 	}
