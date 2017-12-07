@@ -115,10 +115,10 @@ function model(db, cb) {
 	})
 
 	Event.hasMany('travels', Travel)
-	Setting.hasOne('user', User, { reverse: 'settings' })
-	Device.hasOne('user', User, { reverse: 'devices' })
-	Calendar.hasOne('user', User, { reverse: 'calendars' })
-	Event.hasOne('calendar', Calendar, { reverse: 'events' })
+	Setting.hasOne('user', User, { reverse: 'settings', required: true })
+	Device.hasOne('user', User, { reverse: 'devices', required: true })
+	Calendar.hasOne('user', User, { reverse: 'calendars', required: true })
+	Event.hasOne('calendar', Calendar, { reverse: 'events', required: true })
 
 	return cb()
 }
