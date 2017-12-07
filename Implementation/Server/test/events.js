@@ -12,7 +12,7 @@ let db = null
 let user = null
 let device = null
 let calendar = null
-let event = null
+let events = []
 let access_token = crypto.randomBytes(48).toString('base64')
 
 let createData = (done) => {
@@ -61,7 +61,7 @@ describe('Events API', () => {
 		db.models.users.find({ id: user.id }).remove(() => {
 			db.models.devices.find({ id: device.id }).remove(() => {
 				db.models.calendars.find({ id: calendar.id }).remove(() => {
-					db.models.events.find({ id: event.id }).remove(() => {
+					db.models.events.find({ id: events[1].id }).remove(() => {
 						done()
 					})
 				})
@@ -93,7 +93,7 @@ describe('Events API', () => {
 					if (!res.body.id) {
 						throw new Error('No calendar returned')
 					}
-					event = res.body
+					events.push(res.body)
 				})
 				.end(done)
 		})
@@ -114,7 +114,7 @@ describe('Events API', () => {
 					if (!res.body.id) {
 						throw new Error('No calendar returned')
 					}
-					event = res.body
+					events.push(res.body)
 				})
 				.end(done)
 		})
@@ -162,7 +162,7 @@ describe('Events API', () => {
 	describe('DELETE /events/:id', () => {
 		it('should delete the event if a valid access token is provided', (done) => {
 			request(app)
-				.delete('/api/v1/calendars/' + calendar.id + '/events/' + event.id)
+				.delete('/api/v1/calendars/' + calendar.id + '/events/' + events[0].id)
 				.set('X-Access-Token', device.access_token)
 				.expect(204)
 				.end(done)

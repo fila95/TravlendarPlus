@@ -3,26 +3,15 @@ const router = express.Router({ mergeParams: true })
 
 // Return a list of User's Events
 router.get('/', (req, res) => {
-	req.models.users.find({ id: req.user.id }, (err, users) => {
-		//if (err) throw err
-		let calendars = {}
-		/*users[0].getCalendars().each(calendar => {
-			calendar.getEvents((events) => {
-				calendars[calendar.id] = events
-			})
-		}).get(() => {
-			console.log(calendars)
-			return res.json(calendars).end()
-		})*/
+	let calendars = {}
 
-		users[0].getCalendars((err, calendars) =>  {
-			calendar_ids = []
-			for (calendar of calendars) {
-				calendar_ids.push(calendar.id)
-			}
-			req.models.events.find({ calendar_id: calendar_ids }, (err, events) => {
-				return res.json(events).end()
-			})
+	req.user.getCalendars((err, calendars) => {
+		calendar_ids = []
+		for (calendar of calendars) {
+			calendar_ids.push(calendar.id)
+		}
+		req.models.events.find({ calendar_id: calendar_ids }, (err, events) => {
+			return res.json(events).end()
 		})
 	})
 })
@@ -84,10 +73,17 @@ router.put('/', (req, res) => {
 
 router.delete('/:event_id', (req, res) => {
 	// Delete the event
-	req.models.events.find({
-		id: req.params.event_id
-	}).remove(err => {
-		return res.status(204).end()
+	req.models.calendars.find({ user_id: req.user.id, id: req.params.calendar_id }).first((err, calendar) => {
+		// Calendar does not exists
+		if (err || !calendar) return res.sendStatus(400).end()
+		
+		// Find the corresponding event and remove it
+		req.models.events.find({
+			calendar_id: req.params.calendar_id,
+			id: req.params.event_id
+		}).remove(err => {
+			return res.status(204).end()
+		})
 	})
 })
 
