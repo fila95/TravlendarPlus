@@ -21,12 +21,12 @@ describe('Authentication', () => {
 
 	after((done) => {
 		// Delete the test user and devices created before
-		db.models.users.find({ user_token: user_token }, (err, users) => {
-			users[0].getDevices().remove((err) => {
-				if (err) throw err
-				users[0].remove((err) => {
-					if (err) throw err
-					done()
+		db.models.users.find({ user_token: user_token }).first((err, user) => {
+			user.getDevices().remove((err) => {
+				user.getSettings().remove((err) => {
+					user.remove((err) => {
+						done()
+					})
 				})
 			})
 		})
