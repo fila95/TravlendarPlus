@@ -7,11 +7,17 @@ let generateToken = () => {
 	return crypto.randomBytes(48).toString('base64')
 }
 
+let createUser = (user_tkoen, req, cb) => {
+	req.models.users.create({
+		user_token: req.body.user_token
+	}, (err, user) => {
+		createSettings(user, req, cb)
+	})
+}
+
 // Create settings in the database for the user user
 let createSettings = (user, req, cb) => {
-	req.models.settings.create({}, (err, settings) => {
-		user.setSettings(settings, cb)
-	})
+	req.models.settings.create({ user_id: user.id }, cb)
 }
 
 // Create a device in the database for the user user and
@@ -30,26 +36,22 @@ router.post('/login', function (req, res) {
 		return res.sendStatus(401).end()
 	}
 
-	req.models.users.find({ user_token: req.body.user_token }, (err, users) => {
+	req.models.users.find({ user_token: req.body.user_token }).first((err, user) => {
 		// No users exists with that user_token => create it
-		if (users.length == 0) {
+		if (!user) {
 			// Check if it's a valid UUID
 			if (!validate(req.body.user_token, 4)) {
 				return res.sendStatus(403).end()
 			}
 			// Create the user and the device
-			req.models.users.create({
-				user_token: req.body.user_token
-			}, (err, user) => {
+			createUser(req.body.user_tkoen, req, (err, user) => {
 				createDevice(user, req, (err, device) => {
-					createSettings(user, req, (err, settings) => {
-						res.json({ access_token: device.access_token }).end()
-					})
+					res.json({ access_token: device.access_token }).end()
 				})
 			})
 		} else {
 			// The user already exists, just create the device
-			createDevice(users[0], req, (err, device) => {
+			createDevice(user, req, (err, device) => {
 				res.json({ access_token: device.access_token }).end()
 			})
 		}
