@@ -64,15 +64,15 @@ function model(db, cb) {
 		})
 
 	let Setting = db.define('settings', {
-		eco_mode: { type: 'boolean', defaultValue: false, required: true },
-		max_walking_distance: { type: 'integer', defaultValue: 2000, required: true },
-		max_biking_distance: { type: 'integer', defaultValue: 4000, required: true },
-		start_public_transportation: { type: 'time', defaultValue: "07:00:00", required: true },
-		end_public_transportation: { type: 'time', defaultValue: "22:00:00", required: true },
-		enjoy_enabled: { type: 'boolean', defaultValue: false, required: true },
-		car2go_enabled: { type: 'boolean', defaultValue: false, required: true },
-		uber_enabled: { type: 'boolean', defaultValue: false, required: true },
-		mobike_enabled: { type: 'boolean', defaultValue: false, required: true }
+		eco_mode: { type: 'boolean', defaultValue: false},
+		max_walking_distance: { type: 'integer', defaultValue: 2000},
+		max_biking_distance: { type: 'integer', defaultValue: 4000},
+		start_public_transportation: { type: 'time', defaultValue: "07:00:00"},
+		end_public_transportation: { type: 'time', defaultValue: "22:00:00"},
+		enjoy_enabled: { type: 'boolean', defaultValue: false},
+		car2go_enabled: { type: 'boolean', defaultValue: false},
+		uber_enabled: { type: 'boolean', defaultValue: false},
+		mobike_enabled: { type: 'boolean', defaultValue: false}
 	})
 
 	let Travel = db.define('travels', {
