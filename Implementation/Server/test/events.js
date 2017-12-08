@@ -57,12 +57,14 @@ describe('Events API', () => {
 	})
 
 	after((done) => {
-		// Delete the test user, device, calendar and event created during the test
+		// Delete the test user, settings, device, calendar and event created during the test
 		db.models.users.find({ id: user.id }).remove(() => {
 			db.models.devices.find({ id: device.id }).remove(() => {
-				db.models.calendars.find({ id: calendar.id }).remove(() => {
-					db.models.events.find({ id: events[1].id }).remove(() => {
-						done()
+				db.models.settings.find({ user_id: user.id }).remove(() => {
+					db.models.calendars.find({ id: calendar.id }).remove(() => {
+						db.models.events.find({ id: events[1].id }).remove(() => {
+							done()
+						})
 					})
 				})
 			})
@@ -151,7 +153,7 @@ describe('Events API', () => {
 				.set('X-Access-Token', device.access_token)
 				.expect(200)
 				.expect(res => {
-					if (!res.body || res.body.length<=0) {
+					if (!res.body || res.body.length <= 0) {
 						throw new Error('No event list received')
 					}
 				})
