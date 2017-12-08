@@ -63,7 +63,7 @@ router.patch('/:calendar_id', (req, res) => {
 		user_id: req.user.id,
 		id: req.params.calendar_id
 	}).first((err, calendar) => {
-		if (err || !calendar) return res.sendStatus(500).end()
+		if (err || !calendar) return res.sendStatus(400).end()
 		calendar.name = name;
 		calendar.color = color;
 		calendar.save((err, result) => {

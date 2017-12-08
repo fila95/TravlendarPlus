@@ -172,6 +172,19 @@ describe('Calendars API', () => {
 				.end(done)
 		})
 
+		it('should throw a 400 error trying to edit a non-existing calendar', (done) => {
+			request(app)
+				.patch('/api/v1/calendars/987654321')
+				.set('X-Access-Token', device.access_token)
+				.send({
+					'name': 'valid name',
+					'color': '#123456'
+				})
+				.type('form')
+				.expect(400)
+				.end(done)
+		})
+
 		it('should throw a 500 as there exists another calendar with the same name', (done) => {
 			request(app)
 				.put('/api/v1/calendars')
