@@ -11,19 +11,18 @@ let calendar = null
 
 let createData = (done) => {
 	const user_token = uuidv4()
-	db.models.users.create({
-		user_token: user_token
-	}, (err, user) => {
-		if (err) throw err
-		db.models.devices.create({
-			user_id: user.id,
-			access_token: crypto.randomBytes(48).toString('base64')
-		}, (err, _device) => {
-			if (err) throw err
-			device = _device
-			done()
+	request(app)
+		.post('/api/v1/login')
+		.send({ 'user_token': user_token })
+		.type('form')
+		.expect(200)
+		.expect(res => {
+			if (res.body.access_token == undefined) {
+				throw new Error('No access_token in response')
+			}
+			device = res.body
 		})
-	})
+		.end(done)
 }
 
 describe('Calendars API', () => {
