@@ -161,6 +161,40 @@ describe('Events API', () => {
 		})
 	})
 
+	describe('PATCH /events/:id', () => {
+		it('should modify the event if a valid access token is provided', (done) => {
+			request(app)
+				.patch('/api/v1/calendars/' + calendar.id + '/events/' + events[0].id)
+				.set('X-Access-Token', device.access_token)
+				.send({
+					'title': 'Test',
+					'start_time': startTime,
+					'end_time': endTime
+				})
+				.type('form')
+				.expect(200)
+				.expect(res => {
+					if (res.body.title!='Test') {
+						throw new Error('Event has not been modified as due')
+					}
+				})
+				.end(done)
+		})
+
+		it('should throw a 400 error updating an event with an invalid parameter', (done) => {
+			request(app)
+				.patch('/api/v1/calendars/' + calendar.id + '/events/' + events[0].id)
+				.set('X-Access-Token', device.access_token)
+				.send({
+					'name': '',
+					'start_time': startTime,
+					'end_time': endTime
+				})
+				.type('form')
+				.expect(400)
+				.end(done)
+		})
+	})
 	describe('DELETE /events/:id', () => {
 		it('should delete the event if a valid access token is provided', (done) => {
 			request(app)
