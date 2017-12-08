@@ -40,6 +40,7 @@ function model(db, cb) {
 		}
 	})
 
+	// Create the enum on a postgresql instance
 	db.driver.execQuery("CREATE TYPE transport_mean_type AS ENUM ('WALKING','BIKING','PUBLIC','SHARING','CAR')", (err, data) => { })
 
 	/* istanbul ignore next */

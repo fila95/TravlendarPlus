@@ -1,12 +1,14 @@
-var validate = require('uuid-validate');
+const validate = require('uuid-validate');
 const express = require('express')
 const crypto = require('crypto')
 const router = express.Router()
 
+// Generate a valid access_token
 let generateToken = () => {
 	return crypto.randomBytes(48).toString('base64')
 }
 
+// Create an user with his settings given a valid user_token
 let createUser = (user_tkoen, req, cb) => {
 	req.models.users.create({
 		user_token: req.body.user_token
@@ -33,6 +35,7 @@ let createDevice = (user, req, cb) => {
 	}, cb)
 }
 
+// Ask for a new access_token
 router.post('/', function (req, res) {
 	if (!req.body.user_token) {
 		return res.sendStatus(401).end()
