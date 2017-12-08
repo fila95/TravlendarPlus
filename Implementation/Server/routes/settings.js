@@ -41,15 +41,20 @@ let validateTime = string_time => {
 	}
 }
 
+// Return the integer if valid, or NaN
 let validateInt = string_int => {
 	return parseInt(string_int)
 }
 
+// Return true if string_bool is a boolean, or false otherwise
 let isBoolean = string_bool => {
 	return typeof (string_bool) === 'boolean'
 }
 
 // Edit settings
+// If a field is edited, all the updated settings are returned with a 200 status code
+// This means that if an error occurred, but at least one field is valid, the status code will be 200
+// If no fields are edited, then a 400 status code is returned
 router.patch('/', (req, res) => {
 	req.models.settings.find({ user_id: req.user.id }).first((err, settings) => {
 		fields = [
@@ -93,11 +98,7 @@ router.patch('/', (req, res) => {
 
 		let ok = applyEdits(settings, fields, req.body)
 
-		if (!ok) {
-			return res.sendStatus(400).end()
-		} else {
-			return res.json(settings).end()
-		}
+		return ok ? res.json(settings).end() : res.sendStatus(400).end()
 	})
 })
 
