@@ -48,13 +48,13 @@ router.post('/', function (req, res) {
 			// Create the user and the device
 			createUser(req.body.user_tkoen, req, (err, user) => {
 				createDevice(user, req, (err, device) => {
-					res.json({ access_token: device.access_token }).end()
+					res.json(device).end()
 				})
 			})
 		} else {
 			// The user already exists, just create the device
 			createDevice(user, req, (err, device) => {
-				res.json({ access_token: device.access_token }).end()
+				res.json(device).end()
 			})
 		}
 	})
