@@ -93,20 +93,7 @@ router.delete('/:event_id', (req, res) => {
 	})
 })
 
-/*	let Event = db.define('events', {
-		title: { type: 'text', size: 255, required: true },
-		address: { type: 'text', size: 511 },
-		lat: { type: 'coord_lat' },
-		lng: { type: 'coord_lng' },
-		start_time: { type: 'date', required: true, time: true },
-		end_time: { type: 'date', required: true, time: true },
-		duration: { type: 'integer' },
-		repetitions: { type: 'bit', size: 7, defaultValue: '0000000' },
-		transports: { type: 'bit', size: 5,  defaultValue: '11111' },
-		suggested_start_time: { type: 'date', time: true },
-		suggested_end_time: { type: 'date', time: true }
-	})
-	*/
+
 
 // Edit event
 router.patch('/:event_id', (req, res) => {
@@ -119,13 +106,18 @@ router.patch('/:event_id', (req, res) => {
 		}).first((err, eventTarget) => {
 			//Event not found
 			if (err || !eventTarget) return res.sendStatus(400).end()
-			
+			//Try to generate an event
 			eventUpdated=eventFactory(req)
 			if (eventUpdated==null) return res.sendStatus(400).end()
-			
-			eventTarget = eventUpdated;
-		
-			calendar.save((err, result) => {
+			//Copy attribute in eventUpdated to eventTarget
+			for (var property in eventUpdated) {
+				//But not its ID
+			    if (property!='calendar_id'){
+			    	//console.log('eventTarget['+property+']=eventUpdated['+property+']='+eventUpdated[property])
+			    	eventTarget[property]=eventUpdated[property]
+				}
+			}
+			eventTarget.save((err, result) => {
 				if (err) return res.sendStatus(500).end()
 				return res.json(result).end()
 			})
