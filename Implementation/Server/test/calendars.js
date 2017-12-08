@@ -50,7 +50,7 @@ describe('Calendars API', () => {
 		})
 	})
 
-	describe('PUT /calendar', () => {
+	describe('PUT /calendars', () => {
 		it('should create a calendar if a valid access token is provided', (done) => {
 			request(app)
 				.put('/api/v1/calendars')
@@ -143,10 +143,10 @@ describe('Calendars API', () => {
 				})
 				.end(done)
 		})
-		/*
-		it('should throw a 400 error creating a calendar with an invalid name', (done) => {
+		
+		it('should throw a 400 error edit a calendar with an invalid name', (done) => {
 			request(app)
-				.put('/api/v1/calendars')
+				.patch('/api/v1/calendars/' + calendar.id)
 				.set('X-Access-Token', device.access_token)
 				.send({
 					'name': '',
@@ -157,9 +157,9 @@ describe('Calendars API', () => {
 				.end(done)
 		})
 
-		it('should throw a 400 error creating a calendar with an invalid color', (done) => {
+		it('should throw a 400 error edit a calendar with an invalid color', (done) => {
 			request(app)
-				.put('/api/v1/calendars')
+				.patch('/api/v1/calendars/' + calendar.id)
 				.set('X-Access-Token', device.access_token)
 				.send({
 					'name': 'valid name',
@@ -168,8 +168,38 @@ describe('Calendars API', () => {
 				.type('form')
 				.expect(400)
 				.end(done)
-		})*/
+		})
+		it('should throw a 500 as there exists another calendar with the same name', (done) => {
+			request(app)
+				.put('/api/v1/calendars')
+				.set('X-Access-Token', device.access_token)
+				.send({
+					'name': 'update2',
+					'color': '#1278EF'
+				})
+				.type('form')
+				.expect(201)
+				.expect(res => {
+					if (!res.body.id) {
+						throw new Error('No calendar returned')
+					}
+					calendar = res.body
+				})
+			
+			request(app)
+				.patch('/api/v1/calendars/' + calendar.id)
+				.set('X-Access-Token', device.access_token)
+				.send({
+					'name': 'update2',
+					'color': '#1278EF'
+				})
+				.type('form')
+				.expect(500)
+				.end(done)
+			
+		})
 	})
+
 	describe('DELETE /calendars/:id', () => {
 		it('should delete the calendar if a valid access token is provided', (done) => {
 			request(app)
