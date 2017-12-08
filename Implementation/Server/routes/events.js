@@ -16,8 +16,8 @@ router.get('/', (req, res) => {
 	})
 })
 
-// Create a new Event with the parameters specified
-router.put('/', (req, res) => {
+// EVENT Factory: Restituisce un evento se tutto va bene, altrimenti null
+function eventFactory(req){
 	// Validate inputs:
 	// These three fields are mandatory, meaning that if them are null or invalid,
 	// then a 400 error is thrown.
@@ -27,7 +27,7 @@ router.put('/', (req, res) => {
 	let start_time = new Date(req.body.start_time || undefined)
 	let end_time = new Date(req.body.end_time || undefined)
 	if (!title || !start_time || !end_time) {
-		return res.sendStatus(400).end()
+		return null
 	}
 
 	// Creating initial object
@@ -61,6 +61,16 @@ router.put('/', (req, res) => {
 	if (transports.match("B[01]{5}")) {
 		event.transports = transports
 	}
+	return event
+}
+
+// Create a new Event with the parameters specified
+router.put('/', (req, res) => {
+	let event=eventFactory(req)
+
+	if (event==null) {
+		return res.sendStatus(400).end()
+	}
 
 	// Create the event
 	req.models.events.create(event, (err, result) => {
@@ -84,5 +94,36 @@ router.delete('/:event_id', (req, res) => {
 		})
 	})
 })
+
+// Edit event with the name and color specified
+router.patch('/:event_id', (req, res) => {
+	if (!req.body.name || !req.body.color) {
+		return res.sendStatus(400).end()
+	}
+	let name = req.body.name.trim()
+	let color = req.body.color.trim()
+	if (!validColor(color)) {
+		return res.sendStatus(400).end()
+	}
+
+	req.models.calendars.find({
+		user_id: req.user.id,
+		id: req.params.calendar_id
+	}).first((err, calendar) => {
+		if (err || !calendar) return res.sendStatus(400).end()
+		calendar.name = name;
+		calendar.color = color;
+		calendar.save((err, result) => {
+			if (err) return res.sendStatus(500).end()
+			return res.json(result).end()
+		});
+
+	})
+})
+
+
+
+
+
 
 module.exports = router
