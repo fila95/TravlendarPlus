@@ -67,11 +67,9 @@ function eventFactory(req){
 // Create a new Event with the parameters specified
 router.put('/', (req, res) => {
 	let event=eventFactory(req)
-
-	if (event==null) {
-		return res.sendStatus(400).end()
-	}
-
+	// Error
+	if (event==null) return res.sendStatus(400).end()
+	
 	// Create the event
 	req.models.events.create(event, (err, result) => {
 		return res.status(201).json(result).end()
@@ -95,28 +93,44 @@ router.delete('/:event_id', (req, res) => {
 	})
 })
 
-// Edit event with the name and color specified
-router.patch('/:event_id', (req, res) => {
-	if (!req.body.name || !req.body.color) {
-		return res.sendStatus(400).end()
-	}
-	let name = req.body.name.trim()
-	let color = req.body.color.trim()
-	if (!validColor(color)) {
-		return res.sendStatus(400).end()
-	}
+/*	let Event = db.define('events', {
+		title: { type: 'text', size: 255, required: true },
+		address: { type: 'text', size: 511 },
+		lat: { type: 'coord_lat' },
+		lng: { type: 'coord_lng' },
+		start_time: { type: 'date', required: true, time: true },
+		end_time: { type: 'date', required: true, time: true },
+		duration: { type: 'integer' },
+		repetitions: { type: 'bit', size: 7, defaultValue: '0000000' },
+		transports: { type: 'bit', size: 5,  defaultValue: '11111' },
+		suggested_start_time: { type: 'date', time: true },
+		suggested_end_time: { type: 'date', time: true }
+	})
+	*/
 
-	req.models.calendars.find({
-		user_id: req.user.id,
-		id: req.params.calendar_id
-	}).first((err, calendar) => {
+// Edit event
+router.patch('/:event_id', (req, res) => {
+	req.models.calendars.find({ user_id: req.user.id, id: req.params.calendar_id }).first((err, calendar) => {
+		//Calendar not found
 		if (err || !calendar) return res.sendStatus(400).end()
-		calendar.name = name;
-		calendar.color = color;
-		calendar.save((err, result) => {
-			if (err) return res.sendStatus(500).end()
-			return res.json(result).end()
-		});
+		req.models.events.find({
+			calendar_id: req.params.calendar_id,
+			id: req.params.event_id
+		}).first((err, eventTarget) => {
+			//Event not found
+			if (err || !eventTarget) return res.sendStatus(400).end()
+			
+			eventUpdated=eventFactory(req)
+			if (eventUpdated==null) return res.sendStatus(400).end()
+			
+			eventTarget = eventUpdated;
+		
+			calendar.save((err, result) => {
+				if (err) return res.sendStatus(500).end()
+				return res.json(result).end()
+			})
+
+		})
 
 	})
 })
