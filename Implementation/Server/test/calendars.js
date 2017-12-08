@@ -6,6 +6,7 @@ const orm = require('orm')
 
 const calendarName = 'valid name'
 let db = null
+let user_id = null
 let device = null
 let calendar = null
 
@@ -21,6 +22,7 @@ let createData = (done) => {
 				throw new Error('No access_token in response')
 			}
 			device = res.body
+			user_id = device.user_id
 		})
 		.end(done)
 }
@@ -43,8 +45,10 @@ describe('Calendars API', () => {
 	after((done) => {
 		// Delete the test user, device and calendar created during the test
 		db.models.users.find({ id: device.user_id }).remove(() => {
-			db.models.devices.find({ id: device.id }).remove(() => {
-				done()
+			db.models.settings.find({ user_id: user_id }).remove(() => {
+				db.models.devices.find({ id: device.id }).remove(() => {
+					done()
+				})
 			})
 		})
 	})
