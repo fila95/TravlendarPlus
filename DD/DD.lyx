@@ -1972,7 +1972,7 @@ removeCalendar(·)
 \begin_layout Itemize
 
 \series bold
-/api/v1/calendars/{calendar_id}/events
+/api/v1/calendars/{calendar_id}/events/
 \end_layout
 
 \begin_deeper
@@ -1982,6 +1982,14 @@ GET: Retrieve the user events -
 getEvents(·): List<Events>
 \end_layout
 
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+/api/v1/calendars/{calendar_id}/events/{events_id}
+\end_layout
+
+\begin_deeper
 \begin_layout Itemize
 PUT: Add new event - 
 \emph on
