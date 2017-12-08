@@ -17,7 +17,9 @@ let createUser = (user_tkoen, req, cb) => {
 
 // Create settings in the database for the user user
 let createSettings = (user, req, cb) => {
-	req.models.settings.create({ user_id: user.id }, cb)
+	req.models.settings.create({ user_id: user.id }, () => {
+		cb(null, user)
+	})
 }
 
 // Create a device in the database for the user user and
