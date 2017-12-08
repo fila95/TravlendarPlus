@@ -33,7 +33,6 @@ router.put('/', (req, res) => {
 		color: color
 	}, (err, result) => {
 		if (err) return res.sendStatus(500).end()
-
 		return res.status(201).json(result).end()
 	})
 })
@@ -47,4 +46,32 @@ router.delete('/:calendar_id', (req, res) => {
 		return res.status(204).end()
 	})
 })
+
+
+// Edit calendar with the name and color specified
+router.patch('/:calendar_id', (req, res) => {
+	if (!req.body.name || !req.body.color) {
+		return res.sendStatus(400).end()
+	}
+	let name = req.body.name.trim()
+	let color = req.body.color.trim()
+	if (!validColor(color)) {
+		return res.sendStatus(400).end()
+	}
+    req.models.calendars.find({ 
+    	
+    	user_id: req.user.id,
+		id: req.params.calendar_id
+
+		}).first((err, calendar) => {
+	    	calendar.name = name;
+	        calendar.color = color;
+	        calendar.save((err,result) => {
+           		if (err) return res.sendStatus(500).end()
+           		return res.json(result).end()
+        });
+        
+    })
+})
+
 module.exports = router

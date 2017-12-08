@@ -5,7 +5,7 @@ const baseURL = "/api/v1"
 const endpoints = [
 	{
 		"endpoint": "/calendars",
-		"verbs": ["GET", "PUT", "DELETE"]
+		"verbs": ["GET", "PUT", "DELETE", "PATCH"]
 	},
 
 	{
