@@ -58,42 +58,15 @@ let isBoolean = string_bool => {
 router.patch('/', (req, res) => {
 	req.models.settings.find({ user_id: req.user.id }).first((err, settings) => {
 		fields = [
-			{
-				name: 'eco_mode',
-				validate: isBoolean
-			},
-			{
-				name: 'max_walking_distance',
-				validate: validateInt
-			},
-			{
-				name: 'max_biking_distance',
-				validate: validateInt
-			},
-			{
-				name: 'start_public_transportation',
-				validate: validateTime
-			},
-			{
-				name: 'end_public_transportation',
-				validate: validateTime
-			},
-			{
-				name: 'enjoy_enabled',
-				validate: isBoolean
-			},
-			{
-				name: 'car2go_enabled',
-				validate: isBoolean
-			},
-			{
-				name: 'uber_enabled',
-				validate: isBoolean
-			},
-			{
-				name: 'mobike_enabled',
-				validate: isBoolean
-			},
+			{ name: 'eco_mode', validate: isBoolean },
+			{ name: 'max_walking_distance', validate: validateInt },
+			{ name: 'max_biking_distance', validate: validateInt },
+			{ name: 'start_public_transportation', validate: validateTime },
+			{ name: 'end_public_transportation', validate: validateTime },
+			{ name: 'enjoy_enabled', validate: isBoolean },
+			{ name: 'car2go_enabled', validate: isBoolean },
+			{ name: 'uber_enabled', validate: isBoolean },
+			{ name: 'mobike_enabled', validate: isBoolean }
 		]
 
 		let ok = applyEdits(settings, fields, req.body)
