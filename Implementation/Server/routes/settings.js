@@ -4,7 +4,6 @@ const router = express.Router()
 // Return a list of User's Settings
 router.get('/', (req, res) => {
 	req.models.settings.find({ user_id: req.user.id }).first((err, settings) => {
-		if (err) throw err
 		res.json(settings).end()
 	})
 })

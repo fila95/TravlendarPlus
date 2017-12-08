@@ -71,14 +71,29 @@ describe('Settings API', () => {
 			request(app)
 				.patch('/api/v1/settings/')
 				.set('X-Access-Token', device.access_token)
-				.send({'max_walking_distance': '4200'})
+				.send({
+					'max_walking_distance': '4200',
+					'start_public_transportation': '10:00:00'
+				})
 				.type('form')
 				.expect(200)
 				.expect(res => {
-					if (res.body.max_walking_distance != 4200) {
+					if (res.body.max_walking_distance != 4200 || res.body.start_public_transportation != "10:00:00") {
 						throw new Error('No settings returned')
 					}
 				})
+				.end(done)
+		})
+
+		it('should throw a 400 error trying to edit user\'s settings in invalid way', (done) => {
+			request(app)
+				.patch('/api/v1/settings/')
+				.set('X-Access-Token', device.access_token)
+				.send({
+					'start_public_transportation': 'INVALID'
+				})
+				.type('form')
+				.expect(400)
 				.end(done)
 		})
 	})
