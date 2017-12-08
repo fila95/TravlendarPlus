@@ -58,20 +58,20 @@ router.patch('/:calendar_id', (req, res) => {
 	if (!validColor(color)) {
 		return res.sendStatus(400).end()
 	}
-    req.models.calendars.find({ 
-    	
-    	user_id: req.user.id,
-		id: req.params.calendar_id
 
-		}).first((err, calendar) => {
-	    	calendar.name = name;
-	        calendar.color = color;
-	        calendar.save((err,result) => {
-           		if (err) return res.sendStatus(500).end()
-           		return res.json(result).end()
-        });
-        
-    })
+	req.models.calendars.find({
+		user_id: req.user.id,
+		id: req.params.calendar_id
+	}).first((err, calendar) => {
+		if(err || !calendar) return res.sendStatus(500).end()
+		calendar.name = name;
+		calendar.color = color;
+		calendar.save((err, result) => {
+			if (err) return res.sendStatus(500).end()
+			return res.json(result).end()
+		});
+
+	})
 })
 
 module.exports = router

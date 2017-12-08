@@ -6,7 +6,6 @@ const orm = require('orm')
 
 const calendarName = 'valid name'
 let db = null
-let user_id = null
 let device = null
 let calendar = null
 
@@ -22,7 +21,6 @@ let createData = (done) => {
 				throw new Error('No access_token in response')
 			}
 			device = res.body
-			user_id = device.user_id
 		})
 		.end(done)
 }
@@ -45,9 +43,11 @@ describe('Calendars API', () => {
 	after((done) => {
 		// Delete the test user, device and calendar created during the test
 		db.models.users.find({ id: device.user_id }).remove(() => {
-			db.models.settings.find({ user_id: user_id }).remove(() => {
-				db.models.devices.find({ id: device.id }).remove(() => {
-					done()
+			db.models.settings.find({ user_id: device.user_id }).remove(() => {
+				db.models.calendars.find({ user_id: device.user_id }).remove(() => {
+					db.models.devices.find({ id: device.id }).remove(() => {
+						done()
+					})
 				})
 			})
 		})
@@ -79,7 +79,7 @@ describe('Calendars API', () => {
 				.set('X-Access-Token', device.access_token)
 				.send({
 					'name': calendarName,
-					'color': '#1278EF'
+					'color': '#4378EF'
 				})
 				.type('form')
 				.expect(500)
@@ -127,7 +127,6 @@ describe('Calendars API', () => {
 		})
 	})
 
-
 	describe('PATCH /calendars/:id', () => {
 		it('should update a calendar if a valid access token is provided', (done) => {
 			request(app)
@@ -140,13 +139,13 @@ describe('Calendars API', () => {
 				.type('form')
 				.expect(200)
 				.expect(res => {
-					if (res.body.name != 'update' || res.body.color!='#1234AA') {
+					if (res.body.name != 'update' || res.body.color != '#1234AA') {
 						throw new Error('Calendar was not modified')
 					}
 				})
 				.end(done)
 		})
-		
+
 		it('should throw a 400 error edit a calendar with an invalid name', (done) => {
 			request(app)
 				.patch('/api/v1/calendars/' + calendar.id)
@@ -172,12 +171,13 @@ describe('Calendars API', () => {
 				.expect(400)
 				.end(done)
 		})
+
 		it('should throw a 500 as there exists another calendar with the same name', (done) => {
 			request(app)
 				.put('/api/v1/calendars')
 				.set('X-Access-Token', device.access_token)
 				.send({
-					'name': 'update2',
+					'name': 'calendar 2',
 					'color': '#1278EF'
 				})
 				.type('form')
@@ -186,20 +186,18 @@ describe('Calendars API', () => {
 					if (!res.body.id) {
 						throw new Error('No calendar returned')
 					}
-					calendar = res.body
+				}).end(() => {
+					request(app)
+						.patch('/api/v1/calendars/' + calendar.id)
+						.set('X-Access-Token', device.access_token)
+						.send({
+							'name': 'calendar 2',
+							'color': '#1278EF'
+						})
+						.type('form')
+						.expect(500)
+						.end(done)
 				})
-			
-			request(app)
-				.patch('/api/v1/calendars/' + calendar.id)
-				.set('X-Access-Token', device.access_token)
-				.send({
-					'name': 'update2',
-					'color': '#1278EF'
-				})
-				.type('form')
-				.expect(500)
-				.end(done)
-			
 		})
 	})
 
