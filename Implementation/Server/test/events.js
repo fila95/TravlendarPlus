@@ -194,6 +194,23 @@ describe('Events API', () => {
 				.expect(400)
 				.end(done)
 		})
+
+		it('should throw a 400 error since the calendar does not exists', (done) => {
+			request(app)
+				.patch('/api/v1/calendars/-1/events/' + events[0].id)
+				.set('X-Access-Token', device.access_token)
+				.expect(400)
+				.end(done)
+		})
+		it('should throw a 400 error since the event on the calendar does not exists', (done) => {
+			request(app)
+				.patch('/api/v1/calendars/' + calendar.id + '/events/-1')
+				.set('X-Access-Token', device.access_token)
+				.type('form')
+				.expect(400)
+				.end(done)
+		})
+
 	})
 	describe('DELETE /events/:id', () => {
 		it('should delete the event if a valid access token is provided', (done) => {
