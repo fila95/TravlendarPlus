@@ -64,8 +64,6 @@ router.put('/', (req, res) => {
 
 	// Create the event
 	req.models.events.create(event, (err, result) => {
-		if (err) return res.sendStatus(500).end()
-
 		return res.status(201).json(result).end()
 	})
 

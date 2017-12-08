@@ -169,5 +169,13 @@ describe('Events API', () => {
 				.expect(204)
 				.end(done)
 		})
+
+		it('should throw a 400 error trying to delete an event from a non-existing calendar', (done) => {
+			request(app)
+				.delete('/api/v1/calendars/987654321/events/' + events[0].id)
+				.set('X-Access-Token', device.access_token)
+				.expect(400)
+				.end(done)
+		})
 	})
 })
