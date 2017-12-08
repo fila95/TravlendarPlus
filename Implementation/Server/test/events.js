@@ -174,8 +174,8 @@ describe('Events API', () => {
 				.type('form')
 				.expect(200)
 				.expect(res => {
-					if (res.body.title!='Test') {
-						throw new Error('Event has not been modified as due')
+					if (res.body.title != 'Test') {
+						throw new Error('Event has not been modified')
 					}
 				})
 				.end(done)
@@ -195,6 +195,7 @@ describe('Events API', () => {
 				.end(done)
 		})
 	})
+	
 	describe('DELETE /events/:id', () => {
 		it('should delete the event if a valid access token is provided', (done) => {
 			request(app)
