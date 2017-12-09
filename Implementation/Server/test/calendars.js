@@ -5,10 +5,9 @@ const calendarName = 'valid name'
 let db, device, calendar
 
 describe('Calendars API', () => {
-	before((done) => {
+	before(() => {
 		db = app.get('db')
 		device = app.get('testData').device
-		done()
 	})
 
 	after((done) => {

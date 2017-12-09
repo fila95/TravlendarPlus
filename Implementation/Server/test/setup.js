@@ -57,10 +57,8 @@ before((done) => {
 
 after((done) => {
 	device.remove(() => {
-		db.models.settings.find({ user_id: user.id }).first((err, settings) => {
-			settings.remove(() => {
-				user.remove(done)
-			})
+		user.getSettings().remove(() => {
+			user.remove(done)
 		})
 	})
 })
