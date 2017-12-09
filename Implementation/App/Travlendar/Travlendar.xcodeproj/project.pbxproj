@@ -16,7 +16,6 @@
 		1E4B69351FD80AE400DFFC66 /* GFPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4B69341FD80AE400DFFC66 /* GFPageControl.swift */; };
 		1E68BB8F1FD6895200ED4765 /* NetworkOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E68BB8E1FD6895200ED4765 /* NetworkOperations.swift */; };
 		1EAA18DF1FC9CE9F001B3612 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAA18DE1FC9CE9F001B3612 /* AppDelegate.swift */; };
-		1EAA18E11FC9CE9F001B3612 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAA18E01FC9CE9F001B3612 /* ViewController.swift */; };
 		1EAA18E41FC9CE9F001B3612 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EAA18E21FC9CE9F001B3612 /* Main.storyboard */; };
 		1EAA18E91FC9CE9F001B3612 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EAA18E81FC9CE9F001B3612 /* Assets.xcassets */; };
 		1EAA18EC1FC9CE9F001B3612 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EAA18EA1FC9CE9F001B3612 /* LaunchScreen.storyboard */; };
@@ -24,6 +23,11 @@
 		1EAA19021FC9CEA0001B3612 /* TravlendarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAA19011FC9CEA0001B3612 /* TravlendarUITests.swift */; };
 		1EB2ECE51FCD4EB300A50EC3 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB2ECE41FCD4EB300A50EC3 /* Database.swift */; };
 		1EB2ECE71FCD4F4600A50EC3 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB2ECE61FCD4F4600A50EC3 /* DataModel.swift */; };
+		1EF4E1891FDC5EE800B5BFDC /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF4E1881FDC5EE800B5BFDC /* MainPageViewController.swift */; };
+		1EF4E18B1FDC5F0200B5BFDC /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF4E18A1FDC5F0200B5BFDC /* CalendarViewController.swift */; };
+		1EF4E18D1FDC5F0B00B5BFDC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF4E18C1FDC5F0B00B5BFDC /* MapViewController.swift */; };
+		1EF4E18F1FDC5F1400B5BFDC /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF4E18E1FDC5F1400B5BFDC /* SettingsViewController.swift */; };
+		1EF4E1911FDC602200B5BFDC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF4E1901FDC602200B5BFDC /* MainViewController.swift */; };
 		D69B4B3ECCA048FBC482A9FD /* Pods_Travlendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33D1DA7E3D37B92AEAB2957E /* Pods_Travlendar.framework */; };
 		DE2AB97E8BA02427C6E1DDFF /* Pods_TravlendarTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15DBA3F6C1AAE48C87D98E07 /* Pods_TravlendarTests.framework */; };
 		E8CF5A8A9712AC42A7ECC366 /* Pods_TravlendarUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 266CBB84939490CA830F8898 /* Pods_TravlendarUITests.framework */; };
@@ -59,7 +63,6 @@
 		1E68BB8E1FD6895200ED4765 /* NetworkOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkOperations.swift; sourceTree = "<group>"; };
 		1EAA18DB1FC9CE9F001B3612 /* Travlendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Travlendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EAA18DE1FC9CE9F001B3612 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1EAA18E01FC9CE9F001B3612 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1EAA18E31FC9CE9F001B3612 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1EAA18E81FC9CE9F001B3612 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1EAA18EB1FC9CE9F001B3612 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -72,6 +75,11 @@
 		1EAA19031FC9CEA0001B3612 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1EB2ECE41FCD4EB300A50EC3 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		1EB2ECE61FCD4F4600A50EC3 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		1EF4E1881FDC5EE800B5BFDC /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
+		1EF4E18A1FDC5F0200B5BFDC /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		1EF4E18C1FDC5F0B00B5BFDC /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		1EF4E18E1FDC5F1400B5BFDC /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		1EF4E1901FDC602200B5BFDC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		26302807732CB24685CE474C /* Pods-Travlendar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Travlendar.release.xcconfig"; path = "Pods/Target Support Files/Pods-Travlendar/Pods-Travlendar.release.xcconfig"; sourceTree = "<group>"; };
 		266CBB84939490CA830F8898 /* Pods_TravlendarUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TravlendarUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		33D1DA7E3D37B92AEAB2957E /* Pods_Travlendar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Travlendar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -176,7 +184,10 @@
 			children = (
 				1E21E8701FCC23730009EFA9 /* Travlendar.entitlements */,
 				1EAA18DE1FC9CE9F001B3612 /* AppDelegate.swift */,
-				1EAA18E01FC9CE9F001B3612 /* ViewController.swift */,
+				1EF4E1921FDC606E00B5BFDC /* PageViewController */,
+				1EF4E1931FDC607D00B5BFDC /* CalendarViewController & Relative */,
+				1EF4E1941FDC608B00B5BFDC /* MapViewController & Relative */,
+				1EF4E1951FDC609A00B5BFDC /* SettingsViewController & Relative */,
 				1E21E87B1FCC55310009EFA9 /* Utilities.swift */,
 				1E4B69331FD80ACE00DFFC66 /* UI Components */,
 				1E21E86D1FCC1CA60009EFA9 /* Background Fetch & Server */,
@@ -204,6 +215,39 @@
 				1EAA19031FC9CEA0001B3612 /* Info.plist */,
 			);
 			path = TravlendarUITests;
+			sourceTree = "<group>";
+		};
+		1EF4E1921FDC606E00B5BFDC /* PageViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1EF4E1881FDC5EE800B5BFDC /* MainPageViewController.swift */,
+				1EF4E1901FDC602200B5BFDC /* MainViewController.swift */,
+			);
+			path = PageViewController;
+			sourceTree = "<group>";
+		};
+		1EF4E1931FDC607D00B5BFDC /* CalendarViewController & Relative */ = {
+			isa = PBXGroup;
+			children = (
+				1EF4E18A1FDC5F0200B5BFDC /* CalendarViewController.swift */,
+			);
+			path = "CalendarViewController & Relative";
+			sourceTree = "<group>";
+		};
+		1EF4E1941FDC608B00B5BFDC /* MapViewController & Relative */ = {
+			isa = PBXGroup;
+			children = (
+				1EF4E18C1FDC5F0B00B5BFDC /* MapViewController.swift */,
+			);
+			path = "MapViewController & Relative";
+			sourceTree = "<group>";
+		};
+		1EF4E1951FDC609A00B5BFDC /* SettingsViewController & Relative */ = {
+			isa = PBXGroup;
+			children = (
+				1EF4E18E1FDC5F1400B5BFDC /* SettingsViewController.swift */,
+			);
+			path = "SettingsViewController & Relative";
 			sourceTree = "<group>";
 		};
 		25EEC440DCEEC54B82171ADC /* Pods */ = {
@@ -544,15 +588,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EF4E18B1FDC5F0200B5BFDC /* CalendarViewController.swift in Sources */,
 				1EB2ECE71FCD4F4600A50EC3 /* DataModel.swift in Sources */,
 				1E4B69351FD80AE400DFFC66 /* GFPageControl.swift in Sources */,
-				1EAA18E11FC9CE9F001B3612 /* ViewController.swift in Sources */,
 				1E21E86C1FCC08820009EFA9 /* Secret.swift in Sources */,
 				1E21E87C1FCC55310009EFA9 /* Utilities.swift in Sources */,
 				1EAA18DF1FC9CE9F001B3612 /* AppDelegate.swift in Sources */,
+				1EF4E18D1FDC5F0B00B5BFDC /* MapViewController.swift in Sources */,
 				1E68BB8F1FD6895200ED4765 /* NetworkOperations.swift in Sources */,
 				1E21E8741FCC24C10009EFA9 /* Location.swift in Sources */,
+				1EF4E1911FDC602200B5BFDC /* MainViewController.swift in Sources */,
+				1EF4E18F1FDC5F1400B5BFDC /* SettingsViewController.swift in Sources */,
 				1EB2ECE51FCD4EB300A50EC3 /* Database.swift in Sources */,
+				1EF4E1891FDC5EE800B5BFDC /* MainPageViewController.swift in Sources */,
 				1E03BC641FD7FA5F004B411E /* DataModel+Codable.swift in Sources */,
 				1E21E86F1FCC22190009EFA9 /* API.swift in Sources */,
 			);
