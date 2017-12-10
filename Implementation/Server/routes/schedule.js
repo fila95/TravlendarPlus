@@ -3,10 +3,13 @@ const router = express.Router()
 
 // Suppose that timeSlots are sorted and not overlapping
 // Return the time in milliseconds for the given timeSlots
-let freeTimeForTimeSlots = timeSlots => {
+let freeTimeForTimeSlots = (flexibleEvent, timeSlots) => {
 	let freeTime = 0
 	for (timeSlot of timeSlots) {
-		freeTime += (timeSlots.end_time - timeSlots.start_time)
+		let s, e
+		s = (timeSlot.start_time < flexibleEvent.start_time) ? flexibleEvent.start_time : timeSlot.end_time
+		e = (timeSlot.end_time > flexibleEvent.end_time) ? flexibleEvent.end_time : timeSlot.end_time
+		freeTime += (e - s)
 	}
 	return freeTime
 }
@@ -14,7 +17,7 @@ let freeTimeForTimeSlots = timeSlots => {
 // Suppose that timeSlots are sorted and not overlapping
 // Return the total time in milliseconds in which the flexibleEvent cannot be scheduled
 let occupiedTimeForTimeSlots = (flexibleEvent, timeSlots) => {
-	let free = freeTimeForTimeSlots(timeSlots)
+	let free = freeTimeForTimeSlots(flexibleEvent, timeSlots)
 	let window = flexibleEvent.end_time - flexibleEvent.start_time
 	return window - free
 }
@@ -22,8 +25,8 @@ let occupiedTimeForTimeSlots = (flexibleEvent, timeSlots) => {
 // Return a number from 0 to 1 where:
 //   numbers near to 0 means 'quite fixed event'
 //   numbers near to 1 means 'very flexible event'
-let fitness = (event, timeSlots) => {
-	return 1 - (event.duration / (event.end_time - event.start_time - occupiedTimeForTimeSlots(event, timeSlots)))
+let fitness = (flexibleEvent, timeSlots) => {
+	return 1 - (flexibleEvent.duration / (flexibleEvent.end_time - flexibleEvent.start_time - occupiedTimeForTimeSlots(flexibleEvent, timeSlots)))
 }
 
 // Sort the flexible events looking at the fitness function:
@@ -54,15 +57,40 @@ let overlap = eventList => {
 }
 
 // Return a list of timeSlots = [{start_time, end_time}, ...] where the flexibleEvent could fit
-let timeSlots = (fixedEventList, flexibleEvent) => {
+let timeSlots = (fixedEventList, _flexibleEvent) => {
+	// Copy flexible event to not modify the original
+	let flexibleEvent = {
+		start_time: _flexibleEvent.start_time,
+		end_time: _flexibleEvent.end_time,
+		duration: _flexibleEvent.duration
+	}
 	let timeSlots = []
 
 	// Remove all the events OUT of the flexible event window, and sort the remaining events
 	let fixedEventListInWhichSearch = sort(
 		fixedEventList.filter(v => {
-			v.end_time > flexibleEvent.start_time && v.start_time < flexibleEvent.end_time
+			return v.end_time > flexibleEvent.start_time && v.start_time < flexibleEvent.end_time
 		})
 	)
+
+	// If the start of the flexible event is inside an existing fixed event, shift the start to the end of that event
+	let first_fixed_event = fixedEventListInWhichSearch[0]
+	if (flexibleEvent.start_time > first_fixed_event.start_time) {
+		flexibleEvent.start_time = first_fixed_event.end_time
+		fixedEventListInWhichSearch.splice(0, 1)
+	}
+
+	// If the end of the flexible event is inside an existing fixed event, shift the end to the start of that event
+	let last_fixed_event = fixedEventListInWhichSearch[fixedEventListInWhichSearch.length - 1]
+	if (flexibleEvent.end_time < last_fixed_event.end_time) {
+		flexibleEvent.end_time = last_fixed_event.start_time
+		fixedEventListInWhichSearch.splice(fixedEventListInWhichSearch.length - 1, 1)
+	}
+
+	// If after the shifts, there is no more space, return a null list
+	if (flexibleEvent.end_time - flexibleEvent.start_time < flexibleEvent.duration) {
+		return []
+	}
 
 	// If there isn't any event, the time slot is the entire flexible event
 	if (fixedEventListInWhichSearch.length == 0) {
@@ -70,10 +98,10 @@ let timeSlots = (fixedEventList, flexibleEvent) => {
 	}
 
 	// Otherwise, search all the time slots
-	for (let i = 0; i < fixedEventListInWhichSearch.length - 1; i++) {
+	for (let i = 0; i < fixedEventListInWhichSearch.length; i++) {
 		let possibleTimeSlot = {
-			start_time: fixedEventListInWhichSearch[i].end_time,
-			end_time: fixedEventListInWhichSearch[i + 1].start_time
+			start_time: i == 0 ? flexibleEvent.start_time : fixedEventListInWhichSearch[i].end_time,
+			end_time: i == fixedEventListInWhichSearch.length - 1 ? flexibleEvent.end_time : fixedEventListInWhichSearch[i + 1].start_time
 		}
 
 		let timeSlotDuration = possibleTimeSlot.end_time - possibleTimeSlot.start_time
@@ -98,7 +126,7 @@ router.get('/', (req, res) => {
 
 module.exports = router
 
-if(process.env.ENV=='testing') {
+if (process.env.ENV == 'testing') {
 	router.testFunctions = {
 		timeSlots: timeSlots,
 		overlap: overlap,
