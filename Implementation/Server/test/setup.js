@@ -1,5 +1,4 @@
 const app = require('../index')
-const request = require('supertest')
 const crypto = require('crypto')
 const uuidv4 = require('uuid/v4')
 
@@ -43,7 +42,8 @@ let createData = (cb) => {
 }
 
 before((done) => {
-	// Connect to database
+	// Starting up, the app will set the variable db
+	// If it's not already set, wait for the event db_connected
 	if (!app.get('db')) {
 		app.on('db_connected', (_db) => {
 			db = _db
