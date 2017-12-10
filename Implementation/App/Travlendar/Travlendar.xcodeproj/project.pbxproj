@@ -12,8 +12,18 @@
 		1E21E86F1FCC22190009EFA9 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E21E86E1FCC22190009EFA9 /* API.swift */; };
 		1E21E8721FCC238F0009EFA9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E21E8711FCC238F0009EFA9 /* MapKit.framework */; };
 		1E21E8741FCC24C10009EFA9 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E21E8731FCC24C10009EFA9 /* Location.swift */; };
-		1E21E87C1FCC55310009EFA9 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E21E87B1FCC55310009EFA9 /* Utilities.swift */; };
 		1E4B69351FD80AE400DFFC66 /* GFPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4B69341FD80AE400DFFC66 /* GFPageControl.swift */; };
+		1E4CB7321FDD46F100FA8E52 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4CB7311FDD46F100FA8E52 /* Badge.swift */; };
+		1E4CB7341FDD475A00FA8E52 /* Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4CB7331FDD475A00FA8E52 /* Share.swift */; };
+		1E4CB7361FDD48E300FA8E52 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4CB7351FDD48E300FA8E52 /* Font.swift */; };
+		1E4CB7381FDD498000FA8E52 /* Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4CB7371FDD498000FA8E52 /* Delay.swift */; };
+		1E4CB73A1FDD49B000FA8E52 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4CB7391FDD49B000FA8E52 /* Random.swift */; };
+		1E4CB73C1FDD49C300FA8E52 /* Spotlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4CB73B1FDD49C300FA8E52 /* Spotlight.swift */; };
+		1E4CB73E1FDD4A0F00FA8E52 /* Opener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4CB73D1FDD4A0F00FA8E52 /* Opener.swift */; };
+		1E4CB7401FDD4A9B00FA8E52 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4CB73F1FDD4A9B00FA8E52 /* Alert.swift */; };
+		1E4CB7421FDD4AAF00FA8E52 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4CB7411FDD4AAF00FA8E52 /* TextField.swift */; };
+		1E4CB7441FDD4AFE00FA8E52 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4CB7431FDD4AFE00FA8E52 /* ViewController.swift */; };
+		1E4CB7461FDD4B6700FA8E52 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4CB7451FDD4B6700FA8E52 /* Color.swift */; };
 		1E68BB8F1FD6895200ED4765 /* NetworkOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E68BB8E1FD6895200ED4765 /* NetworkOperations.swift */; };
 		1EAA18DF1FC9CE9F001B3612 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAA18DE1FC9CE9F001B3612 /* AppDelegate.swift */; };
 		1EAA18E41FC9CE9F001B3612 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EAA18E21FC9CE9F001B3612 /* Main.storyboard */; };
@@ -58,8 +68,18 @@
 		1E21E8701FCC23730009EFA9 /* Travlendar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Travlendar.entitlements; sourceTree = "<group>"; };
 		1E21E8711FCC238F0009EFA9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1E21E8731FCC24C10009EFA9 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
-		1E21E87B1FCC55310009EFA9 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		1E4B69341FD80AE400DFFC66 /* GFPageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFPageControl.swift; sourceTree = "<group>"; };
+		1E4CB7311FDD46F100FA8E52 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
+		1E4CB7331FDD475A00FA8E52 /* Share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Share.swift; sourceTree = "<group>"; };
+		1E4CB7351FDD48E300FA8E52 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		1E4CB7371FDD498000FA8E52 /* Delay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delay.swift; sourceTree = "<group>"; };
+		1E4CB7391FDD49B000FA8E52 /* Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Random.swift; sourceTree = "<group>"; };
+		1E4CB73B1FDD49C300FA8E52 /* Spotlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spotlight.swift; sourceTree = "<group>"; };
+		1E4CB73D1FDD4A0F00FA8E52 /* Opener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Opener.swift; sourceTree = "<group>"; };
+		1E4CB73F1FDD4A9B00FA8E52 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		1E4CB7411FDD4AAF00FA8E52 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		1E4CB7431FDD4AFE00FA8E52 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1E4CB7451FDD4B6700FA8E52 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		1E68BB8E1FD6895200ED4765 /* NetworkOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkOperations.swift; sourceTree = "<group>"; };
 		1EAA18DB1FC9CE9F001B3612 /* Travlendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Travlendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EAA18DE1FC9CE9F001B3612 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +158,24 @@
 			path = "UI Components";
 			sourceTree = "<group>";
 		};
+		1E4CB7301FDD46E500FA8E52 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				1E4CB7311FDD46F100FA8E52 /* Badge.swift */,
+				1E4CB7331FDD475A00FA8E52 /* Share.swift */,
+				1E4CB7351FDD48E300FA8E52 /* Font.swift */,
+				1E4CB7371FDD498000FA8E52 /* Delay.swift */,
+				1E4CB7391FDD49B000FA8E52 /* Random.swift */,
+				1E4CB73B1FDD49C300FA8E52 /* Spotlight.swift */,
+				1E4CB73D1FDD4A0F00FA8E52 /* Opener.swift */,
+				1E4CB73F1FDD4A9B00FA8E52 /* Alert.swift */,
+				1E4CB7411FDD4AAF00FA8E52 /* TextField.swift */,
+				1E4CB7431FDD4AFE00FA8E52 /* ViewController.swift */,
+				1E4CB7451FDD4B6700FA8E52 /* Color.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		1E68BB8C1FD688BF00ED4765 /* Persistency */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,13 +222,13 @@
 			children = (
 				1E21E8701FCC23730009EFA9 /* Travlendar.entitlements */,
 				1EAA18DE1FC9CE9F001B3612 /* AppDelegate.swift */,
+				1E4CB7301FDD46E500FA8E52 /* Utilities */,
+				1E4B69331FD80ACE00DFFC66 /* UI Components */,
+				1E21E86D1FCC1CA60009EFA9 /* Background Fetch & Server */,
 				1EF4E1921FDC606E00B5BFDC /* PageViewController */,
 				1EF4E1931FDC607D00B5BFDC /* CalendarViewController & Relative */,
 				1EF4E1941FDC608B00B5BFDC /* MapViewController & Relative */,
 				1EF4E1951FDC609A00B5BFDC /* SettingsViewController & Relative */,
-				1E21E87B1FCC55310009EFA9 /* Utilities.swift */,
-				1E4B69331FD80ACE00DFFC66 /* UI Components */,
-				1E21E86D1FCC1CA60009EFA9 /* Background Fetch & Server */,
 				1EAA18E21FC9CE9F001B3612 /* Main.storyboard */,
 				1EAA18E81FC9CE9F001B3612 /* Assets.xcassets */,
 				1EAA18EA1FC9CE9F001B3612 /* LaunchScreen.storyboard */,
@@ -590,17 +628,27 @@
 			files = (
 				1EF4E18B1FDC5F0200B5BFDC /* CalendarViewController.swift in Sources */,
 				1EB2ECE71FCD4F4600A50EC3 /* DataModel.swift in Sources */,
+				1E4CB7421FDD4AAF00FA8E52 /* TextField.swift in Sources */,
 				1E4B69351FD80AE400DFFC66 /* GFPageControl.swift in Sources */,
 				1E21E86C1FCC08820009EFA9 /* Secret.swift in Sources */,
-				1E21E87C1FCC55310009EFA9 /* Utilities.swift in Sources */,
+				1E4CB7341FDD475A00FA8E52 /* Share.swift in Sources */,
+				1E4CB7441FDD4AFE00FA8E52 /* ViewController.swift in Sources */,
 				1EAA18DF1FC9CE9F001B3612 /* AppDelegate.swift in Sources */,
+				1E4CB7381FDD498000FA8E52 /* Delay.swift in Sources */,
 				1EF4E18D1FDC5F0B00B5BFDC /* MapViewController.swift in Sources */,
+				1E4CB7401FDD4A9B00FA8E52 /* Alert.swift in Sources */,
+				1E4CB73E1FDD4A0F00FA8E52 /* Opener.swift in Sources */,
 				1E68BB8F1FD6895200ED4765 /* NetworkOperations.swift in Sources */,
 				1E21E8741FCC24C10009EFA9 /* Location.swift in Sources */,
+				1E4CB7321FDD46F100FA8E52 /* Badge.swift in Sources */,
 				1EF4E1911FDC602200B5BFDC /* MainViewController.swift in Sources */,
+				1E4CB73C1FDD49C300FA8E52 /* Spotlight.swift in Sources */,
 				1EF4E18F1FDC5F1400B5BFDC /* SettingsViewController.swift in Sources */,
+				1E4CB7461FDD4B6700FA8E52 /* Color.swift in Sources */,
 				1EB2ECE51FCD4EB300A50EC3 /* Database.swift in Sources */,
+				1E4CB7361FDD48E300FA8E52 /* Font.swift in Sources */,
 				1EF4E1891FDC5EE800B5BFDC /* MainPageViewController.swift in Sources */,
+				1E4CB73A1FDD49B000FA8E52 /* Random.swift in Sources */,
 				1E03BC641FD7FA5F004B411E /* DataModel+Codable.swift in Sources */,
 				1E21E86F1FCC22190009EFA9 /* API.swift in Sources */,
 			);
