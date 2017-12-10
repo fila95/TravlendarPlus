@@ -26,7 +26,7 @@ let eventFactory = req => {
 	let title = req.body.title
 	let start_time = new Date(req.body.start_time || undefined)
 	let end_time = new Date(req.body.end_time || undefined)
-	if (!title || !start_time || !end_time) {
+	if (!title || !start_time || !end_time || start_time>=start_end){
 		return null
 	}
 
@@ -51,6 +51,9 @@ let eventFactory = req => {
 
 	let duration = parseInt(req.body.duration)
 	if (duration) event.duration = duration
+	if (duration>(event.end_time-event.start_time)) return null
+
+
 
 	let repetitions = (req.body.repetitions || '').trim()
 	if (repetitions.match("B[01]{7}")) {
