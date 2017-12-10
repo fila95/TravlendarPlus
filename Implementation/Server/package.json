@@ -18,7 +18,7 @@
   },
   "scripts": {
     "start": "node index.js",
-    "test": "mocha --exit",
-    "test-cov": "istanbul cover _mocha -- --exit"
+    "test": "ENV=testing mocha --exit",
+    "test-cov": "ENV=testing istanbul cover _mocha -- --exit"
   }
 }
