@@ -120,10 +120,10 @@ describe('Schedule private functions', () => {
 		let flexibleEvent3 = { start_time: new Date(2017, 0, 1, 15), end_time: new Date(2017, 0, 1, 18, 30), duration: 1000 * 60 * 60 }
 		let flexibleEvent4 = { start_time: new Date(2017, 0, 1, 15), end_time: new Date(2017, 0, 1, 18, 30), duration: 2 * 1000 * 60 * 60 }
 
-		let f1 = schedule.fitness(flexibleEvent1, timeSlots)
-		let f2 = schedule.fitness(flexibleEvent2, timeSlots)
-		let f3 = schedule.fitness(flexibleEvent3, timeSlots)
-		let f4 = schedule.fitness(flexibleEvent4, timeSlots)
+		let f1 = schedule.fitness(flexibleEvent1, timeSlots) // 3
+		let f2 = schedule.fitness(flexibleEvent2, timeSlots) // 5
+		let f3 = schedule.fitness(flexibleEvent3, timeSlots) // 1.222
+		let f4 = schedule.fitness(flexibleEvent4, timeSlots) // 1.444
 
 		console.log(f1, f2, f3, f4)
 
