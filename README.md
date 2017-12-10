@@ -25,7 +25,8 @@ Here we publish the final Design Document
 [![Build Status](https://travis-ci.com/fila95/CalzavaraFilaferroNespoli.svg?token=iWtSkcs2Smmuu8wbpWZU&branch=production)](https://travis-ci.com/fila95/CalzavaraFilaferroNespoli)
 [![codecov](https://codecov.io/gh/fila95/CalzavaraFilaferroNespoli/branch/production/graph/badge.svg?token=j9U8t3J9rD)](https://codecov.io/gh/fila95/CalzavaraFilaferroNespoli)
 [![Maintainability](https://api.codeclimate.com/v1/badges/306ac0e1b68708d0a331/maintainability)](https://codeclimate.com/repos/5a1b17802d228202a5001226/maintainability)
-[![Coding Hours](https://api.gitential.com/accounts/170/projects/222/badges/coding-hours.svg)](https://gitential.com/accounts/170/projects/222/share?uuid=9f506af9-262f-4f7c-b205-120bf590a814&utm_source=shield&utm_medium=shield&utm_campaign=222)
+[![Coding Hours](https://api.gitential.com/accounts/170/projects/222/badges/coding-hours.svg)](https://gitential.com/accounts/170/projects/222/share?
+[![Coding Hours](https://api.gitential.com/accounts/170/projects/222/badges/code-volume.svg)](https://gitential.com/accounts/170/projects/222/share?uuid=9f506af9-262f-4f7c-b205-120bf590a814&utm_source=shield&utm_medium=shield&utm_campaign=222)
 
 #### Test Coverage
 [![Test Coverage](https://codecov.io/gh/fila95/CalzavaraFilaferroNespoli/branch/production/graphs/sunburst.svg?token=j9U8t3J9rD)](https://codecov.io/gh/fila95/CalzavaraFilaferroNespoli/branch/production/graphs/sunburst.svg?token=j9U8t3J9rD)
