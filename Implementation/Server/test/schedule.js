@@ -108,7 +108,7 @@ describe('Schedule private functions', () => {
 		}
 	})
 
-	it('fitness', () => {
+	/*it('fitness', () => {
 		let timeSlots = [
 			{ start_time: new Date(2017, 0, 1, 8), end_time: new Date(2017, 0, 1, 10) },
 			{ start_time: new Date(2017, 0, 1, 14), end_time: new Date(2017, 0, 1, 16) },
@@ -127,5 +127,5 @@ describe('Schedule private functions', () => {
 
 		console.log(f1, f2, f3, f4)
 
-	})
+	})*/
 })
