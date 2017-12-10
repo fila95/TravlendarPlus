@@ -6,11 +6,11 @@ router.get('/', (req, res) => {
 	let from = new Date(req.body.from || undefined)
 
 	let to
-	if(req.body.to) {
+	if (req.body.to) {
 		to = new Date(req.body.to)
 	} else {
 		to = new Date()
-		to.setHours(to.getHours()+24)
+		to.setHours(to.getHours() + 24)
 	}
 
 	let calendars = {}
@@ -36,7 +36,7 @@ let eventFactory = req => {
 	let title = req.body.title
 	let start_time = new Date(req.body.start_time || undefined)
 	let end_time = new Date(req.body.end_time || undefined)
-	if (!title || !start_time || !end_time || start_time>=start_end){
+	if (!title || !start_time || !end_time || start_time >= end_time) {
 		return null
 	}
 
@@ -61,9 +61,7 @@ let eventFactory = req => {
 
 	let duration = parseInt(req.body.duration)
 	if (duration) event.duration = duration
-	if (duration>(event.end_time-event.start_time)) return null
-
-
+	if (duration > (event.end_time - event.start_time)) return null
 
 	let repetitions = (req.body.repetitions || '').trim()
 	if (repetitions.match("B[01]{7}")) {
@@ -74,7 +72,7 @@ let eventFactory = req => {
 	if (transports.match("B[01]{5}")) {
 		event.transports = transports
 	}
-	
+
 	return event
 }
 
