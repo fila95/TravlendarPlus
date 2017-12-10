@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kz5-Kv-gYM" customClass="GFPageControl" customModule="Aquify" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kz5-Kv-gYM" customClass="GFPageControl" customModule="Travlendar" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -88,13 +88,23 @@
                     <view key="view" contentMode="scaleToFill" id="YFZ-UH-NLe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="0.6705882353" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsScale="YES" showsTraffic="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qv9-4T-HVO">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </mapView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="qv9-4T-HVO" firstAttribute="top" secondItem="YFZ-UH-NLe" secondAttribute="top" id="Dxd-qY-iUj"/>
+                            <constraint firstItem="qv9-4T-HVO" firstAttribute="leading" secondItem="AOp-mc-GmF" secondAttribute="leading" id="FbN-Yf-9bZ"/>
+                            <constraint firstItem="qv9-4T-HVO" firstAttribute="trailing" secondItem="AOp-mc-GmF" secondAttribute="trailing" id="UOc-tv-TfG"/>
+                            <constraint firstItem="qv9-4T-HVO" firstAttribute="bottom" secondItem="AOp-mc-GmF" secondAttribute="bottom" id="YWL-9L-nr9"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="AOp-mc-GmF"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ijT-kB-Bc4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1790" y="1073"/>
+            <point key="canvasLocation" x="1789.5999999999999" y="1072.7136431784108"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="aid-uo-nJz">
