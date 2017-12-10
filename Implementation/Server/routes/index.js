@@ -6,5 +6,5 @@ router.use('/api/v1/login', require('./login'))
 router.use('/api/v1/settings', auth, require('./settings'))
 router.use('/api/v1/calendars', auth, require('./calendars'))
 router.use('/api/v1/calendars/:calendar_id/events', auth, require('./events'))
-
+router.use('/api/v1/schedule', auth, require('./schedule'))
 module.exports = router
