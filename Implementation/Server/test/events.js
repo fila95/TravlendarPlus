@@ -5,10 +5,7 @@ const eventTitle = 'valid event name'
 const startTime = '2017-12-04T11:00:47.676Z'
 const endTime = '2017-12-04T13:01:40.143Z'
 
-let db = null
-let device = null
-let calendar = null
-let events = []
+let db, device, calendar, event
 
 describe('Events API', () => {
 	before((done) => {
@@ -27,9 +24,9 @@ describe('Events API', () => {
 
 	after((done) => {
 		// Delete the test calendar and event created during the test
-		db.models.calendars.find({ id: calendar.id }).remove(() => {
-			db.models.events.find({ id: events[1].id }).remove(() => {
-				done()
+		db.models.calendars.find({ id: calendar.id }).first((err, calendar) => {
+			calendar.getEvents().remove(() => {
+				calendar.remove(done)
 			})
 		})
 	})
@@ -58,7 +55,7 @@ describe('Events API', () => {
 					if (!res.body.id) {
 						throw new Error('No calendar returned')
 					}
-					events.push(res.body)
+					event = res.body
 				})
 				.end(done)
 		})
@@ -79,7 +76,6 @@ describe('Events API', () => {
 					if (!res.body.id) {
 						throw new Error('No calendar returned')
 					}
-					events.push(res.body)
 				})
 				.end(done)
 		})
@@ -127,7 +123,7 @@ describe('Events API', () => {
 	describe('PATCH /events/:id', () => {
 		it('should modify the event if a valid access token is provided', (done) => {
 			request(app)
-				.patch('/api/v1/calendars/' + calendar.id + '/events/' + events[0].id)
+				.patch('/api/v1/calendars/' + calendar.id + '/events/' + event.id)
 				.set('X-Access-Token', device.access_token)
 				.send({
 					'title': 'Test',
@@ -146,7 +142,7 @@ describe('Events API', () => {
 
 		it('should throw a 400 error updating an event with an invalid parameter', (done) => {
 			request(app)
-				.patch('/api/v1/calendars/' + calendar.id + '/events/' + events[0].id)
+				.patch('/api/v1/calendars/' + calendar.id + '/events/' + event.id)
 				.set('X-Access-Token', device.access_token)
 				.send({
 					'name': '',
@@ -160,7 +156,7 @@ describe('Events API', () => {
 
 		it('should throw a 400 error since the calendar does not exists', (done) => {
 			request(app)
-				.patch('/api/v1/calendars/-1/events/' + events[0].id)
+				.patch('/api/v1/calendars/-1/events/' + event.id)
 				.set('X-Access-Token', device.access_token)
 				.expect(400)
 				.end(done)
@@ -179,7 +175,7 @@ describe('Events API', () => {
 	describe('DELETE /events/:id', () => {
 		it('should delete the event if a valid access token is provided', (done) => {
 			request(app)
-				.delete('/api/v1/calendars/' + calendar.id + '/events/' + events[0].id)
+				.delete('/api/v1/calendars/' + calendar.id + '/events/' + event.id)
 				.set('X-Access-Token', device.access_token)
 				.expect(204)
 				.end(done)
@@ -187,7 +183,7 @@ describe('Events API', () => {
 
 		it('should throw a 400 error trying to delete an event from a non-existing calendar', (done) => {
 			request(app)
-				.delete('/api/v1/calendars/987654321/events/' + events[0].id)
+				.delete('/api/v1/calendars/987654321/events/' + event.id)
 				.set('X-Access-Token', device.access_token)
 				.expect(400)
 				.end(done)

@@ -1942,6 +1942,12 @@ GET: Retrieve the user calendars -
 getCalendars(·): List<Calendar>
 \end_layout
 
+\begin_layout Itemize
+PUT: Add new calendar - 
+\emph on
+newCalendar(·)
+\end_layout
+
 \end_deeper
 \begin_layout Itemize
 
@@ -1950,12 +1956,6 @@ getCalendars(·): List<Calendar>
 \end_layout
 
 \begin_deeper
-\begin_layout Itemize
-PUT: Add new calendar - 
-\emph on
-newCalendar(·)
-\end_layout
-
 \begin_layout Itemize
 PATCH: Update existing calendar - 
 \emph on
@@ -1982,6 +1982,12 @@ GET: Retrieve the user events -
 getEvents(·): List<Events>
 \end_layout
 
+\begin_layout Itemize
+PUT: Add new event - 
+\emph on
+newEvent(·)
+\end_layout
+
 \end_deeper
 \begin_layout Itemize
 
@@ -1990,12 +1996,6 @@ getEvents(·): List<Events>
 \end_layout
 
 \begin_deeper
-\begin_layout Itemize
-PUT: Add new event - 
-\emph on
-newEvent(·)
-\end_layout
-
 \begin_layout Itemize
 PATCH: Update existing event - 
 \emph on
