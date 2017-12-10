@@ -80,6 +80,7 @@ describe('Schedule private functions', () => {
 		}
 	})
 
+	// TODO timeSlots on fixed data in order to increase test coverage
 	it('timeSlots on random data', () => {
 		let flexibleEvent = genRandomEvents(1)[0]
 		// Max 1 hour of duration for testing purpose
@@ -88,12 +89,6 @@ describe('Schedule private functions', () => {
 		let eventList = genRandomEvents(10, new Date(flexibleEvent.start_time), new Date(flexibleEvent.end_time))
 
 		let timeSlots = schedule.timeSlots(eventList, flexibleEvent)
-		// console.log("\nfixed event list:")
-		// console.log(eventList)
-		// console.log("\nflex event:")
-		// console.log(flexibleEvent)
-		// console.log("\ntime slots:")
-		// console.log(timeSlots)
 
 		// All the time slots need to be a slice of the window of the flexible event
 		for (timeSlot of timeSlots) {
@@ -108,24 +103,25 @@ describe('Schedule private functions', () => {
 		}
 	})
 
-	/*it('fitness', () => {
+	it('fitness on fixed data', () => {
 		let timeSlots = [
 			{ start_time: new Date(2017, 0, 1, 8), end_time: new Date(2017, 0, 1, 10) },
 			{ start_time: new Date(2017, 0, 1, 14), end_time: new Date(2017, 0, 1, 16) },
 			{ start_time: new Date(2017, 0, 1, 18), end_time: new Date(2017, 0, 1, 19) }
 		]
 
-		let flexibleEvent1 = { start_time: new Date(2017, 0, 1, 8), end_time: new Date(2017, 0, 1, 18, 30), duration: 1000 * 60 * 60 }
-		let flexibleEvent2 = { start_time: new Date(2017, 0, 1, 8), end_time: new Date(2017, 0, 1, 18, 30), duration: 2 * 1000 * 60 * 60 }
-		let flexibleEvent3 = { start_time: new Date(2017, 0, 1, 15), end_time: new Date(2017, 0, 1, 18, 30), duration: 1000 * 60 * 60 }
-		let flexibleEvent4 = { start_time: new Date(2017, 0, 1, 15), end_time: new Date(2017, 0, 1, 18, 30), duration: 2 * 1000 * 60 * 60 }
+		let flexibleEvents = []
+		// For simplicity we give an ID, in order to verify after the sorting, but this ID is not used during the process
+		flexibleEvents.push({ id: 2, start_time: new Date(2017, 0, 1, 10), end_time: new Date(2017, 0, 1, 18, 30), duration: 1000 * 60 * 60 })
+		flexibleEvents.push({ id: 1, start_time: new Date(2017, 0, 1, 8), end_time: new Date(2017, 0, 1, 18, 30), duration: 1000 * 60 * 60 })
+		flexibleEvents.push({ id: 4, start_time: new Date(2017, 0, 1, 10), end_time: new Date(2017, 0, 1, 18, 30), duration: 2 * 1000 * 60 * 60 })
+		flexibleEvents.push({ id: 3, start_time: new Date(2017, 0, 1, 8), end_time: new Date(2017, 0, 1, 18, 30), duration: 2 * 1000 * 60 * 60 })
 
-		let f1 = schedule.fitness(flexibleEvent1, timeSlots) // 3
-		let f2 = schedule.fitness(flexibleEvent2, timeSlots) // 5
-		let f3 = schedule.fitness(flexibleEvent3, timeSlots) // 1.222
-		let f4 = schedule.fitness(flexibleEvent4, timeSlots) // 1.444
-
-		console.log(f1, f2, f3, f4)
-
-	})*/
+		let sortedFlexibleEvents = schedule.sortWithFitness(flexibleEvents, timeSlots)
+		for (let i = 0; i < sortedFlexibleEvents; i++) {
+			if (i - 1 != sortedFlexibleEvents[i].id) {
+				throw new Error("Sort with fitness error")
+			}
+		}
+	})
 })

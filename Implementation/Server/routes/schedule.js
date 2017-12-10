@@ -7,8 +7,8 @@ let freeTimeForTimeSlots = (flexibleEvent, timeSlots) => {
 	let freeTime = 0
 	for (timeSlot of timeSlots) {
 		let s, e
-		s = (timeSlot.start_time < flexibleEvent.start_time) ? flexibleEvent.start_time : timeSlot.end_time
-		e = (timeSlot.end_time > flexibleEvent.end_time) ? flexibleEvent.end_time : timeSlot.end_time
+		s = (timeSlot.start_time > flexibleEvent.start_time) ? flexibleEvent.start_time : timeSlot.end_time
+		e = (timeSlot.end_time < flexibleEvent.end_time) ? flexibleEvent.end_time : timeSlot.end_time
 		freeTime += (e - s)
 	}
 	return freeTime
