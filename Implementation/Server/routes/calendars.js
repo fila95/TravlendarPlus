@@ -3,7 +3,7 @@ const router = express.Router()
 
 // Return a list of User's Calendars
 router.get('/', (req, res) => {
-	req.models.calendars.find({ user_id: req.user.id }, (err, calendars) => {
+	req.user.getCalendars((err, calendars) => {
 		res.json(calendars).end()
 	})
 })
