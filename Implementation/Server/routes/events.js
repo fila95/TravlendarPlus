@@ -3,10 +3,20 @@ const router = express.Router({ mergeParams: true })
 
 // Return a list of User's Events
 router.get('/', (req, res) => {
+	let from = new Date(req.body.from || undefined)
+
+	let to
+	if(req.body.to) {
+		to = new Date(req.body.to)
+	} else {
+		to = new Date()
+		to.setHours(to.getHours()+24)
+	}
+
 	let calendars = {}
 
 	req.user.getCalendars((err, calendars) => {
-		calendar_ids = []
+		let calendar_ids = []
 		for (calendar of calendars) {
 			calendar_ids.push(calendar.id)
 		}
