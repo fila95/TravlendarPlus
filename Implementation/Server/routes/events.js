@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 })
 
 // EVENT Factory: Restituisce un evento se tutto va bene, altrimenti null
-function eventFactory(req){
+let eventFactory = req => {
 	// Validate inputs:
 	// These three fields are mandatory, meaning that if them are null or invalid,
 	// then a 400 error is thrown.
@@ -61,15 +61,16 @@ function eventFactory(req){
 	if (transports.match("B[01]{5}")) {
 		event.transports = transports
 	}
+	
 	return event
 }
 
 // Create a new Event with the parameters specified
 router.put('/', (req, res) => {
-	let event=eventFactory(req)
+	let event = eventFactory(req)
 	// Error
-	if (event==null) return res.sendStatus(400).end()
-	
+	if (event == null) return res.sendStatus(400).end()
+
 	// Create the event
 	req.models.events.create(event, (err, result) => {
 		return res.status(201).json(result).end()
@@ -82,7 +83,7 @@ router.delete('/:event_id', (req, res) => {
 	req.models.calendars.find({ user_id: req.user.id, id: req.params.calendar_id }).first((err, calendar) => {
 		// Calendar does not exists
 		if (err || !calendar) return res.sendStatus(400).end()
-		
+
 		// Find the corresponding event and remove it
 		req.models.events.find({
 			calendar_id: req.params.calendar_id,
@@ -93,28 +94,25 @@ router.delete('/:event_id', (req, res) => {
 	})
 })
 
-
-
 // Edit event
 router.patch('/:event_id', (req, res) => {
 	req.models.calendars.find({ user_id: req.user.id, id: req.params.calendar_id }).first((err, calendar) => {
-		//Calendar not found
+		// Calendar not found
 		if (err || !calendar) return res.sendStatus(400).end()
 		req.models.events.find({
 			calendar_id: req.params.calendar_id,
 			id: req.params.event_id
 		}).first((err, eventTarget) => {
-			//Event not found
+			// Event not found
 			if (err || !eventTarget) return res.sendStatus(400).end()
-			//Try to generate an event
-			eventUpdated=eventFactory(req)
-			if (eventUpdated==null) return res.sendStatus(400).end()
-			//Copy attribute in eventUpdated to eventTarget
+			// Try to generate an event
+			eventUpdated = eventFactory(req)
+			if (eventUpdated == null) return res.sendStatus(400).end()
+			// Copy attribute in eventUpdated to eventTarget
 			for (var property in eventUpdated) {
-				//But not its ID
-			    if (property!='calendar_id'){
-			    	//console.log('eventTarget['+property+']=eventUpdated['+property+']='+eventUpdated[property])
-			    	eventTarget[property]=eventUpdated[property]
+				// But not its ID
+				if (property != 'id') {
+					eventTarget[property] = eventUpdated[property]
 				}
 			}
 			eventTarget.save((err, result) => {
@@ -126,10 +124,5 @@ router.patch('/:event_id', (req, res) => {
 
 	})
 })
-
-
-
-
-
 
 module.exports = router

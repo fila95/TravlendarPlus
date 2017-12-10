@@ -1,72 +1,35 @@
 const app = require('../index')
 const request = require('supertest')
-const crypto = require('crypto')
-const uuidv4 = require('uuid/v4')
-const orm = require('orm')
 
 const eventTitle = 'valid event name'
 const startTime = '2017-12-04T11:00:47.676Z'
 const endTime = '2017-12-04T13:01:40.143Z'
 
 let db = null
-let user = null
 let device = null
 let calendar = null
 let events = []
-let access_token = crypto.randomBytes(48).toString('base64')
-
-let createData = (done) => {
-	const user_token = uuidv4()
-	db.models.users.create({
-		user_token: user_token
-	}, (err, _user) => {
-		if (err) throw err
-		user = _user
-		db.models.devices.create({
-			user_id: user.id,
-			access_token: access_token
-		}, (err, _device) => {
-			if (err) throw err
-			device = _device
-			db.models.calendars.create({
-				user_id: user.id,
-				name: "valid calendar name",
-				color: "#FF0000"
-			}, (err, _calendar) => {
-				if (err) throw err
-				calendar = _calendar
-				done()
-			})
-		})
-	})
-}
 
 describe('Events API', () => {
 	before((done) => {
-		// Connect to database
-		// Create a test user and device
-		if (!app.get('db')) {
-			app.on('db_connected', (_db) => {
-				db = _db
-				createData(done)
-			})
-		} else {
-			db = app.get('db')
-			createData(done)
-		}
+		db = app.get('db')
+		device = app.get('testData').device
+		db.models.calendars.create({
+			user_id: device.user_id,
+			name: "valid calendar name",
+			color: "#FF0000"
+		}, (err, _calendar) => {
+			if (err) throw err
+			calendar = _calendar
+			done()
+		})
 	})
 
 	after((done) => {
-		// Delete the test user, settings, device, calendar and event created during the test
-		db.models.users.find({ id: user.id }).remove(() => {
-			db.models.devices.find({ id: device.id }).remove(() => {
-				db.models.settings.find({ user_id: user.id }).remove(() => {
-					db.models.calendars.find({ id: calendar.id }).remove(() => {
-						db.models.events.find({ id: events[1].id }).remove(() => {
-							done()
-						})
-					})
-				})
+		// Delete the test calendar and event created during the test
+		db.models.calendars.find({ id: calendar.id }).remove(() => {
+			db.models.events.find({ id: events[1].id }).remove(() => {
+				done()
 			})
 		})
 	})
@@ -174,8 +137,8 @@ describe('Events API', () => {
 				.type('form')
 				.expect(200)
 				.expect(res => {
-					if (res.body.title!='Test') {
-						throw new Error('Event has not been modified as due')
+					if (res.body.title != 'Test') {
+						throw new Error('Event has not been modified')
 					}
 				})
 				.end(done)
@@ -212,6 +175,7 @@ describe('Events API', () => {
 		})
 
 	})
+
 	describe('DELETE /events/:id', () => {
 		it('should delete the event if a valid access token is provided', (done) => {
 			request(app)

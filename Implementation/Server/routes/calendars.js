@@ -37,8 +37,8 @@ router.put('/', (req, res) => {
 	})
 })
 
+// Delete the calendar
 router.delete('/:calendar_id', (req, res) => {
-	// Delete the calendar
 	req.models.calendars.find({
 		user_id: req.user.id,
 		id: req.params.calendar_id

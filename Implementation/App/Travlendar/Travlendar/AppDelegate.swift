@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         Location.shared.requestLocationUpdate()
-        delay(time: 10) {
+        delay(10) {
             Location.shared.requestLocationUpdate()
         }
         

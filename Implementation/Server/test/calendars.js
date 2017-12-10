@@ -1,55 +1,19 @@
 const app = require('../index')
 const request = require('supertest')
-const crypto = require('crypto')
-const uuidv4 = require('uuid/v4')
-const orm = require('orm')
 
 const calendarName = 'valid name'
-let db = null
-let device = null
-let calendar = null
-
-let createData = (done) => {
-	const user_token = uuidv4()
-	request(app)
-		.post('/api/v1/login')
-		.send({ 'user_token': user_token })
-		.type('form')
-		.expect(200)
-		.expect(res => {
-			if (res.body.access_token == undefined) {
-				throw new Error('No access_token in response')
-			}
-			device = res.body
-		})
-		.end(done)
-}
+let db, device, calendar
 
 describe('Calendars API', () => {
-	before((done) => {
-		// Connect to database
-		// Create a test user and device
-		if (!app.get('db')) {
-			app.on('db_connected', (_db) => {
-				db = _db
-				createData(done)
-			})
-		} else {
-			db = app.get('db')
-			createData(done)
-		}
+	before(() => {
+		db = app.get('db')
+		device = app.get('testData').device
 	})
 
 	after((done) => {
-		// Delete the test user, device and calendar created during the test
-		db.models.users.find({ id: device.user_id }).remove(() => {
-			db.models.settings.find({ user_id: device.user_id }).remove(() => {
-				db.models.calendars.find({ user_id: device.user_id }).remove(() => {
-					db.models.devices.find({ id: device.id }).remove(() => {
-						done()
-					})
-				})
-			})
+		// Delete all the test calendars created during the test
+		db.models.calendars.find({ user_id: device.user_id }).remove(() => {
+			done()
 		})
 	})
 

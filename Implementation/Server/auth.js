@@ -1,4 +1,5 @@
-// Middleware that will populate the req.user only if access_token is valid
+// Middleware that will populate the req.user only if access_token is valid, and
+// will truncate the connection with a 401 or 403 error code if access_token is invalid/missing
 let auth = (req, res, next) => {
 	let access_token = req.get('X-Access-Token')
 	if (access_token != undefined) {

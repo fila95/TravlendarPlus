@@ -12,6 +12,7 @@ coverage:
     - RASD/*
     - Requirements/*
     - Implementation/Server/node_modules/*
+    - Implementation/App/*
     - readme.md
   status:
     patch:

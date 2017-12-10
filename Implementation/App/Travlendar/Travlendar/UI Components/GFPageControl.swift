@@ -19,12 +19,10 @@ class GFPageControl: UIControl {
     
     var currentPage: Int = 0 {
         willSet {
-            if newValue == currentPage {
-                
-            }
-            else {
+            if newValue != currentPage {
                 self.components[currentPage].selected = false
             }
+            
         }
         didSet {
             if self.components.count > currentPage {
@@ -32,8 +30,6 @@ class GFPageControl: UIControl {
                     self.components[currentPage].selected = true
                 }
             }
-            
-            
         }
     }
     

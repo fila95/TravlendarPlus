@@ -6,17 +6,8 @@ const user_token = uuidv4()
 let db = null
 
 describe('Authentication', () => {
-	before((done) => {
-		// Connect to database
-		if (!app.get('db')) {
-			app.on('db_connected', (_db) => {
-				db = _db
-				done()
-			})
-		} else {
-			db = app.get('db')
-			done()
-		}
+	before(() => {
+		db = app.get('db')
 	})
 
 	after((done) => {
