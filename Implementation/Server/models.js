@@ -1,3 +1,5 @@
+const orm = require('orm')
+
 function model(db, cb) {
 	/* istanbul ignore next */
 	db.defineType('coord_lat', {
@@ -114,6 +116,10 @@ function model(db, cb) {
 		suggested_start_time: { type: 'date', time: true },
 		suggested_end_time: { type: 'date', time: true }
 	})
+
+	Event.findFromToInCalendar = (from, to, calendar_id, cb) => {
+		Event.find({start_time: orm.between(from, to), calendar_id: calendar_id}, cb)
+	}
 
 	Event.hasMany('travels', Travel)
 	Setting.hasOne('user', User, { reverse: 'settings', required: true })
