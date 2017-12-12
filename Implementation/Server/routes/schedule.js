@@ -113,10 +113,25 @@ let timeSlots = (fixedEventList, _flexibleEvent) => {
 	return timeSlots
 }
 
+// Get the previous event to the given dateTime
+let getEventPreviousTo = (events, dateTime) => {
+	let prev_event = { end_time: 0 }
+	dateTime = new Date(dateTime)
+	events.filter(event => {
+		return new Date(event.end_time) < dateTime
+	}).forEach(event => {
+		if (event.end_time > prev_event.end_time) {
+			prev_event = event
+		}
+	})
+	return prev_event
+}
+
 router.get('/', (req, res) => {
+	// For each calendar
 	req.user.getCalendars().each((err, calendar) => {
-		// TODO prendere tutti gli eventi di OGGI
-		calendar.getEvents((err, events) => {
+		// Get all the events of today from the current calendar
+		calendar.getEventsOfToday((err, events) => {
 			let fixedEvents = events.filter((e) => { return !e.duration })
 			let flexibleEvents = events.filter((e) => { return e.duration })
 
@@ -136,6 +151,9 @@ router.get('/', (req, res) => {
 				e.timeSlots = e.timeSlots.sort((a, b) => {
 					return (a.end_time - a.start_time) - (b.end_time - b.start_time)
 				})
+				// Get the previous user location
+				
+
 				// Try to fit in every time slot
 				for (t of e.timeSlots) {
 					// TODO
@@ -157,6 +175,7 @@ if (process.env.ENV == 'testing') {
 		sortWithFitness: sortWithFitness,
 		fitness: fitness,
 		occupiedTimeForTimeSlots: occupiedTimeForTimeSlots,
-		freeTimeForTimeSlots: freeTimeForTimeSlots
+		freeTimeForTimeSlots: freeTimeForTimeSlots,
+		getEventPreviousTo: getEventPreviousTo
 	}
 }

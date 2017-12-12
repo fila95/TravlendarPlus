@@ -125,4 +125,19 @@ describe('Schedule private functions', () => {
 			}
 		}
 	})
+
+	it('getEventPreviousTo with fixed data', () => {
+		// 13th December 2017, 08:00
+		let date = new Date(2017, 11, 13, 8)
+		let events = [
+			{ id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30) },
+			{ id: 2, start_time: new Date(2017, 11, 13, 7, 00), end_time: new Date(2017, 11, 13, 7, 30) },
+			{ id: 3, start_time: new Date(2017, 11, 13, 7, 31), end_time: new Date(2017, 11, 13, 7, 55) },
+			{ id: 4, start_time: new Date(2017, 11, 13, 8, 15), end_time: new Date(2017, 11, 13, 9, 45) }
+		]
+
+		if (schedule.getEventPreviousTo(events, date).id != 3) {
+			throw new Error("getEventPreviousTo failed")
+		}
+	})
 })
