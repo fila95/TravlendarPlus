@@ -11,20 +11,7 @@ import UIKit
 public class API: NSObject {
     
     public static let shared: API = API()
-    
     public static let baseURL: String = "https://polimi-travlendarplus.herokuapp.com/api/v1/"
-    
-    public var request_token: String? {
-        get {
-            return UserDefaults.standard.string(forKey: "access_token")
-        }
-        set(newValue) {
-            UserDefaults.standard.set(newValue, forKey: "access_token")
-            UserDefaults.standard.synchronize()
-        }
-    }
-    
-    
     
     private let queue: OperationQueue!
     
@@ -35,15 +22,18 @@ public class API: NSObject {
         queue.maxConcurrentOperationCount = 1
         queue.qualityOfService = .background
         
-        if self.request_token == nil {
+        if Secret.shared.request_token == nil {
             print("Token Not Received: \n\tAsk Server...")
             
-            let operation = LoginOperation()
-            queue.addOperation(operation)
+            queue.addOperation(LoginOperation())
         }
         else {
-            print("Already have token: \n\t\(request_token!)")
+            print("Already have token: \n\t\(Secret.shared.request_token!)")
         }
+        
+        
+        queue.addOperation(SettingsOperation(operationType: .get))
+        
         
         
     }

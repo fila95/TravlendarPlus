@@ -24,6 +24,31 @@ public class Secret: NSObject {
         }
     }
     
+    public var request_token: String? {
+        get {
+            return UserDefaults.standard.string(forKey: "access_token")
+        }
+        set(newValue) {
+            UserDefaults.standard.set(newValue, forKey: "access_token")
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
+    public var settings: Settings? {
+        get {
+            guard let data = UserDefaults.standard.data(forKey: "settings") else { return  nil }
+            return NSKeyedUnarchiver.unarchiveObject(with: data) as? Settings
+        }
+        set {
+            guard let s = settings else {
+                return
+            }
+            let data = NSKeyedArchiver.archivedData(withRootObject: s)
+            UserDefaults.standard.set(data, forKey: "settings")
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
     private let CLOUD_KEY = "cloudID"
     private lazy var keychain: KeychainSwift = {
         let k = KeychainSwift()

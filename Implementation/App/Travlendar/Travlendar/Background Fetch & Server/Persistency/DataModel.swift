@@ -26,20 +26,50 @@ enum TransportMean: String {
 
 // MARK: Classes
 
-class Settings: Object {
+public class Settings: NSObject, Codable {
     
     @objc dynamic var eco_mode: Bool = false
-    @objc dynamic var max_walking_distance = 2000
-    @objc dynamic var max_biking_distance = 4000
+    @objc dynamic var max_walking_distance: Float = 2000
+    @objc dynamic var max_biking_distance: Float = 4000
     
-    @objc dynamic var start_public_transportation = 0
-    @objc dynamic var end_public_transportation = 0
+    @objc dynamic var start_public_transportation: Date = Date()
+    @objc dynamic var end_public_transportation: Date = Date()
     
     @objc dynamic var enjoy_enabled: Bool = false
     @objc dynamic var car2go_enabled: Bool = false
     @objc dynamic var uber_enabled: Bool = false
     @objc dynamic var mobike_enabled: Bool = false
     
+    private enum CodingKeys: String, CodingKey {
+        case eco_mode = "eco_mode"
+        case max_walking_distance = "max_walking_distance"
+        case max_biking_distance = "max_biking_distance"
+        
+        case start_public_transportation = "start_public_transportation"
+        case end_public_transportation = "end_public_transportation"
+        
+        case enjoy_enabled = "enjoy_enabled"
+        case car2go_enabled = "car2go_enabled"
+        case uber_enabled = "uber_enabled"
+        case mobike_enabled = "mobike_enabled"
+    }
+    
+    func decode(from decoder: Decoder) throws {
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.eco_mode = try container.decode(Bool.self, forKey: .eco_mode)
+        self.max_walking_distance = try container.decode(Float.self, forKey: .max_walking_distance)
+        self.max_biking_distance = try container.decode(Float.self, forKey: .max_biking_distance)
+        
+        self.start_public_transportation =  try container.decode(Date.self, forKey: .start_public_transportation)
+        self.end_public_transportation = try container.decode(Date.self, forKey: .end_public_transportation)
+        
+        self.enjoy_enabled = try container.decode(Bool.self, forKey: .enjoy_enabled)
+        self.car2go_enabled = try container.decode(Bool.self, forKey: .car2go_enabled)
+        self.uber_enabled = try container.decode(Bool.self, forKey: .uber_enabled)
+        self.mobike_enabled = try container.decode(Bool.self, forKey: .mobike_enabled)
+        
+    }
 }
 
 

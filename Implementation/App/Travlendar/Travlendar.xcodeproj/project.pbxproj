@@ -12,6 +12,7 @@
 		1E21E86F1FCC22190009EFA9 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E21E86E1FCC22190009EFA9 /* API.swift */; };
 		1E21E8721FCC238F0009EFA9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E21E8711FCC238F0009EFA9 /* MapKit.framework */; };
 		1E21E8741FCC24C10009EFA9 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E21E8731FCC24C10009EFA9 /* Location.swift */; };
+		1E379AB11FE026D200E74DFC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E379AB01FE026D200E74DFC /* Date.swift */; };
 		1E4B69351FD80AE400DFFC66 /* GFPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4B69341FD80AE400DFFC66 /* GFPageControl.swift */; };
 		1E4CB7321FDD46F100FA8E52 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4CB7311FDD46F100FA8E52 /* Badge.swift */; };
 		1E4CB7341FDD475A00FA8E52 /* Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4CB7331FDD475A00FA8E52 /* Share.swift */; };
@@ -68,6 +69,7 @@
 		1E21E8701FCC23730009EFA9 /* Travlendar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Travlendar.entitlements; sourceTree = "<group>"; };
 		1E21E8711FCC238F0009EFA9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1E21E8731FCC24C10009EFA9 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		1E379AB01FE026D200E74DFC /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		1E4B69341FD80AE400DFFC66 /* GFPageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFPageControl.swift; sourceTree = "<group>"; };
 		1E4CB7311FDD46F100FA8E52 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		1E4CB7331FDD475A00FA8E52 /* Share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Share.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				1E4CB7411FDD4AAF00FA8E52 /* TextField.swift */,
 				1E4CB7431FDD4AFE00FA8E52 /* ViewController.swift */,
 				1E4CB7451FDD4B6700FA8E52 /* Color.swift */,
+				1E379AB01FE026D200E74DFC /* Date.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -637,6 +640,7 @@
 				1E4CB7381FDD498000FA8E52 /* Delay.swift in Sources */,
 				1EF4E18D1FDC5F0B00B5BFDC /* MapViewController.swift in Sources */,
 				1E4CB7401FDD4A9B00FA8E52 /* Alert.swift in Sources */,
+				1E379AB11FE026D200E74DFC /* Date.swift in Sources */,
 				1E4CB73E1FDD4A0F00FA8E52 /* Opener.swift in Sources */,
 				1E68BB8F1FD6895200ED4765 /* NetworkOperations.swift in Sources */,
 				1E21E8741FCC24C10009EFA9 /* Location.swift in Sources */,

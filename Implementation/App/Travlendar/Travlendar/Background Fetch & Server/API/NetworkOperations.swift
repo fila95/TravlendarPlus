@@ -28,16 +28,64 @@ enum NStatusCode: Int {
     }
 }
 
+enum NOperationType: String {
+    case get
+    case post
+    case patch
+}
+
 
 class NetworkOperation: Operation {
     
     let session: URLSession!
     
+    var operationType: NOperationType = .get
+    var httpBody: String = ""
+    
     override init() {
         session = URLSession.shared
         
-        
         super.init()
+    }
+    
+    convenience init(operationType: NOperationType, httpBody: String? = nil) {
+        self.init()
+        
+        self.operationType = operationType
+        self.httpBody = httpBody != nil ? httpBody! : ""
+    }
+    
+    func runRequest(endpoint: String, completion: @escaping ((_ status: NStatusCode, _ result: [String : Any]?, _ data: Data?) -> Void)) {
+        
+        var request: URLRequest = URLRequest(url: URL.init(string: API.baseURL + endpoint)!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 60)
+        
+        request.httpMethod = self.operationType.rawValue.uppercased()
+        request.httpBody = self.httpBody.data(using: .utf8)
+        
+        if let tk = Secret.shared.request_token {
+            request.addValue("\(tk)", forHTTPHeaderField: "X-Access-Token")
+        }
+        
+        let task = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
+            
+            if error != nil {
+                print("Error \(endpoint.capitalized) Operation: \n\t\(error.debugDescription)")
+                return
+            }
+            
+            guard let sc = (response as? HTTPURLResponse)?.statusCode, let code = NStatusCode.init(rawValue: sc), let d = data else {
+                print("Error \(endpoint.capitalized) Operation: \n\tResponse or data unavailable")
+                return
+            }
+            
+            guard let dictionary = try? JSONSerialization.jsonObject(with: d, options: .allowFragments) as? [String : Any], let json = dictionary  else {
+                print("Error \(endpoint.capitalized) Operation: \n\tJSON Parse")
+                return
+            }
+            
+            completion(code, json, data)
+        }
+        task.resume()
     }
     
 }
@@ -52,46 +100,65 @@ class LoginOperation: NetworkOperation {
     override func main() {
         super.main()
         
-        var request: URLRequest = URLRequest(url: URL.init(string: API.baseURL + "login")!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 60)
+        self.httpBody = ("user_token=\(Secret.shared.cloudId!)")
+        self.operationType = .post
         
-        request.httpMethod = "POST"
-        request.httpBody = ("user_token=\(Secret.shared.cloudId!)").data(using: .utf8)
-//        request.addValue("", forHTTPHeaderField: "")
-        
-        let task = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
+        runRequest(endpoint: "login") { (status, json, data) in
             
-            if error != nil {
-                print("Error LoginOperation: \n\t\(error.debugDescription)")
-                return
-            }
-            
-            guard let sc = (response as? HTTPURLResponse)?.statusCode, let code = NStatusCode.init(rawValue: sc), let d = data else {
-                print("Error LoginOperation: \n\tResponse or data unavailable")
-                return
-            }
-            
-            guard let dictionary = try? JSONSerialization.jsonObject(with: d, options: .allowFragments) as? [String : Any], let json = dictionary  else {
-                print("Error LoginOperation: \n\tJSON Parse")
-                return
-            }
-            
-            switch code {
-                case .ok:
-                    let access_token: String = json["access_token"] as? String ?? ""
-                    print("LoginOperation: \n\tAccess Token: \(access_token)")
-                    API.shared.request_token = access_token
+            switch status {
+            case .ok:
+                let access_token: String = json!["access_token"] as? String ?? ""
+                print("LoginOperation: \n\tAccess Token: \(access_token)")
+                Secret.shared.request_token = access_token
                 break
                 
             default:
-                print("Error LoginOperation: \n\tStatusCode: \(code)")
+                print("Error LoginOperation: \n\tStatusCode: \(status)")
                 break
                 
             }
             
-            
         }
-        task.resume()
         
     }
     
 }
+
+class SettingsOperation: NetworkOperation {
+    
+    override init() {
+        super.init()
+    }
+    
+    override func main() {
+        super.main()
+        
+        runRequest(endpoint: "settings") { (status, json, data) in
+            
+            switch status {
+            case .ok:
+//                print(json!.debugDescription)
+                let decoder = JSONDecoder.init()
+                decoder.dateDecodingStrategy = .formatted(Formatter.time)
+                
+                guard let settings = try? decoder.decode(Settings.self, from: data!) else {
+                    print("Error Settings Operation: Unable to decode Settings")
+                    return
+                }
+                Secret.shared.settings = settings
+                print("Settings Received and Saved")
+                
+                break
+                
+            default:
+                print("Error Settings Operation: \n\tStatusCode: \(status)")
+                break
+                
+            }
+            
+        }
+        
+    }
+    
+}
+
