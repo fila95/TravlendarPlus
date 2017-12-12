@@ -127,6 +127,10 @@ let getEventPreviousTo = (events, dateTime) => {
 	return prev_event
 }
 
+let getReliableUserLocation = (user) => {
+
+}
+
 router.get('/', (req, res) => {
 	// For each calendar
 	req.user.getCalendars().each((err, calendar) => {
@@ -152,7 +156,8 @@ router.get('/', (req, res) => {
 					return (a.end_time - a.start_time) - (b.end_time - b.start_time)
 				})
 				// Get the previous user location
-				
+				let location = getReliableUserLocation(req.user)
+				// TODO
 
 				// Try to fit in every time slot
 				for (t of e.timeSlots) {
