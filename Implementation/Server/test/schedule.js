@@ -103,21 +103,22 @@ describe('Schedule private functions', () => {
 		}
 	})
 
-	it('fitness on fixed data', () => {
+	it('sort with fitness on fixed data', () => {
 		let timeSlots = [
 			{ start_time: new Date(2017, 0, 1, 8), end_time: new Date(2017, 0, 1, 10) },
 			{ start_time: new Date(2017, 0, 1, 14), end_time: new Date(2017, 0, 1, 16) },
 			{ start_time: new Date(2017, 0, 1, 18), end_time: new Date(2017, 0, 1, 19) }
 		]
 
-		let flexibleEvents = []
 		// For simplicity we give an ID, in order to verify after the sorting, but this ID is not used during the process
-		flexibleEvents.push({ id: 2, start_time: new Date(2017, 0, 1, 10), end_time: new Date(2017, 0, 1, 18, 30), duration: 1000 * 60 * 60 })
-		flexibleEvents.push({ id: 1, start_time: new Date(2017, 0, 1, 8), end_time: new Date(2017, 0, 1, 18, 30), duration: 1000 * 60 * 60 })
-		flexibleEvents.push({ id: 4, start_time: new Date(2017, 0, 1, 10), end_time: new Date(2017, 0, 1, 18, 30), duration: 2 * 1000 * 60 * 60 })
-		flexibleEvents.push({ id: 3, start_time: new Date(2017, 0, 1, 8), end_time: new Date(2017, 0, 1, 18, 30), duration: 2 * 1000 * 60 * 60 })
+		let flexibleEvents = [
+			{ id: 2, start_time: new Date(2017, 0, 1, 10), end_time: new Date(2017, 0, 1, 18, 30), duration: 1000 * 60 * 60, timeSlots: timeSlots },
+			{ id: 1, start_time: new Date(2017, 0, 1, 8), end_time: new Date(2017, 0, 1, 18, 30), duration: 1000 * 60 * 60, timeSlots: timeSlots },
+			{ id: 4, start_time: new Date(2017, 0, 1, 10), end_time: new Date(2017, 0, 1, 18, 30), duration: 2 * 1000 * 60 * 60, timeSlots: timeSlots },
+			{ id: 3, start_time: new Date(2017, 0, 1, 8), end_time: new Date(2017, 0, 1, 18, 30), duration: 2 * 1000 * 60 * 60, timeSlots: timeSlots }
+		]
 
-		let sortedFlexibleEvents = schedule.sortWithFitness(flexibleEvents, timeSlots)
+		let sortedFlexibleEvents = schedule.sortWithFitness(flexibleEvents)
 		for (let i = 0; i < sortedFlexibleEvents; i++) {
 			if (i - 1 != sortedFlexibleEvents[i].id) {
 				throw new Error("Sort with fitness error")

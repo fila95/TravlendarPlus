@@ -31,9 +31,9 @@ let fitness = (flexibleEvent, timeSlots) => {
 
 // Sort the flexible events looking at the fitness function:
 // The events that are less flexible are the first, and the events that are the most flexible are the last
-let sortWithFitness = (eventList, timeSlots) => {
+let sortWithFitness = (eventList) => {
 	return eventList.sort((a, b) => {
-		return fitness(a, timeSlots) - fitness(b, timeSlots)
+		return fitness(a, a.timeSlots) - fitness(b, b.timeSlots)
 	})
 }
 
@@ -117,8 +117,31 @@ router.get('/', (req, res) => {
 	req.user.getCalendars().each((err, calendar) => {
 		// TODO prendere tutti gli eventi di OGGI
 		calendar.getEvents((err, events) => {
-			let overlapping = overlap(events)
+			let fixedEvents = events.filter((e) => { return !e.duration })
+			let flexibleEvents = events.filter((e) => { return e.duration })
+
+			// Check for overlapping fixed events
+			let overlapping = overlap(fixedEvents)
 			if (overlapping) return res.status(400).end('overlapping: ' + overlapping)
+
+			// Calculate timeSlot for each flexible event and sort them with the fitness function
+			for (e of flexibleEvents) {
+				e.timeSlots = timeSlots(fixedEvents, e)
+			}
+			let sortedFlexibleEvents = sortWithFitness(flexibleEvents)
+
+			// Try to fit each flexible event from the less fittable to the most one
+			for (e of sortedFlexibleEvents) {
+				// Sort time slot from the smallest to the biggest
+				e.timeSlots = e.timeSlots.sort((a, b) => {
+					return (a.end_time - a.start_time) - (b.end_time - b.start_time)
+				})
+				// Try to fit in every time slot
+				for (t of e.timeSlots) {
+					// TODO
+				}
+			}
+
 			// TODO
 		})
 	})
