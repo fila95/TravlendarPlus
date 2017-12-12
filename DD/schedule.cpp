@@ -218,7 +218,7 @@ bool eventIsToday(Event *e);
 bool eventIsFirstOfDay(Event *e, Calendar *c);
 
 // Check if an event is reachable from specific coordinates and saves in it routes informations and sets suggested_start / suggested_end
-bool eventIsReachable(Coordinates coords, Event *e);
+bool eventIsReachable(Coordinates *coords, Event *e);
 
 // Check if an event e2 is reachable from previous event e1  and saves in it routes informations and sets suggested_start / suggested_end
 bool eventIsReachable(Event *e1, Event *e2);
@@ -375,74 +375,34 @@ Schedule* schedule(User *u, unsigned long date1, unsigned long date2) {
                     continue;
                 }
 
+                Event *prev = siblingTimeSlotEvent(c, timeSlots[j]);
                 // We can try to know if it is reachable
-                if (eventIsToday(e)) {
-                    // Consider user latest reliable position
-                    Event *prev = siblingTimeSlotEvent(c, timeSlots[j]);
-                    if (prev == null) {
-                        // no previous event, try user location
-                        Coordinates *userPos = reliableUserPosition(u);
-                        if (userPos == null) {
-                            // No user position, try another time slot
-                            continue;
-                        }
-                        else {
-                            if (eventIsReachable(userPos, e)) {
-                                // REACHABLE
-                                insert(fixed, e);
-                                remove(flexible, e);
-                                break;
-                            }
-                            else {
-                                // Try another time slot
-                                continue;
-                            }
-                        }
-
-                    }
-                    else {
-                        if (eventIsReachable(prev, e)) {
-                            // REACHABLE
-                            insert(fixed, e);
-                            remove(flexible, e);
-                            break;
-                        }
-                        else {
-                            // Try another time slot
-                            continue;
-                        }
-                    }
+                // Consider user latest reliable position
+                bool reachable;
+                if (prev == NULL || !eventIsToday(e)) {
+                    // no previous event, try user location
+                    Coordinates *userPos = reliableUserPosition(u);
+                    reachable = userPos==NULL || eventIsReachable(userPos, e);
+                } else {
+                    reachable = eventIsReachable(prev, e);
+                }
+                if (reachable) {
+                    // REACHABLE or userPos not defined or too old
+                    insert(fixed, e);
+                    remove(flexible, e);
+                    break;
                 }
                 else {
-                    // Don't consider last reliable user position
-
-                    Event *prev = siblingTimeSlotEvent(c, timeSlots[j]);
-                    if (prev == null) {
-                        // no previous event try another time slot
-                        continue;
-                    }
-                    else {
-                        if (eventIsReachable(prev, e)) {
-                            // REACHABLE
-                            insert(fixed, e);
-                            remove(flexible, e);
-                            break;
-                        }
-                        else {
-                            // Try another time slot
-                            continue;
-                        }
-                    }
+                    // Try another time slot
+                    continue;
                 }
-
             }
-            
 
         }
 
         if (flexible->size() > 0) {
             notifyUnreachable(u, flexible);
-            return null;
+            return NULL;
         }
 
         // Now we need to make sure that unscheduled and unfitted events are reachable
@@ -453,7 +413,7 @@ Schedule* schedule(User *u, unsigned long date1, unsigned long date2) {
                 break;
             }
 
-            if (events[i]->routes == null || events[i]->suggested_start == null || events[i]->suggested_end == null) {
+            if (events[i]->routes == NULL || events[i]->suggested_start == NULL || events[i]->suggested_end == NULL) {
                 // Unscheduled
 
                 if (eventIsFirstOfDay(events[i], c)) {
@@ -461,10 +421,10 @@ Schedule* schedule(User *u, unsigned long date1, unsigned long date2) {
                         // Try with user location
 
                         Coordinates *userPos = reliableUserPosition(u);
-                        if (userPos == null) {
+                        if (userPos == NULL) {
                             // No user position, unreachable then
                             notifyUnreachable(u, events[i]);
-                            return null;
+                            return NULL;
                         }
                         else {
                             if (eventIsReachable(userPos, events[i])) {
@@ -475,7 +435,7 @@ Schedule* schedule(User *u, unsigned long date1, unsigned long date2) {
                             else {
                                 // Not Reachable
                                 notifyUnreachable(u, events[i]);
-                                return null;
+                                return NULL;
                             }
                         }
                     }
@@ -496,7 +456,7 @@ Schedule* schedule(User *u, unsigned long date1, unsigned long date2) {
                     else {
                         // Not Reachable
                         notifyUnreachable(u, events[i+1]);
-                        return null;
+                        return NULL;
                     }
                 }
 
