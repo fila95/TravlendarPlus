@@ -1,3 +1,5 @@
+const orm = require('orm')
+
 function model(db, cb) {
 	/* istanbul ignore next */
 	db.defineType('coord_lat', {
@@ -65,15 +67,15 @@ function model(db, cb) {
 		})
 
 	let Setting = db.define('settings', {
-		eco_mode: { type: 'boolean', defaultValue: false},
-		max_walking_distance: { type: 'integer', defaultValue: 2000},
-		max_biking_distance: { type: 'integer', defaultValue: 4000},
-		start_public_transportation: { type: 'time', defaultValue: "07:00:00"},
-		end_public_transportation: { type: 'time', defaultValue: "22:00:00"},
-		enjoy_enabled: { type: 'boolean', defaultValue: false},
-		car2go_enabled: { type: 'boolean', defaultValue: false},
-		uber_enabled: { type: 'boolean', defaultValue: false},
-		mobike_enabled: { type: 'boolean', defaultValue: false}
+		eco_mode: { type: 'boolean', defaultValue: false },
+		max_walking_distance: { type: 'integer', defaultValue: 2000 },
+		max_biking_distance: { type: 'integer', defaultValue: 4000 },
+		start_public_transportation: { type: 'time', defaultValue: "07:00:00" },
+		end_public_transportation: { type: 'time', defaultValue: "22:00:00" },
+		enjoy_enabled: { type: 'boolean', defaultValue: false },
+		car2go_enabled: { type: 'boolean', defaultValue: false },
+		uber_enabled: { type: 'boolean', defaultValue: false },
+		mobike_enabled: { type: 'boolean', defaultValue: false }
 	})
 
 	let Travel = db.define('travels', {
@@ -110,10 +112,20 @@ function model(db, cb) {
 		end_time: { type: 'date', required: true, time: true },
 		duration: { type: 'integer' },
 		repetitions: { type: 'bit', size: 7, defaultValue: '0000000' },
-		transports: { type: 'bit', size: 5,  defaultValue: '11111' },
+		transports: { type: 'bit', size: 5, defaultValue: '11111' },
 		suggested_start_time: { type: 'date', time: true },
 		suggested_end_time: { type: 'date', time: true }
 	})
+
+	Event.findFromToInCalendar = (from, to, calendar_id, cb) => {
+		Event.find({ start_time: orm.between(from, to), calendar_id: calendar_id }, cb)
+	}
+
+	Calendar.getEventsOfToday = (cb) => {
+		let today = new Date()
+		let todayPlus24 = new Date(today + 1000 * 60 * 60 * 24)
+		Calendar.find({ calendar_id: this.id, start_time: orm.between(today, todayPlus24) }, cb)
+	}
 
 	Event.hasMany('travels', Travel)
 	Setting.hasOne('user', User, { reverse: 'settings', required: true })

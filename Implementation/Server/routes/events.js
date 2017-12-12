@@ -2,16 +2,23 @@ const express = require('express')
 const router = express.Router({ mergeParams: true })
 
 // Return a list of User's Events
+// Parameters: from and to are two Dates that allow a paging for this endpoint
+// Returns: a list of events, from the Date from, to the Date to
 router.get('/', (req, res) => {
-	let from = new Date(req.body.from || undefined)
-
-	let to
-	if (req.body.to) {
-		to = new Date(req.body.to)
+	let from, to
+	if (req.query.from) {
+		from = new Date(req.query.from)
 	} else {
-		to = new Date()
+		from = new Date()
+	}
+	if (req.query.to) {
+		to = new Date(req.query.to)
+	} else {
+		to = new Date(from.getTime())
 		to.setHours(to.getHours() + 24)
 	}
+	console.log(from)
+	console.log(to)
 
 	let calendars = {}
 
@@ -20,7 +27,7 @@ router.get('/', (req, res) => {
 		for (calendar of calendars) {
 			calendar_ids.push(calendar.id)
 		}
-		req.models.events.find({ calendar_id: calendar_ids }, (err, events) => {
+		req.models.events.findFromToInCalendar(from, to, calendar_ids, (err, events) => {
 			return res.json(events).end()
 		})
 	})
