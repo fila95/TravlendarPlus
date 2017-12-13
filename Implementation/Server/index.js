@@ -3,11 +3,9 @@ const bodyParser = require('body-parser')
 const orm = require('orm')
 const app = express()
 
-//DATABASE_URL="postgres://lhmreztgnyprlm:1298fc445f5535201fe6934c7bc200321c2c07c0effa0d07d9fbfc04240b67ee@ec2-46-51-187-253.eu-west-1.compute.amazonaws.com:5432/da7thh5a5r6679?ssl=true"
-
 app.set('port', process.env.PORT || 8080)
-app.set('DB_URL', process.env.DATABASE_URL || "postgresql://postgres:postgres@localhost/travlendarplus")
-//app.set('DB_URL', process.env.DATABASE_URL || "postgres://lhmreztgnyprlm:1298fc445f5535201fe6934c7bc200321c2c07c0effa0d07d9fbfc04240b67ee@ec2-46-51-187-253.eu-west-1.compute.amazonaws.com:5432/da7thh5a5r6679?ssl=true")
+//app.set('DB_URL', process.env.DATABASE_URL || "postgresql://postgres:postgres@localhost/travlendarplus")
+app.set('DB_URL', process.env.DATABASE_URL || "postgres://lhmreztgnyprlm:1298fc445f5535201fe6934c7bc200321c2c07c0effa0d07d9fbfc04240b67ee@ec2-46-51-187-253.eu-west-1.compute.amazonaws.com:5432/da7thh5a5r6679?ssl=true")
 
 // Middleware that will log all the requests on the stdout.
 // ONLY FOR DEBUG PURPOSE
