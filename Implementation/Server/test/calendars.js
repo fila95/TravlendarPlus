@@ -37,19 +37,6 @@ describe('Calendars API', () => {
 				.end(done)
 		})
 
-		it('should throw a 500 error creating a calendar with the same name of the previous', (done) => {
-			request(app)
-				.put('/api/v1/calendars')
-				.set('X-Access-Token', device.access_token)
-				.send({
-					'name': calendarName,
-					'color': '#4378EF'
-				})
-				.type('form')
-				.expect(500)
-				.end(done)
-		})
-
 		it('should throw a 400 error creating a calendar with an invalid name', (done) => {
 			request(app)
 				.put('/api/v1/calendars')
@@ -148,36 +135,8 @@ describe('Calendars API', () => {
 				.expect(400)
 				.end(done)
 		})
-
-		it('should throw a 500 as there exists another calendar with the same name', (done) => {
-			request(app)
-				.put('/api/v1/calendars')
-				.set('X-Access-Token', device.access_token)
-				.send({
-					'name': 'calendar 2',
-					'color': '#1278EF'
-				})
-				.type('form')
-				.expect(201)
-				.expect(res => {
-					if (!res.body.id) {
-						throw new Error('No calendar returned')
-					}
-				}).end(() => {
-					request(app)
-						.patch('/api/v1/calendars/' + calendar.id)
-						.set('X-Access-Token', device.access_token)
-						.send({
-							'name': 'calendar 2',
-							'color': '#1278EF'
-						})
-						.type('form')
-						.expect(500)
-						.end(done)
-				})
-		})
 	})
-
+	
 	describe('DELETE /calendars/:id', () => {
 		it('should delete the calendar if a valid access token is provided', (done) => {
 			request(app)
