@@ -1,6 +1,12 @@
+const app = require('../index')
 const schedule = require('../routes/schedule.js').testFunctions
 
 describe('Schedule private functions', () => {
+	let user, device
+	before(() => {
+		user = app.get('testData').user
+		device = app.get('testData').device
+	})
 
 	let randomDate = (start, end) => {
 		return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
@@ -126,6 +132,7 @@ describe('Schedule private functions', () => {
 		}
 	})
 
+
 	it('getEventPreviousTo with fixed data', () => {
 		// 13th December 2017, 08:00
 		let date = new Date(2017, 11, 13, 8)
@@ -138,6 +145,24 @@ describe('Schedule private functions', () => {
 
 		if (schedule.getEventPreviousTo(events, date).id != 3) {
 			throw new Error("getEventPreviousTo failed")
+		}
+	})
+
+	it('Test getReliableUserLocation', () => {
+		let loc = schedule.getReliableUserLocation(user)
+		user.last_known_position_lat = 45.121212
+		user.last_known_position_lng = 9.121212
+		updated_at = new Date()
+
+		loc = schedule.getReliableUserLocation(user)
+		if (loc == null) {
+			throw new Error('Reliable location shouldn\'t be null')
+		}
+		
+		updated_at = new Date(2017, 11, 11, 4, 30)
+		loc = schedule.getReliableUserLocation(user)
+		if (loc == null) {
+			throw new Error('Reliable location should be null since was updated too long time ago')
 		}
 	})
 })

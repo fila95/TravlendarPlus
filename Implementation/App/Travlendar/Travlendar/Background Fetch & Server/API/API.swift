@@ -31,11 +31,11 @@ public class API: NSObject {
             print("Already have token: \n\t\(Secret.shared.request_token!)")
         }
         
-        
         queue.addOperation(SettingsOperation(operationType: .get))
-        
-        
-        
+    }
+    
+    public func pushSettingsToServer(settings: Settings) {
+        queue.addOperation(SettingsOperation(operationType: .patch, httpBody: Settings.representation(toRepresent: settings)))
     }
 
 }

@@ -36,15 +36,19 @@ public class Secret: NSObject {
     
     public var settings: Settings? {
         get {
-            guard let data = UserDefaults.standard.data(forKey: "settings") else { return  nil }
-            return NSKeyedUnarchiver.unarchiveObject(with: data) as? Settings
+            guard let s = UserDefaults.standard.string(forKey: "settings") else { return nil }
+            guard let data = s.data(using: .utf8) else { return nil }
+            
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .formatted(Formatter.time)
+            return try! decoder.decode(Settings.self, from: data)
         }
-        set {
-            guard let s = settings else {
+        set (newValue) {
+            guard let s = newValue, let encoded = Settings.representation(toRepresent: s) else {
                 return
             }
-            let data = NSKeyedArchiver.archivedData(withRootObject: s)
-            UserDefaults.standard.set(data, forKey: "settings")
+            
+            UserDefaults.standard.set(encoded, forKey: "settings")
             UserDefaults.standard.synchronize()
         }
     }

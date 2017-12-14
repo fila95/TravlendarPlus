@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1E03BC641FD7FA5F004B411E /* DataModel+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E03BC631FD7FA5F004B411E /* DataModel+Codable.swift */; };
+		1E03BC641FD7FA5F004B411E /* DataModel+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E03BC631FD7FA5F004B411E /* DataModel+Utils.swift */; };
 		1E21E86C1FCC08820009EFA9 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E21E86B1FCC08820009EFA9 /* Secret.swift */; };
 		1E21E86F1FCC22190009EFA9 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E21E86E1FCC22190009EFA9 /* API.swift */; };
 		1E21E8721FCC238F0009EFA9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E21E8711FCC238F0009EFA9 /* MapKit.framework */; };
@@ -63,7 +63,7 @@
 
 /* Begin PBXFileReference section */
 		15DBA3F6C1AAE48C87D98E07 /* Pods_TravlendarTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TravlendarTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1E03BC631FD7FA5F004B411E /* DataModel+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataModel+Codable.swift"; sourceTree = "<group>"; };
+		1E03BC631FD7FA5F004B411E /* DataModel+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataModel+Utils.swift"; sourceTree = "<group>"; };
 		1E21E86B1FCC08820009EFA9 /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		1E21E86E1FCC22190009EFA9 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		1E21E8701FCC23730009EFA9 /* Travlendar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Travlendar.entitlements; sourceTree = "<group>"; };
@@ -184,7 +184,7 @@
 			children = (
 				1EB2ECE41FCD4EB300A50EC3 /* Database.swift */,
 				1EB2ECE61FCD4F4600A50EC3 /* DataModel.swift */,
-				1E03BC631FD7FA5F004B411E /* DataModel+Codable.swift */,
+				1E03BC631FD7FA5F004B411E /* DataModel+Utils.swift */,
 			);
 			path = Persistency;
 			sourceTree = "<group>";
@@ -653,7 +653,7 @@
 				1E4CB7361FDD48E300FA8E52 /* Font.swift in Sources */,
 				1EF4E1891FDC5EE800B5BFDC /* MainPageViewController.swift in Sources */,
 				1E4CB73A1FDD49B000FA8E52 /* Random.swift in Sources */,
-				1E03BC641FD7FA5F004B411E /* DataModel+Codable.swift in Sources */,
+				1E03BC641FD7FA5F004B411E /* DataModel+Utils.swift in Sources */,
 				1E21E86F1FCC22190009EFA9 /* API.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -17,8 +17,6 @@ router.get('/', (req, res) => {
 		to = new Date(from.getTime())
 		to.setHours(to.getHours() + 24)
 	}
-	console.log(from)
-	console.log(to)
 
 	let calendars = {}
 

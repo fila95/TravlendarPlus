@@ -34,6 +34,7 @@ let createDevice = (cb) => {
 let createData = (cb) => {
 	createUser(() => {
 		createDevice(() => {
+			// Adding user and device to the variable testData
 			app.set('testData', { user: user, device: device })
 			cb()
 		})

@@ -127,16 +127,18 @@ let getEventPreviousTo = (events, dateTime) => {
 	return prev_event.end_time==0 ? null : prev_event
 }
 
-// Returns null if not reliable, or the location if it is
-let getReliableUserLocation = (user) => {
-	
-}
-
 // If the event is reachable from coord,
 // it returns the routes and sets the suggested_start_time/suggested_end_time
 // Otherwise it returns false
 let eventIsReachable = (coord, event) => {
+	// TODO
+}
 
+// Returns null if not reliable, or the location if it is
+let getReliableUserLocation = user => {
+	//checking whether the location is no reliable
+	if(!user.updated_at ||new Date()-user.updated_at>30*60*1000) return null
+	return user.updated_at
 }
 
 router.get('/', (req, res) => {
@@ -194,6 +196,7 @@ if (process.env.ENV == 'testing') {
 		fitness: fitness,
 		occupiedTimeForTimeSlots: occupiedTimeForTimeSlots,
 		freeTimeForTimeSlots: freeTimeForTimeSlots,
-		getEventPreviousTo: getEventPreviousTo
+		getEventPreviousTo: getEventPreviousTo,
+		getReliableUserLocation: getReliableUserLocation
 	}
 }
