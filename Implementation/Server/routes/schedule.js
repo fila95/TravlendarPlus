@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const token = process.env.GOOGLE_MAPS_TOKEN
+/* istanbul ignore if */
 if (!token) {
 	console.error("------------------------------------------------------------")
 	console.error("WARNING: GOOGLE_MAPS_TOKEN not defined, check your .env file")
@@ -169,7 +170,9 @@ let isReachablAsTheCrowFlies = (distance, time) => {
 // If the event is reachable from coord,
 // it returns the routes and sets the suggested_start_time/suggested_end_time, otherwise it returns false
 // The params from is a Fixed Event and to is a Flexible Event
-let eventIsReachable = (from, to) => {
+// The param opt is an object of options. Up to now, there is only one option: onlyBasicChecks [bool,default=false]
+let eventIsReachable = (from, to, opt) => {
+	opt = opt || {}
 	if (from.lat == undefined || from.lng == undefined || to.lat == undefined || to.lng == undefined) {
 		// If one of the location is not defined, throw an error
 		throw new Error("from or to parameter doesn't have lat or lng")
@@ -185,7 +188,10 @@ let eventIsReachable = (from, to) => {
 		// If the event 'to' is not even reachable as the crow flies, return false and don't even try
 		// to make some requests to Google Maps
 		if (!step1) {
-			reject()
+			return reject()
+		}
+		if(opt.onlyBasicChecks) {
+			return resolve()
 		}
 
 		// Step 2: Google Maps Directions API
@@ -269,8 +275,11 @@ router.get('/', (req, res) => {
 						let loc = getReliableUserLocation(req.user)
 						if (!loc) {
 							// If we don't know the user location, insert the event anyway
-							// TODO: insert the event
-							return
+							e.suggested_start_time = new Date(timeSlot.start_time)
+							e.suggested_end_time = new Date(e.suggested_start_time + e.duration)
+							return e.save(err => {
+								if(err) throw err
+							})
 						} else {
 							// Create a fake event that will be used in asking if reachable
 							prev = {
@@ -285,14 +294,11 @@ router.get('/', (req, res) => {
 					// Using async/await, we can loop over an asynchronous function
 					// without spawning thousands of async calls
 					let result = await eventIsReachable(prev, e)
-					// TODO
+					return e.save(err => {
+						if(err) throw err
+					})
 				}
-
-				// TODO
-
 			}
-
-			// TODO
 		})
 	})
 })
@@ -309,6 +315,9 @@ if (process.env.ENV == 'testing') {
 		occupiedTimeForTimeSlots: occupiedTimeForTimeSlots,
 		freeTimeForTimeSlots: freeTimeForTimeSlots,
 		getEventPreviousTo: getEventPreviousTo,
-		getReliableUserLocation: getReliableUserLocation
+		getReliableUserLocation: getReliableUserLocation,
+		distance: distance,
+		isReachablAsTheCrowFlies: isReachablAsTheCrowFlies,
+		eventIsReachable: eventIsReachable
 	}
 }
