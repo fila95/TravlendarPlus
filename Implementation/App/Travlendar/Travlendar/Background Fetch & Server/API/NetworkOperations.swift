@@ -40,6 +40,7 @@ enum NOperationType: String {
 class NetworkOperation: Operation {
     
     let session: URLSession!
+    var task: URLSessionDataTask?
     
     var operationType: NOperationType = .get
     var httpBody: String = ""
@@ -58,11 +59,10 @@ class NetworkOperation: Operation {
     }
     
     func runRequest(endpoint: String, completion: @escaping ((_ status: NStatusCode, _ result: [String : Any]?, _ data: Data?) -> Void)) {
-        
         var request: URLRequest = URLRequest(url: URL.init(string: API.baseURL + endpoint)!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 60)
         
+        print(httpBody)
         request.httpMethod = self.operationType.rawValue.uppercased()
-        
         request.httpBody = self.httpBody.data(using: .utf8)
         
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -72,7 +72,7 @@ class NetworkOperation: Operation {
             request.addValue("\(tk)", forHTTPHeaderField: "X-Access-Token")
         }
         
-        let task = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
+        task = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
             
             if error != nil {
                 print("Error \(endpoint.capitalized) Operation: \n\t\(error.debugDescription)")
@@ -95,7 +95,12 @@ class NetworkOperation: Operation {
             
             completion(code, dictionary, data)
         }
-        task.resume()
+        task!.resume()
+    }
+    
+    override func cancel() {
+        task?.cancel()
+        super.cancel()
     }
     
 }
@@ -110,7 +115,7 @@ class LoginOperation: NetworkOperation {
     override func main() {
         super.main()
         
-        self.httpBody = ("user_token=\(Secret.shared.cloudId!)")
+        self.httpBody = ("{\"user_token\":\"\(Secret.shared.cloudId!)\"}")
         self.operationType = .post
         
         runRequest(endpoint: "login") { (status, json, data) in
@@ -143,6 +148,13 @@ class SettingsOperation: NetworkOperation {
     override func main() {
         super.main()
         
+        if self.operationType == .get {
+            print("Getting Settings...")
+        }
+        else {
+            print("Pushing Settings...")
+        }
+        
         runRequest(endpoint: "settings") { (status, json, data) in
             
             switch status {
@@ -156,7 +168,13 @@ class SettingsOperation: NetworkOperation {
                     return
                 }
                 Secret.shared.settings = settings
-                print("Settings Received and Saved")
+                
+                if self.operationType == .get {
+                    print("Settings Received and Saved")
+                }
+                else {
+                    print("Settings Pushed")
+                }
                 
                 break
                 

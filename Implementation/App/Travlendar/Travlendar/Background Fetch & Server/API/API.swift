@@ -11,8 +11,8 @@ import UIKit
 public class API: NSObject {
     
     public static let shared: API = API()
-//    public static let baseURL: String = "https://polimi-travlendarplus.herokuapp.com/api/v1/"
-    public static let baseURL: String = "http://localhost:8080/api/v1/"
+    public static let baseURL: String = "https://polimi-travlendarplus.herokuapp.com/api/v1/"
+//    public static let baseURL: String = "http://localhost:8080/api/v1/"
     
     private let queue: OperationQueue!
     
@@ -36,6 +36,9 @@ public class API: NSObject {
     }
     
     public func pushSettingsToServer(settings: Settings) {
+        
+        
+        
         queue.addOperation(SettingsOperation(operationType: .patch, httpBody: Settings.representation(toRepresent: settings)))
     }
 
