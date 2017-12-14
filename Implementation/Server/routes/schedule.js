@@ -1,6 +1,16 @@
 const express = require('express')
 const router = express.Router()
 
+const token = process.env.GOOGLE_MAPS_TOKEN
+if(!token) {
+	console.error("------------------------------------------------------------")
+	console.error("WARNING: GOOGLE_MAPS_TOKEN not defined, check your .env file")
+	console.error("------------------------------------------------------------")
+}
+const googleMapsClient = require('@google/maps').createClient({
+	key: token
+});
+
 // Suppose that timeSlots are sorted and not overlapping
 // Return the time in milliseconds for the given timeSlots
 let freeTimeForTimeSlots = (flexibleEvent, timeSlots) => {
@@ -124,20 +134,63 @@ let getEventPreviousTo = (events, dateTime) => {
 			prev_event = event
 		}
 	})
-	return prev_event.end_time==0 ? null : prev_event
+	return prev_event.end_time == 0 ? null : prev_event
+}
+
+// Return the distance from the point p1 to p2, in kilometers
+let distance = (p1, p2) => {
+	// p = Math.PI / 180, used for the conversion
+	var p = 0.017453292519943295
+	var cos = Math.cos
+	var d = 0.5 - cos((p2.lat - p1.lat) * p) / 2 + cos(p1.lat * p) * cos(p2.lat * p) * (1 - cos((p2.lng - p1.lng) * p)) / 2
+	// 12742 = 2 * R; R = 6371 km
+	return 12742 * Math.asin(Math.sqrt(d))
+}
+
+// Return true if the distance can be covered in less than time, with avearage fixed speeds
+let isReachablAsTheCrowFlies = (distance, time) => {
+	if (distance < 1) {
+		speed = 5
+	} else if (distance < 5) {
+		speed = 12
+	} else if (distance < 12) {
+		speed = 18
+	} else if (distance < 50) {
+		speed = 70
+	} else {
+		speed = 100
+	}
+
+	// distance is in km
+	// speed is in km/h
+	// time is in sec
+	return distance / speed < time * 60 * 60
 }
 
 // If the event is reachable from coord,
-// it returns the routes and sets the suggested_start_time/suggested_end_time
-// Otherwise it returns false
-let eventIsReachable = (coord, event) => {
+// it returns the routes and sets the suggested_start_time/suggested_end_time, otherwise it returns false
+// The params from and to are two Event objects
+let eventIsReachable = (from, to) => {
+	if (from.lat == undefined || from.lng == undefined || to.lat == undefined || to.lng == undefined) {
+		// If one of the location is not defined, throw an error
+		throw new Error("from or to don't have lat or lng")
+	}
+
+	let dist = distance(from, to)
+	let step1 = isReachablAsTheCrowFlies(dist, (from.end_time - to.start_time) / 1000)
+	// If the event 'to' is not even reachable as the crow flies, return false and don't even try
+	// to make some requests to Google Maps
+	if(!step1) {
+		return false
+	}
+
 	// TODO
 }
 
 // Returns null if not reliable, or the location if it is
 let getReliableUserLocation = user => {
 	//checking whether the location is no reliable
-	if(!user.updated_at ||new Date()-user.updated_at>30*60*1000) return null
+	if (!user.updated_at || new Date() - user.updated_at > 30 * 60 * 1000) return null
 	return user.updated_at
 }
 
@@ -165,12 +218,27 @@ router.get('/', (req, res) => {
 				e.timeSlots = e.timeSlots.sort((a, b) => {
 					return (a.end_time - a.start_time) - (b.end_time - b.start_time)
 				})
-				// Get the previous user location
+
 				let reachable
-				let prev = getEventPreviousTo(events, e.start_time)
-				if(prev == null) {
-					let location = getReliableUserLocation(req.user)	
-					// TODO
+				// Determine if the event e is reachable
+				if (prev == null) {
+					// If the previous event is not defined, check the user location
+					let loc = getReliableUserLocation(req.user)
+					// If we don't know the user location, insert the event anyway
+					if (!loc) {
+						// TODO
+					} else {
+						// Create a fake event
+						loc.start_time = req.user.updated_at
+						loc.end_time = req.user.updated_at
+						// Ask if reachable
+						reachable = eventIsReachable(loc, e)
+					}
+				} else {
+					// Otherwise, use the previous event location
+					let prev = getEventPreviousTo(events, e.start_time)
+					// Ask if reachable
+					let reachable = eventIsReachable(prev, e)
 				}
 				// TODO
 
