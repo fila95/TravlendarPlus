@@ -2,7 +2,7 @@ const app = require('../index')
 const schedule = require('../routes/schedule.js').testFunctions
 
 describe('Schedule private functions', () => {
-	let user,device
+	let user, device
 	before(() => {
 		user = app.get('testData').user
 		device = app.get('testData').device
@@ -149,21 +149,20 @@ describe('Schedule private functions', () => {
 	})
 
 	it('Test getReliableUserLocation', () => {
-		let loc=schedule.getReliableUserLocation(user)
-		user.last_known_position_lat=45.121212
-		user.last_known_position_lng=9.121212
-		updated_at=new Date()
-		loc=schedule.getReliableUserLocation(user)
-		if (loc==null){
+		let loc = schedule.getReliableUserLocation(user)
+		user.last_known_position_lat = 45.121212
+		user.last_known_position_lng = 9.121212
+		updated_at = new Date()
+
+		loc = schedule.getReliableUserLocation(user)
+		if (loc == null) {
 			throw new Error('Reliable location shouldn\'t be null')
-		} 
-		updated_at=new Date(2017, 11, 11, 4, 30)
-		loc=schedule.getReliableUserLocation(user)
-		if (loc==null){
-			throw new Error('Reliable location should be null since was updated too long time ago')	
-		} 
+		}
 		
-
-
+		updated_at = new Date(2017, 11, 11, 4, 30)
+		loc = schedule.getReliableUserLocation(user)
+		if (loc == null) {
+			throw new Error('Reliable location should be null since was updated too long time ago')
+		}
 	})
 })
