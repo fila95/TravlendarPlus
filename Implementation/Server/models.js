@@ -86,7 +86,7 @@ function model(db, cb) {
 	})
 
 	let Calendar = db.define('calendars', {
-		name: { type: 'text', size: 255, required: true, unique: true },
+		name: { type: 'text', size: 255, required: true },
 		color: { type: 'text', size: 6, required: true }
 	})
 
