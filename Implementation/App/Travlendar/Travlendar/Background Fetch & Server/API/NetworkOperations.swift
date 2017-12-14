@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 enum NStatusCode: Int {
     case ok = 200
@@ -60,7 +61,7 @@ class NetworkOperation: Operation {
         self.httpBody = httpBody != nil ? httpBody! : ""
     }
     
-    func runRequest(endpoint: String, completion: @escaping ((_ status: NStatusCode, _ result: [String : Any]?, _ data: Data?) -> Void)) {
+    func runRequest(endpoint: String, completion: @escaping ((_ status: NStatusCode, _ data: Data?) -> Void)) {
         var request: URLRequest = URLRequest(url: URL.init(string: API.baseURL + endpoint)!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 60)
         
         request.httpMethod = self.operationType.rawValue.uppercased()
@@ -88,14 +89,7 @@ class NetworkOperation: Operation {
                 return
             }
             
-            guard let d = data else {
-                print("Error \(endpoint.capitalized) Operation: \n\tData unavailable")
-                return
-            }
-            
-            let dictionary = try? JSONSerialization.jsonObject(with: d, options: .allowFragments) as! [String : Any]
-            
-            completion(code, dictionary, data)
+            completion(code, data)
             semaphore.signal()
         }
         task!.resume()
@@ -124,10 +118,18 @@ class LoginOperation: NetworkOperation {
         self.httpBody = ("{\"user_token\":\"\(Secret.shared.cloudId!)\"}")
         self.operationType = .post
         
-        runRequest(endpoint: "login") { (status, json, data) in
+        runRequest(endpoint: "login") { (status, data) in
             
             switch status {
             case .ok:
+                
+                guard let d = data else {
+                    print("Error LoginOperation: \n\tData unavailable")
+                    return
+                }
+                
+                let json = try? JSONSerialization.jsonObject(with: d, options: .allowFragments) as! [String : Any]
+                
                 let access_token: String = json!["access_token"] as? String ?? ""
                 print("LoginOperation: \n\tAccess Token: \(access_token)")
                 Secret.shared.request_token = access_token
@@ -161,15 +163,23 @@ class SettingsOperation: NetworkOperation {
             print("Pushing Settings...")
         }
         
-        runRequest(endpoint: "settings") { (status, json, data) in
+        runRequest(endpoint: "settings") { (status, data) in
             
             switch status {
             case .ok:
-//                print(json!.debugDescription)
+                
+                guard let d = data else {
+                    API.shared.sendNotificationsFor(type: .settings, context: .error)
+                    print("Error Settings Operation: \n\tData unavailable")
+                    return
+                }
+                
+                
                 let decoder = JSONDecoder.init()
                 decoder.dateDecodingStrategy = .formatted(Formatter.time)
                 
-                guard let settings = try? decoder.decode(Settings.self, from: data!) else {
+                guard let settings = try? decoder.decode(Settings.self, from: d) else {
+                    API.shared.sendNotificationsFor(type: .settings, context: .error)
                     print("Error Settings Operation: Unable to decode Settings")
                     return
                 }
@@ -182,10 +192,13 @@ class SettingsOperation: NetworkOperation {
                     print("Settings Pushed!")
                 }
                 
+                API.shared.sendNotificationsFor(type: .settings, context: .success)
+                
                 break
                 
             default:
                 print("Error Settings Operation: \n\tStatusCode: \(status)")
+                API.shared.sendNotificationsFor(type: .settings, context: .error)
                 break
                 
             }
@@ -195,4 +208,100 @@ class SettingsOperation: NetworkOperation {
     }
     
 }
+
+class CalendarsOperation: NetworkOperation {
+    
+    override init() {
+        super.init()
+    }
+    
+    override func main() {
+        super.main()
+        
+        if self.operationType == .get {
+            print("Getting Calendars...")
+        }
+        else {
+            print("Pushing Calendar...")
+        }
+        
+        runRequest(endpoint: "calendars") { (status, data) in
+            
+            switch status {
+            case .ok:
+                
+                guard let d = data else {
+                    print("Error CalendarsOperation: \n\tData unavailable")
+                    return
+                }
+                
+                let decoder = JSONDecoder.init()
+                decoder.dateDecodingStrategy = .formatted(Formatter.time)
+                guard let calendars = try? decoder.decode([Calendars].self, from: d) else {
+                    print("Error Calendars Operation: Unable to decode Calendars")
+                    return
+                }
+                
+                
+                if self.operationType == .get {
+                    
+                    DispatchQueue(label: "background").async {
+                        autoreleasepool {
+                            let realm = try! Realm()
+                            
+                            try! realm.write {
+                                realm.delete(realm.objects(Calendars.self))
+                                realm.add(calendars)
+                            }
+                        }
+                    }
+                    
+                    print("Calendars Received and Saved!")
+                }
+                else if self.operationType == .patch {
+                    
+                    DispatchQueue(label: "background").async {
+                        autoreleasepool {
+                            let realm = try! Realm()
+                            
+                            try! realm.write {
+                                realm.delete(realm.objects(Calendars.self).filter(NSPredicate.init(format: "id=\(calendars.first!.id)")))
+                                realm.add(calendars)
+                            }
+                        }
+                    }
+                    
+                    print("Calendar Updated!")
+                }
+                else {
+                    print("Calendar Pushed!")
+                    
+                    DispatchQueue(label: "background").async {
+                        autoreleasepool {
+                            let realm = try! Realm()
+                            
+                            try! realm.write {
+                                realm.delete(realm.objects(Calendars.self).filter(NSPredicate.init(format: "id=\(calendars.first!.id)")))
+                                realm.add(calendars)
+                            }
+                        }
+                    }
+                    
+                }
+                
+                break
+                
+            default:
+                print("Error Calendars Operation: \n\tStatusCode: \(status)")
+                break
+                
+            }
+            
+        }
+        
+    }
+    
+}
+
+
 

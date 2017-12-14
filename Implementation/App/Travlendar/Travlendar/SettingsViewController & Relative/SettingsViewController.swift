@@ -25,6 +25,12 @@ class SettingsViewController: UIViewController {
         transitTimesPicker.dataSource = self
         
         refreshToSettings(s: Secret.shared.settings)
+        
+        API.shared.subscribe(type: .settings) { (context) in
+            DispatchQueue.main.async {
+                self.refreshToSettings(s: Secret.shared.settings)
+            }
+        }
     }
     
     func refreshToSettings(s: Settings?) {

@@ -94,6 +94,8 @@ public class Settings: NSObject, Codable {
 class Travel: Object {
     
     @objc dynamic var id = 0
+    @objc dynamic var event_id: Int = 0
+    
     @objc dynamic var route = 0
     @objc dynamic var time = 0
     @objc private dynamic var transport_mean_private = TransportMean.walking.rawValue
@@ -108,13 +110,14 @@ class Travel: Object {
         return "id"
     }
     
-    let event = LinkingObjects(fromType: Event.self, property: "travels")
     
 }
 
 class Event: Object {
     
     @objc dynamic var id = 0
+    @objc dynamic var calendar_id = 0
+    
     @objc dynamic var title = ""
     @objc dynamic var address = ""
     
@@ -131,8 +134,6 @@ class Event: Object {
     @objc dynamic var suggested_start_time: Int = 0
     @objc dynamic var suggested_end_time: Int = 0
     
-    let travels = List<Travel>()
-    
     override static func primaryKey() -> String? {
         return "id"
     }
@@ -141,19 +142,14 @@ class Event: Object {
         return ["title", "address"]
     }
     
-    
-    let calendar = LinkingObjects(fromType: Calendars.self, property: "events")
-    
 }
 
 
-class Calendars: Object {
+class Calendars: Object, Codable {
     
     @objc dynamic var id: Int = 0
     @objc dynamic var name = ""
-    @objc dynamic var color: Int = 0
-    
-    let events = List<Event>()
+    @objc dynamic var color: String = ""
     
     override static func primaryKey() -> String? {
         return "id"
@@ -161,6 +157,30 @@ class Calendars: Object {
     
     override static func indexedProperties() -> [String] {
         return ["name"]
+    }
+    
+    private enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case color = "color"
+    }
+    
+    func decode(from decoder: Decoder) throws {
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decode(Int.self, forKey: .id)
+        self.name = try container.decode(String.self, forKey: .name)
+        self.color = try container.decode(String.self, forKey: .color)
+        
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encode(self.id, forKey: .id)
+        try container.encode(self.name, forKey: .name)
+        try container.encode(self.color, forKey: .color)
+        
     }
     
 }
