@@ -1,16 +1,19 @@
 const app = require('../index')
 const request = require('supertest')
 
-const baseURL = "/api/v1"
+const baseURL = '/api/v1'
 const endpoints = [
 	{
-		"endpoint": "/calendars",
-		"verbs": ["GET", "PUT", "DELETE", "PATCH"]
+		'endpoint': '/calendars',
+		'verbs': ['GET', 'PUT', 'DELETE', 'PATCH']
 	},
-
 	{
-		"endpoint": "/calendars/1/events",
-		"verbs": ["GET", "PUT", "DELETE"]
+		'endpoint': '/calendars/1/events',
+		'verbs': ['GET', 'PUT', 'DELETE']
+	},
+	{
+		'endpoint': '/pushNotificationToken',
+		'verbs': ['PUT']
 	}
 ]
 
