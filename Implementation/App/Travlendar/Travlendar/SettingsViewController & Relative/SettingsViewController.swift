@@ -37,7 +37,7 @@ class SettingsViewController: UIViewController {
             return
         }
         
-        s.max_walking_distance = sender.value / 1000
+        s.max_walking_distance = sender.value
         Secret.shared.settings = s
         API.shared.pushSettingsToServer(settings: s)
     }

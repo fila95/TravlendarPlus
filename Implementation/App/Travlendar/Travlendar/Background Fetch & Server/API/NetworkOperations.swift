@@ -62,7 +62,11 @@ class NetworkOperation: Operation {
         var request: URLRequest = URLRequest(url: URL.init(string: API.baseURL + endpoint)!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 60)
         
         request.httpMethod = self.operationType.rawValue.uppercased()
+        
         request.httpBody = self.httpBody.data(using: .utf8)
+        
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
         
         if let tk = Secret.shared.request_token {
             request.addValue("\(tk)", forHTTPHeaderField: "X-Access-Token")
@@ -87,12 +91,9 @@ class NetworkOperation: Operation {
                 return
             }
             
-            guard let dictionary = try? JSONSerialization.jsonObject(with: d, options: .allowFragments) as? [String : Any], let json = dictionary  else {
-                print("Error \(endpoint.capitalized) Operation: \n\tJSON Parse")
-                return
-            }
+            let dictionary = try? JSONSerialization.jsonObject(with: d, options: .allowFragments) as! [String : Any]
             
-            completion(code, json, data)
+            completion(code, dictionary, data)
         }
         task.resume()
     }
