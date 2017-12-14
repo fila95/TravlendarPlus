@@ -49,6 +49,8 @@ class NetworkOperation: Operation {
         session = URLSession.shared
         
         super.init()
+        
+        self.queuePriority = .low
     }
     
     convenience init(operationType: NOperationType, httpBody: String? = nil) {
@@ -61,7 +63,6 @@ class NetworkOperation: Operation {
     func runRequest(endpoint: String, completion: @escaping ((_ status: NStatusCode, _ result: [String : Any]?, _ data: Data?) -> Void)) {
         var request: URLRequest = URLRequest(url: URL.init(string: API.baseURL + endpoint)!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 60)
         
-        print(httpBody)
         request.httpMethod = self.operationType.rawValue.uppercased()
         request.httpBody = self.httpBody.data(using: .utf8)
         
@@ -72,6 +73,7 @@ class NetworkOperation: Operation {
             request.addValue("\(tk)", forHTTPHeaderField: "X-Access-Token")
         }
         
+        let semaphore = DispatchSemaphore(value: 0)
         task = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
             
             if error != nil {
@@ -94,8 +96,10 @@ class NetworkOperation: Operation {
             let dictionary = try? JSONSerialization.jsonObject(with: d, options: .allowFragments) as! [String : Any]
             
             completion(code, dictionary, data)
+            semaphore.signal()
         }
         task!.resume()
+        semaphore.wait()
     }
     
     override func cancel() {
@@ -110,6 +114,8 @@ class LoginOperation: NetworkOperation {
     
     override init() {
         super.init()
+        
+        self.queuePriority = .veryHigh
     }
     
     override func main() {
@@ -170,10 +176,10 @@ class SettingsOperation: NetworkOperation {
                 Secret.shared.settings = settings
                 
                 if self.operationType == .get {
-                    print("Settings Received and Saved")
+                    print("Settings Received and Saved!")
                 }
                 else {
-                    print("Settings Pushed")
+                    print("Settings Pushed!")
                 }
                 
                 break

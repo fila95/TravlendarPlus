@@ -18,6 +18,7 @@ public class API: NSObject {
     
     override public init() {
         queue = OperationQueue()
+//        queue.underlyingQueue = DispatchQueue(label: "background_networking", qos: .background, attributes: .concurrent, autoreleaseFrequency: .inherit, target: DispatchQueue.main)
         super.init()
         
         queue.maxConcurrentOperationCount = 1
@@ -25,7 +26,6 @@ public class API: NSObject {
         
         if Secret.shared.request_token == nil {
             print("Token Not Received: \n\tAsk Server...")
-            
             queue.addOperation(LoginOperation())
         }
         else {
@@ -36,9 +36,6 @@ public class API: NSObject {
     }
     
     public func pushSettingsToServer(settings: Settings) {
-        
-        
-        
         queue.addOperation(SettingsOperation(operationType: .patch, httpBody: Settings.representation(toRepresent: settings)))
     }
 
