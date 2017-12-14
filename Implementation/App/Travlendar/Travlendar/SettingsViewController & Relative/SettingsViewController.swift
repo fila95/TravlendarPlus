@@ -18,11 +18,21 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet weak var transitTimesPicker: UIPickerView!
     
+    @IBOutlet weak var calendarsCollectionView: UICollectionView!
+    @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         transitTimesPicker.delegate = self
         transitTimesPicker.dataSource = self
+        
+        calendarsCollectionView.register(CalendarCell.classForCoder(), forCellWithReuseIdentifier: CalendarCell.reuseIdentifier)
+        calendarsCollectionView.register(UINib.init(nibName: "CalendarCell", bundle: Bundle.main), forCellWithReuseIdentifier: CalendarCell.reuseIdentifier)
+        calendarsCollectionView.delegate = self
+        calendarsCollectionView.dataSource = self
+        calendarsCollectionView.isScrollEnabled = false
+        calendarsCollectionView.clipsToBounds = true
         
         refreshToSettings(s: Secret.shared.settings)
         
@@ -31,6 +41,12 @@ class SettingsViewController: UIViewController {
                 self.refreshToSettings(s: Secret.shared.settings)
             }
         }
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        refreshCalendars()
     }
     
     func refreshToSettings(s: Settings?) {
@@ -52,6 +68,11 @@ class SettingsViewController: UIViewController {
         comp = calendar.dateComponents([.hour], from: settings.end_public_transportation)
         hour = comp.hour!-1
         transitTimesPicker.selectRow(hour, inComponent: 1, animated: true)
+    }
+    
+    func refreshCalendars() {
+        calendarsCollectionView.sizeToFit()
+        collectionViewHeight.constant = calendarsCollectionView.contentSize.height
     }
     
     @IBAction func walkSliderEditValue(_ sender: UISlider) {

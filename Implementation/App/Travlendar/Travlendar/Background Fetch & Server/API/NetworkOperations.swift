@@ -12,6 +12,7 @@ import RealmSwift
 enum NStatusCode: Int {
     case ok = 200
     case created = 201
+    case okNoContentNeeded = 204
     case badRequest = 400
     case unauthorized = 401
     case forbidden = 403
@@ -22,6 +23,7 @@ enum NStatusCode: Int {
         switch self {
         case .ok: return "ok"
         case .created: return "created"
+        case .okNoContentNeeded: return "okNoContentNeeded"
         case .badRequest: return "badRequest"
         case .unauthorized: return "unauthorized"
         case .forbidden: return "forbidden"
@@ -34,6 +36,7 @@ enum NStatusCode: Int {
 enum NOperationType: String {
     case get
     case post
+    case put
     case patch
 }
 
@@ -314,5 +317,36 @@ class CalendarsOperation: NetworkOperation {
     
 }
 
+class NotificationTokenOperation: NetworkOperation {
+    
+    override init() {
+        super.init()
+        
+        self.queuePriority = .veryHigh
+    }
+    
+    override func main() {
+        super.main()
+    
+        self.operationType = .put
+        
+        runRequest(endpoint: "pushNotificationToken") { (status, data) in
+            
+            switch status {
+            case .okNoContentNeeded:
+                print("NotificationTokenOperation: Received Ok")
+                
+            default:
+                self.completionHandler?(false, "Error Status")
+                print("Error NotificationTokenOperation: \n\tStatusCode: \(status)")
+                break
+                
+            }
+            
+        }
+        
+    }
+    
+}
 
 

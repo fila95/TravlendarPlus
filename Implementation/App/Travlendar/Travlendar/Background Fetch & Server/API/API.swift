@@ -43,8 +43,13 @@ public class API: NSObject {
     }
     
     public func pushSettingsToServer(settings: Settings, completion: ((_ complete: Bool, _ message: String?) -> Void)? = nil) {
-        cancelOperationsOfType(t: Settings.classForCoder())
+        cancelOperationsOfType(t: SettingsOperation.classForCoder())
         queue.addOperation(SettingsOperation(operationType: .patch, httpBody: Settings.representation(toRepresent: settings), completion: completion))
+    }
+    
+    public func pushNotificationTokenToServer(token: String) {
+        cancelOperationsOfType(t: NotificationTokenOperation.classForCoder())
+        queue.addOperation(NotificationTokenOperation(operationType: .put, httpBody: "{\"token\":\"\(token)\"}"))
     }
     
     

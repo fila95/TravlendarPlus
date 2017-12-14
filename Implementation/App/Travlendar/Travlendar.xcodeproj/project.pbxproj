@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E00783E1FE2BA0700FD5405 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E00783D1FE2BA0700FD5405 /* CalendarCell.swift */; };
+		1E0078401FE2BA1300FD5405 /* CalendarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E00783F1FE2BA1300FD5405 /* CalendarCell.xib */; };
+		1E0078421FE2BCA400FD5405 /* View+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0078411FE2BCA400FD5405 /* View+Nib.swift */; };
+		1E0078461FE2C09800FD5405 /* SettingsViewController+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0078451FE2C09800FD5405 /* SettingsViewController+CollectionView.swift */; };
 		1E03BC641FD7FA5F004B411E /* DataModel+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E03BC631FD7FA5F004B411E /* DataModel+Utils.swift */; };
 		1E21E86C1FCC08820009EFA9 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E21E86B1FCC08820009EFA9 /* Secret.swift */; };
 		1E21E86F1FCC22190009EFA9 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E21E86E1FCC22190009EFA9 /* API.swift */; };
@@ -63,6 +67,10 @@
 
 /* Begin PBXFileReference section */
 		15DBA3F6C1AAE48C87D98E07 /* Pods_TravlendarTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TravlendarTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E00783D1FE2BA0700FD5405 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
+		1E00783F1FE2BA1300FD5405 /* CalendarCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarCell.xib; sourceTree = "<group>"; };
+		1E0078411FE2BCA400FD5405 /* View+Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Nib.swift"; sourceTree = "<group>"; };
+		1E0078451FE2C09800FD5405 /* SettingsViewController+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsViewController+CollectionView.swift"; sourceTree = "<group>"; };
 		1E03BC631FD7FA5F004B411E /* DataModel+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataModel+Utils.swift"; sourceTree = "<group>"; };
 		1E21E86B1FCC08820009EFA9 /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		1E21E86E1FCC22190009EFA9 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -156,6 +164,8 @@
 			isa = PBXGroup;
 			children = (
 				1E4B69341FD80AE400DFFC66 /* GFPageControl.swift */,
+				1E00783D1FE2BA0700FD5405 /* CalendarCell.swift */,
+				1E00783F1FE2BA1300FD5405 /* CalendarCell.xib */,
 			);
 			path = "UI Components";
 			sourceTree = "<group>";
@@ -175,6 +185,7 @@
 				1E4CB7431FDD4AFE00FA8E52 /* ViewController.swift */,
 				1E4CB7451FDD4B6700FA8E52 /* Color.swift */,
 				1E379AB01FE026D200E74DFC /* Date.swift */,
+				1E0078411FE2BCA400FD5405 /* View+Nib.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -287,6 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				1EF4E18E1FDC5F1400B5BFDC /* SettingsViewController.swift */,
+				1E0078451FE2C09800FD5405 /* SettingsViewController+CollectionView.swift */,
 			);
 			path = "SettingsViewController & Relative";
 			sourceTree = "<group>";
@@ -451,6 +463,7 @@
 				1EAA18EC1FC9CE9F001B3612 /* LaunchScreen.storyboard in Resources */,
 				1EAA18E91FC9CE9F001B3612 /* Assets.xcassets in Resources */,
 				1EAA18E41FC9CE9F001B3612 /* Main.storyboard in Resources */,
+				1E0078401FE2BA1300FD5405 /* CalendarCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -642,6 +655,7 @@
 				1E4CB7401FDD4A9B00FA8E52 /* Alert.swift in Sources */,
 				1E379AB11FE026D200E74DFC /* Date.swift in Sources */,
 				1E4CB73E1FDD4A0F00FA8E52 /* Opener.swift in Sources */,
+				1E00783E1FE2BA0700FD5405 /* CalendarCell.swift in Sources */,
 				1E68BB8F1FD6895200ED4765 /* NetworkOperations.swift in Sources */,
 				1E21E8741FCC24C10009EFA9 /* Location.swift in Sources */,
 				1E4CB7321FDD46F100FA8E52 /* Badge.swift in Sources */,
@@ -651,7 +665,9 @@
 				1E4CB7461FDD4B6700FA8E52 /* Color.swift in Sources */,
 				1EB2ECE51FCD4EB300A50EC3 /* Database.swift in Sources */,
 				1E4CB7361FDD48E300FA8E52 /* Font.swift in Sources */,
+				1E0078461FE2C09800FD5405 /* SettingsViewController+CollectionView.swift in Sources */,
 				1EF4E1891FDC5EE800B5BFDC /* MainPageViewController.swift in Sources */,
+				1E0078421FE2BCA400FD5405 /* View+Nib.swift in Sources */,
 				1E4CB73A1FDD49B000FA8E52 /* Random.swift in Sources */,
 				1E03BC641FD7FA5F004B411E /* DataModel+Utils.swift in Sources */,
 				1E21E86F1FCC22190009EFA9 /* API.swift in Sources */,
@@ -826,7 +842,7 @@
 				DEVELOPMENT_TEAM = 498K6C2R6K;
 				INFOPLIST_FILE = Travlendar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.giovannifilaferro.Travlendar;
+				PRODUCT_BUNDLE_IDENTIFIER = com.giovannifilaferro.TravlendarPlus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -843,7 +859,7 @@
 				DEVELOPMENT_TEAM = 498K6C2R6K;
 				INFOPLIST_FILE = Travlendar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.giovannifilaferro.Travlendar;
+				PRODUCT_BUNDLE_IDENTIFIER = com.giovannifilaferro.TravlendarPlus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
