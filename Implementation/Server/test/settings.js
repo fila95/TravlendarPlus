@@ -33,7 +33,6 @@ describe('Settings API', () => {
 					'max_walking_distance': '4200',
 					'start_public_transportation': '10:00:00'
 				})
-				.type('form')
 				.expect(200)
 				.expect(res => {
 					if (res.body.max_walking_distance != 4200 || res.body.start_public_transportation != "10:00:00") {
@@ -50,7 +49,6 @@ describe('Settings API', () => {
 				.send({
 					'start_public_transportation': 'INVALID'
 				})
-				.type('form')
 				.expect(400)
 				.end(done)
 		})
