@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const token = process.env.GOOGLE_MAPS_TOKEN
-if(!token) {
+if (!token) {
 	console.error("------------------------------------------------------------")
 	console.error("WARNING: GOOGLE_MAPS_TOKEN not defined, check your .env file")
 	console.error("------------------------------------------------------------")
@@ -15,7 +15,7 @@ const googleMapsClient = require('@google/maps').createClient({
 // Return the time in milliseconds for the given timeSlots
 let freeTimeForTimeSlots = (flexibleEvent, timeSlots) => {
 	let freeTime = 0
-	for (timeSlot of timeSlots) {
+	for (let timeSlot of timeSlots) {
 		let s, e
 		s = (timeSlot.start_time > flexibleEvent.start_time) ? flexibleEvent.start_time : timeSlot.end_time
 		e = (timeSlot.end_time < flexibleEvent.end_time) ? flexibleEvent.end_time : timeSlot.end_time
@@ -137,7 +137,7 @@ let getEventPreviousTo = (events, dateTime) => {
 	return prev_event.end_time == 0 ? null : prev_event
 }
 
-// Return the distance from the point p1 to p2, in kilometers
+// Return the distance from the point p1 to p2, in kilometers, with the haversine formule
 let distance = (p1, p2) => {
 	// p = Math.PI / 180, used for the conversion
 	var p = 0.017453292519943295
@@ -160,7 +160,6 @@ let isReachablAsTheCrowFlies = (distance, time) => {
 	} else {
 		speed = 100
 	}
-
 	// distance is in km
 	// speed is in km/h
 	// time is in sec
@@ -169,22 +168,62 @@ let isReachablAsTheCrowFlies = (distance, time) => {
 
 // If the event is reachable from coord,
 // it returns the routes and sets the suggested_start_time/suggested_end_time, otherwise it returns false
-// The params from and to are two Event objects
+// The params from is a Fixed Event and to is a Flexible Event
 let eventIsReachable = (from, to) => {
 	if (from.lat == undefined || from.lng == undefined || to.lat == undefined || to.lng == undefined) {
 		// If one of the location is not defined, throw an error
-		throw new Error("from or to don't have lat or lng")
+		throw new Error("from or to parameter doesn't have lat or lng")
 	}
 
-	let dist = distance(from, to)
-	let step1 = isReachablAsTheCrowFlies(dist, (from.end_time - to.start_time) / 1000)
-	// If the event 'to' is not even reachable as the crow flies, return false and don't even try
-	// to make some requests to Google Maps
-	if(!step1) {
-		return false
-	}
+	// timeSlotDuration - flexible event duration
+	let timeNeeded = (to.end_time - to.start_time - to.duration) / 1000
 
-	// TODO
+	return new Promise((resolve, reject) => {
+		// Step 1: As the Crow Flies
+		let dist = distance(from, to)
+		let step1 = isReachablAsTheCrowFlies(dist, timeNeeded)
+		// If the event 'to' is not even reachable as the crow flies, return false and don't even try
+		// to make some requests to Google Maps
+		if (!step1) {
+			reject()
+		}
+
+		// Step 2: Google Maps Directions API
+		let query = {
+			origin: from,
+			destination: to,
+			alternatives: true
+		}
+		googleMapsClient.directions(query, (err, response) => {
+			let durations = []
+			for (let route of response.json.routes) {
+				let duration = 0
+				for (let leg of route.legs) {
+					duration += leg.duration
+				}
+				durations.push(duration)
+			}
+
+			let googlePreferredDuration = durations[0]
+			let preferredDuration = Math.min(durations)
+
+			if (googlePreferredDuration <= timeNeeded) {
+				// Try to use the google preferred route
+				to.suggested_start_time = new Date(to.start_time + googlePreferredDuration * 1000)
+				to.suggested_end_time = new Date(to.suggested_start_time + to.duration)
+				resolve(response.json.routes[0])
+			} else if (googlePreferredDuration != preferredDuration && preferredDuration <= timeNeeded) {
+				// Try the route with less travel time,
+				// since sometimes google doesn't sort by travel time
+				to.suggested_start_time = new Date(to.start_time + preferredDuration * 1000)
+				to.suggested_end_time = new Date(to.suggested_start_time + to.duration)
+				resolve(response.json.routes[durations.indexOf(preferred)])
+			} else {
+				// No route with less time travel than timeNeeded
+				reject()
+			}
+		})
+	})
 }
 
 // Returns null if not reliable, or the location if it is
@@ -198,7 +237,7 @@ router.get('/', (req, res) => {
 	// For each calendar
 	req.user.getCalendars().each((err, calendar) => {
 		// Get all the events of today from the current calendar
-		calendar.getEventsOfToday((err, events) => {
+		calendar.getEventsOfToday(async (err, events) => {
 			let fixedEvents = events.filter((e) => { return !e.duration })
 			let flexibleEvents = events.filter((e) => { return e.duration })
 
@@ -207,45 +246,50 @@ router.get('/', (req, res) => {
 			if (overlapping) return res.status(400).end('overlapping: ' + overlapping)
 
 			// Calculate timeSlot for each flexible event and sort them with the fitness function
-			for (e of flexibleEvents) {
+			for (let e of flexibleEvents) {
 				e.timeSlots = timeSlots(fixedEvents, e)
 			}
 			let sortedFlexibleEvents = sortWithFitness(flexibleEvents)
 
 			// Try to fit each flexible event from the less fittable to the most one
-			for (e of sortedFlexibleEvents) {
+			for (let e of sortedFlexibleEvents) {
 				// Sort time slot from the smallest to the biggest
 				e.timeSlots = e.timeSlots.sort((a, b) => {
 					return (a.end_time - a.start_time) - (b.end_time - b.start_time)
 				})
 
-				let reachable
-				// Determine if the event e is reachable
-				if (prev == null) {
-					// If the previous event is not defined, check the user location
-					let loc = getReliableUserLocation(req.user)
-					// If we don't know the user location, insert the event anyway
-					if (!loc) {
-						// TODO
-					} else {
-						// Create a fake event
-						loc.start_time = req.user.updated_at
-						loc.end_time = req.user.updated_at
-						// Ask if reachable
-						reachable = eventIsReachable(loc, e)
-					}
-				} else {
-					// Otherwise, use the previous event location
-					let prev = getEventPreviousTo(events, e.start_time)
-					// Ask if reachable
-					let reachable = eventIsReachable(prev, e)
-				}
-				// TODO
-
 				// Try to fit in every time slot
-				for (t of e.timeSlots) {
+				for (let timeSlot of e.timeSlots) {
+					// Supposing that the event will be placed in this time slot,
+					// determine if the event e is reachable
+
+					let prev = getEventPreviousTo(events, timeSlot.start_time)
+					if (prev == null) {
+						// If the previous event is not defined, check the user location
+						let loc = getReliableUserLocation(req.user)
+						if (!loc) {
+							// If we don't know the user location, insert the event anyway
+							// TODO: insert the event
+							return
+						} else {
+							// Create a fake event that will be used in asking if reachable
+							prev = {
+								start_time: req.user.updated_at,
+								end_time: req.user.updated_at,
+								lat: loc.lat,
+								lng: loc.lng
+							}
+						}
+					}
+					// Ask if reachable with await
+					// Using async/await, we can loop over an asynchronous function
+					// without spawning thousands of async calls
+					let result = await eventIsReachable(prev, e)
 					// TODO
 				}
+
+				// TODO
+
 			}
 
 			// TODO
