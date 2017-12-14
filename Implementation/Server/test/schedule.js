@@ -271,7 +271,7 @@ describe('Schedule private functions', () => {
 		if (!res.copyrights) {
 			throw new Error('No google route returned')
 		}
-	})
+	}).timeout(10000); // Google Requests could take a while
 
 	it('eventIsReachable with all the checks, google included, should return false', async () => {
 		let p1 = { lat: 45.478336, lng: 9.228263 }
@@ -288,5 +288,5 @@ describe('Schedule private functions', () => {
 		if (res.copyrights) {
 			throw new Error('Google route returned, but noone expected')
 		}
-	})
+	}).timeout(10000); // Google Requests could take a while
 })
