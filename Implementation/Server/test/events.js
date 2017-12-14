@@ -41,10 +41,10 @@ describe('Events API', () => {
 					'title': eventTitle,
 					'start_time': startTime,
 					'end_time': endTime,
-					// Optional:
-					'address': 'main street',
 					'lat': 45.464211,
 					'lng': 9.191383,
+					// Optional:
+					'address': 'main street',
 					'duration': 10,
 					'repetitions': 'B0000001',
 					'transports': 'B11111'
@@ -53,7 +53,7 @@ describe('Events API', () => {
 				.expect(201)
 				.expect(res => {
 					if (!res.body.id) {
-						throw new Error('No calendar returned')
+						throw new Error('No event returned')
 					}
 					event = res.body
 				})
@@ -68,13 +68,15 @@ describe('Events API', () => {
 					// Mandatory:
 					'title': eventTitle,
 					'start_time': startTime,
-					'end_time': endTime
+					'end_time': endTime,
+					'lat': 45.464211,
+					'lng': 9.191383
 				})
 				.type('form')
 				.expect(201)
 				.expect(res => {
 					if (!res.body.id) {
-						throw new Error('No calendar returned')
+						throw new Error('No event returned')
 					}
 				})
 				.end(done)
