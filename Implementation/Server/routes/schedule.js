@@ -299,7 +299,7 @@ router.get('/', (req, res) => {
 
 module.exports = router
 
-if (process.env.ENV == 'testing') {
+if (process.env.NODE_ENV == 'testing') {
 	router.testFunctions = {
 		timeSlots: timeSlots,
 		overlap: overlap,

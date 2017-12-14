@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const orm = require('orm')
 const app = express()
 
-if(process.env.ENV!='production') {
+if(process.env.NODE_ENV!='production') {
     require('dotenv').config()
 }
 
