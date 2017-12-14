@@ -227,20 +227,20 @@ describe('Schedule private functions', () => {
 		}
 
 		// Should be reachable in time
-		let e = await schedule.eventIsReachable(p1, p2, { onlyBasicChecks: true })
-		if (e != true) {
+		let res = await schedule.eventIsReachable(p1, p2, { onlyBasicChecks: true })
+		if (res != true) {
 			throw new Error('p2 should be reachable from p1')
 		}
 
 		// Shouldn't be reachable in time an event with itself
-		e = await schedule.eventIsReachable(p1, p1, { onlyBasicChecks: true })
-		if (e != false) {
+		res = await schedule.eventIsReachable(p1, p1, { onlyBasicChecks: true })
+		if (res != false) {
 			throw new Error('p1 should not be reachable from p1')
 		}
 
 		// Shouldn't be reachable in time, because as the crow flies we need at least 17 min
-		e = await schedule.eventIsReachable(p1, p3, { onlyBasicChecks: true })
-		if (e != false) {
+		res = await schedule.eventIsReachable(p1, p3, { onlyBasicChecks: true })
+		if (res != false) {
 			throw new Error('p3 should not be reachable from p1')
 		}
 
@@ -253,6 +253,40 @@ describe('Schedule private functions', () => {
 			if (e == err) {
 				throw e
 			}
+		}
+	})
+
+	it('eventIsReachable with all the checks, google included, should return a route', async () => {
+		let p1 = { lat: 45.478336, lng: 9.228263 }
+		let p2 = {
+			lat: 45.464257,
+			lng: 9.190209,
+			start_time: new Date(2017, 11, 12, 8, 0),
+			end_time: new Date(2017, 11, 12, 9, 40),
+			duration: 1000 * 60 * 60
+		}
+
+		let res = await schedule.eventIsReachable(p1, p2)
+		// Google routes have all the copyrights field
+		if (!res.copyrights) {
+			throw new Error('No google route returned')
+		}
+	})
+
+	it('eventIsReachable with all the checks, google included, should return false', async () => {
+		let p1 = { lat: 45.478336, lng: 9.228263 }
+		let p2 = {
+			lat: 45.464257,
+			lng: 9.190209,
+			start_time: new Date(2017, 11, 12, 8, 0),
+			end_time: new Date(2017, 11, 12, 9, 20),
+			duration: 1000 * 60 * 60
+		}
+
+		let res = await schedule.eventIsReachable(p1, p2)
+		// Google routes have all the copyrights field
+		if (res.copyrights) {
+			throw new Error('Google route returned, but noone expected')
 		}
 	})
 })

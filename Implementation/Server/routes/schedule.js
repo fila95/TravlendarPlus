@@ -206,25 +206,18 @@ let eventIsReachable = (from, to, opt) => {
 			for (let route of response.json.routes) {
 				let duration = 0
 				for (let leg of route.legs) {
-					duration += leg.duration
+					duration += leg.duration.value
 				}
 				durations.push(duration)
 			}
 
 			let googlePreferredDuration = durations[0]
-			let preferredDuration = Math.min(durations)
-
+			
 			if (googlePreferredDuration <= availableTime) {
 				// Try to use the google preferred route
 				to.suggested_start_time = new Date(to.start_time + googlePreferredDuration * 1000)
 				to.suggested_end_time = new Date(to.suggested_start_time + to.duration)
 				resolve(response.json.routes[0])
-			} else if (googlePreferredDuration != preferredDuration && preferredDuration <= availableTime) {
-				// Try the route with less travel time,
-				// since sometimes google doesn't sort by travel time
-				to.suggested_start_time = new Date(to.start_time + preferredDuration * 1000)
-				to.suggested_end_time = new Date(to.suggested_start_time + to.duration)
-				resolve(response.json.routes[durations.indexOf(preferred)])
 			} else {
 				// No route with less time travel than timeNeeded
 				resolve(false)
