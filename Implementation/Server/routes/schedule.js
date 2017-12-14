@@ -149,9 +149,10 @@ let distance = (p1, p2) => {
 }
 
 // Return true if the distance can be covered in less than time, with avearage fixed speeds
+// Distance is in km, time is in sec
 let isReachablAsTheCrowFlies = (distance, time) => {
 	if (distance < 1) {
-		speed = 5
+		speed = 2.5
 	} else if (distance < 5) {
 		speed = 12
 	} else if (distance < 12) {
@@ -164,7 +165,7 @@ let isReachablAsTheCrowFlies = (distance, time) => {
 	// distance is in km
 	// speed is in km/h
 	// time is in sec
-	return distance / speed < time * 60 * 60
+	return distance / speed < time / 60.0 / 60.0
 }
 
 // If the event is reachable from coord,
@@ -173,25 +174,25 @@ let isReachablAsTheCrowFlies = (distance, time) => {
 // The param opt is an object of options. Up to now, there is only one option: onlyBasicChecks [bool,default=false]
 let eventIsReachable = (from, to, opt) => {
 	opt = opt || {}
-	if (from.lat == undefined || from.lng == undefined || to.lat == undefined || to.lng == undefined) {
+	if (!from || !to || from.lat == undefined || from.lng == undefined || to.lat == undefined || to.lng == undefined) {
 		// If one of the location is not defined, throw an error
 		throw new Error("from or to parameter doesn't have lat or lng")
 	}
 
 	// timeSlotDuration - flexible event duration
-	let timeNeeded = (to.end_time - to.start_time - to.duration) / 1000
+	let availableTime = (to.end_time - to.start_time - to.duration) / 1000
 
 	return new Promise((resolve, reject) => {
 		// Step 1: As the Crow Flies
 		let dist = distance(from, to)
-		let step1 = isReachablAsTheCrowFlies(dist, timeNeeded)
+		let step1 = isReachablAsTheCrowFlies(dist, availableTime)
 		// If the event 'to' is not even reachable as the crow flies, return false and don't even try
 		// to make some requests to Google Maps
 		if (!step1) {
-			return reject()
+			return resolve(false)
 		}
 		if(opt.onlyBasicChecks) {
-			return resolve()
+			return resolve(true)
 		}
 
 		// Step 2: Google Maps Directions API
@@ -213,12 +214,12 @@ let eventIsReachable = (from, to, opt) => {
 			let googlePreferredDuration = durations[0]
 			let preferredDuration = Math.min(durations)
 
-			if (googlePreferredDuration <= timeNeeded) {
+			if (googlePreferredDuration <= availableTime) {
 				// Try to use the google preferred route
 				to.suggested_start_time = new Date(to.start_time + googlePreferredDuration * 1000)
 				to.suggested_end_time = new Date(to.suggested_start_time + to.duration)
 				resolve(response.json.routes[0])
-			} else if (googlePreferredDuration != preferredDuration && preferredDuration <= timeNeeded) {
+			} else if (googlePreferredDuration != preferredDuration && preferredDuration <= availableTime) {
 				// Try the route with less travel time,
 				// since sometimes google doesn't sort by travel time
 				to.suggested_start_time = new Date(to.start_time + preferredDuration * 1000)
@@ -226,7 +227,7 @@ let eventIsReachable = (from, to, opt) => {
 				resolve(response.json.routes[durations.indexOf(preferred)])
 			} else {
 				// No route with less time travel than timeNeeded
-				reject()
+				resolve(false)
 			}
 		})
 	})

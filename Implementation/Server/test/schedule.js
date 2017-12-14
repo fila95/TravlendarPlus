@@ -37,7 +37,7 @@ describe('Schedule private functions', () => {
 
 		for (let i = 0; i < sortedDates.length - 1; i++) {
 			if (sortedDates[i].start_time > sortedDates[i + 1].start_time) {
-				throw new Error("Dates not sorted in ascendent order")
+				throw new Error('Dates not sorted in ascendent order')
 			}
 		}
 	})
@@ -60,7 +60,7 @@ describe('Schedule private functions', () => {
 
 		let overlapping = schedule.overlap(eventList)
 		if (!overlapping || overlapping[0] != 2 || overlapping[1] != 3) {
-			throw new Error("Events should overlap, but they don't")
+			throw new Error('Events should overlap, but they don\'t')
 		}
 	})
 
@@ -82,7 +82,7 @@ describe('Schedule private functions', () => {
 
 		let overlapping = schedule.overlap(eventList)
 		if (overlapping) {
-			throw new Error("Events should not overlap, but they do")
+			throw new Error('Events should not overlap, but they do')
 		}
 	})
 
@@ -99,13 +99,13 @@ describe('Schedule private functions', () => {
 		// All the time slots need to be a slice of the window of the flexible event
 		for (timeSlot of timeSlots) {
 			if (timeSlots.start_time < flexibleEvent.start_time || timeSlots.end_time > flexibleEvent.end_time) {
-				throw new Error("There is a time slot outside of the flexible event (??)")
+				throw new Error('There is a time slot outside of the flexible event (??)')
 			}
 		}
 
 		// All time slots can't overlap with themselves
 		if (schedule.overlap(timeSlots)) {
-			throw new Error("Overlapping time slots")
+			throw new Error('Overlapping time slots')
 		}
 	})
 
@@ -127,7 +127,7 @@ describe('Schedule private functions', () => {
 		let sortedFlexibleEvents = schedule.sortWithFitness(flexibleEvents)
 		for (let i = 0; i < sortedFlexibleEvents; i++) {
 			if (i - 1 != sortedFlexibleEvents[i].id) {
-				throw new Error("Sort with fitness error")
+				throw new Error('Sort with fitness error')
 			}
 		}
 	})
@@ -144,11 +144,11 @@ describe('Schedule private functions', () => {
 		]
 
 		if (schedule.getEventPreviousTo(events, date).id != 3) {
-			throw new Error("getEventPreviousTo failed")
+			throw new Error('getEventPreviousTo failed')
 		}
 	})
 
-	it('Test getReliableUserLocation', () => {
+	it('getReliableUserLocation => true and false', () => {
 		let loc = schedule.getReliableUserLocation(user)
 		user.last_known_position_lat = 45.121212
 		user.last_known_position_lng = 9.121212
@@ -158,11 +158,101 @@ describe('Schedule private functions', () => {
 		if (loc == null) {
 			throw new Error('Reliable location shouldn\'t be null')
 		}
-		
+
 		updated_at = new Date(2017, 11, 11, 4, 30)
 		loc = schedule.getReliableUserLocation(user)
 		if (loc == null) {
 			throw new Error('Reliable location should be null since was updated too long time ago')
+		}
+	})
+
+	it('distance with fixed data', () => {
+		let p1 = { lat: 45.478336, lng: 9.228263 }
+		let p2 = { lat: 45.464257, lng: 9.190209 }
+		let dist = schedule.distance(p1, p2)
+
+		if (dist < 3 || dist >= 4) {
+			throw new Error('Distance miscalculated')
+		}
+	})
+
+	it('isReachablAsTheCrowFlies with fixed data', () => {
+		if (!schedule.isReachablAsTheCrowFlies(0.5, 800)) {
+			throw new Error('should not be reachable')
+		}
+		if (schedule.isReachablAsTheCrowFlies(0.5, 700)) {
+			throw new Error('should be reachable')
+		}
+		if (!schedule.isReachablAsTheCrowFlies(3, 1000)) {
+			throw new Error('should not be reachable')
+		}
+		if (schedule.isReachablAsTheCrowFlies(3, 800)) {
+			throw new Error('should be reachable')
+		}
+		if (!schedule.isReachablAsTheCrowFlies(9, 2000)) {
+			throw new Error('should not be reachable')
+		}
+		if (schedule.isReachablAsTheCrowFlies(9, 1500)) {
+			throw new Error('should be reachable')
+		}
+		if (!schedule.isReachablAsTheCrowFlies(35, 2000)) {
+			throw new Error('should not be reachable')
+		}
+		if (schedule.isReachablAsTheCrowFlies(35, 1500)) {
+			throw new Error('should be reachable')
+		}
+		if (!schedule.isReachablAsTheCrowFlies(50, 2000)) {
+			throw new Error('should not be reachable')
+		}
+		if (schedule.isReachablAsTheCrowFlies(50, 1500)) {
+			throw new Error('should be reachable')
+		}
+	})
+
+	it('eventIsReachable with onlyBasicChecks', async () => {
+		let p1 = { lat: 45.478336, lng: 9.228263 }
+		let p2 = {
+			lat: 45.464257,
+			lng: 9.190209,
+			start_time: new Date(2017, 11, 12, 8, 0),
+			end_time: new Date(2017, 11, 12, 18, 0),
+			duration: 1000 * 60 * 60
+		}
+		let p3 = {
+			lat: 45.464257,
+			lng: 9.190209,
+			start_time: new Date(2017, 11, 12, 8, 0),
+			end_time: new Date(2017, 11, 12, 9, 16),
+			duration: 1000 * 60 * 60
+		}
+
+		// Should be reachable in time
+		let e = await schedule.eventIsReachable(p1, p2, { onlyBasicChecks: true })
+		if (e != true) {
+			throw new Error('p2 should be reachable from p1')
+		}
+
+		// Shouldn't be reachable in time an event with itself
+		e = await schedule.eventIsReachable(p1, p1, { onlyBasicChecks: true })
+		if (e != false) {
+			throw new Error('p1 should not be reachable from p1')
+		}
+
+		// Shouldn't be reachable in time, because as the crow flies we need at least 17 min
+		e = await schedule.eventIsReachable(p1, p3, { onlyBasicChecks: true })
+		if (e != false) {
+			throw new Error('p3 should not be reachable from p1')
+		}
+
+		// eventIsReachable should throw an error if arguments are invalid
+		let err = new Error('test fail')
+		try {
+			schedule.eventIsReachable(undefined, {})
+			throw err
+		} catch (e) {
+			if (e == err) {
+				throw e
+			}
 		}
 	})
 })
