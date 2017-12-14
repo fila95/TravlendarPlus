@@ -142,12 +142,12 @@ class Event: Object {
     }
     
     
-    let calendar = LinkingObjects(fromType: Calendar.self, property: "events")
+    let calendar = LinkingObjects(fromType: Calendars.self, property: "events")
     
 }
 
 
-class Calendar: Object {
+class Calendars: Object {
     
     @objc dynamic var id: Int = 0
     @objc dynamic var name = ""
