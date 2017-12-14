@@ -14,11 +14,6 @@ public enum APINotificationType {
     case calendars
 }
 
-public enum APIContext {
-    case success
-    case error
-}
-
 public class API: NSObject {
     
     public static let shared: API = API()
@@ -47,25 +42,36 @@ public class API: NSObject {
         queue.addOperation(CalendarsOperation(operationType: .get))
     }
     
-    public func pushSettingsToServer(settings: Settings) {
-        queue.addOperation(SettingsOperation(operationType: .patch, httpBody: Settings.representation(toRepresent: settings)))
+    public func pushSettingsToServer(settings: Settings, completion: ((_ complete: Bool, _ message: String?) -> Void)? = nil) {
+        cancelOperationsOfType(t: Settings.classForCoder())
+        queue.addOperation(SettingsOperation(operationType: .patch, httpBody: Settings.representation(toRepresent: settings), completion: completion))
+    }
+    
+    
+    // MARK: Utilities
+    private func cancelOperationsOfType(t: AnyClass) {
+        for op in queue.operations {
+            if op.classForCoder == t {
+                op.cancel()
+            }
+        }
     }
     
     
     // MARK: Subscriptions
-    private var handlers = [(completion: ((context: APIContext) -> Void), type: APINotificationType)]()
+    private var handlers = [(completion: (() -> Void), type: APINotificationType)]()
     
-    public func subscribe(type: APINotificationType, completion: @escaping (_ context: APIContext) -> Void) {
+    public func subscribe(type: APINotificationType, completion: @escaping () -> Void) {
         DispatchQueue.init(label: "io.array").async {
             self.handlers += [(completion: completion, type: type)]
         }
     }
     
-    public func sendNotificationsFor(type: APINotificationType, context: APIContext) {
+    public func sendNotificationsFor(type: APINotificationType) {
         DispatchQueue.init(label: "notify").async {
             for handle in self.handlers {
                 if handle.type == type {
-                    handle.completion(context)
+                    handle.completion()
                 }
             }
         }

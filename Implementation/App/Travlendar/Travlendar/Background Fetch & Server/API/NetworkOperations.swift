@@ -46,6 +46,8 @@ class NetworkOperation: Operation {
     var operationType: NOperationType = .get
     var httpBody: String = ""
     
+    var completionHandler: ((_ complete: Bool, _ message: String?) -> Void)?
+    
     override init() {
         session = URLSession.shared
         
@@ -54,11 +56,12 @@ class NetworkOperation: Operation {
         self.queuePriority = .low
     }
     
-    convenience init(operationType: NOperationType, httpBody: String? = nil) {
+    convenience init(operationType: NOperationType, httpBody: String? = nil, completion: ((_ complete: Bool, _ message: String?) -> Void)? = nil) {
         self.init()
         
         self.operationType = operationType
         self.httpBody = httpBody != nil ? httpBody! : ""
+        self.completionHandler = completion
     }
     
     func runRequest(endpoint: String, completion: @escaping ((_ status: NStatusCode, _ data: Data?) -> Void)) {
@@ -79,12 +82,14 @@ class NetworkOperation: Operation {
             
             if error != nil {
                 print("Error \(endpoint.capitalized) Operation: \n\t\(error.debugDescription)")
+                self.completionHandler?(false, "Error")
                 return
             }
             
 //            print(String.init(data: data!, encoding: .utf8))
             
             guard let sc = (response as? HTTPURLResponse)?.statusCode, let code = NStatusCode.init(rawValue: sc) else {
+                self.completionHandler?(false, "Response Unavailable")
                 print("Error \(endpoint.capitalized) Operation: \n\tResponse unavailable")
                 return
             }
@@ -124,6 +129,7 @@ class LoginOperation: NetworkOperation {
             case .ok:
                 
                 guard let d = data else {
+                    self.completionHandler?(false, "Data Unavailable")
                     print("Error LoginOperation: \n\tData unavailable")
                     return
                 }
@@ -133,9 +139,11 @@ class LoginOperation: NetworkOperation {
                 let access_token: String = json!["access_token"] as? String ?? ""
                 print("LoginOperation: \n\tAccess Token: \(access_token)")
                 Secret.shared.request_token = access_token
+                self.completionHandler?(true, nil)
                 break
                 
             default:
+                self.completionHandler?(false, "Error Status")
                 print("Error LoginOperation: \n\tStatusCode: \(status)")
                 break
                 
@@ -169,7 +177,7 @@ class SettingsOperation: NetworkOperation {
             case .ok:
                 
                 guard let d = data else {
-                    API.shared.sendNotificationsFor(type: .settings, context: .error)
+                    self.completionHandler?(false, "Error Data Unavailable")
                     print("Error Settings Operation: \n\tData unavailable")
                     return
                 }
@@ -179,8 +187,8 @@ class SettingsOperation: NetworkOperation {
                 decoder.dateDecodingStrategy = .formatted(Formatter.time)
                 
                 guard let settings = try? decoder.decode(Settings.self, from: d) else {
-                    API.shared.sendNotificationsFor(type: .settings, context: .error)
                     print("Error Settings Operation: Unable to decode Settings")
+                    self.completionHandler?(false, "Decode Error")
                     return
                 }
                 Secret.shared.settings = settings
@@ -192,13 +200,13 @@ class SettingsOperation: NetworkOperation {
                     print("Settings Pushed!")
                 }
                 
-                API.shared.sendNotificationsFor(type: .settings, context: .success)
+                self.completionHandler?(true, nil)
+                API.shared.sendNotificationsFor(type: .settings)
                 
                 break
                 
             default:
                 print("Error Settings Operation: \n\tStatusCode: \(status)")
-                API.shared.sendNotificationsFor(type: .settings, context: .error)
                 break
                 
             }
@@ -231,6 +239,7 @@ class CalendarsOperation: NetworkOperation {
             case .ok:
                 
                 guard let d = data else {
+                    self.completionHandler?(false, "Data Unavailable")
                     print("Error CalendarsOperation: \n\tData unavailable")
                     return
                 }
@@ -238,6 +247,7 @@ class CalendarsOperation: NetworkOperation {
                 let decoder = JSONDecoder.init()
                 decoder.dateDecodingStrategy = .formatted(Formatter.time)
                 guard let calendars = try? decoder.decode([Calendars].self, from: d) else {
+                    self.completionHandler?(false, "Decode Error")
                     print("Error Calendars Operation: Unable to decode Calendars")
                     return
                 }
@@ -255,7 +265,6 @@ class CalendarsOperation: NetworkOperation {
                             }
                         }
                     }
-                    
                     print("Calendars Received and Saved!")
                 }
                 else if self.operationType == .patch {
@@ -265,7 +274,7 @@ class CalendarsOperation: NetworkOperation {
                             let realm = try! Realm()
                             
                             try! realm.write {
-                                realm.delete(realm.objects(Calendars.self).filter(NSPredicate.init(format: "id=\(calendars.first!.id)")))
+                                realm.delete(realm.objects(Calendars.self).filter("id=\(calendars.first!.id)"))
                                 realm.add(calendars)
                             }
                         }
@@ -281,17 +290,19 @@ class CalendarsOperation: NetworkOperation {
                             let realm = try! Realm()
                             
                             try! realm.write {
-                                realm.delete(realm.objects(Calendars.self).filter(NSPredicate.init(format: "id=\(calendars.first!.id)")))
+                                realm.delete(realm.objects(Calendars.self).filter("id=\(calendars.first!.id)"))
                                 realm.add(calendars)
                             }
                         }
                     }
                     
                 }
+                self.completionHandler?(true, nil)
                 
                 break
                 
             default:
+                self.completionHandler?(false, "Error")
                 print("Error Calendars Operation: \n\tStatusCode: \(status)")
                 break
                 

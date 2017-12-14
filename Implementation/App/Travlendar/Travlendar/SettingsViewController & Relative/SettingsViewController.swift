@@ -26,7 +26,7 @@ class SettingsViewController: UIViewController {
         
         refreshToSettings(s: Secret.shared.settings)
         
-        API.shared.subscribe(type: .settings) { (context) in
+        API.shared.subscribe(type: .settings) {
             DispatchQueue.main.async {
                 self.refreshToSettings(s: Secret.shared.settings)
             }
