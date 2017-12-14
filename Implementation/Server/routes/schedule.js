@@ -127,7 +127,17 @@ let getEventPreviousTo = (events, dateTime) => {
 	return prev_event
 }
 
+/*		user_token: { type: 'text', size: 24, required: true },
+		last_known_position_lat: { type: 'coord_lat', defaultValue: 0 },
+		last_known_position_lng: { type: 'coord_lng', defaultValue: 0 },
+		updated_at: { type: 'date', time: true }
+*/
+
+//
 let getReliableUserLocation = (user) => {
+	//checking whether the location is no reliable
+	if(!user.updated_at ||new Date()-user.updated_at>30*60*1000) return null
+	return user.updated_at
 
 }
 
@@ -181,6 +191,7 @@ if (process.env.ENV == 'testing') {
 		fitness: fitness,
 		occupiedTimeForTimeSlots: occupiedTimeForTimeSlots,
 		freeTimeForTimeSlots: freeTimeForTimeSlots,
-		getEventPreviousTo: getEventPreviousTo
+		getEventPreviousTo: getEventPreviousTo,
+		getReliableUserLocation: getReliableUserLocation
 	}
 }
