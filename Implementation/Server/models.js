@@ -106,8 +106,8 @@ function model(db, cb) {
 	let Event = db.define('events', {
 		title: { type: 'text', size: 255, required: true },
 		address: { type: 'text', size: 511 },
-		lat: { type: 'coord_lat' },
-		lng: { type: 'coord_lng' },
+		lat: { type: 'coord_lat', required: true },
+		lng: { type: 'coord_lng', required: true },
 		start_time: { type: 'date', required: true, time: true },
 		end_time: { type: 'date', required: true, time: true },
 		duration: { type: 'integer' },
