@@ -28,17 +28,17 @@ enum TransportMean: String {
 
 public class Settings: NSObject, Codable {
     
-    @objc dynamic var eco_mode: Bool = false
-    @objc dynamic var max_walking_distance: Float = 2000
-    @objc dynamic var max_biking_distance: Float = 4000
+    @objc var eco_mode: Bool = false
+    @objc var max_walking_distance: Float = 2000
+    @objc var max_biking_distance: Float = 4000
     
-    @objc dynamic var start_public_transportation: Date = Date()
-    @objc dynamic var end_public_transportation: Date = Date()
+    @objc var start_public_transportation: Date = Date()
+    @objc var end_public_transportation: Date = Date()
     
-    @objc dynamic var enjoy_enabled: Bool = false
-    @objc dynamic var car2go_enabled: Bool = false
-    @objc dynamic var uber_enabled: Bool = false
-    @objc dynamic var mobike_enabled: Bool = false
+    @objc var enjoy_enabled: Bool = false
+    @objc var car2go_enabled: Bool = false
+    @objc var uber_enabled: Bool = false
+    @objc var mobike_enabled: Bool = false
     
     private enum CodingKeys: String, CodingKey {
         case eco_mode = "eco_mode"
@@ -70,6 +70,24 @@ public class Settings: NSObject, Codable {
         self.mobike_enabled = try container.decode(Bool.self, forKey: .mobike_enabled)
         
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encode(self.eco_mode, forKey: .eco_mode)
+        try container.encode(self.max_walking_distance, forKey: .max_walking_distance)
+        try container.encode(self.max_biking_distance, forKey: .max_biking_distance)
+        
+        try container.encode(self.start_public_transportation, forKey: .start_public_transportation)
+        try container.encode(self.end_public_transportation, forKey: .end_public_transportation)
+        
+        try container.encode(self.enjoy_enabled, forKey: .enjoy_enabled)
+        try container.encode(self.car2go_enabled, forKey: .car2go_enabled)
+        try container.encode(self.uber_enabled, forKey: .uber_enabled)
+        try container.encode(self.mobike_enabled, forKey: .mobike_enabled)
+    }
+    
+    
 }
 
 

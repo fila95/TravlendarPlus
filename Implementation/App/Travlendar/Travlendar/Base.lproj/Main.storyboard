@@ -8,6 +8,12 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="AvenirNext.ttc">
+            <string>AvenirNext-Bold</string>
+            <string>AvenirNext-Italic</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Main View Controller-->
         <scene sceneID="yNu-4Z-7GF">
@@ -112,12 +118,149 @@
                     <view key="view" contentMode="scaleToFill" id="qzU-Wc-Hal">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oO9-OB-seT">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Maximum Distances:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YHq-9k-ZLm">
+                                        <rect key="frame" x="10" y="20" width="355" height="25"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="OGZ-aN-TVT">
+                                        <rect key="frame" x="20" y="64" width="335" height="100"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HBJ-hN-MfN">
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="walk_image" translatesAutoresizingMaskIntoConstraints="NO" id="7o7-rW-7Ap">
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="50" id="Jf2-17-gWY"/>
+                                                            <constraint firstAttribute="height" constant="50" id="aDu-6V-rZa"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5000" minValue="1000" maxValue="10000" translatesAutoresizingMaskIntoConstraints="NO" id="mfP-WD-Vgs">
+                                                        <rect key="frame" x="68" y="10" width="199" height="31"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="UNy-LT-Ur3"/>
+                                                        </constraints>
+                                                        <connections>
+                                                            <action selector="walkSliderChooseValue:" destination="if5-nh-aVM" eventType="touchUpInside" id="U0W-14-f2D"/>
+                                                            <action selector="walkSliderEditValue:" destination="if5-nh-aVM" eventType="valueChanged" id="ndh-C6-Iso"/>
+                                                        </connections>
+                                                    </slider>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wqc-re-6uA">
+                                                        <rect key="frame" x="285" y="12.5" width="50" height="25"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="8SW-J3-uoG"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-Italic" family="Avenir Next" pointSize="18"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <viewLayoutGuide key="safeArea" id="kTZ-I5-sdM"/>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d0g-gF-X2E">
+                                                <rect key="frame" x="0.0" y="50" width="335" height="50"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bike_image" translatesAutoresizingMaskIntoConstraints="NO" id="Q1l-Ow-Baf">
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="50" id="1fq-OI-PAn"/>
+                                                            <constraint firstAttribute="height" constant="50" id="Yba-FC-FDw"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5000" minValue="1000" maxValue="10000" translatesAutoresizingMaskIntoConstraints="NO" id="OJn-OR-bhL">
+                                                        <rect key="frame" x="68" y="10" width="199" height="31"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="BXh-dh-v9Z"/>
+                                                        </constraints>
+                                                        <connections>
+                                                            <action selector="bikeSliderChooseValue:" destination="if5-nh-aVM" eventType="touchUpInside" id="CUL-yO-I8q"/>
+                                                            <action selector="bikeSliderEditValue:" destination="if5-nh-aVM" eventType="valueChanged" id="z7a-qU-xL9"/>
+                                                        </connections>
+                                                    </slider>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MGP-Xl-o5m">
+                                                        <rect key="frame" x="285" y="12.5" width="50" height="25"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="WdV-Rd-7vo"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-Italic" family="Avenir Next" pointSize="18"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timing:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wac-i4-T9N">
+                                        <rect key="frame" x="10" y="172" width="355" height="25"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="39K-aA-39S">
+                                        <rect key="frame" x="20" y="198" width="335" height="216"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="transit_image" translatesAutoresizingMaskIntoConstraints="NO" id="KUh-WZ-jDJ">
+                                                <rect key="frame" x="0.0" y="83" width="50" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="NAe-PW-rFd"/>
+                                                    <constraint firstAttribute="width" constant="50" id="zWp-jJ-KiI"/>
+                                                </constraints>
+                                            </imageView>
+                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uv4-XG-S9q">
+                                                <rect key="frame" x="70" y="0.0" width="265" height="216"/>
+                                            </pickerView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Wac-i4-T9N" secondAttribute="trailing" constant="10" id="Dlu-tJ-HyM"/>
+                                    <constraint firstItem="Wac-i4-T9N" firstAttribute="leading" secondItem="oO9-OB-seT" secondAttribute="leading" constant="10" id="ExM-MH-M1c"/>
+                                    <constraint firstAttribute="trailing" secondItem="YHq-9k-ZLm" secondAttribute="trailing" constant="10" id="H1r-x0-qTh"/>
+                                    <constraint firstAttribute="trailing" secondItem="OGZ-aN-TVT" secondAttribute="trailing" constant="20" id="I3l-wh-usZ"/>
+                                    <constraint firstItem="39K-aA-39S" firstAttribute="leading" secondItem="oO9-OB-seT" secondAttribute="leading" constant="20" id="LXe-Le-VIk"/>
+                                    <constraint firstItem="YHq-9k-ZLm" firstAttribute="leading" secondItem="oO9-OB-seT" secondAttribute="leading" constant="10" id="Lam-h5-9Mb"/>
+                                    <constraint firstItem="OGZ-aN-TVT" firstAttribute="centerX" secondItem="oO9-OB-seT" secondAttribute="centerX" id="YVl-Ck-0rW"/>
+                                    <constraint firstItem="39K-aA-39S" firstAttribute="centerX" secondItem="oO9-OB-seT" secondAttribute="centerX" id="b1p-rU-Rbq"/>
+                                    <constraint firstItem="OGZ-aN-TVT" firstAttribute="top" secondItem="YHq-9k-ZLm" secondAttribute="bottom" constant="19" id="b4I-qa-xMk"/>
+                                    <constraint firstItem="Wac-i4-T9N" firstAttribute="top" secondItem="OGZ-aN-TVT" secondAttribute="bottom" constant="8" id="hAB-Bw-rx6"/>
+                                    <constraint firstItem="YHq-9k-ZLm" firstAttribute="top" secondItem="oO9-OB-seT" secondAttribute="top" constant="20" id="ktG-0n-QTp"/>
+                                    <constraint firstItem="OGZ-aN-TVT" firstAttribute="leading" secondItem="oO9-OB-seT" secondAttribute="leading" constant="20" id="oaT-Cd-IEI"/>
+                                    <constraint firstAttribute="bottom" secondItem="39K-aA-39S" secondAttribute="bottom" constant="253" id="tz0-Th-0Fx"/>
+                                    <constraint firstItem="39K-aA-39S" firstAttribute="top" secondItem="Wac-i4-T9N" secondAttribute="bottom" constant="1" id="vQX-wd-5V5"/>
+                                    <constraint firstAttribute="trailing" secondItem="39K-aA-39S" secondAttribute="trailing" constant="20" id="zKp-ZC-b4s"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="oO9-OB-seT" firstAttribute="top" secondItem="lPG-Nv-ppd" secondAttribute="top" constant="-20" id="09N-Fb-5bC"/>
+                            <constraint firstItem="oO9-OB-seT" firstAttribute="leading" secondItem="lPG-Nv-ppd" secondAttribute="leading" id="0sR-KY-iXj"/>
+                            <constraint firstItem="oO9-OB-seT" firstAttribute="trailing" secondItem="lPG-Nv-ppd" secondAttribute="trailing" id="2Wg-gR-J6C"/>
+                            <constraint firstItem="oO9-OB-seT" firstAttribute="bottom" secondItem="lPG-Nv-ppd" secondAttribute="bottom" id="cbG-wF-1Ry"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="lPG-Nv-ppd"/>
                     </view>
+                    <connections>
+                        <outlet property="bikeLabel" destination="MGP-Xl-o5m" id="FQh-C9-9an"/>
+                        <outlet property="bikeMaxDistanceSlider" destination="OJn-OR-bhL" id="phc-kO-F6i"/>
+                        <outlet property="transitTimesPicker" destination="Uv4-XG-S9q" id="K9o-6Y-CP9"/>
+                        <outlet property="walkLabel" destination="Wqc-re-6uA" id="hMM-Za-bTi"/>
+                        <outlet property="walkMaxDistanceSlider" destination="mfP-WD-Vgs" id="7gm-gh-lWe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cd1-DO-2Jn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1790" y="1807"/>
+            <point key="canvasLocation" x="1789.5999999999999" y="1806.7466266866568"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="bike_image" width="41" height="35"/>
+        <image name="transit_image" width="29" height="37"/>
+        <image name="walk_image" width="20" height="35"/>
+    </resources>
 </document>

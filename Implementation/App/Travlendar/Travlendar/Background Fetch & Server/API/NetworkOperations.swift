@@ -14,6 +14,7 @@ enum NStatusCode: Int {
     case badRequest = 400
     case unauthorized = 401
     case forbidden = 403
+    case notfound = 404
     case internalServerError = 500
     
     public var description: String {
@@ -23,6 +24,7 @@ enum NStatusCode: Int {
         case .badRequest: return "badRequest"
         case .unauthorized: return "unauthorized"
         case .forbidden: return "forbidden"
+        case .notfound: return "not found"
         case .internalServerError: return "internalServerError"
         }
     }
@@ -73,8 +75,15 @@ class NetworkOperation: Operation {
                 return
             }
             
-            guard let sc = (response as? HTTPURLResponse)?.statusCode, let code = NStatusCode.init(rawValue: sc), let d = data else {
-                print("Error \(endpoint.capitalized) Operation: \n\tResponse or data unavailable")
+//            print(String.init(data: data!, encoding: .utf8))
+            
+            guard let sc = (response as? HTTPURLResponse)?.statusCode, let code = NStatusCode.init(rawValue: sc) else {
+                print("Error \(endpoint.capitalized) Operation: \n\tResponse unavailable")
+                return
+            }
+            
+            guard let d = data else {
+                print("Error \(endpoint.capitalized) Operation: \n\tData unavailable")
                 return
             }
             
