@@ -124,10 +124,18 @@ let getEventPreviousTo = (events, dateTime) => {
 			prev_event = event
 		}
 	})
-	return prev_event
+	return prev_event.end_time==0 ? null : prev_event
 }
 
+// Returns null if not reliable, or the location if it is
 let getReliableUserLocation = (user) => {
+	
+}
+
+// If the event is reachable from coord,
+// it returns the routes and sets the suggested_start_time/suggested_end_time
+// Otherwise it returns false
+let eventIsReachable = (coord, event) => {
 
 }
 
@@ -156,7 +164,12 @@ router.get('/', (req, res) => {
 					return (a.end_time - a.start_time) - (b.end_time - b.start_time)
 				})
 				// Get the previous user location
-				let location = getReliableUserLocation(req.user)
+				let reachable
+				let prev = getEventPreviousTo(events, e.start_time)
+				if(prev == null) {
+					let location = getReliableUserLocation(req.user)	
+					// TODO
+				}
 				// TODO
 
 				// Try to fit in every time slot
