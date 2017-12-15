@@ -62,6 +62,8 @@ let eventFactory = req => {
 	if (lat && lng) {
 		event.lat = lat
 		event.lng = lng
+	} else {
+		return null
 	}
 
 	let duration = parseInt(req.body.duration)

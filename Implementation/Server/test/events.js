@@ -91,12 +91,45 @@ describe('Events API', () => {
 				.end(done)
 		})*/
 
-		it('should throw a 400 error creating an event with an invalid parameter', (done) => {
+		it('should throw a 400 error creating an event with an invalid name', (done) => {
 			request(app)
 				.put('/api/v1/calendars/' + calendar.id + '/events')
 				.set('X-Access-Token', device.access_token)
 				.send({
-					'name': ''
+					'title': '',
+					'start_time': startTime,
+					'end_time': endTime,
+					'lat': 45.464211,
+					'lng': 9.191383
+				})
+				.expect(400)
+				.end(done)
+		})
+
+		it('should throw a 400 error creating an event with an invalid lat/lng', (done) => {
+			request(app)
+				.put('/api/v1/calendars/' + calendar.id + '/events')
+				.set('X-Access-Token', device.access_token)
+				.send({
+					'title': eventTitle,
+					'start_time': startTime,
+					'end_time': endTime
+				})
+				.expect(400)
+				.end(done)
+		})
+
+		it('should throw a 400 error creating an event with duration > end - start', (done) => {
+			request(app)
+				.put('/api/v1/calendars/' + calendar.id + '/events')
+				.set('X-Access-Token', device.access_token)
+				.send({
+					'title': eventTitle,
+					'start_time': startTime,
+					'end_time': endTime,
+					'lat': 45.464211,
+					'lng': 9.191383,
+					'duration': endTime - startTime + 1
 				})
 				.expect(400)
 				.end(done)
@@ -140,7 +173,9 @@ describe('Events API', () => {
 				.send({
 					'title': 'Test',
 					'start_time': startTime,
-					'end_time': endTime
+					'end_time': endTime,
+					'lat': 45.464211,
+					'lng': 9.191383
 				})
 				.expect(200)
 				.expect(res => {
@@ -151,14 +186,16 @@ describe('Events API', () => {
 				.end(done)
 		})
 
-		it('should throw a 400 error updating an event with an invalid parameter', (done) => {
+		it('should throw a 400 error updating an event with an invalid name', (done) => {
 			request(app)
 				.patch('/api/v1/calendars/' + calendar.id + '/events/' + event.id)
 				.set('X-Access-Token', device.access_token)
 				.send({
 					'name': '',
 					'start_time': startTime,
-					'end_time': endTime
+					'end_time': endTime,
+					'lat': 45.464211,
+					'lng': 9.191383
 				})
 				.expect(400)
 				.end(done)
