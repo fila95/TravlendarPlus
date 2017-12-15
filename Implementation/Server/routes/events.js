@@ -134,7 +134,7 @@ router.patch('/:event_id', (req, res) => {
 				}
 			}
 			eventTarget.save((err, result) => {
-				if (err) return res.sendStatus(500).end()
+				//if (err) return res.sendStatus(500).end()
 				return res.json(result).end()
 			})
 
