@@ -39,7 +39,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zp2-xD-Jhj">
-                        <rect key="frame" x="71" y="25" width="216" height="27.5"/>
+                        <rect key="frame" x="77" y="25" width="210" height="27.5"/>
                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -53,7 +53,7 @@
                 <constraint firstItem="rVH-hL-sgZ" firstAttribute="leading" secondItem="FbQ-cz-1CJ" secondAttribute="leading" constant="20" id="REz-Tk-a68"/>
                 <constraint firstItem="BL5-HO-tPD" firstAttribute="centerY" secondItem="FbQ-cz-1CJ" secondAttribute="centerY" id="hc9-9v-8Kz"/>
                 <constraint firstItem="Zp2-xD-Jhj" firstAttribute="centerY" secondItem="FbQ-cz-1CJ" secondAttribute="centerY" id="lI2-fl-eoR"/>
-                <constraint firstItem="Zp2-xD-Jhj" firstAttribute="leading" secondItem="rVH-hL-sgZ" secondAttribute="trailing" constant="9" id="vZ0-Xw-z31"/>
+                <constraint firstItem="Zp2-xD-Jhj" firstAttribute="leading" secondItem="rVH-hL-sgZ" secondAttribute="trailing" constant="15" id="vZ0-Xw-z31"/>
                 <constraint firstItem="BL5-HO-tPD" firstAttribute="leading" secondItem="Zp2-xD-Jhj" secondAttribute="trailing" constant="13" id="xwd-YB-hBL"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="FbQ-cz-1CJ"/>
