@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 
 class SettingsViewController: UIViewController {
@@ -21,6 +22,8 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var calendarsCollectionView: UICollectionView!
     @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
     
+    var calendars: Results<Calendars>?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,16 +32,27 @@ class SettingsViewController: UIViewController {
         
         calendarsCollectionView.register(CalendarCell.classForCoder(), forCellWithReuseIdentifier: CalendarCell.reuseIdentifier)
         calendarsCollectionView.register(UINib.init(nibName: "CalendarCell", bundle: Bundle.main), forCellWithReuseIdentifier: CalendarCell.reuseIdentifier)
+        
+        calendarsCollectionView.register(AddNewCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: AddNewCollectionViewCell.reuseIdentifier)
+        calendarsCollectionView.register(UINib.init(nibName: "AddNewCollectionViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: AddNewCollectionViewCell.reuseIdentifier)
+        
         calendarsCollectionView.delegate = self
         calendarsCollectionView.dataSource = self
         calendarsCollectionView.isScrollEnabled = false
         calendarsCollectionView.clipsToBounds = true
         
+        refreshCalendars()
         refreshToSettings(s: Secret.shared.settings)
         
         API.shared.subscribe(type: .settings) {
             DispatchQueue.main.async {
                 self.refreshToSettings(s: Secret.shared.settings)
+            }
+        }
+        
+        API.shared.subscribe(type: .calendars) {
+            DispatchQueue.main.async {
+                self.refreshCalendars()
             }
         }
     }
@@ -71,6 +85,13 @@ class SettingsViewController: UIViewController {
     }
     
     func refreshCalendars() {
+        
+        // Get the default Realm
+        let realm = try! Realm()
+        
+        calendars = realm.objects(Calendars.self)
+        calendarsCollectionView.reloadData()
+        
         calendarsCollectionView.sizeToFit()
         collectionViewHeight.constant = calendarsCollectionView.contentSize.height
     }
