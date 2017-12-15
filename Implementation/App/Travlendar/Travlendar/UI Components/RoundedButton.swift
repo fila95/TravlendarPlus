@@ -9,7 +9,25 @@
 import Foundation
 import UIKit
 
+enum RoundedButtonStyle {
+    case normal
+    case muted
+}
+
 class RoundedButton: UIButton {
+    
+    var style: RoundedButtonStyle = .normal {
+        didSet {
+            applyStyle()
+        }
+    }
+    
+    var loading: Bool = false {
+        didSet {
+            applyLoading()
+        }
+    }
+    
     
     override var isHighlighted: Bool {
         didSet {
@@ -20,6 +38,8 @@ class RoundedButton: UIButton {
             }
         }
     }
+    
+    private let activityIndicator = UIActivityIndicatorView()
     
     init() {
         super.init(frame: CGRect.zero)
@@ -32,14 +52,51 @@ class RoundedButton: UIButton {
     }
     
     private func commonInit() {
-        self.titleLabel?.font = UIFont.system(type: UIFont.BoldType.DemiBold, size: 16)
-        self.setTitleColor(UIColor.white, for: .highlighted)
-        self.setTitleColor(UIColor.white, for: .normal)
-        self.backgroundColor = UIColor(red:0.99, green:0.28, blue:0.31, alpha:1.00)
+        applyStyle()
         self.layer.masksToBounds = true
         self.layer.cornerRadius = 8
         self.contentEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15)
+        
+        self.addSubview(activityIndicator)
+        activityIndicator.isHidden = true
     }
+    
+    private func applyStyle() {
+        switch style {
+        case .normal:
+            self.titleLabel?.font = UIFont.fonts.AvenirNext(type: .Medium, size: 18)
+            self.setTitleColor(UIColor.white, for: .highlighted)
+            self.setTitleColor(UIColor.white, for: .normal)
+            self.backgroundColor = UIColor(red:0.99, green:0.28, blue:0.31, alpha:1.00)
+            self.activityIndicator.activityIndicatorViewStyle = .white
+            break
+            
+        case .muted:
+            self.titleLabel?.font = UIFont.fonts.AvenirNext(type: .Medium, size: 14)
+            self.setTitleColor(UIColor.white, for: .highlighted)
+            self.setTitleColor(UIColor.white, for: .normal)
+            self.backgroundColor = UIColor.clear
+            self.activityIndicator.activityIndicatorViewStyle = .gray
+            break
+        }
+    }
+    
+    private func applyLoading() {
+        if loading {
+            activityIndicator.startAnimating()
+            activityIndicator.isHidden = false
+            
+            self.titleLabel?.isHidden = true
+        }
+        else {
+            activityIndicator.stopAnimating()
+            activityIndicator.isHidden = true
+            
+            self.titleLabel?.isHidden = false
+        }
+    }
+    
+    
     
     override func sizeToFit() {
         super.sizeToFit()

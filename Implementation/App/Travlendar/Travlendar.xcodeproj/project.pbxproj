@@ -46,6 +46,8 @@
 		1EEE56B31FE3DC6300621599 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE56B21FE3DC6300621599 /* View.swift */; };
 		1EEE56B71FE3DCD100621599 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE56B61FE3DCD100621599 /* Types.swift */; };
 		1EEE56B91FE3DD6D00621599 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE56B81FE3DD6D00621599 /* RoundedButton.swift */; };
+		1EEE56BB1FE3E1AD00621599 /* AddNewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE56BA1FE3E1AD00621599 /* AddNewCollectionViewCell.swift */; };
+		1EEE56BD1FE3E1BE00621599 /* AddNewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EEE56BC1FE3E1BE00621599 /* AddNewCollectionViewCell.xib */; };
 		1EF4E1891FDC5EE800B5BFDC /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF4E1881FDC5EE800B5BFDC /* MainPageViewController.swift */; };
 		1EF4E18B1FDC5F0200B5BFDC /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF4E18A1FDC5F0200B5BFDC /* CalendarViewController.swift */; };
 		1EF4E18D1FDC5F0B00B5BFDC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF4E18C1FDC5F0B00B5BFDC /* MapViewController.swift */; };
@@ -121,6 +123,8 @@
 		1EEE56B21FE3DC6300621599 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		1EEE56B61FE3DCD100621599 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		1EEE56B81FE3DD6D00621599 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		1EEE56BA1FE3E1AD00621599 /* AddNewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCollectionViewCell.swift; sourceTree = "<group>"; };
+		1EEE56BC1FE3E1BE00621599 /* AddNewCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddNewCollectionViewCell.xib; sourceTree = "<group>"; };
 		1EF4E1881FDC5EE800B5BFDC /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 		1EF4E18A1FDC5F0200B5BFDC /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		1EF4E18C1FDC5F0B00B5BFDC /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -311,6 +315,7 @@
 			isa = PBXGroup;
 			children = (
 				1EEE56AB1FE3D9D400621599 /* Calendar Cell */,
+				1EEE56BE1FE3E1C400621599 /* AddNewButtonCollectionViewCell */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -322,6 +327,15 @@
 				1E00783F1FE2BA1300FD5405 /* CalendarCell.xib */,
 			);
 			path = "Calendar Cell";
+			sourceTree = "<group>";
+		};
+		1EEE56BE1FE3E1C400621599 /* AddNewButtonCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				1EEE56BA1FE3E1AD00621599 /* AddNewCollectionViewCell.swift */,
+				1EEE56BC1FE3E1BE00621599 /* AddNewCollectionViewCell.xib */,
+			);
+			path = AddNewButtonCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		1EF4E1921FDC606E00B5BFDC /* PageViewController */ = {
@@ -517,6 +531,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EAA18EC1FC9CE9F001B3612 /* LaunchScreen.storyboard in Resources */,
+				1EEE56BD1FE3E1BE00621599 /* AddNewCollectionViewCell.xib in Resources */,
 				1EAA18E91FC9CE9F001B3612 /* Assets.xcassets in Resources */,
 				1EAA18E41FC9CE9F001B3612 /* Main.storyboard in Resources */,
 				1E0078401FE2BA1300FD5405 /* CalendarCell.xib in Resources */,
@@ -721,6 +736,7 @@
 				1EEE56A61FE3D18700621599 /* CalendarOperations.swift in Sources */,
 				1E21E8741FCC24C10009EFA9 /* Location.swift in Sources */,
 				1E4CB7321FDD46F100FA8E52 /* Badge.swift in Sources */,
+				1EEE56BB1FE3E1AD00621599 /* AddNewCollectionViewCell.swift in Sources */,
 				1EF4E1911FDC602200B5BFDC /* MainViewController.swift in Sources */,
 				1EEE56AF1FE3DA0F00621599 /* FeedbackGenerator.swift in Sources */,
 				1E4CB73C1FDD49C300FA8E52 /* Spotlight.swift in Sources */,

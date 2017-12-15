@@ -32,6 +32,10 @@ class SettingsViewController: UIViewController {
         
         calendarsCollectionView.register(CalendarCell.classForCoder(), forCellWithReuseIdentifier: CalendarCell.reuseIdentifier)
         calendarsCollectionView.register(UINib.init(nibName: "CalendarCell", bundle: Bundle.main), forCellWithReuseIdentifier: CalendarCell.reuseIdentifier)
+        
+        calendarsCollectionView.register(AddNewCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: AddNewCollectionViewCell.reuseIdentifier)
+        calendarsCollectionView.register(UINib.init(nibName: "AddNewCollectionViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: AddNewCollectionViewCell.reuseIdentifier)
+        
         calendarsCollectionView.delegate = self
         calendarsCollectionView.dataSource = self
         calendarsCollectionView.isScrollEnabled = false
