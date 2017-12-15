@@ -2,8 +2,8 @@ const app = require('../index')
 const request = require('supertest')
 
 const eventTitle = 'valid event name'
-const startTime = new Date( new Date().getTime() + 1000 * 60 * 30)
-const endTime = new Date( startTime.getTime() + 1000 * 60 * 60)
+const startTime = new Date(new Date().getTime() + 1000 * 60 * 30)
+const endTime = new Date(startTime.getTime() + 1000 * 60 * 60)
 
 let db, device, calendar, event
 
@@ -49,7 +49,6 @@ describe('Events API', () => {
 					'repetitions': 'B0000001',
 					'transports': 'B11111'
 				})
-				.type('form')
 				.expect(201)
 				.expect(res => {
 					if (!res.body.id) {
@@ -72,7 +71,6 @@ describe('Events API', () => {
 					'lat': 45.464211,
 					'lng': 9.191383
 				})
-				.type('form')
 				.expect(201)
 				.expect(res => {
 					if (!res.body.id) {
@@ -89,8 +87,7 @@ describe('Events API', () => {
 				.put('/api/v1/calendars/'+calendar.id+'/events')
 				.set('X-Access-Token', device.access_token)
 				.send(event)
-				.type('form')
-				.expect(500)
+								.expect(500)
 				.end(done)
 		})*/
 
@@ -101,7 +98,6 @@ describe('Events API', () => {
 				.send({
 					'name': ''
 				})
-				.type('form')
 				.expect(400)
 				.end(done)
 		})
@@ -110,7 +106,7 @@ describe('Events API', () => {
 	describe('GET /events', () => {
 		it('should return a list of events if a valid access token is provided with to and from parameters', (done) => {
 			request(app)
-				.get('/api/v1/calendars/' + calendar.id + '/events?from='+new Date(startTime-1000*60*60)+'&to='+new Date(endTime+1000*60*60))
+				.get('/api/v1/calendars/' + calendar.id + '/events?from=' + new Date(startTime - 1000 * 60 * 60) + '&to=' + new Date(endTime + 1000 * 60 * 60))
 				.set('X-Access-Token', device.access_token)
 				.expect(200)
 				.expect(res => {
@@ -146,7 +142,6 @@ describe('Events API', () => {
 					'start_time': startTime,
 					'end_time': endTime
 				})
-				.type('form')
 				.expect(200)
 				.expect(res => {
 					if (res.body.title != 'Test') {
@@ -165,7 +160,6 @@ describe('Events API', () => {
 					'start_time': startTime,
 					'end_time': endTime
 				})
-				.type('form')
 				.expect(400)
 				.end(done)
 		})
@@ -181,7 +175,6 @@ describe('Events API', () => {
 			request(app)
 				.patch('/api/v1/calendars/' + calendar.id + '/events/-1')
 				.set('X-Access-Token', device.access_token)
-				.type('form')
 				.expect(400)
 				.end(done)
 		})

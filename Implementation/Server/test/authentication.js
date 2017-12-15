@@ -25,7 +25,6 @@ describe('Authentication', () => {
 		request(app)
 			.post('/api/v1/login')
 			.send({ 'user_token': user_token })
-			.type('form')
 			.expect(200)
 			.expect(res => {
 				if (res.body.access_token == undefined) {
@@ -39,7 +38,6 @@ describe('Authentication', () => {
 		request(app)
 			.post('/api/v1/login')
 			.send({ 'user_token': user_token })
-			.type('form')
 			.expect(200)
 			.expect(res => {
 				if (res.body.access_token == undefined) {
@@ -60,7 +58,6 @@ describe('Authentication', () => {
 		request(app)
 			.post('/api/v1/login')
 			.send({ 'user_token': 'fail' })
-			.type('form')
 			.expect(403)
 			.end(done)
 	})

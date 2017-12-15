@@ -32,7 +32,6 @@ router.put('/', (req, res) => {
 		name: name,
 		color: color
 	}, (err, result) => {
-		if (err) return res.sendStatus(500).end()
 		return res.status(201).json(result).end()
 	})
 })
@@ -67,7 +66,6 @@ router.patch('/:calendar_id', (req, res) => {
 		calendar.name = name;
 		calendar.color = color;
 		calendar.save((err, result) => {
-			if (err) return res.sendStatus(500).end()
 			return res.json(result).end()
 		});
 

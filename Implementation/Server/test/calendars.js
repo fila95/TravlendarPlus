@@ -26,7 +26,6 @@ describe('Calendars API', () => {
 					'name': calendarName,
 					'color': '#1278EF'
 				})
-				.type('form')
 				.expect(201)
 				.expect(res => {
 					if (!res.body.id) {
@@ -45,7 +44,6 @@ describe('Calendars API', () => {
 					'name': '',
 					'color': '#1278EF'
 				})
-				.type('form')
 				.expect(400)
 				.end(done)
 		})
@@ -58,7 +56,6 @@ describe('Calendars API', () => {
 					'name': 'valid name',
 					'color': 'invalid color'
 				})
-				.type('form')
 				.expect(400)
 				.end(done)
 		})
@@ -87,7 +84,6 @@ describe('Calendars API', () => {
 					'name': 'update',
 					'color': '#1234AA'
 				})
-				.type('form')
 				.expect(200)
 				.expect(res => {
 					if (res.body.name != 'update' || res.body.color != '#1234AA') {
@@ -105,7 +101,6 @@ describe('Calendars API', () => {
 					'name': '',
 					'color': '#1278EF'
 				})
-				.type('form')
 				.expect(400)
 				.end(done)
 		})
@@ -118,7 +113,6 @@ describe('Calendars API', () => {
 					'name': 'valid name',
 					'color': 'invalid color'
 				})
-				.type('form')
 				.expect(400)
 				.end(done)
 		})
@@ -131,12 +125,11 @@ describe('Calendars API', () => {
 					'name': 'valid name',
 					'color': '#123456'
 				})
-				.type('form')
 				.expect(400)
 				.end(done)
 		})
 	})
-	
+
 	describe('DELETE /calendars/:id', () => {
 		it('should delete the calendar if a valid access token is provided', (done) => {
 			request(app)
@@ -146,6 +139,5 @@ describe('Calendars API', () => {
 				.end(done)
 		})
 	})
-
 
 })
