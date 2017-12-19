@@ -297,7 +297,7 @@ describe('Schedule private functions', () => {
 
 		let res = await schedule.eventIsReachable(p1, p2)
 		// Google routes have all the copyrights field
-		if (!res.copyrights) {
+		if (!res[0].copyrights) {
 			throw new Error('No google route returned')
 		}
 	}).timeout(10000); // Google Requests could take a while
