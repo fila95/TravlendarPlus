@@ -86,8 +86,7 @@ describe('Schedule private functions', () => {
 		}
 	})
 
-	// TODO timeSlots on fixed data in order to increase test coverage
-	it('timeSlots on random data', () => {
+	it('timeSlots on completely random data', () => {
 		let flexibleEvent = genRandomEvents(1)[0]
 		// Max 1 hour of duration for testing purpose
 		flexibleEvent.duration = Math.floor(Math.random() * 60 * 60 * 1000)
@@ -106,6 +105,35 @@ describe('Schedule private functions', () => {
 		// All time slots can't overlap with themselves
 		if (schedule.overlap(timeSlots)) {
 			throw new Error('Overlapping time slots')
+		}
+	})
+
+	it('timeSlots on pseudo-random data', () => {
+		let flexibleEvent = genRandomEvents(1)[0]
+		// Max 1 hour of duration for testing purpose
+		flexibleEvent.duration = Math.floor(Math.random() * 60 * 60 * 1000)
+
+		let eventList = genRandomEvents(10, new Date(flexibleEvent.start_time), new Date(flexibleEvent.end_time))
+		eventList.sort((a, b) => b.start_time - a.start_time)[0].start_time = new Date(flexibleEvent.start_time + 1)
+		eventList.sort((a, b) => b.end_time - a.end_time).reverse()[0].end_time = new Date(flexibleEvent.end_time + 1)
+
+		let timeSlots = schedule.timeSlots(eventList, flexibleEvent)
+
+		// All the time slots need to be a slice of the window of the flexible event
+		for (timeSlot of timeSlots) {
+			if (timeSlots.start_time < flexibleEvent.start_time || timeSlots.end_time > flexibleEvent.end_time) {
+				throw new Error('There is a time slot outside of the flexible event (??)')
+			}
+		}
+
+		// All time slots can't overlap with themselves
+		if (schedule.overlap(timeSlots)) {
+			throw new Error('Overlapping time slots')
+		}
+
+		timeSlots = schedule.timeSlots(genRandomEvents(1), flexibleEvent)
+		if(timeSlots.length!=1 || timeSlots[0].start_time!=flexibleEvent.start_time ||  timeSlots[0].end_time!=flexibleEvent.end_time) {
+			throw new Error('timeSlots returned when only one fixed event is present is mismatching')
 		}
 	})
 
@@ -159,9 +187,9 @@ describe('Schedule private functions', () => {
 			throw new Error('Reliable location shouldn\'t be null')
 		}
 
-		updated_at = new Date(2017, 11, 11, 4, 30)
+		user.updated_at = new Date(2017, 11, 11, 4, 30)
 		loc = schedule.getReliableUserLocation(user)
-		if (loc == null) {
+		if (loc != null) {
 			throw new Error('Reliable location should be null since was updated too long time ago')
 		}
 	})
