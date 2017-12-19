@@ -119,6 +119,17 @@ describe('Events API', () => {
 				.end(done)
 		})
 
+		it('should throw a 400 error creating an event with no start or end', (done) => {
+			request(app)
+				.put('/api/v1/calendars/' + calendar.id + '/events')
+				.set('X-Access-Token', device.access_token)
+				.send({
+					'title': eventTitle
+				})
+				.expect(400)
+				.end(done)
+		})
+
 		it('should throw a 400 error creating an event with duration > end - start', (done) => {
 			request(app)
 				.put('/api/v1/calendars/' + calendar.id + '/events')
