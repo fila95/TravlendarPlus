@@ -212,7 +212,8 @@ let eventIsReachable = (from, to, opt) => {
 				durations.push(duration)
 			}
 
-			// TODO usare le preferenze dell'utente
+			// TODO tenere conto delle ripetizioni
+			// TODO usare le preferenze dell'utente (max walking distance e biking distance + parse tarnsits)
 			// req.user.settings
 
 			let googlePreferredDuration = durations[0]
