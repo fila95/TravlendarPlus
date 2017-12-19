@@ -129,7 +129,7 @@ router.patch('/:event_id', (req, res) => {
 			// Copy attribute in eventUpdated to eventTarget
 			for (var property in eventUpdated) {
 				// But not its ID
-				if (property != 'id') {
+				if (property != 'calendar_id') {
 					eventTarget[property] = eventUpdated[property]
 				}
 			}

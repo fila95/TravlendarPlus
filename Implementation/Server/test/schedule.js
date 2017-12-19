@@ -131,7 +131,8 @@ describe('Schedule private functions', () => {
 			throw new Error('Overlapping time slots')
 		}
 
-		timeSlots = schedule.timeSlots(genRandomEvents(1), flexibleEvent)
+		// When no fixed events, return the global timeslot
+		timeSlots = schedule.timeSlots([], flexibleEvent)
 		if(timeSlots.length!=1 || timeSlots[0].start_time!=flexibleEvent.start_time ||  timeSlots[0].end_time!=flexibleEvent.end_time) {
 			throw new Error('timeSlots returned when only one fixed event is present is mismatching')
 		}
