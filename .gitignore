@@ -6,4 +6,4 @@ Pods/
 Podfile.lock
 coverage/
 .env
-*.p8
+.nyc_output
