@@ -115,6 +115,49 @@ Implementation and Test Document
 Calzavara Filippo, Filaferro Giovanni, Benedetto Maria Nespoli
 \end_layout
 
+\begin_layout Quote
+\noindent
+\align center
+Link to the iOS App: 
+\end_layout
+
+\begin_layout Quote
+\noindent
+\align center
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TO ADD
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Quote
+\noindent
+\align center
+Link to the source code:
+\end_layout
+
+\begin_layout Quote
+\noindent
+\align center
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://github.com/fila95/CalzavaraFilaferroNespoli/tree/master/Implementation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 \align center
 Version 1.0.0
@@ -164,36 +207,16 @@ Introduction
 \end_layout
 
 \begin_layout Subsection
-Purpose
+Scope of the document
 \end_layout
 
 \begin_layout Standard
 This document is the Implementation and Test Document (ITD) for Travlendar+,
  the system assigned to be developed.
  The document describes the characteristics of the developed system, the
- requirements that it meets for its first release and the next advanced,
- an overview of the testes 
-\end_layout
-
-\begin_layout Subsection
-Scope
-\end_layout
-
-\begin_layout Standard
-The aim of this project is to create a smart calendar-based application
- that people can use to reduce delays at the appointments and supporting
- the users by identifying the best mobility option.
- People create appointments and they get notified in case they will not
- be on time for it.
- Moreover, the system needs to take into account weather forecast as well
- as strike days.
- Furthermore, the users should be able to adapt settings based on their
- preferences, such as walking-time constrains or a more eco-friendly way
- of transportation, and the possibility to define flexible appointments
- that given a window of time and a duration an arrangement of the schedule
- is proposed.
- Finally, the system should provide the user of a ticket or locate the closest
- car/bike sharing vehicle if it is the mean of transportation chosen.
+ requirements that meets for its first release, possible future advancement,
+ the adopted development frameworks, the structure of the code, tests and
+ installation instruction
 \end_layout
 
 \begin_layout Subsection
@@ -580,7 +603,7 @@ Abbreviations
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="5" columns="2">
+<lyxtabular version="3" rows="4" columns="2">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -645,26 +668,6 @@ N-goal
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-[Dn]
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-N-domain assumption
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
@@ -704,35 +707,26 @@ Reference Documents
 \end_layout
 
 \begin_layout Itemize
-RASD version 1.2.0
-\end_layout
-
-\begin_layout Itemize
-Design Document 1.2.0
-\end_layout
-
-\begin_layout Subsection
-Document Structure
-\end_layout
-
-\begin_layout Standard
+RASD version 
 \begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
-The paper includes six areas.
- The first one, is composed by the introductory information provided in
- order to give an orientative view of what this document is about.
- The second one, provides an overall description of the project including
- the features, the characteristics and the constraints that its development
- implies.
- The main body of this paper is contained in the third section, which assert
- the requirements and the design constraints.
- The paper is equipped with a fourth section that contains a formal analysis
- using Alloy.
- Finally, a fifth and a sixth section allows the reader to learn the effort
- spent on this project by each team member and the references made in the
- whole paper.
+VERSIONE1.2.0
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Design Document 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+VERSIONE1.2.0
 \end_layout
 
 \end_inset
@@ -748,22 +742,6 @@ The paper includes six areas.
 \end_layout
 
 \begin_layout Section
-Implementation
-\end_layout
-
-\begin_layout Standard
-As described in the Design Document, Travlendar+ is composed of a two tier
- architecture with distributed data and logic.
- 
-\end_layout
-
-\begin_layout Standard
-The application developed for the iOS platform's smartphones (iPhone) could
- be uploaded on the App Store in order to let the final user to install
- it on their smartphone
-\end_layout
-
-\begin_layout Subsection
 General description of the functionalities
 \end_layout
 
@@ -775,7 +753,7 @@ In this section, the developing team states those goals/features described
  new users.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 First release of Travlendar+
 \end_layout
 
@@ -884,10 +862,6 @@ As first release of the application, the developing team ensures to meet
 
 \begin_deeper
 \begin_layout Itemize
-[G6.1] Allow the user to set the eco-friendly mode
-\end_layout
-
-\begin_layout Itemize
 [G6.2][R23] Allow the user to set the walkable distance limit
 \end_layout
 
@@ -896,12 +870,12 @@ As first release of the application, the developing team ensures to meet
 \end_layout
 
 \begin_layout Itemize
-[G6.5][R24] Allow users to set a time range in which they can take public
- transits
+[G6.4] Allow users to set the owned bike and/or bike sharing providers.
 \end_layout
 
 \begin_layout Itemize
-[G6.7][R26] Allow users to set the preferred ride sharing service
+[G6.5][R24] Allow users to set a time range in which they can take public
+ transits
 \end_layout
 
 \end_deeper
@@ -923,26 +897,48 @@ As first release of the application, the developing team ensures to meet
 [G8][R29][R30] Notify the user that it's time to leave for the appointment
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Second Release of Travlendar+
 \end_layout
 
 \begin_layout Standard
-A second release of the application will (eventually) include the following
- features:
+The developing team has chosen to not proceed with the implementation of
+ the below functionalities mainly because of their presence is intended
+ to be complementary to the application and therefore not accountable for
+ an initial startup of the project.
 \end_layout
 
 \begin_layout Itemize
-[G3.2.1][R10] Allow people to purchase the transit ticket
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Per ultimo
+\end_layout
+
+\end_inset
+
+[G3.2.1][R10] Allow people to purchase the transit ticket.
+ Chosen not to be developed because involves primitives of the Operation
+ System
 \end_layout
 
 \begin_layout Itemize
 [G3.2.2][R12] Allow people to open the sharing services/ride provider's app
- and call the vehicle
+ and call the vehicle.
+ Chosen not to be developed because requires contacting the companies and
+ ask for API use clearance 
 \end_layout
 
 \begin_layout Itemize
-[G6.4] Allow users to set the owned bike and/or bike sharing providers
+[G6.1] Allow the user to set the eco-friendly mode.
+ Chosen not to be developed in order to prioritize better quality of the
+ scheduling
+\end_layout
+
+\begin_layout Itemize
+[G6.4] Allow users to set the owned bike and/or bike sharing providers.
+ Chosen not to be developed for the same reason of before
 \end_layout
 
 \begin_layout Itemize
@@ -950,29 +946,58 @@ A second release of the application will (eventually) include the following
  providers
 \end_layout
 
+\begin_layout Itemize
+[G6.7][R26] Allow users to set the preferred ride sharing services
+\end_layout
+
+\begin_layout Standard
+A second release of the application will eventually include the above mentioned
+ requirements.
+\end_layout
+
+\begin_layout Standard
+Furthermore we believe that an incremental update of the app with additional
+ functionalities overtime would define a specific strategy of cost amortization
+ and it would bring constant maintenance which increases the final perceived
+ value of the product.
+\end_layout
+
 \begin_layout Subsection
-Description of Code's structure
+Adopted development frameworks
+\end_layout
+
+\begin_layout Subsubsection
+Adopted programming languages (advantages and disadvantages)
+\end_layout
+
+\begin_layout Subsubsection
+Middleware adopted (advantages and disadvantage)
+\end_layout
+
+\begin_layout Subsubsection
+API not included in the DD
+\end_layout
+
+\begin_layout Subsection
+Structure of the source code
+\end_layout
+
+\begin_layout Standard
+As described in the Design Document, Travlendar+ is composed of a two tier
+ architecture with distributed data and logic.
+ 
+\end_layout
+
+\begin_layout Standard
+The application developed for the iOS platform's smartphones (iPhone) could
+ be uploaded on the App Store in order to let the final user to install
+ it on their smartphone
 \end_layout
 
 \begin_layout Standard
 The developed code, divided by type of implementation (Client/Server) is
  available below.
- Information on how run the code shown below are available in the next section
- 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Installation-instructions"
-
-\end_inset
-
- 
-\begin_inset CommandInset ref
-LatexCommand nameref
-reference "subsec:Installation-instructions"
-
-\end_inset
-
-
+ Information on how run the code shown below are available in the next sectio
 \end_layout
 
 \begin_layout Standard
@@ -995,25 +1020,8 @@ Server side implementation (NodeJs)
 Development frameworks adopted
 \end_layout
 
-\begin_layout Standard
-\begin_inset Newpage pagebreak
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsection
-\begin_inset CommandInset label
-LatexCommand label
-name "subsec:Installation-instructions"
-
-\end_inset
-
 Installation instructions
-\end_layout
-
-\begin_layout Subsection
-Development frameworks used
 \end_layout
 
 \begin_layout Section
@@ -1041,25 +1049,6 @@ Giovanni Filaferro: 2.00h
 
 \begin_layout Itemize
 Benedetto Maria Nespoli: 2.00h
-\end_layout
-
-\begin_layout Section
-References
-\end_layout
-
-\begin_layout Itemize
-iOS Human Interface Guidelines (https://developer.apple.com/ios/human-interface-gu
-idelines/)
-\end_layout
-
-\begin_layout Itemize
-App Store Review Guidelines (https://developer.apple.com/app-store/review/guidelin
-es/)
-\end_layout
-
-\begin_layout Itemize
-Google Play Guidelines (https://play.google.com/about/developer-content-policy/#!?
-modal_active=none)
 \end_layout
 
 \end_body

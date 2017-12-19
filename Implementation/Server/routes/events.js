@@ -79,7 +79,6 @@ let eventFactory = req => {
 	if (transports.match("B[01]{5}")) {
 		event.transports = transports
 	}
-
 	return event
 }
 
@@ -127,12 +126,8 @@ router.patch('/:event_id', (req, res) => {
 			eventUpdated = eventFactory(req)
 			if (eventUpdated == null) return res.sendStatus(400).end()
 			// Copy attribute in eventUpdated to eventTarget
-			for (var property in eventUpdated) {
-				// But not its ID
-				if (property != 'calendar_id') {
-					eventTarget[property] = eventUpdated[property]
-				}
-			}
+			delete eventUpdated.calendar_id
+			Object.assign(eventTarget, eventUpdated)
 			eventTarget.save((err, result) => {
 				//if (err) return res.sendStatus(500).end()
 				return res.json(result).end()
@@ -143,4 +138,19 @@ router.patch('/:event_id', (req, res) => {
 	})
 })
 
-module.exports = router
+// Parsing the transports from binary encoding. Example: 1100 -> ["walking","bicycling"]
+let parseTransports = (transports, settings) => {
+	let sTransports = ["walking", "bicycling", "transit", "driving"]
+	//TODO Testare funzione Settings.canUsePublicTransportation in module
+	let mask = transports.split('').map(transport => transport == 1)
+	sTransports=sTransports.filter((transport,index) => mask[index])
+
+
+
+	return sTransports
+}
+
+module.exports = {
+	router: router,
+	parseTransports: parseTransports
+}
