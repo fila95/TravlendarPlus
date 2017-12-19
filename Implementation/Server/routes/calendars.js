@@ -72,4 +72,6 @@ router.patch('/:calendar_id', (req, res) => {
 	})
 })
 
-module.exports = router
+module.exports = {
+	router: router
+}

@@ -8,9 +8,9 @@ if (!token) {
 	console.error("WARNING: GOOGLE_MAPS_TOKEN not defined, check your .env file")
 	console.error("------------------------------------------------------------")
 }
-const googleMapsClient = require('@google/maps').createClient({
-	key: token
-});
+const googleMapsClient = require('@google/maps').createClient({ key: token });
+
+let isUserScheduling = {}
 
 // Suppose that timeSlots are sorted and not overlapping
 // Return the time in milliseconds for the given timeSlots
@@ -83,7 +83,7 @@ let timeSlots = (fixedEventList, _flexibleEvent) => {
 			return v.end_time > flexibleEvent.start_time && v.start_time < flexibleEvent.end_time
 		})
 	)
-	
+
 	// If there isn't any event, the time slot is the entire flexible event
 	if (fixedEventListInWhichSearch.length == 0) {
 		return [{ start_time: flexibleEvent.start_time, end_time: flexibleEvent.end_time }]
@@ -191,11 +191,12 @@ let eventIsReachable = (from, to, opt) => {
 		if (!step1) {
 			return resolve(false)
 		}
-		if(opt.onlyBasicChecks) {
+		if (opt.onlyBasicChecks) {
 			return resolve(true)
 		}
 
 		// Step 2: Google Maps Directions API
+		// TODO: edit query in order to align to user's settings and event preferences
 		let query = {
 			origin: from,
 			destination: to,
@@ -211,13 +212,16 @@ let eventIsReachable = (from, to, opt) => {
 				durations.push(duration)
 			}
 
+			// TODO usare le preferenze dell'utente
+			// req.user.settings
+
 			let googlePreferredDuration = durations[0]
-			
+
 			if (googlePreferredDuration <= availableTime) {
 				// Try to use the google preferred route
 				to.suggested_start_time = new Date(to.start_time + googlePreferredDuration * 1000)
 				to.suggested_end_time = new Date(to.suggested_start_time + to.duration)
-				resolve(response.json.routes[0])
+				resolve(response.json.routes)
 			} else {
 				// No route with less time travel than timeNeeded
 				resolve(false)
@@ -233,7 +237,9 @@ let getReliableUserLocation = user => {
 	return user.updated_at
 }
 
-router.post('/', (req, res) => {
+router.get('/', (req, res) => {
+	
+
 	// For each calendar
 	req.user.getCalendars().each((err, calendar) => {
 		// Get all the events of today from the current calendar
@@ -253,6 +259,8 @@ router.post('/', (req, res) => {
 
 			// Try to fit each flexible event from the less fittable to the most one
 			for (let e of sortedFlexibleEvents) {
+				// TODO What if e.timeSlots has length == 0
+
 				// Sort time slot from the smallest to the biggest
 				e.timeSlots = e.timeSlots.sort((a, b) => {
 					return (a.end_time - a.start_time) - (b.end_time - b.start_time)
@@ -260,9 +268,12 @@ router.post('/', (req, res) => {
 
 				// Try to fit in each time slot
 				for (let timeSlot of e.timeSlots) {
+					if (isUserScheduling[req.user.id]) {
+
+					}
+
 					// Supposing that the event will be placed in this time slot,
 					// determine if the event e is reachable
-
 					let prev = getEventPreviousTo(events, timeSlot.start_time)
 					if (prev == null) {
 						// If the previous event is not defined, check the user location
@@ -272,7 +283,7 @@ router.post('/', (req, res) => {
 							e.suggested_start_time = new Date(timeSlot.start_time)
 							e.suggested_end_time = new Date(e.suggested_start_time + e.duration)
 							return e.save(err => {
-								if(err) throw err
+								if (err) throw err
 							})
 						} else {
 							// Create a fake event that will be used in asking if reachable
@@ -288,8 +299,12 @@ router.post('/', (req, res) => {
 					// Using async/await, we can loop over an asynchronous function
 					// without spawning thousands of async calls
 					let result = await eventIsReachable(prev, e)
+					if(result) {
+
+					}
+					// TODO use result
 					return e.save(err => {
-						if(err) throw err
+						if (err) throw err
 					})
 				}
 			}
@@ -297,10 +312,12 @@ router.post('/', (req, res) => {
 	})
 })
 
-module.exports = router
+module.exports = {
+	router: router
+}
 
 if (process.env.NODE_ENV == 'testing') {
-	router.testFunctions = {
+	module.exports.testFunctions = {
 		timeSlots: timeSlots,
 		overlap: overlap,
 		sort: sort,

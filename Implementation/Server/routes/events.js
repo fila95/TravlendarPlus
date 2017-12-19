@@ -127,12 +127,8 @@ router.patch('/:event_id', (req, res) => {
 			eventUpdated = eventFactory(req)
 			if (eventUpdated == null) return res.sendStatus(400).end()
 			// Copy attribute in eventUpdated to eventTarget
-			for (var property in eventUpdated) {
-				// But not its ID
-				if (property != 'calendar_id') {
-					eventTarget[property] = eventUpdated[property]
-				}
-			}
+			delete eventUpdated.calendar_id
+			Object.assign(eventTarget, eventUpdated)
 			eventTarget.save((err, result) => {
 				//if (err) return res.sendStatus(500).end()
 				return res.json(result).end()
@@ -143,4 +139,6 @@ router.patch('/:event_id', (req, res) => {
 	})
 })
 
-module.exports = router
+module.exports = {
+	router: router
+}
