@@ -79,7 +79,6 @@ let eventFactory = req => {
 	if (transports.match("B[01]{5}")) {
 		event.transports = transports
 	}
-
 	return event
 }
 
@@ -142,5 +141,12 @@ router.patch('/:event_id', (req, res) => {
 
 	})
 })
+
+// Parsing the transports from binary encoding. Example: 1100 -> ["walking","bicycling"]
+let parseTransports = (transports) => {
+	let sTransports=["walking","bicycling", "transit", "driving"]
+	mask=transports.split('').map(transport => transport == 1)
+	return sTransports.filter((transport,index) => mask[index])
+}
 
 module.exports = router
