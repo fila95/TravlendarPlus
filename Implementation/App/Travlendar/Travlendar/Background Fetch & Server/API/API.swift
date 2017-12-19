@@ -47,6 +47,11 @@ public class API: NSObject {
         queue.addOperation(SettingsOperation(operationType: .patch, httpBody: Settings.representation(toRepresent: settings), completion: completion))
     }
     
+    public func deleteCalendarFromServer(calendar: Calendars, completion: ((_ complete: Bool, _ message: String?) -> Void)? = nil) {
+        queue.addOperation(CalendarsOperation(operationType: .delete, httpBody: "\(calendar.id)", completion: completion))
+    }
+    
+    
     public func pushNotificationTokenToServer(token: String) {
         cancelOperationsOfType(t: NotificationTokenOperation.classForCoder())
         queue.addOperation(NotificationTokenOperation(operationType: .put, httpBody: "{\"token\":\"\(token)\"}"))
@@ -67,18 +72,24 @@ public class API: NSObject {
     private var handlers = [(completion: (() -> Void), type: APINotificationType)]()
     
     public func subscribe(type: APINotificationType, completion: @escaping () -> Void) {
+        
         DispatchQueue.init(label: "io.array.queue").async {
+            objc_sync_enter(self.handlers)
             self.handlers += [(completion: completion, type: type)]
+            objc_sync_exit(self.handlers)
         }
+        
     }
     
     public func sendNotificationsFor(type: APINotificationType) {
-        DispatchQueue.init(label: "notify").async {
+        DispatchQueue.init(label: "io.array.queue").async {
+            objc_sync_enter(self.handlers)
             for handle in self.handlers {
                 if handle.type == type {
                     handle.completion()
                 }
             }
+            objc_sync_exit(self.handlers)
         }
         
     }

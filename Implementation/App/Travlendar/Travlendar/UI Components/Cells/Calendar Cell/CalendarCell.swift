@@ -9,12 +9,14 @@
 import UIKit
 
 
-class CalendarCell: UICollectionViewCell {
+class CalendarCell: UICollectionViewCell, UIGestureRecognizerDelegate {
     
     static let reuseIdentifier: String = "calendarCell"
     
     @IBOutlet weak var colorView: UIView!
     @IBOutlet weak var textLabel: UILabel!
+    
+    var longPressHandler: (() -> Void)?
     
     override var isHighlighted: Bool {
         get {
@@ -48,6 +50,11 @@ class CalendarCell: UICollectionViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
+        let gr = UILongPressGestureRecognizer.init(target: self, action: #selector(self.handleGesture(sender:)))
+        gr.delegate = self
+        gr.delaysTouchesBegan = true
+        self.addGestureRecognizer(gr)
     }
     
     override func layoutSubviews() {
@@ -61,5 +68,16 @@ class CalendarCell: UICollectionViewCell {
         textLabel.text = c.name
     }
     
+    @objc private func handleGesture(sender: UILongPressGestureRecognizer) {
+        if sender.state != .began {
+            return
+        }
+        
+        self.longPressHandler?()
+    }
+    
+    func setLongPressHandler(handler: @escaping (() -> Void)) {
+        self.longPressHandler = handler
+    }
     
 }

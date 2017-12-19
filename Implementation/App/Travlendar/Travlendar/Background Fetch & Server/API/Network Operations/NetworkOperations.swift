@@ -36,6 +36,7 @@ enum NStatusCode: Int {
 enum NOperationType: String {
     case get
     case post
+    case delete
     case put
     case patch
 }
@@ -68,10 +69,11 @@ class NetworkOperation: Operation {
     }
     
     func runRequest(endpoint: String, completion: @escaping ((_ status: NStatusCode, _ data: Data?) -> Void)) {
-        var request: URLRequest = URLRequest(url: URL.init(string: API.baseURL + endpoint)!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 60)
+        let deletePath: String = operationType == .delete ? "/" + httpBody : ""
+        var request: URLRequest = URLRequest(url: URL.init(string: API.baseURL + endpoint + deletePath)!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 60)
         
         request.httpMethod = self.operationType.rawValue.uppercased()
-        request.httpBody = self.httpBody.data(using: .utf8)
+        request.httpBody = operationType != .delete ? self.httpBody.data(using: .utf8) : nil
         
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")

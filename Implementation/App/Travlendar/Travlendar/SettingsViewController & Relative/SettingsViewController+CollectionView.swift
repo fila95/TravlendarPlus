@@ -24,8 +24,34 @@ extension SettingsViewController: UICollectionViewDataSource, UICollectionViewDe
         
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarCell.reuseIdentifier, for: indexPath) as! CalendarCell
-            
             cell.setCalendar(c: calendars![indexPath.row])
+            
+            cell.setLongPressHandler {
+                let index = indexPath.row
+                let ac = UIAlertController(title: "Warning", message: "Are you sure you want to delete this calendar?", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in }))
+                ac.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
+                    API.shared.deleteCalendarFromServer(calendar: self.calendars![index], completion: { (complete, message) in
+                        if complete {
+                            DispatchQueue.main.async {
+                                self.refreshCalendars()
+                            }
+                            
+                        }
+                        else {
+                            // Error
+                            print(message as Any)
+                            UIAlertController.show(title: "Error", message: "Error deleting calendar...", buttonTitle: "Cancel", on: self)
+                        }
+                        
+                    })
+                }))
+                self.present(ac, animated: true, completion: {
+                    
+                })
+            }
+            
+            
             return cell
         }
         else {
@@ -43,6 +69,7 @@ extension SettingsViewController: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -50,13 +77,13 @@ extension SettingsViewController: UICollectionViewDataSource, UICollectionViewDe
             return CGSize.init(width: 300, height: 77)
         }
         else {
-            return CGSize.init(width: 240, height: 50)
+            return CGSize.init(width: 220, height: 50)
         }
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
-        let cellWidth : CGFloat = section == 0 ? 300 : 240
+        let cellWidth: CGFloat = section == 0 ? 300 : 240
         
         let numberOfCells = floor(self.view.frame.size.width / cellWidth)
         let edgeInsets = (self.view.frame.size.width - (numberOfCells * cellWidth)) / (numberOfCells + 1)

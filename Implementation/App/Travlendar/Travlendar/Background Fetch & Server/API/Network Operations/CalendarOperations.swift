@@ -21,6 +21,9 @@ class CalendarsOperation: NetworkOperation {
         if self.operationType == .get {
             print("Getting Calendars...")
         }
+        else if self.operationType == .delete {
+            print("Deleting Calendar...")
+        }
         else {
             print("Pushing Calendar...")
         }
@@ -55,6 +58,8 @@ class CalendarsOperation: NetworkOperation {
                                 realm.delete(realm.objects(Calendars.self))
                                 realm.add(calendars)
                             }
+                            
+                            self.completionHandler?(true, nil)
                         }
                     }
                     
@@ -71,6 +76,8 @@ class CalendarsOperation: NetworkOperation {
                                 realm.delete(realm.objects(Calendars.self).filter("id=\(calendars.first!.id)"))
                                 realm.add(calendars)
                             }
+                            
+                            self.completionHandler?(true, nil)
                         }
                     }
                     
@@ -88,12 +95,38 @@ class CalendarsOperation: NetworkOperation {
                                 realm.delete(realm.objects(Calendars.self).filter("id=\(calendars.first!.id)"))
                                 realm.add(calendars)
                             }
+                            
+                            self.completionHandler?(true, nil)
                         }
                     }
                     
                 }
-                self.completionHandler?(true, nil)
                 
+                
+                break
+                
+            case .okNoContentNeeded:
+                    print("Calendar Deleted!")
+                    
+                    DispatchQueue(label: "background").async {
+                        autoreleasepool {
+                            let realm = try! Realm()
+                            
+                            guard let id: Int = Int(self.httpBody) else {
+                                self.completionHandler?(false, "Error deleting...")
+                                return
+                            }
+                            
+                            try! realm.write {
+                                realm.delete(realm.objects(Calendars.self).filter("id=\(id)"))
+                            }
+                            
+                            self.completionHandler?(true, nil)
+                        }
+                    }
+                    
+                    
+                    
                 break
                 
             default:

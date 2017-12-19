@@ -145,17 +145,17 @@ class Event: Object {
 }
 
 
-class Calendars: Object, Codable {
+public class Calendars: Object, Codable {
     
     @objc dynamic var id: Int = 0
     @objc dynamic var name = ""
     @objc dynamic var color: String = ""
     
-    override static func primaryKey() -> String? {
+    override public static func primaryKey() -> String? {
         return "id"
     }
     
-    override static func indexedProperties() -> [String] {
+    override public static func indexedProperties() -> [String] {
         return ["name"]
     }
     
