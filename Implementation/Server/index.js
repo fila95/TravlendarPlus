@@ -3,10 +3,12 @@ const bodyParser = require('body-parser')
 const orm = require('orm')
 const app = express()
 
+/* istanbul ignore else  */
 if(process.env.NODE_ENV!='production') {
     require('dotenv').config()
 }
 
+/* istanbul ignore next  */
 app.set('port', process.env.PORT || 8080)
 app.set('DB_URL', process.env.DATABASE_URL || "postgresql://postgres:postgres@localhost/travlendarplus")
 
