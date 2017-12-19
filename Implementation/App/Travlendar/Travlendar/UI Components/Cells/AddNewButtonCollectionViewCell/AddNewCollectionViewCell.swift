@@ -16,6 +16,9 @@ class AddNewCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var textLabel: UILabel!
     
+    var nrm: UIColor = UIColor.application
+    var sel: UIColor = UIColor.application.darker(by: 20)
+    
     override var isHighlighted: Bool {
         get {
             return super.isHighlighted
@@ -23,10 +26,10 @@ class AddNewCollectionViewCell: UICollectionViewCell {
         set {
             if newValue {
                 super.isHighlighted = true
-                self.backgroundColor = UIColor(hue:0.99, saturation:0.72, brightness:0.90, alpha:1.00)
+                self.backgroundColor = sel
             } else if newValue == false {
                 super.isHighlighted = false
-                self.backgroundColor = UIColor(hue:0.99, saturation:0.72, brightness:0.99, alpha:1.00)
+                self.backgroundColor = nrm
             }
         }
     }
@@ -38,10 +41,10 @@ class AddNewCollectionViewCell: UICollectionViewCell {
         set {
             if newValue {
                 super.isSelected = true
-                self.backgroundColor = UIColor(hue:0.99, saturation:0.72, brightness:0.90, alpha:1.00)
+                self.backgroundColor = sel
             } else if newValue == false {
                 super.isSelected = false
-                self.backgroundColor = UIColor(hue:0.99, saturation:0.72, brightness:0.99, alpha:1.00)
+                self.backgroundColor = nrm
             }
         }
     }

@@ -10,7 +10,6 @@ import Foundation
 
 protocol JSONRepresentable {
     static func representation<T: Codable>(toRepresent: T) -> String?
-    static func fromRepresentation()
 }
 
 
@@ -26,9 +25,6 @@ extension Settings: JSONRepresentable {
         return nil
     }
     
-    static func fromRepresentation() {
-        
-    }
     
     
     

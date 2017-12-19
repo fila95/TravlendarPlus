@@ -67,7 +67,7 @@ public class API: NSObject {
     private var handlers = [(completion: (() -> Void), type: APINotificationType)]()
     
     public func subscribe(type: APINotificationType, completion: @escaping () -> Void) {
-        DispatchQueue.init(label: "io.array").async {
+        DispatchQueue.init(label: "io.array.queue").async {
             self.handlers += [(completion: completion, type: type)]
         }
     }
