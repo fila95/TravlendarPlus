@@ -83,6 +83,11 @@ let timeSlots = (fixedEventList, _flexibleEvent) => {
 			return v.end_time > flexibleEvent.start_time && v.start_time < flexibleEvent.end_time
 		})
 	)
+	
+	// If there isn't any event, the time slot is the entire flexible event
+	if (fixedEventListInWhichSearch.length == 0) {
+		return [{ start_time: flexibleEvent.start_time, end_time: flexibleEvent.end_time }]
+	}
 
 	// If the start of the flexible event is inside an existing fixed event, shift the start to the end of that event
 	let first_fixed_event = fixedEventListInWhichSearch[0]
@@ -101,11 +106,6 @@ let timeSlots = (fixedEventList, _flexibleEvent) => {
 	// If after the shifts, there is no more space, return a null list
 	if (flexibleEvent.end_time - flexibleEvent.start_time < flexibleEvent.duration) {
 		return []
-	}
-
-	// If there isn't any event, the time slot is the entire flexible event
-	if (fixedEventListInWhichSearch.length == 0) {
-		return [{ start_time: flexibleEvent.start_time, end_time: flexibleEvent.end_time }]
 	}
 
 	// Otherwise, search all the time slots
@@ -233,7 +233,7 @@ let getReliableUserLocation = user => {
 	return user.updated_at
 }
 
-router.get('/', (req, res) => {
+router.post('/', (req, res) => {
 	// For each calendar
 	req.user.getCalendars().each((err, calendar) => {
 		// Get all the events of today from the current calendar
@@ -258,7 +258,7 @@ router.get('/', (req, res) => {
 					return (a.end_time - a.start_time) - (b.end_time - b.start_time)
 				})
 
-				// Try to fit in every time slot
+				// Try to fit in each time slot
 				for (let timeSlot of e.timeSlots) {
 					// Supposing that the event will be placed in this time slot,
 					// determine if the event e is reachable

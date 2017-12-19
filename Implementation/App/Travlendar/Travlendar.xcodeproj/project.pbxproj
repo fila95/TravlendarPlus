@@ -29,6 +29,8 @@
 		1E4CB7421FDD4AAF00FA8E52 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4CB7411FDD4AAF00FA8E52 /* TextField.swift */; };
 		1E4CB7441FDD4AFE00FA8E52 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4CB7431FDD4AFE00FA8E52 /* ViewController.swift */; };
 		1E4CB7461FDD4B6700FA8E52 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4CB7451FDD4B6700FA8E52 /* Color.swift */; };
+		1E543BEF1FE8F8B600DC5BE6 /* TabBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E543BEE1FE8F8B600DC5BE6 /* TabBarControllerViewController.swift */; };
+		1E543BF11FE8FA2700DC5BE6 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E543BF01FE8FA2700DC5BE6 /* Utils.swift */; };
 		1E68BB8F1FD6895200ED4765 /* NetworkOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E68BB8E1FD6895200ED4765 /* NetworkOperations.swift */; };
 		1EAA18DF1FC9CE9F001B3612 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAA18DE1FC9CE9F001B3612 /* AppDelegate.swift */; };
 		1EAA18E41FC9CE9F001B3612 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EAA18E21FC9CE9F001B3612 /* Main.storyboard */; };
@@ -48,11 +50,9 @@
 		1EEE56B91FE3DD6D00621599 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE56B81FE3DD6D00621599 /* RoundedButton.swift */; };
 		1EEE56BB1FE3E1AD00621599 /* AddNewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE56BA1FE3E1AD00621599 /* AddNewCollectionViewCell.swift */; };
 		1EEE56BD1FE3E1BE00621599 /* AddNewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EEE56BC1FE3E1BE00621599 /* AddNewCollectionViewCell.xib */; };
-		1EF4E1891FDC5EE800B5BFDC /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF4E1881FDC5EE800B5BFDC /* MainPageViewController.swift */; };
 		1EF4E18B1FDC5F0200B5BFDC /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF4E18A1FDC5F0200B5BFDC /* CalendarViewController.swift */; };
 		1EF4E18D1FDC5F0B00B5BFDC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF4E18C1FDC5F0B00B5BFDC /* MapViewController.swift */; };
 		1EF4E18F1FDC5F1400B5BFDC /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF4E18E1FDC5F1400B5BFDC /* SettingsViewController.swift */; };
-		1EF4E1911FDC602200B5BFDC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF4E1901FDC602200B5BFDC /* MainViewController.swift */; };
 		D69B4B3ECCA048FBC482A9FD /* Pods_Travlendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33D1DA7E3D37B92AEAB2957E /* Pods_Travlendar.framework */; };
 		DE2AB97E8BA02427C6E1DDFF /* Pods_TravlendarTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15DBA3F6C1AAE48C87D98E07 /* Pods_TravlendarTests.framework */; };
 		E8CF5A8A9712AC42A7ECC366 /* Pods_TravlendarUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 266CBB84939490CA830F8898 /* Pods_TravlendarUITests.framework */; };
@@ -100,6 +100,8 @@
 		1E4CB7411FDD4AAF00FA8E52 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		1E4CB7431FDD4AFE00FA8E52 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1E4CB7451FDD4B6700FA8E52 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		1E543BEE1FE8F8B600DC5BE6 /* TabBarControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarControllerViewController.swift; sourceTree = "<group>"; };
+		1E543BF01FE8FA2700DC5BE6 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		1E68BB8E1FD6895200ED4765 /* NetworkOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkOperations.swift; sourceTree = "<group>"; };
 		1EAA18DB1FC9CE9F001B3612 /* Travlendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Travlendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EAA18DE1FC9CE9F001B3612 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -125,11 +127,9 @@
 		1EEE56B81FE3DD6D00621599 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		1EEE56BA1FE3E1AD00621599 /* AddNewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCollectionViewCell.swift; sourceTree = "<group>"; };
 		1EEE56BC1FE3E1BE00621599 /* AddNewCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddNewCollectionViewCell.xib; sourceTree = "<group>"; };
-		1EF4E1881FDC5EE800B5BFDC /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 		1EF4E18A1FDC5F0200B5BFDC /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		1EF4E18C1FDC5F0B00B5BFDC /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		1EF4E18E1FDC5F1400B5BFDC /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		1EF4E1901FDC602200B5BFDC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		26302807732CB24685CE474C /* Pods-Travlendar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Travlendar.release.xcconfig"; path = "Pods/Target Support Files/Pods-Travlendar/Pods-Travlendar.release.xcconfig"; sourceTree = "<group>"; };
 		266CBB84939490CA830F8898 /* Pods_TravlendarUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TravlendarUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		33D1DA7E3D37B92AEAB2957E /* Pods_Travlendar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Travlendar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -259,10 +259,11 @@
 			children = (
 				1E21E8701FCC23730009EFA9 /* Travlendar.entitlements */,
 				1EAA18DE1FC9CE9F001B3612 /* AppDelegate.swift */,
+				1E543BF01FE8FA2700DC5BE6 /* Utils.swift */,
 				1E4CB7301FDD46E500FA8E52 /* Utilities */,
 				1E4B69331FD80ACE00DFFC66 /* UI Components */,
 				1E21E86D1FCC1CA60009EFA9 /* Background Fetch & Server */,
-				1EF4E1921FDC606E00B5BFDC /* PageViewController */,
+				1EF4E1921FDC606E00B5BFDC /* TabBar */,
 				1EF4E1931FDC607D00B5BFDC /* CalendarViewController & Relative */,
 				1EF4E1941FDC608B00B5BFDC /* MapViewController & Relative */,
 				1EF4E1951FDC609A00B5BFDC /* SettingsViewController & Relative */,
@@ -338,13 +339,12 @@
 			path = AddNewButtonCollectionViewCell;
 			sourceTree = "<group>";
 		};
-		1EF4E1921FDC606E00B5BFDC /* PageViewController */ = {
+		1EF4E1921FDC606E00B5BFDC /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				1EF4E1881FDC5EE800B5BFDC /* MainPageViewController.swift */,
-				1EF4E1901FDC602200B5BFDC /* MainViewController.swift */,
+				1E543BEE1FE8F8B600DC5BE6 /* TabBarControllerViewController.swift */,
 			);
-			path = PageViewController;
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 		1EF4E1931FDC607D00B5BFDC /* CalendarViewController & Relative */ = {
@@ -730,6 +730,7 @@
 				1E4CB7401FDD4A9B00FA8E52 /* Alert.swift in Sources */,
 				1E379AB11FE026D200E74DFC /* Date.swift in Sources */,
 				1E4CB73E1FDD4A0F00FA8E52 /* Opener.swift in Sources */,
+				1E543BF11FE8FA2700DC5BE6 /* Utils.swift in Sources */,
 				1E00783E1FE2BA0700FD5405 /* CalendarCell.swift in Sources */,
 				1EEE56A41FE3D17600621599 /* SettingsOperations.swift in Sources */,
 				1E68BB8F1FD6895200ED4765 /* NetworkOperations.swift in Sources */,
@@ -737,7 +738,6 @@
 				1E21E8741FCC24C10009EFA9 /* Location.swift in Sources */,
 				1E4CB7321FDD46F100FA8E52 /* Badge.swift in Sources */,
 				1EEE56BB1FE3E1AD00621599 /* AddNewCollectionViewCell.swift in Sources */,
-				1EF4E1911FDC602200B5BFDC /* MainViewController.swift in Sources */,
 				1EEE56AF1FE3DA0F00621599 /* FeedbackGenerator.swift in Sources */,
 				1E4CB73C1FDD49C300FA8E52 /* Spotlight.swift in Sources */,
 				1EF4E18F1FDC5F1400B5BFDC /* SettingsViewController.swift in Sources */,
@@ -745,10 +745,10 @@
 				1EB2ECE51FCD4EB300A50EC3 /* Database.swift in Sources */,
 				1E4CB7361FDD48E300FA8E52 /* Font.swift in Sources */,
 				1E0078461FE2C09800FD5405 /* SettingsViewController+CollectionView.swift in Sources */,
-				1EF4E1891FDC5EE800B5BFDC /* MainPageViewController.swift in Sources */,
 				1E0078421FE2BCA400FD5405 /* View+Nib.swift in Sources */,
 				1E4CB73A1FDD49B000FA8E52 /* Random.swift in Sources */,
 				1E03BC641FD7FA5F004B411E /* DataModel+Utils.swift in Sources */,
+				1E543BEF1FE8F8B600DC5BE6 /* TabBarControllerViewController.swift in Sources */,
 				1EEE56B91FE3DD6D00621599 /* RoundedButton.swift in Sources */,
 				1E21E86F1FCC22190009EFA9 /* API.swift in Sources */,
 			);

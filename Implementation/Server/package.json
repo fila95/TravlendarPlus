@@ -15,14 +15,14 @@
     "uuid-validate": "0.0.2"
   },
   "devDependencies": {
-    "istanbul": "^1.1.0-alpha.1",
     "mocha": "^4.0.1",
+    "nyc": "^11.3.0",
     "supertest": "^3.0.0",
     "uuid": "^3.1.0"
   },
   "scripts": {
     "start": "node index.js",
     "test": "NODE_ENV=testing mocha --exit",
-    "test-cov": "NODE_ENV=testing istanbul cover _mocha -- --exit"
+    "test-cov": "NODE_ENV=testing nyc --reporter=lcov --reporter=text npm test"
   }
 }

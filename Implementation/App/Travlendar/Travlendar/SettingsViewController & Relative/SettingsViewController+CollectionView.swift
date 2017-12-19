@@ -53,5 +53,16 @@ extension SettingsViewController: UICollectionViewDataSource, UICollectionViewDe
             return CGSize.init(width: 240, height: 50)
         }
     }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        let cellWidth : CGFloat = section == 0 ? 300 : 240
+        
+        let numberOfCells = floor(self.view.frame.size.width / cellWidth)
+        let edgeInsets = (self.view.frame.size.width - (numberOfCells * cellWidth)) / (numberOfCells + 1)
+        
+        return UIEdgeInsetsMake(10, edgeInsets, 10, edgeInsets)
+    }
+    
     
 }

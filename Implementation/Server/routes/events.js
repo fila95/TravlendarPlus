@@ -62,6 +62,8 @@ let eventFactory = req => {
 	if (lat && lng) {
 		event.lat = lat
 		event.lng = lng
+	} else {
+		return null
 	}
 
 	let duration = parseInt(req.body.duration)
@@ -127,12 +129,12 @@ router.patch('/:event_id', (req, res) => {
 			// Copy attribute in eventUpdated to eventTarget
 			for (var property in eventUpdated) {
 				// But not its ID
-				if (property != 'id') {
+				if (property != 'calendar_id') {
 					eventTarget[property] = eventUpdated[property]
 				}
 			}
 			eventTarget.save((err, result) => {
-				if (err) return res.sendStatus(500).end()
+				//if (err) return res.sendStatus(500).end()
 				return res.json(result).end()
 			})
 
