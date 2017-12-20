@@ -26,10 +26,12 @@ class NotificationTokenOperation: NetworkOperation {
             switch status {
             case .okNoContentNeeded:
                 print("NotificationTokenOperation: Received Ok")
+                self.completionHandler?(true, nil)
+                break
                 
             default:
-                self.completionHandler?(false, "Error Status")
                 print("Error NotificationTokenOperation: \n\tStatusCode: \(status)")
+                self.completionHandler?(false, "Error Status")
                 break
                 
             }

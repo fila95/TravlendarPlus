@@ -31,8 +31,6 @@ public class Location: NSObject {
     
     override init() {
         super.init()
-        
-        
     }
     
     public func requestAuthorizationIfNeeded(completion: ((_ success: Bool) -> Void)) {

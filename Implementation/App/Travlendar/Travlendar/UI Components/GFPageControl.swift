@@ -98,7 +98,6 @@ class GFPageControl: UIControl {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         updateContainerFrame()
     }
     

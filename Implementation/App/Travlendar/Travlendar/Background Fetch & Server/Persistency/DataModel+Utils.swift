@@ -24,31 +24,19 @@ extension Settings: JSONRepresentable {
         
         return nil
     }
-    
-    
-    
-    
 
 }
 
-
-/*
-get {
-    guard let s = UserDefaults.standard.string(forKey: "settings") else { return nil }
-    guard let data = s.data(using: .utf8) else { return nil }
+extension Calendars: JSONRepresentable {
     
-    let decoder = JSONDecoder()
-    decoder.dateDecodingStrategy = .formatted(Formatter.time)
-    return try! decoder.decode(Settings.self, from: data)
-}
-set (newValue) {
-    guard let s = newValue else {
-        return
+    static func representation<T>(toRepresent: T) -> String? where T : Codable {
+        if toRepresent is Calendars {
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .formatted(Formatter.iso8601)
+            return String.init(data: try! encoder.encode(toRepresent), encoding: .utf8)
+        }
+        
+        return nil
     }
-    let encoder = JSONEncoder()
-    encoder.dateEncodingStrategy = .formatted(Formatter.time)
     
-    UserDefaults.standard.set(String.init(data: try! encoder.encode(s), encoding: .utf8), forKey: "settings")
-    UserDefaults.standard.synchronize()
 }
-*/

@@ -50,6 +50,26 @@
                ReferencedContainer = "container:Travlendar.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1E6DB07D1FEA4A310051319E"
+               BuildableName = "CalendarKitTests.xctest"
+               BlueprintName = "CalendarKitTests"
+               ReferencedContainer = "container:Travlendar.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1E6DB0A21FEA4AD30051319E"
+               BuildableName = "DatePickerTests.xctest"
+               BlueprintName = "DatePickerTests"
+               ReferencedContainer = "container:Travlendar.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

@@ -32,6 +32,14 @@
 		1E543BEF1FE8F8B600DC5BE6 /* TabBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E543BEE1FE8F8B600DC5BE6 /* TabBarControllerViewController.swift */; };
 		1E543BF11FE8FA2700DC5BE6 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E543BF01FE8FA2700DC5BE6 /* Utils.swift */; };
 		1E68BB8F1FD6895200ED4765 /* NetworkOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E68BB8E1FD6895200ED4765 /* NetworkOperations.swift */; };
+		1E6DB0A41FEA4AD30051319E /* DatePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6DB09B1FEA4AD30051319E /* DatePicker.framework */; };
+		1E6DB0AB1FEA4AD30051319E /* DatePickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6DB0AA1FEA4AD30051319E /* DatePickerTests.swift */; };
+		1E6DB0AD1FEA4AD30051319E /* DatePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E6DB09D1FEA4AD30051319E /* DatePicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1E6DB0B01FEA4AD30051319E /* DatePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6DB09B1FEA4AD30051319E /* DatePicker.framework */; };
+		1E6DB0B11FEA4AD30051319E /* DatePicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6DB09B1FEA4AD30051319E /* DatePicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1E6DB0B81FEA4AE20051319E /* Date+Stripped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6DB0941FEA4A660051319E /* Date+Stripped.swift */; };
+		1E6DB0BA1FEA4B030051319E /* DPDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6DB0B91FEA4B030051319E /* DPDay.swift */; };
+		1E6DB0BC1FEA4B230051319E /* DPEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6DB0BB1FEA4B230051319E /* DPEnums.swift */; };
 		1EAA18DF1FC9CE9F001B3612 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAA18DE1FC9CE9F001B3612 /* AppDelegate.swift */; };
 		1EAA18E41FC9CE9F001B3612 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EAA18E21FC9CE9F001B3612 /* Main.storyboard */; };
 		1EAA18E91FC9CE9F001B3612 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EAA18E81FC9CE9F001B3612 /* Assets.xcassets */; };
@@ -59,6 +67,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		1E6DB0A51FEA4AD30051319E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1EAA18D31FC9CE9F001B3612 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1E6DB09A1FEA4AD30051319E;
+			remoteInfo = DatePicker;
+		};
+		1E6DB0A71FEA4AD30051319E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1EAA18D31FC9CE9F001B3612 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1EAA18DA1FC9CE9F001B3612;
+			remoteInfo = Travlendar;
+		};
+		1E6DB0AE1FEA4AD30051319E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1EAA18D31FC9CE9F001B3612 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1E6DB09A1FEA4AD30051319E;
+			remoteInfo = DatePicker;
+		};
 		1EAA18F31FC9CEA0001B3612 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1EAA18D31FC9CE9F001B3612 /* Project object */;
@@ -74,6 +103,20 @@
 			remoteInfo = Travlendar;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1E6DB0901FEA4A310051319E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1E6DB0B11FEA4AD30051319E /* DatePicker.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		15DBA3F6C1AAE48C87D98E07 /* Pods_TravlendarTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TravlendarTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +146,15 @@
 		1E543BEE1FE8F8B600DC5BE6 /* TabBarControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarControllerViewController.swift; sourceTree = "<group>"; };
 		1E543BF01FE8FA2700DC5BE6 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		1E68BB8E1FD6895200ED4765 /* NetworkOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkOperations.swift; sourceTree = "<group>"; };
+		1E6DB0941FEA4A660051319E /* Date+Stripped.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Stripped.swift"; sourceTree = "<group>"; };
+		1E6DB09B1FEA4AD30051319E /* DatePicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DatePicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E6DB09D1FEA4AD30051319E /* DatePicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatePicker.h; sourceTree = "<group>"; };
+		1E6DB09E1FEA4AD30051319E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E6DB0A31FEA4AD30051319E /* DatePickerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DatePickerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E6DB0AA1FEA4AD30051319E /* DatePickerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerTests.swift; sourceTree = "<group>"; };
+		1E6DB0AC1FEA4AD30051319E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E6DB0B91FEA4B030051319E /* DPDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPDay.swift; sourceTree = "<group>"; };
+		1E6DB0BB1FEA4B230051319E /* DPEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPEnums.swift; sourceTree = "<group>"; };
 		1EAA18DB1FC9CE9F001B3612 /* Travlendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Travlendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EAA18DE1FC9CE9F001B3612 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EAA18E31FC9CE9F001B3612 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -141,11 +193,27 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1E6DB0971FEA4AD30051319E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E6DB0A01FEA4AD30051319E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E6DB0A41FEA4AD30051319E /* DatePicker.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1EAA18D81FC9CE9F001B3612 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				1E21E8721FCC238F0009EFA9 /* MapKit.framework in Frameworks */,
+				1E6DB0B01FEA4AD30051319E /* DatePicker.framework in Frameworks */,
 				D69B4B3ECCA048FBC482A9FD /* Pods_Travlendar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -232,12 +300,43 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		1E6DB09C1FEA4AD30051319E /* DatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				1E6DB0BD1FEA4BE10051319E /* Utils */,
+				1E6DB09D1FEA4AD30051319E /* DatePicker.h */,
+				1E6DB09E1FEA4AD30051319E /* Info.plist */,
+			);
+			path = DatePicker;
+			sourceTree = "<group>";
+		};
+		1E6DB0A91FEA4AD30051319E /* DatePickerTests */ = {
+			isa = PBXGroup;
+			children = (
+				1E6DB0AA1FEA4AD30051319E /* DatePickerTests.swift */,
+				1E6DB0AC1FEA4AD30051319E /* Info.plist */,
+			);
+			path = DatePickerTests;
+			sourceTree = "<group>";
+		};
+		1E6DB0BD1FEA4BE10051319E /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				1E6DB0941FEA4A660051319E /* Date+Stripped.swift */,
+				1E6DB0B91FEA4B030051319E /* DPDay.swift */,
+				1E6DB0BB1FEA4B230051319E /* DPEnums.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		1EAA18D21FC9CE9F001B3612 = {
 			isa = PBXGroup;
 			children = (
 				1EAA18DD1FC9CE9F001B3612 /* Travlendar */,
 				1EAA18F51FC9CEA0001B3612 /* TravlendarTests */,
 				1EAA19001FC9CEA0001B3612 /* TravlendarUITests */,
+				1E6DB09C1FEA4AD30051319E /* DatePicker */,
+				1E6DB0A91FEA4AD30051319E /* DatePickerTests */,
 				1EAA18DC1FC9CE9F001B3612 /* Products */,
 				25EEC440DCEEC54B82171ADC /* Pods */,
 				85FECD4C4125785F04191F7B /* Frameworks */,
@@ -250,6 +349,8 @@
 				1EAA18DB1FC9CE9F001B3612 /* Travlendar.app */,
 				1EAA18F21FC9CEA0001B3612 /* TravlendarTests.xctest */,
 				1EAA18FD1FC9CEA0001B3612 /* TravlendarUITests.xctest */,
+				1E6DB09B1FEA4AD30051319E /* DatePicker.framework */,
+				1E6DB0A31FEA4AD30051319E /* DatePickerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -399,7 +500,55 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		1E6DB0981FEA4AD30051319E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E6DB0AD1FEA4AD30051319E /* DatePicker.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		1E6DB09A1FEA4AD30051319E /* DatePicker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1E6DB0B21FEA4AD30051319E /* Build configuration list for PBXNativeTarget "DatePicker" */;
+			buildPhases = (
+				1E6DB0961FEA4AD30051319E /* Sources */,
+				1E6DB0971FEA4AD30051319E /* Frameworks */,
+				1E6DB0981FEA4AD30051319E /* Headers */,
+				1E6DB0991FEA4AD30051319E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DatePicker;
+			productName = DatePicker;
+			productReference = 1E6DB09B1FEA4AD30051319E /* DatePicker.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		1E6DB0A21FEA4AD30051319E /* DatePickerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1E6DB0B51FEA4AD30051319E /* Build configuration list for PBXNativeTarget "DatePickerTests" */;
+			buildPhases = (
+				1E6DB09F1FEA4AD30051319E /* Sources */,
+				1E6DB0A01FEA4AD30051319E /* Frameworks */,
+				1E6DB0A11FEA4AD30051319E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1E6DB0A61FEA4AD30051319E /* PBXTargetDependency */,
+				1E6DB0A81FEA4AD30051319E /* PBXTargetDependency */,
+			);
+			name = DatePickerTests;
+			productName = DatePickerTests;
+			productReference = 1E6DB0A31FEA4AD30051319E /* DatePickerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		1EAA18DA1FC9CE9F001B3612 /* Travlendar */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1EAA19061FC9CEA0001B3612 /* Build configuration list for PBXNativeTarget "Travlendar" */;
@@ -410,10 +559,12 @@
 				1EAA18D91FC9CE9F001B3612 /* Resources */,
 				6A91B2D7398A4CE54A25FED1 /* [CP] Embed Pods Frameworks */,
 				B63C4EFEF9D62B61E0215C46 /* [CP] Copy Pods Resources */,
+				1E6DB0901FEA4A310051319E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				1E6DB0AF1FEA4AD30051319E /* PBXTargetDependency */,
 			);
 			name = Travlendar;
 			productName = Travlendar;
@@ -468,10 +619,19 @@
 		1EAA18D31FC9CE9F001B3612 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0900;
+				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Giovanni Filaferro";
 				TargetAttributes = {
+					1E6DB09A1FEA4AD30051319E = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					1E6DB0A21FEA4AD30051319E = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 1EAA18DA1FC9CE9F001B3612;
+					};
 					1EAA18DA1FC9CE9F001B3612 = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
@@ -521,11 +681,27 @@
 				1EAA18DA1FC9CE9F001B3612 /* Travlendar */,
 				1EAA18F11FC9CEA0001B3612 /* TravlendarTests */,
 				1EAA18FC1FC9CEA0001B3612 /* TravlendarUITests */,
+				1E6DB09A1FEA4AD30051319E /* DatePicker */,
+				1E6DB0A21FEA4AD30051319E /* DatePickerTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1E6DB0991FEA4AD30051319E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E6DB0A11FEA4AD30051319E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1EAA18D91FC9CE9F001B3612 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -709,6 +885,24 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1E6DB0961FEA4AD30051319E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E6DB0BA1FEA4B030051319E /* DPDay.swift in Sources */,
+				1E6DB0B81FEA4AE20051319E /* Date+Stripped.swift in Sources */,
+				1E6DB0BC1FEA4B230051319E /* DPEnums.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E6DB09F1FEA4AD30051319E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E6DB0AB1FEA4AD30051319E /* DatePickerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1EAA18D71FC9CE9F001B3612 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -773,6 +967,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		1E6DB0A61FEA4AD30051319E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1E6DB09A1FEA4AD30051319E /* DatePicker */;
+			targetProxy = 1E6DB0A51FEA4AD30051319E /* PBXContainerItemProxy */;
+		};
+		1E6DB0A81FEA4AD30051319E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1EAA18DA1FC9CE9F001B3612 /* Travlendar */;
+			targetProxy = 1E6DB0A71FEA4AD30051319E /* PBXContainerItemProxy */;
+		};
+		1E6DB0AF1FEA4AD30051319E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1E6DB09A1FEA4AD30051319E /* DatePicker */;
+			targetProxy = 1E6DB0AE1FEA4AD30051319E /* PBXContainerItemProxy */;
+		};
 		1EAA18F41FC9CEA0001B3612 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1EAA18DA1FC9CE9F001B3612 /* Travlendar */;
@@ -805,6 +1014,90 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		1E6DB0B31FEA4AD30051319E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 498K6C2R6K;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = DatePicker/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.giovannifilaferro.DatePicker;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		1E6DB0B41FEA4AD30051319E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 498K6C2R6K;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = DatePicker/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.giovannifilaferro.DatePicker;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		1E6DB0B61FEA4AD30051319E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = DatePickerTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.giovannifilaferro.DatePickerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Travlendar.app/Travlendar";
+			};
+			name = Debug;
+		};
+		1E6DB0B71FEA4AD30051319E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = DatePickerTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.giovannifilaferro.DatePickerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Travlendar.app/Travlendar";
+			};
+			name = Release;
+		};
 		1EAA19041FC9CEA0001B3612 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -916,6 +1209,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FDF144E842DA787977E7D296 /* Pods-Travlendar.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Travlendar/Travlendar.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -933,6 +1227,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 26302807732CB24685CE474C /* Pods-Travlendar.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Travlendar/Travlendar.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -1019,6 +1314,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1E6DB0B21FEA4AD30051319E /* Build configuration list for PBXNativeTarget "DatePicker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E6DB0B31FEA4AD30051319E /* Debug */,
+				1E6DB0B41FEA4AD30051319E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1E6DB0B51FEA4AD30051319E /* Build configuration list for PBXNativeTarget "DatePickerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E6DB0B61FEA4AD30051319E /* Debug */,
+				1E6DB0B71FEA4AD30051319E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		1EAA18D61FC9CE9F001B3612 /* Build configuration list for PBXProject "Travlendar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
