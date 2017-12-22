@@ -750,7 +750,7 @@ In this section, the developing team states those goals/features described
  on the RASD that are implemented within the first release of the project
  and those that will (possibly) be implemented in the following updates.
  The first set of functionalities are those considered essential for engaging
- new users.
+ new users and therefore creating a costumer base.
 \end_layout
 
 \begin_layout Subsection
@@ -759,7 +759,7 @@ First release of Travlendar+
 
 \begin_layout Standard
 As first release of the application, the developing team ensures to meet
- the following features:
+ the following requirements:
 \end_layout
 
 \begin_layout Itemize
@@ -878,6 +878,15 @@ As first release of the application, the developing team ensures to meet
  transits
 \end_layout
 
+\begin_layout Itemize
+[G6.6][R25] Allow users to set if they own a car and/or their favorite car
+ sharing providers
+\end_layout
+
+\begin_layout Itemize
+[G6.7][R26] Allow users to set the preferred ride sharing services
+\end_layout
+
 \end_deeper
 \begin_layout Itemize
 [G7][R27][R28] Allow the users to create calendars
@@ -936,20 +945,6 @@ Per ultimo
  scheduling
 \end_layout
 
-\begin_layout Itemize
-[G6.4] Allow users to set the owned bike and/or bike sharing providers.
- Chosen not to be developed for the same reason of before
-\end_layout
-
-\begin_layout Itemize
-[G6.6] Allow users to set if they own a car and/or their favorite car sharing
- providers
-\end_layout
-
-\begin_layout Itemize
-[G6.7][R26] Allow users to set the preferred ride sharing services
-\end_layout
-
 \begin_layout Standard
 A second release of the application will eventually include the above mentioned
  requirements.
@@ -966,16 +961,80 @@ Furthermore we believe that an incremental update of the app with additional
 Adopted development frameworks
 \end_layout
 
-\begin_layout Subsubsection
-Adopted programming languages (advantages and disadvantages)
+\begin_layout Standard
+In this section the developing team describes the framework used, adopted
+ programming languages, eventual middleware and API not included in the
+ DD
 \end_layout
 
 \begin_layout Subsubsection
-Middleware adopted (advantages and disadvantage)
+Client side
+\end_layout
+
+\begin_layout Standard
+The client application is designed to be used on 
+\emph on
+iOS
+\emph default
+ smartphones (iPhones).
+ The code was build using Apple's proprietary editor and compiler 
+\emph on
+XCode
+\emph default
+ and tested with 
+\emph on
+XCTest
+\emph default
+, a library developed by the same company, to create and run test units.
+ The app was written using 
+\emph on
+Swift
+\emph default
+ as programming language.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+MapKit
+\emph default
+ was used to display maps and satellite imagery directly on the app's interface.
+ This framework was also used to provide points of interest on the map.
+\end_layout
+
+\begin_layout Standard
+Moreover, 
+\emph on
+CocoaPods
+\emph default
+ was used to manage the dependency in order to have improve scalability
+ performance as well as elegantly code.
+\end_layout
+
+\begin_layout Standard
+Finally, the client side database used is 
+\emph on
+Realm
+\emph default
+, a reactive lightweight DBMS to that allows the app to work seamlessly
+ in weak signal and offline scenarios.
+ It was chosen to be the main local DBMS thanks to its setup simplicity
+ and highly compatibility with iOS systems.
+\end_layout
+
+\begin_layout Standard
+Generally, the use of the above mentioned development frameworks allowed
+ to have a better implementation of the code written and highly performance
+ in term of speed and battery life.
+ As drawback we recognize the highly specified platform used to developed
+ the application, hence low portability, which means that if a future developmen
+t includes an expansion towards other smartphone operational system the
+ app would have to be reengineered.
+ 
 \end_layout
 
 \begin_layout Subsubsection
-API not included in the DD
+Server side
 \end_layout
 
 \begin_layout Subsection
@@ -991,7 +1050,7 @@ As described in the Design Document, Travlendar+ is composed of a two tier
 \begin_layout Standard
 The application developed for the iOS platform's smartphones (iPhone) could
  be uploaded on the App Store in order to let the final user to install
- it on their smartphone
+ it on their smartphone.
 \end_layout
 
 \begin_layout Standard
