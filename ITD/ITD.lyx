@@ -128,7 +128,7 @@ Link to the iOS App:
 status open
 
 \begin_layout Plain Layout
-TO ADD
+LINKARE L'APP QUI E NELLA SEZIONE INSTALLAZIONE
 \end_layout
 
 \end_inset
@@ -999,8 +999,7 @@ The client application is designed to be utilized on
 iOS
 \emph default
  smartphones (iPhones).
- The code was build using Apple's proprietary editor, linker and compiler
- 
+ The code was build using Apple's proprietary IDE 
 \emph on
 XCode
 \emph default
@@ -1164,12 +1163,6 @@ As described in the Design Document, Travlendar+ is composed of a two tier
 \end_layout
 
 \begin_layout Standard
-The application developed for the iOS platform's smartphones (iPhone) could
- be uploaded on the App Store in order to let the final user to install
- it on their smartphone.
-\end_layout
-
-\begin_layout Standard
 The developed code, divided by type of implementation (Client/Server) is
  available below.
  Information on how run the code shown below are available in the next sectio
@@ -1197,6 +1190,179 @@ Development frameworks adopted
 
 \begin_layout Subsection
 Installation instructions
+\end_layout
+
+\begin_layout Subsubsection
+App installation
+\end_layout
+
+\begin_layout Standard
+The application is already compiled and published on Apple's App Store.
+ It can be downloaded from the App Store by searching 
+\emph on
+Travlendar+
+\emph default
+ or following this link: 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+LINKARE L'APP QUI E IN PRIMA PAGINA
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Please note that the application is compatible only with iOS platform's
+ smartphones (iPhone).
+\end_layout
+
+\begin_layout Paragraph
+Compiling instruction
+\end_layout
+
+\begin_layout Standard
+In case the reader would like to compile the app:
+\end_layout
+
+\begin_layout Enumerate
+Download and install 
+\emph on
+XCode
+\emph default
+: 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://developer.apple.com/xcode/ide/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Download the App package from the zip(s) attached to this file or 
+\emph on
+git clone
+\emph default
+ the code from the production repository
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Could require authentication process
+\end_layout
+
+\end_inset
+
+: 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+https://github.com/fila95/CalzavaraFilaferroNespoli/tree/master/Implementation/Ap
+p/Travlendar
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Import the project 
+\begin_inset Quotes eld
+\end_inset
+
+Travlendar+
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Product >> Run to compile
+\end_layout
+
+\begin_layout Subsubsection
+Server installation
+\end_layout
+
+\begin_layout Enumerate
+Download and install 
+\emph on
+NodeJS
+\emph default
+ from the official NodeJS website: 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://nodejs.org/en/download/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Install 
+\emph on
+npm
+\emph default
+ (packet manager) by following this guide: 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://docs.npmjs.com/getting-started/installing-node
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Download the Server package from the zip(s) attached to this file or 
+\emph on
+git clone
+\emph default
+ the code from the production repository
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Could require an authentication process
+\end_layout
+
+\end_inset
+
+: 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+https://github.com/fila95/CalzavaraFilaferroNespoli/tree/master/Implementation/Se
+rver
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
