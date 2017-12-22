@@ -957,7 +957,7 @@ Furthermore we believe that an incremental update of the app with additional
  value of the product.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Adopted development frameworks
 \end_layout
 
@@ -989,7 +989,7 @@ Gitential
  documentation time) and the code volume.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Client side
 \end_layout
 
@@ -1056,7 +1056,7 @@ t includes an expansion towards other smartphone operational system the
  
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Server side
 \end_layout
 
@@ -1154,7 +1154,7 @@ The main advantage the frameworks and the middleware adopted is represented
  However, this implies losing part of code's control.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Structure of the source code
 \end_layout
 
@@ -1179,22 +1179,22 @@ Regarding the server side ...
 \end_layout
 
 \begin_layout Subsection
-Client side implementation (iOS App)
+Client side
 \end_layout
 
 \begin_layout Subsection
-Server side implementation (NodeJs)
+Server side
 \end_layout
 
-\begin_layout Subsection
-Development frameworks adopted
+\begin_layout Section
+Testing
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Installation instructions
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 App installation
 \end_layout
 
@@ -1222,8 +1222,8 @@ Please note that the application is compatible only with iOS platform's
  smartphones (iPhone).
 \end_layout
 
-\begin_layout Paragraph
-Compiling instruction
+\begin_layout Subsubsection
+Compiling instructions
 \end_layout
 
 \begin_layout Standard
@@ -1295,7 +1295,7 @@ Travlendar+
 Product >> Run to compile
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Server installation
 \end_layout
 
@@ -1370,10 +1370,6 @@ npm start
 
 \begin_layout Standard
 Please verify that an instance of PostgreSQL is running on port 5432.
-\end_layout
-
-\begin_layout Section
-Testing
 \end_layout
 
 \begin_layout Standard
