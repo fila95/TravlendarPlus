@@ -49,7 +49,8 @@ app.disable('x-powered-by')
 /* istanbul ignore if  */
 if (require.main === module) {
     let server = app.listen(app.get('port'), () => {
-        console.log("Listening on :" + app.get('port'))
+        console.log("------ Travlendar+ Server ------")
+        console.log("Listening on port: " + app.get('port'))
     })
 } else {
     module.exports = app
