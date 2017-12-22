@@ -1071,7 +1071,9 @@ JavaScript V8 Runtime
 \emph default
 .
  This solution was chosen because of the its ability to provide asynchronous
- event driven I/O APIs and the simplicity of set up.
+ event driven I/O APIs, the simplicity of set up the lightweight that it
+ implies and its ability achieve great horizontal scalability though multiple
+ instances.
  Node is also an open source platform.
 \end_layout
 
@@ -1080,7 +1082,7 @@ Above all,
 \emph on
 npm
 \emph default
- was used as package manager for JavaScript.
+ was used as package manager for NodeJS.
  It allows to manage dependencies and packages within the project boundaries.
 \end_layout
 
@@ -1104,11 +1106,11 @@ body-parser
 \end_layout
 
 \begin_layout Standard
-Moreover, as described on the Design Document, the developing team as chosen
+Moreover, as described on the Design Document, the developing team has chosen
  to use PostgreSQL as online database.
  An 
 \emph on
-Orm
+ORM
 \emph default
  framework called 
 \emph on
@@ -1317,25 +1319,6 @@ https://nodejs.org/en/download/
 \end_layout
 
 \begin_layout Enumerate
-Install 
-\emph on
-npm
-\emph default
- (packet manager) by following this guide: 
-\begin_inset Flex URL
-status open
-
-\begin_layout Plain Layout
-
-https://docs.npmjs.com/getting-started/installing-node
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
 Download the Server package from the zip(s) attached to this file or 
 \emph on
 git clone
@@ -1352,7 +1335,7 @@ Could require an authentication process
 
 : 
 \begin_inset Flex URL
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1365,8 +1348,32 @@ rver
 
 \end_layout
 
+\begin_layout Enumerate
+Open the command line at the Server's folder 
+\end_layout
+
+\begin_layout Enumerate
+Type 
+\emph on
+npm install
+\emph default
+ to automatically install dependencies
+\end_layout
+
+\begin_layout Enumerate
+Type 
+\emph on
+npm start
+\emph default
+ to start the Server Application
+\end_layout
+
+\begin_layout Standard
+Please verify that an instance of PostgreSQL is running on port 5432.
+\end_layout
+
 \begin_layout Section
-Test
+Testing
 \end_layout
 
 \begin_layout Standard
@@ -1381,15 +1388,15 @@ Effort spent
 \end_layout
 
 \begin_layout Itemize
-Filippo Calzavara: 2.00h
+Filippo Calzavara: 4.00h
 \end_layout
 
 \begin_layout Itemize
-Giovanni Filaferro: 2.00h
+Giovanni Filaferro: 3.00h
 \end_layout
 
 \begin_layout Itemize
-Benedetto Maria Nespoli: 2.00h
+Benedetto Maria Nespoli: 3.00h
 \end_layout
 
 \end_body
