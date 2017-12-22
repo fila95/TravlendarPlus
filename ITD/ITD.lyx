@@ -972,20 +972,22 @@ Client side
 \end_layout
 
 \begin_layout Standard
-The client application is designed to be used on 
+The client application is designed to be utilized on 
 \emph on
 iOS
 \emph default
  smartphones (iPhones).
- The code was build using Apple's proprietary editor and compiler 
+ The code was build using Apple's proprietary editor, linker and compiler
+ 
 \emph on
 XCode
 \emph default
- and tested with 
+ hence tested with 
 \emph on
 XCTest
 \emph default
-, a library developed by the same company, to create and run test units.
+, a library developed by the same company that allows to create and run
+ test units.
  The app was written using 
 \emph on
 Swift
@@ -996,15 +998,6 @@ Swift
 \begin_layout Standard
 
 \emph on
-MapKit
-\emph default
- was used to display maps and satellite imagery directly on the app's interface.
- This framework was also used to provide points of interest on the map.
-\end_layout
-
-\begin_layout Standard
-Moreover, 
-\emph on
 CocoaPods
 \emph default
  was used to manage the dependency in order to have improve scalability
@@ -1012,7 +1005,16 @@ CocoaPods
 \end_layout
 
 \begin_layout Standard
-Finally, the client side database used is 
+Moreover
+\emph on
+, MapKit
+\emph default
+ was used to display maps and satellite imagery directly on the app's interface.
+ This framework was also used to provide points of interest on the map.
+\end_layout
+
+\begin_layout Standard
+Finally, the client side database is based on 
 \emph on
 Realm
 \emph default
@@ -1035,6 +1037,98 @@ t includes an expansion towards other smartphone operational system the
 
 \begin_layout Subsubsection
 Server side
+\end_layout
+
+\begin_layout Standard
+The server side application is written in 
+\emph on
+NodeJS
+\emph default
+, a server environment wrapped over 
+\emph on
+JavaScript V8 Runtime
+\emph default
+.
+ This solution was chosen because of the its ability to provide asynchronous
+ event driven I/O APIs and the simplicity of set up.
+ Node is also an open source platform.
+\end_layout
+
+\begin_layout Standard
+Above all, 
+\emph on
+npm
+\emph default
+ was used as package manager for JavaScript.
+ It allows to manage dependencies and packages within the project boundaries.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Express
+\emph default
+ was used as web framework.
+ This library provides a robust set of features for web and mobile applications,
+ as well as the ability of creating robust API quickly and easily.
+\end_layout
+
+\begin_layout Standard
+Also, because of its use simplicity, the 
+\emph on
+body-parser
+\emph default
+ library was used to parse incoming request bodies in a middleware before
+ handling the request
+\end_layout
+
+\begin_layout Standard
+Moreover, as described on the Design Document, the developing team as chosen
+ to use PostgreSQL as online database.
+ An 
+\emph on
+Orm
+\emph default
+ framework called 
+\emph on
+node-orm2
+\emph default
+ was utilized to create an object relational mapping of the data that allowed
+ to threat them with object-oriented alike programming within the software.
+ The module 
+\emph on
+node-apn
+\emph default
+ was used to communicate with Apple Push Notification.
+\end_layout
+
+\begin_layout Standard
+Finally, for the testing part was used 
+\emph on
+node-supertest
+\emph default
+, a node's framework that provides a high-level abstraction for testing
+ HTTP requests, the 
+\emph on
+crypto
+\emph default
+ library was used to generate random access token and 
+\emph on
+node-uuidv4
+\emph default
+ was used to create testing user tokens.
+ For debug purposes a 
+\emph on
+logger
+\emph default
+ middleware was used to track API requests.
+ 
+\end_layout
+
+\begin_layout Standard
+The main advantage the frameworks and the middleware adopted is represented
+ by the maintainability and reliability of such Open Source modules.
+ However, this implies losing part of code's control.
 \end_layout
 
 \begin_layout Subsection
@@ -1085,6 +1179,19 @@ Installation instructions
 
 \begin_layout Section
 Test
+\end_layout
+
+\begin_layout Standard
+As external tools, 
+\emph on
+Trevis CI
+\emph default
+ was used to test and deploy the code.
+ 
+\emph on
+Codecov
+\emph default
+ and 
 \end_layout
 
 \begin_layout Standard
