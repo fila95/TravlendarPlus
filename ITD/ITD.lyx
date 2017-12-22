@@ -962,9 +962,31 @@ Adopted development frameworks
 \end_layout
 
 \begin_layout Standard
-In this section the developing team describes the framework used, adopted
- programming languages, eventual middleware and API not included in the
- DD
+In this section the developing team describes more in depth the frameworks
+ used, adopted programming languages and eventual middleware, dividing the
+ client implementation with the server implementation.
+\end_layout
+
+\begin_layout Standard
+Above all, on top of these two system, the developing team as used some
+ external tools to check and balance the developing process: 
+\emph on
+Trevis CI
+\emph default
+ to test and deploy the code, 
+\emph on
+Codecov
+\emph default
+ to check the test coverage client side and server side, 
+\emph on
+Codeclimate
+\emph default
+ to index the level of maintainability of the code, and finally 
+\emph on
+Gitential
+\emph default
+ to check the coding hours needed to develop this project (without listing
+ documentation time) and the code volume.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1179,19 +1201,6 @@ Installation instructions
 
 \begin_layout Section
 Test
-\end_layout
-
-\begin_layout Standard
-As external tools, 
-\emph on
-Trevis CI
-\emph default
- was used to test and deploy the code.
- 
-\emph on
-Codecov
-\emph default
- and 
 \end_layout
 
 \begin_layout Standard
