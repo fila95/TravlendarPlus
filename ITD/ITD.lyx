@@ -426,7 +426,7 @@ Acronyms
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="8" columns="2">
+<lyxtabular version="3" rows="6" columns="2">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -445,46 +445,6 @@ Acronym
 
 \begin_layout Plain Layout
 Explanation
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-GUI
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Graphic User Interface
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-ETA
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Estimated time of arrival
 \end_layout
 
 \end_inset
@@ -535,7 +495,7 @@ Requirement Analysis and Specification Document
 \begin_inset Text
 
 \begin_layout Plain Layout
-PNR
+OS
 \end_layout
 
 \end_inset
@@ -544,7 +504,7 @@ PNR
 \begin_inset Text
 
 \begin_layout Plain Layout
-Passenger name record
+Operative System
 \end_layout
 
 \end_inset
@@ -555,7 +515,7 @@ Passenger name record
 \begin_inset Text
 
 \begin_layout Plain Layout
-QR
+APN
 \end_layout
 
 \end_inset
@@ -564,7 +524,7 @@ QR
 \begin_inset Text
 
 \begin_layout Plain Layout
-Quick Response Code
+Apple Push Notification
 \end_layout
 
 \end_inset
@@ -575,7 +535,7 @@ Quick Response Code
 \begin_inset Text
 
 \begin_layout Plain Layout
-OS
+
 \end_layout
 
 \end_inset
@@ -584,7 +544,7 @@ OS
 \begin_inset Text
 
 \begin_layout Plain Layout
-Operative System
+
 \end_layout
 
 \end_inset
@@ -1161,29 +1121,57 @@ Structure of the source code
 \begin_layout Standard
 As described in the Design Document, Travlendar+ is composed of a two tier
  architecture with distributed data and logic.
- 
-\end_layout
-
-\begin_layout Standard
-The developed code, divided by type of implementation (Client/Server) is
- available below.
- Information on how run the code shown below are available in the next sectio
-\end_layout
-
-\begin_layout Standard
-For the Client side we developed ...
-\end_layout
-
-\begin_layout Standard
-Regarding the server side ...
+ The developed code follows different structure depending on tier analized
 \end_layout
 
 \begin_layout Subsection
 Client side
 \end_layout
 
+\begin_layout Standard
+The source code is
+\end_layout
+
 \begin_layout Subsection
 Server side
+\end_layout
+
+\begin_layout Standard
+On path 
+\emph on
+/Implementation/Server
+\emph default
+ the code of the NodeJS server is available.
+ The folder contains a file: 
+\emph on
+index.js
+\emph default
+ all startup functions and connection to the database.
+ Another file called 
+\emph on
+model.js
+\emph default
+ contains the model of the database (ORM).
+ The file 
+\emph on
+auth.js
+\emph default
+ contains the middleware that authenticate the API request only if access_token
+ is valid, and will eventually truncate the connection with a 401 or 403
+ error code if access_token is invalid/missing.
+ Also 
+\emph on
+sendNotification.js 
+\emph default
+contains the code to connect at APN.
+\end_layout
+
+\begin_layout Standard
+The folder 
+\emph on
+routes
+\emph default
+ contains all the routing endpoints of the API calls, executed though Express.
 \end_layout
 
 \begin_layout Section
