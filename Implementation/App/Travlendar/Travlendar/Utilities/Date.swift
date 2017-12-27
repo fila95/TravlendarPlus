@@ -28,6 +28,7 @@ extension Formatter {
 
 
 extension Date {
+    
     var startOfDay: Date {
         return NSCalendar.current.startOfDay(for: self)
     }
@@ -38,4 +39,5 @@ extension Date {
         components.second = -1
         return NSCalendar.current.date(byAdding: components, to: startOfDay)
     }
+    
 }
