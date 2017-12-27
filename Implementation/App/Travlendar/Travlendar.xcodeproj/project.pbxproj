@@ -389,6 +389,17 @@
 			path = CalendarPickerView;
 			sourceTree = "<group>";
 		};
+		1E98CB8E1FF3CB3B006DCF7F /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1EF4E1921FDC606E00B5BFDC /* TabBar */,
+				1EF4E1931FDC607D00B5BFDC /* CalendarViewController & Relative */,
+				1EF4E1941FDC608B00B5BFDC /* MapViewController & Relative */,
+				1EF4E1951FDC609A00B5BFDC /* SettingsViewController & Relative */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
 		1EAA18D21FC9CE9F001B3612 = {
 			isa = PBXGroup;
 			children = (
@@ -424,10 +435,7 @@
 				1E4CB7301FDD46E500FA8E52 /* Utilities */,
 				1E4B69331FD80ACE00DFFC66 /* UI Components */,
 				1E21E86D1FCC1CA60009EFA9 /* Background Fetch & Server */,
-				1EF4E1921FDC606E00B5BFDC /* TabBar */,
-				1EF4E1931FDC607D00B5BFDC /* CalendarViewController & Relative */,
-				1EF4E1941FDC608B00B5BFDC /* MapViewController & Relative */,
-				1EF4E1951FDC609A00B5BFDC /* SettingsViewController & Relative */,
+				1E98CB8E1FF3CB3B006DCF7F /* View Controllers */,
 				1EAA18E21FC9CE9F001B3612 /* Main.storyboard */,
 				1EAA18E81FC9CE9F001B3612 /* Assets.xcassets */,
 				1EAA18EA1FC9CE9F001B3612 /* LaunchScreen.storyboard */,
