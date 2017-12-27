@@ -40,6 +40,16 @@
 		1E6DB0B81FEA4AE20051319E /* Date+Stripped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6DB0941FEA4A660051319E /* Date+Stripped.swift */; };
 		1E6DB0BA1FEA4B030051319E /* DPDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6DB0B91FEA4B030051319E /* DPDay.swift */; };
 		1E6DB0BC1FEA4B230051319E /* DPEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6DB0BB1FEA4B230051319E /* DPEnums.swift */; };
+		1E98CB741FF3A108006DCF7F /* DPWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E98CB731FF3A108006DCF7F /* DPWeekView.swift */; };
+		1E98CB761FF3A14B006DCF7F /* DPWeekDaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E98CB751FF3A14B006DCF7F /* DPWeekDaysView.swift */; };
+		1E98CB781FF3A169006DCF7F /* DPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E98CB771FF3A169006DCF7F /* DPView.swift */; };
+		1E98CB7A1FF3A1A0006DCF7F /* DPSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E98CB791FF3A1A0006DCF7F /* DPSelectionView.swift */; };
+		1E98CB7C1FF3A1BD006DCF7F /* DPMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E98CB7B1FF3A1BD006DCF7F /* DPMonthView.swift */; };
+		1E98CB7E1FF3A1DD006DCF7F /* DPDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E98CB7D1FF3A1DD006DCF7F /* DPDayView.swift */; };
+		1E98CB811FF3A20D006DCF7F /* DPContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E98CB801FF3A20D006DCF7F /* DPContentVC.swift */; };
+		1E98CB831FF3A225006DCF7F /* DPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E98CB821FF3A225006DCF7F /* DPManager.swift */; };
+		1E98CB851FF3A246006DCF7F /* DPViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E98CB841FF3A246006DCF7F /* DPViewDelegate.swift */; };
+		1E98CB871FF3A2AC006DCF7F /* DPFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E98CB861FF3A2AC006DCF7F /* DPFont.swift */; };
 		1EAA18DF1FC9CE9F001B3612 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAA18DE1FC9CE9F001B3612 /* AppDelegate.swift */; };
 		1EAA18E41FC9CE9F001B3612 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EAA18E21FC9CE9F001B3612 /* Main.storyboard */; };
 		1EAA18E91FC9CE9F001B3612 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EAA18E81FC9CE9F001B3612 /* Assets.xcassets */; };
@@ -155,6 +165,16 @@
 		1E6DB0AC1FEA4AD30051319E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E6DB0B91FEA4B030051319E /* DPDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPDay.swift; sourceTree = "<group>"; };
 		1E6DB0BB1FEA4B230051319E /* DPEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPEnums.swift; sourceTree = "<group>"; };
+		1E98CB731FF3A108006DCF7F /* DPWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPWeekView.swift; sourceTree = "<group>"; };
+		1E98CB751FF3A14B006DCF7F /* DPWeekDaysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPWeekDaysView.swift; sourceTree = "<group>"; };
+		1E98CB771FF3A169006DCF7F /* DPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPView.swift; sourceTree = "<group>"; };
+		1E98CB791FF3A1A0006DCF7F /* DPSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPSelectionView.swift; sourceTree = "<group>"; };
+		1E98CB7B1FF3A1BD006DCF7F /* DPMonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPMonthView.swift; sourceTree = "<group>"; };
+		1E98CB7D1FF3A1DD006DCF7F /* DPDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPDayView.swift; sourceTree = "<group>"; };
+		1E98CB801FF3A20D006DCF7F /* DPContentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPContentVC.swift; sourceTree = "<group>"; };
+		1E98CB821FF3A225006DCF7F /* DPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPManager.swift; sourceTree = "<group>"; };
+		1E98CB841FF3A246006DCF7F /* DPViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPViewDelegate.swift; sourceTree = "<group>"; };
+		1E98CB861FF3A2AC006DCF7F /* DPFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPFont.swift; sourceTree = "<group>"; };
 		1EAA18DB1FC9CE9F001B3612 /* Travlendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Travlendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EAA18DE1FC9CE9F001B3612 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EAA18E31FC9CE9F001B3612 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -303,6 +323,8 @@
 		1E6DB09C1FEA4AD30051319E /* DatePicker */ = {
 			isa = PBXGroup;
 			children = (
+				1E98CB881FF3A2E8006DCF7F /* Container & Delegates */,
+				1E98CB7F1FF3A1EF006DCF7F /* Views */,
 				1E6DB0BD1FEA4BE10051319E /* Utils */,
 				1E6DB09D1FEA4AD30051319E /* DatePicker.h */,
 				1E6DB09E1FEA4AD30051319E /* Info.plist */,
@@ -325,8 +347,32 @@
 				1E6DB0941FEA4A660051319E /* Date+Stripped.swift */,
 				1E6DB0B91FEA4B030051319E /* DPDay.swift */,
 				1E6DB0BB1FEA4B230051319E /* DPEnums.swift */,
+				1E98CB861FF3A2AC006DCF7F /* DPFont.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		1E98CB7F1FF3A1EF006DCF7F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1E98CB771FF3A169006DCF7F /* DPView.swift */,
+				1E98CB731FF3A108006DCF7F /* DPWeekView.swift */,
+				1E98CB751FF3A14B006DCF7F /* DPWeekDaysView.swift */,
+				1E98CB791FF3A1A0006DCF7F /* DPSelectionView.swift */,
+				1E98CB7B1FF3A1BD006DCF7F /* DPMonthView.swift */,
+				1E98CB7D1FF3A1DD006DCF7F /* DPDayView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1E98CB881FF3A2E8006DCF7F /* Container & Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				1E98CB801FF3A20D006DCF7F /* DPContentVC.swift */,
+				1E98CB821FF3A225006DCF7F /* DPManager.swift */,
+				1E98CB841FF3A246006DCF7F /* DPViewDelegate.swift */,
+			);
+			path = "Container & Delegates";
 			sourceTree = "<group>";
 		};
 		1EAA18D21FC9CE9F001B3612 = {
@@ -890,7 +936,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E6DB0BA1FEA4B030051319E /* DPDay.swift in Sources */,
+				1E98CB871FF3A2AC006DCF7F /* DPFont.swift in Sources */,
+				1E98CB831FF3A225006DCF7F /* DPManager.swift in Sources */,
+				1E98CB7C1FF3A1BD006DCF7F /* DPMonthView.swift in Sources */,
+				1E98CB7E1FF3A1DD006DCF7F /* DPDayView.swift in Sources */,
+				1E98CB781FF3A169006DCF7F /* DPView.swift in Sources */,
+				1E98CB851FF3A246006DCF7F /* DPViewDelegate.swift in Sources */,
+				1E98CB7A1FF3A1A0006DCF7F /* DPSelectionView.swift in Sources */,
 				1E6DB0B81FEA4AE20051319E /* Date+Stripped.swift in Sources */,
+				1E98CB761FF3A14B006DCF7F /* DPWeekDaysView.swift in Sources */,
+				1E98CB741FF3A108006DCF7F /* DPWeekView.swift in Sources */,
+				1E98CB811FF3A20D006DCF7F /* DPContentVC.swift in Sources */,
 				1E6DB0BC1FEA4B230051319E /* DPEnums.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
