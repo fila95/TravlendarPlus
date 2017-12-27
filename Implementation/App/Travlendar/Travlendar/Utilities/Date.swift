@@ -25,3 +25,17 @@ extension Formatter {
     }()
     
 }
+
+
+extension Date {
+    var startOfDay: Date {
+        return NSCalendar.current.startOfDay(for: self)
+    }
+    
+    var endOfDay: Date? {
+        var components = DateComponents()
+        components.day = 1
+        components.second = -1
+        return NSCalendar.current.date(byAdding: components, to: startOfDay)
+    }
+}
