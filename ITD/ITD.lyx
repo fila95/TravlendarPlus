@@ -128,7 +128,7 @@ Link to the iOS App:
 status open
 
 \begin_layout Plain Layout
-TO ADD
+LINKARE L'APP QUI E NELLA SEZIONE INSTALLAZIONE
 \end_layout
 
 \end_inset
@@ -750,7 +750,7 @@ In this section, the developing team states those goals/features described
  on the RASD that are implemented within the first release of the project
  and those that will (possibly) be implemented in the following updates.
  The first set of functionalities are those considered essential for engaging
- new users.
+ new users and therefore creating a costumer base.
 \end_layout
 
 \begin_layout Subsection
@@ -759,7 +759,7 @@ First release of Travlendar+
 
 \begin_layout Standard
 As first release of the application, the developing team ensures to meet
- the following features:
+ the following requirements:
 \end_layout
 
 \begin_layout Itemize
@@ -878,6 +878,15 @@ As first release of the application, the developing team ensures to meet
  transits
 \end_layout
 
+\begin_layout Itemize
+[G6.6][R25] Allow users to set if they own a car and/or their favorite car
+ sharing providers
+\end_layout
+
+\begin_layout Itemize
+[G6.7][R26] Allow users to set the preferred ride sharing services
+\end_layout
+
 \end_deeper
 \begin_layout Itemize
 [G7][R27][R28] Allow the users to create calendars
@@ -936,20 +945,6 @@ Per ultimo
  scheduling
 \end_layout
 
-\begin_layout Itemize
-[G6.4] Allow users to set the owned bike and/or bike sharing providers.
- Chosen not to be developed for the same reason of before
-\end_layout
-
-\begin_layout Itemize
-[G6.6] Allow users to set if they own a car and/or their favorite car sharing
- providers
-\end_layout
-
-\begin_layout Itemize
-[G6.7][R26] Allow users to set the preferred ride sharing services
-\end_layout
-
 \begin_layout Standard
 A second release of the application will eventually include the above mentioned
  requirements.
@@ -966,16 +961,197 @@ Furthermore we believe that an incremental update of the app with additional
 Adopted development frameworks
 \end_layout
 
-\begin_layout Subsubsection
-Adopted programming languages (advantages and disadvantages)
+\begin_layout Standard
+In this section the developing team describes more in depth the frameworks
+ used, adopted programming languages and eventual middleware, dividing the
+ client implementation with the server implementation.
+\end_layout
+
+\begin_layout Standard
+Above all, on top of these two system, the developing team as used some
+ external tools to check and balance the developing process: 
+\emph on
+Trevis CI
+\emph default
+ to test and deploy the code, 
+\emph on
+Codecov
+\emph default
+ to check the test coverage client side and server side, 
+\emph on
+Codeclimate
+\emph default
+ to index the level of maintainability of the code, and finally 
+\emph on
+Gitential
+\emph default
+ to check the coding hours needed to develop this project (without listing
+ documentation time) and the code volume.
 \end_layout
 
 \begin_layout Subsubsection
-Middleware adopted (advantages and disadvantage)
+Client side
+\end_layout
+
+\begin_layout Standard
+The client application is designed to be utilized on 
+\emph on
+iOS
+\emph default
+ smartphones (iPhones).
+ The code was build using Apple's proprietary IDE 
+\emph on
+XCode
+\emph default
+ hence tested with 
+\emph on
+XCTest
+\emph default
+, a library developed by the same company that allows to create and run
+ test units.
+ The app was written using 
+\emph on
+Swift
+\emph default
+ as programming language.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+CocoaPods
+\emph default
+ was used to manage the dependency in order to have improve scalability
+ performance as well as elegantly code.
+\end_layout
+
+\begin_layout Standard
+Moreover
+\emph on
+, MapKit
+\emph default
+ was used to display maps and satellite imagery directly on the app's interface.
+ This framework was also used to provide points of interest on the map.
+\end_layout
+
+\begin_layout Standard
+Finally, the client side database is based on 
+\emph on
+Realm
+\emph default
+, a reactive lightweight DBMS to that allows the app to work seamlessly
+ in weak signal and offline scenarios.
+ It was chosen to be the main local DBMS thanks to its setup simplicity
+ and highly compatibility with iOS systems.
+\end_layout
+
+\begin_layout Standard
+Generally, the use of the above mentioned development frameworks allowed
+ to have a better implementation of the code written and highly performance
+ in term of speed and battery life.
+ As drawback we recognize the highly specified platform used to developed
+ the application, hence low portability, which means that if a future developmen
+t includes an expansion towards other smartphone operational system the
+ app would have to be reengineered.
+ 
 \end_layout
 
 \begin_layout Subsubsection
-API not included in the DD
+Server side
+\end_layout
+
+\begin_layout Standard
+The server side application is written in 
+\emph on
+NodeJS
+\emph default
+, a server environment wrapped over 
+\emph on
+JavaScript V8 Runtime
+\emph default
+.
+ This solution was chosen because of the its ability to provide asynchronous
+ event driven I/O APIs, the simplicity of set up the lightweight that it
+ implies and its ability achieve great horizontal scalability though multiple
+ instances.
+ Node is also an open source platform.
+\end_layout
+
+\begin_layout Standard
+Above all, 
+\emph on
+npm
+\emph default
+ was used as package manager for NodeJS.
+ It allows to manage dependencies and packages within the project boundaries.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Express
+\emph default
+ was used as web framework.
+ This library provides a robust set of features for web and mobile applications,
+ as well as the ability of creating robust API quickly and easily.
+\end_layout
+
+\begin_layout Standard
+Also, because of its use simplicity, the 
+\emph on
+body-parser
+\emph default
+ library was used to parse incoming request bodies in a middleware before
+ handling the request
+\end_layout
+
+\begin_layout Standard
+Moreover, as described on the Design Document, the developing team has chosen
+ to use PostgreSQL as online database.
+ An 
+\emph on
+ORM
+\emph default
+ framework called 
+\emph on
+node-orm2
+\emph default
+ was utilized to create an object relational mapping of the data that allowed
+ to threat them with object-oriented alike programming within the software.
+ The module 
+\emph on
+node-apn
+\emph default
+ was used to communicate with Apple Push Notification.
+\end_layout
+
+\begin_layout Standard
+Finally, for the testing part was used 
+\emph on
+node-supertest
+\emph default
+, a node's framework that provides a high-level abstraction for testing
+ HTTP requests, the 
+\emph on
+crypto
+\emph default
+ library was used to generate random access token and 
+\emph on
+node-uuidv4
+\emph default
+ was used to create testing user tokens.
+ For debug purposes a 
+\emph on
+logger
+\emph default
+ middleware was used to track API requests.
+ 
+\end_layout
+
+\begin_layout Standard
+The main advantage the frameworks and the middleware adopted is represented
+ by the maintainability and reliability of such Open Source modules.
+ However, this implies losing part of code's control.
 \end_layout
 
 \begin_layout Subsection
@@ -986,12 +1162,6 @@ Structure of the source code
 As described in the Design Document, Travlendar+ is composed of a two tier
  architecture with distributed data and logic.
  
-\end_layout
-
-\begin_layout Standard
-The application developed for the iOS platform's smartphones (iPhone) could
- be uploaded on the App Store in order to let the final user to install
- it on their smartphone
 \end_layout
 
 \begin_layout Standard
@@ -1024,8 +1194,186 @@ Development frameworks adopted
 Installation instructions
 \end_layout
 
+\begin_layout Subsubsection
+App installation
+\end_layout
+
+\begin_layout Standard
+The application is already compiled and published on Apple's App Store.
+ It can be downloaded from the App Store by searching 
+\emph on
+Travlendar+
+\emph default
+ or following this link: 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+LINKARE L'APP QUI E IN PRIMA PAGINA
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Please note that the application is compatible only with iOS platform's
+ smartphones (iPhone).
+\end_layout
+
+\begin_layout Paragraph
+Compiling instruction
+\end_layout
+
+\begin_layout Standard
+In case the reader would like to compile the app:
+\end_layout
+
+\begin_layout Enumerate
+Download and install 
+\emph on
+XCode
+\emph default
+: 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://developer.apple.com/xcode/ide/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Download the App package from the zip(s) attached to this file or 
+\emph on
+git clone
+\emph default
+ the code from the production repository
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Could require authentication process
+\end_layout
+
+\end_inset
+
+: 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+https://github.com/fila95/CalzavaraFilaferroNespoli/tree/master/Implementation/Ap
+p/Travlendar
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Import the project 
+\begin_inset Quotes eld
+\end_inset
+
+Travlendar+
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Product >> Run to compile
+\end_layout
+
+\begin_layout Subsubsection
+Server installation
+\end_layout
+
+\begin_layout Enumerate
+Download and install 
+\emph on
+NodeJS
+\emph default
+ from the official NodeJS website: 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://nodejs.org/en/download/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Download the Server package from the zip(s) attached to this file or 
+\emph on
+git clone
+\emph default
+ the code from the production repository
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Could require an authentication process
+\end_layout
+
+\end_inset
+
+: 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://github.com/fila95/CalzavaraFilaferroNespoli/tree/master/Implementation/Se
+rver
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Open the command line at the Server's folder 
+\end_layout
+
+\begin_layout Enumerate
+Type 
+\emph on
+npm install
+\emph default
+ to automatically install dependencies
+\end_layout
+
+\begin_layout Enumerate
+Type 
+\emph on
+npm start
+\emph default
+ to start the Server Application
+\end_layout
+
+\begin_layout Standard
+Please verify that an instance of PostgreSQL is running on port 5432.
+\end_layout
+
 \begin_layout Section
-Test
+Testing
 \end_layout
 
 \begin_layout Standard
@@ -1040,15 +1388,15 @@ Effort spent
 \end_layout
 
 \begin_layout Itemize
-Filippo Calzavara: 2.00h
+Filippo Calzavara: 4.00h
 \end_layout
 
 \begin_layout Itemize
-Giovanni Filaferro: 2.00h
+Giovanni Filaferro: 3.00h
 \end_layout
 
 \begin_layout Itemize
-Benedetto Maria Nespoli: 2.00h
+Benedetto Maria Nespoli: 3.00h
 \end_layout
 
 \end_body
