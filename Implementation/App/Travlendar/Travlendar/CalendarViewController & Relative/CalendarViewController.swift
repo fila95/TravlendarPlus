@@ -12,6 +12,13 @@ import DatePicker
 
 class CalendarViewController: UIViewController {
     
+    let picker = CalendarPickerView()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.view.addSubview(picker)
+    }
     
     
 }

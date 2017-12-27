@@ -50,6 +50,7 @@
 		1E98CB831FF3A225006DCF7F /* DPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E98CB821FF3A225006DCF7F /* DPManager.swift */; };
 		1E98CB851FF3A246006DCF7F /* DPViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E98CB841FF3A246006DCF7F /* DPViewDelegate.swift */; };
 		1E98CB871FF3A2AC006DCF7F /* DPFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E98CB861FF3A2AC006DCF7F /* DPFont.swift */; };
+		1E98CB8A1FF3A738006DCF7F /* CalendarPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E98CB891FF3A738006DCF7F /* CalendarPickerView.swift */; };
 		1EAA18DF1FC9CE9F001B3612 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAA18DE1FC9CE9F001B3612 /* AppDelegate.swift */; };
 		1EAA18E41FC9CE9F001B3612 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EAA18E21FC9CE9F001B3612 /* Main.storyboard */; };
 		1EAA18E91FC9CE9F001B3612 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EAA18E81FC9CE9F001B3612 /* Assets.xcassets */; };
@@ -175,6 +176,7 @@
 		1E98CB821FF3A225006DCF7F /* DPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPManager.swift; sourceTree = "<group>"; };
 		1E98CB841FF3A246006DCF7F /* DPViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPViewDelegate.swift; sourceTree = "<group>"; };
 		1E98CB861FF3A2AC006DCF7F /* DPFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPFont.swift; sourceTree = "<group>"; };
+		1E98CB891FF3A738006DCF7F /* CalendarPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPickerView.swift; sourceTree = "<group>"; };
 		1EAA18DB1FC9CE9F001B3612 /* Travlendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Travlendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EAA18DE1FC9CE9F001B3612 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EAA18E31FC9CE9F001B3612 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 		1E4B69331FD80ACE00DFFC66 /* UI Components */ = {
 			isa = PBXGroup;
 			children = (
+				1E98CB891FF3A738006DCF7F /* CalendarPickerView.swift */,
 				1E4B69341FD80AE400DFFC66 /* GFPageControl.swift */,
 				1EEE56AE1FE3DA0F00621599 /* FeedbackGenerator.swift */,
 				1EEE56B81FE3DD6D00621599 /* RoundedButton.swift */,
@@ -993,6 +996,7 @@
 				1EF4E18F1FDC5F1400B5BFDC /* SettingsViewController.swift in Sources */,
 				1E4CB7461FDD4B6700FA8E52 /* Color.swift in Sources */,
 				1EB2ECE51FCD4EB300A50EC3 /* Database.swift in Sources */,
+				1E98CB8A1FF3A738006DCF7F /* CalendarPickerView.swift in Sources */,
 				1E4CB7361FDD48E300FA8E52 /* Font.swift in Sources */,
 				1E0078461FE2C09800FD5405 /* SettingsViewController+CollectionView.swift in Sources */,
 				1E0078421FE2BCA400FD5405 /* View+Nib.swift in Sources */,
