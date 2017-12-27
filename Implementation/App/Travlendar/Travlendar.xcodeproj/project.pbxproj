@@ -52,6 +52,8 @@
 		1E98CB871FF3A2AC006DCF7F /* DPFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E98CB861FF3A2AC006DCF7F /* DPFont.swift */; };
 		1E98CB8A1FF3A738006DCF7F /* CalendarPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E98CB891FF3A738006DCF7F /* CalendarPickerView.swift */; };
 		1E98CB8D1FF3C650006DCF7F /* ArrowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E98CB8C1FF3C650006DCF7F /* ArrowButton.swift */; };
+		1E98CB901FF3CD71006DCF7F /* CalendarCloseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E98CB8F1FF3CD71006DCF7F /* CalendarCloseView.swift */; };
+		1E98CB921FF3CE6E006DCF7F /* CalendarCloseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E98CB911FF3CE6E006DCF7F /* CalendarCloseView.xib */; };
 		1EAA18DF1FC9CE9F001B3612 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAA18DE1FC9CE9F001B3612 /* AppDelegate.swift */; };
 		1EAA18E41FC9CE9F001B3612 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EAA18E21FC9CE9F001B3612 /* Main.storyboard */; };
 		1EAA18E91FC9CE9F001B3612 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EAA18E81FC9CE9F001B3612 /* Assets.xcassets */; };
@@ -179,6 +181,8 @@
 		1E98CB861FF3A2AC006DCF7F /* DPFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPFont.swift; sourceTree = "<group>"; };
 		1E98CB891FF3A738006DCF7F /* CalendarPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPickerView.swift; sourceTree = "<group>"; };
 		1E98CB8C1FF3C650006DCF7F /* ArrowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowButton.swift; sourceTree = "<group>"; };
+		1E98CB8F1FF3CD71006DCF7F /* CalendarCloseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCloseView.swift; sourceTree = "<group>"; };
+		1E98CB911FF3CE6E006DCF7F /* CalendarCloseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarCloseView.xib; sourceTree = "<group>"; };
 		1EAA18DB1FC9CE9F001B3612 /* Travlendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Travlendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EAA18DE1FC9CE9F001B3612 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EAA18E31FC9CE9F001B3612 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -384,6 +388,8 @@
 			isa = PBXGroup;
 			children = (
 				1E98CB891FF3A738006DCF7F /* CalendarPickerView.swift */,
+				1E98CB8F1FF3CD71006DCF7F /* CalendarCloseView.swift */,
+				1E98CB911FF3CE6E006DCF7F /* CalendarCloseView.xib */,
 				1E98CB8C1FF3C650006DCF7F /* ArrowButton.swift */,
 			);
 			path = CalendarPickerView;
@@ -775,6 +781,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EAA18EC1FC9CE9F001B3612 /* LaunchScreen.storyboard in Resources */,
+				1E98CB921FF3CE6E006DCF7F /* CalendarCloseView.xib in Resources */,
 				1EEE56BD1FE3E1BE00621599 /* AddNewCollectionViewCell.xib in Resources */,
 				1EAA18E91FC9CE9F001B3612 /* Assets.xcassets in Resources */,
 				1EAA18E41FC9CE9F001B3612 /* Main.storyboard in Resources */,
@@ -1015,6 +1022,7 @@
 				1E98CB8D1FF3C650006DCF7F /* ArrowButton.swift in Sources */,
 				1EF4E18F1FDC5F1400B5BFDC /* SettingsViewController.swift in Sources */,
 				1E4CB7461FDD4B6700FA8E52 /* Color.swift in Sources */,
+				1E98CB901FF3CD71006DCF7F /* CalendarCloseView.swift in Sources */,
 				1EB2ECE51FCD4EB300A50EC3 /* Database.swift in Sources */,
 				1E98CB8A1FF3A738006DCF7F /* CalendarPickerView.swift in Sources */,
 				1E4CB7361FDD48E300FA8E52 /* Font.swift in Sources */,

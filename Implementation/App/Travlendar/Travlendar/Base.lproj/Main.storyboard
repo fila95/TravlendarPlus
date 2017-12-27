@@ -59,6 +59,9 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsScale="YES" showsTraffic="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qv9-4T-HVO">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <connections>
+                                    <outlet property="delegate" destination="NXr-4u-8Bd" id="KJz-Yv-twg"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <constraints>
@@ -70,6 +73,9 @@
                         <viewLayoutGuide key="safeArea" id="AOp-mc-GmF"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="map_icon_little" landscapeImage="map_icon_little" largeContentSizeImage="map_icon_little" id="INM-pI-bUC"/>
+                    <connections>
+                        <outlet property="map" destination="qv9-4T-HVO" id="xzG-0b-e6W"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ijT-kB-Bc4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

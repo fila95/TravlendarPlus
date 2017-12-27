@@ -24,6 +24,20 @@ extension Formatter {
         return formatter
     }()
     
+    static let month: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.dateFormat = "MMMM"
+        return formatter
+    }()
+    
+    static let weekday: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.dateFormat = "EEEE"
+        return formatter
+    }()
+    
 }
 
 

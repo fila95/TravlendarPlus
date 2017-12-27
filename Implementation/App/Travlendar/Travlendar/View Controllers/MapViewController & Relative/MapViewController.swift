@@ -7,14 +7,25 @@
 //
 
 import UIKit
+import MapKit
 
 
 class MapViewController: UIViewController {
     
+    let picker = CalendarPickerView()
+    @IBOutlet weak var map: MKMapView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.addSubview(picker)
     }
     
 }
 
+
+extension MapViewController: MKMapViewDelegate {
+    
+    
+    
+}

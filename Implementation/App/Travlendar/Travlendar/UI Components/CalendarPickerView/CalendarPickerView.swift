@@ -13,10 +13,32 @@ import DatePicker
 
 class CalendarPickerView: UIView {
     
+    enum PickerType {
+        case closed
+        case open
+        
+        func height() -> CGFloat {
+            switch self {
+            case .closed:
+                return 100
+            default:
+                return 270
+            }
+        }
+    }
+    
+    var type: PickerType = .closed
+    
+    
+    private let calendarContainerView: UIView = UIView()
     private let calendarView: DPView = DPView()
-    var monthLabel: UILabel = UILabel()
-    var nextMonthButton: ArrowButton = ArrowButton()
-    var previousMonthButton: ArrowButton = ArrowButton()
+    private var monthLabel: UILabel = UILabel()
+    private var nextMonthButton: ArrowButton = ArrowButton()
+    private var previousMonthButton: ArrowButton = ArrowButton()
+    
+    private var closePickerView: CalendarCloseView = CalendarCloseView()
+    
+    private var dragger: UIImageView = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -50,32 +72,54 @@ class CalendarPickerView: UIView {
         self.layer.shadowRadius = 10
         
         
-        self.calendarView.delegate = self
-        self.addSubview(self.calendarView)
+        self.addSubview(calendarContainerView)
         
-        self.monthLabel.frame = CGRect.init(x: 24, y: safeAreaInsets.top + 20, width: 150, height: 22)
+        self.calendarView.delegate = self
+        self.calendarContainerView.addSubview(self.calendarView)
+        
         self.monthLabel.font = UIFont.fonts.AvenirNext(type: .Medium, size: 17)
         self.monthLabel.numberOfLines = 0
         self.monthLabel.textColor = UIColor.darkText
         self.monthLabel.text = calendarView.presentedMonthView?.monthDescription
         self.monthLabel.textAlignment = .left
-        self.addSubview(self.monthLabel)
+        self.calendarContainerView.addSubview(self.monthLabel)
         
         self.nextMonthButton.direction = .right
         self.nextMonthButton.addTarget(self, action: #selector(CalendarPickerView.nextMonth), for: .touchUpInside)
-        self.addSubview(self.nextMonthButton)
+        self.calendarContainerView.addSubview(self.nextMonthButton)
         
         self.previousMonthButton.direction = .left
         self.previousMonthButton.addTarget(self, action: #selector(CalendarPickerView.previousMonth), for: .touchUpInside)
-        self.addSubview(self.previousMonthButton)
+        self.calendarContainerView.addSubview(self.previousMonthButton)
+        
+        self.addSubview(closePickerView)
+        
+        if self.type == .open {
+            self.calendarContainerView.alpha = 1.0
+            self.closePickerView.alpha = 0.0
+        }
+        else {
+            self.calendarContainerView.alpha = 0.0
+            self.closePickerView.alpha = 1.0
+        }
+        
+        // Dragger
+        self.dragger.image = #imageLiteral(resourceName: "dragger")
+        self.dragger.contentMode = .center
+        self.dragger.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(CalendarPickerView.dragging(pan:))))
+        self.dragger.isUserInteractionEnabled = true
+        self.addSubview(self.dragger)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        self.frame = CGRect.init(x: (UIScreen.main.bounds.size.width - UIScreen.main.nativeBounds.width / UIScreen.main.nativeScale) / 2, y: 0, width: UIScreen.main.nativeBounds.width / UIScreen.main.nativeScale, height: 270 + self.safeAreaInsets.top)
+        self.frame = CGRect.init(x: (UIScreen.main.bounds.size.width - UIScreen.main.nativeBounds.width / UIScreen.main.nativeScale) / 2, y: 0, width: UIScreen.main.nativeBounds.width / UIScreen.main.nativeScale, height: self.type.height() + self.safeAreaInsets.top)
         
         
+        // Calendar Opened View
+        self.calendarContainerView.frame = CGRect.init(x: 0, y: 0, width: self.frame.size.width, height: PickerType.open.height() + self.safeAreaInsets.top)
+
         self.monthLabel.frame = CGRect.init(x: 24, y: safeAreaInsets.top + 20, width: 150, height: 20)
         
         self.nextMonthButton.frame = CGRect.init(x: self.frame.size.width - 24 - 25, y: self.monthLabel.frame.origin.y - 2.5, width: 25, height: 25)
@@ -85,6 +129,11 @@ class CalendarPickerView: UIView {
         let h: CGFloat = 230
         self.calendarView.frame = CGRect.init(x: (self.frame.size.width - w)/2, y: self.monthLabel.frame.size.height + self.monthLabel.frame.origin.y + 5, width: w, height: h)
         
+        // Calendar Close View
+        closePickerView.frame = CGRect.init(x: 0, y: 0, width: self.frame.size.width, height: PickerType.closed.height() + self.safeAreaInsets.top)
+        
+        // Dragger
+        dragger.frame = CGRect.init(x: 0, y: self.frame.size.height-20, width: self.frame.size.width, height: 20)
     }
     
     @objc func nextMonth() {
@@ -95,6 +144,25 @@ class CalendarPickerView: UIView {
         calendarView.loadPreviousView()
     }
     
+}
+
+extension CalendarPickerView {
+    
+    @objc
+    func dragging(pan: UIPanGestureRecognizer) {
+        switch pan.state {
+        case .began:
+            print("Began: " + pan.description)
+            break
+            
+        case .changed:
+            print("Changed: " + pan.description)
+            break
+        default:
+            // Cancelled, ended
+            print("Ended")
+        }
+    }
     
 }
 
@@ -150,7 +218,6 @@ extension CalendarPickerView: DPViewDelegate {
     // MARK: - WeekdaysView appearance properties
     var colorForWeekDaysViewBackground: UIColor {
         return UIColor.clear
-        
     }
     
     var colorForWeekDaysViewText: UIColor {
