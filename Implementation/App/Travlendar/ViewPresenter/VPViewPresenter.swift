@@ -25,16 +25,34 @@ public class VPViewPresenter: UIViewController {
     private var dragging: Bool = false
     private var currentPage: Int = 0
     
+    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nil, bundle: nil)
+        commonInit()
+    }
+    
     convenience public init(views: [VPView]) {
         self.init(nibName: nil, bundle: nil)
         self.views = views
+        commonInit()
     }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }
+    
+    private func commonInit() {
+        self.modalTransitionStyle = .crossDissolve
+        self.modalPresentationStyle = .overCurrentContext
+    }
+    
+    
     
     override public func viewDidLoad() {
         super.viewDidLoad()
         
         self.dimmingView.backgroundColor = UIColor.black.withAlphaComponent(0.15)
-        self.dimmingView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(VPViewPresenter.dismissEntirely)))
+        self.dimmingView.isUserInteractionEnabled = true
         self.view.addSubview(self.dimmingView)
         
         self.scrollView.isPagingEnabled = true
@@ -43,9 +61,32 @@ public class VPViewPresenter: UIViewController {
         self.scrollView.isScrollEnabled = self.scrollEnabled
         self.scrollView.showsHorizontalScrollIndicator = false
         self.scrollView.delegate = self
+        self.scrollView.transform = CGAffineTransform.init(translationX: 0, y: 400)
         self.view.addSubview(self.scrollView)
         
+        
+        let tg = UITapGestureRecognizer(target: self, action: #selector(VPViewPresenter.dismissEntirely))
+        tg.cancelsTouchesInView = false
+        self.scrollView.addGestureRecognizer(tg)
+        
         resetViews()
+    }
+    
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.08, options: .curveEaseInOut, animations: {
+            self.scrollView.transform = CGAffineTransform.identity
+            self.scrollView.alpha = 1.0
+        }) { (complete) in
+            
+        }
+    }
+    
+    public override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        
     }
     
     override public func viewWillLayoutSubviews() {

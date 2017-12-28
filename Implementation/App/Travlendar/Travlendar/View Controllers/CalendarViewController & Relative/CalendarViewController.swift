@@ -23,10 +23,6 @@ class CalendarViewController: UIViewController {
         self.view.addSubview(picker)
         picker.setDateChangeHandler { (newDate) in
             
-            
-        }
-        
-        delay(5) {
             let vp = VPViewPresenter()
             for _ in 0...3 {
                 
@@ -56,11 +52,14 @@ class CalendarViewController: UIViewController {
             
             
             
-            vp.modalPresentationStyle = .overCurrentContext
+//            vp.modalPresentationStyle = .overCurrentContext
+//            vp.modalTransitionStyle = .crossDissolve
             self.present(vp, animated: true, completion: {
                 
             })
+            
         }
+        
         
         
     }
