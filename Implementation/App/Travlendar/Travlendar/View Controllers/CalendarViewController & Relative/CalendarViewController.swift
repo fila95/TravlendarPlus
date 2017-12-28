@@ -18,6 +18,13 @@ class CalendarViewController: UIViewController {
         super.viewDidLoad()
         
         self.view.addSubview(picker)
+//        
+//        delay(2) {
+//            self.picker.setPickerType(type: .open, animated: true)
+//        }
+//        delay(4) {
+//            self.picker.setPickerType(type: .closed, animated: true)
+//        }
     }
     
     

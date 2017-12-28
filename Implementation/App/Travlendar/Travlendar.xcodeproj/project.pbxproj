@@ -54,6 +54,7 @@
 		1E98CB8D1FF3C650006DCF7F /* ArrowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E98CB8C1FF3C650006DCF7F /* ArrowButton.swift */; };
 		1E98CB901FF3CD71006DCF7F /* CalendarCloseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E98CB8F1FF3CD71006DCF7F /* CalendarCloseView.swift */; };
 		1E98CB921FF3CE6E006DCF7F /* CalendarCloseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E98CB911FF3CE6E006DCF7F /* CalendarCloseView.xib */; };
+		1E98CB941FF3E346006DCF7F /* Clamp+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E98CB931FF3E346006DCF7F /* Clamp+Map.swift */; };
 		1EAA18DF1FC9CE9F001B3612 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAA18DE1FC9CE9F001B3612 /* AppDelegate.swift */; };
 		1EAA18E41FC9CE9F001B3612 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EAA18E21FC9CE9F001B3612 /* Main.storyboard */; };
 		1EAA18E91FC9CE9F001B3612 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EAA18E81FC9CE9F001B3612 /* Assets.xcassets */; };
@@ -183,6 +184,7 @@
 		1E98CB8C1FF3C650006DCF7F /* ArrowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowButton.swift; sourceTree = "<group>"; };
 		1E98CB8F1FF3CD71006DCF7F /* CalendarCloseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCloseView.swift; sourceTree = "<group>"; };
 		1E98CB911FF3CE6E006DCF7F /* CalendarCloseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarCloseView.xib; sourceTree = "<group>"; };
+		1E98CB931FF3E346006DCF7F /* Clamp+Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Clamp+Map.swift"; sourceTree = "<group>"; };
 		1EAA18DB1FC9CE9F001B3612 /* Travlendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Travlendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EAA18DE1FC9CE9F001B3612 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EAA18E31FC9CE9F001B3612 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 				1E0078411FE2BCA400FD5405 /* View+Nib.swift */,
 				1EEE56B21FE3DC6300621599 /* View.swift */,
 				1EEE56B61FE3DCD100621599 /* Types.swift */,
+				1E98CB931FF3E346006DCF7F /* Clamp+Map.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1005,6 +1008,7 @@
 				1EAA18DF1FC9CE9F001B3612 /* AppDelegate.swift in Sources */,
 				1E4CB7381FDD498000FA8E52 /* Delay.swift in Sources */,
 				1EF4E18D1FDC5F0B00B5BFDC /* MapViewController.swift in Sources */,
+				1E98CB941FF3E346006DCF7F /* Clamp+Map.swift in Sources */,
 				1EEE56B31FE3DC6300621599 /* View.swift in Sources */,
 				1E4CB7401FDD4A9B00FA8E52 /* Alert.swift in Sources */,
 				1E379AB11FE026D200E74DFC /* Date.swift in Sources */,

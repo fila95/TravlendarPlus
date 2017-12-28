@@ -32,6 +32,7 @@ class CalendarCloseView: UIView {
     }
     
     func setDate(date: Date) {
+        currentDate = date
         let cal = Calendar.init(identifier: .gregorian)
         dayLabel.text = "\(cal.component(.day, from: currentDate))"
         monthLabel.text = "\(Formatter.month.string(from: currentDate)) \(cal.component(.year, from: currentDate))"

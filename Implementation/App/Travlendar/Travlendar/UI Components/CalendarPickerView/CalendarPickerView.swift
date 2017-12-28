@@ -39,6 +39,8 @@ class CalendarPickerView: UIView {
     private var closePickerView: CalendarCloseView = CalendarCloseView()
     
     private var dragger: UIImageView = UIImageView()
+    private var previousLocation: CGPoint = CGPoint.zero
+    private var dragging: Bool = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -65,14 +67,15 @@ class CalendarPickerView: UIView {
         self.layer.borderColor = UIColor(red: 176/255, green: 176/255, blue: 176/255, alpha: 0.24).cgColor
         self.layer.borderWidth = 1
         
-        self.layer.masksToBounds = false
+        self.clipsToBounds = true
         
         self.layer.shadowColor = UIColor(red: 134/255, green: 134/255, blue: 134/255, alpha: 0.19).cgColor
+        self.layer.shadowPath = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height), cornerRadius: 16).cgPath
         self.layer.shadowOpacity = 1.0
         self.layer.shadowRadius = 10
         
-        
-        self.addSubview(calendarContainerView)
+        self.calendarContainerView.layer.masksToBounds = true
+        self.addSubview(self.calendarContainerView)
         
         self.calendarView.delegate = self
         self.calendarContainerView.addSubview(self.calendarView)
@@ -92,21 +95,14 @@ class CalendarPickerView: UIView {
         self.previousMonthButton.addTarget(self, action: #selector(CalendarPickerView.previousMonth), for: .touchUpInside)
         self.calendarContainerView.addSubview(self.previousMonthButton)
         
-        self.addSubview(closePickerView)
-        
-        if self.type == .open {
-            self.calendarContainerView.alpha = 1.0
-            self.closePickerView.alpha = 0.0
-        }
-        else {
-            self.calendarContainerView.alpha = 0.0
-            self.closePickerView.alpha = 1.0
-        }
+        self.closePickerView.layer.masksToBounds = true
+        self.addSubview(self.closePickerView)
         
         // Dragger
         self.dragger.image = #imageLiteral(resourceName: "dragger")
         self.dragger.contentMode = .center
         self.dragger.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(CalendarPickerView.dragging(pan:))))
+        self.dragger.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CalendarPickerView.tap(tap:))))
         self.dragger.isUserInteractionEnabled = true
         self.addSubview(self.dragger)
     }
@@ -114,12 +110,21 @@ class CalendarPickerView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        if !dragging {
+            reLayout()
+        }
+        
+    }
+    
+    private func reLayout() {
         self.frame = CGRect.init(x: (UIScreen.main.bounds.size.width - UIScreen.main.nativeBounds.width / UIScreen.main.nativeScale) / 2, y: 0, width: UIScreen.main.nativeBounds.width / UIScreen.main.nativeScale, height: self.type.height() + self.safeAreaInsets.top)
+        
+        self.layer.shadowPath = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height), cornerRadius: 16).cgPath
         
         
         // Calendar Opened View
         self.calendarContainerView.frame = CGRect.init(x: 0, y: 0, width: self.frame.size.width, height: PickerType.open.height() + self.safeAreaInsets.top)
-
+        
         self.monthLabel.frame = CGRect.init(x: 24, y: safeAreaInsets.top + 20, width: 150, height: 20)
         
         self.nextMonthButton.frame = CGRect.init(x: self.frame.size.width - 24 - 25, y: self.monthLabel.frame.origin.y - 2.5, width: 25, height: 25)
@@ -134,6 +139,15 @@ class CalendarPickerView: UIView {
         
         // Dragger
         dragger.frame = CGRect.init(x: 0, y: self.frame.size.height-20, width: self.frame.size.width, height: 20)
+        
+        if self.type == .open {
+            self.calendarContainerView.alpha = 1.0
+            self.closePickerView.alpha = 0.0
+        }
+        else {
+            self.calendarContainerView.alpha = 0.0
+            self.closePickerView.alpha = 1.0
+        }
     }
     
     @objc func nextMonth() {
@@ -144,23 +158,82 @@ class CalendarPickerView: UIView {
         calendarView.loadPreviousView()
     }
     
+    func setPickerType(type: PickerType, animated: Bool = true) {
+        self.type = type
+        if animated {
+            UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.08, options: .curveEaseInOut, animations: {
+                self.reLayout()
+            }, completion: { (complete) in
+                
+            })
+        }
+        else {
+            reLayout()
+        }
+    }
+    
 }
 
 extension CalendarPickerView {
     
-    @objc
-    func dragging(pan: UIPanGestureRecognizer) {
+    @objc func tap(tap: UITapGestureRecognizer) {
+        if self.type == .open {
+            self.setPickerType(type: .closed)
+        }
+        else {
+            self.setPickerType(type: .open)
+        }
+    }
+    
+    @objc func dragging(pan: UIPanGestureRecognizer) {
         switch pan.state {
         case .began:
-            print("Began: " + pan.description)
+//            print("Began: " + pan.description)
+            dragging = true
+            previousLocation = pan.location(in: self)
             break
             
         case .changed:
-            print("Changed: " + pan.description)
+//            print("Changed: " + pan.description)
+            
+            let l = pan.location(in: self)
+//            print(l.y)
+            
+            let minHeight = PickerType.closed.height() + self.safeAreaInsets.top
+            let maxHeight = PickerType.open.height() + self.safeAreaInsets.top
+            
+            let delta = l.y - previousLocation.y
+//            print(delta)
+            var newHeight = self.frame.size.height + delta
+            newHeight = clamp(value: newHeight, lower: minHeight, upper: maxHeight)
+            self.frame.size.height = newHeight
+            
+            if min(newHeight, maxHeight) / max(newHeight, maxHeight) >= min(newHeight, minHeight) / max(newHeight, minHeight) {
+                // More Open than Close
+                self.type = .open
+            }
+            else {
+                // More Close than Open
+                self.type = .closed
+            }
+            
+            let percentOpen = (newHeight - minHeight) / (maxHeight - minHeight)
+            closePickerView.alpha = clamp(value: (1 - percentOpen).map(from: 0.3...1.0, to: 0.0...1.0), lower: 0, upper: 1)
+            calendarContainerView.alpha = clamp(value: percentOpen.map(from: 0.3...1.0, to: 0.0...1.0), lower: 0, upper: 1)
+            
+            previousLocation = l
+            
+            // Dragger
+            dragger.frame = CGRect.init(x: 0, y: self.frame.size.height-20, width: self.frame.size.width, height: 20)
+            
+            
             break
         default:
             // Cancelled, ended
-            print("Ended")
+            dragging = false
+            self.setPickerType(type: self.type, animated: true)
+            
+//            print("Ended")
         }
     }
     
@@ -169,7 +242,7 @@ extension CalendarPickerView {
 extension CalendarPickerView: DPViewDelegate {
     
     func didSelectDay(_ dayView: DPDayView) {
-        
+        closePickerView.setDate(date: dayView.date!.dateFor(.startOfDay).addingTimeInterval(86400))
     }
     
     
