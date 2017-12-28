@@ -54,13 +54,16 @@ public class VPView: UIView {
     
     convenience public init(title: String, components: [VPComponent]? = nil) {
         self.init(frame: CGRect.zero)
-        self.titleText = title
         
-        guard let c = components else {
-            return
+        defer {
+            self.titleText = title
+            
+            if components != nil {
+                self.components = components!
+            }
+            
         }
-        self.components = c
-        refreshComponents()
+        
     }
     
     private func calculatedHeight() -> CGFloat {

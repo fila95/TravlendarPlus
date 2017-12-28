@@ -47,8 +47,10 @@ public class VPButtonComponent: VPComponent {
     }
     
     override public func commonInit() {
-        self.addSubview(titleLabel)
+        self.titleLabel.text = text
         self.titleLabel.textAlignment = .center
+        self.addSubview(titleLabel)
+        
         let gr = UILongPressGestureRecognizer.init(target: self, action: #selector(VPButtonComponent.tap(tap:)))
         gr.minimumPressDuration = 0.0
         self.addGestureRecognizer(gr)

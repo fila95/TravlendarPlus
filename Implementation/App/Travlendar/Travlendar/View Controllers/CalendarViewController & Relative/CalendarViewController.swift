@@ -23,17 +23,24 @@ class CalendarViewController: UIViewController {
         self.view.addSubview(picker)
         picker.setDateChangeHandler { (newDate) in
             
-            let v = VPButtonComponent(type: .strong, tapHandler: {
-                print("tap")
-            })
-            let v1 = VPButtonComponent(type: .light, tapHandler: {
-                print("tap2")
-            })
+            let vp = VPViewPresenter()
+            for i in 0...3 {
+                
+                let v1 = VPButtonComponent(type: .strong, text: "Ciao", tapHandler: {
+                    print("tap2")
+                })
+                
+                let vi = VPView(title: "Prova", components: [v1])
+                vi.addComponent(component: VPButtonComponent.init(type: .light, text: "CIAOONE", tapHandler: {
+                    print("Complete")
+                }))
+                
+                vp.addView(view: vi)
+                
+            }
             
-            let vi = VPView(title: "Prova", components: [v, v1])
             
             
-            let vp = VPViewPresenter(views: [vi])
             vp.modalPresentationStyle = .overCurrentContext
             self.present(vp, animated: true, completion: {
                 
