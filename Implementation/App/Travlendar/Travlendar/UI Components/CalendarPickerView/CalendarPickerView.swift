@@ -42,6 +42,8 @@ class CalendarPickerView: UIView {
     private var previousLocation: CGPoint = CGPoint.zero
     private var dragging: Bool = false
     
+    private var changeDateHandler: ((_ newDate: Date) -> Void)?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -172,6 +174,10 @@ class CalendarPickerView: UIView {
         }
     }
     
+    func setDateChangeHandler(handler: @escaping ((_ newDate: Date) -> Void)) {
+        self.changeDateHandler = handler
+    }
+    
 }
 
 extension CalendarPickerView {
@@ -242,7 +248,9 @@ extension CalendarPickerView {
 extension CalendarPickerView: DPViewDelegate {
     
     func didSelectDay(_ dayView: DPDayView) {
-        closePickerView.setDate(date: dayView.date!.dateFor(.startOfDay).addingTimeInterval(86400))
+        let d = dayView.date!.dateFor(.startOfDay).addingTimeInterval(86400)
+        closePickerView.setDate(date: d)
+        changeDateHandler?(d)
     }
     
     

@@ -17,16 +17,19 @@ class CalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        // Date Picker View
         self.view.addSubview(picker)
-//        
-//        delay(2) {
-//            self.picker.setPickerType(type: .open, animated: true)
-//        }
-//        delay(4) {
-//            self.picker.setPickerType(type: .closed, animated: true)
-//        }
+        picker.setDateChangeHandler { (newDate) in
+            print(newDate)
+        }
     }
     
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        if UIDevice.current.orientation.isLandscape {
+            self.picker.setPickerType(type: .closed)
+        }
+    }
 }
 
