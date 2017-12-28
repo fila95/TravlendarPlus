@@ -66,8 +66,8 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="qv9-4T-HVO" firstAttribute="top" secondItem="YFZ-UH-NLe" secondAttribute="top" id="Dxd-qY-iUj"/>
-                            <constraint firstItem="qv9-4T-HVO" firstAttribute="leading" secondItem="AOp-mc-GmF" secondAttribute="leading" id="FbN-Yf-9bZ"/>
-                            <constraint firstItem="qv9-4T-HVO" firstAttribute="trailing" secondItem="AOp-mc-GmF" secondAttribute="trailing" id="UOc-tv-TfG"/>
+                            <constraint firstItem="qv9-4T-HVO" firstAttribute="leading" secondItem="YFZ-UH-NLe" secondAttribute="leading" id="FbN-Yf-9bZ"/>
+                            <constraint firstItem="qv9-4T-HVO" firstAttribute="trailing" secondItem="YFZ-UH-NLe" secondAttribute="trailing" id="UOc-tv-TfG"/>
                             <constraint firstItem="qv9-4T-HVO" firstAttribute="bottom" secondItem="AOp-mc-GmF" secondAttribute="bottom" id="YWL-9L-nr9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AOp-mc-GmF"/>
