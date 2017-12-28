@@ -21,7 +21,7 @@ class CalendarViewController: UIViewController {
         // Date Picker View
         self.view.addSubview(picker)
         picker.setDateChangeHandler { (newDate) in
-            print(newDate)
+//            print(newDate)
         }
     }
     

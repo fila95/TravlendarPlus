@@ -248,7 +248,7 @@ extension CalendarPickerView {
 extension CalendarPickerView: DPViewDelegate {
     
     func didSelectDay(_ dayView: DPDayView) {
-        let d = dayView.date!.dateFor(.startOfDay).addingTimeInterval(86400)
+        let d = dayView.date!.dateFor(.startOfDay)
         closePickerView.setDate(date: d)
         changeDateHandler?(d)
     }
