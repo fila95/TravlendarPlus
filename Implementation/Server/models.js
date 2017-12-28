@@ -78,7 +78,7 @@ function model(db, cb) {
 		mobike_enabled: { type: 'boolean', defaultValue: false }
 	})
 
-	//Given an hour returns true if the public transit can be used, false otherwise
+	// Given an hour returns true if the public transit can be used, false otherwise
 	Setting.canUsePublicTransportation = (time) => {
 		sec_start_public_transportation = 24 * this.start_public_transportation.split(":")[0] + 60 * this.start_public_transportation.split(":")[1] + this.start_public_transportation.split(":")[2]
 		sec_end_public_transportation = 24 * 60 * this.end_public_transportation.split(":")[0] + 60 * this.end_public_transportation.split(":")[1] + this.end_public_transportation.split(":")[2]

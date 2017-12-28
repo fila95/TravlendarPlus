@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const parseTransports = require('./events').parseTransports
 
 const token = process.env.GOOGLE_MAPS_TOKEN
 /* istanbul ignore if */
