@@ -70,6 +70,16 @@
                ReferencedContainer = "container:Travlendar.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1EAB5CBF1FF5029A0052BC4B"
+               BuildableName = "ViewPresenterTests.xctest"
+               BlueprintName = "ViewPresenterTests"
+               ReferencedContainer = "container:Travlendar.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

@@ -25,9 +25,14 @@ class MapViewController: UIViewController {
             print(newDate)
         }
         
+        
+        // Location Management
+        Location.shared.requestAuthorizationIfNeeded { (complete) in
+            
+        }
         Location.shared.subscribe { (coordinates) in
             // Zoom to user location
-            let viewRegion = MKCoordinateRegionMakeWithDistance(coordinates, 200, 200)
+            let viewRegion = MKCoordinateRegionMakeWithDistance(coordinates, 1000, 1000)
             self.map.setRegion(viewRegion, animated: false)
         }
         Location.shared.requestLocationUpdate()
