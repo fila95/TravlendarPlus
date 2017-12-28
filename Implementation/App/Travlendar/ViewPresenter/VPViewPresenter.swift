@@ -14,7 +14,7 @@ public class VPViewPresenter: UIViewController {
         }
     }
     
-    public var scrollEnabled: Bool = false {
+    public var scrollEnabled: Bool = true {
         didSet {
             self.scrollView.isScrollEnabled = scrollEnabled
         }
@@ -23,6 +23,7 @@ public class VPViewPresenter: UIViewController {
     private var scrollView: UIScrollView = UIScrollView()
     private var dimmingView: UIView = UIView()
     private var dragging: Bool = false
+    private var currentPage: Int = 0
     
     convenience public init(views: [VPView]) {
         self.init(nibName: nil, bundle: nil)
@@ -63,12 +64,32 @@ public class VPViewPresenter: UIViewController {
         }
     }
     
+    public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        let visiblePage: Int = Int(self.scrollView.contentOffset.x / self.scrollView.bounds.size.width)
+        coordinator.animate(alongsideTransition: { (context) in
+            self.scrollView.contentOffset = CGPoint.init(x: CGFloat(visiblePage) * self.scrollView.bounds.size.width, y: self.scrollView.contentOffset.y)
+        }) { (completion) in
+            
+        }
+    }
+    
     
     public func addView(view: VPView) {
         self.views.append(view)
-        resetViews()
+        self.resetViews()
     }
     
+    @discardableResult
+    public func showPage(page: Int) -> Bool {
+        guard page < self.views.count else {
+            return false
+        }
+        
+        self.scrollView.setContentOffset(CGPoint.init(x: self.scrollView.frame.size.width * CGFloat(page), y: self.scrollView.contentOffset.y), animated: true)
+        return true
+    }
+    
+    // MARK: Private
     private func resetViews() {
         
         for v in self.scrollView.subviews {
@@ -84,14 +105,13 @@ public class VPViewPresenter: UIViewController {
         self.view.setNeedsLayout()
     }
     
+    
 }
 
 extension VPViewPresenter: UIScrollViewDelegate {
     
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if dragging {
-            
-        }
+        self.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
     }
     
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {

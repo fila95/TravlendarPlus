@@ -24,7 +24,7 @@ class CalendarViewController: UIViewController {
         picker.setDateChangeHandler { (newDate) in
             
             let vp = VPViewPresenter()
-            for i in 0...3 {
+            for _ in 0...3 {
                 
                 let v1 = VPButtonComponent(type: .strong, text: "Ciao", tapHandler: {
                     print("tap2")
@@ -32,11 +32,10 @@ class CalendarViewController: UIViewController {
                 
                 let vi = VPView(title: "Prova", components: [v1])
                 vi.addComponent(component: VPButtonComponent.init(type: .light, text: "CIAOONE", tapHandler: {
-                    print("Complete")
+                    vp.showPage(page: 0)
                 }))
                 
                 vp.addView(view: vi)
-                
             }
             
             
