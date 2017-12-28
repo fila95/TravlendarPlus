@@ -8,6 +8,7 @@
 
 import UIKit
 import DatePicker
+import ViewPresenter
 
 
 class CalendarViewController: UIViewController {
@@ -21,8 +22,26 @@ class CalendarViewController: UIViewController {
         // Date Picker View
         self.view.addSubview(picker)
         picker.setDateChangeHandler { (newDate) in
-//            print(newDate)
+            
+            let v = VPButtonComponent(type: .strong, tapHandler: {
+                print("tap")
+            })
+            let v1 = VPButtonComponent(type: .light, tapHandler: {
+                print("tap2")
+            })
+            
+            let vi = VPView(title: "Prova", components: [v, v1])
+            
+            
+            let vp = VPViewPresenter(views: [vi])
+            vp.modalPresentationStyle = .overCurrentContext
+            self.present(vp, animated: true, completion: {
+                
+            })
+            
         }
+        
+        
     }
     
     
