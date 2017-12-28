@@ -13,7 +13,7 @@ import UIKit
  information on whether or not the day falls in the month itself or not.
  If not, the day belongs to the previous or next month.
  */
-final class JBDay {
+final class DPDay {
     
     var dayValue: Int
     var monthValue: Int
@@ -35,5 +35,7 @@ final class JBDay {
         comps.day = dayValue
         return Calendar.current.date(from: comps)
     }
+    
+    
 }
 

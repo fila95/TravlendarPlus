@@ -8,9 +8,9 @@
 
 import UIKit
 
-extension UIAlertController {
+public extension UIAlertController {
     
-    static func show(title: String, message: String, buttonTitle: String, complection: @escaping ()->() = {}, on viewController: UIViewController) {
+    static public func show(title: String, message: String, buttonTitle: String, complection: @escaping ()->() = {}, on viewController: UIViewController) {
         let ac = UIAlertController(
             title: title,
             message: message,

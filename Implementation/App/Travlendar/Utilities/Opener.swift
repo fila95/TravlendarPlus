@@ -8,9 +8,9 @@
 
 import UIKit
 
-struct Opener {
+public struct Opener {
     
-    struct Link {
+    public struct Link {
         
         public static func redirectToBrowserAndOpen(link: String) {
             

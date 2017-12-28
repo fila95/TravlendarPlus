@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 
-extension UIColor {
+public extension UIColor {
     
-    static var application: UIColor {
+    static public var application: UIColor {
         get {
             return UIColor.init(hex: "FF4E4C")
         }
@@ -21,25 +21,25 @@ extension UIColor {
 }
 
 
-extension UIColor {
+public extension UIColor {
     /**
      Create a ligher color
      */
-    func lighter(by percentage: CGFloat = 30.0) -> UIColor {
+    public func lighter(by percentage: CGFloat = 30.0) -> UIColor {
         return self.adjustBrightness(by: abs(percentage))
     }
     
     /**
      Create a darker color
      */
-    func darker(by percentage: CGFloat = 30.0) -> UIColor {
+    public func darker(by percentage: CGFloat = 30.0) -> UIColor {
         return self.adjustBrightness(by: -abs(percentage))
     }
     
     /**
      Try to increase brightness or decrease saturation
      */
-    func adjustBrightness(by percentage: CGFloat = 30.0) -> UIColor {
+    public func adjustBrightness(by percentage: CGFloat = 30.0) -> UIColor {
         var h: CGFloat = 0, s: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
         if self.getHue(&h, saturation: &s, brightness: &b, alpha: &a) {
             if b < 1.0 {

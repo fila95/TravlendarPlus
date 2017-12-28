@@ -10,28 +10,28 @@ import Foundation
 import UIKit
 
 
-extension CGRect {
+public extension CGRect {
     
-    var bottomXPosition: CGFloat {
+    public var bottomXPosition: CGFloat {
         return self.origin.x + self.width
     }
     
-    var bottomYPosition: CGFloat {
+    public var bottomYPosition: CGFloat {
         return self.origin.y + self.height
     }
     
-    var minSideSize: CGFloat {
+    public var minSideSize: CGFloat {
         return min(self.width, self.height)
     }
     
-    var isWidthLessThanHeight: Bool {
+    public var isWidthLessThanHeight: Bool {
         return self.width < self.height
     }
 }
 
 
 
-extension Strideable {
+public extension Strideable {
     
     public mutating func setIfMore(when value: Self) {
         if self > value {
@@ -45,8 +45,6 @@ extension Strideable {
         }
     }
 }
-
-import UIKit
 
 public extension UIImage {
     

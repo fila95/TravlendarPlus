@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import UserNotifications
+import Utilities
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -40,14 +41,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             Location.shared.requestLocationUpdate()
         }
         
+        // Reset badge number
+        Badge.reset()
+        
         
         let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
             print(granted == true ? "Notification Authorization Granted" : "Notification Authorization Error: \(error.debugDescription)")
         }
         application.registerForRemoteNotifications()
-        
-        
         
         
         return true

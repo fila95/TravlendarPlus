@@ -17,7 +17,7 @@ class AddNewCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var textLabel: UILabel!
     
     var nrm: UIColor = UIColor.application
-    var sel: UIColor = UIColor.application.darker(by: 20)
+    var sel: UIColor = UIColor.application.lighter(by: 20)
     
     override var isHighlighted: Bool {
         get {
