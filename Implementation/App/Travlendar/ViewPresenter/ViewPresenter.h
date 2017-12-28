@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Utilities/Utilities.h>
 
 //! Project version number for ViewPresenter.
 FOUNDATION_EXPORT double ViewPresenterVersionNumber;

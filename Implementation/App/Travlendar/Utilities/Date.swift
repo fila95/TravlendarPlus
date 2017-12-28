@@ -8,30 +8,30 @@
 
 import Foundation
 
-extension Formatter {
+public extension Formatter {
     
-    static let iso8601: DateFormatter = {
+    static public let iso8601: DateFormatter = {
         let formatter = DateFormatter()
 //        formatter.timeZone = TimeZone(secondsFromGMT: 0)
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
         return formatter
     }()
     
-    static let time: DateFormatter = {
+    static public let time: DateFormatter = {
         let formatter = DateFormatter()
 //        formatter.timeZone = TimeZone(secondsFromGMT: 0)
         formatter.dateFormat = "HH:mm:ss"
         return formatter
     }()
     
-    static let month: DateFormatter = {
+    static public let month: DateFormatter = {
         let formatter = DateFormatter()
 //        formatter.timeZone = TimeZone(secondsFromGMT: 0)
         formatter.dateFormat = "MMMM"
         return formatter
     }()
     
-    static let weekday: DateFormatter = {
+    static public let weekday: DateFormatter = {
         let formatter = DateFormatter()
 //        formatter.timeZone = TimeZone(secondsFromGMT: 0)
         formatter.dateFormat = "EEEE"
@@ -58,7 +58,7 @@ extension Date {
     
     /// Creates a new date with adjusted components
     
-    func adjust(_ component: DateComponentType, offset:Int) -> Date {
+    public func adjust(_ component: DateComponentType, offset:Int) -> Date {
         var dateComp = DateComponents()
         switch component {
         case .second:
@@ -84,7 +84,7 @@ extension Date {
     }
     
     /// Return a new Date object with the new hour, minute and seconds values.
-    func adjust(hour: Int?, minute: Int?, second: Int?, day: Int? = nil, month: Int? = nil) -> Date {
+    public func adjust(hour: Int?, minute: Int?, second: Int?, day: Int? = nil, month: Int? = nil) -> Date {
         var comp = Date.components(self)
         comp.month = month ?? comp.month
         comp.day = day ?? comp.day
@@ -96,7 +96,7 @@ extension Date {
     
     // MARK: Date for...
     
-    func dateFor(_ type: DateForType) -> Date {
+    public func dateFor(_ type: DateForType) -> Date {
         switch type {
         case .startOfDay:
             return adjust(hour: 0, minute: 0, second: 0)
@@ -128,7 +128,7 @@ extension Date {
     
     // MARK: Extracting components
     
-    func component(_ component:DateComponentType) -> Int? {
+    public func component(_ component:DateComponentType) -> Int? {
         let components = Date.components(self)
         switch component {
         case .second:

@@ -34,6 +34,7 @@ public class VPViewPresenter: UIViewController {
         super.viewDidLoad()
         
         self.dimmingView.backgroundColor = UIColor.black.withAlphaComponent(0.15)
+        self.dimmingView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(VPViewPresenter.dismissEntirely)))
         self.view.addSubview(self.dimmingView)
         
         self.scrollView.isPagingEnabled = true
@@ -93,15 +94,19 @@ public class VPViewPresenter: UIViewController {
     public func nextPage(dismissIfLast: Bool = false) {
         if !showPage(page: currentPage+1) {
             if dismissIfLast {
-                self.dismiss(animated: true, completion: {
-                    
-                })
+                self.dismissEntirely()
             }
         }
     }
     
     public func previousPage() {
         showPage(page: currentPage-1)
+    }
+    
+    @objc private func dismissEntirely() {
+        self.dismiss(animated: true, completion: {
+            
+        })
     }
     
     // MARK: Private

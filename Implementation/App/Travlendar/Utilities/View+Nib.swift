@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UIView {
+public extension UIView {
 //    1. Call this method from your init functions
     /// Helper method to init and setup the view from the Nib.
     func xibSetup() {

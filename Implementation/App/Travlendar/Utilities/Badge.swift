@@ -10,11 +10,11 @@ import UIKit
 
 public struct Badge {
     
-    static func reset() {
+    static public func reset() {
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
-    static func set(count: Int) {
+    static public func set(count: Int) {
         UIApplication.shared.applicationIconBadgeNumber = count
     }
     

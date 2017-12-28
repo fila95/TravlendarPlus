@@ -10,7 +10,7 @@ import Foundation
 import CoreSpotlight
 import MobileCoreServices
 
-struct Spotlight {
+public struct Spotlight {
     
     static let domainIdentifier = "com.travlendar.spotlight"
     
