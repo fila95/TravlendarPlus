@@ -1121,7 +1121,7 @@ Structure of the source code
 \begin_layout Standard
 As described in the Design Document, Travlendar+ is composed of a two tier
  architecture with distributed data and logic.
- The developed code follows different structure depending on tier analized
+ The developed code follows different structure depending on tier analyzed
 \end_layout
 
 \begin_layout Subsection
@@ -1129,7 +1129,16 @@ Client side
 \end_layout
 
 \begin_layout Standard
-The source code is
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TODO GIO
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -1172,10 +1181,165 @@ The folder
 routes
 \emph default
  contains all the routing endpoints of the API calls, executed though Express.
+ Finally, the folder 
+\emph on
+test
+\emph default
+ contains the code of the testing.
 \end_layout
 
 \begin_layout Section
 Testing
+\end_layout
+
+\begin_layout Standard
+The reader is invited to read Section 6.3 of the Design Document, which contains
+ information about procedures and frameworks used to test the code written.
+ Every test unit can be run by opening a command line session at the folder
+ 
+\emph on
+Implementation/Test
+\emph default
+ and typing 
+\emph on
+npm test.
+\end_layout
+
+\begin_layout Subsection
+Test Cases
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Test Case Number
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Component tested
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Input given
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Output expected
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Output received
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Result
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -1211,7 +1375,17 @@ Please note that the application is compatible only with iOS platform's
 \end_layout
 
 \begin_layout Subsubsection
-Compiling instructions
+Compiling instructions 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TODO GIO
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
