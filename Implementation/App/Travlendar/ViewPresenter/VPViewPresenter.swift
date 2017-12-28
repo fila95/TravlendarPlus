@@ -40,6 +40,7 @@ public class VPViewPresenter: UIViewController {
         self.scrollView.bounces = true
         self.scrollView.backgroundColor = UIColor.clear
         self.scrollView.isScrollEnabled = self.scrollEnabled
+        self.scrollView.showsHorizontalScrollIndicator = false
         self.scrollView.delegate = self
         self.view.addSubview(self.scrollView)
         
@@ -87,6 +88,20 @@ public class VPViewPresenter: UIViewController {
         
         self.scrollView.setContentOffset(CGPoint.init(x: self.scrollView.frame.size.width * CGFloat(page), y: self.scrollView.contentOffset.y), animated: true)
         return true
+    }
+    
+    public func nextPage(dismissIfLast: Bool = false) {
+        if !showPage(page: currentPage+1) {
+            if dismissIfLast {
+                self.dismiss(animated: true, completion: {
+                    
+                })
+            }
+        }
+    }
+    
+    public func previousPage() {
+        showPage(page: currentPage-1)
     }
     
     // MARK: Private
