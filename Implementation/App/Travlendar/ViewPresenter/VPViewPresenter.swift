@@ -27,18 +27,18 @@ public class VPViewPresenter: UIViewController {
     
     public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
-        commonInit()
+        self.commonInit()
     }
     
     convenience public init(views: [VPView]) {
         self.init(nibName: nil, bundle: nil)
         self.views = views
-        commonInit()
+        self.commonInit()
     }
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        commonInit()
+        self.commonInit()
     }
     
     private func commonInit() {
@@ -51,7 +51,7 @@ public class VPViewPresenter: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-        self.dimmingView.backgroundColor = UIColor.black.withAlphaComponent(0.15)
+        self.dimmingView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         self.dimmingView.isUserInteractionEnabled = true
         self.view.addSubview(self.dimmingView)
         

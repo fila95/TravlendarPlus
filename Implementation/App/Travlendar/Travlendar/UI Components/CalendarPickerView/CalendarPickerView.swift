@@ -102,6 +102,7 @@ class CalendarPickerView: UIView {
         // Dragger
         self.dragger.image = #imageLiteral(resourceName: "dragger")
         self.dragger.contentMode = .center
+        self.dragger.backgroundColor = UIColor.white
         self.dragger.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(CalendarPickerView.dragging(pan:))))
         self.dragger.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CalendarPickerView.tap(tap:))))
         self.dragger.isUserInteractionEnabled = true
@@ -139,7 +140,7 @@ class CalendarPickerView: UIView {
         closePickerView.frame = CGRect.init(x: 0, y: 0, width: self.frame.size.width, height: PickerType.closed.height() + self.safeAreaInsets.top)
         
         // Dragger
-        dragger.frame = CGRect.init(x: 0, y: self.frame.size.height-20, width: self.frame.size.width, height: 20)
+        dragger.frame = CGRect.init(x: 0, y: self.frame.size.height-30, width: self.frame.size.width, height: 30)
         
         if self.type == .open {
             self.calendarContainerView.alpha = 1.0
@@ -229,7 +230,7 @@ extension CalendarPickerView {
             previousLocation = l
             
             // Dragger
-            dragger.frame = CGRect.init(x: 0, y: self.frame.size.height-20, width: self.frame.size.width, height: 20)
+            dragger.frame = CGRect.init(x: 0, y: self.frame.size.height-30, width: self.frame.size.width, height: 30)
             
             
             break
