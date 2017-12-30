@@ -3374,7 +3374,7 @@ Event Services
 \end_layout
 
 \begin_layout Standard
-The first subcomponent that should be implemented is the EventManager Module,
+The first subcomponent that should be implemented is the Event Manager Module,
  since this subcomponent is the most complex of our system, and to prevent
  any bugs from appearing at the end of the project, causing problems and
  propagating them in other parts of the application.
@@ -3391,7 +3391,7 @@ reference "subsec:Event-Schedule-Algorithm"
 
 \begin_layout Standard
 The other subcomponent is the Calendar Module, that could be developed apart
- from the EventManager, since it is simple and there is no need of a complex
+ from the Event Manager, since it is simple and there is no need of a complex
  logic.
 \end_layout
 
@@ -3403,7 +3403,7 @@ User Services
 The Account Manager Module is one of the first used in the flow of a typical
  connection made by the client application, so it should be implemented
  at the beginning.
- Since it is not related to the EventManager Module, it can be developed
+ Since it is not related to the Event Manager Module, it can be developed
  in parallel.
 \end_layout
 

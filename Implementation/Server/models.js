@@ -77,17 +77,13 @@ function model(db, cb) {
 		uber_enabled: { type: 'boolean', defaultValue: false },
 		mobike_enabled: { type: 'boolean', defaultValue: false }
 	})
-	//Given an hour returns true if the public transit can be used, false otherwise
-	Settings.canUsePublicTransportation = (time) => {
-		sec_start_public_transportation=24*this.start_public_transportation.split(":")[0]+60*this.start_public_transportation.split(":")[1]+this.start_public_transportation.split(":")[2]
-		sec_end_public_transportation=24*60*this.end_public_transportation.split(":")[0]+60*this.end_public_transportation.split(":")[1]+this.end_public_transportation.split(":")[2]
-		sec_time=24*60*this.time.split(":")[0]+60*this.time.split(":")[1]+this.time.split(":")[2]
-		if(sec_time>=sec_start_public_transportation && sec_time<=sec_end_public_transportation){
-			return true
-		}else{
-			return false
-		}
 
+	// Given an hour returns true if the public transit can be used, false otherwise
+	Setting.canUsePublicTransportation = (time) => {
+		sec_start_public_transportation = 24 * this.start_public_transportation.split(":")[0] + 60 * this.start_public_transportation.split(":")[1] + this.start_public_transportation.split(":")[2]
+		sec_end_public_transportation = 24 * 60 * this.end_public_transportation.split(":")[0] + 60 * this.end_public_transportation.split(":")[1] + this.end_public_transportation.split(":")[2]
+		sec_time = 24 * 60 * this.time.split(":")[0] + 60 * this.time.split(":")[1] + this.time.split(":")[2]
+		return sec_time >= sec_start_public_transportation && sec_time <= sec_end_public_transportation
 	}
 
 	let Travel = db.define('travels', {
