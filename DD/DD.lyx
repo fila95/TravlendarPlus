@@ -3166,7 +3166,7 @@ Requirements Analysis and Specification Document
 \begin_layout Itemize
 [R1] User Services: Account Manager Module through the 
 \emph on
-Auto-login Service
+AccountService
 \emph default
  interface
 \end_layout
@@ -3189,7 +3189,7 @@ EventHistory
 \begin_layout Itemize
 [R3] Event Services: Event Manager Module through 
 \emph on
-ActivitiesScheduler
+ManageEvent
 \emph default
  interface
 \end_layout
@@ -3219,7 +3219,7 @@ EventHistory
 \begin_layout Itemize
 [R8] Event Services: Event Manager Module through 
 \emph on
-ManageEvents
+ManageEvent
 \emph default
  interface
 \end_layout
@@ -3286,7 +3286,7 @@ EventHistory
 \begin_layout Itemize
 [R22] Event Services: Event Manager Module through 
 \emph on
-ActivitiesScheduler
+ManageEvent
 \emph default
  interface
 \end_layout
@@ -3334,9 +3334,9 @@ ManageCalendars
 
 \begin_deeper
 \begin_layout Itemize
-[R29][R30] Event Services: Event Manager Module through 
+[R29][R30][R31] Event Services: Event Manager Module through 
 \emph on
-ActivitiesScheduler
+ManageEvent
 \emph default
  interface
 \end_layout
