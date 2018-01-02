@@ -47,7 +47,6 @@ public class VPViewPresenter: UIViewController {
     }
     
     
-    
     override public func viewDidLoad() {
         super.viewDidLoad()
         
@@ -63,7 +62,6 @@ public class VPViewPresenter: UIViewController {
         self.scrollView.delegate = self
         self.scrollView.transform = CGAffineTransform.init(translationX: 0, y: 400)
         self.view.addSubview(self.scrollView)
-        
         
         let tg = UITapGestureRecognizer(target: self, action: #selector(VPViewPresenter.dismissEntirely))
         tg.cancelsTouchesInView = false

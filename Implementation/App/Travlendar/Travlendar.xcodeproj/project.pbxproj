@@ -16,6 +16,7 @@
 		1E21E8721FCC238F0009EFA9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E21E8711FCC238F0009EFA9 /* MapKit.framework */; };
 		1E21E8741FCC24C10009EFA9 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E21E8731FCC24C10009EFA9 /* Location.swift */; };
 		1E4B69351FD80AE400DFFC66 /* GFPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4B69341FD80AE400DFFC66 /* GFPageControl.swift */; };
+		1E4C9AE71FFB941B002F8E8B /* VPDatePickerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C9AE61FFB941B002F8E8B /* VPDatePickerComponent.swift */; };
 		1E543BEF1FE8F8B600DC5BE6 /* TabBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E543BEE1FE8F8B600DC5BE6 /* TabBarControllerViewController.swift */; };
 		1E68BB8F1FD6895200ED4765 /* NetworkOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E68BB8E1FD6895200ED4765 /* NetworkOperations.swift */; };
 		1E6DB0A41FEA4AD30051319E /* DatePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6DB09B1FEA4AD30051319E /* DatePicker.framework */; };
@@ -206,6 +207,7 @@
 		1E21E8731FCC24C10009EFA9 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		1E379AB01FE026D200E74DFC /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		1E4B69341FD80AE400DFFC66 /* GFPageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFPageControl.swift; sourceTree = "<group>"; };
+		1E4C9AE61FFB941B002F8E8B /* VPDatePickerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPDatePickerComponent.swift; sourceTree = "<group>"; };
 		1E4CB7311FDD46F100FA8E52 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		1E4CB7331FDD475A00FA8E52 /* Share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Share.swift; sourceTree = "<group>"; };
 		1E4CB7351FDD48E300FA8E52 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
@@ -590,6 +592,7 @@
 			children = (
 				1EAB5CD91FF509BD0052BC4B /* VPComponent.swift */,
 				1EAB5CDC1FF50A080052BC4B /* VPButtonComponent.swift */,
+				1E4C9AE61FFB941B002F8E8B /* VPDatePickerComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1345,6 +1348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EAB5CD61FF502B00052BC4B /* VPView.swift in Sources */,
+				1E4C9AE71FFB941B002F8E8B /* VPDatePickerComponent.swift in Sources */,
 				1EAB5CDA1FF509BD0052BC4B /* VPComponent.swift in Sources */,
 				1EAB5CD81FF502B90052BC4B /* VPViewPresenter.swift in Sources */,
 				1EAB5CDD1FF50A080052BC4B /* VPButtonComponent.swift in Sources */,
