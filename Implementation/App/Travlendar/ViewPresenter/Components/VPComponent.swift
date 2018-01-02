@@ -16,7 +16,7 @@ open class VPComponent: UIView {
     }
     
     override public init(frame: CGRect) {
-        super.init(frame: frame)
+        super.init(frame: CGRect(x: 0, y: 0, width: 200, height: desiredheight()))
         commonInit()
     }
     

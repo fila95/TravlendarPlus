@@ -98,7 +98,6 @@ public class API: NSObject {
     }
     
     public func sendNotificationsFor(type: APINotificationType) {
-        print(type)
         DispatchQueue.init(label: "io.array.queue").async {
             objc_sync_enter(self.handlers)
             for handle in self.handlers {
