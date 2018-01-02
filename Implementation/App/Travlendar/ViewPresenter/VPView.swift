@@ -93,7 +93,7 @@ public class VPView: UIView {
     }
     
     override public func layoutSubviews() {
-        super.layoutSubviews()
+//        super.layoutSubviews()
         
         var prev: CGFloat = 0
         self.titleLabel.frame = CGRect.init(x: 0, y: 0, width: self.frame.size.width, height: 70)

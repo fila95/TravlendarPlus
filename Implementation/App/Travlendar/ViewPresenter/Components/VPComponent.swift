@@ -7,11 +7,11 @@
 //
 
 
-public class VPComponent: UIView {
+open class VPComponent: UIView {
     
-    weak public var presenter: VPViewPresenter?
+    weak open var presenter: VPViewPresenter?
     
-    public func desiredheight() -> CGFloat  {
+    open func desiredheight() -> CGFloat  {
         return 20
     }
     
@@ -25,7 +25,7 @@ public class VPComponent: UIView {
         commonInit()
     }
     
-    public func commonInit() {
+    open func commonInit() {
         
     }
     

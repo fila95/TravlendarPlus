@@ -44,17 +44,19 @@ class SettingsViewController: UIViewController {
         refreshCalendars()
         refreshToSettings(s: Secret.shared.settings)
         
-        API.shared.subscribe(type: .settings) {
+        let refreshSett: (() -> Void) = {
             DispatchQueue.main.async {
                 self.refreshToSettings(s: Secret.shared.settings)
             }
         }
         
-        API.shared.subscribe(type: .calendars) {
+        let refreshCal = {
             DispatchQueue.main.async {
                 self.refreshCalendars()
             }
         }
+        
+        API.shared.addHandlers(handlers: [(refreshSett, type: .settings), (refreshCal, type: .calendars)])
     }
     
     override func viewWillLayoutSubviews() {

@@ -27,14 +27,14 @@ public class VPButtonComponent: VPComponent {
         }
     }
     
-    private var tapHandler: (() -> Void)?
-    private var titleLabel: UILabel = UILabel()
+    private var tapHandler: ((_ sender: VPButtonComponent) -> Void)?
+    internal var titleLabel: UILabel = UILabel()
     
     override public func desiredheight() -> CGFloat {
         return 50
     }
     
-    convenience public init(type: ButtonType, text: String? = nil, tapHandler: (() -> Void)? = nil) {
+    convenience public init(type: ButtonType, text: String? = nil, tapHandler: ((_ sender: VPButtonComponent) -> Void)? = nil) {
         self.init(frame: CGRect.zero)
         self.type = type
         self.tapHandler = tapHandler
@@ -104,7 +104,7 @@ public class VPButtonComponent: VPComponent {
             break
         case.ended:
             resetAppearance()
-            tapHandler?()
+            tapHandler?(self)
             break
         default:
             resetAppearance()

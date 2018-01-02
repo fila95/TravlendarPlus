@@ -48,7 +48,15 @@ public class API: NSObject {
     }
     
     public func deleteCalendarFromServer(calendar: Calendars, completion: ((_ complete: Bool, _ message: String?) -> Void)? = nil) {
-        queue.addOperation(CalendarsOperation(operationType: .delete, httpBody: "\(calendar.id)", completion: completion))
+        queue.addOperation(CalendarsOperation(operationType: .delete, endpointAddition: "\(calendar.id)", completion: completion))
+    }
+    
+    public func updateCalendar(calendar: Calendars, completion: ((_ complete: Bool, _ message: String?) -> Void)? = nil) {
+        queue.addOperation(CalendarsOperation(operationType: .patch, endpointAddition: "\(calendar.id)", httpBody: Calendars.representation(toRepresent: calendar), completion: completion))
+    }
+    
+    public func addCalendar(calendar: Calendars, completion: ((_ complete: Bool, _ message: String?) -> Void)? = nil) {
+        queue.addOperation(CalendarsOperation(operationType: .put, httpBody: Calendars.representation(toRepresent: calendar), completion: completion))
     }
     
     
@@ -75,13 +83,22 @@ public class API: NSObject {
         
         DispatchQueue.init(label: "io.array.queue").async {
             objc_sync_enter(self.handlers)
-            self.handlers += [(completion: completion, type: type)]
+            self.handlers.append((completion: completion, type: type))
             objc_sync_exit(self.handlers)
         }
         
     }
     
+    public func addHandlers(handlers: [(completion: (() -> Void), type: APINotificationType)]) {
+        DispatchQueue.init(label: "io.array.queue").async {
+            objc_sync_enter(self.handlers)
+            self.handlers.append(contentsOf: handlers)
+            objc_sync_exit(self.handlers)
+        }
+    }
+    
     public func sendNotificationsFor(type: APINotificationType) {
+        print(type)
         DispatchQueue.init(label: "io.array.queue").async {
             objc_sync_enter(self.handlers)
             for handle in self.handlers {

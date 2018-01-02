@@ -12,17 +12,27 @@ import RealmSwift
 public class Database {
     
     public static let shared: Database = Database()
-    
-    let realm: Realm = try! Realm()
+    let queue = DispatchQueue(label: "background.realm")
     
     init() {
         // Get our Realm file's parent directory
+        let realm: Realm = try! Realm()
+        
         let folderPath = realm.configuration.fileURL!.deletingLastPathComponent().path
         
         print("Realm Folder: \(folderPath)")
         
         // Disable file protection for this directory to enable background fetch
         try! FileManager.default.setAttributes([FileAttributeKey.protectionKey: FileProtectionType.none], ofItemAtPath: folderPath)
+    }
+    
+    func realm(completion: @escaping ((_ realm: Realm) -> Void)) {
+        DispatchQueue.main.async {
+            autoreleasepool {
+                completion(try! Realm())
+            }
+        }
+        
     }
     
 }

@@ -49,6 +49,7 @@ class NetworkOperation: Operation {
     
     var operationType: NOperationType = .get
     var httpBody: String = ""
+    var endpointAddition: String = ""
     
     var completionHandler: ((_ complete: Bool, _ message: String?) -> Void)?
     
@@ -60,20 +61,23 @@ class NetworkOperation: Operation {
         self.queuePriority = .low
     }
     
-    convenience init(operationType: NOperationType, httpBody: String? = nil, completion: ((_ complete: Bool, _ message: String?) -> Void)? = nil) {
+    convenience init(operationType: NOperationType, endpointAddition: String? = nil, httpBody: String? = nil, completion: ((_ complete: Bool, _ message: String?) -> Void)? = nil) {
         self.init()
         
+        
         self.operationType = operationType
+        self.endpointAddition = endpointAddition ?? ""
         self.httpBody = httpBody != nil ? httpBody! : ""
         self.completionHandler = completion
     }
     
     func runRequest(endpoint: String, completion: @escaping ((_ status: NStatusCode, _ data: Data?) -> Void)) {
-        let deletePath: String = operationType == .delete ? "/" + httpBody : ""
-        var request: URLRequest = URLRequest(url: URL.init(string: API.baseURL + endpoint + deletePath)!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 60)
+        var request: URLRequest = URLRequest(url: URL.init(string: API.baseURL + endpoint + "/" + endpointAddition)!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 60)
+        
+//        print(request)
         
         request.httpMethod = self.operationType.rawValue.uppercased()
-        request.httpBody = operationType != .delete ? self.httpBody.data(using: .utf8) : nil
+        request.httpBody = self.httpBody.data(using: .utf8)
         
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")

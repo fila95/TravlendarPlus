@@ -64,8 +64,8 @@ class CalendarCell: UICollectionViewCell, UIGestureRecognizerDelegate {
     }
     
     func setCalendar(c: Calendars) {
-        colorView.backgroundColor = UIColor.init(hex: c.color)
-        textLabel.text = c.name
+        self.colorView.backgroundColor = UIColor.init(hex: c.color)
+        self.textLabel.text = c.name
     }
     
     @objc private func handleGesture(sender: UILongPressGestureRecognizer) {

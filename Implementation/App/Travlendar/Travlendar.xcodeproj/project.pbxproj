@@ -17,6 +17,11 @@
 		1E21E8741FCC24C10009EFA9 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E21E8731FCC24C10009EFA9 /* Location.swift */; };
 		1E4B69351FD80AE400DFFC66 /* GFPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4B69341FD80AE400DFFC66 /* GFPageControl.swift */; };
 		1E4C9AE71FFB941B002F8E8B /* VPDatePickerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C9AE61FFB941B002F8E8B /* VPDatePickerComponent.swift */; };
+		1E4C9AE91FFB978B002F8E8B /* CalendarCreatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C9AE81FFB978B002F8E8B /* CalendarCreatorView.swift */; };
+		1E4C9AEB1FFB9798002F8E8B /* CalendarCreatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E4C9AEA1FFB9798002F8E8B /* CalendarCreatorView.xib */; };
+		1E4C9AED1FFBA6FB002F8E8B /* CalendarColorPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E4C9AEC1FFBA6FB002F8E8B /* CalendarColorPickerView.xib */; };
+		1E4C9AEF1FFBA707002F8E8B /* CalendarColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C9AEE1FFBA707002F8E8B /* CalendarColorPickerView.swift */; };
+		1E4C9AF11FFBEE08002F8E8B /* VPLoadingButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C9AF01FFBEE08002F8E8B /* VPLoadingButtonComponent.swift */; };
 		1E543BEF1FE8F8B600DC5BE6 /* TabBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E543BEE1FE8F8B600DC5BE6 /* TabBarControllerViewController.swift */; };
 		1E68BB8F1FD6895200ED4765 /* NetworkOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E68BB8E1FD6895200ED4765 /* NetworkOperations.swift */; };
 		1E6DB0A41FEA4AD30051319E /* DatePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6DB09B1FEA4AD30051319E /* DatePicker.framework */; };
@@ -208,6 +213,11 @@
 		1E379AB01FE026D200E74DFC /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		1E4B69341FD80AE400DFFC66 /* GFPageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFPageControl.swift; sourceTree = "<group>"; };
 		1E4C9AE61FFB941B002F8E8B /* VPDatePickerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPDatePickerComponent.swift; sourceTree = "<group>"; };
+		1E4C9AE81FFB978B002F8E8B /* CalendarCreatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCreatorView.swift; sourceTree = "<group>"; };
+		1E4C9AEA1FFB9798002F8E8B /* CalendarCreatorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarCreatorView.xib; sourceTree = "<group>"; };
+		1E4C9AEC1FFBA6FB002F8E8B /* CalendarColorPickerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarColorPickerView.xib; sourceTree = "<group>"; };
+		1E4C9AEE1FFBA707002F8E8B /* CalendarColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarColorPickerView.swift; sourceTree = "<group>"; };
+		1E4C9AF01FFBEE08002F8E8B /* VPLoadingButtonComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPLoadingButtonComponent.swift; sourceTree = "<group>"; };
 		1E4CB7311FDD46F100FA8E52 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		1E4CB7331FDD475A00FA8E52 /* Share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Share.swift; sourceTree = "<group>"; };
 		1E4CB7351FDD48E300FA8E52 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
@@ -592,6 +602,7 @@
 			children = (
 				1EAB5CD91FF509BD0052BC4B /* VPComponent.swift */,
 				1EAB5CDC1FF50A080052BC4B /* VPButtonComponent.swift */,
+				1E4C9AF01FFBEE08002F8E8B /* VPLoadingButtonComponent.swift */,
 				1E4C9AE61FFB941B002F8E8B /* VPDatePickerComponent.swift */,
 			);
 			path = Components;
@@ -647,6 +658,10 @@
 		1EEE56A91FE3D4F700621599 /* Calendar Management Stuff */ = {
 			isa = PBXGroup;
 			children = (
+				1E4C9AE81FFB978B002F8E8B /* CalendarCreatorView.swift */,
+				1E4C9AEA1FFB9798002F8E8B /* CalendarCreatorView.xib */,
+				1E4C9AEE1FFBA707002F8E8B /* CalendarColorPickerView.swift */,
+				1E4C9AEC1FFBA6FB002F8E8B /* CalendarColorPickerView.xib */,
 			);
 			path = "Calendar Management Stuff";
 			sourceTree = "<group>";
@@ -1062,8 +1077,10 @@
 				1EAA18EC1FC9CE9F001B3612 /* LaunchScreen.storyboard in Resources */,
 				1E98CB921FF3CE6E006DCF7F /* CalendarCloseView.xib in Resources */,
 				1EEE56BD1FE3E1BE00621599 /* AddNewCollectionViewCell.xib in Resources */,
+				1E4C9AEB1FFB9798002F8E8B /* CalendarCreatorView.xib in Resources */,
 				1EAA18E91FC9CE9F001B3612 /* Assets.xcassets in Resources */,
 				1EAA18E41FC9CE9F001B3612 /* Main.storyboard in Resources */,
+				1E4C9AED1FFBA6FB002F8E8B /* CalendarColorPickerView.xib in Resources */,
 				1E0078401FE2BA1300FD5405 /* CalendarCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1306,6 +1323,7 @@
 				1E4B69351FD80AE400DFFC66 /* GFPageControl.swift in Sources */,
 				1E21E86C1FCC08820009EFA9 /* Secret.swift in Sources */,
 				1EAA18DF1FC9CE9F001B3612 /* AppDelegate.swift in Sources */,
+				1E4C9AE91FFB978B002F8E8B /* CalendarCreatorView.swift in Sources */,
 				1EF4E18D1FDC5F0B00B5BFDC /* MapViewController.swift in Sources */,
 				1E00783E1FE2BA0700FD5405 /* CalendarCell.swift in Sources */,
 				1EEE56A41FE3D17600621599 /* SettingsOperations.swift in Sources */,
@@ -1318,6 +1336,7 @@
 				1EF4E18F1FDC5F1400B5BFDC /* SettingsViewController.swift in Sources */,
 				1E98CB901FF3CD71006DCF7F /* CalendarCloseView.swift in Sources */,
 				1EB2ECE51FCD4EB300A50EC3 /* Database.swift in Sources */,
+				1E4C9AEF1FFBA707002F8E8B /* CalendarColorPickerView.swift in Sources */,
 				1E98CB8A1FF3A738006DCF7F /* CalendarPickerView.swift in Sources */,
 				1E0078461FE2C09800FD5405 /* SettingsViewController+CollectionView.swift in Sources */,
 				1E03BC641FD7FA5F004B411E /* DataModel+Utils.swift in Sources */,
@@ -1351,6 +1370,7 @@
 				1E4C9AE71FFB941B002F8E8B /* VPDatePickerComponent.swift in Sources */,
 				1EAB5CDA1FF509BD0052BC4B /* VPComponent.swift in Sources */,
 				1EAB5CD81FF502B90052BC4B /* VPViewPresenter.swift in Sources */,
+				1E4C9AF11FFBEE08002F8E8B /* VPLoadingButtonComponent.swift in Sources */,
 				1EAB5CDD1FF50A080052BC4B /* VPButtonComponent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

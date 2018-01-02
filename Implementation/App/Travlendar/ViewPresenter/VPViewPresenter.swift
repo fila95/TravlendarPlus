@@ -14,7 +14,7 @@ public class VPViewPresenter: UIViewController {
         }
     }
     
-    public var scrollEnabled: Bool = true {
+    public var scrollEnabled: Bool = false {
         didSet {
             self.scrollView.isScrollEnabled = scrollEnabled
         }
@@ -24,6 +24,8 @@ public class VPViewPresenter: UIViewController {
     private var dimmingView: UIView = UIView()
     private var dragging: Bool = false
     private var currentPage: Int = 0
+    private var keyboardHeight: CGFloat = 0.0
+    private let paddingY: CGFloat = 20
     
     public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
@@ -73,6 +75,9 @@ public class VPViewPresenter: UIViewController {
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear(notification:)), name: Notification.Name.UIKeyboardWillShow, object: nil)
+        
         UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.08, options: .curveEaseInOut, animations: {
             self.scrollView.transform = CGAffineTransform.identity
             self.scrollView.alpha = 1.0
@@ -84,23 +89,30 @@ public class VPViewPresenter: UIViewController {
     public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        
+        NotificationCenter.default.removeObserver(self)
     }
     
     override public func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+//        super.viewWillLayoutSubviews()
         
         self.dimmingView.frame = self.view.bounds
         
         self.scrollView.frame = self.view.bounds
         self.scrollView.contentSize = CGSize.init(width: self.view.bounds.width * CGFloat(views.count), height: self.view.bounds.height)
         
+        refreshViewFrames()
+    }
+    
+    private func refreshViewFrames() {
         var sum: CGFloat = 0
         let paddingX: CGFloat = self.scrollView.frame.size.width < 400 ? 20 : (self.scrollView.frame.size.width - 320) / 2
-        let paddingY: CGFloat = 20
-//        let w = self.scrollView.frame.size.width > 400 ? 300 : self.scrollView.frame.size.width - padding*2
+        
+        //        let w = self.scrollView.frame.size.width > 400 ? 300 : self.scrollView.frame.size.width - padding*2
         for v in views {
             v.frame = CGRect.init(x: paddingX + sum, y: self.scrollView.frame.size.height - paddingY - v.intrinsicContentSize.height - self.view.safeAreaInsets.bottom, width: self.scrollView.frame.size.width - paddingX*2, height: v.intrinsicContentSize.height)
+            if v == views[currentPage] {
+                v.frame.origin.y -= self.keyboardHeight / 2
+            }
             sum += self.scrollView.frame.size.width
         }
     }
@@ -122,6 +134,8 @@ public class VPViewPresenter: UIViewController {
     
     @discardableResult
     public func showPage(page: Int) -> Bool {
+        self.view.endEditing(true)
+        
         guard page < self.views.count else {
             return false
         }
@@ -150,7 +164,6 @@ public class VPViewPresenter: UIViewController {
     
     // MARK: Private
     private func resetViews() {
-        
         for v in self.scrollView.subviews {
             v.removeFromSuperview()
         }
@@ -178,6 +191,34 @@ extension VPViewPresenter: UIScrollViewDelegate {
     }
     public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         dragging = false
+    }
+    
+}
+
+extension VPViewPresenter {
+    
+    @objc func keyboardWillAppear(notification: Notification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            self.keyboardHeight = keyboardSize.height
+            
+            UIView.animate(withDuration: 0.3, animations: {
+                self.refreshViewFrames()
+            })
+            
+            
+        } else {
+            debugPrint("We're showing the keyboard and either the keyboard size or window is nil: panic widely.")
+        }
+        
+        
+    }
+    
+    @objc func keyboardWillDisappear() {
+        self.keyboardHeight = 0.0
+        UIView.animate(withDuration: 0.3, animations: {
+            self.refreshViewFrames()
+        })
     }
     
 }

@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import ViewPresenter
+import Utilities
+import RealmSwift
 
 extension SettingsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
@@ -24,7 +27,7 @@ extension SettingsViewController: UICollectionViewDataSource, UICollectionViewDe
         
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarCell.reuseIdentifier, for: indexPath) as! CalendarCell
-            cell.setCalendar(c: calendars![indexPath.row])
+            cell.setCalendar(c: self.calendars![indexPath.row])
             
             cell.setLongPressHandler {
                 let index = indexPath.row
@@ -69,6 +72,106 @@ extension SettingsViewController: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
+        
+        
+        let viewPresenter = VPViewPresenter()
+        
+        let colorView = VPView.init(title: "Color")
+        let calendarView = VPView.init(title: "Calendar")
+        
+        let c = indexPath.section == 0 ? UIColor.init(hex: calendars![indexPath.row].color) : UIColor.generateRandomColor()
+        let text = indexPath.section == 0 ? calendars![indexPath.row].name : ""
+        let creatorView = CalendarCreatorView(color: c, name: text)
+        let colorPicker = CalendarColorPickerView(color: c)
+        
+        colorView.addComponent(component: colorPicker)
+        colorView.addComponent(component: VPButtonComponent(type: .strong, text: "Ok", tapHandler: { (sender) in
+            creatorView.color = colorPicker.color
+            viewPresenter.previousPage()
+        }))
+        
+        // CalendarView
+        calendarView.components = [creatorView]
+        calendarView.addComponent(component: VPLoadingButtonComponent(type: .strong, text: "Save", tapHandler: { (sender) in
+            let s = sender as! VPLoadingButtonComponent
+            s.isLoading = true
+            
+            let name = creatorView.textField.text ?? ""
+            let color = creatorView.color.toHexString()
+            
+            if indexPath.section == 0 {
+                // Edit
+                let calRef = ThreadSafeReference(to: self.calendars![indexPath.row])
+                
+                Database.shared.realm(completion: { (realm) in
+                    guard let calendar = realm.resolve(calRef) else {
+                        return // person was deleted
+                    }
+                    
+                    try! realm.write {
+                        calendar.name = name
+                        calendar.color = color
+                        
+                        API.shared.updateCalendar(calendar: calendar, completion: { (complete, message) in
+                            s.isLoading = false
+                            
+                            if complete {
+                                DispatchQueue.main.async {
+                                    viewPresenter.dismiss(animated: true, completion: {
+                                        
+                                    })
+                                }
+                                
+                            }
+                            else {
+                                // Error
+                                print(message as Any)
+                                UIAlertController.show(title: "Error", message: "Error updating calendar...", buttonTitle: "Cancel", on: self)
+                            }
+                        })
+                    }
+                })
+                
+            }
+            else {
+                // Create new
+                Database.shared.realm(completion: { (realm) in
+                    
+                    let cal = Calendars()
+                    cal.name = name
+                    cal.color = color
+                    API.shared.addCalendar(calendar: cal, completion: { (complete, message) in
+                        s.isLoading = false
+                        if complete {
+                            DispatchQueue.main.async {
+                                viewPresenter.dismiss(animated: true, completion: {
+                                    
+                                })
+                            }
+                            
+                        }
+                        else {
+                            // Error
+                            print(message as Any)
+                            UIAlertController.show(title: "Error", message: "Error adding calendar...", buttonTitle: "Cancel", on: self)
+                        }
+                    })
+                    
+                })
+            }
+            
+        }))
+        calendarView.addComponent(component: VPButtonComponent(type: .light, text: "Close", tapHandler: { (sender) in
+            viewPresenter.dismiss(animated: true, completion: nil)
+        }))
+        
+        viewPresenter.addView(view: calendarView)
+        viewPresenter.addView(view: colorView)
+        
+        
+        self.present(viewPresenter, animated: true) {
+            
+        }
         
     }
     
