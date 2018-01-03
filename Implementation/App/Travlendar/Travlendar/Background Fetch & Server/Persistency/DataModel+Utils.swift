@@ -40,3 +40,17 @@ extension Calendars: JSONRepresentable {
     }
     
 }
+
+extension Event: JSONRepresentable {
+    
+    static func representation<T>(toRepresent: T) -> String? where T : Codable {
+        if toRepresent is Event {
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .formatted(Formatter.iso8601)
+            return String.init(data: try! encoder.encode(toRepresent), encoding: .utf8)
+        }
+        
+        return nil
+    }
+    
+}

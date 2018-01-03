@@ -22,6 +22,8 @@
 		1E4C9AED1FFBA6FB002F8E8B /* CalendarColorPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E4C9AEC1FFBA6FB002F8E8B /* CalendarColorPickerView.xib */; };
 		1E4C9AEF1FFBA707002F8E8B /* CalendarColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C9AEE1FFBA707002F8E8B /* CalendarColorPickerView.swift */; };
 		1E4C9AF11FFBEE08002F8E8B /* VPLoadingButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C9AF01FFBEE08002F8E8B /* VPLoadingButtonComponent.swift */; };
+		1E4C9AF31FFC18DB002F8E8B /* EventsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C9AF21FFC18DB002F8E8B /* EventsOperation.swift */; };
+		1E4C9AF51FFCF800002F8E8B /* Decoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C9AF41FFCF800002F8E8B /* Decoding.swift */; };
 		1E543BEF1FE8F8B600DC5BE6 /* TabBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E543BEE1FE8F8B600DC5BE6 /* TabBarControllerViewController.swift */; };
 		1E68BB8F1FD6895200ED4765 /* NetworkOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E68BB8E1FD6895200ED4765 /* NetworkOperations.swift */; };
 		1E6DB0A41FEA4AD30051319E /* DatePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6DB09B1FEA4AD30051319E /* DatePicker.framework */; };
@@ -218,6 +220,8 @@
 		1E4C9AEC1FFBA6FB002F8E8B /* CalendarColorPickerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarColorPickerView.xib; sourceTree = "<group>"; };
 		1E4C9AEE1FFBA707002F8E8B /* CalendarColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarColorPickerView.swift; sourceTree = "<group>"; };
 		1E4C9AF01FFBEE08002F8E8B /* VPLoadingButtonComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPLoadingButtonComponent.swift; sourceTree = "<group>"; };
+		1E4C9AF21FFC18DB002F8E8B /* EventsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsOperation.swift; sourceTree = "<group>"; };
+		1E4C9AF41FFCF800002F8E8B /* Decoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoding.swift; sourceTree = "<group>"; };
 		1E4CB7311FDD46F100FA8E52 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		1E4CB7331FDD475A00FA8E52 /* Share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Share.swift; sourceTree = "<group>"; };
 		1E4CB7351FDD48E300FA8E52 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
@@ -629,6 +633,7 @@
 				1EEE56B21FE3DC6300621599 /* View.swift */,
 				1EEE56B61FE3DCD100621599 /* Types.swift */,
 				1E98CB931FF3E346006DCF7F /* Clamp+Map.swift */,
+				1E4C9AF41FFCF800002F8E8B /* Decoding.swift */,
 				1EAB5CE81FF53C560052BC4B /* Info.plist */,
 			);
 			path = Utilities;
@@ -650,6 +655,7 @@
 				1EEE56A11FE3D15900621599 /* LoginOperations.swift */,
 				1EEE56A31FE3D17600621599 /* SettingsOperations.swift */,
 				1EEE56A51FE3D18700621599 /* CalendarOperations.swift */,
+				1E4C9AF21FFC18DB002F8E8B /* EventsOperation.swift */,
 				1EEE56A71FE3D19500621599 /* NotificationOperations.swift */,
 			);
 			path = "Network Operations";
@@ -1342,6 +1348,7 @@
 				1E03BC641FD7FA5F004B411E /* DataModel+Utils.swift in Sources */,
 				1E543BEF1FE8F8B600DC5BE6 /* TabBarControllerViewController.swift in Sources */,
 				1EEE56B91FE3DD6D00621599 /* RoundedButton.swift in Sources */,
+				1E4C9AF31FFC18DB002F8E8B /* EventsOperation.swift in Sources */,
 				1E21E86F1FCC22190009EFA9 /* API.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1403,6 +1410,7 @@
 				1EAB5D061FF53C6A0052BC4B /* Alert.swift in Sources */,
 				1EAB5D0D1FF53C6A0052BC4B /* Delay.swift in Sources */,
 				1EAB5D0A1FF53C6A0052BC4B /* Date.swift in Sources */,
+				1E4C9AF51FFCF800002F8E8B /* Decoding.swift in Sources */,
 				1EAB5D041FF53C6A0052BC4B /* Font.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

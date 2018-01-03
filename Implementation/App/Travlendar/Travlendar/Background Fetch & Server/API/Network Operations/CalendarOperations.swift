@@ -51,6 +51,10 @@ class CalendarsOperation: NetworkOperation {
                         return
                     }
                     
+                    for c in calendars {
+                        API.shared.getEventsFor(calendar: c)
+                    }
+                    
                     Database.shared.realm(completion: { (realm) in
                         try! realm.write {
                             realm.delete(realm.objects(Calendars.self))

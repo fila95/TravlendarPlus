@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+import Realm
 
 
 // Define your models like regular Swift classes
@@ -113,7 +114,7 @@ class Travel: Object {
     
 }
 
-class Event: Object {
+public class Event: Object, Codable {
     
     @objc dynamic var id = 0
     @objc dynamic var calendar_id = 0
@@ -121,25 +122,111 @@ class Event: Object {
     @objc dynamic var title = ""
     @objc dynamic var address = ""
     
-    @objc dynamic var lat: Double = 0.0
-    @objc dynamic var lng: Double = 0.0
+    @objc dynamic var lat: String = "0.0"
+    @objc dynamic var lng: String = "0.0"
     
-    @objc dynamic var start_time: Int = 0
-    @objc dynamic var end_time: Int = 0
-    @objc dynamic var duration: Int = 0
+    @objc dynamic var start_time: Date = Date()
+    @objc dynamic var end_time: Date = Date()
+    @objc dynamic var duration: Int = -1
     
-    @objc dynamic var repetitions: Int8 = 0b00000000
-    @objc dynamic var transports: Int8 = 0b00001111
+    @objc dynamic var repetitions: String = "0000000"
+    @objc dynamic var transports: String = "11111"
     
-    @objc dynamic var suggested_start_time: Int = 0
-    @objc dynamic var suggested_end_time: Int = 0
+    @objc dynamic var suggested_start_time: Date = Date.init(timeIntervalSince1970: 0)
+    @objc dynamic var suggested_end_time: Date = Date.init(timeIntervalSince1970: 0)
     
-    override static func primaryKey() -> String? {
+    override public static func primaryKey() -> String? {
         return "id"
     }
     
-    override static func indexedProperties() -> [String] {
+    override public static func indexedProperties() -> [String] {
         return ["title", "address"]
+    }
+    
+    private enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case calendar_id = "calendar_id"
+        
+        case title = "title"
+        case address = "address"
+        
+        case lat = "lat"
+        case lng = "lng"
+        
+        case start_time = "start_time"
+        case end_time = "end_time"
+        case duration = "duration"
+        
+        case repetitions = "repetitions"
+        case transports = "transports"
+        
+        case suggested_start_time = "suggested_start_time"
+        case suggested_end_time = "suggested_end_time"
+    }
+    
+    
+    public required init(from decoder: Decoder) throws {
+        super.init()
+        try self.decode(from: decoder)
+    }
+    
+    required public init() {
+        super.init()
+    }
+    
+    required public init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    required public init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+    
+    
+    public func decode(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decode(Int.self, forKey: .id)
+        self.calendar_id = try container.decode(Int.self, forKey: .calendar_id)
+        
+        self.title = try container.decode(String.self, forKey: .title)
+        self.address = try container.decode(String.self, forKey: .address)
+        
+        self.lat = try container.decode(String.self, forKey: .lat)
+        self.lng = try container.decode(String.self, forKey: .lng)
+        
+        self.start_time = try container.decode(Date.self, forKey: .start_time)
+        self.end_time = try container.decode(Date.self, forKey: .end_time)
+        self.duration = try container.decodeIfPresent(Int.self, forKey: .duration) ?? -1
+        
+        
+        self.repetitions = try container.decode(String.self, forKey: .repetitions)
+        self.transports = try container.decode(String.self, forKey: .transports)
+        
+        self.suggested_start_time = (try container.decodeIfPresent(Date.self, forKey: .suggested_start_time)) ?? Date.init(timeIntervalSince1970: 0)
+        self.suggested_end_time = (try container.decodeIfPresent(Date.self, forKey: .suggested_end_time)) ?? Date.init(timeIntervalSince1970: 0)
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encode(self.id, forKey: .id)
+        try container.encode(self.calendar_id, forKey: .calendar_id)
+        
+        try container.encode(self.title, forKey: .title)
+        try container.encode(self.address, forKey: .address)
+        
+        try container.encode(self.lat, forKey: .lat)
+        try container.encode(self.lng, forKey: .lng)
+        
+        try container.encode(self.start_time, forKey: .start_time)
+        try container.encode(self.end_time, forKey: .end_time)
+        try container.encode(self.duration, forKey: .duration)
+        
+        try container.encode(self.repetitions, forKey: .repetitions)
+        try container.encode(self.transports, forKey: .transports)
+        
+        try container.encode(self.suggested_start_time, forKey: .suggested_start_time)
+        try container.encode(self.suggested_end_time, forKey: .suggested_end_time)
     }
     
 }
