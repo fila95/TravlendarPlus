@@ -9,7 +9,7 @@
 import UIKit
 
 
-extension CalendarViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension CalendarViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
