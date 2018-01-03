@@ -77,5 +77,9 @@ class CalendarViewController: UIViewController {
             self.picker.setPickerType(type: .closed)
         }
     }
+    
+    @IBAction func addButtonTapped(_ sender: Any) {
+        print("Add new Event")
+    }
 }
 

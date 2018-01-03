@@ -38,10 +38,57 @@
                                     <outlet property="delegate" destination="jwo-yg-iiC" id="hed-Zv-o32"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xW6-Bb-zGz" customClass="RoundedButton" customModule="Travlendar" customModuleProvider="target">
+                                <rect key="frame" x="255" y="566" width="110" height="42"/>
+                                <color key="backgroundColor" red="1" green="0.30588235294117649" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="110" id="0gu-pb-kck"/>
+                                    <constraint firstAttribute="height" constant="42" id="NHG-de-ll8"/>
+                                </constraints>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="+">
+                                            <attributes>
+                                                <color key="NSColor" red="0.96877704457451652" green="0.97782438716602949" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <font key="NSFont" size="24" name="AvenirNext-Bold"/>
+                                                <font key="NSOriginalFont" size="24" name="AvenirNext-Bold"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content=" ">
+                                            <attributes>
+                                                <color key="NSColor" red="0.96877704457451652" green="0.97782438716602949" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <font key="NSFont" size="18" name="AvenirNext-Bold"/>
+                                                <font key="NSOriginalFont" size="18" name="AvenirNext-Bold"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content="Add">
+                                            <attributes>
+                                                <color key="NSColor" red="0.96877704457451652" green="0.97782438716602949" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <font key="NSFont" size="18" name="AvenirNext-Medium"/>
+                                                <font key="NSOriginalFont" size="18" name="AvenirNext-Medium"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="16"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="addButtonTapped:" destination="jwo-yg-iiC" eventType="touchUpInside" id="31g-5I-zsr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="xW6-Bb-zGz" firstAttribute="bottom" secondItem="gQA-UP-a3Y" secondAttribute="bottom" constant="-10" id="470-08-Vbx"/>
+                            <constraint firstItem="xW6-Bb-zGz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pkP-gp-t0g" secondAttribute="leading" constant="20" symbolic="YES" id="H89-ia-esV"/>
                             <constraint firstItem="gQA-UP-a3Y" firstAttribute="bottom" secondItem="N7F-uW-iD5" secondAttribute="bottom" id="PPj-3x-dza"/>
                             <constraint firstItem="gQA-UP-a3Y" firstAttribute="leading" secondItem="N7F-uW-iD5" secondAttribute="leading" id="UAF-4A-nYg"/>
+                            <constraint firstItem="xW6-Bb-zGz" firstAttribute="trailing" secondItem="gQA-UP-a3Y" secondAttribute="trailing" constant="-10" id="aNE-va-ic7"/>
                             <constraint firstItem="gQA-UP-a3Y" firstAttribute="trailing" secondItem="N7F-uW-iD5" secondAttribute="trailing" id="iB1-bd-k7N"/>
                             <constraint firstItem="gQA-UP-a3Y" firstAttribute="top" secondItem="pkP-gp-t0g" secondAttribute="top" id="lkY-m4-hcK"/>
                         </constraints>
