@@ -12,6 +12,7 @@ import UIKit
 public enum APINotificationType {
     case settings
     case calendars
+    case events
 }
 
 public class API: NSObject {
@@ -38,14 +39,22 @@ public class API: NSObject {
             print("Already have token: \n\t\(Secret.shared.request_token!)")
         }
         
+        triggerSync()
+    }
+    
+    public func triggerSync() {
         queue.addOperation(SettingsOperation(operationType: .get))
         queue.addOperation(CalendarsOperation(operationType: .get))
     }
+    
+    // MARK: Settings
     
     public func pushSettingsToServer(settings: Settings, completion: ((_ complete: Bool, _ message: String?) -> Void)? = nil) {
         cancelOperationsOfType(t: SettingsOperation.classForCoder())
         queue.addOperation(SettingsOperation(operationType: .patch, httpBody: Settings.representation(toRepresent: settings), completion: completion))
     }
+    
+    // MARK: Calendars
     
     public func deleteCalendarFromServer(calendar: Calendars, completion: ((_ complete: Bool, _ message: String?) -> Void)? = nil) {
         queue.addOperation(CalendarsOperation(operationType: .delete, endpointAddition: "\(calendar.id)", completion: completion))
@@ -59,6 +68,21 @@ public class API: NSObject {
         queue.addOperation(CalendarsOperation(operationType: .put, httpBody: Calendars.representation(toRepresent: calendar), completion: completion))
     }
     
+    // MARK: Events
+    
+    public func getEventsFor(calendar: Calendars, completion: ((_ complete: Bool, _ message: String?) -> Void)? = nil) {
+        queue.addOperation(EventsOperation(operationType: .get, endpointAddition: "\(calendar.id)/events", completion: completion))
+    }
+    
+    public func deleteEventFromServer(event: Event, completion: ((_ complete: Bool, _ message: String?) -> Void)? = nil) {
+        queue.addOperation(EventsOperation(operationType: .delete, endpointAddition: "\(event.calendar_id)/events/\(event.id)", completion: completion))
+    }
+    
+    public func updateEvent(event: Event, completion: ((_ complete: Bool, _ message: String?) -> Void)? = nil) {
+        queue.addOperation(EventsOperation(operationType: .patch, endpointAddition: "\(event.calendar_id)/events/\(event.id)", httpBody: Event.representation(toRepresent: event), completion: completion))
+    }
+    
+    // MARK: Notification
     
     public func pushNotificationTokenToServer(token: String) {
         cancelOperationsOfType(t: NotificationTokenOperation.classForCoder())
