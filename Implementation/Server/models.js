@@ -125,10 +125,6 @@ function model(db, cb) {
 		suggested_end_time: { type: 'date', time: true }
 	})
 
-	Event.findFromToInCalendar = (from, to, calendar_id, cb) => {
-		Event.find({ start_time: orm.between(from, to), calendar_id: calendar_id }, cb)
-	}
-
 	Calendar.getEventsOfToday = (cb) => {
 		let today = new Date()
 		let todayPlus24 = new Date(today + 1000 * 60 * 60 * 24)
