@@ -53,7 +53,7 @@ class EventsOperation: NetworkOperation {
                     
                     Database.shared.realm(completion: { (realm) in
                         try! realm.write {
-                            realm.delete(realm.objects(Calendars.self).filter("id=\(events.first!.calendar_id)"))
+                            realm.delete(realm.objects(Event.self).filter("calendar_id=\(events.first!.calendar_id)"))
                             realm.add(events)
                         }
                         
