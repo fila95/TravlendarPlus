@@ -19,10 +19,10 @@ class EventsOperation: NetworkOperation {
         super.main()
         
         if self.operationType == .get {
-            print("Getting Events...")
+            print("Getting Events for Calendar \(endpointAddition.split(separator: "/").dropLast().last ?? "not known")...")
         }
         else if self.operationType == .delete {
-            print("Deleting Event...")
+            print("Deleting Event number \(endpointAddition.split(separator: "/").last ?? "not known")...")
         }
         else {
             print("Pushing Event...")
@@ -52,9 +52,11 @@ class EventsOperation: NetworkOperation {
                     }
                     
                     Database.shared.realm(completion: { (realm) in
-                        try! realm.write {
-                            realm.delete(realm.objects(Event.self).filter("calendar_id=\(events.first!.calendar_id)"))
-                            realm.add(events)
+                        if events.count > 0 {
+                            try! realm.write {
+                                realm.delete(realm.objects(Event.self).filter("calendar_id=\(events.first!.calendar_id)"))
+                                realm.add(events)
+                            }
                         }
                         
                         self.completionHandler?(true, nil)

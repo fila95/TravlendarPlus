@@ -11,6 +11,7 @@
 		1E0078401FE2BA1300FD5405 /* CalendarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E00783F1FE2BA1300FD5405 /* CalendarCell.xib */; };
 		1E0078461FE2C09800FD5405 /* SettingsViewController+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0078451FE2C09800FD5405 /* SettingsViewController+CollectionView.swift */; };
 		1E03BC641FD7FA5F004B411E /* DataModel+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E03BC631FD7FA5F004B411E /* DataModel+Utils.swift */; };
+		1E0417331FFD25480072DBE3 /* CalendarViewController+UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0417321FFD25480072DBE3 /* CalendarViewController+UICollectionView.swift */; };
 		1E21E86C1FCC08820009EFA9 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E21E86B1FCC08820009EFA9 /* Secret.swift */; };
 		1E21E86F1FCC22190009EFA9 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E21E86E1FCC22190009EFA9 /* API.swift */; };
 		1E21E8721FCC238F0009EFA9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E21E8711FCC238F0009EFA9 /* MapKit.framework */; };
@@ -207,6 +208,7 @@
 		1E0078411FE2BCA400FD5405 /* View+Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Nib.swift"; sourceTree = "<group>"; };
 		1E0078451FE2C09800FD5405 /* SettingsViewController+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsViewController+CollectionView.swift"; sourceTree = "<group>"; };
 		1E03BC631FD7FA5F004B411E /* DataModel+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataModel+Utils.swift"; sourceTree = "<group>"; };
+		1E0417321FFD25480072DBE3 /* CalendarViewController+UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarViewController+UICollectionView.swift"; sourceTree = "<group>"; };
 		1E21E86B1FCC08820009EFA9 /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		1E21E86E1FCC22190009EFA9 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		1E21E8701FCC23730009EFA9 /* Travlendar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Travlendar.entitlements; sourceTree = "<group>"; };
@@ -711,6 +713,7 @@
 			isa = PBXGroup;
 			children = (
 				1EF4E18A1FDC5F0200B5BFDC /* CalendarViewController.swift */,
+				1E0417321FFD25480072DBE3 /* CalendarViewController+UICollectionView.swift */,
 			);
 			path = "CalendarViewController & Relative";
 			sourceTree = "<group>";
@@ -1330,6 +1333,7 @@
 				1E21E86C1FCC08820009EFA9 /* Secret.swift in Sources */,
 				1EAA18DF1FC9CE9F001B3612 /* AppDelegate.swift in Sources */,
 				1E4C9AE91FFB978B002F8E8B /* CalendarCreatorView.swift in Sources */,
+				1E0417331FFD25480072DBE3 /* CalendarViewController+UICollectionView.swift in Sources */,
 				1EF4E18D1FDC5F0B00B5BFDC /* MapViewController.swift in Sources */,
 				1E00783E1FE2BA0700FD5405 /* CalendarCell.swift in Sources */,
 				1EEE56A41FE3D17600621599 /* SettingsOperations.swift in Sources */,

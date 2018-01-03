@@ -39,9 +39,10 @@ class CalendarPickerView: UIView {
     
     private var dragger: UIImageView = UIImageView()
     private var previousLocation: CGPoint = CGPoint.zero
-    private var dragging: Bool = false
+    public var dragging: Bool = false
     
     private var changeDateHandler: ((_ newDate: Date) -> Void)?
+    private var resizeHandler: ((_ animated: Bool) -> Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -162,6 +163,7 @@ class CalendarPickerView: UIView {
     
     func setPickerType(type: PickerType, animated: Bool = true) {
         self.type = type
+        resizeHandler?(animated)
         if animated {
             UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.08, options: .curveEaseInOut, animations: {
                 self.reLayout()
@@ -176,6 +178,10 @@ class CalendarPickerView: UIView {
     
     func setDateChangeHandler(handler: @escaping ((_ newDate: Date) -> Void)) {
         self.changeDateHandler = handler
+    }
+    
+    func setResizeHandler(handler: @escaping ((_ animated: Bool) -> Void)) {
+        self.resizeHandler = handler
     }
     
 }
@@ -231,7 +237,7 @@ extension CalendarPickerView {
             
             // Dragger
             dragger.frame = CGRect.init(x: 0, y: self.frame.size.height-30, width: self.frame.size.width, height: 30)
-            
+            resizeHandler?(false)
             
             break
         default:
