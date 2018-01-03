@@ -54,6 +54,10 @@ public enum DateForType {
 
 extension Date {
     
+    public var isToday: Bool {
+        return Calendar.current.isDateInToday(self)
+    }
+    
     // MARK: Adjust dates
     
     /// Creates a new date with adjusted components

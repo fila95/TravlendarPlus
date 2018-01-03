@@ -18,17 +18,24 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var verticalMargin: NSLayoutConstraint!
     
+    var pickedDate: Date = Date().dateFor(.startOfDay)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView.register(AddNewCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: AddNewCollectionViewCell.reuseIdentifier)
         collectionView.register(UINib.init(nibName: "AddNewCollectionViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: AddNewCollectionViewCell.reuseIdentifier)
-
+        
+        collectionView.register(CollectionHeaderView.classForCoder(), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: CollectionHeaderView.reuseIdentifier)
+        collectionView.register(UINib.init(nibName: "CollectionHeaderView", bundle: Bundle.main), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: CollectionHeaderView.reuseIdentifier)
+        
+        collectionView.contentInset.top = 20
         
         // Date Picker View
         self.view.addSubview(picker)
         picker.setDateChangeHandler { (newDate) in
-            print(newDate)
+            self.pickedDate = newDate
+            self.refresh()
         }
         
         // Make sure picker does not overlap CollectionView
@@ -55,6 +62,7 @@ class CalendarViewController: UIViewController {
     }
     
     private func refresh() {
+//        print(Formatter.iso8601.string(from: pickedDate))
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
