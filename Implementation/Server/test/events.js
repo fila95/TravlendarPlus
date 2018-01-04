@@ -148,28 +148,14 @@ describe('Events API', () => {
 	})
 
 	describe('GET /events', () => {
-		it('should return a list of events if a valid access token is provided with to and from parameters', (done) => {
-			request(app)
-				.get('/api/v1/calendars/' + calendar.id + '/events?from=' + new Date(startTime - 1000 * 60 * 60) + '&to=' + new Date(endTime + 1000 * 60 * 60))
-				.set('X-Access-Token', device.access_token)
-				.expect(200)
-				.expect(res => {
-					if (!res.body || res.body.length <= 0) {
-						throw new Error('No event list received with to and from params')
-					}
-				})
-				.end(done)
-		})
-	})
-	describe('GET /events', () => {
-		it('should return a list of events if a valid access token is provided without to and from parameters', (done) => {
+		it('should return a list of events if a valid access token is provided', (done) => {
 			request(app)
 				.get('/api/v1/calendars/' + calendar.id + '/events')
 				.set('X-Access-Token', device.access_token)
 				.expect(200)
 				.expect(res => {
 					if (!res.body || res.body.length <= 0) {
-						throw new Error('No event list received without to and from params')
+						throw new Error('No event list received')
 					}
 				})
 				.end(done)
