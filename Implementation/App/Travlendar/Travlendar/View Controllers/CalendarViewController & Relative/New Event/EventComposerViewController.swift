@@ -11,6 +11,7 @@ import UIKit
 class EventComposerViewController: UIViewController {
 
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var tableView: UITableView!
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: "EventComposerViewController", bundle: Bundle.main)
@@ -47,9 +48,18 @@ class EventComposerViewController: UIViewController {
         
         self.contentView.alpha = 0.0
         self.contentView.transform = CGAffineTransform(translationX: 0, y: 300)
-        
-        
         self.contentView.layer.cornerRadius = 20
+        self.contentView.layer.shadowColor = UIColor.init(hex: "B0B0B0").withAlphaComponent(0.5).cgColor
+        self.contentView.layer.shadowRadius = 10
+        self.contentView.layer.shadowOpacity = 1.0
+        
+        self.tableView.separatorStyle = .none
+        
+        self.tableView.register(HeaderCell.self, forCellReuseIdentifier: HeaderCell.reuseIdentifier)
+        self.tableView.register(UINib.init(nibName: "HeaderCell", bundle: Bundle.main), forCellReuseIdentifier: HeaderCell.reuseIdentifier)
+        
+        self.tableView.register(SaveCloseTableViewCell.self, forCellReuseIdentifier: SaveCloseTableViewCell.reuseId)
+        self.tableView.register(SaveCloseTableViewCell.nib!, forCellReuseIdentifier: SaveCloseTableViewCell.reuseId)
     }
 
     

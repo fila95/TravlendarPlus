@@ -41,6 +41,14 @@
 		1E6DB0BC1FEA4B230051319E /* DPEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6DB0BB1FEA4B230051319E /* DPEnums.swift */; };
 		1E8C1A091FFE378300A7350B /* EventComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8C1A071FFE378300A7350B /* EventComposerViewController.swift */; };
 		1E8C1A0A1FFE378300A7350B /* EventComposerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E8C1A081FFE378300A7350B /* EventComposerViewController.xib */; };
+		1E8C1A261FFE43C300A7350B /* EventComposerViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8C1A251FFE43C300A7350B /* EventComposerViewController+UITableView.swift */; };
+		1E8C1A2A1FFE471600A7350B /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8C1A281FFE471600A7350B /* HeaderCell.swift */; };
+		1E8C1A2B1FFE471600A7350B /* HeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E8C1A291FFE471600A7350B /* HeaderCell.xib */; };
+		1E8C1A2E1FFE48A600A7350B /* SaveCloseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8C1A2C1FFE48A600A7350B /* SaveCloseTableViewCell.swift */; };
+		1E8C1A2F1FFE48A600A7350B /* SaveCloseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E8C1A2D1FFE48A600A7350B /* SaveCloseTableViewCell.xib */; };
+		1E8C1A321FFE48BF00A7350B /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8C1A311FFE48BF00A7350B /* Reusable.swift */; };
+		1E8C1A371FFE4F3B00A7350B /* TextViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8C1A351FFE4F3B00A7350B /* TextViewTableViewCell.swift */; };
+		1E8C1A381FFE4F3B00A7350B /* TextViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E8C1A361FFE4F3B00A7350B /* TextViewTableViewCell.xib */; };
 		1E98CB741FF3A108006DCF7F /* DPWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E98CB731FF3A108006DCF7F /* DPWeekView.swift */; };
 		1E98CB761FF3A14B006DCF7F /* DPWeekDaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E98CB751FF3A14B006DCF7F /* DPWeekDaysView.swift */; };
 		1E98CB781FF3A169006DCF7F /* DPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E98CB771FF3A169006DCF7F /* DPView.swift */; };
@@ -259,6 +267,14 @@
 		1E6DB0BB1FEA4B230051319E /* DPEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPEnums.swift; sourceTree = "<group>"; };
 		1E8C1A071FFE378300A7350B /* EventComposerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventComposerViewController.swift; sourceTree = "<group>"; };
 		1E8C1A081FFE378300A7350B /* EventComposerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventComposerViewController.xib; sourceTree = "<group>"; };
+		1E8C1A251FFE43C300A7350B /* EventComposerViewController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventComposerViewController+UITableView.swift"; sourceTree = "<group>"; };
+		1E8C1A281FFE471600A7350B /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
+		1E8C1A291FFE471600A7350B /* HeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderCell.xib; sourceTree = "<group>"; };
+		1E8C1A2C1FFE48A600A7350B /* SaveCloseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveCloseTableViewCell.swift; sourceTree = "<group>"; };
+		1E8C1A2D1FFE48A600A7350B /* SaveCloseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SaveCloseTableViewCell.xib; sourceTree = "<group>"; };
+		1E8C1A311FFE48BF00A7350B /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		1E8C1A351FFE4F3B00A7350B /* TextViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewTableViewCell.swift; sourceTree = "<group>"; };
+		1E8C1A361FFE4F3B00A7350B /* TextViewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextViewTableViewCell.xib; sourceTree = "<group>"; };
 		1E98CB731FF3A108006DCF7F /* DPWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPWeekView.swift; sourceTree = "<group>"; };
 		1E98CB751FF3A14B006DCF7F /* DPWeekDaysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPWeekDaysView.swift; sourceTree = "<group>"; };
 		1E98CB771FF3A169006DCF7F /* DPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPView.swift; sourceTree = "<group>"; };
@@ -495,9 +511,32 @@
 			isa = PBXGroup;
 			children = (
 				1E8C1A071FFE378300A7350B /* EventComposerViewController.swift */,
+				1E8C1A251FFE43C300A7350B /* EventComposerViewController+UITableView.swift */,
 				1E8C1A081FFE378300A7350B /* EventComposerViewController.xib */,
+				1E8C1A271FFE453B00A7350B /* Cells */,
 			);
 			path = "New Event";
+			sourceTree = "<group>";
+		};
+		1E8C1A271FFE453B00A7350B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1E8C1A281FFE471600A7350B /* HeaderCell.swift */,
+				1E8C1A291FFE471600A7350B /* HeaderCell.xib */,
+				1E8C1A2C1FFE48A600A7350B /* SaveCloseTableViewCell.swift */,
+				1E8C1A2D1FFE48A600A7350B /* SaveCloseTableViewCell.xib */,
+				1E8C1A351FFE4F3B00A7350B /* TextViewTableViewCell.swift */,
+				1E8C1A361FFE4F3B00A7350B /* TextViewTableViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		1E8C1A301FFE48B300A7350B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				1E8C1A311FFE48BF00A7350B /* Reusable.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		1E98CB7F1FF3A1EF006DCF7F /* Views */ = {
@@ -585,6 +624,7 @@
 				1EAB5CB11FF5001C0052BC4B /* PoliMi.gpx */,
 				1E21E8701FCC23730009EFA9 /* Travlendar.entitlements */,
 				1EAA18DE1FC9CE9F001B3612 /* AppDelegate.swift */,
+				1E8C1A301FFE48B300A7350B /* Utils */,
 				1E4B69331FD80ACE00DFFC66 /* UI Components */,
 				1E21E86D1FCC1CA60009EFA9 /* Background Fetch & Server */,
 				1E98CB8E1FF3CB3B006DCF7F /* View Controllers */,
@@ -1117,10 +1157,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E8C1A2F1FFE48A600A7350B /* SaveCloseTableViewCell.xib in Resources */,
 				1EAA18EC1FC9CE9F001B3612 /* LaunchScreen.storyboard in Resources */,
 				1E98CB921FF3CE6E006DCF7F /* CalendarCloseView.xib in Resources */,
 				1EEE56BD1FE3E1BE00621599 /* AddNewCollectionViewCell.xib in Resources */,
 				1E8C1A0A1FFE378300A7350B /* EventComposerViewController.xib in Resources */,
+				1E8C1A2B1FFE471600A7350B /* HeaderCell.xib in Resources */,
 				1E4C9AEB1FFB9798002F8E8B /* CalendarCreatorView.xib in Resources */,
 				1EAA18E91FC9CE9F001B3612 /* Assets.xcassets in Resources */,
 				1E3758A21FFD320F00D871FC /* CollectionHeaderView.xib in Resources */,
@@ -1128,6 +1170,7 @@
 				1E4C9AED1FFBA6FB002F8E8B /* CalendarColorPickerView.xib in Resources */,
 				1E0078401FE2BA1300FD5405 /* CalendarCell.xib in Resources */,
 				1E3758A61FFD38B700D871FC /* EventCollectionViewCell.xib in Resources */,
+				1E8C1A381FFE4F3B00A7350B /* TextViewTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1374,6 +1417,7 @@
 				1EF4E18D1FDC5F0B00B5BFDC /* MapViewController.swift in Sources */,
 				1E00783E1FE2BA0700FD5405 /* CalendarCell.swift in Sources */,
 				1EEE56A41FE3D17600621599 /* SettingsOperations.swift in Sources */,
+				1E8C1A2E1FFE48A600A7350B /* SaveCloseTableViewCell.swift in Sources */,
 				1E68BB8F1FD6895200ED4765 /* NetworkOperations.swift in Sources */,
 				1EEE56A61FE3D18700621599 /* CalendarOperations.swift in Sources */,
 				1E21E8741FCC24C10009EFA9 /* Location.swift in Sources */,
@@ -1386,13 +1430,17 @@
 				1E3758A51FFD38B700D871FC /* EventCollectionViewCell.swift in Sources */,
 				1EB2ECE51FCD4EB300A50EC3 /* Database.swift in Sources */,
 				1E3758A11FFD320F00D871FC /* CollectionHeaderView.swift in Sources */,
+				1E8C1A321FFE48BF00A7350B /* Reusable.swift in Sources */,
 				1E4C9AEF1FFBA707002F8E8B /* CalendarColorPickerView.swift in Sources */,
 				1E98CB8A1FF3A738006DCF7F /* CalendarPickerView.swift in Sources */,
+				1E8C1A261FFE43C300A7350B /* EventComposerViewController+UITableView.swift in Sources */,
 				1E0078461FE2C09800FD5405 /* SettingsViewController+CollectionView.swift in Sources */,
 				1E03BC641FD7FA5F004B411E /* DataModel+Utils.swift in Sources */,
+				1E8C1A371FFE4F3B00A7350B /* TextViewTableViewCell.swift in Sources */,
 				1E543BEF1FE8F8B600DC5BE6 /* TabBarControllerViewController.swift in Sources */,
 				1EEE56B91FE3DD6D00621599 /* RoundedButton.swift in Sources */,
 				1E4C9AF31FFC18DB002F8E8B /* EventsOperation.swift in Sources */,
+				1E8C1A2A1FFE471600A7350B /* HeaderCell.swift in Sources */,
 				1E21E86F1FCC22190009EFA9 /* API.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

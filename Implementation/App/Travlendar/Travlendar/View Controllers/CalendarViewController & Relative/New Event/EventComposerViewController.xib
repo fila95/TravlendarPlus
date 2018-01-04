@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EventComposerViewController" customModule="Travlendar" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="r1L-j4-IJL" id="eYa-1O-gse"/>
+                <outlet property="tableView" destination="FWy-Mm-aW7" id="RXj-Kn-7w3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,13 +21,30 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r1L-j4-IJL">
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r1L-j4-IJL">
                     <rect key="frame" x="0.0" y="70" width="375" height="617"/>
+                    <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="FWy-Mm-aW7">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="595"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="sectionIndexBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="paM-t7-y17"/>
+                                <outlet property="delegate" destination="-1" id="KRa-16-4hk"/>
+                            </connections>
+                        </tableView>
+                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="FWy-Mm-aW7" secondAttribute="trailing" id="IyM-9c-chk"/>
+                        <constraint firstItem="FWy-Mm-aW7" firstAttribute="leading" secondItem="r1L-j4-IJL" secondAttribute="leading" id="XYb-mR-1Zq"/>
+                        <constraint firstItem="FWy-Mm-aW7" firstAttribute="top" secondItem="r1L-j4-IJL" secondAttribute="top" id="djj-qc-XbB"/>
+                    </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="FWy-Mm-aW7" secondAttribute="bottom" constant="2" id="IWf-MD-06f"/>
                 <constraint firstItem="r1L-j4-IJL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="KVP-Ak-G0s"/>
                 <constraint firstItem="r1L-j4-IJL" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" constant="20" id="afg-Qa-gYN"/>
                 <constraint firstItem="r1L-j4-IJL" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="eth-Dq-hMN"/>
