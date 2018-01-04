@@ -108,7 +108,10 @@ class CalendarViewController: UIViewController {
     }
     
     @IBAction func addButtonTapped(_ sender: Any) {
-        print("Add new Event")
+        let ec = EventComposerViewController()
+        self.present(ec, animated: true) {
+            
+        }
     }
 }
 
