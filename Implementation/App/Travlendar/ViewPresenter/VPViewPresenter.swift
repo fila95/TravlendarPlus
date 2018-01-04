@@ -66,6 +66,7 @@ public class VPViewPresenter: UIViewController {
         self.view.addSubview(self.scrollView)
         
         let tg = UITapGestureRecognizer(target: self, action: #selector(VPViewPresenter.dismissEntirely))
+        tg.delegate = self
         tg.cancelsTouchesInView = false
         self.scrollView.addGestureRecognizer(tg)
         
@@ -191,6 +192,22 @@ extension VPViewPresenter: UIScrollViewDelegate {
     }
     public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         dragging = false
+    }
+    
+}
+
+extension VPViewPresenter: UIGestureRecognizerDelegate {
+    
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        guard let v = touch.view else {
+            return true
+        }
+        
+        if v == self.scrollView {
+            return true
+        }
+        
+        return false
     }
     
 }

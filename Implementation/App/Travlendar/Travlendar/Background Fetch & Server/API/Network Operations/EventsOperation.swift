@@ -51,8 +51,6 @@ class EventsOperation: NetworkOperation {
                         return
                     }
                     
-//                    print(events)
-                    
                     Database.shared.realm(completion: { (realm) in
                         if events.count > 0 {
                             try! realm.write {

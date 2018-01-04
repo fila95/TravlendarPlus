@@ -48,11 +48,18 @@ class CalendarViewController: UIViewController {
         }
         
         // Events Refresh
-        API.shared.subscribe(type: .events) {
+        
+        let refreshEvents: (() -> Void) = {
             self.refresh()
         }
         
-        refresh()
+        let refreshCal = {
+            self.refresh()
+        }
+        
+        API.shared.addHandlers(handlers: [(refreshEvents, type: .events), (refreshCal, type: .calendars)])
+        
+        self.refresh()
     }
     
     private func refreshScrollInsets(animated: Bool) {
