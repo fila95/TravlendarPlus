@@ -24,6 +24,13 @@ public extension Formatter {
         return formatter
     }()
     
+    static public let readableDate: DateFormatter = {
+        let formatter = DateFormatter()
+        //        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.dateFormat = "dd MMM yyyy  HH:mm"
+        return formatter
+    }()
+    
     static public let timeShort: DateFormatter = {
         let formatter = DateFormatter()
         //        formatter.timeZone = TimeZone(secondsFromGMT: 0)

@@ -9,7 +9,7 @@
 import UIKit
 
 
-protocol Reusable {
+protocol Reusable where Self: UITableViewCell {
     
     static var reuseId: String { get }
     static var nib: UINib? { get }

@@ -15,6 +15,10 @@ extension EventComposerViewController: UITableViewDataSource {
         switch section {
         case 0:
             return 1
+        case 1:
+            return 2
+        case 2:
+            return 4
         default:
             return 0
         }
@@ -25,6 +29,39 @@ extension EventComposerViewController: UITableViewDataSource {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: SaveCloseTableViewCell.reuseId, for: indexPath)
             return cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: TextViewTableViewCell.reuseId, for: indexPath) as! TextViewTableViewCell
+            if indexPath.row == 0 {
+                cell.setImage(image: #imageLiteral(resourceName: "address_image"))
+            }
+            else {
+                cell.setImage(image: #imageLiteral(resourceName: "position_image"))
+            }
+            return cell
+            
+        case 2:
+            if indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: SwitchTableViewCell.reuseId, for: indexPath) as! SwitchTableViewCell
+                cell.setTitle(text: "FlexibleTiming")
+            }
+            else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: DateTableViewCell.reuseId, for: indexPath) as! DateTableViewCell
+                if indexPath.row == 1 {
+                    cell.setDate(date: Date())
+                    cell.setTitle(title: "Start:")
+                }
+                else if indexPath.row == 2 {
+                    cell.setDate(date: Date().addingTimeInterval(60))
+                    cell.setTitle(title: "End:")
+                }
+                else if indexPath.row == 3 {
+                    cell.setDuration(duration: 100)
+                    cell.setTitle(title: "Duration:")
+                }
+                return cell
+            }
+            
+            
         default:
             break
         }
@@ -69,7 +106,7 @@ extension EventComposerViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 { return 0 }
-        return 70
+        return 50
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

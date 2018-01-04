@@ -60,6 +60,16 @@ class EventComposerViewController: UIViewController {
         
         self.tableView.register(SaveCloseTableViewCell.self, forCellReuseIdentifier: SaveCloseTableViewCell.reuseId)
         self.tableView.register(SaveCloseTableViewCell.nib!, forCellReuseIdentifier: SaveCloseTableViewCell.reuseId)
+//        register(reuseCell: SaveCloseTableViewCell.self)
+        
+        self.tableView.register(TextViewTableViewCell.self, forCellReuseIdentifier: TextViewTableViewCell.reuseId)
+        self.tableView.register(TextViewTableViewCell.nib!, forCellReuseIdentifier: TextViewTableViewCell.reuseId)
+        
+        self.tableView.register(DateTableViewCell.self, forCellReuseIdentifier: DateTableViewCell.reuseId)
+        self.tableView.register(DateTableViewCell.nib!, forCellReuseIdentifier: DateTableViewCell.reuseId)
+        
+        self.tableView.register(SwitchTableViewCell.self, forCellReuseIdentifier: SwitchTableViewCell.reuseId)
+        self.tableView.register(SwitchTableViewCell.nib!, forCellReuseIdentifier: SwitchTableViewCell.reuseId)
     }
 
     
@@ -82,6 +92,11 @@ class EventComposerViewController: UIViewController {
         }) { (complete) in
             super.dismiss(animated: true, completion: completion)
         }
+    }
+    
+    private func register<T: Reusable>(reuseCell: T) {
+        self.tableView.register(T.self, forCellReuseIdentifier: T.reuseId)
+        self.tableView.register(T.nib!, forCellReuseIdentifier: T.reuseId)
     }
     
 

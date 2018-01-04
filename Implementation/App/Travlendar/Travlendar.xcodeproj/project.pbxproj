@@ -49,6 +49,13 @@
 		1E8C1A321FFE48BF00A7350B /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8C1A311FFE48BF00A7350B /* Reusable.swift */; };
 		1E8C1A371FFE4F3B00A7350B /* TextViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8C1A351FFE4F3B00A7350B /* TextViewTableViewCell.swift */; };
 		1E8C1A381FFE4F3B00A7350B /* TextViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E8C1A361FFE4F3B00A7350B /* TextViewTableViewCell.xib */; };
+		1E8C1A3B1FFE876E00A7350B /* DateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8C1A391FFE876E00A7350B /* DateTableViewCell.swift */; };
+		1E8C1A3C1FFE876E00A7350B /* DateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E8C1A3A1FFE876E00A7350B /* DateTableViewCell.xib */; };
+		1E8C1A3F1FFE8F0F00A7350B /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8C1A3D1FFE8F0F00A7350B /* SwitchTableViewCell.swift */; };
+		1E8C1A401FFE8F0F00A7350B /* SwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E8C1A3E1FFE8F0F00A7350B /* SwitchTableViewCell.xib */; };
+		1E8C1A431FFE928B00A7350B /* RepetitionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8C1A411FFE928B00A7350B /* RepetitionsTableViewCell.swift */; };
+		1E8C1A441FFE928B00A7350B /* RepetitionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E8C1A421FFE928B00A7350B /* RepetitionsTableViewCell.xib */; };
+		1E8C1A471FFE92EF00A7350B /* HexagonLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8C1A461FFE92EF00A7350B /* HexagonLabelView.swift */; };
 		1E98CB741FF3A108006DCF7F /* DPWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E98CB731FF3A108006DCF7F /* DPWeekView.swift */; };
 		1E98CB761FF3A14B006DCF7F /* DPWeekDaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E98CB751FF3A14B006DCF7F /* DPWeekDaysView.swift */; };
 		1E98CB781FF3A169006DCF7F /* DPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E98CB771FF3A169006DCF7F /* DPView.swift */; };
@@ -275,6 +282,13 @@
 		1E8C1A311FFE48BF00A7350B /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		1E8C1A351FFE4F3B00A7350B /* TextViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewTableViewCell.swift; sourceTree = "<group>"; };
 		1E8C1A361FFE4F3B00A7350B /* TextViewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextViewTableViewCell.xib; sourceTree = "<group>"; };
+		1E8C1A391FFE876E00A7350B /* DateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTableViewCell.swift; sourceTree = "<group>"; };
+		1E8C1A3A1FFE876E00A7350B /* DateTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateTableViewCell.xib; sourceTree = "<group>"; };
+		1E8C1A3D1FFE8F0F00A7350B /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
+		1E8C1A3E1FFE8F0F00A7350B /* SwitchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchTableViewCell.xib; sourceTree = "<group>"; };
+		1E8C1A411FFE928B00A7350B /* RepetitionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepetitionsTableViewCell.swift; sourceTree = "<group>"; };
+		1E8C1A421FFE928B00A7350B /* RepetitionsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepetitionsTableViewCell.xib; sourceTree = "<group>"; };
+		1E8C1A461FFE92EF00A7350B /* HexagonLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexagonLabelView.swift; sourceTree = "<group>"; };
 		1E98CB731FF3A108006DCF7F /* DPWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPWeekView.swift; sourceTree = "<group>"; };
 		1E98CB751FF3A14B006DCF7F /* DPWeekDaysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPWeekDaysView.swift; sourceTree = "<group>"; };
 		1E98CB771FF3A169006DCF7F /* DPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPView.swift; sourceTree = "<group>"; };
@@ -527,6 +541,11 @@
 				1E8C1A2D1FFE48A600A7350B /* SaveCloseTableViewCell.xib */,
 				1E8C1A351FFE4F3B00A7350B /* TextViewTableViewCell.swift */,
 				1E8C1A361FFE4F3B00A7350B /* TextViewTableViewCell.xib */,
+				1E8C1A391FFE876E00A7350B /* DateTableViewCell.swift */,
+				1E8C1A3A1FFE876E00A7350B /* DateTableViewCell.xib */,
+				1E8C1A3D1FFE8F0F00A7350B /* SwitchTableViewCell.swift */,
+				1E8C1A3E1FFE8F0F00A7350B /* SwitchTableViewCell.xib */,
+				1E8C1A451FFE92D700A7350B /* Repetitions */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -537,6 +556,16 @@
 				1E8C1A311FFE48BF00A7350B /* Reusable.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		1E8C1A451FFE92D700A7350B /* Repetitions */ = {
+			isa = PBXGroup;
+			children = (
+				1E8C1A461FFE92EF00A7350B /* HexagonLabelView.swift */,
+				1E8C1A411FFE928B00A7350B /* RepetitionsTableViewCell.swift */,
+				1E8C1A421FFE928B00A7350B /* RepetitionsTableViewCell.xib */,
+			);
+			path = Repetitions;
 			sourceTree = "<group>";
 		};
 		1E98CB7F1FF3A1EF006DCF7F /* Views */ = {
@@ -1157,6 +1186,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E8C1A441FFE928B00A7350B /* RepetitionsTableViewCell.xib in Resources */,
 				1E8C1A2F1FFE48A600A7350B /* SaveCloseTableViewCell.xib in Resources */,
 				1EAA18EC1FC9CE9F001B3612 /* LaunchScreen.storyboard in Resources */,
 				1E98CB921FF3CE6E006DCF7F /* CalendarCloseView.xib in Resources */,
@@ -1167,8 +1197,10 @@
 				1EAA18E91FC9CE9F001B3612 /* Assets.xcassets in Resources */,
 				1E3758A21FFD320F00D871FC /* CollectionHeaderView.xib in Resources */,
 				1EAA18E41FC9CE9F001B3612 /* Main.storyboard in Resources */,
+				1E8C1A3C1FFE876E00A7350B /* DateTableViewCell.xib in Resources */,
 				1E4C9AED1FFBA6FB002F8E8B /* CalendarColorPickerView.xib in Resources */,
 				1E0078401FE2BA1300FD5405 /* CalendarCell.xib in Resources */,
+				1E8C1A401FFE8F0F00A7350B /* SwitchTableViewCell.xib in Resources */,
 				1E3758A61FFD38B700D871FC /* EventCollectionViewCell.xib in Resources */,
 				1E8C1A381FFE4F3B00A7350B /* TextViewTableViewCell.xib in Resources */,
 			);
@@ -1413,6 +1445,7 @@
 				1E21E86C1FCC08820009EFA9 /* Secret.swift in Sources */,
 				1EAA18DF1FC9CE9F001B3612 /* AppDelegate.swift in Sources */,
 				1E4C9AE91FFB978B002F8E8B /* CalendarCreatorView.swift in Sources */,
+				1E8C1A3F1FFE8F0F00A7350B /* SwitchTableViewCell.swift in Sources */,
 				1E0417331FFD25480072DBE3 /* CalendarViewController+UICollectionView.swift in Sources */,
 				1EF4E18D1FDC5F0B00B5BFDC /* MapViewController.swift in Sources */,
 				1E00783E1FE2BA0700FD5405 /* CalendarCell.swift in Sources */,
@@ -1430,11 +1463,14 @@
 				1E3758A51FFD38B700D871FC /* EventCollectionViewCell.swift in Sources */,
 				1EB2ECE51FCD4EB300A50EC3 /* Database.swift in Sources */,
 				1E3758A11FFD320F00D871FC /* CollectionHeaderView.swift in Sources */,
+				1E8C1A431FFE928B00A7350B /* RepetitionsTableViewCell.swift in Sources */,
 				1E8C1A321FFE48BF00A7350B /* Reusable.swift in Sources */,
 				1E4C9AEF1FFBA707002F8E8B /* CalendarColorPickerView.swift in Sources */,
+				1E8C1A3B1FFE876E00A7350B /* DateTableViewCell.swift in Sources */,
 				1E98CB8A1FF3A738006DCF7F /* CalendarPickerView.swift in Sources */,
 				1E8C1A261FFE43C300A7350B /* EventComposerViewController+UITableView.swift in Sources */,
 				1E0078461FE2C09800FD5405 /* SettingsViewController+CollectionView.swift in Sources */,
+				1E8C1A471FFE92EF00A7350B /* HexagonLabelView.swift in Sources */,
 				1E03BC641FD7FA5F004B411E /* DataModel+Utils.swift in Sources */,
 				1E8C1A371FFE4F3B00A7350B /* TextViewTableViewCell.swift in Sources */,
 				1E543BEF1FE8F8B600DC5BE6 /* TabBarControllerViewController.swift in Sources */,

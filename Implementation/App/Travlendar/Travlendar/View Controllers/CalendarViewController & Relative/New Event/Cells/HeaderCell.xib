@@ -24,15 +24,15 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cMX-qz-ugd">
-                        <rect key="frame" x="24" y="0.0" width="296" height="44"/>
+                        <rect key="frame" x="10" y="10" width="310" height="34"/>
                         <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="18"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="cMX-qz-ugd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="0FP-C8-ycY"/>
-                    <constraint firstItem="cMX-qz-ugd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="MdI-BL-gtK"/>
+                    <constraint firstItem="cMX-qz-ugd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="0FP-C8-ycY"/>
+                    <constraint firstItem="cMX-qz-ugd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="MdI-BL-gtK"/>
                     <constraint firstAttribute="trailing" secondItem="cMX-qz-ugd" secondAttribute="trailing" id="kmz-o3-TFF"/>
                     <constraint firstAttribute="bottom" secondItem="cMX-qz-ugd" secondAttribute="bottom" id="tR3-iM-9Tp"/>
                 </constraints>

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SaveCloseTableViewCell: UITableViewCell {
+class SaveCloseTableViewCell: UITableViewCell, Reusable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,10 +22,6 @@ class SaveCloseTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-}
-
-extension SaveCloseTableViewCell: Reusable {
-    
     static var reuseId: String {
         return "saveCloseTableViewCellID"
     }
@@ -34,7 +30,5 @@ extension SaveCloseTableViewCell: Reusable {
         return UINib(nibName: "SaveCloseTableViewCell", bundle: Bundle.main)
     }
     
-    
-    
-    
 }
+
