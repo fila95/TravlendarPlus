@@ -71,7 +71,7 @@ public class API: NSObject {
     // MARK: Events
     
     public func getEventsFor(calendar: Calendars, completion: ((_ complete: Bool, _ message: String?) -> Void)? = nil) {
-        queue.addOperation(EventsOperation(operationType: .get, endpointAddition: "\(calendar.id)/events", completion: completion))
+        queue.addOperation(EventsOperation(operationType: .get, endpointAddition: "\(calendar.id)/events/", completion: completion))
     }
     
     public func deleteEventFromServer(event: Event, completion: ((_ complete: Bool, _ message: String?) -> Void)? = nil) {

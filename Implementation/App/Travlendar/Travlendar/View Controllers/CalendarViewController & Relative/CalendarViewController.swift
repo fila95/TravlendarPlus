@@ -9,6 +9,7 @@
 import UIKit
 import DatePicker
 import ViewPresenter
+import RealmSwift
 
 
 class CalendarViewController: UIViewController {
@@ -19,17 +20,20 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var verticalMargin: NSLayoutConstraint!
     
     var pickedDate: Date = Date().dateFor(.startOfDay)
+    var events: Results<Event>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.register(AddNewCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: AddNewCollectionViewCell.reuseIdentifier)
-        collectionView.register(UINib.init(nibName: "AddNewCollectionViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: AddNewCollectionViewCell.reuseIdentifier)
+        collectionView.register(EventCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: EventCollectionViewCell.reuseIdentifier)
+        collectionView.register(UINib.init(nibName: "EventCollectionViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: EventCollectionViewCell.reuseIdentifier)
         
         collectionView.register(CollectionHeaderView.classForCoder(), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: CollectionHeaderView.reuseIdentifier)
         collectionView.register(UINib.init(nibName: "CollectionHeaderView", bundle: Bundle.main), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: CollectionHeaderView.reuseIdentifier)
         
         collectionView.contentInset.top = 20
+        
+        
         
         // Date Picker View
         self.view.addSubview(picker)
@@ -43,8 +47,12 @@ class CalendarViewController: UIViewController {
             self.refreshScrollInsets(animated: animated)
         }
         
+        // Events Refresh
+        API.shared.subscribe(type: .events) {
+            self.refresh()
+        }
         
-        
+        refresh()
     }
     
     private func refreshScrollInsets(animated: Bool) {
@@ -62,8 +70,14 @@ class CalendarViewController: UIViewController {
     }
     
     private func refresh() {
-//        print(Formatter.iso8601.string(from: pickedDate))
         DispatchQueue.main.async {
+            // Get the default Realm
+            let realm = try! Realm()
+            
+            let predicate = NSPredicate(format: "start_time >= %@ AND end_time <=  %@", self.pickedDate.dateFor(.startOfDay) as NSDate, self.pickedDate.dateFor(.endOfDay) as NSDate)
+            self.events = realm.objects(Event.self).filter(predicate)
+//            print(self.events ?? "no events")
+            
             self.collectionView.reloadData()
         }
     }

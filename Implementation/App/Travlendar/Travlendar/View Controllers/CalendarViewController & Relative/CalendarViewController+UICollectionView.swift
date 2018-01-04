@@ -13,20 +13,47 @@ import Utilities
 extension CalendarViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        guard let ev = self.events, ev.count > 0 else {
+            return 0
+        }
+        
+        if self.pickedDate.isToday {
+            if section == 0 {
+                return 1
+            }
+            else {
+                return ev.count-1
+            }
+        }
+        else {
+            return ev.count
+        }
     }
     
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddNewCollectionViewCell.reuseIdentifier, for: indexPath) as! AddNewCollectionViewCell
-        cell.setText(text: "Add New...")
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EventCollectionViewCell.reuseIdentifier, for: indexPath) as! EventCollectionViewCell
+        if self.pickedDate.isToday {
+            if indexPath.section == 0 {
+                cell.setEvent(event: events![indexPath.row])
+            }
+            else {
+                cell.setEvent(event: events![indexPath.row-1])
+            }
+        }
+        else {
+            cell.setEvent(event: events![indexPath.row])
+        }
         return cell
         
     }
     
     
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
+        guard let ev = self.events, ev.count > 0 else {
+            return 0
+        }
         return self.pickedDate.isToday ? 2 : 1
     }
     
@@ -37,7 +64,7 @@ extension CalendarViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize.init(width: 300, height: 77)
+        return CGSize.init(width: collectionView.frame.size.width-20, height: 90)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

@@ -18,6 +18,8 @@
 		1E21E8741FCC24C10009EFA9 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E21E8731FCC24C10009EFA9 /* Location.swift */; };
 		1E3758A11FFD320F00D871FC /* CollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E37589F1FFD320F00D871FC /* CollectionHeaderView.swift */; };
 		1E3758A21FFD320F00D871FC /* CollectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E3758A01FFD320F00D871FC /* CollectionHeaderView.xib */; };
+		1E3758A51FFD38B700D871FC /* EventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3758A31FFD38B700D871FC /* EventCollectionViewCell.swift */; };
+		1E3758A61FFD38B700D871FC /* EventCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E3758A41FFD38B700D871FC /* EventCollectionViewCell.xib */; };
 		1E4B69351FD80AE400DFFC66 /* GFPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4B69341FD80AE400DFFC66 /* GFPageControl.swift */; };
 		1E4C9AE71FFB941B002F8E8B /* VPDatePickerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C9AE61FFB941B002F8E8B /* VPDatePickerComponent.swift */; };
 		1E4C9AE91FFB978B002F8E8B /* CalendarCreatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C9AE81FFB978B002F8E8B /* CalendarCreatorView.swift */; };
@@ -218,6 +220,8 @@
 		1E21E8731FCC24C10009EFA9 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		1E37589F1FFD320F00D871FC /* CollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionHeaderView.swift; sourceTree = "<group>"; };
 		1E3758A01FFD320F00D871FC /* CollectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionHeaderView.xib; sourceTree = "<group>"; };
+		1E3758A31FFD38B700D871FC /* EventCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollectionViewCell.swift; sourceTree = "<group>"; };
+		1E3758A41FFD38B700D871FC /* EventCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventCollectionViewCell.xib; sourceTree = "<group>"; };
 		1E379AB01FE026D200E74DFC /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		1E4B69341FD80AE400DFFC66 /* GFPageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFPageControl.swift; sourceTree = "<group>"; };
 		1E4C9AE61FFB941B002F8E8B /* VPDatePickerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPDatePickerComponent.swift; sourceTree = "<group>"; };
@@ -414,6 +418,8 @@
 			children = (
 				1E37589F1FFD320F00D871FC /* CollectionHeaderView.swift */,
 				1E3758A01FFD320F00D871FC /* CollectionHeaderView.xib */,
+				1E3758A31FFD38B700D871FC /* EventCollectionViewCell.swift */,
+				1E3758A41FFD38B700D871FC /* EventCollectionViewCell.xib */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -1106,6 +1112,7 @@
 				1EAA18E41FC9CE9F001B3612 /* Main.storyboard in Resources */,
 				1E4C9AED1FFBA6FB002F8E8B /* CalendarColorPickerView.xib in Resources */,
 				1E0078401FE2BA1300FD5405 /* CalendarCell.xib in Resources */,
+				1E3758A61FFD38B700D871FC /* EventCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1360,6 +1367,7 @@
 				1E98CB8D1FF3C650006DCF7F /* ArrowButton.swift in Sources */,
 				1EF4E18F1FDC5F1400B5BFDC /* SettingsViewController.swift in Sources */,
 				1E98CB901FF3CD71006DCF7F /* CalendarCloseView.swift in Sources */,
+				1E3758A51FFD38B700D871FC /* EventCollectionViewCell.swift in Sources */,
 				1EB2ECE51FCD4EB300A50EC3 /* Database.swift in Sources */,
 				1E3758A11FFD320F00D871FC /* CollectionHeaderView.swift in Sources */,
 				1E4C9AEF1FFBA707002F8E8B /* CalendarColorPickerView.swift in Sources */,

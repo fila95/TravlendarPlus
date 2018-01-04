@@ -143,6 +143,12 @@ public class Event: Object, Codable {
         return ["title", "address"]
     }
     
+    public func relativeCalendar(completion: @escaping ((_ calendar: Calendars?) -> Void)) {
+        Database.shared.realm { (realm) in
+            completion(realm.objects(Calendars.self).filter("id=\(self.calendar_id)").first)
+        }
+    }
+    
     private enum CodingKeys: String, CodingKey {
         case id = "id"
         case calendar_id = "calendar_id"
