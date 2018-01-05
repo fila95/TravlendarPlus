@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const parseTransports = require('./events').parseTransports
 const polyline = require('polyline')
 
 const token = process.env.GOOGLE_MAPS_TOKEN
@@ -172,8 +171,8 @@ let isReachablAsTheCrowFlies = (distance, time) => {
 
 // If the event is reachable from coord,
 // it returns the routes and sets the suggested_start_time/suggested_end_time, otherwise it returns false
-// The params from is a Fixed Event and to is a Flexible Event
-// The param opt is an object of options. Up to now, there is only one option: onlyBasicChecks [bool,default=false]
+// The param 'from' could be either a real Fixed Event or a fake one representing the user locaiton, while 'to' is a Flexible Event
+// The param opt is an object of options. Up to now, there is only one option: onlyBasicChecks [bool,default=false], userSettings
 let eventIsReachable = (from, to, opt) => {
 	opt = opt || {}
 	if (!from || !to || from.lat == undefined || from.lng == undefined || to.lat == undefined || to.lng == undefined) {
@@ -214,8 +213,10 @@ let eventIsReachable = (from, to, opt) => {
 				durations.push(duration)
 			}
 
+			//parsed_transport = to.parseTransports(dist, opt.settings)
+
 			// IN-TODO tenere conto delle ripetizioni
-			parsed_transport=parseTransports(settings)
+			
 
 			// TODO usare le preferenze dell'utente (max walking distance e biking distance + parse tarnsits)
 			// req.user.settings
@@ -244,7 +245,7 @@ let basicChecks = (user, event, cb) => {
 				lat: from.lat,
 				lng: from.lng
 			}
-		} else if(loc && loc.lat && loc.lng) {
+		} else if (loc && loc.lat && loc.lng) {
 			prev = {
 				lat: loc.lat,
 				lng: loc.lng
@@ -252,7 +253,7 @@ let basicChecks = (user, event, cb) => {
 		} else {
 			return cb(true)
 		}
-		
+
 		let e = eventIsReachable(prev, event, { onlyBasicChecks: true })
 		return cb(e)
 	})
@@ -332,7 +333,7 @@ router.get('/', (req, res) => {
 					// Ask if reachable with await
 					// Using async/await, we can loop over an asynchronous function
 					// without spawning thousands of async calls
-					let result = await eventIsReachable(prev, e)
+					let result = await eventIsReachable(prev, e, {settings: req.user.settings})
 					if (result) {
 
 					}
@@ -348,7 +349,6 @@ router.get('/', (req, res) => {
 
 module.exports = {
 	router: router,
-	distance: distance,
 	basicChecks: basicChecks
 }
 

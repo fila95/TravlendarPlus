@@ -8,6 +8,7 @@ describe('Schedule private functions', () => {
 	before(() => {
 		user = app.get('testData').user
 		device = app.get('testData').device
+		settings = app.get('testData').settings
 	})
 
 	let randomDate = (start, end) => {
@@ -239,6 +240,19 @@ describe('Schedule private functions', () => {
 			throw new Error('should be reachable')
 		}
 	})
+	it('should parse the transports of the p2 to ["walking", "transits"]'), (done) => {
+		let p1 = { lat: 45.478336, lng: 9.228263 }
+		let p2 = {
+			lat: 45.464257,
+			lng: 9.190209,
+			start_time: new Date(2017, 11, 12, 8, 0),
+			end_time: new Date(2017, 11, 12, 9, 20),
+			duration: 1000 * 60 * 60,
+			transports: 1010
+		}
+		let parse = p2.parseTransports(schedule.distance(p1,p2),settings)
+		
+	}
 
 	it('eventIsReachable with onlyBasicChecks', async () => {
 		let p1 = { lat: 45.478336, lng: 9.228263 }
