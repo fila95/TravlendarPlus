@@ -226,7 +226,7 @@ public class Event: Object, Codable {
         
         try container.encode(self.start_time, forKey: .start_time)
         try container.encode(self.end_time, forKey: .end_time)
-        try container.encode(self.duration, forKey: .duration)
+        try container.encode(self.duration == -1 ? 0 : self.duration, forKey: .duration)
         
         try container.encode(self.repetitions, forKey: .repetitions)
         try container.encode(self.transports, forKey: .transports)

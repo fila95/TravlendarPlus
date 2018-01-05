@@ -18,7 +18,10 @@ extension EventComposerViewController: UITableViewDataSource {
         case 1:
             return 2
         case 2:
-            return 4
+            if currentEvent.duration != -1 {
+                return 4
+            }
+            return 3
         case 3:
             return 2
         case 4:
@@ -39,10 +42,12 @@ extension EventComposerViewController: UITableViewDataSource {
             if indexPath.row == 0 {
                 cell.setImage(image: #imageLiteral(resourceName: "address_image"))
                 cell.setText(text: currentEvent.title)
+                cell.setPlaceholder(text: "Event Name")
             }
             else {
                 cell.setImage(image: #imageLiteral(resourceName: "position_image"))
                 cell.setText(text: currentEvent.address)
+                cell.setPlaceholder(text: "Address")
             }
             return cell
             
@@ -51,6 +56,7 @@ extension EventComposerViewController: UITableViewDataSource {
                 let cell = tableView.dequeueReusableCell(withIdentifier: SwitchTableViewCell.reuseId, for: indexPath) as! SwitchTableViewCell
                 cell.setTitle(text: "FlexibleTiming")
                 cell.setSwitchOn(on: currentEvent.duration != -1)
+                self.prepareDurationSwitchHandler(cell: cell)
             }
             else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: DateTableViewCell.reuseId, for: indexPath) as! DateTableViewCell
@@ -65,7 +71,7 @@ extension EventComposerViewController: UITableViewDataSource {
                 }
                 else if indexPath.row == 3 {
                     cell.setTitle(title: "Duration:")
-                    cell.setDuration(duration: currentEvent.duration != -1 ? currentEvent.duration : 0)
+                    cell.setDuration(duration: currentEvent.duration)
                 }
                 return cell
             }
@@ -112,6 +118,19 @@ extension EventComposerViewController {
         cell.setClosehandler {
             print("Close")
             self.dismiss(animated: true)
+        }
+    }
+    
+    func prepareDurationSwitchHandler(cell: SwitchTableViewCell) {
+        cell.setSwitchChangedHandler {
+            if cell.switchView.isOn {
+                self.currentEvent.duration = 0
+                self.tableView.insertRows(at: [IndexPath.init(row: 3, section: 2)], with: UITableViewRowAnimation.automatic)
+            }
+            else {
+                self.currentEvent.duration = -1
+                self.tableView.deleteRows(at: [IndexPath.init(row: 3, section: 2)], with: UITableViewRowAnimation.automatic)
+            }
         }
     }
     
