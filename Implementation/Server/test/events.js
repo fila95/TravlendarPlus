@@ -47,7 +47,7 @@ describe('Events API', () => {
 					'address': 'main street',
 					'duration': 10,
 					'repetitions': 'B0000001',
-					'transports': 'B11111'
+					'transports': 'B1111'
 				})
 				.expect(201)
 				.expect(res => {
@@ -57,7 +57,7 @@ describe('Events API', () => {
 					event = res.body
 				})
 				.end(done)
-		})
+		})		
 
 		it('should create an event with only the mandatory fields if a valid access token is provided', (done) => {
 			request(app)

@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router({ mergeParams: true })
+const basicChecks = require('./schedule').basicChecks
 
 // Return a list of User's Events
 // Parameters: from and to are two Dates that allow a paging for this endpoint
@@ -12,7 +13,7 @@ router.get('/', (req, res) => {
 		for (calendar of calendars) {
 			calendar_ids.push(calendar.id)
 		}
-		req.models.events.find({calendar_id: calendar_ids}, (err, events) => {
+		req.models.events.find({ calendar_id: calendar_ids }, (err, events) => {
 			return res.json(events).end()
 		})
 	})
@@ -72,12 +73,18 @@ let eventFactory = req => {
 // Create a new Event with the parameters specified
 router.put('/', (req, res) => {
 	let event = eventFactory(req)
-	// Error
 	if (event == null) return res.sendStatus(400).end()
 
-	// Create the event
-	req.models.events.create(event, (err, result) => {
-		return res.status(201).json(result).end()
+	// Basic checks
+	basicChecks(req.user, event, (reachable) => {
+		if (reachable) {
+			// Create the event
+			req.models.events.create(event, (err, result) => {
+				return res.status(201).json(result).end()
+			})
+		} else {
+			return res.status(400).end('not reachable')
+		}
 	})
 
 })
@@ -119,25 +126,10 @@ router.patch('/:event_id', (req, res) => {
 				//if (err) return res.sendStatus(500).end()
 				return res.json(result).end()
 			})
-
 		})
-
 	})
 })
 
-// Parsing the transports from binary encoding. Example: 1100 -> ["walking","bicycling"]
-let parseTransports = (transports, settings) => {
-	let sTransports = ["walking", "bicycling", "transit", "driving"]
-	//TODO Testare funzione Settings.canUsePublicTransportation in module
-	let mask = transports.split('').map(transport => transport == 1)
-	sTransports=sTransports.filter((transport,index) => mask[index])
-
-
-
-	return sTransports
-}
-
 module.exports = {
-	router: router,
-	parseTransports: parseTransports
+	router: router
 }

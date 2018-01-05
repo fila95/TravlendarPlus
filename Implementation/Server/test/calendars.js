@@ -67,7 +67,8 @@ describe('Calendars API', () => {
 				.set('X-Access-Token', device.access_token)
 				.expect(200)
 				.expect(res => {
-					if (!res.body || res.body.length != 1) {
+					
+					if (!res.body || res.body.length < 1) {
 						throw new Error('No calendar list received')
 					}
 				})

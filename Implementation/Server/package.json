@@ -12,6 +12,7 @@
     "mysql": "^2.15.0",
     "orm": "^4.0.1",
     "pg": "^7.4.0",
+    "polyline": "^0.2.0",
     "uuid-validate": "0.0.2"
   },
   "devDependencies": {

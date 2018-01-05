@@ -1,11 +1,14 @@
 const app = require('../index')
 const schedule = require('../routes/schedule.js').testFunctions
+const request = require('supertest')
+const polyline = require('polyline')
 
 describe('Schedule private functions', () => {
-	let user, device
+	let user, device, customEvent
 	before(() => {
 		user = app.get('testData').user
 		device = app.get('testData').device
+		customEvent = app.get('testData').event
 	})
 
 	let randomDate = (start, end) => {
@@ -133,7 +136,7 @@ describe('Schedule private functions', () => {
 
 		// When no fixed events, return the global timeslot
 		timeSlots = schedule.timeSlots([], flexibleEvent)
-		if(timeSlots.length!=1 || timeSlots[0].start_time!=flexibleEvent.start_time ||  timeSlots[0].end_time!=flexibleEvent.end_time) {
+		if (timeSlots.length != 1 || timeSlots[0].start_time != flexibleEvent.start_time || timeSlots[0].end_time != flexibleEvent.end_time) {
 			throw new Error('timeSlots returned when only one fixed event is present is mismatching')
 		}
 	})
@@ -178,18 +181,18 @@ describe('Schedule private functions', () => {
 	})
 
 	it('getReliableUserLocation => true and false', () => {
-		let loc = schedule.getReliableUserLocation(user)
+		let loc = schedule.getReliableUserLocation(user, { start_time: new Date() })
 		user.last_known_position_lat = 45.121212
 		user.last_known_position_lng = 9.121212
 		updated_at = new Date()
 
-		loc = schedule.getReliableUserLocation(user)
+		loc = schedule.getReliableUserLocation(user, { start_time: new Date() })
 		if (loc == null) {
 			throw new Error('Reliable location shouldn\'t be null')
 		}
 
 		user.updated_at = new Date(2017, 11, 11, 4, 30)
-		loc = schedule.getReliableUserLocation(user)
+		loc = schedule.getReliableUserLocation(user, { start_time: new Date() })
 		if (loc != null) {
 			throw new Error('Reliable location should be null since was updated too long time ago')
 		}
@@ -238,8 +241,23 @@ describe('Schedule private functions', () => {
 		}
 	})
 
-	it('eventIsReachable with onlyBasicChecks', async () => {
+	it('should parse the transports of the p2 to ["walking", "transits"]', () => {
 		let p1 = { lat: 45.478336, lng: 9.228263 }
+		console.log("CIAONE schedule.distance(p1,p2):")
+		let parse = customEvent.parseTransports(schedule.distance(p1, customEvent), user.settings)
+		if (parse == undefined) {
+			throw Error("Blabla")
+		}
+	})
+
+	it('eventIsReachable with onlyBasicChecks', async () => {
+		let p1 = {
+			lat: 45.478336,
+			lng: 9.228263,
+			start_time: new Date(2017, 11, 12, 8, 0),
+			end_time: new Date(2017, 11, 12, 18, 0),
+			duration: 1000 * 60 * 60
+		}
 		let p2 = {
 			lat: 45.464257,
 			lng: 9.190209,
@@ -259,12 +277,6 @@ describe('Schedule private functions', () => {
 		let res = await schedule.eventIsReachable(p1, p2, { onlyBasicChecks: true })
 		if (res != true) {
 			throw new Error('p2 should be reachable from p1')
-		}
-
-		// Shouldn't be reachable in time an event with itself
-		res = await schedule.eventIsReachable(p1, p1, { onlyBasicChecks: true })
-		if (res != false) {
-			throw new Error('p1 should not be reachable from p1')
 		}
 
 		// Shouldn't be reachable in time, because as the crow flies we need at least 17 min
@@ -317,5 +329,58 @@ describe('Schedule private functions', () => {
 		if (res != false) {
 			throw new Error('Google route returned, but noone expected')
 		}
+
 	}).timeout(10000); // Google Requests could take a while
+
+	/*it('basicChecks without any params', (done) => {
+		let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: 45, lng: 9 }
+
+		schedule.basicChecks(user, e, (data) => {
+			if (data != true) {
+				throw new Error('Basic checks failed')
+			}
+			done()
+		})
+	})*/
+
+	it('basicChecks with user location => true', (done) => {
+		user.last_known_position_lat = 45
+		user.last_known_position_lng = 9
+		user.updated_at = new Date(2017, 11, 12, 5, 59)
+
+		let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), duration: 4 * 60 * 60 * 1000, lat: 45, lng: 9 }
+
+		schedule.basicChecks(user, e, (data) => {
+			if (data != true) {
+				throw new Error('Basic checks failed')
+			}
+			done()
+		})
+	})
+	/*
+		it('basicChecks with user location => false', (done) => {
+			user.last_known_position_lat = 40
+			user.last_known_position_lng = 9
+			user.updated_at = new Date(2017, 11, 12, 5, 59)
+	
+			let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: 45, lng: 9 }
+	
+			schedule.basicChecks(user, e, (data) => {
+				if (data == true) {
+					throw new Error('Basic checks failed')
+				}
+				done()
+			})
+		})*/
+	/*
+	describe('GET /', () => {
+		it('Should call the scheduler', async (done) => {
+			request(app)
+				.get('/api/v1/schedule/')
+				.set('X-Access-Token', 'ilZVQ03cyMmX3/+RhrM1AKUDwLGG4Qtp2dU2WDvt+f/qTMMBePMnbV5r6Dg02vgs')
+				.expect(200)
+				.end(done)
+		})
+	})
+	*/
 })

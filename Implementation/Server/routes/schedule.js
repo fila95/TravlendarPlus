@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const parseTransports = require('./events').parseTransports
+const polyline = require('polyline')
 
 const token = process.env.GOOGLE_MAPS_TOKEN
 /* istanbul ignore if */
@@ -171,8 +171,8 @@ let isReachablAsTheCrowFlies = (distance, time) => {
 
 // If the event is reachable from coord,
 // it returns the routes and sets the suggested_start_time/suggested_end_time, otherwise it returns false
-// The params from is a Fixed Event and to is a Flexible Event
-// The param opt is an object of options. Up to now, there is only one option: onlyBasicChecks [bool,default=false]
+// The param 'from' could be either a real Fixed Event or a fake one representing the user locaiton, while 'to' is a Flexible Event
+// The param opt is an object of options. Up to now, there is only one option: onlyBasicChecks [bool,default=false], userSettings
 let eventIsReachable = (from, to, opt) => {
 	opt = opt || {}
 	if (!from || !to || from.lat == undefined || from.lng == undefined || to.lat == undefined || to.lng == undefined) {
@@ -181,7 +181,7 @@ let eventIsReachable = (from, to, opt) => {
 	}
 
 	// timeSlotDuration - flexible event duration
-	let availableTime = (to.end_time - to.start_time - to.duration) / 1000
+	let availableTime = (to.end_time.getTime() - to.start_time.getTime() - to.duration) / 1000
 
 	return new Promise((resolve, reject) => {
 		// Step 1: As the Crow Flies
@@ -213,7 +213,11 @@ let eventIsReachable = (from, to, opt) => {
 				durations.push(duration)
 			}
 
-			// TODO tenere conto delle ripetizioni
+			//parsed_transport = to.parseTransports(dist, opt.settings)
+
+			// IN-TODO tenere conto delle ripetizioni
+			
+
 			// TODO usare le preferenze dell'utente (max walking distance e biking distance + parse tarnsits)
 			// req.user.settings
 
@@ -232,16 +236,42 @@ let eventIsReachable = (from, to, opt) => {
 	})
 }
 
-// Returns null if not reliable, or the location if it is
-let getReliableUserLocation = user => {
-	//checking whether the location is no reliable
-	if (!user.updated_at || new Date() - user.updated_at > 30 * 60 * 1000) return null
-	return user.updated_at
+let basicChecks = (user, event, cb) => {
+	let prev
+	let loc = getReliableUserLocation(user, event)
+	user.findPreviousEventTo(event, async from => {
+		if (from && user.updated_at > prev.end_time) {
+			prev = {
+				lat: from.lat,
+				lng: from.lng
+			}
+		} else if (loc && loc.lat && loc.lng) {
+			prev = {
+				lat: loc.lat,
+				lng: loc.lng
+			}
+		} else {
+			return cb(true)
+		}
+		
+		let e = await eventIsReachable(prev, event, { onlyBasicChecks: true })
+		return cb(e)
+	})
 }
 
-router.get('/', (req, res) => {
-	
+// Returns null if not reliable, or the location if it is
+// updated to at least 30 minutes before the start of the event
+let getReliableUserLocation = (user, event) => {
+	// Check whether the location is no reliable:
+	if (!user.updated_at || user.last_known_position_lat==0 && user.last_known_position_lng==0 || new Date(event.start_time) - user.updated_at > 30 * 60 * 1000) return null
+	return {lat: user.last_known_position_lat, lng: user.last_known_position_lng}
+}
 
+
+//Travels 
+let travels
+
+router.get('/', (req, res) => {
 	// For each calendar
 	req.user.getCalendars().each((err, calendar) => {
 		// Get all the events of today from the current calendar
@@ -256,13 +286,12 @@ router.get('/', (req, res) => {
 			// Calculate timeSlot for each flexible event and sort them with the fitness function
 			for (let e of flexibleEvents) {
 				e.timeSlots = timeSlots(fixedEvents, e)
+				if (e.timeSlots.length == 0) return res.status(400).end('timeslot length is 0 for event: ' + e.id)
 			}
 			let sortedFlexibleEvents = sortWithFitness(flexibleEvents)
 
 			// Try to fit each flexible event from the less fittable to the most one
 			for (let e of sortedFlexibleEvents) {
-				// TODO What if e.timeSlots has length == 0
-
 				// Sort time slot from the smallest to the biggest
 				e.timeSlots = e.timeSlots.sort((a, b) => {
 					return (a.end_time - a.start_time) - (b.end_time - b.start_time)
@@ -277,9 +306,10 @@ router.get('/', (req, res) => {
 					// Supposing that the event will be placed in this time slot,
 					// determine if the event e is reachable
 					let prev = getEventPreviousTo(events, timeSlot.start_time)
+					let loc = getReliableUserLocation(req.user, prev)
+
 					if (prev == null) {
 						// If the previous event is not defined, check the user location
-						let loc = getReliableUserLocation(req.user)
 						if (!loc) {
 							// If we don't know the user location, insert the event anyway
 							e.suggested_start_time = new Date(timeSlot.start_time)
@@ -287,7 +317,9 @@ router.get('/', (req, res) => {
 							return e.save(err => {
 								if (err) throw err
 							})
-						} else {
+						} else if (req.user.updated_at > prev.end_time) {
+							// If the last real user position is closer to the end of the previouus event,
+							// use that instead of the previous event position
 							// Create a fake event that will be used in asking if reachable
 							prev = {
 								start_time: req.user.updated_at,
@@ -296,12 +328,13 @@ router.get('/', (req, res) => {
 								lng: loc.lng
 							}
 						}
+						// implicit else: use the previous event position
 					}
 					// Ask if reachable with await
 					// Using async/await, we can loop over an asynchronous function
 					// without spawning thousands of async calls
-					let result = await eventIsReachable(prev, e)
-					if(result) {
+					let result = await eventIsReachable(prev, e, {settings: req.user.settings})
+					if (result) {
 
 					}
 					// TODO use result
@@ -315,7 +348,8 @@ router.get('/', (req, res) => {
 })
 
 module.exports = {
-	router: router
+	router: router,
+	basicChecks: basicChecks
 }
 
 if (process.env.NODE_ENV == 'testing') {
@@ -331,6 +365,7 @@ if (process.env.NODE_ENV == 'testing') {
 		getReliableUserLocation: getReliableUserLocation,
 		distance: distance,
 		isReachablAsTheCrowFlies: isReachablAsTheCrowFlies,
+		basicChecks: basicChecks,
 		eventIsReachable: eventIsReachable
 	}
 }
