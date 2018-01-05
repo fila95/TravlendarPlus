@@ -16,7 +16,7 @@
     "uuid-validate": "0.0.2"
   },
   "devDependencies": {
-    "mocha": "^4.0.1",
+    "mocha": "^4.1.0",
     "nyc": "^11.3.0",
     "supertest": "^3.0.0",
     "uuid": "^3.1.0"
