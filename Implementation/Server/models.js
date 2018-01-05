@@ -134,24 +134,30 @@ function model(db, cb) {
 				// Given a list of already parsed transpors (list of strings of transports), it returns 
 				// the same list of strings without means of transportation that the user 
 				// can't travel with, depending on settings and time
-				parseTransports: function(distance, settings) {
-					let transports = this.transports.slice(1,5)
+				parseTransports: function (distance, settings) {
+
 					let sTransports = ["walking", "bicycling", "transit", "driving"]
+					let transports = this.transports.slice(1, sTransports.length + 1)
 					let mask = transports.split('').map(transport => transport == 1)
 					sTransports = sTransports.filter((transport, index) => mask[index])
-					
-					
-					//Checking the transits
+
+					//Checking walking distance
+					if (sTransports.indexOf('walking') != -1 && distance*1000 > settings.max_walking_distance) {
+						sTransports.splice(sTransports.indexOf('walking'), 1)
+					}
+
+					//Checking bicycling distance
+					if (sTransports.indexOf('bicycling') != -1 && distance*1000 > settings.max_biking_distance) {
+						sTransports.splice(sTransports.indexOf('bicycling'), 1)
+					}
+
+					//Checking if the time allows to use transits
 					if (sTransports.indexOf('transit') != -1) {
-						
-						//Check if user can use public transits
-						min_start_event = this.start_time.getHours() * 60 + this.start_time.getMinutes()
-						min_start_transit = settings.start_public_transportation.split(':')[0] * 60 + settings.start_public_transportation.split(':')[1]
-						min_end_transit = settings.end_public_transportation.split(':')[0] * 60 + settings.end_public_transportation.split(':')[1]
-						
+						min_start_event = this.start_time.getHours()*60 + this.start_time.getMinutes()						
+						min_start_transit = parseInt(settings.start_public_transportation.split(':')[0]) * 60 + parseInt(settings.start_public_transportation.split(':')[1])
+						min_end_transit = parseInt(settings.end_public_transportation.split(':')[0]) * 60 + parseInt(settings.end_public_transportation.split(':')[1])
 						if (min_start_event > min_end_transit || min_start_event < min_start_transit) {
-							console.log(min_end_transit)
-							sTransports.splice(sTransports.indexOf('transit'))
+							sTransports.splice(sTransports.indexOf('transit'), 1)
 						}
 					}
 

@@ -241,23 +241,37 @@ describe('Schedule private functions', () => {
 		}
 	})
 
-	it('should parse the transports of a costum event to ["walking", "bicycling"]', () => {
-		let p1 = { lat: 45.478336, lng: 9.228263 }
+	it('should parse the transports of a custum event to ["walking", "driving"]', () => {
+		let p1 = { lat: 45.464250, lng: 9.190200 }
 		let parse = customEvent.parseTransports(schedule.distance(p1, customEvent), user.settings)
-		//let sTransports = ["walking", "bicycling", "transit", "driving"]
-		if(parse.length!=2 || parse.indexOf('walking')==-1 || parse.indexOf('bicycling')==-1 ){
-			throw Error('The transports parsing is undefined or doesn\'t contains walking and bicycling:' + customEvent.transports+ ': '+parse)
+		//["walking", "bicycling", "transit", "driving"]
+		if(parse.length!=2 || parse.indexOf('walking')==-1 || parse.indexOf('driving')==-1 ){
+			throw Error('The transports parsing is undefined or doesn\'t contains walking and driving: '+ customEvent.transports+ ': '+parse)
 		}
 	})
 
-	/*it('should parse the transports of a costum event to ["walking"], since transits are not available at that time', () => {
-		let p1 = { lat: 45.478336, lng: 9.228263 }
-		customEvent.start_time=new Date(2017, 11, 12, 2, 0)
+	it('should parse the transports of a custum event to ["driving"], since transits are not available at that time', () => {
+		let p1 = { lat: 45.464250, lng: 9.190200 }
+		customEvent.transports="B0011"
+		user.settings.start_public_transportation="10:00:00"
+		customEvent.start_time=new Date(2017, 11, 4, 2, 0)
+		
 		let parse = customEvent.parseTransports(schedule.distance(p1, customEvent), user.settings)
-		if (parse == undefined) {
-			throw Error("The transports parsing is undefined")
+		if(parse.length!=1 || parse.indexOf('driving')==-1){
+			throw Error('The transports parsing is undefined or doesn\'t contains driving: '+ customEvent.transports+ ': '+parse)
 		}
-	})*/
+	})
+	it('should parse the transports of a custum event to ["transit", "driving"], since the events are too far to each by other means', () => {
+		let p1 = { lat: 45.464250, lng: 8.190200 }
+		customEvent.transports="B1111"
+		user.settings.start_public_transportation="10:00:00"
+		user.settings.end_public_transportation="17:00:00"
+		customEvent.start_time=new Date(2017, 11, 4, 11, 0)
+		let parse = customEvent.parseTransports(schedule.distance(p1, customEvent), user.settings)
+		if(parse.length!=2 || parse.indexOf('transit')==-1 || parse.indexOf('driving')==-1){
+			throw Error('The transports parsing is undefined or events are actually reachable by walk/bike: '+ customEvent.transports+ ': '+parse)
+		}
+	})
 
 	it('eventIsReachable with onlyBasicChecks', async () => {
 		let p1 = {
