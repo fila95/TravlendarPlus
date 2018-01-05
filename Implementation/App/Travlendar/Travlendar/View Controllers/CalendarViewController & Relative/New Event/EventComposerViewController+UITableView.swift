@@ -78,7 +78,9 @@ extension EventComposerViewController: UITableViewDataSource {
         case 3:
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: SelectedCalendarTableViewCell.reuseId, for: indexPath) as! SelectedCalendarTableViewCell
-                
+                self.currentEvent.relativeCalendar(completion: { (cal) in
+                    cell.setCalendar(cal: cal)
+                })
                 return cell
             }
             else {
@@ -112,11 +114,10 @@ extension EventComposerViewController {
     
     func prepareSaveCloseHandlers(cell: SaveCloseTableViewCell) {
         cell.setSavehandler {
-            print("Save")
+            self.save()
         }
         
         cell.setClosehandler {
-            print("Close")
             self.dismiss(animated: true)
         }
     }
@@ -132,6 +133,19 @@ extension EventComposerViewController {
                 self.tableView.deleteRows(at: [IndexPath.init(row: 3, section: 2)], with: UITableViewRowAnimation.automatic)
             }
         }
+    }
+    
+}
+
+
+
+// MARK: Save and Checks
+extension EventComposerViewController {
+    
+    func save() {
+        
+        
+        
     }
     
 }

@@ -25,9 +25,16 @@ class SelectedCalendarTableViewCell: UITableViewCell {
         
     }
     
-    func setCalendar(cal: Calendars) {
-        calendarNameLabel.text = cal.name
-        calendarColorView.backgroundColor = UIColor.init(hex: cal.color)
+    func setCalendar(cal: Calendars?) {
+        
+        guard let c = cal else {
+            calendarNameLabel.text = "No Calendar Chosen"
+            calendarColorView.backgroundColor = UIColor.black
+            return
+        }
+        
+        calendarNameLabel.text = c.name
+        calendarColorView.backgroundColor = UIColor.init(hex: c.color)
     }
     
 }
