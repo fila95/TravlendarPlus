@@ -321,7 +321,7 @@ describe('Schedule private functions', () => {
 		if (!res[0].copyrights) {
 			throw new Error('No google route returned')
 		}
-	}).timeout(1000); // Google Requests could take a while
+	}).timeout(10000); // Google Requests could take a while
 
 	it('eventIsReachable with all the checks, google included, should return false', async () => {
 		let p1 = { lat: 45.478336, lng: 9.228263 }
@@ -339,7 +339,7 @@ describe('Schedule private functions', () => {
 			throw new Error('Google route returned, but noone expected')
 		}
 
-	}).timeout(1000); // Google Requests could take a while
+	}).timeout(10000); // Google Requests could take a while
 
 	it('basicChecks without any params', (done) => {
 		let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: 45, lng: 9 }
@@ -377,7 +377,7 @@ describe('Schedule private functions', () => {
 	})
 	
 	it('basicChecks with previous event should return true', (done) => {
-		let e = { id: 1, start_time: new Date(2017, 11, 12, 11, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: customEvent.lat+0.1, lng: customEvent.lng+0.1 }
+		let e = { id: 1, start_time: new Date(2017, 11, 12, 15, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: customEvent.lat+0.1, lng: customEvent.lng+0.1 }
 
 		schedule.basicChecks(user, e, (data) => {
 			done(data!=true ? new Error('Basic checks failed') : null)
@@ -385,7 +385,7 @@ describe('Schedule private functions', () => {
 	})
 	
 	it('basicChecks with previous event should return false', (done) => {
-		let e = { id: 1, start_time: new Date(2017, 11, 12, 9, 22), end_time: new Date(2017, 11, 13, 4, 30), lat: 45, lng: 9, calendar_id: customEvent.calendar_id }
+		let e = { id: 1, start_time: new Date(2017, 11, 12, 13, 22), end_time: new Date(2017, 11, 13, 4, 30), lat: 45, lng: 9, calendar_id: customEvent.calendar_id }
 
 		schedule.basicChecks(user, e, (data) => {
 			done(data==true ? new Error('Basic checks failed') : null)
