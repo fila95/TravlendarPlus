@@ -13,6 +13,9 @@ class EventComposerViewController: UIViewController {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
+    private var creatingNew: Bool = true
+    var currentEvent: Event = Event()
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: "EventComposerViewController", bundle: Bundle.main)
         commonInit()
@@ -37,6 +40,13 @@ class EventComposerViewController: UIViewController {
         self.modalPresentationStyle = .overCurrentContext
     }
     
+    func setEvent(e: Event) {
+        self.creatingNew = false
+        self.currentEvent = e
+        self.refresh()
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -55,30 +65,11 @@ class EventComposerViewController: UIViewController {
         
         self.tableView.separatorStyle = .none
         
-        self.tableView.register(HeaderCell.self, forCellReuseIdentifier: HeaderCell.reuseIdentifier)
-        self.tableView.register(UINib.init(nibName: "HeaderCell", bundle: Bundle.main), forCellReuseIdentifier: HeaderCell.reuseIdentifier)
-        
-        self.tableView.register(SaveCloseTableViewCell.self, forCellReuseIdentifier: SaveCloseTableViewCell.reuseId)
-        self.tableView.register(SaveCloseTableViewCell.nib!, forCellReuseIdentifier: SaveCloseTableViewCell.reuseId)
-//        register(reuseCell: SaveCloseTableViewCell.self)
-        
-        self.tableView.register(TextViewTableViewCell.self, forCellReuseIdentifier: TextViewTableViewCell.reuseId)
-        self.tableView.register(TextViewTableViewCell.nib!, forCellReuseIdentifier: TextViewTableViewCell.reuseId)
-        
-        self.tableView.register(DateTableViewCell.self, forCellReuseIdentifier: DateTableViewCell.reuseId)
-        self.tableView.register(DateTableViewCell.nib!, forCellReuseIdentifier: DateTableViewCell.reuseId)
-        
-        self.tableView.register(SwitchTableViewCell.self, forCellReuseIdentifier: SwitchTableViewCell.reuseId)
-        self.tableView.register(SwitchTableViewCell.nib!, forCellReuseIdentifier: SwitchTableViewCell.reuseId)
-        
-        self.tableView.register(SelectedCalendarTableViewCell.self, forCellReuseIdentifier: SelectedCalendarTableViewCell.reuseId)
-        self.tableView.register(SelectedCalendarTableViewCell.nib!, forCellReuseIdentifier: SelectedCalendarTableViewCell.reuseId)
-        
-        self.tableView.register(RepetitionsTableViewCell.self, forCellReuseIdentifier: RepetitionsTableViewCell.reuseId)
-        self.tableView.register(RepetitionsTableViewCell.nib!, forCellReuseIdentifier: RepetitionsTableViewCell.reuseId)
-        
-        self.tableView.register(AllowedVehiclesTableViewCell.self, forCellReuseIdentifier: AllowedVehiclesTableViewCell.reuseId)
-        self.tableView.register(AllowedVehiclesTableViewCell.nib!, forCellReuseIdentifier: AllowedVehiclesTableViewCell.reuseId)
+        self.registerCells()
+    }
+    
+    func refresh() {
+        self.tableView.reloadData()
     }
 
     
@@ -103,9 +94,38 @@ class EventComposerViewController: UIViewController {
         }
     }
     
+    
+    
+    // MARK: Cells
     private func register<T: Reusable>(reuseCell: T) {
         self.tableView.register(T.self, forCellReuseIdentifier: T.reuseId)
         self.tableView.register(T.nib!, forCellReuseIdentifier: T.reuseId)
+    }
+    
+    private func registerCells() {
+        self.tableView.register(HeaderCell.self, forCellReuseIdentifier: HeaderCell.reuseIdentifier)
+        self.tableView.register(UINib.init(nibName: "HeaderCell", bundle: Bundle.main), forCellReuseIdentifier: HeaderCell.reuseIdentifier)
+        
+        self.tableView.register(SaveCloseTableViewCell.self, forCellReuseIdentifier: SaveCloseTableViewCell.reuseId)
+        self.tableView.register(SaveCloseTableViewCell.nib!, forCellReuseIdentifier: SaveCloseTableViewCell.reuseId)
+        
+        self.tableView.register(TextViewTableViewCell.self, forCellReuseIdentifier: TextViewTableViewCell.reuseId)
+        self.tableView.register(TextViewTableViewCell.nib!, forCellReuseIdentifier: TextViewTableViewCell.reuseId)
+        
+        self.tableView.register(DateTableViewCell.self, forCellReuseIdentifier: DateTableViewCell.reuseId)
+        self.tableView.register(DateTableViewCell.nib!, forCellReuseIdentifier: DateTableViewCell.reuseId)
+        
+        self.tableView.register(SwitchTableViewCell.self, forCellReuseIdentifier: SwitchTableViewCell.reuseId)
+        self.tableView.register(SwitchTableViewCell.nib!, forCellReuseIdentifier: SwitchTableViewCell.reuseId)
+        
+        self.tableView.register(SelectedCalendarTableViewCell.self, forCellReuseIdentifier: SelectedCalendarTableViewCell.reuseId)
+        self.tableView.register(SelectedCalendarTableViewCell.nib!, forCellReuseIdentifier: SelectedCalendarTableViewCell.reuseId)
+        
+        self.tableView.register(RepetitionsTableViewCell.self, forCellReuseIdentifier: RepetitionsTableViewCell.reuseId)
+        self.tableView.register(RepetitionsTableViewCell.nib!, forCellReuseIdentifier: RepetitionsTableViewCell.reuseId)
+        
+        self.tableView.register(AllowedVehiclesTableViewCell.self, forCellReuseIdentifier: AllowedVehiclesTableViewCell.reuseId)
+        self.tableView.register(AllowedVehiclesTableViewCell.nib!, forCellReuseIdentifier: AllowedVehiclesTableViewCell.reuseId)
     }
     
 

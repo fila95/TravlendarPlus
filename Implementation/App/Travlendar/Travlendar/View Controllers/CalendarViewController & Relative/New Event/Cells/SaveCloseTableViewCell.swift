@@ -9,6 +9,9 @@
 import UIKit
 
 class SaveCloseTableViewCell: UITableViewCell, Reusable {
+    
+    var saveHandler: (() -> Void)?
+    var closeHandler: (() -> Void)?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,6 +31,21 @@ class SaveCloseTableViewCell: UITableViewCell, Reusable {
     
     static var nib: UINib? {
         return UINib(nibName: "SaveCloseTableViewCell", bundle: Bundle.main)
+    }
+    
+    func setSavehandler(handler: @escaping (() -> Void)) {
+        self.saveHandler = handler
+    }
+    
+    func setClosehandler(handler: @escaping (() -> Void)) {
+        self.closeHandler = handler
+    }
+    
+    @IBAction func closeTap(_ sender: Any) {
+        closeHandler?()
+    }
+    @IBAction func saveTap(_ sender: Any) {
+        saveHandler?()
     }
     
 }

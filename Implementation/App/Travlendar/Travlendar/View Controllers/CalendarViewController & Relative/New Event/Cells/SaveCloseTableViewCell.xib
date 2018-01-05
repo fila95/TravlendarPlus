@@ -39,6 +39,9 @@
                                 <integer key="value" value="16"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="closeTap:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="XCd-Qu-It5"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yNm-cI-bL3" customClass="RoundedButton" customModule="Travlendar" customModuleProvider="target">
                         <rect key="frame" x="275" y="22" width="110" height="42"/>
@@ -56,6 +59,9 @@
                                 <integer key="value" value="16"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="saveTap:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="1JX-Io-gec"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>

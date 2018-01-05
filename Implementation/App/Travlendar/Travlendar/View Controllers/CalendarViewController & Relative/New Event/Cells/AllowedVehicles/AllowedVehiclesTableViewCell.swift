@@ -28,6 +28,25 @@ class AllowedVehiclesTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func setAllowedVehicles(rep: String) {
+        let a = Array(rep)
+        walkButton.isSelected = a[0] == "1" ? true : false
+        bikeButton.isSelected = a[1] == "1" ? true : false
+        publicTransport.isSelected = a[2] == "1" ? true : false
+        rideButton.isSelected = a[3] == "1" ? true : false
+        carButton.isSelected = a[4] == "1" ? true : false
+    }
+    
+    func getAllowedVehicles() -> String {
+        var s = ""
+        s += walkButton.isSelected ? "1" : "0"
+        s += bikeButton.isSelected ? "1" : "0"
+        s += publicTransport.isSelected ? "1" : "0"
+        s += rideButton.isSelected ? "1" : "0"
+        s += carButton.isSelected ? "1" : "0"
+        return s
+    }
+    
     
     
 }

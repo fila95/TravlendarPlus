@@ -31,15 +31,18 @@ extension EventComposerViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: SaveCloseTableViewCell.reuseId, for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: SaveCloseTableViewCell.reuseId, for: indexPath) as! SaveCloseTableViewCell
+            self.prepareSaveCloseHandlers(cell: cell)
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: TextViewTableViewCell.reuseId, for: indexPath) as! TextViewTableViewCell
             if indexPath.row == 0 {
                 cell.setImage(image: #imageLiteral(resourceName: "address_image"))
+                cell.setText(text: currentEvent.title)
             }
             else {
                 cell.setImage(image: #imageLiteral(resourceName: "position_image"))
+                cell.setText(text: currentEvent.address)
             }
             return cell
             
@@ -47,20 +50,22 @@ extension EventComposerViewController: UITableViewDataSource {
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: SwitchTableViewCell.reuseId, for: indexPath) as! SwitchTableViewCell
                 cell.setTitle(text: "FlexibleTiming")
+                cell.setSwitchOn(on: currentEvent.duration != -1)
             }
             else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: DateTableViewCell.reuseId, for: indexPath) as! DateTableViewCell
                 if indexPath.row == 1 {
-                    cell.setDate(date: Date())
+
+                    cell.setDate(date: currentEvent.start_time)
                     cell.setTitle(title: "Start:")
                 }
                 else if indexPath.row == 2 {
-                    cell.setDate(date: Date().addingTimeInterval(60))
+                    cell.setDate(date: currentEvent.end_time)
                     cell.setTitle(title: "End:")
                 }
                 else if indexPath.row == 3 {
-                    cell.setDuration(duration: 100)
                     cell.setTitle(title: "Duration:")
+                    cell.setDuration(duration: currentEvent.duration != -1 ? currentEvent.duration : 0)
                 }
                 return cell
             }
@@ -73,13 +78,13 @@ extension EventComposerViewController: UITableViewDataSource {
             else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: RepetitionsTableViewCell.reuseId, for: indexPath) as! RepetitionsTableViewCell
                 cell.setTitle(text: "Repetitions:")
-                cell.setRepetitions(rep: 0b0101010)
-                cell.setRepetitions(rep: "1010111")
+                cell.setRepetitions(rep: self.currentEvent.repetitions)
                 return cell
             }
             
         case 4:
             let cell = tableView.dequeueReusableCell(withIdentifier: AllowedVehiclesTableViewCell.reuseId, for: indexPath) as! AllowedVehiclesTableViewCell
+            cell.setAllowedVehicles(rep: self.currentEvent.transports)
             return cell
             
         default:
@@ -96,6 +101,23 @@ extension EventComposerViewController: UITableViewDataSource {
     
 }
 
+// MARK: Cell Handlers
+extension EventComposerViewController {
+    
+    func prepareSaveCloseHandlers(cell: SaveCloseTableViewCell) {
+        cell.setSavehandler {
+            print("Save")
+        }
+        
+        cell.setClosehandler {
+            print("Close")
+            self.dismiss(animated: true)
+        }
+    }
+    
+}
+
+// MARK: Table Delegate
 
 extension EventComposerViewController: UITableViewDelegate {
     

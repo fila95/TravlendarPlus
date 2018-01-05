@@ -126,7 +126,7 @@ public class Event: Object, Codable {
     @objc dynamic var lng: String = "0.0"
     
     @objc dynamic var start_time: Date = Date()
-    @objc dynamic var end_time: Date = Date()
+    @objc dynamic var end_time: Date = Date().addingTimeInterval(60)
     @objc dynamic var duration: Int = -1
     
     @objc dynamic var repetitions: String = "0000000"
