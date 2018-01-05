@@ -216,7 +216,7 @@ let eventIsReachable = (from, to, opt) => {
 			//parsed_transport = to.parseTransports(dist, opt.settings)
 
 			// IN-TODO tenere conto delle ripetizioni
-			
+
 
 			// TODO usare le preferenze dell'utente (max walking distance e biking distance + parse tarnsits)
 			// req.user.settings
@@ -239,13 +239,16 @@ let eventIsReachable = (from, to, opt) => {
 let basicChecks = (user, event, cb) => {
 	let prev
 	let loc = getReliableUserLocation(user, event)
-	user.findPreviousEventTo(event, async from => {
-		if (from && user.updated_at > prev.end_time) {
+	user.findPreviousEventTo(event, (err, from) => {
+		from = from[0]
+		if (from && user.updated_at < from.end_time) {
+			// The last event is the most recent known location
 			prev = {
 				lat: from.lat,
 				lng: from.lng
 			}
 		} else if (loc && loc.lat && loc.lng) {
+			// The user location is the most recent known location
 			prev = {
 				lat: loc.lat,
 				lng: loc.lng
@@ -253,9 +256,9 @@ let basicChecks = (user, event, cb) => {
 		} else {
 			return cb(true)
 		}
-		
-		let e = await eventIsReachable(prev, event, { onlyBasicChecks: true })
-		return cb(e)
+		eventIsReachable(prev, event, { onlyBasicChecks: true }).then((e) => {
+			return cb(e)
+		})
 	})
 }
 
@@ -263,8 +266,8 @@ let basicChecks = (user, event, cb) => {
 // updated to at least 30 minutes before the start of the event
 let getReliableUserLocation = (user, event) => {
 	// Check whether the location is no reliable:
-	if (!user.updated_at || user.last_known_position_lat==0 && user.last_known_position_lng==0 || new Date(event.start_time) - user.updated_at > 30 * 60 * 1000) return null
-	return {lat: user.last_known_position_lat, lng: user.last_known_position_lng}
+	if (!user.updated_at || user.last_known_position_lat == 0 && user.last_known_position_lng == 0 || new Date(event.start_time) - user.updated_at > 30 * 60 * 1000) return null
+	return { lat: user.last_known_position_lat, lng: user.last_known_position_lng }
 }
 
 
@@ -333,7 +336,7 @@ router.get('/', (req, res) => {
 					// Ask if reachable with await
 					// Using async/await, we can loop over an asynchronous function
 					// without spawning thousands of async calls
-					let result = await eventIsReachable(prev, e, {settings: req.user.settings})
+					let result = await eventIsReachable(prev, e, { settings: req.user.settings })
 					if (result) {
 
 					}
