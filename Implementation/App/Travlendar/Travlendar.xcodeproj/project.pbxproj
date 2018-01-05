@@ -39,6 +39,11 @@
 		1E6DB0B81FEA4AE20051319E /* Date+Stripped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6DB0941FEA4A660051319E /* Date+Stripped.swift */; };
 		1E6DB0BA1FEA4B030051319E /* DPDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6DB0B91FEA4B030051319E /* DPDay.swift */; };
 		1E6DB0BC1FEA4B230051319E /* DPEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6DB0BB1FEA4B230051319E /* DPEnums.swift */; };
+		1E87539C1FFF7EEF0026B06C /* SelectedCalendarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E87539A1FFF7EEF0026B06C /* SelectedCalendarTableViewCell.swift */; };
+		1E87539D1FFF7EEF0026B06C /* SelectedCalendarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E87539B1FFF7EEF0026B06C /* SelectedCalendarTableViewCell.xib */; };
+		1E8753A01FFF80580026B06C /* AllowedVehiclesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E87539E1FFF80580026B06C /* AllowedVehiclesTableViewCell.swift */; };
+		1E8753A11FFF80580026B06C /* AllowedVehiclesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E87539F1FFF80580026B06C /* AllowedVehiclesTableViewCell.xib */; };
+		1E8753A41FFF86560026B06C /* SelectableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8753A31FFF86560026B06C /* SelectableButton.swift */; };
 		1E8C1A091FFE378300A7350B /* EventComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8C1A071FFE378300A7350B /* EventComposerViewController.swift */; };
 		1E8C1A0A1FFE378300A7350B /* EventComposerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E8C1A081FFE378300A7350B /* EventComposerViewController.xib */; };
 		1E8C1A261FFE43C300A7350B /* EventComposerViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8C1A251FFE43C300A7350B /* EventComposerViewController+UITableView.swift */; };
@@ -272,6 +277,11 @@
 		1E6DB0AC1FEA4AD30051319E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E6DB0B91FEA4B030051319E /* DPDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPDay.swift; sourceTree = "<group>"; };
 		1E6DB0BB1FEA4B230051319E /* DPEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPEnums.swift; sourceTree = "<group>"; };
+		1E87539A1FFF7EEF0026B06C /* SelectedCalendarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCalendarTableViewCell.swift; sourceTree = "<group>"; };
+		1E87539B1FFF7EEF0026B06C /* SelectedCalendarTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectedCalendarTableViewCell.xib; sourceTree = "<group>"; };
+		1E87539E1FFF80580026B06C /* AllowedVehiclesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllowedVehiclesTableViewCell.swift; sourceTree = "<group>"; };
+		1E87539F1FFF80580026B06C /* AllowedVehiclesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AllowedVehiclesTableViewCell.xib; sourceTree = "<group>"; };
+		1E8753A31FFF86560026B06C /* SelectableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableButton.swift; sourceTree = "<group>"; };
 		1E8C1A071FFE378300A7350B /* EventComposerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventComposerViewController.swift; sourceTree = "<group>"; };
 		1E8C1A081FFE378300A7350B /* EventComposerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventComposerViewController.xib; sourceTree = "<group>"; };
 		1E8C1A251FFE43C300A7350B /* EventComposerViewController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventComposerViewController+UITableView.swift"; sourceTree = "<group>"; };
@@ -521,6 +531,16 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		1E8753A21FFF863F0026B06C /* AllowedVehicles */ = {
+			isa = PBXGroup;
+			children = (
+				1E87539E1FFF80580026B06C /* AllowedVehiclesTableViewCell.swift */,
+				1E87539F1FFF80580026B06C /* AllowedVehiclesTableViewCell.xib */,
+				1E8753A31FFF86560026B06C /* SelectableButton.swift */,
+			);
+			path = AllowedVehicles;
+			sourceTree = "<group>";
+		};
 		1E8C1A061FFE375100A7350B /* New Event */ = {
 			isa = PBXGroup;
 			children = (
@@ -545,6 +565,9 @@
 				1E8C1A3A1FFE876E00A7350B /* DateTableViewCell.xib */,
 				1E8C1A3D1FFE8F0F00A7350B /* SwitchTableViewCell.swift */,
 				1E8C1A3E1FFE8F0F00A7350B /* SwitchTableViewCell.xib */,
+				1E87539A1FFF7EEF0026B06C /* SelectedCalendarTableViewCell.swift */,
+				1E87539B1FFF7EEF0026B06C /* SelectedCalendarTableViewCell.xib */,
+				1E8753A21FFF863F0026B06C /* AllowedVehicles */,
 				1E8C1A451FFE92D700A7350B /* Repetitions */,
 			);
 			path = Cells;
@@ -561,9 +584,9 @@
 		1E8C1A451FFE92D700A7350B /* Repetitions */ = {
 			isa = PBXGroup;
 			children = (
-				1E8C1A461FFE92EF00A7350B /* HexagonLabelView.swift */,
 				1E8C1A411FFE928B00A7350B /* RepetitionsTableViewCell.swift */,
 				1E8C1A421FFE928B00A7350B /* RepetitionsTableViewCell.xib */,
+				1E8C1A461FFE92EF00A7350B /* HexagonLabelView.swift */,
 			);
 			path = Repetitions;
 			sourceTree = "<group>";
@@ -1194,6 +1217,8 @@
 				1E8C1A0A1FFE378300A7350B /* EventComposerViewController.xib in Resources */,
 				1E8C1A2B1FFE471600A7350B /* HeaderCell.xib in Resources */,
 				1E4C9AEB1FFB9798002F8E8B /* CalendarCreatorView.xib in Resources */,
+				1E8753A11FFF80580026B06C /* AllowedVehiclesTableViewCell.xib in Resources */,
+				1E87539D1FFF7EEF0026B06C /* SelectedCalendarTableViewCell.xib in Resources */,
 				1EAA18E91FC9CE9F001B3612 /* Assets.xcassets in Resources */,
 				1E3758A21FFD320F00D871FC /* CollectionHeaderView.xib in Resources */,
 				1EAA18E41FC9CE9F001B3612 /* Main.storyboard in Resources */,
@@ -1459,6 +1484,7 @@
 				1EEE56AF1FE3DA0F00621599 /* FeedbackGenerator.swift in Sources */,
 				1E98CB8D1FF3C650006DCF7F /* ArrowButton.swift in Sources */,
 				1EF4E18F1FDC5F1400B5BFDC /* SettingsViewController.swift in Sources */,
+				1E87539C1FFF7EEF0026B06C /* SelectedCalendarTableViewCell.swift in Sources */,
 				1E98CB901FF3CD71006DCF7F /* CalendarCloseView.swift in Sources */,
 				1E3758A51FFD38B700D871FC /* EventCollectionViewCell.swift in Sources */,
 				1EB2ECE51FCD4EB300A50EC3 /* Database.swift in Sources */,
@@ -1477,6 +1503,8 @@
 				1EEE56B91FE3DD6D00621599 /* RoundedButton.swift in Sources */,
 				1E4C9AF31FFC18DB002F8E8B /* EventsOperation.swift in Sources */,
 				1E8C1A2A1FFE471600A7350B /* HeaderCell.swift in Sources */,
+				1E8753A41FFF86560026B06C /* SelectableButton.swift in Sources */,
+				1E8753A01FFF80580026B06C /* AllowedVehiclesTableViewCell.swift in Sources */,
 				1E21E86F1FCC22190009EFA9 /* API.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -31,23 +31,121 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Switchable" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aFR-i6-3yY">
-                        <rect key="frame" x="20" y="0.0" width="71" height="96"/>
+                        <rect key="frame" x="20" y="0.0" width="70.5" height="96"/>
                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="1wF-eC-O4M">
+                        <rect key="frame" x="209" y="36" width="175" height="25"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ktk-5y-a6K" customClass="HexagonLabelView" customModule="Travlendar" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="p12-S9-Ke4"/>
+                                    <constraint firstAttribute="height" constant="25" id="pLA-lz-p48"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="text" value="M"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSelected" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y45-Qg-mT9" customClass="HexagonLabelView" customModule="Travlendar" customModuleProvider="target">
+                                <rect key="frame" x="25" y="0.0" width="25" height="25"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="m92-5m-LGF"/>
+                                    <constraint firstAttribute="height" constant="25" id="wIp-k4-nSf"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="text" value="T"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSelected" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZaX-iz-Xi0" customClass="HexagonLabelView" customModule="Travlendar" customModuleProvider="target">
+                                <rect key="frame" x="50" y="0.0" width="25" height="25"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="DEp-n0-fXD"/>
+                                    <constraint firstAttribute="height" constant="25" id="riM-FF-3we"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="text" value="W"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSelected" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eEq-5J-FAA" customClass="HexagonLabelView" customModule="Travlendar" customModuleProvider="target">
+                                <rect key="frame" x="75" y="0.0" width="25" height="25"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="agk-Zw-tYB"/>
+                                    <constraint firstAttribute="height" constant="25" id="g7t-Ym-hqh"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="text" value="T"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSelected" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PTr-Gh-VVU" customClass="HexagonLabelView" customModule="Travlendar" customModuleProvider="target">
+                                <rect key="frame" x="100" y="0.0" width="25" height="25"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="0GP-Xa-prU"/>
+                                    <constraint firstAttribute="width" constant="25" id="XDm-Tx-2Fr"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="text" value="F"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSelected" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f9n-jH-6ak" customClass="HexagonLabelView" customModule="Travlendar" customModuleProvider="target">
+                                <rect key="frame" x="125" y="0.0" width="25" height="25"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="Ktd-Jv-O4W"/>
+                                    <constraint firstAttribute="height" constant="25" id="oXz-KQ-wvl"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="text" value="S"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSelected" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4i3-Mi-uI7" customClass="HexagonLabelView" customModule="Travlendar" customModuleProvider="target">
+                                <rect key="frame" x="150" y="0.0" width="25" height="25"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="Vzw-zH-rF5"/>
+                                    <constraint firstAttribute="height" constant="25" id="b4K-PH-c48"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="text" value="S"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSelected" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                    </stackView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="4fq-yS-IHE" secondAttribute="bottom" id="6hd-xG-NFX"/>
                     <constraint firstAttribute="bottom" secondItem="aFR-i6-3yY" secondAttribute="bottom" id="CSg-Rq-tgP"/>
                     <constraint firstItem="aFR-i6-3yY" firstAttribute="leading" secondItem="4fq-yS-IHE" secondAttribute="leading" id="E6I-Gm-xs8"/>
                     <constraint firstAttribute="trailing" secondItem="4fq-yS-IHE" secondAttribute="trailing" constant="-40" id="RWh-Kp-OnC"/>
+                    <constraint firstItem="1wF-eC-O4M" firstAttribute="centerY" secondItem="mI2-SH-GFF" secondAttribute="centerY" id="eBa-UD-WAN"/>
                     <constraint firstItem="4fq-yS-IHE" firstAttribute="leading" secondItem="mI2-SH-GFF" secondAttribute="leading" constant="20" id="kSj-wN-3pT"/>
+                    <constraint firstAttribute="trailing" secondItem="1wF-eC-O4M" secondAttribute="trailing" id="pTS-Ew-xAL"/>
                     <constraint firstItem="aFR-i6-3yY" firstAttribute="top" secondItem="mI2-SH-GFF" secondAttribute="top" id="tRe-HS-w1M"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="ZQn-Ip-aaJ"/>
             <connections>
+                <outlet property="day1" destination="Ktk-5y-a6K" id="2Og-8j-RQw"/>
+                <outlet property="day2" destination="Y45-Qg-mT9" id="3zu-PY-W5z"/>
+                <outlet property="day3" destination="ZaX-iz-Xi0" id="ETW-Ke-hEI"/>
+                <outlet property="day4" destination="eEq-5J-FAA" id="qGa-ms-THj"/>
+                <outlet property="day5" destination="PTr-Gh-VVU" id="cYS-TN-PGK"/>
+                <outlet property="day6" destination="f9n-jH-6ak" id="fWT-ud-odD"/>
+                <outlet property="day7" destination="4i3-Mi-uI7" id="QwA-oa-2iK"/>
                 <outlet property="titleLabel" destination="aFR-i6-3yY" id="Psd-f1-whC"/>
             </connections>
             <point key="canvasLocation" x="22" y="-43.5"/>

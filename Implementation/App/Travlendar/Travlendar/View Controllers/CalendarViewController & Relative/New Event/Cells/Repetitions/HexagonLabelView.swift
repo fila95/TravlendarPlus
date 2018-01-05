@@ -9,10 +9,20 @@
 import UIKit
 
 
-@IBDesignable class HexagonLabelView: UIView {
+class HexagonLabelView: UIView {
     
     private let imageView = UIImageView()
     private let label = UILabel()
+    
+    enum TextType {
+        case smaller
+        case bigger
+    }
+    var textType: TextType = .smaller {
+        didSet {
+            self.updateFont()
+        }
+    }
     
     @IBInspectable var text: String = "M" {
         didSet {
@@ -61,6 +71,19 @@ import UIKit
         self.label.text = self.text
         
         self.imageView.addSubview(self.label)
+        
+        updateFont()
+    }
+    
+    private func updateFont() {
+        switch self.textType {
+        case .smaller:
+            self.label.font = UIFont.fonts.AvenirNext(type: .Medium, size: 10)
+            break
+        case .bigger:
+            self.label.font = UIFont.fonts.AvenirNext(type: .Medium, size: 13)
+            break
+        }
     }
     
     override func layoutSubviews() {
@@ -69,5 +92,6 @@ import UIKit
         self.imageView.frame = self.bounds
         self.label.frame = self.imageView.bounds
     }
+    
     
 }

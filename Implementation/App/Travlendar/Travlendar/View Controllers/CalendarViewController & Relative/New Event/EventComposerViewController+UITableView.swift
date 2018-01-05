@@ -19,6 +19,10 @@ extension EventComposerViewController: UITableViewDataSource {
             return 2
         case 2:
             return 4
+        case 3:
+            return 2
+        case 4:
+            return 1
         default:
             return 0
         }
@@ -60,7 +64,23 @@ extension EventComposerViewController: UITableViewDataSource {
                 }
                 return cell
             }
+        case 3:
+            if indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: SelectedCalendarTableViewCell.reuseId, for: indexPath) as! SelectedCalendarTableViewCell
+                
+                return cell
+            }
+            else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: RepetitionsTableViewCell.reuseId, for: indexPath) as! RepetitionsTableViewCell
+                cell.setTitle(text: "Repetitions:")
+                cell.setRepetitions(rep: 0b0101010)
+                cell.setRepetitions(rep: "1010111")
+                return cell
+            }
             
+        case 4:
+            let cell = tableView.dequeueReusableCell(withIdentifier: AllowedVehiclesTableViewCell.reuseId, for: indexPath) as! AllowedVehiclesTableViewCell
+            return cell
             
         default:
             break
@@ -113,6 +133,8 @@ extension EventComposerViewController: UITableViewDelegate {
         switch indexPath.section {
         case 0:
             return 42
+        case 4:
+            return 120
         default:
             return 50
         }

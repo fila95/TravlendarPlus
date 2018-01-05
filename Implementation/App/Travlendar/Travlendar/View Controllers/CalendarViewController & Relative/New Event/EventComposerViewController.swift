@@ -70,6 +70,15 @@ class EventComposerViewController: UIViewController {
         
         self.tableView.register(SwitchTableViewCell.self, forCellReuseIdentifier: SwitchTableViewCell.reuseId)
         self.tableView.register(SwitchTableViewCell.nib!, forCellReuseIdentifier: SwitchTableViewCell.reuseId)
+        
+        self.tableView.register(SelectedCalendarTableViewCell.self, forCellReuseIdentifier: SelectedCalendarTableViewCell.reuseId)
+        self.tableView.register(SelectedCalendarTableViewCell.nib!, forCellReuseIdentifier: SelectedCalendarTableViewCell.reuseId)
+        
+        self.tableView.register(RepetitionsTableViewCell.self, forCellReuseIdentifier: RepetitionsTableViewCell.reuseId)
+        self.tableView.register(RepetitionsTableViewCell.nib!, forCellReuseIdentifier: RepetitionsTableViewCell.reuseId)
+        
+        self.tableView.register(AllowedVehiclesTableViewCell.self, forCellReuseIdentifier: AllowedVehiclesTableViewCell.reuseId)
+        self.tableView.register(AllowedVehiclesTableViewCell.nib!, forCellReuseIdentifier: AllowedVehiclesTableViewCell.reuseId)
     }
 
     
