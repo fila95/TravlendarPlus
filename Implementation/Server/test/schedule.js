@@ -1,6 +1,7 @@
 const app = require('../index')
 const schedule = require('../routes/schedule.js').testFunctions
 const request = require('supertest')
+const polyline = require('polyline')
 
 describe('Schedule private functions', () => {
 	let user, device
@@ -301,7 +302,10 @@ describe('Schedule private functions', () => {
 		if (!res[0].copyrights) {
 			throw new Error('No google route returned')
 		}
-		console.log(JSON.stringify(res))
+		for (re in res){
+			console.log(JSON.stringify(re))
+		}
+		
 	}).timeout(10000); // Google Requests could take a while
 
 	it('eventIsReachable with all the checks, google included, should return false', async () => {

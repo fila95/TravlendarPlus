@@ -1,4 +1,5 @@
 const express = require('express')
+const distance = require('./schedule').distance
 const router = express.Router({ mergeParams: true })
 
 // Return a list of User's Events
@@ -124,18 +125,36 @@ router.patch('/:event_id', (req, res) => {
 
 	})
 })
-
 // Parsing the transports from binary encoding. Example: 1100 -> ["walking","bicycling"]
-let parseTransports = (transports, settings) => {
+// Given a list of already parsed transpors (list of strings of transports), it returns 
+// the same list of strings without means of transportation that the user 
+// can't travel with, depending on settings and time
+let parseTransports = (settings) => {
+	transports=event.transports
 	let sTransports = ["walking", "bicycling", "transit", "driving"]
-	//TODO Testare funzione Settings.canUsePublicTransportation in module
+
 	let mask = transports.split('').map(transport => transport == 1)
 	sTransports=sTransports.filter((transport,index) => mask[index])
 
+	//Checking the transits
+	if(sTransports.indexOf('transit') != -1){
+		//Check if user can use public transits
+		min_start_event=event.start_time.getHours()*60+event.start_time.getMinutes()
+		min_start_transit=settings.start_public_transportation.split(':')[0]*60+settings.start_public_transportation.split(':')[1]
+		min_end_transit=settings.end_public_transportation.split(':')[0]*60+settings.end_public_transportation.split(':')[1]
+		if(min_start_event > min_end_transit || min_start_event < min_start_transit){
+			sTransports.splice(sTransports.indexOf('transit'))
+		}
+	}
+
+	//Checking the distance for bike or walking
+	if(distance())
 
 
 	return sTransports
+
 }
+
 
 module.exports = {
 	router: router,

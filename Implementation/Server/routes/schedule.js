@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const parseTransports = require('./events').parseTransports
+const polyline = require('polyline')
 
 const token = process.env.GOOGLE_MAPS_TOKEN
 /* istanbul ignore if */
@@ -213,7 +214,11 @@ let eventIsReachable = (from, to, opt) => {
 				durations.push(duration)
 			}
 
-			// TODO tenere conto delle ripetizioni
+			// IN-TODO tenere conto delle ripetizioni
+			parsed_transport=parseTransports(settings)
+
+
+
 			// TODO usare le preferenze dell'utente (max walking distance e biking distance + parse tarnsits)
 			// req.user.settings
 
@@ -238,6 +243,10 @@ let getReliableUserLocation = user => {
 	if (!user.updated_at || new Date() - user.updated_at > 30 * 60 * 1000) return null
 	return user.updated_at
 }
+
+
+//Travels 
+let travels
 
 router.get('/', (req, res) => {
 	
@@ -316,7 +325,8 @@ router.get('/', (req, res) => {
 })
 
 module.exports = {
-	router: router
+	router: router,
+	distance: distance
 }
 
 if (process.env.NODE_ENV == 'testing') {
