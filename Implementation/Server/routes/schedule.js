@@ -217,8 +217,6 @@ let eventIsReachable = (from, to, opt) => {
 			// IN-TODO tenere conto delle ripetizioni
 			parsed_transport=parseTransports(settings)
 
-
-
 			// TODO usare le preferenze dell'utente (max walking distance e biking distance + parse tarnsits)
 			// req.user.settings
 
@@ -237,10 +235,34 @@ let eventIsReachable = (from, to, opt) => {
 	})
 }
 
+let basicChecks = (user, event, cb) => {
+	let prev
+	let loc = getReliableUserLocation(user, event)
+	user.findPreviousEventTo(event, from => {
+		if (from && user.updated_at > prev.end_time) {
+			prev = {
+				lat: from.lat,
+				lng: from.lng
+			}
+		} else if(loc && loc.lat && loc.lng) {
+			prev = {
+				lat: loc.lat,
+				lng: loc.lng
+			}
+		} else {
+			return cb(true)
+		}
+		
+		let e = eventIsReachable(prev, event, { onlyBasicChecks: true })
+		return cb(e)
+	})
+}
+
 // Returns null if not reliable, or the location if it is
-let getReliableUserLocation = user => {
-	//checking whether the location is no reliable
-	if (!user.updated_at || new Date() - user.updated_at > 30 * 60 * 1000) return null
+// updated to at least 30 minutes before the start of the event
+let getReliableUserLocation = (user, event) => {
+	// Check whether the location is no reliable:
+	if (!user.updated_at || new Date(event.start_time) - user.updated_at > 30 * 60 * 1000) return null
 	return user.updated_at
 }
 
@@ -249,8 +271,6 @@ let getReliableUserLocation = user => {
 let travels
 
 router.get('/', (req, res) => {
-	
-
 	// For each calendar
 	req.user.getCalendars().each((err, calendar) => {
 		// Get all the events of today from the current calendar
@@ -265,14 +285,12 @@ router.get('/', (req, res) => {
 			// Calculate timeSlot for each flexible event and sort them with the fitness function
 			for (let e of flexibleEvents) {
 				e.timeSlots = timeSlots(fixedEvents, e)
-				if(e.timeSlots.length==0) return res.status(400).end('timeslot length is 0 for event: ' + e.id) 
+				if (e.timeSlots.length == 0) return res.status(400).end('timeslot length is 0 for event: ' + e.id)
 			}
 			let sortedFlexibleEvents = sortWithFitness(flexibleEvents)
 
 			// Try to fit each flexible event from the less fittable to the most one
 			for (let e of sortedFlexibleEvents) {
-				// TODO What if e.timeSlots has length == 0
-
 				// Sort time slot from the smallest to the biggest
 				e.timeSlots = e.timeSlots.sort((a, b) => {
 					return (a.end_time - a.start_time) - (b.end_time - b.start_time)
@@ -287,9 +305,10 @@ router.get('/', (req, res) => {
 					// Supposing that the event will be placed in this time slot,
 					// determine if the event e is reachable
 					let prev = getEventPreviousTo(events, timeSlot.start_time)
+					let loc = getReliableUserLocation(req.user, prev)
+
 					if (prev == null) {
 						// If the previous event is not defined, check the user location
-						let loc = getReliableUserLocation(req.user)
 						if (!loc) {
 							// If we don't know the user location, insert the event anyway
 							e.suggested_start_time = new Date(timeSlot.start_time)
@@ -297,7 +316,9 @@ router.get('/', (req, res) => {
 							return e.save(err => {
 								if (err) throw err
 							})
-						} else {
+						} else if (req.user.updated_at > prev.end_time) {
+							// If the last real user position is closer to the end of the previouus event,
+							// use that instead of the previous event position
 							// Create a fake event that will be used in asking if reachable
 							prev = {
 								start_time: req.user.updated_at,
@@ -306,12 +327,13 @@ router.get('/', (req, res) => {
 								lng: loc.lng
 							}
 						}
+						// implicit else: use the previous event position
 					}
 					// Ask if reachable with await
 					// Using async/await, we can loop over an asynchronous function
 					// without spawning thousands of async calls
 					let result = await eventIsReachable(prev, e)
-					if(result) {
+					if (result) {
 
 					}
 					// TODO use result
@@ -326,7 +348,8 @@ router.get('/', (req, res) => {
 
 module.exports = {
 	router: router,
-	distance: distance
+	distance: distance,
+	basicChecks: basicChecks
 }
 
 if (process.env.NODE_ENV == 'testing') {
@@ -342,6 +365,7 @@ if (process.env.NODE_ENV == 'testing') {
 		getReliableUserLocation: getReliableUserLocation,
 		distance: distance,
 		isReachablAsTheCrowFlies: isReachablAsTheCrowFlies,
+		basicChecks: basicChecks,
 		eventIsReachable: eventIsReachable
 	}
 }

@@ -63,6 +63,11 @@ function model(db, cb) {
 					this.updated_at = new Date()
 					return next()
 				}
+			},
+			methods: {
+				findPreviousEventTo: (event, cb) => {
+					Event.find({ calendar_id: event.calendar_id, end_time: orm.lte(event.start_time) }, {}, 1, 'end_time', cb)
+				}
 			}
 		})
 
@@ -91,7 +96,15 @@ function model(db, cb) {
 	let Calendar = db.define('calendars', {
 		name: { type: 'text', size: 255, required: true },
 		color: { type: 'text', size: 6, required: true }
-	})
+	}, {
+			methods: {
+				getEventsOfToday: (cb) => {
+					let today = new Date()
+					let todayPlus24 = new Date(today + 1000 * 60 * 60 * 24)
+					Event.find({ calendar_id: this.id, start_time: orm.between(today, todayPlus24) }, cb)
+				}
+			}
+		})
 
 	let Company = db.define('companies', {
 		phone_number: { type: 'text', size: 32, unique: true },
@@ -115,16 +128,10 @@ function model(db, cb) {
 		end_time: { type: 'date', required: true, time: true },
 		duration: { type: 'integer' },
 		repetitions: { type: 'bit', size: 7, defaultValue: '0000000' },
-		transports: { type: 'bit', size: 5, defaultValue: '11111' },
+		transports: { type: 'bit', size: 4, defaultValue: '1111' },
 		suggested_start_time: { type: 'date', time: true },
 		suggested_end_time: { type: 'date', time: true }
 	})
-
-	Calendar.getEventsOfToday = (cb) => {
-		let today = new Date()
-		let todayPlus24 = new Date(today + 1000 * 60 * 60 * 24)
-		Calendar.find({ calendar_id: this.id, start_time: orm.between(today, todayPlus24) }, cb)
-	}
 
 	Event.hasMany('travels', Travel)
 	Setting.hasOne('user', User, { reverse: 'settings', required: true })

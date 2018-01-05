@@ -47,7 +47,7 @@ describe('Events API', () => {
 					'address': 'main street',
 					'duration': 10,
 					'repetitions': 'B0000001',
-					'transports': 'B1101'
+					'transports': 'B1111'
 				})
 				.expect(201)
 				.expect(res => {
