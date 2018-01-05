@@ -139,17 +139,23 @@ function model(db, cb) {
 					let sTransports = ["walking", "bicycling", "transit", "driving"]
 					let mask = transports.split('').map(transport => transport == 1)
 					sTransports = sTransports.filter((transport, index) => mask[index])
-
+					
+					
 					//Checking the transits
 					if (sTransports.indexOf('transit') != -1) {
+						
 						//Check if user can use public transits
 						min_start_event = this.start_time.getHours() * 60 + this.start_time.getMinutes()
 						min_start_transit = settings.start_public_transportation.split(':')[0] * 60 + settings.start_public_transportation.split(':')[1]
 						min_end_transit = settings.end_public_transportation.split(':')[0] * 60 + settings.end_public_transportation.split(':')[1]
+						
 						if (min_start_event > min_end_transit || min_start_event < min_start_transit) {
+							console.log(min_end_transit)
 							sTransports.splice(sTransports.indexOf('transit'))
 						}
 					}
+
+					return sTransports
 				}
 			}
 		})

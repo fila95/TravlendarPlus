@@ -243,10 +243,9 @@ describe('Schedule private functions', () => {
 
 	it('should parse the transports of the p2 to ["walking", "transits"]', () => {
 		let p1 = { lat: 45.478336, lng: 9.228263 }
-		console.log("CIAONE schedule.distance(p1,p2):")
 		let parse = customEvent.parseTransports(schedule.distance(p1, customEvent), user.settings)
 		if (parse == undefined) {
-			throw Error("Blabla")
+			throw Error("The transports parsing is undefined")
 		}
 	})
 
@@ -312,7 +311,7 @@ describe('Schedule private functions', () => {
 		if (!res[0].copyrights) {
 			throw new Error('No google route returned')
 		}
-	}).timeout(10000); // Google Requests could take a while
+	}).timeout(1000); // Google Requests could take a while
 
 	it('eventIsReachable with all the checks, google included, should return false', async () => {
 		let p1 = { lat: 45.478336, lng: 9.228263 }
@@ -330,7 +329,7 @@ describe('Schedule private functions', () => {
 			throw new Error('Google route returned, but noone expected')
 		}
 
-	}).timeout(10000); // Google Requests could take a while
+	}).timeout(1000); // Google Requests could take a while
 
 	/*it('basicChecks without any params', (done) => {
 		let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: 45, lng: 9 }
