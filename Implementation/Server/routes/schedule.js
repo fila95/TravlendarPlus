@@ -232,16 +232,29 @@ let eventIsReachable = (from, to, opt) => {
 	})
 }
 
+let basicChecks = (event, cb) => {
+	let from = getReliableUserLocation()
+	if (from == null) {
+		req.user.getCalendars(calendars => {
+			for(calendar of calendars) {
+				calendar.getEvents(events => {
+					
+				})
+			}
+		})
+	}
+	let e = eventIsReachable(from, event, { onlyBasicChecks: true })
+}
+
 // Returns null if not reliable, or the location if it is
-let getReliableUserLocation = user => {
-	//checking whether the location is no reliable
-	if (!user.updated_at || new Date() - user.updated_at > 30 * 60 * 1000) return null
+// updated to at least 30 minutes before the start of the event
+let getReliableUserLocation = (user, event) => {
+	// Check whether the location is no reliable:
+	if (!user.updated_at || new Date(event.start_time) - user.updated_at > 30 * 60 * 1000) return null
 	return user.updated_at
 }
 
 router.get('/', (req, res) => {
-	
-
 	// For each calendar
 	req.user.getCalendars().each((err, calendar) => {
 		// Get all the events of today from the current calendar
@@ -261,8 +274,6 @@ router.get('/', (req, res) => {
 
 			// Try to fit each flexible event from the less fittable to the most one
 			for (let e of sortedFlexibleEvents) {
-				// TODO What if e.timeSlots has length == 0
-
 				// Sort time slot from the smallest to the biggest
 				e.timeSlots = e.timeSlots.sort((a, b) => {
 					return (a.end_time - a.start_time) - (b.end_time - b.start_time)
@@ -277,9 +288,10 @@ router.get('/', (req, res) => {
 					// Supposing that the event will be placed in this time slot,
 					// determine if the event e is reachable
 					let prev = getEventPreviousTo(events, timeSlot.start_time)
+					let loc = getReliableUserLocation(req.user, prev)
+
 					if (prev == null) {
 						// If the previous event is not defined, check the user location
-						let loc = getReliableUserLocation(req.user)
 						if (!loc) {
 							// If we don't know the user location, insert the event anyway
 							e.suggested_start_time = new Date(timeSlot.start_time)
@@ -287,7 +299,9 @@ router.get('/', (req, res) => {
 							return e.save(err => {
 								if (err) throw err
 							})
-						} else {
+						} else if (req.user.updated_at > prev.end_time) {
+							// If the last real user position is closer to the end of the previouus event,
+							// use that instead of the previous event position
 							// Create a fake event that will be used in asking if reachable
 							prev = {
 								start_time: req.user.updated_at,
@@ -296,12 +310,13 @@ router.get('/', (req, res) => {
 								lng: loc.lng
 							}
 						}
+						// implicit else: use the previous event position
 					}
 					// Ask if reachable with await
 					// Using async/await, we can loop over an asynchronous function
 					// without spawning thousands of async calls
 					let result = await eventIsReachable(prev, e)
-					if(result) {
+					if (result) {
 
 					}
 					// TODO use result
@@ -315,7 +330,8 @@ router.get('/', (req, res) => {
 })
 
 module.exports = {
-	router: router
+	router: router,
+	basicChecks: basicChecks
 }
 
 if (process.env.NODE_ENV == 'testing') {
