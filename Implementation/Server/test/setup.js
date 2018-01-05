@@ -2,7 +2,7 @@ const app = require('../index')
 const crypto = require('crypto')
 const uuidv4 = require('uuid/v4')
 
-let user, device, calendar
+let user, device, calendar, event
 
 let createUser = (cb) => {
 	db.models.users.create({
@@ -31,14 +31,31 @@ let createDevice = (cb) => {
 	})
 }
 
-
 let createCalendar = (cb) => {
 	db.models.calendars.create({
+		user_id: user.id,
 		'name': 'Test Calendar',
 		'color': '#1278EF'
 	}, (err, _calendar) => {
-		//if (err) throw err
+		if (err) throw err
 		calendar = _calendar
+		cb()
+	})
+}
+
+let createEvent = (cb) => {
+	db.models.events.create({
+		title: "Test Event",
+		address: "Test Address",
+		lat: 45.464257,
+		lng: 9.190209,
+		start_time: new Date(2017, 11, 12, 8, 0),
+		end_time: new Date(2017, 11, 12, 9, 20),
+		duration: 1000 * 60 * 60,
+		transports: "B1010"
+	}, (err, _event) => {
+		if (err) throw err
+		event = _event
 		cb()
 	})
 }
@@ -49,7 +66,7 @@ let createData = (cb) => {
 		createDevice(() => {
 			createCalendar(() => {
 				// Adding user, device and calendars to the variable testData
-				app.set('testData', { user: user, device: device, calendar: calendar })
+				app.set('testData', { user: user, device: device, calendar: calendar, event: event })
 				cb()
 			})
 		})
@@ -72,9 +89,13 @@ before((done) => {
 })
 
 after((done) => {
-	device.remove(() => {
-		user.getSettings().remove(() => {
-			user.remove(done)
+	event.remove(() => {
+		calendar.remove(() => {
+			device.remove(() => {
+				user.getSettings().remove(() => {
+					user.remove(done)
+				})
+			})
 		})
 	})
 })
