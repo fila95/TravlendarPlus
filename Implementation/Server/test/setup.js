@@ -2,7 +2,7 @@ const app = require('../index')
 const crypto = require('crypto')
 const uuidv4 = require('uuid/v4')
 
-let user, device
+let user, device, calendar
 
 let createUser = (cb) => {
 	db.models.users.create({
@@ -30,13 +30,27 @@ let createDevice = (cb) => {
 	})
 }
 
+
+let createCalendar = (cb) => {
+	db.models.calendars.create({
+		'name': 'Test Calendar',
+		'color': '#1278EF'
+	}, (err, _calendar) => {
+		//if (err) throw err
+		calendar = _calendar
+		cb()
+	})
+}
+
 // Create a test user and device
 let createData = (cb) => {
 	createUser(() => {
 		createDevice(() => {
-			// Adding user and device to the variable testData
-			app.set('testData', { user: user, device: device })
-			cb()
+			createCalendar(() => {
+				// Adding user and device to the variable testData
+				app.set('testData', { user: user, device: device, calendar: calendar })
+				cb()
+			})
 		})
 	})
 
