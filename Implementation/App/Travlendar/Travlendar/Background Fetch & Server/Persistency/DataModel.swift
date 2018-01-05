@@ -116,8 +116,8 @@ class Travel: Object {
 
 public class Event: Object, Codable {
     
-    @objc dynamic var id = 0
-    @objc dynamic var calendar_id = 0
+    @objc dynamic var id = -1
+    @objc dynamic var calendar_id = -1
     
     @objc dynamic var title = ""
     @objc dynamic var address = ""
@@ -126,7 +126,7 @@ public class Event: Object, Codable {
     @objc dynamic var lng: String = "0.0"
     
     @objc dynamic var start_time: Date = Date()
-    @objc dynamic var end_time: Date = Date().addingTimeInterval(60)
+    @objc dynamic var end_time: Date = Date().addingTimeInterval(3600)
     @objc dynamic var duration: Int = -1
     
     @objc dynamic var repetitions: String = "0000000"
@@ -226,7 +226,7 @@ public class Event: Object, Codable {
         
         try container.encode(self.start_time, forKey: .start_time)
         try container.encode(self.end_time, forKey: .end_time)
-        try container.encode(self.duration, forKey: .duration)
+        try container.encode(self.duration == -1 ? 0 : self.duration, forKey: .duration)
         
         try container.encode(self.repetitions, forKey: .repetitions)
         try container.encode(self.transports, forKey: .transports)

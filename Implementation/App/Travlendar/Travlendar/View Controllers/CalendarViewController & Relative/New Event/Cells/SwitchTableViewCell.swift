@@ -13,6 +13,8 @@ class SwitchTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var switchView: UISwitch!
     
+    private var switchHandler: (() -> Void)?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -29,6 +31,14 @@ class SwitchTableViewCell: UITableViewCell {
     
     func setTitle(text: String) {
         titleLabel.text = text
+    }
+    
+    func setSwitchChangedHandler(handler: @escaping (() -> Void)) {
+        self.switchHandler = handler
+    }
+    
+    @IBAction func switchDidChange() {
+        switchHandler?()
     }
     
 }

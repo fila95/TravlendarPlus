@@ -341,7 +341,7 @@ describe('Schedule private functions', () => {
 
 	}).timeout(1000); // Google Requests could take a while
 
-	/*it('basicChecks without any params', (done) => {
+	it('basicChecks without any params', (done) => {
 		let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: 45, lng: 9 }
 
 		schedule.basicChecks(user, e, (data) => {
@@ -350,9 +350,9 @@ describe('Schedule private functions', () => {
 			}
 			done()
 		})
-	})*/
+	})
 
-	it('basicChecks with user location => true', (done) => {
+	it('basicChecks with user location should retuurn true', (done) => {
 		user.last_known_position_lat = 45
 		user.last_known_position_lng = 9
 		user.updated_at = new Date(2017, 11, 12, 5, 59)
@@ -360,27 +360,38 @@ describe('Schedule private functions', () => {
 		let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), duration: 4 * 60 * 60 * 1000, lat: 45, lng: 9 }
 
 		schedule.basicChecks(user, e, (data) => {
-			if (data != true) {
-				throw new Error('Basic checks failed')
-			}
-			done()
+			done(data!=true ? new Error('Basic checks failed') : null)
 		})
 	})
-	/*
-		it('basicChecks with user location => false', (done) => {
-			user.last_known_position_lat = 40
-			user.last_known_position_lng = 9
-			user.updated_at = new Date(2017, 11, 12, 5, 59)
+
+	it('basicChecks with user location should return false', (done) => {
+		user.last_known_position_lat = 40
+		user.last_known_position_lng = 9
+		user.updated_at = new Date(2017, 11, 12, 5, 59)
+
+		let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: 45, lng: 9 }
+
+		schedule.basicChecks(user, e, (data) => {
+			done(data==true ? new Error('Basic checks failed') : null)
+		})
+	})
 	
-			let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: 45, lng: 9 }
+	it('basicChecks with previous event should return true', (done) => {
+		let e = { id: 1, start_time: new Date(2017, 11, 12, 11, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: customEvent.lat+0.1, lng: customEvent.lng+0.1 }
+
+		schedule.basicChecks(user, e, (data) => {
+			done(data!=true ? new Error('Basic checks failed') : null)
+		})
+	})
 	
-			schedule.basicChecks(user, e, (data) => {
-				if (data == true) {
-					throw new Error('Basic checks failed')
-				}
-				done()
-			})
-		})*/
+	it('basicChecks with previous event should return false', (done) => {
+		let e = { id: 1, start_time: new Date(2017, 11, 12, 9, 22), end_time: new Date(2017, 11, 13, 4, 30), lat: 45, lng: 9, calendar_id: customEvent.calendar_id }
+
+		schedule.basicChecks(user, e, (data) => {
+			done(data==true ? new Error('Basic checks failed') : null)
+		})
+	})
+	
 	/*
 	describe('GET /', () => {
 		it('Should call the scheduler', async (done) => {

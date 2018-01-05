@@ -40,6 +40,9 @@
                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f2v-fJ-LNe">
                         <rect key="frame" x="327" y="33" width="51" height="31"/>
                         <color key="onTintColor" red="1" green="0.38431372549019605" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <connections>
+                            <action selector="switchDidChange" destination="sC2-cc-fH1" eventType="valueChanged" id="Wdf-SZ-qOv"/>
+                        </connections>
                     </switch>
                 </subviews>
                 <constraints>
