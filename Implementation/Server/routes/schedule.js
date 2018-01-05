@@ -233,20 +233,25 @@ let eventIsReachable = (from, to, opt) => {
 }
 
 let basicChecks = (user, event, cb) => {
-	let from = getReliableUserLocation(user, event)
-	user.getCalendars((err, calendars) => {
-		for (calendar of calendars) {
-			calendar.getEvents((err, events) => {
-				let prev = getEventPreviousTo(events, event.start_time)
-				if (from && user.updated_at > prev.end_time) {
-					prev = {
-						lat: from.lat,
-						lng: from.lng
-					}
-				}
-				let e = eventIsReachable(prev, event, { onlyBasicChecks: true })
-			})
+	let prev
+	let loc = getReliableUserLocation(user, event)
+	user.findPreviousEventTo(event, from => {
+		if (from && user.updated_at > prev.end_time) {
+			prev = {
+				lat: from.lat,
+				lng: from.lng
+			}
+		} else if(loc && loc.lat && loc.lng) {
+			prev = {
+				lat: loc.lat,
+				lng: loc.lng
+			}
+		} else {
+			return cb(true)
 		}
+		
+		let e = eventIsReachable(prev, event, { onlyBasicChecks: true })
+		return cb(e)
 	})
 }
 

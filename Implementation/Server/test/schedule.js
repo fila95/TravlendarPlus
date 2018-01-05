@@ -321,11 +321,12 @@ describe('Schedule private functions', () => {
 
 	}).timeout(10000); // Google Requests could take a while
 
-	it('basicChecks', () => {
+	it('basicChecks', (done) => {
 		let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: 45, lng: 9 }
 
-		schedule.basicChecks(user, e, () => {
-
+		schedule.basicChecks(user, e, (data) => {
+			console.log(data)
+			done()
 		})
 	})
 	/*

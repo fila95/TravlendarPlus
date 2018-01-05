@@ -76,11 +76,15 @@ router.put('/', (req, res) => {
 	if (event == null) return res.sendStatus(400).end()
 
 	// Basic checks
-	basicChecks(req.user, event)
-
-	// Create the event
-	req.models.events.create(event, (err, result) => {
-		return res.status(201).json(result).end()
+	basicChecks(req.user, event, (reachable) => {
+		if (reachable) {
+			// Create the event
+			req.models.events.create(event, (err, result) => {
+				return res.status(201).json(result).end()
+			})
+		} else {
+			return res.status(400).end('not reachable')
+		}
 	})
 
 })
