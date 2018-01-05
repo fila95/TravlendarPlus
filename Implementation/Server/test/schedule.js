@@ -241,13 +241,23 @@ describe('Schedule private functions', () => {
 		}
 	})
 
-	it('should parse the transports of the p2 to ["walking", "transits"]', () => {
+	it('should parse the transports of a costum event to ["walking", "bicycling"]', () => {
 		let p1 = { lat: 45.478336, lng: 9.228263 }
+		let parse = customEvent.parseTransports(schedule.distance(p1, customEvent), user.settings)
+		//let sTransports = ["walking", "bicycling", "transit", "driving"]
+		if(parse.length!=2 || parse.indexOf('walking')==-1 || parse.indexOf('bicycling')==-1 ){
+			throw Error('The transports parsing is undefined or doesn\'t contains walking and bicycling:' + customEvent.transports+ ': '+parse)
+		}
+	})
+
+	/*it('should parse the transports of a costum event to ["walking"], since transits are not available at that time', () => {
+		let p1 = { lat: 45.478336, lng: 9.228263 }
+		customEvent.start_time=new Date(2017, 11, 12, 2, 0)
 		let parse = customEvent.parseTransports(schedule.distance(p1, customEvent), user.settings)
 		if (parse == undefined) {
 			throw Error("The transports parsing is undefined")
 		}
-	})
+	})*/
 
 	it('eventIsReachable with onlyBasicChecks', async () => {
 		let p1 = {

@@ -135,7 +135,7 @@ function model(db, cb) {
 				// the same list of strings without means of transportation that the user 
 				// can't travel with, depending on settings and time
 				parseTransports: function(distance, settings) {
-					let transports = this.transports
+					let transports = this.transports.slice(1,5)
 					let sTransports = ["walking", "bicycling", "transit", "driving"]
 					let mask = transports.split('').map(transport => transport == 1)
 					sTransports = sTransports.filter((transport, index) => mask[index])

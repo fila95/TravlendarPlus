@@ -49,10 +49,10 @@ let createEvent = (c_id, cb) => {
 		address: "Test Address",
 		lat: 45.464257,
 		lng: 9.190209,
-		start_time: new Date(2017, 11, 12, 8, 0),
-		end_time: new Date(2017, 11, 12, 9, 20),
+		start_time: new Date(2017, 11, 12, 12, 0),
+		end_time: new Date(2017, 11, 12, 13, 20),
 		duration: 1000 * 60 * 60,
-		transports: "B1010",
+		transports: "B1100",
 		calendar_id: c_id
 	}, (err, _event) => {
 		if (err) throw err
