@@ -78,20 +78,15 @@ function model(db, cb) {
 		mobike_enabled: { type: 'boolean', defaultValue: false }
 	})
 
-	// Given an hour returns true if the public transit can be used, false otherwise
-	Setting.canUsePublicTransportation = (time) => {
-		sec_start_public_transportation = 24 * this.start_public_transportation.split(":")[0] + 60 * this.start_public_transportation.split(":")[1] + this.start_public_transportation.split(":")[2]
-		sec_end_public_transportation = 24 * 60 * this.end_public_transportation.split(":")[0] + 60 * this.end_public_transportation.split(":")[1] + this.end_public_transportation.split(":")[2]
-		sec_time = 24 * 60 * this.time.split(":")[0] + 60 * this.time.split(":")[1] + this.time.split(":")[2]
-		return sec_time >= sec_start_public_transportation && sec_time <= sec_end_public_transportation
-	}
-
 	let Travel = db.define('travels', {
 		route: { type: 'integer', required: true },
 		time: { type: 'integer', required: true },
 		transport_mean: { type: 'transport_mean' },
 		waypoints: { type: 'text', big: true }
 	})
+
+
+
 
 	let Calendar = db.define('calendars', {
 		name: { type: 'text', size: 255, required: true },
