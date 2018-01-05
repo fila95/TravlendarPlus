@@ -134,7 +134,7 @@ describe('Schedule private functions', () => {
 
 		// When no fixed events, return the global timeslot
 		timeSlots = schedule.timeSlots([], flexibleEvent)
-		if(timeSlots.length!=1 || timeSlots[0].start_time!=flexibleEvent.start_time ||  timeSlots[0].end_time!=flexibleEvent.end_time) {
+		if (timeSlots.length != 1 || timeSlots[0].start_time != flexibleEvent.start_time || timeSlots[0].end_time != flexibleEvent.end_time) {
 			throw new Error('timeSlots returned when only one fixed event is present is mismatching')
 		}
 	})
@@ -179,18 +179,18 @@ describe('Schedule private functions', () => {
 	})
 
 	it('getReliableUserLocation => true and false', () => {
-		let loc = schedule.getReliableUserLocation(user)
+		let loc = schedule.getReliableUserLocation(user, { start_time: new Date() })
 		user.last_known_position_lat = 45.121212
 		user.last_known_position_lng = 9.121212
 		updated_at = new Date()
 
-		loc = schedule.getReliableUserLocation(user)
+		loc = schedule.getReliableUserLocation(user, { start_time: new Date() })
 		if (loc == null) {
 			throw new Error('Reliable location shouldn\'t be null')
 		}
 
 		user.updated_at = new Date(2017, 11, 11, 4, 30)
-		loc = schedule.getReliableUserLocation(user)
+		loc = schedule.getReliableUserLocation(user, { start_time: new Date() })
 		if (loc != null) {
 			throw new Error('Reliable location should be null since was updated too long time ago')
 		}
@@ -301,7 +301,6 @@ describe('Schedule private functions', () => {
 		if (!res[0].copyrights) {
 			throw new Error('No google route returned')
 		}
-		console.log(JSON.stringify(res))
 	}).timeout(10000); // Google Requests could take a while
 
 	it('eventIsReachable with all the checks, google included, should return false', async () => {
@@ -319,18 +318,25 @@ describe('Schedule private functions', () => {
 		if (res != false) {
 			throw new Error('Google route returned, but noone expected')
 		}
-		
+
 	}).timeout(10000); // Google Requests could take a while
 
-})
-/*
-describe('GET /', () => {
-	it('Should call the scheduler', async (done) => {
-		request(app)
-			.get('/api/v1/schedule/')
-			.set('X-Access-Token', 'ilZVQ03cyMmX3/+RhrM1AKUDwLGG4Qtp2dU2WDvt+f/qTMMBePMnbV5r6Dg02vgs')
-			.expect(200)
-			.end(done)
+	it('basicChecks', () => {
+		let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: 45, lng: 9 }
+
+		schedule.basicChecks(user, e, () => {
+
+		})
 	})
+	/*
+	describe('GET /', () => {
+		it('Should call the scheduler', async (done) => {
+			request(app)
+				.get('/api/v1/schedule/')
+				.set('X-Access-Token', 'ilZVQ03cyMmX3/+RhrM1AKUDwLGG4Qtp2dU2WDvt+f/qTMMBePMnbV5r6Dg02vgs')
+				.expect(200)
+				.end(done)
+		})
+	})
+	*/
 })
-*/

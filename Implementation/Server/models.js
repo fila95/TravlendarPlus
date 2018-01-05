@@ -128,7 +128,7 @@ function model(db, cb) {
 	Calendar.getEventsOfToday = (cb) => {
 		let today = new Date()
 		let todayPlus24 = new Date(today + 1000 * 60 * 60 * 24)
-		Calendar.find({ calendar_id: this.id, start_time: orm.between(today, todayPlus24) }, cb)
+		Event.find({ calendar_id: this.id, start_time: orm.between(today, todayPlus24) }, cb)
 	}
 
 	Event.hasMany('travels', Travel)

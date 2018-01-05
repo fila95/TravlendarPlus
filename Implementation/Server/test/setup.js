@@ -47,7 +47,7 @@ let createData = (cb) => {
 	createUser(() => {
 		createDevice(() => {
 			createCalendar(() => {
-				// Adding user and device to the variable testData
+				// Adding user, device and calendars to the variable testData
 				app.set('testData', { user: user, device: device, calendar: calendar })
 				cb()
 			})

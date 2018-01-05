@@ -232,18 +232,22 @@ let eventIsReachable = (from, to, opt) => {
 	})
 }
 
-let basicChecks = (event, cb) => {
-	let from = getReliableUserLocation()
-	if (from == null) {
-		req.user.getCalendars(calendars => {
-			for(calendar of calendars) {
-				calendar.getEvents(events => {
-					
-				})
-			}
-		})
-	}
-	let e = eventIsReachable(from, event, { onlyBasicChecks: true })
+let basicChecks = (user, event, cb) => {
+	let from = getReliableUserLocation(user, event)
+	user.getCalendars((err, calendars) => {
+		for (calendar of calendars) {
+			calendar.getEvents((err, events) => {
+				let prev = getEventPreviousTo(events, event.start_time)
+				if (from && user.updated_at > prev.end_time) {
+					prev = {
+						lat: from.lat,
+						lng: from.lng
+					}
+				}
+				let e = eventIsReachable(prev, event, { onlyBasicChecks: true })
+			})
+		}
+	})
 }
 
 // Returns null if not reliable, or the location if it is
@@ -269,7 +273,7 @@ router.get('/', (req, res) => {
 			// Calculate timeSlot for each flexible event and sort them with the fitness function
 			for (let e of flexibleEvents) {
 				e.timeSlots = timeSlots(fixedEvents, e)
-				if(e.timeSlots.length==0) return res.status(400).end('timeslot length is 0 for event: ' + e.id) 
+				if (e.timeSlots.length == 0) return res.status(400).end('timeslot length is 0 for event: ' + e.id)
 			}
 			let sortedFlexibleEvents = sortWithFitness(flexibleEvents)
 
@@ -348,6 +352,7 @@ if (process.env.NODE_ENV == 'testing') {
 		getReliableUserLocation: getReliableUserLocation,
 		distance: distance,
 		isReachablAsTheCrowFlies: isReachablAsTheCrowFlies,
+		basicChecks: basicChecks,
 		eventIsReachable: eventIsReachable
 	}
 }
