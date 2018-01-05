@@ -256,6 +256,7 @@ router.get('/', (req, res) => {
 			// Calculate timeSlot for each flexible event and sort them with the fitness function
 			for (let e of flexibleEvents) {
 				e.timeSlots = timeSlots(fixedEvents, e)
+				if(e.timeSlots.length==0) return res.status(400).end('timeslot length is 0 for event: ' + e.id) 
 			}
 			let sortedFlexibleEvents = sortWithFitness(flexibleEvents)
 

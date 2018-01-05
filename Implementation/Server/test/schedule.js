@@ -1,5 +1,6 @@
 const app = require('../index')
 const schedule = require('../routes/schedule.js').testFunctions
+const request = require('supertest')
 
 describe('Schedule private functions', () => {
 	let user, device
@@ -300,6 +301,7 @@ describe('Schedule private functions', () => {
 		if (!res[0].copyrights) {
 			throw new Error('No google route returned')
 		}
+		console.log(JSON.stringify(res))
 	}).timeout(10000); // Google Requests could take a while
 
 	it('eventIsReachable with all the checks, google included, should return false', async () => {
@@ -317,5 +319,18 @@ describe('Schedule private functions', () => {
 		if (res != false) {
 			throw new Error('Google route returned, but noone expected')
 		}
+		
 	}).timeout(10000); // Google Requests could take a while
+
 })
+/*
+describe('GET /', () => {
+	it('Should call the scheduler', async (done) => {
+		request(app)
+			.get('/api/v1/schedule/')
+			.set('X-Access-Token', 'ilZVQ03cyMmX3/+RhrM1AKUDwLGG4Qtp2dU2WDvt+f/qTMMBePMnbV5r6Dg02vgs')
+			.expect(200)
+			.end(done)
+	})
+})
+*/
