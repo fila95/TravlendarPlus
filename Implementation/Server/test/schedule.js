@@ -4,11 +4,11 @@ const request = require('supertest')
 const polyline = require('polyline')
 
 describe('Schedule private functions', () => {
-	let user, device, event
+	let user, device, customEvent
 	before(() => {
 		user = app.get('testData').user
 		device = app.get('testData').device
-		event = app.get('testData').event
+		customEvent = app.get('testData').event
 	})
 
 	let randomDate = (start, end) => {
@@ -240,12 +240,12 @@ describe('Schedule private functions', () => {
 			throw new Error('should be reachable')
 		}
 	})
-	
+
 	it('should parse the transports of the p2 to ["walking", "transits"]', () => {
 		let p1 = { lat: 45.478336, lng: 9.228263 }
 		console.log("CIAONE schedule.distance(p1,p2):")
-		let parse = event.parseTransports(schedule.distance(p1, event), user.settings)
-		if(parse==undefined){
+		let parse = customEvent.parseTransports(schedule.distance(p1, customEvent), user.settings)
+		if (parse == undefined) {
 			throw Error("Blabla")
 		}
 	})

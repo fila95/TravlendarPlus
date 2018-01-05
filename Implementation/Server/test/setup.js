@@ -2,7 +2,7 @@ const app = require('../index')
 const crypto = require('crypto')
 const uuidv4 = require('uuid/v4')
 
-let user, device, calendar, event
+let user, device, calendar, customEvent
 
 let createUser = (cb) => {
 	db.models.users.create({
@@ -43,7 +43,7 @@ let createCalendar = (cb) => {
 	})
 }
 
-let createEvent = (cb) => {
+let createEvent = (c_id, cb) => {
 	db.models.events.create({
 		title: "Test Event",
 		address: "Test Address",
@@ -52,10 +52,11 @@ let createEvent = (cb) => {
 		start_time: new Date(2017, 11, 12, 8, 0),
 		end_time: new Date(2017, 11, 12, 9, 20),
 		duration: 1000 * 60 * 60,
-		transports: "B1010"
+		transports: "B1010",
+		calendar_id: c_id
 	}, (err, _event) => {
 		if (err) throw err
-		event = _event
+		customEvent = _event
 		cb()
 	})
 }
@@ -65,9 +66,11 @@ let createData = (cb) => {
 	createUser(() => {
 		createDevice(() => {
 			createCalendar(() => {
-				// Adding user, device and calendars to the variable testData
-				app.set('testData', { user: user, device: device, calendar: calendar, event: event })
-				cb()
+				createEvent(calendar.id, () => {
+					// Adding user, device and calendars to the variable testData
+					app.set('testData', { user: user, device: device, calendar: calendar, event: customEvent })
+					cb()
+				})
 			})
 		})
 	})
@@ -89,7 +92,7 @@ before((done) => {
 })
 
 after((done) => {
-	event.remove(() => {
+	customEvent.remove(() => {
 		calendar.remove(() => {
 			device.remove(() => {
 				user.getSettings().remove(() => {
