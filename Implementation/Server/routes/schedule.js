@@ -181,7 +181,7 @@ let eventIsReachable = (from, to, opt) => {
 	}
 
 	// timeSlotDuration - flexible event duration
-	let availableTime = (to.end_time - to.start_time - to.duration) / 1000
+	let availableTime = (to.end_time.getTime() - to.start_time.getTime() - to.duration) / 1000
 
 	return new Promise((resolve, reject) => {
 		// Step 1: As the Crow Flies
@@ -239,7 +239,7 @@ let eventIsReachable = (from, to, opt) => {
 let basicChecks = (user, event, cb) => {
 	let prev
 	let loc = getReliableUserLocation(user, event)
-	user.findPreviousEventTo(event, from => {
+	user.findPreviousEventTo(event, async from => {
 		if (from && user.updated_at > prev.end_time) {
 			prev = {
 				lat: from.lat,
@@ -253,8 +253,8 @@ let basicChecks = (user, event, cb) => {
 		} else {
 			return cb(true)
 		}
-
-		let e = eventIsReachable(prev, event, { onlyBasicChecks: true })
+		
+		let e = await eventIsReachable(prev, event, { onlyBasicChecks: true })
 		return cb(e)
 	})
 }
@@ -263,8 +263,8 @@ let basicChecks = (user, event, cb) => {
 // updated to at least 30 minutes before the start of the event
 let getReliableUserLocation = (user, event) => {
 	// Check whether the location is no reliable:
-	if (!user.updated_at || new Date(event.start_time) - user.updated_at > 30 * 60 * 1000) return null
-	return user.updated_at
+	if (!user.updated_at || user.last_known_position_lat==0 && user.last_known_position_lng==0 || new Date(event.start_time) - user.updated_at > 30 * 60 * 1000) return null
+	return {lat: user.last_known_position_lat, lng: user.last_known_position_lng}
 }
 
 

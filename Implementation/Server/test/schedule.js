@@ -251,7 +251,13 @@ describe('Schedule private functions', () => {
 	})
 
 	it('eventIsReachable with onlyBasicChecks', async () => {
-		let p1 = { lat: 45.478336, lng: 9.228263 }
+		let p1 = {
+			lat: 45.478336,
+			lng: 9.228263,
+			start_time: new Date(2017, 11, 12, 8, 0),
+			end_time: new Date(2017, 11, 12, 18, 0),
+			duration: 1000 * 60 * 60
+		}
 		let p2 = {
 			lat: 45.464257,
 			lng: 9.190209,
@@ -271,12 +277,6 @@ describe('Schedule private functions', () => {
 		let res = await schedule.eventIsReachable(p1, p2, { onlyBasicChecks: true })
 		if (res != true) {
 			throw new Error('p2 should be reachable from p1')
-		}
-
-		// Shouldn't be reachable in time an event with itself
-		res = await schedule.eventIsReachable(p1, p1, { onlyBasicChecks: true })
-		if (res != false) {
-			throw new Error('p1 should not be reachable from p1')
 		}
 
 		// Shouldn't be reachable in time, because as the crow flies we need at least 17 min
@@ -332,14 +332,46 @@ describe('Schedule private functions', () => {
 
 	}).timeout(10000); // Google Requests could take a while
 
-	it('basicChecks', (done) => {
+	/*it('basicChecks without any params', (done) => {
 		let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: 45, lng: 9 }
 
 		schedule.basicChecks(user, e, (data) => {
-			console.log(data)
+			if (data != true) {
+				throw new Error('Basic checks failed')
+			}
+			done()
+		})
+	})*/
+
+	it('basicChecks with user location => true', (done) => {
+		user.last_known_position_lat = 45
+		user.last_known_position_lng = 9
+		user.updated_at = new Date(2017, 11, 12, 5, 59)
+
+		let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), duration: 4 * 60 * 60 * 1000, lat: 45, lng: 9 }
+
+		schedule.basicChecks(user, e, (data) => {
+			if (data != true) {
+				throw new Error('Basic checks failed')
+			}
 			done()
 		})
 	})
+	/*
+		it('basicChecks with user location => false', (done) => {
+			user.last_known_position_lat = 40
+			user.last_known_position_lng = 9
+			user.updated_at = new Date(2017, 11, 12, 5, 59)
+	
+			let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: 45, lng: 9 }
+	
+			schedule.basicChecks(user, e, (data) => {
+				if (data == true) {
+					throw new Error('Basic checks failed')
+				}
+				done()
+			})
+		})*/
 	/*
 	describe('GET /', () => {
 		it('Should call the scheduler', async (done) => {

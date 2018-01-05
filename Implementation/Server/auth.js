@@ -8,7 +8,10 @@ let auth = (req, res, next) => {
 				let device = devices[0]
 				device.getUser((err, user) => {
 					req.user = user
-					return next()
+					user.getSettings((err, settings) => {
+						req.user.settings = settings
+						return next()
+					})
 				})
 			} else {
 				res.sendStatus(403).end()
