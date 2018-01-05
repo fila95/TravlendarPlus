@@ -57,7 +57,7 @@ describe('Events API', () => {
 					event = res.body
 				})
 				.end(done)
-		})
+		})		
 
 		it('should create an event with only the mandatory fields if a valid access token is provided', (done) => {
 			request(app)

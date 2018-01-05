@@ -130,14 +130,6 @@ router.patch('/:event_id', (req, res) => {
 	})
 })
 
-// Parsing the transports from binary encoding. Example: 1100 -> ["walking","bicycling"]
-let parseTransports = transports => {
-	let sTransports = ["walking", "bicycling", "transit", "driving"]
-	let mask = transports.split('').map(transport => transport == 1)
-	return sTransports.filter((transport, index) => mask[index])
-}
-
 module.exports = {
-	router: router,
-	parseTransports: parseTransports
+	router: router
 }

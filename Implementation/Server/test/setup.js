@@ -14,6 +14,7 @@ let createUser = (cb) => {
 			user_id: user.id
 		}, (err, _settings) => {
 			if (err) throw err
+			user.settings = _settings
 			cb()
 		})
 	})
