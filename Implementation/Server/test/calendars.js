@@ -12,7 +12,7 @@ describe('Calendars API', () => {
 
 	after((done) => {
 		// Delete all the test calendars created during the test
-		db.models.calendars.find({ user_id: device.user_id }).remove(() => {
+		db.models.calendars.find({ calendar_id: calendar.id }).remove(() => {
 			done()
 		})
 	})
