@@ -213,8 +213,8 @@ let eventIsReachable = (from, to, opt) => {
 		}
 
 		// Step 2: Google Maps Directions API
-		let parsed_transport = to.parseTransports(dist, opt.settings)
-		
+		//let parsed_transport = to.parseTransports(dist, opt.settings)
+		let parsed_transport = ["walking", "bicycling", "transit", "driving"]
 		let responses = []
 		let query = {
 			origin: from,
@@ -223,9 +223,9 @@ let eventIsReachable = (from, to, opt) => {
 		}
 
 		for (transport in parsed_transport) {
-			
+
 			let transport_mode = parsed_transport[transport]
-			
+
 			query.mode = transport_mode
 			if (query.mode == 'bicycling') {
 				query.mode = 'walking'
@@ -253,7 +253,6 @@ let eventIsReachable = (from, to, opt) => {
 					transport: transport_mode,
 					response: response.json.routes
 				})
-				
 			}
 		}
 		if (responses.length == 0) {
@@ -266,7 +265,32 @@ let eventIsReachable = (from, to, opt) => {
 // Given a stram of JSON text from Google Directions API, 
 // extracts the most useful info pre db insertion
 let filterUsefulTravelInfo = (directionJSON) => {
+	let new_route,new_routes=[],new_step,new_steps,i=0
+	for (transport_mean_n in directionJSON) {
+		transport_mean = directionJSON[transport_mean_n].transport
+		first_route = directionJSON[transport_mean_n].response[0]
+		
+		new_steps=[]
+		for (step_n in first_route.legs[0].steps) {
+			step=first_route.legs[0].steps[step_n]
+			new_step = {
+				duration: step.duration.value,
+				transport_mean: step.travel_mode,
+				waypoints: step.polyline.points
+			}	
+			new_steps.push(new_step)		
+		}
 
+		new_route = {
+			route_id: i,
+			steps:new_steps
+		}
+		new_routes.push(new_route)
+		
+		
+		i++
+	}
+	return new_routes
 }
 
 let basicChecks = (user, event, cb) => {
@@ -276,7 +300,7 @@ let basicChecks = (user, event, cb) => {
 
 		// Check for overlapping fixed events
 		let overlapping = overlap(event, fixedEvents)
-		if (overlapping) return cb(new Error('overlapping: '+overlapping), false)
+		if (overlapping) return cb(new Error('overlapping: ' + overlapping), false)
 
 		// Basic route check: is reachable as the crow flies
 		let prev
@@ -341,7 +365,7 @@ router.get('/', (req, res) => {
 			// schedule task will be aborted
 			let scheduler_id = Math.random().toString().split(".")[1]
 			isScheduling = app.get('isScheduling')
-			if(!isScheduling) {
+			if (!isScheduling) {
 				isScheduling = {}
 				app.set('isScheduling', isScheduling)
 			}
@@ -397,10 +421,10 @@ router.get('/', (req, res) => {
 					if (routes) {
 						// TODO: insert them in the db, using:
 						// e.addTravels([travel1, travel2, travel3, ...], err => {
-					    //   if(err) {throw err}
+						//   if(err) {throw err}
 						// })
 					}
-					
+
 					return e.save(err => {
 						if (err) throw err
 					})
@@ -415,7 +439,8 @@ router.get('/', (req, res) => {
 
 module.exports = {
 	router: router,
-	basicChecks: basicChecks
+	basicChecks: basicChecks,
+	filterUsefulTravelInfo: filterUsefulTravelInfo
 }
 
 if (process.env.NODE_ENV == 'testing') {
