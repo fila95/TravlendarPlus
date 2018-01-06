@@ -44,6 +44,8 @@
 		1E8753A01FFF80580026B06C /* AllowedVehiclesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E87539E1FFF80580026B06C /* AllowedVehiclesTableViewCell.swift */; };
 		1E8753A11FFF80580026B06C /* AllowedVehiclesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E87539F1FFF80580026B06C /* AllowedVehiclesTableViewCell.xib */; };
 		1E8753A41FFF86560026B06C /* SelectableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8753A31FFF86560026B06C /* SelectableButton.swift */; };
+		1E8753A72000D0FC0026B06C /* DurationPickerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8753A62000D0FC0026B06C /* DurationPickerComponent.swift */; };
+		1E8753A92000D1110026B06C /* DurationPickerComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E8753A82000D1110026B06C /* DurationPickerComponent.xib */; };
 		1E8C1A091FFE378300A7350B /* EventComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8C1A071FFE378300A7350B /* EventComposerViewController.swift */; };
 		1E8C1A0A1FFE378300A7350B /* EventComposerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E8C1A081FFE378300A7350B /* EventComposerViewController.xib */; };
 		1E8C1A261FFE43C300A7350B /* EventComposerViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8C1A251FFE43C300A7350B /* EventComposerViewController+UITableView.swift */; };
@@ -282,6 +284,8 @@
 		1E87539E1FFF80580026B06C /* AllowedVehiclesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllowedVehiclesTableViewCell.swift; sourceTree = "<group>"; };
 		1E87539F1FFF80580026B06C /* AllowedVehiclesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AllowedVehiclesTableViewCell.xib; sourceTree = "<group>"; };
 		1E8753A31FFF86560026B06C /* SelectableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableButton.swift; sourceTree = "<group>"; };
+		1E8753A62000D0FC0026B06C /* DurationPickerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationPickerComponent.swift; sourceTree = "<group>"; };
+		1E8753A82000D1110026B06C /* DurationPickerComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DurationPickerComponent.xib; sourceTree = "<group>"; };
 		1E8C1A071FFE378300A7350B /* EventComposerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventComposerViewController.swift; sourceTree = "<group>"; };
 		1E8C1A081FFE378300A7350B /* EventComposerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventComposerViewController.xib; sourceTree = "<group>"; };
 		1E8C1A251FFE43C300A7350B /* EventComposerViewController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventComposerViewController+UITableView.swift"; sourceTree = "<group>"; };
@@ -541,12 +545,22 @@
 			path = AllowedVehicles;
 			sourceTree = "<group>";
 		};
+		1E8753A52000D0B20026B06C /* ViewPresenter Components */ = {
+			isa = PBXGroup;
+			children = (
+				1E8753A62000D0FC0026B06C /* DurationPickerComponent.swift */,
+				1E8753A82000D1110026B06C /* DurationPickerComponent.xib */,
+			);
+			path = "ViewPresenter Components";
+			sourceTree = "<group>";
+		};
 		1E8C1A061FFE375100A7350B /* New Event */ = {
 			isa = PBXGroup;
 			children = (
 				1E8C1A071FFE378300A7350B /* EventComposerViewController.swift */,
 				1E8C1A251FFE43C300A7350B /* EventComposerViewController+UITableView.swift */,
 				1E8C1A081FFE378300A7350B /* EventComposerViewController.xib */,
+				1E8753A52000D0B20026B06C /* ViewPresenter Components */,
 				1E8C1A271FFE453B00A7350B /* Cells */,
 			);
 			path = "New Event";
@@ -1212,6 +1226,7 @@
 				1E8C1A441FFE928B00A7350B /* RepetitionsTableViewCell.xib in Resources */,
 				1E8C1A2F1FFE48A600A7350B /* SaveCloseTableViewCell.xib in Resources */,
 				1EAA18EC1FC9CE9F001B3612 /* LaunchScreen.storyboard in Resources */,
+				1E8753A92000D1110026B06C /* DurationPickerComponent.xib in Resources */,
 				1E98CB921FF3CE6E006DCF7F /* CalendarCloseView.xib in Resources */,
 				1EEE56BD1FE3E1BE00621599 /* AddNewCollectionViewCell.xib in Resources */,
 				1E8C1A0A1FFE378300A7350B /* EventComposerViewController.xib in Resources */,
@@ -1477,6 +1492,7 @@
 				1EEE56A41FE3D17600621599 /* SettingsOperations.swift in Sources */,
 				1E8C1A2E1FFE48A600A7350B /* SaveCloseTableViewCell.swift in Sources */,
 				1E68BB8F1FD6895200ED4765 /* NetworkOperations.swift in Sources */,
+				1E8753A72000D0FC0026B06C /* DurationPickerComponent.swift in Sources */,
 				1EEE56A61FE3D18700621599 /* CalendarOperations.swift in Sources */,
 				1E21E8741FCC24C10009EFA9 /* Location.swift in Sources */,
 				1E8C1A091FFE378300A7350B /* EventComposerViewController.swift in Sources */,

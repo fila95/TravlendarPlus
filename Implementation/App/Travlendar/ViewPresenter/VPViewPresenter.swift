@@ -52,7 +52,7 @@ public class VPViewPresenter: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-        self.dimmingView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        self.dimmingView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         self.dimmingView.isUserInteractionEnabled = true
         self.view.addSubview(self.dimmingView)
         

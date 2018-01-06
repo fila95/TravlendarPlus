@@ -9,12 +9,12 @@
 public class VPDatePickerComponent: VPComponent {
     
     
-    var date: Date = Date() {
+    public var date: Date = Date() {
         didSet {
             self.datePicker.setDate(date, animated: true)
         }
     }
-    private var datePicker: UIDatePicker = UIDatePicker()
+    public var datePicker: UIDatePicker = UIDatePicker()
     
     override public func desiredheight() -> CGFloat {
         return 200

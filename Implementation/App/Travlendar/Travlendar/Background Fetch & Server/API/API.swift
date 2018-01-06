@@ -43,6 +43,7 @@ public class API: NSObject {
     }
     
     public func triggerSync() {
+        print("Sync Triggered")
         queue.addOperation(SettingsOperation(operationType: .get))
         queue.addOperation(CalendarsOperation(operationType: .get))
     }

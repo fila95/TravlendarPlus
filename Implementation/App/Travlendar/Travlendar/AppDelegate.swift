@@ -67,13 +67,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        print(userInfo)
+        handleUserNotification(data: userInfo)
     }
 
     // Push notification received
     func application(_ application: UIApplication, didReceiveRemoteNotification data: [AnyHashable : Any]) {
         // Print notification payload data
+        handleUserNotification(data: data)
+    }
+    
+    func handleUserNotification(data: [AnyHashable : Any]) {
         print("Push notification received: \(data)")
+        API.shared.triggerSync()
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

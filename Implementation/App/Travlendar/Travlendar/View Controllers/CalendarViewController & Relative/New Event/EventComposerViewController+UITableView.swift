@@ -8,6 +8,7 @@
 
 import UIKit
 import Utilities
+import ViewPresenter
 
 extension EventComposerViewController: UITableViewDataSource {
     
@@ -104,6 +105,73 @@ extension EventComposerViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 5
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        
+        
+        
+        if indexPath.section == 2 {
+            
+            let vp = VPViewPresenter()
+            
+            if indexPath.row == 1 {
+                let vpv = VPView(title: "Start Date")
+                let datePicker = VPDatePickerComponent(date: self.currentEvent.start_time)
+                vpv.addComponent(component: datePicker)
+                vpv.addComponent(component: VPButtonComponent(type: .strong, text: "Ok", tapHandler: { (button) in
+                    self.currentEvent.start_time = datePicker.date
+                    
+                    self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+                    vp.dismiss(animated: true, completion: nil)
+                }))
+                vpv.addComponent(component: VPButtonComponent(type: .light, text: "Close", tapHandler: { (button) in
+                    vp.dismiss(animated: true, completion: nil)
+                }))
+                vp.addView(view: vpv)
+                self.present(vp, animated: true, completion: nil)
+                
+            }
+            else if indexPath.row == 2 {
+                let vpv = VPView(title: "End Date")
+                let datePicker = VPDatePickerComponent(date: self.currentEvent.end_time)
+                datePicker.datePicker.minimumDate = self.currentEvent.start_time.addingTimeInterval(60)
+                vpv.addComponent(component: datePicker)
+                vpv.addComponent(component: VPButtonComponent(type: .strong, text: "Ok", tapHandler: { (button) in
+                    self.currentEvent.end_time = datePicker.date
+                    
+                    self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+                    vp.dismiss(animated: true, completion: nil)
+                }))
+                vpv.addComponent(component: VPButtonComponent(type: .light, text: "Close", tapHandler: { (button) in
+                    vp.dismiss(animated: true, completion: nil)
+                }))
+                vp.addView(view: vpv)
+                self.present(vp, animated: true, completion: nil)
+            }
+            else if indexPath.row == 3 {
+                let vpv = VPView(title: "Duration")
+                let valuePicker = DurationPickerComponent(value: self.currentEvent.duration)
+                vpv.addComponent(component: valuePicker)
+                vpv.addComponent(component: VPButtonComponent(type: .strong, text: "Ok", tapHandler: { (button) in
+                    self.currentEvent.duration = valuePicker.value
+                    
+                    self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+                    vp.dismiss(animated: true, completion: nil)
+                }))
+                vpv.addComponent(component: VPButtonComponent(type: .light, text: "Close", tapHandler: { (button) in
+                    vp.dismiss(animated: true, completion: nil)
+                }))
+                vp.addView(view: vpv)
+                self.present(vp, animated: true, completion: nil)
+            }
+            
+        }
+        
+        
+        
     }
     
     
