@@ -52,6 +52,7 @@
 		1E8753B12000DACD0026B06C /* CalendarPickerComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E8753B02000DACD0026B06C /* CalendarPickerComponent.xib */; };
 		1E8753B72000DF170026B06C /* CalendarPickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8753B52000DF170026B06C /* CalendarPickerCollectionViewCell.swift */; };
 		1E8753B82000DF170026B06C /* CalendarPickerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E8753B62000DF170026B06C /* CalendarPickerCollectionViewCell.xib */; };
+		1E8753BB20011C590026B06C /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8753BA20011C590026B06C /* EventDetailsViewController.swift */; };
 		1E8C1A091FFE378300A7350B /* EventComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8C1A071FFE378300A7350B /* EventComposerViewController.swift */; };
 		1E8C1A0A1FFE378300A7350B /* EventComposerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E8C1A081FFE378300A7350B /* EventComposerViewController.xib */; };
 		1E8C1A261FFE43C300A7350B /* EventComposerViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8C1A251FFE43C300A7350B /* EventComposerViewController+UITableView.swift */; };
@@ -298,6 +299,7 @@
 		1E8753B02000DACD0026B06C /* CalendarPickerComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarPickerComponent.xib; sourceTree = "<group>"; };
 		1E8753B52000DF170026B06C /* CalendarPickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPickerCollectionViewCell.swift; sourceTree = "<group>"; };
 		1E8753B62000DF170026B06C /* CalendarPickerCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarPickerCollectionViewCell.xib; sourceTree = "<group>"; };
+		1E8753BA20011C590026B06C /* EventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
 		1E8C1A071FFE378300A7350B /* EventComposerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventComposerViewController.swift; sourceTree = "<group>"; };
 		1E8C1A081FFE378300A7350B /* EventComposerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventComposerViewController.xib; sourceTree = "<group>"; };
 		1E8C1A251FFE43C300A7350B /* EventComposerViewController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventComposerViewController+UITableView.swift"; sourceTree = "<group>"; };
@@ -578,6 +580,14 @@
 				1E8753B62000DF170026B06C /* CalendarPickerCollectionViewCell.xib */,
 			);
 			path = CalendarPicker;
+			sourceTree = "<group>";
+		};
+		1E8753B920011C350026B06C /* Event Details */ = {
+			isa = PBXGroup;
+			children = (
+				1E8753BA20011C590026B06C /* EventDetailsViewController.swift */,
+			);
+			path = "Event Details";
 			sourceTree = "<group>";
 		};
 		1E8C1A061FFE375100A7350B /* New Event */ = {
@@ -878,6 +888,7 @@
 			children = (
 				1EF4E18A1FDC5F0200B5BFDC /* CalendarViewController.swift */,
 				1E0417321FFD25480072DBE3 /* CalendarViewController+UICollectionView.swift */,
+				1E8753B920011C350026B06C /* Event Details */,
 				1E8C1A061FFE375100A7350B /* New Event */,
 				1E37589E1FFD317800D871FC /* Custom Views */,
 			);
@@ -1549,6 +1560,7 @@
 				1E8C1A371FFE4F3B00A7350B /* TextViewTableViewCell.swift in Sources */,
 				1E543BEF1FE8F8B600DC5BE6 /* TabBarControllerViewController.swift in Sources */,
 				1EEE56B91FE3DD6D00621599 /* RoundedButton.swift in Sources */,
+				1E8753BB20011C590026B06C /* EventDetailsViewController.swift in Sources */,
 				1E4C9AF31FFC18DB002F8E8B /* EventsOperation.swift in Sources */,
 				1E8C1A2A1FFE471600A7350B /* HeaderCell.swift in Sources */,
 				1E8753A41FFF86560026B06C /* SelectableButton.swift in Sources */,

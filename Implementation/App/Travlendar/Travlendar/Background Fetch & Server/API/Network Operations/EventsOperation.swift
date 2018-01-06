@@ -100,7 +100,8 @@ class EventsOperation: NetworkOperation {
                     return
                 }
                 
-//                print(String.init(data: d, encoding: .utf8) ?? "No string")
+                
+                print(String.init(data: d, encoding: .utf8) ?? "No str")
                 do {
                     try decoder.decode(Event.self, from: d)
                 }

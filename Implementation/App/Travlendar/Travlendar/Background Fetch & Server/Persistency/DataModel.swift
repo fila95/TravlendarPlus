@@ -122,8 +122,8 @@ public class Event: Object, Codable {
     @objc dynamic var title = ""
     @objc dynamic var address = ""
     
-    @objc dynamic var lat: String = "1"
-    @objc dynamic var lng: String = "1"
+    @objc dynamic var lat: Double = 1
+    @objc dynamic var lng: Double = 1
     
     @objc dynamic var start_time: Date = Date()
     @objc dynamic var end_time: Date = Date().addingTimeInterval(3600)
@@ -197,8 +197,8 @@ public class Event: Object, Codable {
         self.title = try container.decode(String.self, forKey: .title)
         self.address = try container.decode(String.self, forKey: .address)
         
-        self.lat = try container.decode(String.self, forKey: .lat)
-        self.lng = try container.decode(String.self, forKey: .lng)
+        self.lat = try container.decodeIfPresent(Double.self, forKey: .lat) ?? 1
+        self.lng = try container.decodeIfPresent(Double.self, forKey: .lng) ?? 1
         
         self.start_time = try container.decode(Date.self, forKey: .start_time)
         self.end_time = try container.decode(Date.self, forKey: .end_time)
