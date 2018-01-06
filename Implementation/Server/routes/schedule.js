@@ -1,6 +1,5 @@
 const express = require('express')
 const notifier = require('../notifier')
-const randomInt = require('random-int');
 const router = express.Router()
 
 const token = process.env.GOOGLE_MAPS_TOKEN
@@ -279,7 +278,7 @@ let eventIsReachable = (from, to, opt) => {
 // Given a stram of JSON text from Google Directions API, 
 // extracts the most useful info pre db insertion
 let filterUsefulTravelInfo = (responseJSON) => {
-	let new_routes = [], new_step, new_steps, route = randomInt(2147483647)
+	let new_routes = [], new_step, new_steps, route = Math.floor(Math.random()*2147483647)
 	first_route = responseJSON[0]
 	for (step_n in first_route.legs[0].steps) {
 		step = first_route.legs[0].steps[step_n]
