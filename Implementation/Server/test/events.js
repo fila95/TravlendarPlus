@@ -45,7 +45,7 @@ describe('Events API', () => {
 					// Optional:
 					'duration': 10,
 					'repetitions': 'B0000001',
-					'transports': 'B1111'
+					'transports': 'B11111'
 				})
 				.expect(201)
 				.expect(res => {
@@ -86,7 +86,7 @@ describe('Events API', () => {
 				.end(done)
 		})
 
-		it('should throw a 400 error creating an event with an invalid name', (done) => {
+		it('should throw a 400 error creating an event with an invalid title', (done) => {
 			request(app)
 				.put('/api/v1/calendars/' + calendar.id + '/events')
 				.set('X-Access-Token', device.access_token)
@@ -95,6 +95,20 @@ describe('Events API', () => {
 					'start_time': startTime,
 					'end_time': endTime,
 					'address': 'Piazzale Gabrio Piola, Milano'
+				})
+				.expect(400)
+				.end(done)
+		})
+
+		it('should throw a 400 error creating an event with an invalid address', (done) => {
+			request(app)
+				.put('/api/v1/calendars/' + calendar.id + '/events')
+				.set('X-Access-Token', device.access_token)
+				.send({
+					'title': 'Titolo Valido',
+					'start_time': startTime,
+					'end_time': endTime,
+					'address': 'Via con un Errore che non viene geocodata da google'
 				})
 				.expect(400)
 				.end(done)
