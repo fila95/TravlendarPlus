@@ -55,7 +55,7 @@ extension EventComposerViewController: UITableViewDataSource {
         case 2:
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: SwitchTableViewCell.reuseId, for: indexPath) as! SwitchTableViewCell
-                cell.setTitle(text: "Flexible Timing")
+                cell.setTitle(text: "Flexible Timing:")
                 cell.setSwitchOn(on: currentEvent.duration != -1)
                 cell.accessoryType = .none
                 self.prepareDurationSwitchHandler(cell: cell)
