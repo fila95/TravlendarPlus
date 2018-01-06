@@ -55,7 +55,7 @@ extension EventComposerViewController: UITableViewDataSource {
         case 2:
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: SwitchTableViewCell.reuseId, for: indexPath) as! SwitchTableViewCell
-                cell.setTitle(text: "Flexible Timing")
+                cell.setTitle(text: "Flexible Timing:")
                 cell.setSwitchOn(on: currentEvent.duration != -1)
                 cell.accessoryType = .none
                 self.prepareDurationSwitchHandler(cell: cell)
@@ -260,7 +260,7 @@ extension EventComposerViewController {
         
         self.currentEvent.transports = (self.tableView.cellForRow(at: IndexPath(row: 0, section: 4)) as! AllowedVehiclesTableViewCell).getAllowedVehicles()
         guard self.currentEvent.transports.contains("1") else {
-            UIAlertController.show(title: "Error", message: "You should select at least one traansport mean in order to continue.", buttonTitle: "Ok", on: self)
+            UIAlertController.show(title: "Error", message: "You should select at least one transport mean in order to continue.", buttonTitle: "Ok", on: self)
             saveCell.saveButton.loading = false
             return
         }

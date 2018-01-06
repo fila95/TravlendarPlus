@@ -337,7 +337,20 @@ let getReliableUserLocation = (user, event) => {
 	return { lat: user.last_known_position_lat, lng: user.last_known_position_lng }
 }
 
+// Return the user list of events, from now on
 router.get('/', (req, res) => {
+	req.user.getCalendars((err, calendars) => {
+		let calendar_ids = []
+		for (calendar of calendars) {
+			calendar_ids.push(calendar.id)
+		}
+		req.user.getAllEventsOfCalendarFromNowOn(calendar_ids, (err, events) => {
+			return res.json(events).end()
+		})
+	})
+})
+
+router.post('/', (req, res) => {
 	// For each calendar
 	req.user.getCalendars().each((err, calendar) => {
 		// Get all the events of the current calendar

@@ -69,7 +69,21 @@ class EventDetailsViewController: UIViewController {
         }
         
         let ec = EventComposerViewController()
-        ec.currentEvent = e
+        
+        let decoder = JSONDecoder.init()
+        decoder.dateDecodingStrategy = .formatted(Formatter.iso8601)
+        
+        let encoder = JSONEncoder.init()
+        encoder.dateEncodingStrategy = .formatted(Formatter.iso8601)
+        
+        guard let encoded = try? encoder.encode(e) else {
+            return
+        }
+        guard let decoded = try? decoder.decode(Event.self, from: encoded) else {
+            return
+        }
+        
+        ec.setEvent(e: decoded)
         self.present(ec, animated: true) {
             
         }
