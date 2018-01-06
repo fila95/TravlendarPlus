@@ -41,10 +41,8 @@ describe('Events API', () => {
 					'title': eventTitle,
 					'start_time': startTime,
 					'end_time': endTime,
-					'lat': 45.464211,
-					'lng': 9.191383,
+					'address': 'Piazzale Gabrio Piola, Milano',
 					// Optional:
-					'address': 'main street',
 					'duration': 10,
 					'repetitions': 'B0000001',
 					'transports': 'B1111'
@@ -57,7 +55,7 @@ describe('Events API', () => {
 					event = res.body
 				})
 				.end(done)
-		})		
+		})
 
 		it('should create an event with only the mandatory fields if a valid access token is provided', (done) => {
 			request(app)
@@ -68,8 +66,7 @@ describe('Events API', () => {
 					'title': eventTitle,
 					'start_time': startTime,
 					'end_time': endTime,
-					'lat': 45.464211,
-					'lng': 9.191383
+					'address': 'Piazzale Gabrio Piola, Milano'
 				})
 				.expect(201)
 				.expect(res => {
@@ -80,16 +77,14 @@ describe('Events API', () => {
 				.end(done)
 		})
 
-		/* TODO: fix routes/events.js in order to not allow overlapping events
-		 * For now it returns a 201 Created
 		it('should throw a 500 error creating an event overlapping', (done) => {
 			request(app)
-				.put('/api/v1/calendars/'+calendar.id+'/events')
+				.put('/api/v1/calendars/' + calendar.id + '/events')
 				.set('X-Access-Token', device.access_token)
 				.send(event)
-								.expect(500)
+				.expect(500)
 				.end(done)
-		})*/
+		})
 
 		it('should throw a 400 error creating an event with an invalid name', (done) => {
 			request(app)
@@ -99,8 +94,7 @@ describe('Events API', () => {
 					'title': '',
 					'start_time': startTime,
 					'end_time': endTime,
-					'lat': 45.464211,
-					'lng': 9.191383
+					'address': 'Piazzale Gabrio Piola, Milano'
 				})
 				.expect(400)
 				.end(done)
@@ -138,8 +132,7 @@ describe('Events API', () => {
 					'title': eventTitle,
 					'start_time': startTime,
 					'end_time': endTime,
-					'lat': 45.464211,
-					'lng': 9.191383,
+					'address': 'Piazzale Gabrio Piola, Milano',
 					'duration': endTime - startTime + 1
 				})
 				.expect(400)
@@ -171,8 +164,7 @@ describe('Events API', () => {
 					'title': 'Test',
 					'start_time': startTime,
 					'end_time': endTime,
-					'lat': 45.464211,
-					'lng': 9.191383
+					'address': 'Piazzale Gabrio Piola, Milano'
 				})
 				.expect(200)
 				.expect(res => {
@@ -191,8 +183,7 @@ describe('Events API', () => {
 					'name': '',
 					'start_time': startTime,
 					'end_time': endTime,
-					'lat': 45.464211,
-					'lng': 9.191383
+					'address': 'Piazzale Gabrio Piola, Milano'
 				})
 				.expect(400)
 				.end(done)
