@@ -67,6 +67,9 @@ function model(db, cb) {
 			methods: {
 				findPreviousEventTo: (event, cb) => {
 					Event.find({ calendar_id: event.calendar_id, end_time: orm.lte(event.start_time) }, {}, 1, 'end_time', cb)
+				},
+				getAllEventsOfCalendarFromNowOn: (calendar_id, cb) => {
+					Event.find({ calendar_id: calendar_id, start_time: orm.gte(new Date()) }, cb)
 				}
 			}
 		})
@@ -125,35 +128,39 @@ function model(db, cb) {
 		end_time: { type: 'date', required: true, time: true },
 		duration: { type: 'integer' },
 		repetitions: { type: 'bit', size: 7, defaultValue: '0000000' },
-		transports: { type: 'bit', size: 4, defaultValue: '1111' },
+		transports: { type: 'bit', size: 5, defaultValue: '11111' },
 		suggested_start_time: { type: 'date', time: true },
 		suggested_end_time: { type: 'date', time: true }
 	}, {
 			methods: {
-				// Parsing the transports from binary encoding. Example: 1100 -> ["walking","bicycling"]
+				// Parsing the transports from binary encoding. Example: 11000 -> ["walking","bicycling"]
 				// Given a list of already parsed transpors (list of strings of transports), it returns 
 				// the same list of strings without means of transportation that the user 
 				// can't travel with, depending on settings and time
 				parseTransports: function (distance, settings) {
 
-					let sTransports = ["walking", "bicycling", "transit", "driving"]
+					let sTransports = ["walking", "bicycling", "transit", "sharing", "driving"]
 					let transports = this.transports.slice(1, sTransports.length + 1)
 					let mask = transports.split('').map(transport => transport == 1)
 					sTransports = sTransports.filter((transport, index) => mask[index])
 
 					//Checking walking distance
-					if (sTransports.indexOf('walking') != -1 && distance*1000 > settings.max_walking_distance) {
+					if (sTransports.indexOf('walking') != -1 && distance * 1000 > settings.max_walking_distance) {
 						sTransports.splice(sTransports.indexOf('walking'), 1)
 					}
 
 					//Checking bicycling distance
-					if (sTransports.indexOf('bicycling') != -1 && distance*1000 > settings.max_biking_distance) {
+					if (sTransports.indexOf('bicycling') != -1 && distance * 1000 > settings.max_biking_distance) {
 						sTransports.splice(sTransports.indexOf('bicycling'), 1)
 					}
 
+					// Dropping the sharing (forseen at version 2 of the app)
+					if (sTransports.indexOf('sharing') != -1) {
+						sTransports.splice(sTransports.indexOf('sharing'), 1)
+					}
 					//Checking if the time allows to use transits
 					if (sTransports.indexOf('transit') != -1) {
-						min_start_event = this.start_time.getHours()*60 + this.start_time.getMinutes()						
+						min_start_event = this.start_time.getHours() * 60 + this.start_time.getMinutes()
 						min_start_transit = parseInt(settings.start_public_transportation.split(':')[0]) * 60 + parseInt(settings.start_public_transportation.split(':')[1])
 						min_end_transit = parseInt(settings.end_public_transportation.split(':')[0]) * 60 + parseInt(settings.end_public_transportation.split(':')[1])
 						if (min_start_event > min_end_transit || min_start_event < min_start_transit) {

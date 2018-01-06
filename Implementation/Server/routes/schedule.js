@@ -2,12 +2,6 @@ const express = require('express')
 const router = express.Router()
 
 const token = process.env.GOOGLE_MAPS_TOKEN
-/* istanbul ignore if */
-if (!token) {
-	console.error("------------------------------------------------------------")
-	console.error("WARNING: GOOGLE_MAPS_TOKEN not defined, check your .env file")
-	console.error("------------------------------------------------------------")
-}
 const googleMapsClient = require('@google/maps').createClient({ key: token });
 
 let isUserScheduling = {}
@@ -56,12 +50,26 @@ let sort = eventList => {
 }
 
 // Return two event that are overlapping, if there are, otherwise false
-// Computational time: O(nlogn)
-let overlap = eventList => {
-	eventList = sort(eventList)
-	for (let i = 0; i < eventList.length - 1; i++) {
-		if (eventList[i].end_time > eventList[i + 1].start_time) {
-			return [eventList[i].id, eventList[i + 1].id]
+// It can be called with 1 params (the whole fixed event list to be checked)
+// or with 2 params (the single fixed event to be checked across the whole list)
+// Computational time with 1 params: O(n)
+// Computational time with 1 params: O(nlogn)
+let overlap = (eventListOrEvent, eventList) => {
+	if (eventList == null) {
+		eventList = sort(eventListOrEvent)
+		for (let i = 0; i < eventList.length - 1; i++) {
+			// Since the events are sorted, we can just check one condition
+			if (eventList[i].end_time > eventList[i + 1].start_time) {
+				return [eventList[i].id, eventList[i + 1].id]
+			}
+		}
+	} else {
+		let event = eventListOrEvent
+		for (let i = 0; i < eventList.length; i++) {
+			// Since this time the events are not sorted, we must use both the conditions
+			if (event.end_time > eventList[i].start_time && event.start_time < eventList[i].end_time) {
+				return [event.id, eventList[i].id]
+			}
 		}
 	}
 	return false
@@ -169,9 +177,12 @@ let isReachablAsTheCrowFlies = (distance, time) => {
 }
 
 // If the event is reachable from coord,
-// it returns the routes and sets the suggested_start_time/suggested_end_time, otherwise it returns false
 // The param 'from' could be either a real Fixed Event or a fake one representing the user locaiton, while 'to' is a Flexible Event
 // The param opt is an object of options. Up to now, there is only one option: onlyBasicChecks [bool,default=false], userSettings
+// it returns:
+//	- FALSE if the event is not reachable
+//  - TRUE if the event passes the basic checks (and if this option is active)
+//  - A dictionary of routes with transports as key and values a set of travels
 let eventIsReachable = (from, to, opt) => {
 	opt = opt || {}
 	if (!from || !to || from.lat == undefined || from.lng == undefined || to.lat == undefined || to.lng == undefined) {
@@ -196,17 +207,23 @@ let eventIsReachable = (from, to, opt) => {
 		}
 
 		// Step 2: Google Maps Directions API
-		let parsed_transport = to.parseTransports(dist, opt.settings)
+		//let parsed_transport = to.parseTransports(dist, opt.settings)
+		let parsed_transport = ["walking", "bicycling", "transit", "driving"]
 		let query, responses = new Object();
-		for (transport_mode in parsed_transport) {
-			transport_mode=parsed_transport[transport_mode]
+		console.log("Parsed: "+parsed_transport)
+		for (transport in parsed_transport) {
+			transport_mode=parsed_transport[transport]
 			query = {
 				origin: from,
 				destination: to,
-				alternatives: true,
-				mode: transport_mode
+				alternatives: true
 			}
+			//console.log("qaq")
 			googleMapsClient.directions(query, (err, response) => {
+				if(err) {
+					throw err
+				}
+				//console.log("qui")
 				let durations = []
 				for (let route of response.json.routes) {
 					let duration = 0
@@ -216,6 +233,7 @@ let eventIsReachable = (from, to, opt) => {
 					durations.push(duration)
 				}
 
+				//console.log("Respo: "+durations)
 
 				// IN-TODO tenere conto delle ripetizioni
 
@@ -225,42 +243,57 @@ let eventIsReachable = (from, to, opt) => {
 					// Try to use the google preferred route
 					to.suggested_start_time = new Date(to.start_time + googlePreferredDuration * 1000)
 					to.suggested_end_time = new Date(to.suggested_start_time + to.duration)
-					//resolve(response.json.routes)
 					responses[transport_mode]=response.json.routes
 				} else {
 					// No route with less time travel than timeNeeded
-					//resolve(false)
 					responses[transport_mode]=false
 
 				}
+				
 			})
 		}
 		resolve(responses)
+		
 	})
+}
+// Given a stram of JSON text from Google Directions API, 
+// extracts the most useful info pre db insertion
+let filterUsefulTravelInfo = (directionJSON) => {
+
 }
 
 let basicChecks = (user, event, cb) => {
-	let prev
-	let loc = getReliableUserLocation(user, event)
-	user.findPreviousEventTo(event, (err, from) => {
-		from = from[0]
-		if (from && user.updated_at < from.end_time) {
-			// The last event is the most recent known location
-			prev = {
-				lat: from.lat,
-				lng: from.lng
+	user.getAllEventsOfCalendarFromNowOn(event.calendar_id, (err, events) => {
+		let fixedEvents = events.filter((e) => { return !e.duration })
+		let flexibleEvents = events.filter((e) => { return e.duration })
+
+		// Check for overlapping fixed events
+		let overlapping = overlap(event, fixedEvents)
+		if (overlapping) return cb(new Error('overlapping: '+overlapping), false)
+
+		// Basic route check: is reachable as the crow flies
+		let prev
+		let loc = getReliableUserLocation(user, event)
+		user.findPreviousEventTo(event, (err, from) => {
+			from = from[0]
+			if (from && user.updated_at < from.end_time) {
+				// The last event is the most recent known location
+				prev = {
+					lat: from.lat,
+					lng: from.lng
+				}
+			} else if (loc && loc.lat && loc.lng) {
+				// The user location is the most recent known location
+				prev = {
+					lat: loc.lat,
+					lng: loc.lng
+				}
+			} else {
+				return cb(null, true)
 			}
-		} else if (loc && loc.lat && loc.lng) {
-			// The user location is the most recent known location
-			prev = {
-				lat: loc.lat,
-				lng: loc.lng
-			}
-		} else {
-			return cb(true)
-		}
-		eventIsReachable(prev, event, { onlyBasicChecks: true }).then((e) => {
-			return cb(e)
+			eventIsReachable(prev, event, { onlyBasicChecks: true }).then((e) => {
+				return cb(null, e)
+			})
 		})
 	})
 }
