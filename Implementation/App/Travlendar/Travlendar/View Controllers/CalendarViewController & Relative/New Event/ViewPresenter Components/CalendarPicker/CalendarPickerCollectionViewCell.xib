@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="AvenirNext.ttc">
+            <string>AvenirNext-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="MCK-A0-BqH" customClass="CalendarPickerCollectionViewCell" customModule="Travlendar" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="330" height="77"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                <rect key="frame" x="0.0" y="0.0" width="330" height="77"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X7Z-BT-qr9">
+                        <rect key="frame" x="20" y="17" width="42" height="42"/>
+                        <color key="backgroundColor" red="0.23137254900000001" green="0.60392156860000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="42" id="7Up-k8-vAB"/>
+                            <constraint firstAttribute="width" constant="42" id="Z1W-RE-RoK"/>
+                        </constraints>
+                    </view>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="selection_mark" translatesAutoresizingMaskIntoConstraints="NO" id="P0J-jQ-W24">
+                        <rect key="frame" x="286" y="30" width="24" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="dLX-lc-fd9"/>
+                            <constraint firstAttribute="width" constant="24" id="laQ-Wl-ema"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2kf-oq-zyR">
+                        <rect key="frame" x="77" y="25" width="196" height="27.5"/>
+                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <color key="backgroundColor" red="0.98431372549999996" green="0.98431372549999996" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="2kf-oq-zyR" firstAttribute="centerY" secondItem="euK-dY-F3W" secondAttribute="centerY" id="1CI-lt-Fuj"/>
+                <constraint firstItem="2kf-oq-zyR" firstAttribute="leading" secondItem="X7Z-BT-qr9" secondAttribute="trailing" constant="15" id="IZG-1N-1Ph"/>
+                <constraint firstItem="X7Z-BT-qr9" firstAttribute="leading" secondItem="euK-dY-F3W" secondAttribute="leading" constant="20" id="MFX-Ea-4NF"/>
+                <constraint firstItem="euK-dY-F3W" firstAttribute="trailing" secondItem="P0J-jQ-W24" secondAttribute="trailing" constant="20" id="N4y-Ap-OT3"/>
+                <constraint firstItem="P0J-jQ-W24" firstAttribute="leading" secondItem="2kf-oq-zyR" secondAttribute="trailing" constant="13" id="QSf-Um-RD0"/>
+                <constraint firstItem="X7Z-BT-qr9" firstAttribute="centerY" secondItem="euK-dY-F3W" secondAttribute="centerY" id="iRV-Ee-BZA"/>
+                <constraint firstItem="P0J-jQ-W24" firstAttribute="centerY" secondItem="euK-dY-F3W" secondAttribute="centerY" id="ysC-6j-raY"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="euK-dY-F3W"/>
+            <size key="customSize" width="344" height="74"/>
+            <connections>
+                <outlet property="colorView" destination="X7Z-BT-qr9" id="yqN-uW-AbK"/>
+                <outlet property="selectionMark" destination="P0J-jQ-W24" id="5Kb-GJ-fVu"/>
+                <outlet property="textLabel" destination="2kf-oq-zyR" id="nAC-mf-ASs"/>
+            </connections>
+            <point key="canvasLocation" x="5" y="38.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="selection_mark" width="24" height="17"/>
+    </resources>
+</document>

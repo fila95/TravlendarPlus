@@ -83,7 +83,6 @@ class CalendarViewController: UIViewController {
             
             let predicate = NSPredicate(format: "start_time >= %@ AND end_time <=  %@", self.pickedDate.dateFor(.startOfDay) as NSDate, self.pickedDate.dateFor(.endOfDay) as NSDate)
             self.events = realm.objects(Event.self).filter(predicate)
-//            print(self.events ?? "no events")
             
             self.collectionView.reloadData()
         }

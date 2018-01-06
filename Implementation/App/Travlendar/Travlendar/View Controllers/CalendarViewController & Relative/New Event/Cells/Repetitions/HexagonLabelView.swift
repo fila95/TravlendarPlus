@@ -13,6 +13,7 @@ class HexagonLabelView: UIView {
     
     private let imageView = UIImageView()
     private let label = UILabel()
+
     
     enum TextType {
         case smaller
@@ -41,6 +42,12 @@ class HexagonLabelView: UIView {
         }
     }
     
+    @IBInspectable var isSelectable: Bool = false {
+        didSet {
+            self.refreshSelectability()
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -62,7 +69,7 @@ class HexagonLabelView: UIView {
         self.backgroundColor = UIColor.clear
         
         self.imageView.image = #imageLiteral(resourceName: "hexagon")
-        self.imageView.contentMode = .center
+        self.imageView.contentMode = .scaleAspectFit
         self.addSubview(self.imageView)
         
         self.label.backgroundColor = UIColor.clear
@@ -73,6 +80,16 @@ class HexagonLabelView: UIView {
         self.imageView.addSubview(self.label)
         
         updateFont()
+        refreshSelectability()
+    }
+    
+    private func refreshSelectability() {
+        self.gestureRecognizers?.removeAll()
+        
+        if isSelectable {
+            let tgr = UITapGestureRecognizer(target: self, action: #selector(selection))
+            self.addGestureRecognizer(tgr)
+        }
     }
     
     private func updateFont() {
@@ -81,7 +98,7 @@ class HexagonLabelView: UIView {
             self.label.font = UIFont.fonts.AvenirNext(type: .Medium, size: 10)
             break
         case .bigger:
-            self.label.font = UIFont.fonts.AvenirNext(type: .Medium, size: 13)
+            self.label.font = UIFont.fonts.AvenirNext(type: .Medium, size: 15)
             break
         }
     }
@@ -91,6 +108,10 @@ class HexagonLabelView: UIView {
             
         self.imageView.frame = self.bounds
         self.label.frame = self.imageView.bounds
+    }
+    
+    @objc private func selection() {
+        self.isSelected = !self.isSelected
     }
     
     

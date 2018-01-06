@@ -97,10 +97,6 @@ class EventComposerViewController: UIViewController {
     
     
     // MARK: Cells
-    private func register<T: Reusable>(reuseCell: T) {
-        self.tableView.register(T.self, forCellReuseIdentifier: T.reuseId)
-        self.tableView.register(T.nib!, forCellReuseIdentifier: T.reuseId)
-    }
     
     private func registerCells() {
         self.tableView.register(HeaderCell.self, forCellReuseIdentifier: HeaderCell.reuseIdentifier)

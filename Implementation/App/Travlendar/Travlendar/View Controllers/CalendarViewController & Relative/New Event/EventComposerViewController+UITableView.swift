@@ -116,9 +116,10 @@ extension EventComposerViewController: UITableViewDataSource {
         if indexPath.section == 2 {
             
             let vp = VPViewPresenter()
+            let vpv = VPView()
             
             if indexPath.row == 1 {
-                let vpv = VPView(title: "Start Date")
+                vpv.titleText = "Start Date"
                 let datePicker = VPDatePickerComponent(date: self.currentEvent.start_time)
                 vpv.addComponent(component: datePicker)
                 vpv.addComponent(component: VPButtonComponent(type: .strong, text: "Ok", tapHandler: { (button) in
@@ -127,15 +128,10 @@ extension EventComposerViewController: UITableViewDataSource {
                     self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
                     vp.dismiss(animated: true, completion: nil)
                 }))
-                vpv.addComponent(component: VPButtonComponent(type: .light, text: "Close", tapHandler: { (button) in
-                    vp.dismiss(animated: true, completion: nil)
-                }))
-                vp.addView(view: vpv)
-                self.present(vp, animated: true, completion: nil)
                 
             }
             else if indexPath.row == 2 {
-                let vpv = VPView(title: "End Date")
+                vpv.titleText = "End Date"
                 let datePicker = VPDatePickerComponent(date: self.currentEvent.end_time)
                 datePicker.datePicker.minimumDate = self.currentEvent.start_time.addingTimeInterval(60)
                 vpv.addComponent(component: datePicker)
@@ -145,14 +141,9 @@ extension EventComposerViewController: UITableViewDataSource {
                     self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
                     vp.dismiss(animated: true, completion: nil)
                 }))
-                vpv.addComponent(component: VPButtonComponent(type: .light, text: "Close", tapHandler: { (button) in
-                    vp.dismiss(animated: true, completion: nil)
-                }))
-                vp.addView(view: vpv)
-                self.present(vp, animated: true, completion: nil)
             }
             else if indexPath.row == 3 {
-                let vpv = VPView(title: "Duration")
+                vpv.titleText = "Duration"
                 let valuePicker = DurationPickerComponent(value: self.currentEvent.duration)
                 vpv.addComponent(component: valuePicker)
                 vpv.addComponent(component: VPButtonComponent(type: .strong, text: "Ok", tapHandler: { (button) in
@@ -161,12 +152,47 @@ extension EventComposerViewController: UITableViewDataSource {
                     self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
                     vp.dismiss(animated: true, completion: nil)
                 }))
-                vpv.addComponent(component: VPButtonComponent(type: .light, text: "Close", tapHandler: { (button) in
+                
+            }
+            
+            vpv.addComponent(component: VPButtonComponent(type: .light, text: "Close", tapHandler: { (button) in
+                vp.dismiss(animated: true, completion: nil)
+            }))
+            vp.addView(view: vpv)
+            self.present(vp, animated: true, completion: nil)
+            
+        }
+        else if indexPath.section == 3 {
+            
+            let vp = VPViewPresenter()
+            let vpv = VPView()
+            
+            if indexPath.row == 0 {
+                vpv.titleText = "Calendar"
+                let calendarPicker = CalendarPickerComponent(calendar: self.currentEvent.calendar_id)
+                vpv.addComponent(component: calendarPicker)
+                vpv.addComponent(component: VPButtonComponent(type: .strong, text: "Ok", tapHandler: { (button) in
+                    self.currentEvent.calendar_id = calendarPicker.currentCalendar
+                    self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
                     vp.dismiss(animated: true, completion: nil)
                 }))
-                vp.addView(view: vpv)
-                self.present(vp, animated: true, completion: nil)
             }
+            else {
+                vpv.titleText = "Repetitions"
+                let repetitionsPicker = RepetitionsPickerComponent(repetitions: self.currentEvent.repetitions)
+                vpv.addComponent(component: repetitionsPicker)
+                vpv.addComponent(component: VPButtonComponent(type: .strong, text: "Ok", tapHandler: { (button) in
+                    self.currentEvent.repetitions = repetitionsPicker.getRepetitions()
+                    self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+                    vp.dismiss(animated: true, completion: nil)
+                }))
+            }
+            
+            vpv.addComponent(component: VPButtonComponent(type: .light, text: "Close", tapHandler: { (button) in
+                vp.dismiss(animated: true, completion: nil)
+            }))
+            vp.addView(view: vpv)
+            self.present(vp, animated: true, completion: nil)
             
         }
         
