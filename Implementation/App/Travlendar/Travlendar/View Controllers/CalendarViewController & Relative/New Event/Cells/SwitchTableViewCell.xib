@@ -56,6 +56,7 @@
                     <constraint firstAttribute="bottom" secondItem="QdD-J4-LwQ" secondAttribute="bottom" id="t6Z-Pn-L8L"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="IgP-OR-jPu"/>
             <connections>
                 <outlet property="switchView" destination="f2v-fJ-LNe" id="T5Y-Gi-OfS"/>

@@ -55,9 +55,11 @@ extension EventComposerViewController: UITableViewDataSource {
         case 2:
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: SwitchTableViewCell.reuseId, for: indexPath) as! SwitchTableViewCell
-                cell.setTitle(text: "FlexibleTiming")
+                cell.setTitle(text: "Flexible Timing")
                 cell.setSwitchOn(on: currentEvent.duration != -1)
+                cell.accessoryType = .none
                 self.prepareDurationSwitchHandler(cell: cell)
+                return cell
             }
             else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: DateTableViewCell.reuseId, for: indexPath) as! DateTableViewCell
@@ -107,59 +109,59 @@ extension EventComposerViewController: UITableViewDataSource {
         return 5
     }
     
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        
-        
-        
         if indexPath.section == 2 {
             
-            let vp = VPViewPresenter()
-            let vpv = VPView()
-            
-            if indexPath.row == 1 {
-                vpv.titleText = "Start Date"
-                let datePicker = VPDatePickerComponent(date: self.currentEvent.start_time)
-                vpv.addComponent(component: datePicker)
-                vpv.addComponent(component: VPButtonComponent(type: .strong, text: "Ok", tapHandler: { (button) in
-                    self.currentEvent.start_time = datePicker.date
-                    
-                    self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
-                    vp.dismiss(animated: true, completion: nil)
-                }))
+            if indexPath.row != 0 {
+                let vp = VPViewPresenter()
+                let vpv = VPView()
                 
-            }
-            else if indexPath.row == 2 {
-                vpv.titleText = "End Date"
-                let datePicker = VPDatePickerComponent(date: self.currentEvent.end_time)
-                datePicker.datePicker.minimumDate = self.currentEvent.start_time.addingTimeInterval(60)
-                vpv.addComponent(component: datePicker)
-                vpv.addComponent(component: VPButtonComponent(type: .strong, text: "Ok", tapHandler: { (button) in
-                    self.currentEvent.end_time = datePicker.date
+                if indexPath.row == 1 {
+                    vpv.titleText = "Start Date"
+                    let datePicker = VPDatePickerComponent(date: self.currentEvent.start_time)
+                    vpv.addComponent(component: datePicker)
+                    vpv.addComponent(component: VPButtonComponent(type: .strong, text: "Ok", tapHandler: { (button) in
+                        self.currentEvent.start_time = datePicker.date
+                        
+                        self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+                        vp.dismiss(animated: true, completion: nil)
+                    }))
                     
-                    self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
-                    vp.dismiss(animated: true, completion: nil)
-                }))
-            }
-            else if indexPath.row == 3 {
-                vpv.titleText = "Duration"
-                let valuePicker = DurationPickerComponent(value: self.currentEvent.duration)
-                vpv.addComponent(component: valuePicker)
-                vpv.addComponent(component: VPButtonComponent(type: .strong, text: "Ok", tapHandler: { (button) in
-                    self.currentEvent.duration = valuePicker.value
+                }
+                else if indexPath.row == 2 {
+                    vpv.titleText = "End Date"
+                    let datePicker = VPDatePickerComponent(date: self.currentEvent.end_time)
+                    datePicker.datePicker.minimumDate = self.currentEvent.start_time.addingTimeInterval(60)
+                    vpv.addComponent(component: datePicker)
+                    vpv.addComponent(component: VPButtonComponent(type: .strong, text: "Ok", tapHandler: { (button) in
+                        self.currentEvent.end_time = datePicker.date
+                        
+                        self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+                        vp.dismiss(animated: true, completion: nil)
+                    }))
+                }
+                else if indexPath.row == 3 {
+                    vpv.titleText = "Duration"
+                    let valuePicker = DurationPickerComponent(value: self.currentEvent.duration)
+                    vpv.addComponent(component: valuePicker)
+                    vpv.addComponent(component: VPButtonComponent(type: .strong, text: "Ok", tapHandler: { (button) in
+                        self.currentEvent.duration = valuePicker.value
+                        
+                        self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+                        vp.dismiss(animated: true, completion: nil)
+                    }))
                     
-                    self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
-                    vp.dismiss(animated: true, completion: nil)
-                }))
+                }
                 
+                vpv.addComponent(component: VPButtonComponent(type: .light, text: "Close", tapHandler: { (button) in
+                    vp.dismiss(animated: true, completion: nil)
+                }))
+                vp.addView(view: vpv)
+                self.present(vp, animated: true, completion: nil)
             }
-            
-            vpv.addComponent(component: VPButtonComponent(type: .light, text: "Close", tapHandler: { (button) in
-                vp.dismiss(animated: true, completion: nil)
-            }))
-            vp.addView(view: vpv)
-            self.present(vp, animated: true, completion: nil)
             
         }
         else if indexPath.section == 3 {
@@ -207,11 +209,11 @@ extension EventComposerViewController: UITableViewDataSource {
 extension EventComposerViewController {
     
     func prepareSaveCloseHandlers(cell: SaveCloseTableViewCell) {
-        cell.setSavehandler {
+        cell.setSaveHandler {
             self.save()
         }
         
-        cell.setClosehandler {
+        cell.setCloseHandler {
             self.dismiss(animated: true)
         }
     }
@@ -238,7 +240,76 @@ extension EventComposerViewController {
     
     func save() {
         
+        let saveCell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! SaveCloseTableViewCell
+        saveCell.saveButton.loading = true
         
+        
+        guard let eventName = (self.tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! TextViewTableViewCell).textField.text, eventName != "" else {
+            UIAlertController.show(title: "Error", message: "You should type a name in order to continue.", buttonTitle: "Ok", on: self)
+            saveCell.saveButton.loading = false
+            return
+        }
+        self.currentEvent.title = eventName
+        
+        guard let eventAddress = (self.tableView.cellForRow(at: IndexPath(row: 1, section: 1)) as! TextViewTableViewCell).textField.text, eventAddress != "" else {
+            UIAlertController.show(title: "Error", message: "You should type an address in order to continue.", buttonTitle: "Ok", on: self)
+            saveCell.saveButton.loading = false
+            return
+        }
+        self.currentEvent.address = eventAddress
+        
+        self.currentEvent.transports = (self.tableView.cellForRow(at: IndexPath(row: 0, section: 4)) as! AllowedVehiclesTableViewCell).getAllowedVehicles()
+        guard self.currentEvent.transports.contains("1") else {
+            UIAlertController.show(title: "Error", message: "You should select at least one traansport mean in order to continue.", buttonTitle: "Ok", on: self)
+            saveCell.saveButton.loading = false
+            return
+        }
+        
+        guard self.currentEvent.calendar_id >= 0 else {
+            UIAlertController.show(title: "Error", message: "You should select a calendar in order to continue. If you don't have one just add it from settings view!", buttonTitle: "Ok", on: self)
+            saveCell.saveButton.loading = false
+            return
+        }
+        
+        guard self.currentEvent.start_time < self.currentEvent.end_time else {
+            UIAlertController.show(title: "Error", message: "Start and end dates selected results incorrect...", buttonTitle: "Ok", on: self)
+            saveCell.saveButton.loading = false
+            return
+        }
+        
+        print(currentEvent)
+        
+        
+        if self.creatingNew {
+            API.shared.addEvent(event: self.currentEvent, completion: { (complete, error) in
+                DispatchQueue.main.async {
+                    saveCell.saveButton.loading = false
+                    
+                    if complete {
+                        self.dismiss(animated: true)
+                    }
+                    else {
+                        UIAlertController.show(title: "Error", message: "An error occurred while adding this event", buttonTitle: "Ok", on: self)
+                    }
+                }
+                
+            })
+        }
+        else {
+            DispatchQueue.main.async {
+                API.shared.updateEvent(event: self.currentEvent, completion: { (complete, error) in
+                    saveCell.saveButton.loading = false
+                    
+                    if complete {
+                        self.dismiss(animated: true)
+                    }
+                    else {
+                        UIAlertController.show(title: "Error", message: "An error occurred while updating this event", buttonTitle: "Ok", on: self)
+                    }
+                    
+                })
+            }
+        }
         
     }
     

@@ -83,6 +83,10 @@ public class API: NSObject {
         queue.addOperation(EventsOperation(operationType: .patch, endpointAddition: "\(event.calendar_id)/events/\(event.id)", httpBody: Event.representation(toRepresent: event), completion: completion))
     }
     
+    public func addEvent(event: Event, completion: ((_ complete: Bool, _ message: String?) -> Void)? = nil) {
+        queue.addOperation(EventsOperation(operationType: .put, endpointAddition: "\(event.calendar_id)/events/", httpBody: Event.representation(toRepresent: event), completion: completion))
+    }
+    
     // MARK: Notification
     
     public func pushNotificationTokenToServer(token: String) {

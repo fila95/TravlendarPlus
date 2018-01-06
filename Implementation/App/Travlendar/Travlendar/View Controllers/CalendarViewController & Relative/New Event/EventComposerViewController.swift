@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import RealmSwift
 
 class EventComposerViewController: UIViewController {
 
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
-    private var creatingNew: Bool = true
+    var creatingNew: Bool = true
     var currentEvent: Event = Event()
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -38,6 +39,11 @@ class EventComposerViewController: UIViewController {
     func commonInit() {
         self.modalTransitionStyle = .crossDissolve
         self.modalPresentationStyle = .overCurrentContext
+        
+        let realm = try! Realm()
+        let cal = realm.objects(Calendars.self).sorted(byKeyPath: "name")
+        //        print(cal)
+        self.currentEvent.calendar_id = cal.first?.id ?? -1
     }
     
     func setEvent(e: Event) {
@@ -66,6 +72,7 @@ class EventComposerViewController: UIViewController {
         self.tableView.separatorStyle = .none
         
         self.registerCells()
+        self.refresh()
     }
     
     func refresh() {
@@ -86,12 +93,18 @@ class EventComposerViewController: UIViewController {
 
     override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
         
-        UIView.animate(withDuration: 0.3, animations: {
-            self.contentView.alpha = 0.0
-            self.contentView.transform = CGAffineTransform(translationX: 0, y: 300)
-        }) { (complete) in
-            super.dismiss(animated: true, completion: completion)
+        if self.presentedViewController == nil {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.contentView.alpha = 0.0
+                self.contentView.transform = CGAffineTransform(translationX: 0, y: 300)
+            }) { (complete) in
+                super.dismiss(animated: true, completion: completion)
+            }
         }
+        else {
+            super.dismiss(animated: flag, completion: completion)
+        }
+        
     }
     
     
