@@ -98,7 +98,7 @@ class EventsOperation: NetworkOperation {
                     return
                 }
                 
-                print(String.init(data: d, encoding: .utf8))
+                print(String.init(data: d, encoding: .utf8) ?? "No string")
                 
                 guard let event = try? decoder.decode(Event.self, from: d) else {
                     self.completionHandler?(false, "Decode Error")
