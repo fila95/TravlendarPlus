@@ -200,8 +200,7 @@ let eventIsReachable = (from, to, opt) => {
 
 		// Step 2: Google Maps Directions API
 		let parsed_transport = to.parseTransports(dist, opt.settings)
-		//let parsed_transport = ["walking", "bicycling", "driving", "transit"]
-		console.log(parsed_transport)
+		
 		let responses = []
 		let query = {
 			origin: from,
@@ -243,7 +242,6 @@ let eventIsReachable = (from, to, opt) => {
 				
 			}
 		}
-
 		if (responses.length == 0) {
 			resolve(false)
 		} else {
