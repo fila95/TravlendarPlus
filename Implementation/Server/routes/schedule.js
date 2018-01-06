@@ -3,12 +3,6 @@ const router = express.Router()
 const polyline = require('polyline')
 
 const token = process.env.GOOGLE_MAPS_TOKEN
-/* istanbul ignore if */
-if (!token) {
-	console.error("------------------------------------------------------------")
-	console.error("WARNING: GOOGLE_MAPS_TOKEN not defined, check your .env file")
-	console.error("------------------------------------------------------------")
-}
 const googleMapsClient = require('@google/maps').createClient({ key: token });
 
 let isUserScheduling = {}
@@ -57,12 +51,26 @@ let sort = eventList => {
 }
 
 // Return two event that are overlapping, if there are, otherwise false
-// Computational time: O(nlogn)
-let overlap = eventList => {
-	eventList = sort(eventList)
-	for (let i = 0; i < eventList.length - 1; i++) {
-		if (eventList[i].end_time > eventList[i + 1].start_time) {
-			return [eventList[i].id, eventList[i + 1].id]
+// It can be called with 1 params (the whole fixed event list to be checked)
+// or with 2 params (the single fixed event to be checked across the whole list)
+// Computational time with 1 params: O(n)
+// Computational time with 1 params: O(nlogn)
+let overlap = (eventListOrEvent, eventList) => {
+	if (eventList == null) {
+		eventList = sort(eventListOrEvent)
+		for (let i = 0; i < eventList.length - 1; i++) {
+			// Since the events are sorted, we can just check one condition
+			if (eventList[i].end_time > eventList[i + 1].start_time) {
+				return [eventList[i].id, eventList[i + 1].id]
+			}
+		}
+	} else {
+		let event = eventListOrEvent
+		for (let i = 0; i < eventList.length; i++) {
+			// Since this time the events are not sorted, we must use both the conditions
+			if (event.end_time > eventList[i].start_time && event.start_time < eventList[i].end_time) {
+				return [event.id, eventList[i].id]
+			}
 		}
 	}
 	return false
@@ -237,27 +245,37 @@ let eventIsReachable = (from, to, opt) => {
 }
 
 let basicChecks = (user, event, cb) => {
-	let prev
-	let loc = getReliableUserLocation(user, event)
-	user.findPreviousEventTo(event, (err, from) => {
-		from = from[0]
-		if (from && user.updated_at < from.end_time) {
-			// The last event is the most recent known location
-			prev = {
-				lat: from.lat,
-				lng: from.lng
+	user.getAllEventsOfCalendarFromNowOn(event.calendar_id, (err, events) => {
+		let fixedEvents = events.filter((e) => { return !e.duration })
+		let flexibleEvents = events.filter((e) => { return e.duration })
+
+		// Check for overlapping fixed events
+		let overlapping = overlap(event, fixedEvents)
+		if (overlapping) return cb(new Error('overlapping: '+overlapping), false)
+
+		// Basic route check: is reachable as the crow flies
+		let prev
+		let loc = getReliableUserLocation(user, event)
+		user.findPreviousEventTo(event, (err, from) => {
+			from = from[0]
+			if (from && user.updated_at < from.end_time) {
+				// The last event is the most recent known location
+				prev = {
+					lat: from.lat,
+					lng: from.lng
+				}
+			} else if (loc && loc.lat && loc.lng) {
+				// The user location is the most recent known location
+				prev = {
+					lat: loc.lat,
+					lng: loc.lng
+				}
+			} else {
+				return cb(null, true)
 			}
-		} else if (loc && loc.lat && loc.lng) {
-			// The user location is the most recent known location
-			prev = {
-				lat: loc.lat,
-				lng: loc.lng
-			}
-		} else {
-			return cb(true)
-		}
-		eventIsReachable(prev, event, { onlyBasicChecks: true }).then((e) => {
-			return cb(e)
+			eventIsReachable(prev, event, { onlyBasicChecks: true }).then((e) => {
+				return cb(null, e)
+			})
 		})
 	})
 }

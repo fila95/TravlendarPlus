@@ -81,21 +81,22 @@ let eventFactory = (req, cb) => {
 // Create a new Event with the parameters specified
 router.put('/', (req, res) => {
 	eventFactory(req, event => {
-		if (event == null) return res.sendStatus(400).end()
-		
+		if (event == null) return res.sendStatus(400).end('invalid parameters')
 		// Basic checks
-		basicChecks(req.user, event, (reachable) => {
+		basicChecks(req.user, event, (err, reachable) => {
 			if (reachable) {
 				// Create the event
 				req.models.events.create(event, (err, result) => {
+					if(err) {
+						return res.status(500).end()
+					}
 					return res.status(201).json(result).end()
 				})
 			} else {
-				return res.status(400).end('not reachable')
+				return res.status(500).end(err.message)
 			}
 		})
 	})
-
 })
 
 router.delete('/:event_id', (req, res) => {
