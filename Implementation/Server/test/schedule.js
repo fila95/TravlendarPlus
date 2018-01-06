@@ -244,31 +244,31 @@ describe('Schedule private functions', () => {
 	it('should parse the transports of a custum event to ["walking", "driving"]', () => {
 		let p1 = { lat: 45.464250, lng: 9.190200 }
 		let parse = customEvent.parseTransports(schedule.distance(p1, customEvent), user.settings)
-		if(parse.length!=2 || parse.indexOf('walking')==-1 || parse.indexOf('driving')==-1 ){
-			throw Error('The transports parsing is undefined or doesn\'t contains walking and driving: '+ customEvent.transports+ ': '+parse)
+		if (parse.length != 2 || parse.indexOf('walking') == -1 || parse.indexOf('driving') == -1) {
+			throw Error('The transports parsing is undefined or doesn\'t contains walking and driving: ' + customEvent.transports + ': ' + parse)
 		}
 	})
 
 	it('should parse the transports of a custum event to ["driving"], since transits are not available at that time', () => {
 		let p1 = { lat: 45.464250, lng: 9.190200 }
-		customEvent.transports="B00101"
-		user.settings.start_public_transportation="10:00:00"
-		customEvent.start_time=new Date(2017, 11, 4, 2, 0)
-		
+		customEvent.transports = "B00101"
+		user.settings.start_public_transportation = "10:00:00"
+		customEvent.start_time = new Date(2017, 11, 4, 2, 0)
+
 		let parse = customEvent.parseTransports(schedule.distance(p1, customEvent), user.settings)
-		if(parse.length!=1 || parse.indexOf('driving')==-1){
-			throw Error('The transports parsing is undefined or doesn\'t contains driving: '+ customEvent.transports+ ': '+parse)
+		if (parse.length != 1 || parse.indexOf('driving') == -1) {
+			throw Error('The transports parsing is undefined or doesn\'t contains driving: ' + customEvent.transports + ': ' + parse)
 		}
 	})
 	it('should parse the transports of a custum event to ["transit", "driving"], since the events are too far to each by other means', () => {
 		let p1 = { lat: 45.464250, lng: 8.190200 }
-		customEvent.transports="B11111"
-		user.settings.start_public_transportation="10:00:00"
-		user.settings.end_public_transportation="17:00:00"
-		customEvent.start_time=new Date(2017, 11, 4, 11, 0)
+		customEvent.transports = "B11111"
+		user.settings.start_public_transportation = "10:00:00"
+		user.settings.end_public_transportation = "17:00:00"
+		customEvent.start_time = new Date(2017, 11, 4, 11, 0)
 		let parse = customEvent.parseTransports(schedule.distance(p1, customEvent), user.settings)
-		if(parse.length!=2 || parse.indexOf('transit')==-1 || parse.indexOf('driving')==-1){
-			throw Error('The transports parsing is undefined or events are actually reachable by walk/bike: '+ customEvent.transports+ ': '+parse)
+		if (parse.length != 2 || parse.indexOf('transit') == -1 || parse.indexOf('driving') == -1) {
+			throw Error('The transports parsing is undefined or events are actually reachable by walk/bike: ' + customEvent.transports + ': ' + parse)
 		}
 	})
 
@@ -310,7 +310,7 @@ describe('Schedule private functions', () => {
 		// eventIsReachable should throw an error if arguments are invalid
 		let err = new Error('test fail')
 		try {
-			schedule.eventIsReachable(undefined, {})
+			await schedule.eventIsReachable(undefined, {})
 			throw err
 		} catch (e) {
 			if (e == err) {
@@ -321,47 +321,47 @@ describe('Schedule private functions', () => {
 
 	it('eventIsReachable with all the checks, google included, should return an array of routes', async () => {
 		let p1 = { lat: 45.478336, lng: 9.228263 }
-		//customEvent.lat = 45.464257
-		//customEvent.lng = 9.190209
-		p2 = {
-			lat: 45.464257,
-			lng: 9.190209,
-			start_time: new Date(2017, 11, 12, 8, 0),
-			end_time: new Date(2017, 11, 12, 9, 40),
-			duration: 1000 * 60 * 60
-		}
-		let res = await schedule.eventIsReachable(p1, p2, { settings: user.settings })
+		customEvent.lat = 45.464257
+		customEvent.lng = 9.190209
+		customEvent.start_time = new Date(2017, 11, 12, 8, 0)
+		customEvent.end_time = new Date(2017, 11, 12, 9, 40)
+		customEvent.duration = 1000 * 60 * 60
+
+		let responses = await schedule.eventIsReachable(p1, customEvent, { settings: user.settings })
+
 		// Google routes have all the copyrights field
-		for (response in res){
 
-			transport_response=res[response]
-			
-			if (!transport_response.copyrights) {
-				throw new Error('No google route returned')
+		for (response_n in responses) {
+			response = responses[response_n].response
+			for (route_n in response) {
+				resp = response[route_n]
+				if (!resp.copyrights) {
+					throw new Error('No google route returned')
+				}
 			}
-			
 		}
 
-		
 		//for (r in res){
-			//console.log(res[r]['overview_polyline'])
-			//console.log(res[r]['legs'])
+		//console.log(res[r]['overview_polyline'])
+		//console.log(res[r]['legs'])
 		//}
-		
+
 	}).timeout(10000); // Google Requests could take a while
 
 	it('eventIsReachable with all the checks, google included, should return false', async () => {
 		let p1 = { lat: 45.478336, lng: 9.228263 }
-		
-		let res = await schedule.eventIsReachable(p1, customEvent, { settings: user.settings })
-		for (response in res){
-			transport_response=res[response]
-			// Google routes have all the copyrights field
-			if (transport_response != false) {
-				throw new Error('Google route returned, but noone expected')
-			}
+		customEvent.lat = 45.464257
+		customEvent.lng = 9.190209
+		customEvent.start_time = new Date(2017, 11, 12, 8, 0)
+		customEvent.end_time = new Date(2017, 11, 12, 9, 20)
+		customEvent.duration = 1000 * 60 * 60
+
+		let data = await schedule.eventIsReachable(p1, customEvent, { settings: user.settings })
+		// Google routes have all the copyrights field
+		if (data != false) {
+			throw new Error('Google route returned, but noone expected')
 		}
-		
+
 	}).timeout(10000); // Google Requests could take a while
 
 	it('basicChecks without any params', (done) => {
@@ -383,7 +383,7 @@ describe('Schedule private functions', () => {
 		let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), duration: 4 * 60 * 60 * 1000, lat: 45, lng: 9, calendar_id: customEvent.calendar_id }
 
 		schedule.basicChecks(user, e, (err, data) => {
-			done(data!=true ? new Error('Basic checks failed') : null)
+			done(data != true ? new Error('Basic checks failed') : null)
 		})
 	})
 
@@ -395,26 +395,26 @@ describe('Schedule private functions', () => {
 		let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: 45, lng: 9, calendar_id: customEvent.calendar_id }
 
 		schedule.basicChecks(user, e, (err, data) => {
-			done(data==true ? new Error('Basic checks failed') : null)
+			done(data == true ? new Error('Basic checks failed') : null)
 		})
 	})
-	
+
 	it('basicChecks with previous event should return true', (done) => {
-		let e = { id: 1, start_time: new Date(2017, 11, 12, 15, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: customEvent.lat+0.1, lng: customEvent.lng+0.1 }
+		let e = { id: 1, start_time: new Date(2017, 11, 12, 15, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: customEvent.lat + 0.1, lng: customEvent.lng + 0.1 }
 
 		schedule.basicChecks(user, e, (err, data) => {
-			done(data!=true ? new Error('Basic checks failed') : null)
+			done(data != true ? new Error('Basic checks failed') : null)
 		})
 	})
-	
+
 	it('basicChecks with previous event should return false', (done) => {
 		let e = { id: 1, start_time: new Date(2017, 11, 12, 13, 22), end_time: new Date(2017, 11, 13, 4, 30), lat: 45, lng: 9, calendar_id: customEvent.calendar_id }
 
 		schedule.basicChecks(user, e, (data) => {
-			done(data==true ? new Error('Basic checks failed') : null)
+			done(data == true ? new Error('Basic checks failed') : null)
 		})
 	})
-	
+
 	/*it('should return a string of waypoints to inset into DB', () => {
 		let p1 = { lat: 45.464250, lng: 8.190200 }
 		customEvent.start_time=new Date(2017, 11, 4, 11, 0)

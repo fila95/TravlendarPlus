@@ -20,7 +20,6 @@ function model(db, cb) {
 			return 'NUMERIC(10,7)'
 		},
 		valueToProperty: function (value, prop) {
-			console.log(value,prop)
 			if (value instanceof Number) {
 				return value
 			} else {
@@ -111,15 +110,7 @@ function model(db, cb) {
 	let Calendar = db.define('calendars', {
 		name: { type: 'text', size: 255, required: true },
 		color: { type: 'text', size: 6, required: true }
-	}, {
-			methods: {
-				getEventsOfToday: (cb) => {
-					let today = new Date()
-					let todayPlus24 = new Date(today + 1000 * 60 * 60 * 24)
-					Event.find({ calendar_id: this.id, start_time: orm.between(today, todayPlus24) }, cb)
-				}
-			}
-		})
+	})
 
 	let Company = db.define('companies', {
 		phone_number: { type: 'text', size: 32, unique: true },
@@ -188,7 +179,7 @@ function model(db, cb) {
 			}
 		})
 
-	Event.hasMany('travels', Travel)
+	Event.hasMany('travels', Travel, {}, { key: true })
 	Setting.hasOne('user', User, { reverse: 'settings', required: true })
 	Device.hasOne('user', User, { reverse: 'devices', required: true })
 	Calendar.hasOne('user', User, { reverse: 'calendars', required: true })

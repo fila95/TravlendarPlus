@@ -1,10 +1,16 @@
+const app = require('../index')
 const express = require('express')
+const notifier = require('../notifier')
 const router = express.Router()
 
 const token = process.env.GOOGLE_MAPS_TOKEN
-const googleMapsClient = require('@google/maps').createClient({ key: token });
-
-let isUserScheduling = {}
+/* istanbul ignore if */
+if (!token) {
+	console.error("------------------------------------------------------------")
+	console.error("WARNING: GOOGLE_MAPS_TOKEN not defined, check your .env file")
+	console.error("------------------------------------------------------------")
+}
+const googleMapsClient = require('@google/maps').createClient({ key: token, Promise: Promise });
 
 // Suppose that timeSlots are sorted and not overlapping
 // Return the time in milliseconds for the given timeSlots
@@ -193,7 +199,7 @@ let eventIsReachable = (from, to, opt) => {
 	// timeSlotDuration - flexible event duration
 	let availableTime = (to.end_time.getTime() - to.start_time.getTime() - to.duration) / 1000
 
-	return new Promise((resolve, reject) => {
+	return new Promise(async (resolve, reject) => {
 		// Step 1: As the Crow Flies
 		let dist = distance(from, to)
 		let step1 = isReachablAsTheCrowFlies(dist, availableTime)
@@ -207,53 +213,54 @@ let eventIsReachable = (from, to, opt) => {
 		}
 
 		// Step 2: Google Maps Directions API
-		//let parsed_transport = to.parseTransports(dist, opt.settings)
-		let parsed_transport = ["walking", "bicycling", "transit", "driving"]
-		let query, responses = new Object();
-		console.log("Parsed: "+parsed_transport)
-		for (transport in parsed_transport) {
-			transport_mode=parsed_transport[transport]
-			query = {
-				origin: from,
-				destination: to,
-				alternatives: true
-			}
-			//console.log("qaq")
-			googleMapsClient.directions(query, (err, response) => {
-				if(err) {
-					throw err
-				}
-				//console.log("qui")
-				let durations = []
-				for (let route of response.json.routes) {
-					let duration = 0
-					for (let leg of route.legs) {
-						duration += leg.duration.value
-					}
-					durations.push(duration)
-				}
-
-				//console.log("Respo: "+durations)
-
-				// IN-TODO tenere conto delle ripetizioni
-
-				let googlePreferredDuration = durations[0]
-
-				if (googlePreferredDuration <= availableTime) {
-					// Try to use the google preferred route
-					to.suggested_start_time = new Date(to.start_time + googlePreferredDuration * 1000)
-					to.suggested_end_time = new Date(to.suggested_start_time + to.duration)
-					responses[transport_mode]=response.json.routes
-				} else {
-					// No route with less time travel than timeNeeded
-					responses[transport_mode]=false
-
-				}
-				
-			})
-		}
-		resolve(responses)
+		let parsed_transport = to.parseTransports(dist, opt.settings)
 		
+		let responses = []
+		let query = {
+			origin: from,
+			destination: to,
+			alternatives: true
+		}
+
+		for (transport in parsed_transport) {
+			
+			let transport_mode = parsed_transport[transport]
+			
+			query.mode = transport_mode
+			if (query.mode == 'bicycling') {
+				query.mode = 'walking'
+			}
+			let response = await googleMapsClient.directions(query).asPromise()
+
+			let durations = []
+			for (let route of response.json.routes) {
+				let duration = 0
+				for (let leg of route.legs) {
+					duration += leg.duration.value
+				}
+				durations.push(duration)
+			}
+
+			// TODO tenere conto delle ripetizioni
+
+
+			let googlePreferredDuration = durations[0]
+			if (googlePreferredDuration <= availableTime) {
+				// Try to use the google preferred route
+				to.suggested_start_time = new Date(to.start_time + googlePreferredDuration * 1000)
+				to.suggested_end_time = new Date(to.suggested_start_time + to.duration)
+				responses.push({
+					transport: transport_mode,
+					response: response.json.routes
+				})
+				
+			}
+		}
+		if (responses.length == 0) {
+			resolve(false)
+		} else {
+			resolve(responses)
+		}
 	})
 }
 // Given a stram of JSON text from Google Directions API, 
@@ -306,15 +313,24 @@ let getReliableUserLocation = (user, event) => {
 	return { lat: user.last_known_position_lat, lng: user.last_known_position_lng }
 }
 
-
-//Travels 
-let travels
-
+// Return the user list of events, from now on
 router.get('/', (req, res) => {
+	req.user.getCalendars((err, calendars) => {
+		let calendar_ids = []
+		for (calendar of calendars) {
+			calendar_ids.push(calendar.id)
+		}
+		req.user.getAllEventsOfCalendarFromNowOn(calendar_ids, (err, events) => {
+			return res.json(events).end()
+		})
+	})
+})
+
+router.post('/', (req, res) => {
 	// For each calendar
 	req.user.getCalendars().each((err, calendar) => {
-		// Get all the events of today from the current calendar
-		calendar.getEventsOfToday(async (err, events) => {
+		// Get all the events of the current calendar
+		req.user.getAllEventsOfCalendarFromNowOn(calendar.id, async (err, events) => {
 			let fixedEvents = events.filter((e) => { return !e.duration })
 			let flexibleEvents = events.filter((e) => { return e.duration })
 
@@ -327,6 +343,23 @@ router.get('/', (req, res) => {
 				e.timeSlots = timeSlots(fixedEvents, e)
 				if (e.timeSlots.length == 0) return res.status(400).end('timeslot length is 0 for event: ' + e.id)
 			}
+
+			// From now on, the real scheduler is going on, so we suddenly return a
+			// 202 - Accepted status code, and the scheduler will notify the user
+			// when the results are ready
+			res.status(202).end()
+
+			// Assign a scheduler id to this task.
+			// Whenever a new schedule start for the same user, this
+			// schedule task will be aborted
+			let scheduler_id = Math.random().toString().split(".")[1]
+			isScheduling = app.get('isScheduling')
+			if(!isScheduling) {
+				isScheduling = {}
+				app.set('isScheduling', isScheduling)
+			}
+			isScheduling[req.user.id] = scheduler_id
+
 			let sortedFlexibleEvents = sortWithFitness(flexibleEvents)
 
 			// Try to fit each flexible event from the less fittable to the most one
@@ -338,8 +371,9 @@ router.get('/', (req, res) => {
 
 				// Try to fit in each time slot
 				for (let timeSlot of e.timeSlots) {
-					if (isUserScheduling[req.user.id]) {
-
+					// A new scheduler is started with a different id, abort this
+					if (isScheduling[req.user.id] != scheduler_id) {
+						return
 					}
 
 					// Supposing that the event will be placed in this time slot,
@@ -372,11 +406,14 @@ router.get('/', (req, res) => {
 					// Ask if reachable with await
 					// Using async/await, we can loop over an asynchronous function
 					// without spawning thousands of async calls
-					let result = await eventIsReachable(prev, e, { settings: req.user.settings })
-					if (result) {
-
+					let routes = await eventIsReachable(prev, e, { settings: req.user.settings })
+					if (routes) {
+						// TODO: insert them in the db, using:
+						// e.addTravels([travel1, travel2, travel3, ...], err => {
+					    //   if(err) {throw err}
+						// })
 					}
-					// TODO use result
+					
 					return e.save(err => {
 						if (err) throw err
 					})
@@ -384,6 +421,9 @@ router.get('/', (req, res) => {
 			}
 		})
 	})
+
+	// Finish scheduler for all the events of all the calendars
+	// notifier.sendNotification(text, user)
 })
 
 module.exports = {
