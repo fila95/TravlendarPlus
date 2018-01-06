@@ -1,6 +1,5 @@
 const app = require('../index')
 const schedule = require('../routes/schedule.js').testFunctions
-const filterUsefulTravelInfo = require('../routes/schedule.js').filterUsefulTravelInfo
 const request = require('supertest')
 const polyline = require('polyline')
 
@@ -320,6 +319,7 @@ describe('Schedule private functions', () => {
 		}
 	})
 
+
 	it('eventIsReachable with all the checks, google included, should return an array of routes', async () => {
 		let p1 = { lat: 45.478336, lng: 9.228263 }
 		customEvent.lat = 45.464257
@@ -328,19 +328,25 @@ describe('Schedule private functions', () => {
 		customEvent.end_time = new Date(2017, 11, 12, 10, 40)
 		customEvent.duration = 1000 * 60 * 60
 
-		let responses = await schedule.eventIsReachable(p1, customEvent, { settings: user.settings })
+		let routes = await schedule.eventIsReachable(p1, customEvent, { settings: user.settings })
 
 		// Google routes have all the copyrights field
 
 
-		if (!responses[0][0].route_id || !responses[0][0].time || !responses[0][0].transport_mean || !responses[0][0].waypoints) {
+		if (!routes[0][0].route || !routes[0][0].time || !routes[0][0].transport_mean || !routes[0][0].waypoints) {
 			throw new Error('No google route returned')
 		}
-		console.log(responses[0][0])
-		//e.addTravels([travel1, travel2, travel3, ...], err => {
-		//   if(err) {throw err}
-		// })
-
+		let travels = []
+		for (route of routes) {
+			for (travel of route) {
+				let traveldb = await schedule.createTravel(travel)
+				travels.push(traveldb)
+			}
+		}
+		customEvent.travels = travels
+		customEvent.save(err => {
+			if (err) { throw err }
+		})
 	}).timeout(10000); // Google Requests could take a while
 
 	it('eventIsReachable with all the checks, google included, should return false', async () => {

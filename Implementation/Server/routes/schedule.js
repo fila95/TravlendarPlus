@@ -263,20 +263,40 @@ let eventIsReachable = (from, to, opt) => {
 // Given a stram of JSON text from Google Directions API, 
 // extracts the most useful info pre db insertion
 let filterUsefulTravelInfo = (responseJSON) => {
-	let new_routes=[], new_step, new_steps, route_id=randomInt(2147483647)
+	let new_routes = [], new_step, new_steps, route = randomInt(2147483647)
 	first_route = responseJSON[0]
-		for (step_n in first_route.legs[0].steps) {
-			step = first_route.legs[0].steps[step_n]
-			new_route = {
-				route_id: route_id,
-				time: step.duration.value,
-				transport_mean: step.travel_mode,
-				waypoints: step.polyline.points
-			}
-			new_routes.push(new_route)
-		}	
-return new_routes
+	for (step_n in first_route.legs[0].steps) {
+		step = first_route.legs[0].steps[step_n]
+		if (step.travel_mode == 'TRANSIT') {
+			step.travel_mode = 'PUBLIC'
+		}
+		if (step.travel_mode == 'DRIVING') {
+			step.travel_mode = 'CAR'
+		}
+		new_route = {
+			route: route,
+			time: step.duration.value,
+			transport_mean: step.travel_mode,
+			waypoints: step.polyline.points
+		}
+		new_routes.push(new_route)
+	}
+	return new_routes
 }
+
+let createTravel = async (response) => {
+	return new Promise((resolve, reject) => {
+		db.models.travels.create(response, (err, travel) => {
+			if (err) {
+				reject(err)
+			} else {
+				resolve(travel)
+			}
+		})
+	})
+
+}
+
 
 let basicChecks = (user, event, cb) => {
 	user.getAllEventsOfCalendarFromNowOn(event.calendar_id, (err, events) => {
@@ -417,15 +437,18 @@ router.post('/', (req, res) => {
 					// without spawning thousands of async calls
 					let routes = await eventIsReachable(prev, e, { settings: req.user.settings })
 					if (routes) {
-						// TODO: insert them in the db, using:
-						// e.addTravels([travel1, travel2, travel3, ...], err => {
-						//   if(err) {throw err}
-						// })
+						let travels = []
+						for (route of routes) {
+							for (travel of route) {
+								let traveldb = await schedule.createTravel(travel)
+								travels.push(traveldb)
+							}
+						}
+						e.travels = travels
+						e.save(err => {
+							if (err) { throw err }
+						})
 					}
-
-					return e.save(err => {
-						if (err) throw err
-					})
 				}
 			}
 		})
@@ -437,8 +460,7 @@ router.post('/', (req, res) => {
 
 module.exports = {
 	router: router,
-	basicChecks: basicChecks,
-	filterUsefulTravelInfo: filterUsefulTravelInfo
+	basicChecks: basicChecks
 }
 
 if (process.env.NODE_ENV == 'testing') {
@@ -455,6 +477,7 @@ if (process.env.NODE_ENV == 'testing') {
 		distance: distance,
 		isReachablAsTheCrowFlies: isReachablAsTheCrowFlies,
 		basicChecks: basicChecks,
-		eventIsReachable: eventIsReachable
+		eventIsReachable: eventIsReachable,
+		createTravel: createTravel
 	}
 }
