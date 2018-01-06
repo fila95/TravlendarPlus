@@ -76,7 +76,10 @@ class EventComposerViewController: UIViewController {
     }
     
     func refresh() {
-        self.tableView.reloadData()
+        if self.tableView != nil {
+            self.tableView.reloadData()
+        }
+        
     }
 
     
