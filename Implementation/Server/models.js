@@ -5,12 +5,27 @@ function model(db, cb) {
 	db.defineType('coord_lat', {
 		datastoreType: function (prop) {
 			return 'NUMERIC(9,7)'
+		},
+		valueToProperty: function (value, prop) {
+			if (value instanceof Number) {
+				return value
+			} else {
+				return Number(value)
+			}
 		}
 	})
 	/* istanbul ignore next */
 	db.defineType('coord_lng', {
 		datastoreType: function (prop) {
 			return 'NUMERIC(10,7)'
+		},
+		valueToProperty: function (value, prop) {
+			console.log(value,prop)
+			if (value instanceof Number) {
+				return value
+			} else {
+				return Number(value)
+			}
 		}
 	})
 
