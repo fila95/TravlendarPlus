@@ -1,4 +1,3 @@
-const app = require('../index')
 const express = require('express')
 const notifier = require('../notifier')
 const router = express.Router()
@@ -89,6 +88,7 @@ let timeSlots = (fixedEventList, _flexibleEvent) => {
 		end_time: _flexibleEvent.end_time,
 		duration: _flexibleEvent.duration
 	}
+
 	let timeSlots = []
 
 	// Remove all the events OUT of the flexible event window, and sort the remaining events
@@ -110,6 +110,11 @@ let timeSlots = (fixedEventList, _flexibleEvent) => {
 		fixedEventListInWhichSearch.splice(0, 1)
 	}
 
+	// If there isn't still any event, the time slot is the entire flexible event
+	if (fixedEventListInWhichSearch.length == 0) {
+		return [{ start_time: flexibleEvent.start_time, end_time: flexibleEvent.end_time }]
+	}
+
 	// If the end of the flexible event is inside an existing fixed event, shift the end to the start of that event
 	let last_fixed_event = fixedEventListInWhichSearch[fixedEventListInWhichSearch.length - 1]
 	if (flexibleEvent.end_time < last_fixed_event.end_time) {
@@ -122,19 +127,30 @@ let timeSlots = (fixedEventList, _flexibleEvent) => {
 		return []
 	}
 
-	// Otherwise, search all the time slots
-	for (let i = 0; i < fixedEventListInWhichSearch.length; i++) {
-		let possibleTimeSlot = {
-			start_time: i == 0 ? flexibleEvent.start_time : fixedEventListInWhichSearch[i].end_time,
-			end_time: i == fixedEventListInWhichSearch.length - 1 ? flexibleEvent.end_time : fixedEventListInWhichSearch[i + 1].start_time
-		}
-
-		let timeSlotDuration = possibleTimeSlot.end_time - possibleTimeSlot.start_time
-		if (timeSlotDuration >= flexibleEvent.duration) {
-			timeSlots.push(possibleTimeSlot)
-		}
+	// Otherwise, search all the time slots (excluded first and last)
+	for (let i = 0; i < fixedEventListInWhichSearch.length - 1; i++) {
+		timeSlots.push(possibleTimeSlot = {
+			start_time: fixedEventListInWhichSearch[i].end_time,
+			end_time: fixedEventListInWhichSearch[i + 1].start_time
+		})
 	}
+	// Add the first and last timeSlots
+	timeSlots.push({
+		start_time: flexibleEvent.start_time,
+		end_time: fixedEventListInWhichSearch[0].start_time
+	})
+	timeSlots.push({
+		start_time: fixedEventListInWhichSearch[fixedEventListInWhichSearch.length-1].end_time,
+		end_time: flexibleEvent.end_time
+	})
 
+	// Remove the time slot if it is too short
+	for (let i = 0; i < timeSlots.length; i++) {
+		let timeSlotDuration = timeSlots[i].end_time - timeSlots[i].start_time
+		if (timeSlots[i].end_time<timeSlots[i].startTime || timeSlotDuration < flexibleEvent.duration) {
+			timeSlots.splice(i, 1)
+		}			
+	}
 	return timeSlots
 }
 
@@ -265,29 +281,29 @@ let eventIsReachable = (from, to, opt) => {
 // Given a stram of JSON text from Google Directions API, 
 // extracts the most useful info pre db insertion
 let filterUsefulTravelInfo = (directionJSON) => {
-	let new_route,new_routes=[],new_step,new_steps,i=0
+	let new_route, new_routes = [], new_step, new_steps, i = 0
 	for (transport_mean_n in directionJSON) {
 		transport_mean = directionJSON[transport_mean_n].transport
 		first_route = directionJSON[transport_mean_n].response[0]
-		
-		new_steps=[]
+
+		new_steps = []
 		for (step_n in first_route.legs[0].steps) {
-			step=first_route.legs[0].steps[step_n]
+			step = first_route.legs[0].steps[step_n]
 			new_step = {
 				duration: step.duration.value,
 				transport_mean: step.travel_mode,
 				waypoints: step.polyline.points
-			}	
-			new_steps.push(new_step)		
+			}
+			new_steps.push(new_step)
 		}
 
 		new_route = {
 			route_id: i,
-			steps:new_steps
+			steps: new_steps
 		}
 		new_routes.push(new_route)
-		
-		
+
+
 		i++
 	}
 	return new_routes
@@ -296,7 +312,6 @@ let filterUsefulTravelInfo = (directionJSON) => {
 let basicChecks = (user, event, cb) => {
 	user.getAllEventsOfCalendarFromNowOn(event.calendar_id, (err, events) => {
 		let fixedEvents = events.filter((e) => { return !e.duration })
-		let flexibleEvents = events.filter((e) => { return e.duration })
 
 		// Check for overlapping fixed events
 		let overlapping = overlap(event, fixedEvents)
@@ -350,72 +365,74 @@ router.get('/', (req, res) => {
 	})
 })
 
+let isScheduling = {}
 router.post('/', (req, res) => {
 	// For each calendar
-	req.user.getCalendars().each((err, calendar) => {
-		// Get all the events of the current calendar
-		req.user.getAllEventsOfCalendarFromNowOn(calendar.id, async (err, events) => {
-			let fixedEvents = events.filter((e) => { return !e.duration })
-			let flexibleEvents = events.filter((e) => { return e.duration })
+	let calendars = req.user.getCalendars()
+	calendars.count((err, n) => {
+		if (n == 0) {
+			return res.status(202).end()
+		}
+		calendars.each((calendar) => {
+			// Get all the events of the current calendar
+			req.user.getAllEventsOfCalendarFromNowOn(calendar.id, async (err, events) => {
+				if (events.length == 0) {
+					return res.status(202).end()
+				}
 
-			// Check for overlapping fixed events
-			let overlapping = overlap(fixedEvents)
-			if (overlapping) return res.status(400).end('overlapping: ' + overlapping)
+				let fixedEvents = events.filter((e) => { return !e.duration })
+				let flexibleEvents = events.filter((e) => { return e.duration })
 
-			// Calculate timeSlot for each flexible event and sort them with the fitness function
-			for (let e of flexibleEvents) {
-				e.timeSlots = timeSlots(fixedEvents, e)
-				if (e.timeSlots.length == 0) return res.status(400).end('timeslot length is 0 for event: ' + e.id)
-			}
-
-			// From now on, the real scheduler is going on, so we suddenly return a
-			// 202 - Accepted status code, and the scheduler will notify the user
-			// when the results are ready
-			res.status(202).end()
-
-			// Assign a scheduler id to this task.
-			// Whenever a new schedule start for the same user, this
-			// schedule task will be aborted
-			let scheduler_id = Math.random().toString().split(".")[1]
-			isScheduling = app.get('isScheduling')
-			if (!isScheduling) {
-				isScheduling = {}
-				app.set('isScheduling', isScheduling)
-			}
-			isScheduling[req.user.id] = scheduler_id
-
-			let sortedFlexibleEvents = sortWithFitness(flexibleEvents)
-
-			// Try to fit each flexible event from the less fittable to the most one
-			for (let e of sortedFlexibleEvents) {
-				// Sort time slot from the smallest to the biggest
-				e.timeSlots = e.timeSlots.sort((a, b) => {
-					return (a.end_time - a.start_time) - (b.end_time - b.start_time)
-				})
-
-				// Try to fit in each time slot
-				for (let timeSlot of e.timeSlots) {
-					// A new scheduler is started with a different id, abort this
-					if (isScheduling[req.user.id] != scheduler_id) {
-						return
+				// Calculate timeSlot for each flexible event and sort them with the fitness function
+				for (let e of flexibleEvents) {
+					e.timeSlots = timeSlots(fixedEvents, e)
+					if (e.timeSlots.length == 0) {
+						return res.status(400).end('timeslot length is 0 for event: ' + e.id)
 					}
+				}
 
-					// Supposing that the event will be placed in this time slot,
-					// determine if the event e is reachable
-					let prev = getEventPreviousTo(events, timeSlot.start_time)
-					let loc = getReliableUserLocation(req.user, prev)
+				// From now on, the real scheduler is going on, so we suddenly return a
+				// 202 - Accepted status code, and the scheduler will notify the user
+				// when the results are ready
+				res.status(202).end()
 
-					if (prev == null) {
-						// If the previous event is not defined, check the user location
-						if (!loc) {
-							// If we don't know the user location, insert the event anyway
+				// Assign a scheduler id to this task.
+				// Whenever a new schedule start for the same user, this
+				// schedule task will be aborted
+				let scheduler_id = Math.random().toString().split(".")[1]
+				isScheduling[req.user.id] = scheduler_id
+
+				let sortedFlexibleEvents = sortWithFitness(flexibleEvents)
+
+				// Try to fit each flexible event from the less fittable to the most one
+				for (let e of sortedFlexibleEvents) {
+					// Sort time slot from the smallest to the biggest
+					e.timeSlots = e.timeSlots.sort((a, b) => {
+						return (a.end_time - a.start_time) - (b.end_time - b.start_time)
+					})
+
+					// Try to fit in each time slot
+					for (let timeSlot of e.timeSlots) {
+						// A new scheduler is started with a different id, abort this
+						if (isScheduling[req.user.id] != scheduler_id) {
+							return
+						}
+
+						// Supposing that the event will be placed in this time slot,
+						// determine if the event e is reachable
+						let prev = getEventPreviousTo(events, timeSlot.start_time)
+						let loc = getReliableUserLocation(req.user, prev)
+
+						if (!prev && !loc) {
+							// If both the previous event and the user location are not defined, insert the event anyway
 							e.suggested_start_time = new Date(timeSlot.start_time)
 							e.suggested_end_time = new Date(e.suggested_start_time + e.duration)
 							return e.save(err => {
 								if (err) throw err
 							})
-						} else if (req.user.updated_at > prev.end_time) {
-							// If the last real user position is closer to the end of the previouus event,
+						} else if ((!prev && loc) || (prev && loc && req.user.updated_at > prev.end_time)) {
+							// If the previous event is known, but the last real user position is
+							// closer to the end of the previouus event,
 							// use that instead of the previous event position
 							// Create a fake event that will be used in asking if reachable
 							prev = {
@@ -425,24 +442,25 @@ router.post('/', (req, res) => {
 								lng: loc.lng
 							}
 						}
-						// implicit else: use the previous event position
-					}
-					// Ask if reachable with await
-					// Using async/await, we can loop over an asynchronous function
-					// without spawning thousands of async calls
-					let routes = await eventIsReachable(prev, e, { settings: req.user.settings })
-					if (routes) {
-						// TODO: insert them in the db, using:
-						// e.addTravels([travel1, travel2, travel3, ...], err => {
-						//   if(err) {throw err}
-						// })
-					}
+						// implicit else: use the previous event
 
-					return e.save(err => {
-						if (err) throw err
-					})
+						// Ask if reachable with await
+						// Using async/await, we can loop over an asynchronous function
+						// without spawning thousands of async calls
+						let routes = await eventIsReachable(prev, e, { settings: req.user.settings })
+						if (routes) {
+							// TODO: insert them in the db, using:
+							// e.addTravels([travel1, travel2, travel3, ...], err => {
+							//   if(err) {throw err}
+							// })
+						}
+
+						return e.save(err => {
+							if (err) throw err
+						})
+					}
 				}
-			}
+			})
 		})
 	})
 
