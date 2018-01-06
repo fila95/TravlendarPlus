@@ -1,10 +1,10 @@
+const app = require('../index')
 const express = require('express')
+const notifier = require('../notifier')
 const router = express.Router()
 
 const token = process.env.GOOGLE_MAPS_TOKEN
 const googleMapsClient = require('@google/maps').createClient({ key: token });
-
-let isUserScheduling = {}
 
 // Suppose that timeSlots are sorted and not overlapping
 // Return the time in milliseconds for the given timeSlots
@@ -306,15 +306,11 @@ let getReliableUserLocation = (user, event) => {
 	return { lat: user.last_known_position_lat, lng: user.last_known_position_lng }
 }
 
-
-//Travels 
-let travels
-
 router.get('/', (req, res) => {
 	// For each calendar
 	req.user.getCalendars().each((err, calendar) => {
-		// Get all the events of today from the current calendar
-		calendar.getEventsOfToday(async (err, events) => {
+		// Get all the events of the current calendar
+		req.user.getAllEventsOfCalendarFromNowOn(calendar.id, async (err, events) => {
 			let fixedEvents = events.filter((e) => { return !e.duration })
 			let flexibleEvents = events.filter((e) => { return e.duration })
 
@@ -327,6 +323,23 @@ router.get('/', (req, res) => {
 				e.timeSlots = timeSlots(fixedEvents, e)
 				if (e.timeSlots.length == 0) return res.status(400).end('timeslot length is 0 for event: ' + e.id)
 			}
+
+			// From now on, the real scheduler is going on, so we suddenly return a
+			// 202 - Accepted status code, and the scheduler will notify the user
+			// when the results are ready
+			res.status(202).end()
+
+			// Assign a scheduler id to this task.
+			// Whenever a new schedule start for the same user, this
+			// schedule task will be aborted
+			let scheduler_id = Math.random().toString().split(".")[1]
+			isScheduling = app.get('isScheduling')
+			if(!isScheduling) {
+				isScheduling = {}
+				app.set('isScheduling', isScheduling)
+			}
+			isScheduling[req.user.id] = scheduler_id
+
 			let sortedFlexibleEvents = sortWithFitness(flexibleEvents)
 
 			// Try to fit each flexible event from the less fittable to the most one
@@ -338,8 +351,9 @@ router.get('/', (req, res) => {
 
 				// Try to fit in each time slot
 				for (let timeSlot of e.timeSlots) {
-					if (isUserScheduling[req.user.id]) {
-
+					// A new scheduler is started with a different id, abort this
+					if (isScheduling[req.user.id] != scheduler_id) {
+						return
 					}
 
 					// Supposing that the event will be placed in this time slot,
@@ -372,11 +386,14 @@ router.get('/', (req, res) => {
 					// Ask if reachable with await
 					// Using async/await, we can loop over an asynchronous function
 					// without spawning thousands of async calls
-					let result = await eventIsReachable(prev, e, { settings: req.user.settings })
-					if (result) {
-
+					let routes = await eventIsReachable(prev, e, { settings: req.user.settings })
+					if (routes) {
+						// TODO: insert them in the db, using:
+						// e.addTravels([travel1, travel2, travel3, ...], err => {
+					    //   if(err) {throw err}
+						// })
 					}
-					// TODO use result
+					
 					return e.save(err => {
 						if (err) throw err
 					})
@@ -384,6 +401,9 @@ router.get('/', (req, res) => {
 			}
 		})
 	})
+
+	// Finish scheduler for all the events of all the calendars
+	// notifier.sendNotification(text, user)
 })
 
 module.exports = {
