@@ -6,11 +6,8 @@ const token = process.env.GOOGLE_MAPS_TOKEN
 const googleMapsClient = require('@google/maps').createClient({ key: token });
 
 // Return a list of User's Events
-// Parameters: from and to are two Dates that allow a paging for this endpoint
-// Returns: a list of events, from the Date from, to the Date to
+// Returns: a list of events
 router.get('/', (req, res) => {
-	let calendars = {}
-
 	req.user.getCalendars((err, calendars) => {
 		let calendar_ids = []
 		for (calendar of calendars) {
