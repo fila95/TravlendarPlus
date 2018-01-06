@@ -8,7 +8,7 @@ if (!token) {
 	console.error("WARNING: GOOGLE_MAPS_TOKEN not defined, check your .env file")
 	console.error("------------------------------------------------------------")
 }
-const googleMapsClient = require('@google/maps').createClient({ key: token });
+const googleMapsClient = require('@google/maps').createClient({ key: token, Promise: Promise });
 
 let isUserScheduling = {}
 
@@ -185,7 +185,7 @@ let eventIsReachable = (from, to, opt) => {
 	// timeSlotDuration - flexible event duration
 	let availableTime = (to.end_time.getTime() - to.start_time.getTime() - to.duration) / 1000
 
-	return new Promise((resolve, reject) => {
+	return new Promise(async (resolve, reject) => {
 		// Step 1: As the Crow Flies
 		let dist = distance(from, to)
 		let step1 = isReachablAsTheCrowFlies(dist, availableTime)
@@ -199,53 +199,56 @@ let eventIsReachable = (from, to, opt) => {
 		}
 
 		// Step 2: Google Maps Directions API
-		//let parsed_transport = to.parseTransports(dist, opt.settings)
-		let parsed_transport = ["walking", "bicycling", "transit", "driving"]
-		let query, responses = new Object();
-		console.log("Parsed: "+parsed_transport)
-		for (transport in parsed_transport) {
-			transport_mode=parsed_transport[transport]
-			query = {
-				origin: from,
-				destination: to,
-				alternatives: true
-			}
-			//console.log("qaq")
-			googleMapsClient.directions(query, (err, response) => {
-				if(err) {
-					throw err
-				}
-				//console.log("qui")
-				let durations = []
-				for (let route of response.json.routes) {
-					let duration = 0
-					for (let leg of route.legs) {
-						duration += leg.duration.value
-					}
-					durations.push(duration)
-				}
-
-				//console.log("Respo: "+durations)
-
-				// IN-TODO tenere conto delle ripetizioni
-
-				let googlePreferredDuration = durations[0]
-
-				if (googlePreferredDuration <= availableTime) {
-					// Try to use the google preferred route
-					to.suggested_start_time = new Date(to.start_time + googlePreferredDuration * 1000)
-					to.suggested_end_time = new Date(to.suggested_start_time + to.duration)
-					responses[transport_mode]=response.json.routes
-				} else {
-					// No route with less time travel than timeNeeded
-					responses[transport_mode]=false
-
-				}
-				
-			})
+		let parsed_transport = to.parseTransports(dist, opt.settings)
+		//let parsed_transport = ["walking", "bicycling", "driving", "transit"]
+		console.log(parsed_transport)
+		let responses = []
+		let query = {
+			origin: from,
+			destination: to,
+			alternatives: true
 		}
-		resolve(responses)
-		
+
+		for (transport in parsed_transport) {
+			
+			let transport_mode = parsed_transport[transport]
+			
+			query.mode = transport_mode
+			if (query.mode == 'bicycling') {
+				query.mode = 'walking'
+			}
+			let response = await googleMapsClient.directions(query).asPromise()
+
+			let durations = []
+			for (let route of response.json.routes) {
+				let duration = 0
+				for (let leg of route.legs) {
+					duration += leg.duration.value
+				}
+				durations.push(duration)
+			}
+
+			// TODO tenere conto delle ripetizioni
+
+
+			let googlePreferredDuration = durations[0]
+			if (googlePreferredDuration <= availableTime) {
+				// Try to use the google preferred route
+				to.suggested_start_time = new Date(to.start_time + googlePreferredDuration * 1000)
+				to.suggested_end_time = new Date(to.suggested_start_time + to.duration)
+				responses.push({
+					transport: transport_mode,
+					response: response.json.routes
+				})
+				
+			}
+		}
+
+		if (responses.length == 0) {
+			resolve(false)
+		} else {
+			resolve(responses)
+		}
 	})
 }
 // Given a stram of JSON text from Google Directions API, 

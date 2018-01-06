@@ -142,12 +142,12 @@ function model(db, cb) {
 					sTransports = sTransports.filter((transport, index) => mask[index])
 
 					//Checking walking distance
-					if (sTransports.indexOf('walking') != -1 && distance*1000 > settings.max_walking_distance) {
+					if (sTransports.indexOf('walking') != -1 && distance * 1000 > settings.max_walking_distance) {
 						sTransports.splice(sTransports.indexOf('walking'), 1)
 					}
 
 					//Checking bicycling distance
-					if (sTransports.indexOf('bicycling') != -1 && distance*1000 > settings.max_biking_distance) {
+					if (sTransports.indexOf('bicycling') != -1 && distance * 1000 > settings.max_biking_distance) {
 						sTransports.splice(sTransports.indexOf('bicycling'), 1)
 					}
 
@@ -157,7 +157,7 @@ function model(db, cb) {
 					}
 					//Checking if the time allows to use transits
 					if (sTransports.indexOf('transit') != -1) {
-						min_start_event = this.start_time.getHours()*60 + this.start_time.getMinutes()						
+						min_start_event = this.start_time.getHours() * 60 + this.start_time.getMinutes()
 						min_start_transit = parseInt(settings.start_public_transportation.split(':')[0]) * 60 + parseInt(settings.start_public_transportation.split(':')[1])
 						min_end_transit = parseInt(settings.end_public_transportation.split(':')[0]) * 60 + parseInt(settings.end_public_transportation.split(':')[1])
 						if (min_start_event > min_end_transit || min_start_event < min_start_transit) {
