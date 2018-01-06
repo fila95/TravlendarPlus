@@ -244,7 +244,6 @@ describe('Schedule private functions', () => {
 	it('should parse the transports of a custum event to ["walking", "driving"]', () => {
 		let p1 = { lat: 45.464250, lng: 9.190200 }
 		let parse = customEvent.parseTransports(schedule.distance(p1, customEvent), user.settings)
-		//["walking", "bicycling", "transit", "driving"]
 		if(parse.length!=2 || parse.indexOf('walking')==-1 || parse.indexOf('driving')==-1 ){
 			throw Error('The transports parsing is undefined or doesn\'t contains walking and driving: '+ customEvent.transports+ ': '+parse)
 		}
@@ -252,7 +251,7 @@ describe('Schedule private functions', () => {
 
 	it('should parse the transports of a custum event to ["driving"], since transits are not available at that time', () => {
 		let p1 = { lat: 45.464250, lng: 9.190200 }
-		customEvent.transports="B0011"
+		customEvent.transports="B00101"
 		user.settings.start_public_transportation="10:00:00"
 		customEvent.start_time=new Date(2017, 11, 4, 2, 0)
 		
@@ -263,7 +262,7 @@ describe('Schedule private functions', () => {
 	})
 	it('should parse the transports of a custum event to ["transit", "driving"], since the events are too far to each by other means', () => {
 		let p1 = { lat: 45.464250, lng: 8.190200 }
-		customEvent.transports="B1111"
+		customEvent.transports="B11111"
 		user.settings.start_public_transportation="10:00:00"
 		user.settings.end_public_transportation="17:00:00"
 		customEvent.start_time=new Date(2017, 11, 4, 11, 0)
@@ -322,17 +321,28 @@ describe('Schedule private functions', () => {
 
 	it('eventIsReachable with all the checks, google included, should return an array of routes', async () => {
 		let p1 = { lat: 45.478336, lng: 9.228263 }
-
-		let res = await schedule.eventIsReachable(p1, customEvent, { settings: user.settings })
+		//customEvent.lat = 45.464257
+		//customEvent.lng = 9.190209
+		p2 = {
+			lat: 45.464257,
+			lng: 9.190209,
+			start_time: new Date(2017, 11, 12, 8, 0),
+			end_time: new Date(2017, 11, 12, 9, 40),
+			duration: 1000 * 60 * 60
+		}
+		let res = await schedule.eventIsReachable(p1, p2, { settings: user.settings })
 		// Google routes have all the copyrights field
 		for (response in res){
+
 			transport_response=res[response]
+			
 			if (!transport_response.copyrights) {
 				throw new Error('No google route returned')
 			}
+			
 		}
 
-		//console.log(JSON.stringify(response))
+		
 		//for (r in res){
 			//console.log(res[r]['overview_polyline'])
 			//console.log(res[r]['legs'])

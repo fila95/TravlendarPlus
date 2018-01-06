@@ -125,18 +125,18 @@ function model(db, cb) {
 		end_time: { type: 'date', required: true, time: true },
 		duration: { type: 'integer' },
 		repetitions: { type: 'bit', size: 7, defaultValue: '0000000' },
-		transports: { type: 'bit', size: 4, defaultValue: '1111' },
+		transports: { type: 'bit', size: 5, defaultValue: '11111' },
 		suggested_start_time: { type: 'date', time: true },
 		suggested_end_time: { type: 'date', time: true }
 	}, {
 			methods: {
-				// Parsing the transports from binary encoding. Example: 1100 -> ["walking","bicycling"]
+				// Parsing the transports from binary encoding. Example: 11000 -> ["walking","bicycling"]
 				// Given a list of already parsed transpors (list of strings of transports), it returns 
 				// the same list of strings without means of transportation that the user 
 				// can't travel with, depending on settings and time
 				parseTransports: function (distance, settings) {
 
-					let sTransports = ["walking", "bicycling", "transit", "driving"]
+					let sTransports = ["walking", "bicycling", "transit", "sharing", "driving"]
 					let transports = this.transports.slice(1, sTransports.length + 1)
 					let mask = transports.split('').map(transport => transport == 1)
 					sTransports = sTransports.filter((transport, index) => mask[index])
@@ -151,6 +151,10 @@ function model(db, cb) {
 						sTransports.splice(sTransports.indexOf('bicycling'), 1)
 					}
 
+					// Dropping the sharing (forseen at version 2 of the app)
+					if (sTransports.indexOf('sharing') != -1) {
+						sTransports.splice(sTransports.indexOf('sharing'), 1)
+					}
 					//Checking if the time allows to use transits
 					if (sTransports.indexOf('transit') != -1) {
 						min_start_event = this.start_time.getHours()*60 + this.start_time.getMinutes()						
