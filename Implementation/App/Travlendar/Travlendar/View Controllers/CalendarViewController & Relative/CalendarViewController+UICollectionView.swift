@@ -61,6 +61,7 @@ extension CalendarViewController: UICollectionViewDelegate, UICollectionViewData
         collectionView.deselectItem(at: indexPath, animated: true)
         
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "eventDetailVC") as! EventDetailsViewController
+        vc.event = self.events![indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
