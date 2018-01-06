@@ -330,7 +330,7 @@ describe('Schedule private functions', () => {
 		let responses = await schedule.eventIsReachable(p1, customEvent, { settings: user.settings })
 
 		// Google routes have all the copyrights field
-		
+
 		for (response_n in responses) {
 			response = responses[response_n].response
 			for (route_n in response) {
@@ -347,7 +347,7 @@ describe('Schedule private functions', () => {
 		//}
 
 	}).timeout(10000); // Google Requests could take a while
-	
+
 	it('eventIsReachable with all the checks, google included, should return false', async () => {
 		let p1 = { lat: 45.478336, lng: 9.228263 }
 		customEvent.lat = 45.464257
@@ -363,11 +363,11 @@ describe('Schedule private functions', () => {
 		}
 
 	}).timeout(10000); // Google Requests could take a while
-	
+
 	it('basicChecks without any params', (done) => {
 		let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: 45, lng: 9 }
 
-		schedule.basicChecks(user, e, (data) => {
+		schedule.basicChecks(user, e, (err, data) => {
 			if (data != true) {
 				throw new Error('Basic checks failed')
 			}
@@ -380,9 +380,9 @@ describe('Schedule private functions', () => {
 		user.last_known_position_lng = 9
 		user.updated_at = new Date(2017, 11, 12, 5, 59)
 
-		let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), duration: 4 * 60 * 60 * 1000, lat: 45, lng: 9 }
+		let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), duration: 4 * 60 * 60 * 1000, lat: 45, lng: 9, calendar_id: customEvent.calendar_id }
 
-		schedule.basicChecks(user, e, (data) => {
+		schedule.basicChecks(user, e, (err, data) => {
 			done(data != true ? new Error('Basic checks failed') : null)
 		})
 	})
@@ -392,9 +392,9 @@ describe('Schedule private functions', () => {
 		user.last_known_position_lng = 9
 		user.updated_at = new Date(2017, 11, 12, 5, 59)
 
-		let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: 45, lng: 9 }
+		let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: 45, lng: 9, calendar_id: customEvent.calendar_id }
 
-		schedule.basicChecks(user, e, (data) => {
+		schedule.basicChecks(user, e, (err, data) => {
 			done(data == true ? new Error('Basic checks failed') : null)
 		})
 	})
@@ -402,7 +402,7 @@ describe('Schedule private functions', () => {
 	it('basicChecks with previous event should return true', (done) => {
 		let e = { id: 1, start_time: new Date(2017, 11, 12, 15, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: customEvent.lat + 0.1, lng: customEvent.lng + 0.1 }
 
-		schedule.basicChecks(user, e, (data) => {
+		schedule.basicChecks(user, e, (err, data) => {
 			done(data != true ? new Error('Basic checks failed') : null)
 		})
 	})

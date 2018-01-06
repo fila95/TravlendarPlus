@@ -26,7 +26,7 @@ class DateTableViewCell: UITableViewCell {
     }
     
     func setDate(date: Date) {
-        self.dateLabel.text = Formatter.readableDate.string(from: date)
+        self.dateLabel.text = Formatter.readableDateTime.string(from: date)
     }
     
     func setDuration(duration: Int) {

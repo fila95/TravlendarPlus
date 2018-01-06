@@ -94,11 +94,11 @@ public class Settings: NSObject, Codable {
 
 class Travel: Object {
     
-    @objc dynamic var id = 0
+    @objc dynamic var id: Int = 0
     @objc dynamic var event_id: Int = 0
     
-    @objc dynamic var route = 0
-    @objc dynamic var time = 0
+    @objc dynamic var route: Int = 0
+    @objc dynamic var time: Int = 0
     @objc private dynamic var transport_mean_private = TransportMean.walking.rawValue
     var transport_mean: TransportMean {
         get { return TransportMean(rawValue: transport_mean_private)! }
@@ -116,14 +116,14 @@ class Travel: Object {
 
 public class Event: Object, Codable {
     
-    @objc dynamic var id = -1
+    @objc dynamic var id = 0
     @objc dynamic var calendar_id = -1
     
     @objc dynamic var title = ""
     @objc dynamic var address = ""
     
-    @objc dynamic var lat: String = "1"
-    @objc dynamic var lng: String = "1"
+    @objc dynamic var lat: Double = 1
+    @objc dynamic var lng: Double = 1
     
     @objc dynamic var start_time: Date = Date()
     @objc dynamic var end_time: Date = Date().addingTimeInterval(3600)
@@ -197,8 +197,8 @@ public class Event: Object, Codable {
         self.title = try container.decode(String.self, forKey: .title)
         self.address = try container.decode(String.self, forKey: .address)
         
-        self.lat = try container.decode(String.self, forKey: .lat)
-        self.lng = try container.decode(String.self, forKey: .lng)
+        self.lat = try container.decodeIfPresent(Double.self, forKey: .lat) ?? 1
+        self.lng = try container.decodeIfPresent(Double.self, forKey: .lng) ?? 1
         
         self.start_time = try container.decode(Date.self, forKey: .start_time)
         self.end_time = try container.decode(Date.self, forKey: .end_time)
@@ -241,7 +241,7 @@ public class Event: Object, Codable {
 public class Calendars: Object, Codable {
     
     @objc dynamic var id: Int = 0
-    @objc dynamic var name = ""
+    @objc dynamic var name: String = ""
     @objc dynamic var color: String = ""
     
     override public static func primaryKey() -> String? {

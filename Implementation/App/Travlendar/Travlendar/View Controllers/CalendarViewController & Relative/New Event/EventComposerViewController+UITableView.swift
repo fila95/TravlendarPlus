@@ -277,7 +277,7 @@ extension EventComposerViewController {
             return
         }
         
-        print(currentEvent)
+//        print(currentEvent)
         
         
         if self.creatingNew {

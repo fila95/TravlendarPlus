@@ -39,7 +39,7 @@ extension CalendarViewController: UICollectionViewDelegate, UICollectionViewData
                 cell.setEvent(event: events![indexPath.row])
             }
             else {
-                cell.setEvent(event: events![indexPath.row-1])
+                cell.setEvent(event: events![indexPath.row])
             }
         }
         else {
@@ -60,7 +60,9 @@ extension CalendarViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         
-        
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "eventDetailVC") as! EventDetailsViewController
+        vc.event = self.events![indexPath.row]
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

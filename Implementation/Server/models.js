@@ -5,12 +5,27 @@ function model(db, cb) {
 	db.defineType('coord_lat', {
 		datastoreType: function (prop) {
 			return 'NUMERIC(9,7)'
+		},
+		valueToProperty: function (value, prop) {
+			if (value instanceof Number) {
+				return value
+			} else {
+				return Number(value)
+			}
 		}
 	})
 	/* istanbul ignore next */
 	db.defineType('coord_lng', {
 		datastoreType: function (prop) {
 			return 'NUMERIC(10,7)'
+		},
+		valueToProperty: function (value, prop) {
+			console.log(value,prop)
+			if (value instanceof Number) {
+				return value
+			} else {
+				return Number(value)
+			}
 		}
 	})
 
@@ -67,6 +82,9 @@ function model(db, cb) {
 			methods: {
 				findPreviousEventTo: (event, cb) => {
 					Event.find({ calendar_id: event.calendar_id, end_time: orm.lte(event.start_time) }, {}, 1, 'end_time', cb)
+				},
+				getAllEventsOfCalendarFromNowOn: (calendar_id, cb) => {
+					Event.find({ calendar_id: calendar_id, start_time: orm.gte(new Date()) }, cb)
 				}
 			}
 		})
