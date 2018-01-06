@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const polyline = require('polyline')
 
 const token = process.env.GOOGLE_MAPS_TOKEN
 /* istanbul ignore if */
@@ -197,42 +196,46 @@ let eventIsReachable = (from, to, opt) => {
 		}
 
 		// Step 2: Google Maps Directions API
-		// TODO: edit query in order to align to user's settings and event preferences
-		let query = {
-			origin: from,
-			destination: to,
-			alternatives: true
-		}
-		googleMapsClient.directions(query, (err, response) => {
-			let durations = []
-			for (let route of response.json.routes) {
-				let duration = 0
-				for (let leg of route.legs) {
-					duration += leg.duration.value
+		let parsed_transport = to.parseTransports(dist, opt.settings)
+		let query, responses = new Object();
+		for (transport_mode in parsed_transport) {
+			transport_mode=parsed_transport[transport_mode]
+			query = {
+				origin: from,
+				destination: to,
+				alternatives: true,
+				mode: transport_mode
+			}
+			googleMapsClient.directions(query, (err, response) => {
+				let durations = []
+				for (let route of response.json.routes) {
+					let duration = 0
+					for (let leg of route.legs) {
+						duration += leg.duration.value
+					}
+					durations.push(duration)
 				}
-				durations.push(duration)
-			}
-
-			//parsed_transport = to.parseTransports(dist, opt.settings)
-
-			// IN-TODO tenere conto delle ripetizioni
 
 
-			// TODO usare le preferenze dell'utente (max walking distance e biking distance + parse tarnsits)
-			// req.user.settings
+				// IN-TODO tenere conto delle ripetizioni
 
-			let googlePreferredDuration = durations[0]
+				let googlePreferredDuration = durations[0]
 
-			if (googlePreferredDuration <= availableTime) {
-				// Try to use the google preferred route
-				to.suggested_start_time = new Date(to.start_time + googlePreferredDuration * 1000)
-				to.suggested_end_time = new Date(to.suggested_start_time + to.duration)
-				resolve(response.json.routes)
-			} else {
-				// No route with less time travel than timeNeeded
-				resolve(false)
-			}
-		})
+				if (googlePreferredDuration <= availableTime) {
+					// Try to use the google preferred route
+					to.suggested_start_time = new Date(to.start_time + googlePreferredDuration * 1000)
+					to.suggested_end_time = new Date(to.suggested_start_time + to.duration)
+					//resolve(response.json.routes)
+					responses[transport_mode]=response.json.routes
+				} else {
+					// No route with less time travel than timeNeeded
+					//resolve(false)
+					responses[transport_mode]=false
+
+				}
+			})
+		}
+		resolve(responses)
 	})
 }
 

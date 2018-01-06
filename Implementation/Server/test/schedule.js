@@ -320,39 +320,38 @@ describe('Schedule private functions', () => {
 		}
 	})
 
-	it('eventIsReachable with all the checks, google included, should return a route', async () => {
+	it('eventIsReachable with all the checks, google included, should return an array of routes', async () => {
 		let p1 = { lat: 45.478336, lng: 9.228263 }
-		let p2 = {
-			lat: 45.464257,
-			lng: 9.190209,
-			start_time: new Date(2017, 11, 12, 8, 0),
-			end_time: new Date(2017, 11, 12, 9, 40),
-			duration: 1000 * 60 * 60
+
+		let res = await schedule.eventIsReachable(p1, customEvent, { settings: user.settings })
+		// Google routes have all the copyrights field
+		for (response in res){
+			transport_response=res[response]
+			if (!transport_response.copyrights) {
+				throw new Error('No google route returned')
+			}
 		}
 
-		let res = await schedule.eventIsReachable(p1, p2)
-		// Google routes have all the copyrights field
-		if (!res[0].copyrights) {
-			throw new Error('No google route returned')
-		}
+		//console.log(JSON.stringify(response))
+		//for (r in res){
+			//console.log(res[r]['overview_polyline'])
+			//console.log(res[r]['legs'])
+		//}
+		
 	}).timeout(10000); // Google Requests could take a while
 
 	it('eventIsReachable with all the checks, google included, should return false', async () => {
 		let p1 = { lat: 45.478336, lng: 9.228263 }
-		let p2 = {
-			lat: 45.464257,
-			lng: 9.190209,
-			start_time: new Date(2017, 11, 12, 8, 0),
-			end_time: new Date(2017, 11, 12, 9, 20),
-			duration: 1000 * 60 * 60
+		
+		let res = await schedule.eventIsReachable(p1, customEvent, { settings: user.settings })
+		for (response in res){
+			transport_response=res[response]
+			// Google routes have all the copyrights field
+			if (transport_response != false) {
+				throw new Error('Google route returned, but noone expected')
+			}
 		}
-
-		let res = await schedule.eventIsReachable(p1, p2)
-		// Google routes have all the copyrights field
-		if (res != false) {
-			throw new Error('Google route returned, but noone expected')
-		}
-
+		
 	}).timeout(10000); // Google Requests could take a while
 
 	it('basicChecks without any params', (done) => {
@@ -406,6 +405,15 @@ describe('Schedule private functions', () => {
 		})
 	})
 	
+	/*it('should return a string of waypoints to inset into DB', () => {
+		let p1 = { lat: 45.464250, lng: 8.190200 }
+		customEvent.start_time=new Date(2017, 11, 4, 11, 0)
+		let parse = customEvent.parseTransports(schedule.distance(p1, customEvent), user.settings)
+		if(parse.length!=2 || parse.indexOf('transit')==-1 || parse.indexOf('driving')==-1){
+			throw Error('The transports parsing is undefined or events are actually reachable by walk/bike: '+ customEvent.transports+ ': '+parse)
+		}
+	})*/
+
 	/*
 	describe('GET /', () => {
 		it('Should call the scheduler', async (done) => {
