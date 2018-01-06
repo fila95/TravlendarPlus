@@ -373,152 +373,152 @@ describe('Schedule', () => {
 			if (data != true) {
 				throw new Error('Basic checks failed')
 			}
-		}).timeout(10000); // Google Requests could take a while
-
-
-		it('basicChecks without any params', (done) => {
-			let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: 45, lng: 9 }
-
-			schedule.basicChecks(user, e, (err, data) => {
-				if (data != true) {
-					throw new Error('Basic checks failed')
-				}
-				done()
-			})
 		})
+	}).timeout(10000); // Google Requests could take a while
 
-		it('basicChecks with user location should retuurn true', (done) => {
-			user.last_known_position_lat = 45
-			user.last_known_position_lng = 9
-			user.updated_at = new Date(2017, 11, 12, 5, 59)
+	it('basicChecks without any params', (done) => {
+		let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: 45, lng: 9 }
 
-			let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), duration: 4 * 60 * 60 * 1000, lat: 45, lng: 9, calendar_id: customEvent.calendar_id }
-
-			schedule.basicChecks(user, e, (err, data) => {
-				done(data != true ? new Error('Basic checks failed') : null)
-			})
-		})
-
-		it('basicChecks with user location should return false', (done) => {
-			user.last_known_position_lat = 40
-			user.last_known_position_lng = 9
-			user.updated_at = new Date(2017, 11, 12, 5, 59)
-
-			let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: 45, lng: 9, calendar_id: customEvent.calendar_id }
-
-			schedule.basicChecks(user, e, (err, data) => {
-				done(data == true ? new Error('Basic checks failed') : null)
-			})
-		})
-
-		it('basicChecks with previous event should return true', (done) => {
-			let e = { id: 1, start_time: new Date(2017, 11, 12, 15, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: customEvent.lat + 0.1, lng: customEvent.lng + 0.1 }
-
-			schedule.basicChecks(user, e, (err, data) => {
-				done(data != true ? new Error('Basic checks failed') : null)
-			})
-		})
-
-		it('basicChecks with previous event should return false', (done) => {
-			let e = { id: 1, start_time: new Date(2017, 11, 12, 13, 22), end_time: new Date(2017, 11, 13, 4, 30), lat: 45, lng: 9, calendar_id: customEvent.calendar_id }
-
-			schedule.basicChecks(user, e, (data) => {
-				done(data == true ? new Error('Basic checks failed') : null)
-			})
-		})
-
-		/*it('should return a string of waypoints to inset into DB', () => {
-			let p1 = { lat: 45.464250, lng: 8.190200 }
-			customEvent.start_time=new Date(2017, 11, 4, 11, 0)
-			let parse = customEvent.parseTransports(schedule.distance(p1, customEvent), user.settings)
-			if(parse.length!=2 || parse.indexOf('transit')==-1 || parse.indexOf('driving')==-1){
-				throw Error('The transports parsing is undefined or events are actually reachable by walk/bike: '+ customEvent.transports+ ': '+parse)
+		schedule.basicChecks(user, e, (err, data) => {
+			if (data != true) {
+				throw new Error('Basic checks failed')
 			}
-		})*/
-
-		/*
-		describe('GET /', () => {
-			it('Should call the scheduler', (done) => {
-				request(app)
-					.get('/api/v1/schedule/')
-					.set('X-Access-Token', 'ilZVQ03cyMmX3/+RhrM1AKUDwLGG4Qtp2dU2WDvt+f/qTMMBePMnbV5r6Dg02vgs')
-					.expect(200)
-					.end(done)
-			})
+			done()
 		})
-		*/
 	})
 
-	describe('POST /schedule', () => {
-		let calendar, event
+	it('basicChecks with user location should retuurn true', (done) => {
+		user.last_known_position_lat = 45
+		user.last_known_position_lng = 9
+		user.updated_at = new Date(2017, 11, 12, 5, 59)
 
-		createCalendar = (done) => {
-			db.models.calendars.create({
-				user_id: user.id,
-				name: 'Test Calendar',
-				color: '#123456'
-			}, (err, _calendar) => {
-				calendar = _calendar
-				done(err, _calendar)
-			})
+		let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), duration: 4 * 60 * 60 * 1000, lat: 45, lng: 9, calendar_id: customEvent.calendar_id }
+
+		schedule.basicChecks(user, e, (err, data) => {
+			done(data != true ? new Error('Basic checks failed') : null)
+		})
+	})
+
+	it('basicChecks with user location should return false', (done) => {
+		user.last_known_position_lat = 40
+		user.last_known_position_lng = 9
+		user.updated_at = new Date(2017, 11, 12, 5, 59)
+
+		let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: 45, lng: 9, calendar_id: customEvent.calendar_id }
+
+		schedule.basicChecks(user, e, (err, data) => {
+			done(data == true ? new Error('Basic checks failed') : null)
+		})
+	})
+
+	it('basicChecks with previous event should return true', (done) => {
+		let e = { id: 1, start_time: new Date(2017, 11, 12, 15, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: customEvent.lat + 0.1, lng: customEvent.lng + 0.1 }
+
+		schedule.basicChecks(user, e, (err, data) => {
+			done(data != true ? new Error('Basic checks failed') : null)
+		})
+	})
+
+	it('basicChecks with previous event should return false', (done) => {
+		let e = { id: 1, start_time: new Date(2017, 11, 12, 13, 22), end_time: new Date(2017, 11, 13, 4, 30), lat: 45, lng: 9, calendar_id: customEvent.calendar_id }
+
+		schedule.basicChecks(user, e, (data) => {
+			done(data == true ? new Error('Basic checks failed') : null)
+		})
+	})
+
+	/*it('should return a string of waypoints to inset into DB', () => {
+		let p1 = { lat: 45.464250, lng: 8.190200 }
+		customEvent.start_time=new Date(2017, 11, 4, 11, 0)
+		let parse = customEvent.parseTransports(schedule.distance(p1, customEvent), user.settings)
+		if(parse.length!=2 || parse.indexOf('transit')==-1 || parse.indexOf('driving')==-1){
+			throw Error('The transports parsing is undefined or events are actually reachable by walk/bike: '+ customEvent.transports+ ': '+parse)
 		}
+	})*/
 
-		createEvent = (c_id, start, end, duration, done) => {
-			db.models.events.create({
-				calendar_id: c_id,
-				title: 'Test Event',
-				start_time: start,
-				end_time: end,
-				duration: duration * 60 * 60 * 1000,
-				lat: 1,
-				lng: 1,
-				address: '1'
-			}, (err, _event) => {
-				event = _event
-				done(err, _event)
-			})
-		}
+	/*
+	describe('GET /', () => {
+		it('Should call the scheduler', (done) => {
+			request(app)
+				.get('/api/v1/schedule/')
+				.set('X-Access-Token', 'ilZVQ03cyMmX3/+RhrM1AKUDwLGG4Qtp2dU2WDvt+f/qTMMBePMnbV5r6Dg02vgs')
+				.expect(200)
+				.end(done)
+		})
+	})
+	*/
+})
 
-		let nowPlus = (x) => {
-			return new Date(new Date().getTime() + 1000 * 60 * 60 * x)
-		}
+describe('POST /schedule', () => {
+	let calendar, event
 
-		before((done) => {
-			createCalendar((err, calendar) => {
-				createEvent(calendar.id, nowPlus(2), nowPlus(3), 0, () => {
-					createEvent(calendar.id, nowPlus(6), nowPlus(8), 0, () => {
-						createEvent(calendar.id, nowPlus(1), nowPlus(7), 0.5, () => {
-							done()
-						})
+	createCalendar = (done) => {
+		db.models.calendars.create({
+			user_id: user.id,
+			name: 'Test Calendar',
+			color: '#123456'
+		}, (err, _calendar) => {
+			calendar = _calendar
+			done(err, _calendar)
+		})
+	}
+
+	createEvent = (c_id, start, end, duration, done) => {
+		db.models.events.create({
+			calendar_id: c_id,
+			title: 'Test Event',
+			start_time: start,
+			end_time: end,
+			duration: duration * 60 * 60 * 1000,
+			lat: 1,
+			lng: 1,
+			address: '1'
+		}, (err, _event) => {
+			event = _event
+			done(err, _event)
+		})
+	}
+
+	let nowPlus = (x) => {
+		return new Date(new Date().getTime() + 1000 * 60 * 60 * x)
+	}
+
+	before((done) => {
+		createCalendar((err, calendar) => {
+			createEvent(calendar.id, nowPlus(2), nowPlus(3), 0, () => {
+				createEvent(calendar.id, nowPlus(6), nowPlus(8), 0, () => {
+					createEvent(calendar.id, nowPlus(1), nowPlus(7), 0.5, () => {
+						done()
 					})
 				})
 			})
 		})
+	})
 
-		after((done) => {
-			db.models.calendars.find({ id: calendar.id }).first((err, calendar) => {
-				calendar.getEvents().remove(() => {
-					calendar.remove(done)
-				})
+	after((done) => {
+		db.models.calendars.find({ id: calendar.id }).first((err, calendar) => {
+			calendar.getEvents().remove(() => {
+				calendar.remove(done)
 			})
 		})
-
-		/*it('Should call the scheduler and return a 202', (done) => {
-			request(app)
-				.post('/api/v1/schedule/')
-				.set('X-Access-Token', device.access_token)
-				.expect(202)
-				.end(done)
-		})*/
-
-		/*it('Should call the scheduler and return a 400, timeslot length is 0', (done) => {
-			createEvent(calendar.id, nowPlus(6.5), nowPlus(7.5), 0.2, () => {
-				request(app)
-				.post('/api/v1/schedule/')
-				.set('X-Access-Token', device.access_token)
-				.expect(400)
-				.end(done)
-			})
-		})*/
 	})
+
+	/*it('Should call the scheduler and return a 202', (done) => {
+		request(app)
+			.post('/api/v1/schedule/')
+			.set('X-Access-Token', device.access_token)
+			.expect(202)
+			.end(done)
+	})*/
+
+	/*it('Should call the scheduler and return a 400, timeslot length is 0', (done) => {
+		createEvent(calendar.id, nowPlus(6.5), nowPlus(7.5), 0.2, () => {
+			request(app)
+			.post('/api/v1/schedule/')
+			.set('X-Access-Token', device.access_token)
+			.expect(400)
+			.end(done)
+		})
+	})*/
+})
 })
