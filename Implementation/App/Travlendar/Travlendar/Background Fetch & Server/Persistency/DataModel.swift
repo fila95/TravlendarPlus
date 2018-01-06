@@ -94,11 +94,11 @@ public class Settings: NSObject, Codable {
 
 class Travel: Object {
     
-    @objc dynamic var id = 0
+    @objc dynamic var id: Int = 0
     @objc dynamic var event_id: Int = 0
     
-    @objc dynamic var route = 0
-    @objc dynamic var time = 0
+    @objc dynamic var route: Int = 0
+    @objc dynamic var time: Int = 0
     @objc private dynamic var transport_mean_private = TransportMean.walking.rawValue
     var transport_mean: TransportMean {
         get { return TransportMean(rawValue: transport_mean_private)! }
@@ -116,7 +116,7 @@ class Travel: Object {
 
 public class Event: Object, Codable {
     
-    @objc dynamic var id = -1
+    @objc dynamic var id = 0
     @objc dynamic var calendar_id = -1
     
     @objc dynamic var title = ""
@@ -241,7 +241,7 @@ public class Event: Object, Codable {
 public class Calendars: Object, Codable {
     
     @objc dynamic var id: Int = 0
-    @objc dynamic var name = ""
+    @objc dynamic var name: String = ""
     @objc dynamic var color: String = ""
     
     override public static func primaryKey() -> String? {

@@ -39,7 +39,7 @@ extension CalendarViewController: UICollectionViewDelegate, UICollectionViewData
                 cell.setEvent(event: events![indexPath.row])
             }
             else {
-                cell.setEvent(event: events![indexPath.row-1])
+                cell.setEvent(event: events![indexPath.row])
             }
         }
         else {
