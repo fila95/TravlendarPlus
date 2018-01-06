@@ -122,8 +122,8 @@ public class Event: Object, Codable {
     @objc dynamic var title = ""
     @objc dynamic var address = ""
     
-    @objc dynamic var lat: String = "0.0"
-    @objc dynamic var lng: String = "0.0"
+    @objc dynamic var lat: String = "1"
+    @objc dynamic var lng: String = "1"
     
     @objc dynamic var start_time: Date = Date()
     @objc dynamic var end_time: Date = Date().addingTimeInterval(3600)

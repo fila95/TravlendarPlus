@@ -52,7 +52,7 @@ let createEvent = (c_id, cb) => {
 		start_time: new Date(2017, 11, 12, 12, 0),
 		end_time: new Date(2017, 11, 12, 13, 20),
 		duration: 1000 * 60 * 60,
-		transports: "B1001",
+		transports: "B10001",
 		calendar_id: c_id
 	}, (err, _event) => {
 		if (err) throw err

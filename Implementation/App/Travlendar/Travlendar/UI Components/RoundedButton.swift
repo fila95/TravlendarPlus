@@ -86,14 +86,19 @@ class RoundedButton: UIButton {
             activityIndicator.startAnimating()
             activityIndicator.isHidden = false
             
-            self.titleLabel?.isHidden = true
+            self.titleLabel?.alpha = 0.0
         }
         else {
             activityIndicator.stopAnimating()
             activityIndicator.isHidden = true
             
-            self.titleLabel?.isHidden = false
+            self.titleLabel?.alpha = 1.0
         }
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        activityIndicator.frame = self.bounds
     }
     
     

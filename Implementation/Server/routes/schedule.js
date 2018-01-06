@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const polyline = require('polyline')
 
 const token = process.env.GOOGLE_MAPS_TOKEN
 const googleMapsClient = require('@google/maps').createClient({ key: token });
@@ -178,9 +177,12 @@ let isReachablAsTheCrowFlies = (distance, time) => {
 }
 
 // If the event is reachable from coord,
-// it returns the routes and sets the suggested_start_time/suggested_end_time, otherwise it returns false
 // The param 'from' could be either a real Fixed Event or a fake one representing the user locaiton, while 'to' is a Flexible Event
 // The param opt is an object of options. Up to now, there is only one option: onlyBasicChecks [bool,default=false], userSettings
+// it returns:
+//	- FALSE if the event is not reachable
+//  - TRUE if the event passes the basic checks (and if this option is active)
+//  - A dictionary of routes with transports as key and values a set of travels
 let eventIsReachable = (from, to, opt) => {
 	opt = opt || {}
 	if (!from || !to || from.lat == undefined || from.lng == undefined || to.lat == undefined || to.lng == undefined) {
@@ -205,43 +207,59 @@ let eventIsReachable = (from, to, opt) => {
 		}
 
 		// Step 2: Google Maps Directions API
-		// TODO: edit query in order to align to user's settings and event preferences
-		let query = {
-			origin: from,
-			destination: to,
-			alternatives: true
-		}
-		googleMapsClient.directions(query, (err, response) => {
-			let durations = []
-			for (let route of response.json.routes) {
-				let duration = 0
-				for (let leg of route.legs) {
-					duration += leg.duration.value
+		//let parsed_transport = to.parseTransports(dist, opt.settings)
+		let parsed_transport = ["walking", "bicycling", "transit", "driving"]
+		let query, responses = new Object();
+		console.log("Parsed: "+parsed_transport)
+		for (transport in parsed_transport) {
+			transport_mode=parsed_transport[transport]
+			query = {
+				origin: from,
+				destination: to,
+				alternatives: true
+			}
+			//console.log("qaq")
+			googleMapsClient.directions(query, (err, response) => {
+				if(err) {
+					throw err
 				}
-				durations.push(duration)
-			}
+				//console.log("qui")
+				let durations = []
+				for (let route of response.json.routes) {
+					let duration = 0
+					for (let leg of route.legs) {
+						duration += leg.duration.value
+					}
+					durations.push(duration)
+				}
 
-			//parsed_transport = to.parseTransports(dist, opt.settings)
+				//console.log("Respo: "+durations)
 
-			// IN-TODO tenere conto delle ripetizioni
+				// IN-TODO tenere conto delle ripetizioni
 
+				let googlePreferredDuration = durations[0]
 
-			// TODO usare le preferenze dell'utente (max walking distance e biking distance + parse tarnsits)
-			// req.user.settings
+				if (googlePreferredDuration <= availableTime) {
+					// Try to use the google preferred route
+					to.suggested_start_time = new Date(to.start_time + googlePreferredDuration * 1000)
+					to.suggested_end_time = new Date(to.suggested_start_time + to.duration)
+					responses[transport_mode]=response.json.routes
+				} else {
+					// No route with less time travel than timeNeeded
+					responses[transport_mode]=false
 
-			let googlePreferredDuration = durations[0]
-
-			if (googlePreferredDuration <= availableTime) {
-				// Try to use the google preferred route
-				to.suggested_start_time = new Date(to.start_time + googlePreferredDuration * 1000)
-				to.suggested_end_time = new Date(to.suggested_start_time + to.duration)
-				resolve(response.json.routes)
-			} else {
-				// No route with less time travel than timeNeeded
-				resolve(false)
-			}
-		})
+				}
+				
+			})
+		}
+		resolve(responses)
+		
 	})
+}
+// Given a stram of JSON text from Google Directions API, 
+// extracts the most useful info pre db insertion
+let filterUsefulTravelInfo = (directionJSON) => {
+
 }
 
 let basicChecks = (user, event, cb) => {

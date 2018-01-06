@@ -12,6 +12,8 @@ class SaveCloseTableViewCell: UITableViewCell, Reusable {
     
     var saveHandler: (() -> Void)?
     var closeHandler: (() -> Void)?
+    
+    @IBOutlet weak var saveButton: RoundedButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,11 +35,11 @@ class SaveCloseTableViewCell: UITableViewCell, Reusable {
         return UINib(nibName: "SaveCloseTableViewCell", bundle: Bundle.main)
     }
     
-    func setSavehandler(handler: @escaping (() -> Void)) {
+    func setSaveHandler(handler: @escaping (() -> Void)) {
         self.saveHandler = handler
     }
     
-    func setClosehandler(handler: @escaping (() -> Void)) {
+    func setCloseHandler(handler: @escaping (() -> Void)) {
         self.closeHandler = handler
     }
     

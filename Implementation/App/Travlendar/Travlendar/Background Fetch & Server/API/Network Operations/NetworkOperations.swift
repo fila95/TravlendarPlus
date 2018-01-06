@@ -86,6 +86,8 @@ class NetworkOperation: Operation {
             request.addValue("\(tk)", forHTTPHeaderField: "X-Access-Token")
         }
         
+//        print(request.debugDescription)
+        
         let semaphore = DispatchSemaphore(value: 0)
         task = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
             

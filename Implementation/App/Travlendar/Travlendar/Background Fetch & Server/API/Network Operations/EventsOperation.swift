@@ -98,6 +98,8 @@ class EventsOperation: NetworkOperation {
                     return
                 }
                 
+                print(String.init(data: d, encoding: .utf8))
+                
                 guard let event = try? decoder.decode(Event.self, from: d) else {
                     self.completionHandler?(false, "Decode Error")
                     print("Error Events Operation: Unable to decode Event")
