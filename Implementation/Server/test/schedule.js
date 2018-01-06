@@ -327,21 +327,19 @@ describe('Schedule private functions', () => {
 		customEvent.start_time = new Date(2017, 11, 12, 8, 0)
 		customEvent.end_time = new Date(2017, 11, 12, 10, 40)
 		customEvent.duration = 1000 * 60 * 60
-		
+
 		let responses = await schedule.eventIsReachable(p1, customEvent, { settings: user.settings })
 
 		// Google routes have all the copyrights field
-		
-		for (response_n in responses) {
-			transport = responses[response_n].response
-			
-			for (route_n in transport) {
-				resp = transport[route_n]
-				if (!resp.copyrights) {
-					throw new Error('No google route returned')
-				}
-			}
+
+
+		if (!responses[0][0].route_id || !responses[0][0].time || !responses[0][0].transport_mean || !responses[0][0].waypoints) {
+			throw new Error('No google route returned')
 		}
+		console.log(responses[0][0])
+		//e.addTravels([travel1, travel2, travel3, ...], err => {
+		//   if(err) {throw err}
+		// })
 
 	}).timeout(10000); // Google Requests could take a while
 
@@ -360,30 +358,6 @@ describe('Schedule private functions', () => {
 		}
 
 	}).timeout(10000); // Google Requests could take a while
-
-	/*it('PROVA JSON GOOGLE', async () => {
-		let p1 = { lat: 45.478336, lng: 9.228263 }
-		customEvent.lat = 44.464257
-		customEvent.lng = 9.190209
-		customEvent.start_time = new Date(2017, 11, 12, 8, 0)
-		customEvent.end_time = new Date(2017, 11, 12, 2, 40)
-		customEvent.duration = 1000 * 60 * 60
-
-		let responses = await schedule.eventIsReachable(p1, customEvent, { settings: user.settings })
-
-		// Google routes have all the copyrights field
-		console.log("Responses:"+responses)
-		for (response_n in responses) {
-			response = responses[response_n].response
-			console.log("Response"+response)
-			for (route_n in response) {
-				resp = response[route_n]
-				console.log(resp)
-
-			}
-		}
-	}).timeout(10000); // Google Requests could take a while
-	*/
 
 	it('basicChecks without any params', (done) => {
 		let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: 45, lng: 9 }

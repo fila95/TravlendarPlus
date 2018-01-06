@@ -1,6 +1,7 @@
 const app = require('../index')
 const express = require('express')
 const notifier = require('../notifier')
+const randomInt = require('random-int');
 const router = express.Router()
 
 const token = process.env.GOOGLE_MAPS_TOKEN
@@ -249,10 +250,7 @@ let eventIsReachable = (from, to, opt) => {
 				// Try to use the google preferred route
 				to.suggested_start_time = new Date(to.start_time + googlePreferredDuration * 1000)
 				to.suggested_end_time = new Date(to.suggested_start_time + to.duration)
-				responses.push({
-					transport: transport_mode,
-					response: response.json.routes
-				})
+				responses.push(filterUsefulTravelInfo(response.json.routes))
 			}
 		}
 		if (responses.length == 0) {
@@ -264,33 +262,20 @@ let eventIsReachable = (from, to, opt) => {
 }
 // Given a stram of JSON text from Google Directions API, 
 // extracts the most useful info pre db insertion
-let filterUsefulTravelInfo = (directionJSON) => {
-	let new_route,new_routes=[],new_step,new_steps,i=0
-	for (transport_mean_n in directionJSON) {
-		transport_mean = directionJSON[transport_mean_n].transport
-		first_route = directionJSON[transport_mean_n].response[0]
-		
-		new_steps=[]
+let filterUsefulTravelInfo = (responseJSON) => {
+	let new_routes=[], new_step, new_steps, route_id=randomInt(2147483647)
+	first_route = responseJSON[0]
 		for (step_n in first_route.legs[0].steps) {
-			step=first_route.legs[0].steps[step_n]
-			new_step = {
-				duration: step.duration.value,
+			step = first_route.legs[0].steps[step_n]
+			new_route = {
+				route_id: route_id,
+				time: step.duration.value,
 				transport_mean: step.travel_mode,
 				waypoints: step.polyline.points
-			}	
-			new_steps.push(new_step)		
-		}
-
-		new_route = {
-			route_id: i,
-			steps:new_steps
-		}
-		new_routes.push(new_route)
-		
-		
-		i++
-	}
-	return new_routes
+			}
+			new_routes.push(new_route)
+		}	
+return new_routes
 }
 
 let basicChecks = (user, event, cb) => {

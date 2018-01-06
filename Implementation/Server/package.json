@@ -13,6 +13,7 @@
     "orm": "^4.0.1",
     "pg": "^7.4.0",
     "polyline": "^0.2.0",
+    "random-int": "^1.0.0",
     "uuid-validate": "0.0.2"
   },
   "devDependencies": {
