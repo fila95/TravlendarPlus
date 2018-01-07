@@ -90,7 +90,7 @@ router.put('/', (req, res) => {
 					return res.status(201).json(result).end()
 				})
 			} else {
-				return res.status(500).end((err||'').toString())
+				return res.status(412).end('not reachable')
 			}
 		})
 	})
