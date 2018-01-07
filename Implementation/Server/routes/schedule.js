@@ -1,6 +1,7 @@
 const express = require('express')
 const notifier = require('../notifier')
 const router = express.Router()
+const polyline = require('polyline')
 
 const token = process.env.GOOGLE_MAPS_TOKEN
 /* istanbul ignore if */
@@ -259,7 +260,6 @@ let eventIsReachable = (from, to, opt) => {
 
 			// TODO tenere conto delle ripetizioni
 
-
 			let googlePreferredDuration = durations[0]
 			if (googlePreferredDuration <= availableTime) {
 				// Try to use the google preferred route
@@ -292,7 +292,7 @@ let filterUsefulTravelInfo = (responseJSON) => {
 			route: route,
 			time: step.duration.value,
 			transport_mean: step.travel_mode,
-			waypoints: step.polyline.points
+			waypoints: polyline.decode(step.polyline.points).join(";")
 		}
 		new_routes.push(new_route)
 	}
@@ -336,7 +336,9 @@ let basicChecks = (user, event, cb) => {
 					lat: loc.lat,
 					lng: loc.lng
 				}
-			} else {
+			}
+			// implicit else: basic checks ok, since no location found
+			if (!prev) {
 				return cb(null, true)
 			}
 			eventIsReachable(prev, event, { onlyBasicChecks: true }).then((e) => {
@@ -350,6 +352,7 @@ let basicChecks = (user, event, cb) => {
 // updated to at least 30 minutes before the start of the event
 let getReliableUserLocation = (user, event) => {
 	// Check whether the location is no reliable:
+	if (event == null) { event = { start_time: new Date() } }
 	if (!user.updated_at || user.last_known_position_lat == 0 && user.last_known_position_lng == 0 || new Date(event.start_time) - user.updated_at > 30 * 60 * 1000) return null
 	return { lat: user.last_known_position_lat, lng: user.last_known_position_lng }
 }
@@ -361,7 +364,17 @@ router.get('/', (req, res) => {
 		for (calendar of calendars) {
 			calendar_ids.push(calendar.id)
 		}
-		req.user.getAllEventsOfCalendarFromNowOn(calendar_ids, (err, events) => {
+		req.user.getAllEventsOfCalendarFromNowOn(calendar_ids, async (err, events) => {
+			for (let event of events) {
+				// Get the travels with await, so we can cycle through all with an async function
+				let travels = await new Promise((resolve, reject) =>  {
+					event.getTravels((err, travels) => {
+						if (err) { return reject(err) }
+						else { return resolve(travels) }
+					})
+				})
+				event.travels = travels
+			}
 			return res.json(events).end()
 		})
 	})
@@ -380,7 +393,8 @@ router.post('/', (req, res) => {
 			// Get all the events of the current calendar
 			req.user.getAllEventsOfCalendarFromNowOn(calendar.id, async (err, events) => {
 				if (events.length == 0) {
-					notifier(req.user, "ok")
+					// Silent notification
+					notifier(req.user)
 					return
 				}
 
@@ -395,7 +409,7 @@ router.post('/', (req, res) => {
 						e.save(err => {
 							if (err) throw err
 						})
-						notifier(req.user, "err")
+						notifier(req.user, { alert: 'Scheduler: the event ' + e.title + ' is not insertable, since there are other events overlapping', badge: 1 })
 						return
 					}
 				}
@@ -448,30 +462,31 @@ router.post('/', (req, res) => {
 							}
 						}
 						// implicit else: use the previous event position
-					}
-					// Ask if reachable with await
-					// Using async/await, we can loop over an asynchronous function
-					// without spawning thousands of async calls
-					let routes = await eventIsReachable(prev, e, { settings: req.user.settings })
-					if (routes) {
-						let travels = []
-						for (route of routes) {
-							for (travel of route) {
-								let traveldb = await schedule.createTravel(travel)
-								travels.push(traveldb)
+
+						// Ask if reachable with await
+						// Using async/await, we can loop over an asynchronous function
+						// without spawning thousands of async calls
+						let routes = await eventIsReachable(prev, e, { settings: req.user.settings })
+						if (routes) {
+							let travels = []
+							for (route of routes) {
+								for (travel of route) {
+									let traveldb = await schedule.createTravel(travel)
+									travels.push(traveldb)
+								}
 							}
+							e.travels = travels
+							e.reachable = true
+							e.save(err => {
+								if (err) { throw err }
+							})
+						} else {
+							e.reachable = false
+							notifier(req.user, { alert: 'Scheduler: the event ' + e.title + ' is not reachable in time, according to Google Maps', badge: 1 })
+							return e.save(err => {
+								if (err) { throw err }
+							})
 						}
-						e.travels = travels
-						e.reachable = true
-						e.save(err => {
-							if (err) { throw err }
-						})
-					} else {
-						e.reachable = false
-						notifier(req.user, "err")
-						return e.save(err => {
-							if (err) { throw err }
-						})
 					}
 				}
 			})
@@ -480,7 +495,10 @@ router.post('/', (req, res) => {
 
 	// The scheduler finished the schedule for all the events
 	// of all the calendars successfuully
-	// notifier.sendNotification(text, user)
+
+	// Silent notification
+	notifier(req.user)
+
 })
 
 module.exports = {

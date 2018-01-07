@@ -99,18 +99,6 @@
 
 \size giant
 Travlendar+
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-
-\size giant
-Rescrenshottare gli snippet di gio (schdule.cpp++++++)
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Quote
@@ -944,7 +932,7 @@ Reference Documents
 \end_layout
 
 \begin_layout Itemize
-RASD document previously delivered.
+RASD v.1.3.0 document previously delivered.
 \end_layout
 
 \begin_layout Subsection
@@ -2034,6 +2022,12 @@ GET: Retrieve the user schedule -
 getSchedule(·): Schedule
 \end_layout
 
+\begin_layout Itemize
+POST: Reschedule events - 
+\emph on
+reschdule(·)
+\end_layout
+
 \end_deeper
 \begin_layout Itemize
 
@@ -2545,10 +2539,23 @@ Overloads:
 
 \begin_layout Standard
 \align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{-2cm}
+\end_layout
+
+\end_inset
+
+
 \begin_inset Graphics
-	filename images/code/s_overload.png
+	filename images/codeV.1.2.1/s_overload.png
 	lyxscale 20
-	scale 40
+	scale 50
 
 \end_inset
 
@@ -2561,8 +2568,21 @@ Main Function:
 
 \begin_layout Standard
 \align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{-2cm}
+\end_layout
+
+\end_inset
+
+
 \begin_inset Graphics
-	filename images/code/s__1.jpg
+	filename images/codeV.1.2.1/s__1.png
 	lyxscale 20
 	scale 60
 
@@ -2573,8 +2593,21 @@ Main Function:
 
 \begin_layout Standard
 \align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{-2cm}
+\end_layout
+
+\end_inset
+
+
 \begin_inset Graphics
-	filename images/code/s__2.jpg
+	filename images/codeV.1.2.1/s__2.png
 	lyxscale 20
 	scale 60
 
@@ -2585,20 +2618,21 @@ Main Function:
 
 \begin_layout Standard
 \align center
-\begin_inset Graphics
-	filename images/code/s__3.jpg
-	lyxscale 20
-	scale 60
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{-1.5cm}
+\end_layout
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-\align center
 \begin_inset Graphics
-	filename images/code/s__4.jpg
+	filename images/codeV.1.2.1/s__3.png
 	lyxscale 20
 	scale 60
 
@@ -2786,7 +2820,7 @@ Example of Implementation
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename images/code/fitting.png
+	filename images/codeV.1.2.1/fitting.png
 	lyxscale 20
 	scale 60
 
@@ -2803,7 +2837,7 @@ This piece of code uses also this utility function in order to get the fitness
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename images/code/fitness.png
+	filename images/codeV.1.2.1/fitness.png
 	lyxscale 20
 	scale 60
 
@@ -2939,7 +2973,7 @@ Data Structures
 \begin_layout Standard
 \align left
 \begin_inset Graphics
-	filename images/code/u_d_1.png
+	filename images/codeV.1.2.1/u_d_1.png
 	lyxscale 20
 	scale 50
 
@@ -2951,7 +2985,7 @@ Data Structures
 \begin_layout Standard
 \align left
 \begin_inset Graphics
-	filename images/code/u_d_2.png
+	filename images/codeV.1.2.1/u_d_2.png
 	lyxscale 20
 	scale 50
 
@@ -2963,7 +2997,7 @@ Data Structures
 \begin_layout Standard
 \align left
 \begin_inset Graphics
-	filename images/code/u_d_3.png
+	filename images/codeV.1.2.1/u_d_3.png
 	lyxscale 20
 	scale 50
 
@@ -2975,7 +3009,7 @@ Data Structures
 \begin_layout Standard
 \align left
 \begin_inset Graphics
-	filename images/code/u_d_4.png
+	filename images/codeV.1.2.1/u_d_4.png
 	lyxscale 20
 	scale 50
 
@@ -2991,7 +3025,7 @@ Utility Functions
 \begin_layout Standard
 \align left
 \begin_inset Graphics
-	filename images/code/u_f_1.png
+	filename images/codeV.1.2.1/u_f_1.png
 	lyxscale 20
 	scale 50
 
@@ -3002,8 +3036,21 @@ Utility Functions
 
 \begin_layout Standard
 \align left
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{-2cm}
+\end_layout
+
+\end_inset
+
+
 \begin_inset Graphics
-	filename images/code/u_f_2.png
+	filename images/codeV.1.2.1/u_f_2.png
 	lyxscale 20
 	scale 50
 
@@ -3014,8 +3061,21 @@ Utility Functions
 
 \begin_layout Standard
 \align left
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{-2cm}
+\end_layout
+
+\end_inset
+
+
 \begin_inset Graphics
-	filename images/code/u_f_3.png
+	filename images/codeV.1.2.1/u_f_3.png
 	lyxscale 20
 	scale 50
 
@@ -3026,8 +3086,21 @@ Utility Functions
 
 \begin_layout Standard
 \align left
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{-2cm}
+\end_layout
+
+\end_inset
+
+
 \begin_inset Graphics
-	filename images/code/u_f_4.png
+	filename images/codeV.1.2.1/u_f_3_1.png
 	lyxscale 20
 	scale 50
 
@@ -3038,8 +3111,21 @@ Utility Functions
 
 \begin_layout Standard
 \align left
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{-2cm}
+\end_layout
+
+\end_inset
+
+
 \begin_inset Graphics
-	filename images/code/u_f_5.png
+	filename images/codeV.1.2.1/u_f_4.png
 	lyxscale 20
 	scale 50
 
@@ -3050,8 +3136,21 @@ Utility Functions
 
 \begin_layout Standard
 \align left
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{-2cm}
+\end_layout
+
+\end_inset
+
+
 \begin_inset Graphics
-	filename images/code/u_f_6.png
+	filename images/codeV.1.2.1/u_f_5.png
 	lyxscale 20
 	scale 50
 
@@ -3062,8 +3161,21 @@ Utility Functions
 
 \begin_layout Standard
 \align left
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{-2cm}
+\end_layout
+
+\end_inset
+
+
 \begin_inset Graphics
-	filename images/code/u_f_7.png
+	filename images/codeV.1.2.1/u_f_6.png
 	lyxscale 20
 	scale 50
 
@@ -3074,8 +3186,46 @@ Utility Functions
 
 \begin_layout Standard
 \align left
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{-2cm}
+\end_layout
+
+\end_inset
+
+
 \begin_inset Graphics
-	filename images/code/u_f_8.png
+	filename images/codeV.1.2.1/u_f_7.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{-2cm}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/codeV.1.2.1/u_f_8.png
 	lyxscale 20
 	scale 50
 

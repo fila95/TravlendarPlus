@@ -415,7 +415,6 @@ Schedule* schedule(User *u, unsigned long date1, unsigned long date2) {
 
             if (events[i]->routes == NULL || events[i]->suggested_start == NULL || events[i]->suggested_end == NULL) {
                 // Unscheduled
-
                 if (eventIsFirstOfDay(events[i], c)) {
                     if (eventIsToday(events[i])) {
                         // Try with user location
@@ -466,13 +465,7 @@ Schedule* schedule(User *u, unsigned long date1, unsigned long date2) {
                 // Already scheduled
                 scheduled->push_back(e);
             }
-
         }
-            
-        
-
     }
-
     return s;
-
 }
