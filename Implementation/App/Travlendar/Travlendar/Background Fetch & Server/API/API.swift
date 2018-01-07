@@ -51,7 +51,7 @@ public class API: NSObject {
             self.triggerSchedule()
         }
         
-        triggerSync()
+//        triggerSync()
     }
     
     public func triggerSync() {
@@ -59,8 +59,7 @@ public class API: NSObject {
         print("Sync Triggered")
         queue.addOperation(SettingsOperation(operationType: .get))
         queue.addOperation(CalendarsOperation(operationType: .get))
-        self.pushUserPosition()
-        
+        self.getSchedule()
     }
     
     // MARK: Settings

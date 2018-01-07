@@ -91,18 +91,73 @@ public class Settings: NSObject, Codable {
     
 }
 
+class Routes: Object {
+    
+    @objc dynamic var id: Int = 0
+    @objc dynamic var time: Int = 0
+    var travels = List<Travel>()
+    
+    override public static func primaryKey() -> String? {
+        return "id"
+    }
+    
+    private enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case time = "time"
+        case travels = "travels"
+    }
+    
+    
+    public required init(from decoder: Decoder) throws {
+        super.init()
+        try self.decode(from: decoder)
+    }
+    
+    required public init() {
+        super.init()
+    }
+    
+    required public init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    required public init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+    
+    
+    public func decode(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        self.id = try container.decode(Int.self, forKey: .id)
+        self.time = try container.decode(Int.self, forKey: .time)
+        
+        let travelsArray = try container.decodeIfPresent([Travel].self, forKey: .travels) ?? []
+        let travelsList = List<Travel>()
+        travelsList.append(objectsIn: travelsArray)
+        self.travels = travelsList
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encode(self.id, forKey: .id)
+        try container.encode(self.time, forKey: .time)
+        try container.encode(Array(self.travels), forKey: .travels)
+        
+    }
+    
+}
+
 
 class Travel: Object {
     
     @objc dynamic var id: Int = 0
-    @objc dynamic var event_id: Int = 0
-    
-    @objc dynamic var route: Int = 0
     @objc dynamic var time: Int = 0
-    @objc private dynamic var transport_mean_private: String = TransportMean.walking.rawValue
+    @objc private dynamic var transport_mean_private: String = TransportMean.walking.rawValue.uppercased()
     var transport_mean: TransportMean {
-        get { return TransportMean(rawValue: transport_mean_private)! }
-        set { transport_mean_private = newValue.rawValue }
+        get { return TransportMean(rawValue: transport_mean_private.uppercased())! }
+        set { transport_mean_private = newValue.rawValue.lowercased() }
     }
     
     @objc dynamic var waypoints = ""
@@ -113,8 +168,6 @@ class Travel: Object {
     
     private enum CodingKeys: String, CodingKey {
         case id = "id"
-        case event_id = "event_id"
-        case route = "route"
         case time = "time"
         case transport_mean_private = "transport_mean"
         case waypoints = "waypoints"
@@ -142,9 +195,6 @@ class Travel: Object {
     public func decode(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(Int.self, forKey: .id)
-        self.event_id = try container.decode(Int.self, forKey: .event_id)
-        
-        self.route = try container.decode(Int.self, forKey: .route)
         self.time = try container.decode(Int.self, forKey: .time)
         
         self.transport_mean_private = try container.decode(String.self, forKey: .transport_mean_private)
@@ -155,9 +205,6 @@ class Travel: Object {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
         try container.encode(self.id, forKey: .id)
-        try container.encode(self.event_id, forKey: .event_id)
-        
-        try container.encode(self.route, forKey: .route)
         try container.encode(self.time, forKey: .time)
         
         try container.encode(self.transport_mean_private, forKey: .transport_mean_private)
@@ -189,7 +236,7 @@ public class Event: Object, Codable {
     
     @objc dynamic var reachable: Bool = true
     
-    var travels = List<Travel>()
+    var routes = List<Routes>()
     
     override public static func primaryKey() -> String? {
         return "id"
@@ -226,7 +273,7 @@ public class Event: Object, Codable {
         case suggested_end_time = "suggested_end_time"
         
         case reachable = "reachable"
-        case travels = "travels"
+        case routes = "routes"
     }
     
     
@@ -275,10 +322,10 @@ public class Event: Object, Codable {
         
         self.reachable = try container.decodeIfPresent(Bool.self, forKey: .reachable) ?? true
         
-        let travelsArray = try container.decodeIfPresent([Travel].self, forKey: .travels) ?? []
-        let travelsList = List<Travel>()
+        let travelsArray = try container.decodeIfPresent([Routes].self, forKey: .routes) ?? []
+        let travelsList = List<Routes>()
         travelsList.append(objectsIn: travelsArray)
-        self.travels = travelsList
+        self.routes = travelsList
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -304,6 +351,9 @@ public class Event: Object, Codable {
         try container.encode(self.suggested_end_time, forKey: .suggested_end_time)
         
         try container.encode(self.reachable, forKey: .reachable)
+        try container.encode(Array(self.routes), forKey: .routes)
+        
+        
     }
     
 }

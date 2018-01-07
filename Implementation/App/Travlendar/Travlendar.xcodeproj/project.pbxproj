@@ -29,8 +29,8 @@
 		1E4C9AF11FFBEE08002F8E8B /* VPLoadingButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C9AF01FFBEE08002F8E8B /* VPLoadingButtonComponent.swift */; };
 		1E4C9AF31FFC18DB002F8E8B /* EventsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C9AF21FFC18DB002F8E8B /* EventsOperation.swift */; };
 		1E4C9AF51FFCF800002F8E8B /* Decoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C9AF41FFCF800002F8E8B /* Decoding.swift */; };
-		1E4D74E42002BEAC00178B66 /* TravelsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4D74E22002BEAC00178B66 /* TravelsCollectionViewCell.swift */; };
-		1E4D74E52002BEAC00178B66 /* TravelsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E4D74E32002BEAC00178B66 /* TravelsCollectionViewCell.xib */; };
+		1E4D74E42002BEAC00178B66 /* RoutesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4D74E22002BEAC00178B66 /* RoutesCollectionViewCell.swift */; };
+		1E4D74E52002BEAC00178B66 /* RoutesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E4D74E32002BEAC00178B66 /* RoutesCollectionViewCell.xib */; };
 		1E4D74E72002C61700178B66 /* EventDetailsViewController+UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4D74E62002C61700178B66 /* EventDetailsViewController+UICollectionView.swift */; };
 		1E533F0B2002340D005AF438 /* PositionOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E533F0A2002340D005AF438 /* PositionOperation.swift */; };
 		1E533F0D2002765A005AF438 /* ScheduleOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E533F0C2002765A005AF438 /* ScheduleOperation.swift */; };
@@ -231,8 +231,8 @@
 		1E4CB7411FDD4AAF00FA8E52 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		1E4CB7431FDD4AFE00FA8E52 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1E4CB7451FDD4B6700FA8E52 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		1E4D74E22002BEAC00178B66 /* TravelsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelsCollectionViewCell.swift; sourceTree = "<group>"; };
-		1E4D74E32002BEAC00178B66 /* TravelsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TravelsCollectionViewCell.xib; sourceTree = "<group>"; };
+		1E4D74E22002BEAC00178B66 /* RoutesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesCollectionViewCell.swift; sourceTree = "<group>"; };
+		1E4D74E32002BEAC00178B66 /* RoutesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoutesCollectionViewCell.xib; sourceTree = "<group>"; };
 		1E4D74E62002C61700178B66 /* EventDetailsViewController+UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventDetailsViewController+UICollectionView.swift"; sourceTree = "<group>"; };
 		1E533F0A2002340D005AF438 /* PositionOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionOperation.swift; sourceTree = "<group>"; };
 		1E533F0C2002765A005AF438 /* ScheduleOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleOperation.swift; sourceTree = "<group>"; };
@@ -522,8 +522,8 @@
 			children = (
 				1E8753BA20011C590026B06C /* EventDetailsViewController.swift */,
 				1E4D74E62002C61700178B66 /* EventDetailsViewController+UICollectionView.swift */,
-				1E4D74E22002BEAC00178B66 /* TravelsCollectionViewCell.swift */,
-				1E4D74E32002BEAC00178B66 /* TravelsCollectionViewCell.xib */,
+				1E4D74E22002BEAC00178B66 /* RoutesCollectionViewCell.swift */,
+				1E4D74E32002BEAC00178B66 /* RoutesCollectionViewCell.xib */,
 			);
 			path = "Event Details";
 			sourceTree = "<group>";
@@ -1129,7 +1129,7 @@
 				1E8753AB2000D5D50026B06C /* RepetitionsPickerComponent.xib in Resources */,
 				1E8753A11FFF80580026B06C /* AllowedVehiclesTableViewCell.xib in Resources */,
 				1E87539D1FFF7EEF0026B06C /* SelectedCalendarTableViewCell.xib in Resources */,
-				1E4D74E52002BEAC00178B66 /* TravelsCollectionViewCell.xib in Resources */,
+				1E4D74E52002BEAC00178B66 /* RoutesCollectionViewCell.xib in Resources */,
 				1EAA18E91FC9CE9F001B3612 /* Assets.xcassets in Resources */,
 				1E3758A21FFD320F00D871FC /* CollectionHeaderView.xib in Resources */,
 				1EAA18E41FC9CE9F001B3612 /* Main.storyboard in Resources */,
@@ -1361,7 +1361,7 @@
 				1E4C9AE91FFB978B002F8E8B /* CalendarCreatorView.swift in Sources */,
 				1E8C1A3F1FFE8F0F00A7350B /* SwitchTableViewCell.swift in Sources */,
 				1E0417331FFD25480072DBE3 /* CalendarViewController+UICollectionView.swift in Sources */,
-				1E4D74E42002BEAC00178B66 /* TravelsCollectionViewCell.swift in Sources */,
+				1E4D74E42002BEAC00178B66 /* RoutesCollectionViewCell.swift in Sources */,
 				1EF4E18D1FDC5F0B00B5BFDC /* MapViewController.swift in Sources */,
 				1E00783E1FE2BA0700FD5405 /* CalendarCell.swift in Sources */,
 				1EEE56A41FE3D17600621599 /* SettingsOperations.swift in Sources */,

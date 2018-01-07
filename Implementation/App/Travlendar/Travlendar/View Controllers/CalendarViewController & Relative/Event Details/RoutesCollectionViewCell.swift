@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TravelsCollectionViewCell: UICollectionViewCell {
+class RoutesCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var travelContent: UIView!
@@ -53,14 +53,14 @@ class TravelsCollectionViewCell: UICollectionViewCell {
         super.init(coder: aDecoder)
     }
     
-    func setTravel(travel: Travel) {
+    func setRoute(travel: Routes) {
         
     }
 
 }
 
 
-extension TravelsCollectionViewCell: Reusable {
+extension RoutesCollectionViewCell: Reusable {
     static var reuseId: String {
         return "travelsCollectionViewCellID"
     }

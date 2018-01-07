@@ -26,7 +26,7 @@ extension CalendarViewController: UICollectionViewDelegate, UICollectionViewData
         }
         else if section == 2  {
             if self.events != nil && self.events!.count != 0 {
-                return self.upNext!.count
+                return self.events!.count
             }
         }
 
