@@ -367,13 +367,38 @@ router.get('/', (req, res) => {
 		req.user.getAllEventsOfCalendarFromNowOn(calendar_ids, async (err, events) => {
 			for (let event of events) {
 				// Get the travels with await, so we can cycle through all with an async function
-				let travels = await new Promise((resolve, reject) =>  {
+				let travels = await new Promise((resolve, reject) => {
 					event.getTravels((err, travels) => {
 						if (err) { return reject(err) }
 						else { return resolve(travels) }
 					})
 				})
-				event.travels = travels
+
+				let routes = {}
+				for (t of travels) {
+					let travel = {
+						id: t.id,
+						route: t.route,
+						time: t.time,
+						transport_mean: t.transport_mean,
+						waypoints: t.waypoints
+					}
+
+					let route_id = travel.route
+					delete travel.route
+					if (!routes[route_id]) {
+						routes[route_id] = { time: 0, travels: [] }
+					}
+					routes[route_id].travels.push(travel)
+					routes[route_id].time += travel.time
+				}
+
+				let routes_ar = []
+				for (let k in routes) {
+					routes[k].id = k
+					routes_ar.push(routes[k])
+				}
+				event.routes = routes_ar
 			}
 			return res.json(events).end()
 		})

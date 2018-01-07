@@ -454,8 +454,8 @@ describe('Schedule', () => {
 				start_time: start,
 				end_time: end,
 				duration: duration * 60 * 60 * 1000,
-				lat: 1,
-				lng: 1,
+				lat: 45,
+				lng: 9,
 				address: '1'
 			}, (err, _event) => {
 				event = _event
@@ -494,15 +494,5 @@ describe('Schedule', () => {
 				.expect(202)
 				.end(done)
 		})
-
-		/*it('Should call the scheduler and return a 400, timeslot length is 0', (done) => {
-			createEvent(calendar.id, nowPlus(6.5), nowPlus(7.5), 0.2, () => {
-				request(app)
-				.post('/api/v1/schedule/')
-				.set('X-Access-Token', device.access_token)
-				.expect(400)
-				.end(done)
-			})
-		})*/
 	})
 })
