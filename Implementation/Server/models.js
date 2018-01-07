@@ -137,7 +137,7 @@ function model(db, cb) {
 		transports: { type: 'bit', size: 5, defaultValue: '11111' },
 		suggested_start_time: { type: 'date', time: true },
 		suggested_end_time: { type: 'date', time: true },
-		reachable: { type: 'boolean', defaultValue: false }
+		reachable: { type: 'boolean', defaultValue: true }
 	}, {
 			methods: {
 				// Parsing the transports from binary encoding. Example: 11000 -> ["walking","bicycling"]
