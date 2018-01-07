@@ -214,8 +214,8 @@ let eventIsReachable = (from, to, opt) => {
 		}
 
 		// Step 2: Google Maps Directions API
-		//let parsed_transport = to.parseTransports(dist, opt.settings)
-		let parsed_transport = ["walking", "bicycling", "transit", "driving"]
+		let parsed_transport = to.parseTransports(dist, opt.settings)
+		
 		let responses = []
 		let query = {
 			origin: from,
@@ -232,7 +232,7 @@ let eventIsReachable = (from, to, opt) => {
 				query.mode = 'walking'
 			}
 			let response = await googleMapsClient.directions(query).asPromise()
-
+			
 			let durations = []
 			for (let route of response.json.routes) {
 				let duration = 0

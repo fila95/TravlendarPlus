@@ -319,7 +319,7 @@ describe('Schedule private functions', () => {
 		}
 	})
 
-
+	/*
 	it('eventIsReachable with all the checks, google included, should return an array of routes', async () => {
 		let p1 = { lat: 45.478336, lng: 9.228263 }
 		customEvent.lat = 45.464257
@@ -364,7 +364,7 @@ describe('Schedule private functions', () => {
 		}
 
 	}).timeout(10000); // Google Requests could take a while
-
+	*/
 	it('basicChecks without any params', (done) => {
 		let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: 45, lng: 9 }
 
@@ -415,25 +415,20 @@ describe('Schedule private functions', () => {
 			done(data == true ? new Error('Basic checks failed') : null)
 		})
 	})
-
-	/*it('should return a string of waypoints to inset into DB', () => {
-		let p1 = { lat: 45.464250, lng: 8.190200 }
-		customEvent.start_time=new Date(2017, 11, 4, 11, 0)
-		let parse = customEvent.parseTransports(schedule.distance(p1, customEvent), user.settings)
-		if(parse.length!=2 || parse.indexOf('transit')==-1 || parse.indexOf('driving')==-1){
-			throw Error('The transports parsing is undefined or events are actually reachable by walk/bike: '+ customEvent.transports+ ': '+parse)
-		}
-	})*/
-
 	/*
 	describe('GET /', () => {
-		it('Should call the scheduler', async (done) => {
+		it('Should return a list of events', async (done) => {
 			request(app)
 				.get('/api/v1/schedule/')
-				.set('X-Access-Token', 'ilZVQ03cyMmX3/+RhrM1AKUDwLGG4Qtp2dU2WDvt+f/qTMMBePMnbV5r6Dg02vgs')
+				.set('X-Access-Token', 'X-Access-Token:/2YtLVDu9ZdP85L8Eo0maDdJJFRjYRoMvSTkL5yvfOyQ5VbcOxwg7fG3gDisa5CU')
 				.expect(200)
+				.expect(res => {
+					console.log(res.body)
+					if (!res.body || res.body.length <= 0) {
+						throw new Error('No event list received')
+					}
+				})
 				.end(done)
 		})
-	})
-	*/
+	})*/
 })
