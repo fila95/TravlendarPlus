@@ -28,7 +28,7 @@ Here we publish the final Implementation and Test Document
 
 ### iOS App
 Here we publish the final version of the Implemented iOS App
-- `Version 1.0.0` file can be found [here](https://github.com/fila95/CalzavaraFilaferroNespoli/blob/master/DeliveryFolder/TravlendarPlus.zip)
+- `Version 1.0.0` file can be found [here](https://github.com/fila95/CalzavaraFilaferroNespoli/blob/master/DeliveryFolder/App.zip)
 
 ### Implementation and Testing
 
