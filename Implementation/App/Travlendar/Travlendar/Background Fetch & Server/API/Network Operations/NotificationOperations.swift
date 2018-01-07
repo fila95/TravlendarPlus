@@ -31,7 +31,7 @@ class NotificationTokenOperation: NetworkOperation {
                 
             default:
                 print("Error NotificationTokenOperation: \n\tStatusCode: \(status)")
-                self.completionHandler?(false, "Error Status")
+                self.completionHandler?(false, status)
                 break
                 
             }

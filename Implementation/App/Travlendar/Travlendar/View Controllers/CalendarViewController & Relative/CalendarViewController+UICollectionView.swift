@@ -13,37 +13,47 @@ import Utilities
 extension CalendarViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let ev = self.events, ev.count > 0 else {
-            return 0
-        }
         
-        if self.pickedDate.isToday {
-            if section == 0 {
-                return 1
-            }
-            else {
-                return ev.count-1
+        if section == 0 {
+            if self.previous != nil && self.previous!.count != 0 {
+                return self.previous!.count
             }
         }
-        else {
-            return ev.count
+        else if section == 1  {
+            if self.upNext != nil && self.upNext!.count != 0 {
+                return self.upNext!.count
+            }
         }
+        else if section == 2  {
+            if self.events != nil && self.events!.count != 0 {
+                return self.upNext!.count
+            }
+        }
+
+        return 0
     }
     
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EventCollectionViewCell.reuseIdentifier, for: indexPath) as! EventCollectionViewCell
-        if self.pickedDate.isToday {
-            if indexPath.section == 0 {
-                cell.setEvent(event: events![indexPath.row])
+        if indexPath.section == 0 {
+            if self.previous != nil && self.previous!.count != 0 {
+                cell.setEvent(event: self.previous![indexPath.row])
             }
-            else {
-                cell.setEvent(event: events![indexPath.row])
-            }
+            
         }
-        else {
-            cell.setEvent(event: events![indexPath.row])
+        else if indexPath.section == 1  {
+            if self.upNext != nil && self.upNext!.count != 0 {
+                cell.setEvent(event: self.upNext![indexPath.row])
+            }
+            
+        }
+        else if indexPath.section == 2  {
+            if self.events != nil && self.events!.count != 0 {
+                cell.setEvent(event: self.events![indexPath.row])
+            }
+            
         }
         return cell
         
@@ -51,17 +61,26 @@ extension CalendarViewController: UICollectionViewDelegate, UICollectionViewData
     
     
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
-        guard let ev = self.events, ev.count > 0 else {
-            return 0
-        }
-        return self.pickedDate.isToday ? 2 : 1
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "eventDetailVC") as! EventDetailsViewController
-        vc.event = self.events![indexPath.row]
+        
+        
+        if indexPath.section == 0 {
+            vc.event = self.previous![indexPath.row]
+        }
+        else if indexPath.section == 1 {
+            vc.event = self.upNext![indexPath.row]
+        }
+        else if indexPath.section == 2 {
+            vc.event = self.events![indexPath.row]
+        }
+        
+        
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -84,12 +103,25 @@ extension CalendarViewController: UICollectionViewDelegate, UICollectionViewData
         switch kind {
             case UICollectionElementKindSectionHeader:
                 let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionHeaderView.reuseIdentifier, for: indexPath) as! CollectionHeaderView
+                headerView.titleLabel.text = ""
                 
-                headerView.titleLabel.text = "Later"
-                if self.pickedDate.isToday {
-                    if indexPath.section == 0 {
+                if indexPath.section == 0 {
+                    if self.previous != nil && self.previous!.count != 0 {
+                        headerView.titleLabel.text = "Previous"
+                    }
+                    
+                }
+                else if indexPath.section == 1  {
+                    if self.upNext != nil && self.upNext!.count != 0 {
                         headerView.titleLabel.text = "Up Next"
                     }
+                    
+                }
+                else if indexPath.section == 2  {
+                    if self.events != nil && self.events!.count != 0 {
+                        headerView.titleLabel.text = "Later"
+                    }
+                    
                 }
                 
                 return headerView
@@ -100,6 +132,23 @@ extension CalendarViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if section == 0 {
+            if !(self.previous != nil && self.previous!.count != 0) {
+                return CGSize.init(width: collectionView.frame.size.width, height: 0)
+            }
+            
+        }
+        else if section == 1  {
+            if !(self.upNext != nil && self.upNext!.count != 0) {
+                return CGSize.init(width: collectionView.frame.size.width, height: 0)
+            }
+        }
+        else if section == 2  {
+            if !(self.events != nil && self.events!.count != 0) {
+                return CGSize.init(width: collectionView.frame.size.width, height: 0)
+            }
+        }
+        
         return CGSize.init(width: collectionView.frame.size.width, height: 40)
     }
     

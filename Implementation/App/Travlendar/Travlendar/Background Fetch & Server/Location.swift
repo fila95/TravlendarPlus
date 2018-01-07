@@ -57,10 +57,11 @@ public class Location: NSObject {
     
     func subscribe(completion: @escaping (_ coordinates: CLLocationCoordinate2D) -> Void) {
         DispatchQueue.init(label: "io.array").async {
+            objc_sync_enter(self.handlers)
             self.handlers += [completion]
+            objc_sync_exit(self.handlers)
         }
     }
-    
     
 }
 
@@ -71,11 +72,15 @@ extension Location: CLLocationManagerDelegate {
         
         guard locations.count > 0 else { return }
         
+        objc_sync_enter(self.handlers)
         for handle in handlers {
             DispatchQueue.init(label: "io.array").async {
+                objc_sync_enter(handle)
                 handle(locations[0].coordinate)
+                objc_sync_exit(handle)
             }
         }
+        objc_sync_exit(self.handlers)
         
     }
     

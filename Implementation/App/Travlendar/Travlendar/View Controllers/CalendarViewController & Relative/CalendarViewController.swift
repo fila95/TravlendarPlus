@@ -20,6 +20,9 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var verticalMargin: NSLayoutConstraint!
     
     var pickedDate: Date = Date().dateFor(.startOfDay)
+    
+    var previous: Results<Event>?
+    var upNext: Results<Event>?
     var events: Results<Event>?
     
     override func viewDidLoad() {
@@ -32,8 +35,6 @@ class CalendarViewController: UIViewController {
         collectionView.register(UINib.init(nibName: "CollectionHeaderView", bundle: Bundle.main), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: CollectionHeaderView.reuseIdentifier)
         
         collectionView.contentInset.top = 20
-        
-        
         
         // Date Picker View
         self.view.addSubview(picker)
@@ -78,11 +79,40 @@ class CalendarViewController: UIViewController {
     
     private func refresh() {
         DispatchQueue.main.async {
+            
             // Get the default Realm
             let realm = try! Realm()
             
-            let predicate = NSPredicate(format: "start_time >= %@ AND end_time <=  %@", self.pickedDate.dateFor(.startOfDay) as NSDate, self.pickedDate.dateFor(.endOfDay) as NSDate)
-            self.events = realm.objects(Event.self).filter(predicate)
+//            if let vc = self.navigationController?.presentedViewController as? EventDetailsViewController {
+//                if let e = vc.event {
+//                    if let newEvent = realm.objects(Event.self).filter("id=\(e.id)").first {
+//                        vc.event = newEvent
+//                    }
+//                    else {
+//                        vc.navigationController?.popViewController(animated: true)
+//                    }
+//                }
+//            }
+            
+            if self.pickedDate.isToday {
+                var predicate = NSPredicate(format: "start_time >= %@ AND end_time <=  %@", Date() as NSDate, Date().addingTimeInterval(3600*3) as NSDate)
+                self.upNext = realm.objects(Event.self).filter(predicate)
+                
+                predicate = NSPredicate(format: "start_time >= %@ AND end_time <=  %@", Date().addingTimeInterval(3600*3) as NSDate, Date().dateFor(.endOfDay) as NSDate)
+                self.events = realm.objects(Event.self).filter(predicate)
+                
+                predicate = NSPredicate(format: "start_time >= %@ AND end_time <=  %@", Date().dateFor(.startOfDay) as NSDate, Date() as NSDate)
+                self.previous = realm.objects(Event.self).filter(predicate)
+            }
+            else {
+                self.upNext = nil
+                self.previous = nil
+                
+                let predicate = NSPredicate(format: "start_time >= %@ AND end_time <=  %@", self.pickedDate.dateFor(.startOfDay) as NSDate, self.pickedDate.dateFor(.endOfDay) as NSDate)
+                self.events = realm.objects(Event.self).filter(predicate).sorted(byKeyPath: "start_time")
+            }
+            
+            
             
             self.collectionView.reloadData()
         }
@@ -90,6 +120,8 @@ class CalendarViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        self.refresh()
     }
     
     override func viewWillLayoutSubviews() {
@@ -109,7 +141,7 @@ class CalendarViewController: UIViewController {
     @IBAction func addButtonTapped(_ sender: Any) {
         let ec = EventComposerViewController()
         self.tabBarController?.present(ec, animated: true) {
-            
+
         }
     }
 }

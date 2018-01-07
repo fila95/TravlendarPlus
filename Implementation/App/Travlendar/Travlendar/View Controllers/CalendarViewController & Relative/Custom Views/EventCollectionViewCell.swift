@@ -85,7 +85,13 @@ class EventCollectionViewCell: UICollectionViewCell {
         titleLabel.text = event.title
         addressLabel.text = event.address
         
-        warningView.backgroundColor = Warning.ok.color()
+        if event.reachable {
+            warningView.backgroundColor = Warning.ok.color()
+        }
+        else {
+            warningView.backgroundColor = Warning.danger.color()
+        }
+        
         
         event.relativeCalendar { (calendar: Calendars?) in
             if let cal = calendar {

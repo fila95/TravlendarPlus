@@ -30,6 +30,7 @@
 		1E4C9AF31FFC18DB002F8E8B /* EventsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C9AF21FFC18DB002F8E8B /* EventsOperation.swift */; };
 		1E4C9AF51FFCF800002F8E8B /* Decoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C9AF41FFCF800002F8E8B /* Decoding.swift */; };
 		1E533F0B2002340D005AF438 /* PositionOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E533F0A2002340D005AF438 /* PositionOperation.swift */; };
+		1E533F0D2002765A005AF438 /* ScheduleOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E533F0C2002765A005AF438 /* ScheduleOperation.swift */; };
 		1E543BEF1FE8F8B600DC5BE6 /* TabBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E543BEE1FE8F8B600DC5BE6 /* TabBarControllerViewController.swift */; };
 		1E68BB8F1FD6895200ED4765 /* NetworkOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E68BB8E1FD6895200ED4765 /* NetworkOperations.swift */; };
 		1E6DB0AD1FEA4AD30051319E /* DatePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E6DB09D1FEA4AD30051319E /* DatePicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -228,6 +229,7 @@
 		1E4CB7431FDD4AFE00FA8E52 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1E4CB7451FDD4B6700FA8E52 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		1E533F0A2002340D005AF438 /* PositionOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionOperation.swift; sourceTree = "<group>"; };
+		1E533F0C2002765A005AF438 /* ScheduleOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleOperation.swift; sourceTree = "<group>"; };
 		1E543BEE1FE8F8B600DC5BE6 /* TabBarControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarControllerViewController.swift; sourceTree = "<group>"; };
 		1E543BF01FE8FA2700DC5BE6 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		1E68BB8E1FD6895200ED4765 /* NetworkOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkOperations.swift; sourceTree = "<group>"; };
@@ -758,6 +760,7 @@
 				1E4C9AF21FFC18DB002F8E8B /* EventsOperation.swift */,
 				1EEE56A71FE3D19500621599 /* NotificationOperations.swift */,
 				1E533F0A2002340D005AF438 /* PositionOperation.swift */,
+				1E533F0C2002765A005AF438 /* ScheduleOperation.swift */,
 			);
 			path = "Network Operations";
 			sourceTree = "<group>";
@@ -1351,6 +1354,7 @@
 				1EF4E18D1FDC5F0B00B5BFDC /* MapViewController.swift in Sources */,
 				1E00783E1FE2BA0700FD5405 /* CalendarCell.swift in Sources */,
 				1EEE56A41FE3D17600621599 /* SettingsOperations.swift in Sources */,
+				1E533F0D2002765A005AF438 /* ScheduleOperation.swift in Sources */,
 				1E8C1A2E1FFE48A600A7350B /* SaveCloseTableViewCell.swift in Sources */,
 				1E68BB8F1FD6895200ED4765 /* NetworkOperations.swift in Sources */,
 				1E8753A72000D0FC0026B06C /* DurationPickerComponent.swift in Sources */,

@@ -38,7 +38,7 @@ class CalendarsOperation: NetworkOperation {
             case .ok:
                 
                 guard let d = data else {
-                    self.completionHandler?(false, "Data Unavailable")
+                    self.completionHandler?(false, .dataUnavailable)
                     print("Error CalendarsOperation: \n\tData unavailable")
                     return
                 }
@@ -46,7 +46,7 @@ class CalendarsOperation: NetworkOperation {
                 if self.operationType == .get {
                     
                     guard let calendars = try? decoder.decode([Calendars].self, from: d) else {
-                        self.completionHandler?(false, "Decode Error")
+                        self.completionHandler?(false, .dataUnavailable)
                         print("Error Calendars Operation: Unable to decode Calendars")
                         return
                     }
@@ -72,7 +72,7 @@ class CalendarsOperation: NetworkOperation {
                 else if self.operationType == .patch {
                     
                     guard let calendar = try? decoder.decode(Calendars.self, from: d) else {
-                        self.completionHandler?(false, "Decode Error")
+                        self.completionHandler?(false, .dataUnavailable)
                         print("Error Calendars Operation: Unable to decode Calendar")
                         return
                     }
@@ -95,13 +95,13 @@ class CalendarsOperation: NetworkOperation {
                 
             case .created:
                 guard let d = data else {
-                    self.completionHandler?(false, "Data Unavailable")
+                    self.completionHandler?(false, .dataUnavailable)
                     print("Error CalendarsOperation: \n\tData unavailable")
                     return
                 }
                 
                 guard let calendar = try? decoder.decode(Calendars.self, from: d) else {
-                    self.completionHandler?(false, "Decode Error")
+                    self.completionHandler?(false, .dataUnavailable)
                     print("Error Calendars Operation: Unable to decode Calendar")
                     return
                 }
@@ -123,7 +123,7 @@ class CalendarsOperation: NetworkOperation {
                     
                     Database.shared.realm(completion: { (realm) in
                         guard let id: Int = Int(self.endpointAddition) else {
-                            self.completionHandler?(false, "Error deleting...")
+                            self.completionHandler?(false, .dataUnavailable)
                             return
                         }
                         
@@ -140,7 +140,7 @@ class CalendarsOperation: NetworkOperation {
                 break
                 
             default:
-                self.completionHandler?(false, "Error")
+                self.completionHandler?(false, status)
                 print("Error Calendars Operation: \n\tStatusCode: \(status)")
                 break
                 

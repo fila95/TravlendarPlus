@@ -46,6 +46,7 @@ public class API: NSObject {
             self.pushUserPosition()
         }
         Location.shared.subscribe { (coordinateUpdate) in
+            self.cancelOperationsOfType(t: PositionOperation.classForCoder())
             self.queue.addOperation(PositionOperation(operationType: .patch, endpointAddition: nil, httpBody: "{\"lat\":\"\(coordinateUpdate.latitude)\", \"lng\":\"\(coordinateUpdate.longitude)\"}"))
         }
         
@@ -53,53 +54,70 @@ public class API: NSObject {
     }
     
     public func triggerSync() {
-        print("Sync Triggered")
-        queue.addOperation(SettingsOperation(operationType: .get))
-        queue.addOperation(CalendarsOperation(operationType: .get))
-        self.pushUserPosition()
+        
+        
+        if self.queue.operationCount < 2 {
+            print("Sync Triggered")
+            queue.addOperation(SettingsOperation(operationType: .get))
+            queue.addOperation(CalendarsOperation(operationType: .get))
+            self.pushUserPosition()
+        }
+        
     }
     
     // MARK: Settings
     
-    public func pushSettingsToServer(settings: Settings, completion: ((_ complete: Bool, _ message: String?) -> Void)? = nil) {
+    public func pushSettingsToServer(settings: Settings, completion: ((_ complete: Bool, _ code: NStatusCode?) -> Void)? = nil) {
         cancelOperationsOfType(t: SettingsOperation.classForCoder())
         queue.addOperation(SettingsOperation(operationType: .patch, httpBody: Settings.representation(toRepresent: settings), completion: completion))
     }
     
     // MARK: Calendars
     
-    public func deleteCalendarFromServer(calendar: Calendars, completion: ((_ complete: Bool, _ message: String?) -> Void)? = nil) {
+    public func deleteCalendarFromServer(calendar: Calendars, completion: ((_ complete: Bool, _ code: NStatusCode?) -> Void)? = nil) {
         queue.addOperation(CalendarsOperation(operationType: .delete, endpointAddition: "\(calendar.id)", completion: completion))
     }
     
-    public func updateCalendar(calendar: Calendars, completion: ((_ complete: Bool, _ message: String?) -> Void)? = nil) {
+    public func updateCalendar(calendar: Calendars, completion: ((_ complete: Bool, _ code: NStatusCode?) -> Void)? = nil) {
         queue.addOperation(CalendarsOperation(operationType: .patch, endpointAddition: "\(calendar.id)", httpBody: Calendars.representation(toRepresent: calendar), completion: completion))
     }
     
-    public func addCalendar(calendar: Calendars, completion: ((_ complete: Bool, _ message: String?) -> Void)? = nil) {
+    public func addCalendar(calendar: Calendars, completion: ((_ complete: Bool, _ code: NStatusCode?) -> Void)? = nil) {
         queue.addOperation(CalendarsOperation(operationType: .put, httpBody: Calendars.representation(toRepresent: calendar), completion: completion))
     }
     
     // MARK: Events
     
-    public func getEventsFor(calendar: Calendars, completion: ((_ complete: Bool, _ message: String?) -> Void)? = nil) {
+    public func getEventsFor(calendar: Calendars, completion: ((_ complete: Bool, _ code: NStatusCode?) -> Void)? = nil) {
         queue.addOperation(EventsOperation(operationType: .get, endpointAddition: "\(calendar.id)/events/", completion: completion))
     }
     
-    public func deleteEventFromServer(event: Event, completion: ((_ complete: Bool, _ message: String?) -> Void)? = nil) {
+    public func deleteEventFromServer(event: Event, completion: ((_ complete: Bool, _ code: NStatusCode?) -> Void)? = nil) {
         queue.addOperation(EventsOperation(operationType: .delete, endpointAddition: "\(event.calendar_id)/events/\(event.id)", completion: completion))
     }
     
-    public func updateEvent(event: Event, completion: ((_ complete: Bool, _ message: String?) -> Void)? = nil) {
+    public func updateEvent(event: Event, completion: ((_ complete: Bool, _ code: NStatusCode?) -> Void)? = nil) {
         queue.addOperation(EventsOperation(operationType: .patch, endpointAddition: "\(event.calendar_id)/events/\(event.id)", httpBody: Event.representation(toRepresent: event), completion: completion))
     }
     
-    public func addEvent(event: Event, completion: ((_ complete: Bool, _ message: String?) -> Void)? = nil) {
+    public func addEvent(event: Event, completion: ((_ complete: Bool, _ code: NStatusCode?) -> Void)? = nil) {
         queue.addOperation(EventsOperation(operationType: .put, endpointAddition: "\(event.calendar_id)/events/", httpBody: Event.representation(toRepresent: event), completion: completion))
+        self.triggerSchedule()
+    }
+    
+    public func triggerSchedule(completion: ((_ complete: Bool, _ code: NStatusCode?) -> Void)? = nil) {
+        queue.addOperation(ScheduleOperation(operationType: .post, endpointAddition: "", httpBody: nil, completion: completion))
+    }
+    
+    public func getSchedule(completion: ((_ complete: Bool, _ code: NStatusCode?) -> Void)? = nil) {
+        cancelOperationsOfType(t: ScheduleOperation.classForCoder())
+        queue.addOperation(ScheduleOperation(operationType: .get, endpointAddition: "", httpBody: nil, completion: completion))
     }
     
     public func pushUserPosition() {
         Location.shared.requestLocationUpdate()
+        
+        self.triggerSchedule()
     }
     
     // MARK: Notification
