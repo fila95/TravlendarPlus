@@ -260,7 +260,6 @@ let eventIsReachable = (from, to, opt) => {
 
 			// TODO tenere conto delle ripetizioni
 
-
 			let googlePreferredDuration = durations[0]
 			if (googlePreferredDuration <= availableTime) {
 				// Try to use the google preferred route

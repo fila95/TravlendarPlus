@@ -107,7 +107,6 @@ describe('Schedule', () => {
 
 			// All time slots can't overlap with themselves
 			if (schedule.overlap(timeSlots)) {
-				// TODO FIX randomly happening
 				throw new Error('Overlapping time slots')
 			}
 		})

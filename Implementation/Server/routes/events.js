@@ -79,20 +79,30 @@ let eventFactory = (req, cb) => {
 router.put('/', (req, res) => {
 	eventFactory(req, event => {
 		if (event == null) return res.sendStatus(400).end('invalid parameters')
-		// Basic checks
-		basicChecks(req.user, event, (err, reachable) => {
-			if (reachable) {
-				// Create the event
-				req.models.events.create(event, (err, result) => {
-					if (err) {
-						return res.status(500).end()
-					}
-					return res.status(201).json(result).end()
-				})
-			} else {
-				return res.status(412).end('not reachable')
-			}
-		})
+		if (event.start_time < new Date()) {
+			// Create the event
+			req.models.events.create(event, (err, result) => {
+				if (err) {
+					return res.status(500).end()
+				}
+				return res.status(201).json(result).end()
+			})
+		} else {
+			// Basic checks
+			basicChecks(req.user, event, (err, reachable) => {
+				if (reachable) {
+					// Create the event
+					req.models.events.create(event, (err, result) => {
+						if (err) {
+							return res.status(500).end()
+						}
+						return res.status(201).json(result).end()
+					})
+				} else {
+					return res.status(412).end('not reachable')
+				}
+			})
+		}
 	})
 })
 
@@ -129,17 +139,25 @@ router.patch('/:event_id', (req, res) => {
 				// Copy attribute in eventUpdated to eventTarget
 				delete eventUpdated.calendar_id
 
-				basicChecks(req.user, eventUpdated, (err, reachable) => {
-					if (reachable) {
-						// Create the event
-						Object.assign(eventTarget, eventUpdated)
-						eventTarget.save((err, result) => {
-							return res.json(result).end()
-						})
-					} else {
-						return res.status(412).end('not reachable')
-					}
-				})
+				if (eventUpdated.start_time < new Date()) {
+					// Patch the event
+					Object.assign(eventTarget, eventUpdated)
+					eventTarget.save((err, result) => {
+						return res.json(result).end()
+					})
+				} else {
+					basicChecks(req.user, eventUpdated, (err, reachable) => {
+						if (reachable) {
+							// Patch the event
+							Object.assign(eventTarget, eventUpdated)
+							eventTarget.save((err, result) => {
+								return res.json(result).end()
+							})
+						} else {
+							return res.status(412).end('not reachable')
+						}
+					})
+				}
 			})
 		})
 	})
