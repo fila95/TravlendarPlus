@@ -9,12 +9,14 @@ Software Engineering 2 Project Repository
 
 ### RASD
 Here we publish the final Requirement Analysis and Specification Document
+- `Version 1.3.0` file can be found [here](https://github.com/fila95/CalzavaraFilaferroNespoli/blob/master/DeliveryFolder/RASD1.3.0.pdf)
 - `Version 1.2.0` file can be found [here](https://github.com/fila95/CalzavaraFilaferroNespoli/blob/master/DeliveryFolder/RASD1.2.0.pdf)
 - `Version 1.1.0` file can be found [here](https://github.com/fila95/CalzavaraFilaferroNespoli/blob/master/DeliveryFolder/RASD1.1.0.pdf)
 - `Version 1.0.0` file can be found [here](https://github.com/fila95/CalzavaraFilaferroNespoli/blob/master/DeliveryFolder/RASD1.0.0.pdf)
 
 ### DD
 Here we publish the final Design Document
+- `Version 1.2.1` file can be found [here](https://github.com/fila95/CalzavaraFilaferroNespoli/blob/master/DeliveryFolder/DD1.2.1.pdf)
 - `Version 1.2.0` file can be found [here](https://github.com/fila95/CalzavaraFilaferroNespoli/blob/master/DeliveryFolder/DD1.2.0.pdf)
 - `Version 1.1.1` file can be found [here](https://github.com/fila95/CalzavaraFilaferroNespoli/blob/master/DeliveryFolder/DD1.1.1.pdf)
 - `Version 1.1.0` file can be found [here](https://github.com/fila95/CalzavaraFilaferroNespoli/blob/master/DeliveryFolder/DD1.1.0.pdf)
