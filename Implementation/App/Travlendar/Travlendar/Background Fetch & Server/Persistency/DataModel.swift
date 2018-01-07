@@ -17,11 +17,31 @@ import Realm
 
 enum TransportMean: String {
     
+    
     case walking
     case biking
-    case public_transport
+    case public_transport = "public"
     case sharing
     case car
+    
+    func image() -> UIImage {
+        switch self {
+        case .walking:
+            return UIImage(named: "walk_travel")!
+        case .biking:
+            return UIImage(named: "bike_travel")!
+        case .public_transport:
+            return UIImage(named: "transport_travel")!
+        case .car:
+            return UIImage(named: "car_travel")!
+        default:
+            return UIImage()
+        }
+        
+        
+    }
+    
+    
     
 }
 
@@ -154,10 +174,10 @@ class Travel: Object, Codable {
     
     @objc dynamic var id: Int = 0
     @objc dynamic var time: Int = 0
-    @objc private dynamic var transport_mean_private: String = TransportMean.walking.rawValue.uppercased()
+    @objc private dynamic var transport_mean_private: String = TransportMean.walking.rawValue
     var transport_mean: TransportMean {
-        get { return TransportMean(rawValue: transport_mean_private.uppercased())! }
-        set { transport_mean_private = newValue.rawValue.lowercased() }
+        get { return TransportMean(rawValue: transport_mean_private.lowercased())! }
+        set { transport_mean_private = newValue.rawValue.uppercased() }
     }
     
     @objc dynamic var waypoints = ""

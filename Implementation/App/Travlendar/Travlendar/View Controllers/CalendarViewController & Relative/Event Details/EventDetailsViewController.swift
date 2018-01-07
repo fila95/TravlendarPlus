@@ -25,7 +25,7 @@ class EventDetailsViewController: UIViewController {
     var event: Event? {
         didSet {
             if event != nil {
-                print(event ?? "")
+//                print(event ?? "")
                 self.id = event!.id
                 self.refresh()
             }
@@ -39,8 +39,11 @@ class EventDetailsViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        collectionView.register(RoutesCollectionViewCell.self, forCellWithReuseIdentifier: RoutesCollectionViewCell.reuseId)
-        collectionView.register(RoutesCollectionViewCell.nib!, forCellWithReuseIdentifier: RoutesCollectionViewCell.reuseId)
+        self.collectionView.register(RoutesCollectionViewCell.self, forCellWithReuseIdentifier: RoutesCollectionViewCell.reuseId)
+        self.collectionView.register(RoutesCollectionViewCell.nib!, forCellWithReuseIdentifier: RoutesCollectionViewCell.reuseId)
+        
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
         
         
         // Events Refresh
