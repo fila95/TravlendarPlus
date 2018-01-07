@@ -111,7 +111,6 @@ class Travel: Object {
         return "id"
     }
     
-    
 }
 
 public class Event: Object, Codable {
