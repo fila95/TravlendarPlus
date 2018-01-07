@@ -25,7 +25,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gQA-UP-a3Y">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gQA-UP-a3Y">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="v2Z-ps-o3w">
@@ -160,7 +160,7 @@
                                     <action selector="editEvent:" destination="dVq-md-cfc" eventType="touchUpInside" id="X35-Ge-gTt"/>
                                 </connections>
                             </button>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="never" translatesAutoresizingMaskIntoConstraints="NO" id="JdT-Qo-EOi">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="never" translatesAutoresizingMaskIntoConstraints="NO" id="JdT-Qo-EOi">
                                 <rect key="frame" x="0.0" y="136" width="375" height="531"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dj4-34-eOC">
@@ -201,16 +201,33 @@
                                         </subviews>
                                     </stackView>
                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="rWP-ON-VbH">
-                                        <rect key="frame" x="0.0" y="66" width="375" height="100"/>
+                                        <rect key="frame" x="0.0" y="66" width="375" height="120"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="49l-P2-xLn"/>
+                                            <constraint firstAttribute="height" constant="120" id="49l-P2-xLn"/>
                                         </constraints>
                                     </mapView>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hvL-Vq-voq">
+                                        <rect key="frame" x="0.0" y="194" width="375" height="357"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="357" id="h1a-Z8-diL"/>
+                                        </constraints>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="NMb-DK-3Mj">
+                                            <size key="itemSize" width="50" height="50"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells/>
+                                    </collectionView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="hvL-Vq-voq" secondAttribute="bottom" id="1tl-Ip-e7A"/>
+                                    <constraint firstAttribute="trailing" secondItem="hvL-Vq-voq" secondAttribute="trailing" id="6bZ-1d-F9z"/>
                                     <constraint firstAttribute="trailing" secondItem="rWP-ON-VbH" secondAttribute="trailing" id="EOn-iC-1rY"/>
                                     <constraint firstItem="dj4-34-eOC" firstAttribute="top" secondItem="JdT-Qo-EOi" secondAttribute="top" constant="8" id="HFc-jF-FTV"/>
-                                    <constraint firstAttribute="bottom" secondItem="rWP-ON-VbH" secondAttribute="bottom" constant="365" id="JIR-he-0YU"/>
+                                    <constraint firstItem="hvL-Vq-voq" firstAttribute="top" secondItem="rWP-ON-VbH" secondAttribute="bottom" constant="8" id="Ya7-dN-1gY"/>
+                                    <constraint firstItem="hvL-Vq-voq" firstAttribute="leading" secondItem="JdT-Qo-EOi" secondAttribute="leading" id="cfa-Gb-2z5"/>
                                     <constraint firstItem="dj4-34-eOC" firstAttribute="centerX" secondItem="JdT-Qo-EOi" secondAttribute="centerX" id="eeK-TY-f7K"/>
                                     <constraint firstItem="rWP-ON-VbH" firstAttribute="top" secondItem="dj4-34-eOC" secondAttribute="bottom" constant="15" id="njC-ye-McX"/>
                                     <constraint firstItem="rWP-ON-VbH" firstAttribute="width" secondItem="JdT-Qo-EOi" secondAttribute="width" id="ssx-hB-RoV"/>
@@ -244,8 +261,10 @@
                             <constraint firstItem="JdT-Qo-EOi" firstAttribute="leading" secondItem="f4S-hD-wvE" secondAttribute="leading" id="9iL-LX-2rW"/>
                             <constraint firstItem="f4S-hD-wvE" firstAttribute="trailing" secondItem="xmb-Dj-wOb" secondAttribute="trailing" id="QTA-mx-1ff"/>
                             <constraint firstItem="f4S-hD-wvE" firstAttribute="trailing" secondItem="XT3-bI-ghR" secondAttribute="trailing" constant="10" id="UYa-GC-O5h"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bnH-oM-myU" secondAttribute="trailing" constant="20" symbolic="YES" id="WWK-nF-Lfv"/>
                             <constraint firstItem="xmb-Dj-wOb" firstAttribute="leading" secondItem="f4S-hD-wvE" secondAttribute="leading" id="Xil-xJ-4GU"/>
                             <constraint firstItem="JdT-Qo-EOi" firstAttribute="trailing" secondItem="f4S-hD-wvE" secondAttribute="trailing" id="gNH-SZ-Svs"/>
+                            <constraint firstItem="XT3-bI-ghR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="wVP-zq-wZQ" secondAttribute="leading" constant="20" symbolic="YES" id="iyk-yy-tQl"/>
                             <constraint firstItem="xmb-Dj-wOb" firstAttribute="top" secondItem="XT3-bI-ghR" secondAttribute="bottom" constant="8" id="qwX-FG-d0o"/>
                             <constraint firstItem="bnH-oM-myU" firstAttribute="leading" secondItem="f4S-hD-wvE" secondAttribute="leading" constant="10" id="vNO-im-dNY"/>
                             <constraint firstItem="XT3-bI-ghR" firstAttribute="top" secondItem="f4S-hD-wvE" secondAttribute="top" constant="10" id="wP9-Wb-xBN"/>
@@ -256,6 +275,8 @@
                     </view>
                     <connections>
                         <outlet property="addressLabel" destination="Lbk-nh-grN" id="yCr-rT-JGc"/>
+                        <outlet property="collectionView" destination="hvL-Vq-voq" id="taa-lR-LeJ"/>
+                        <outlet property="collectionViewHeight" destination="h1a-Z8-diL" id="kQe-Sk-XoE"/>
                         <outlet property="dateLabel" destination="djx-Av-dqP" id="to2-bg-oFi"/>
                         <outlet property="mapView" destination="rWP-ON-VbH" id="YId-vc-6x3"/>
                         <outlet property="nameLabel" destination="IAn-Mb-1FA" id="SQf-bU-pCb"/>

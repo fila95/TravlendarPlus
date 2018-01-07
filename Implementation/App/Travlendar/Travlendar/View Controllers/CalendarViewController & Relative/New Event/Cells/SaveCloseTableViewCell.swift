@@ -14,7 +14,8 @@ class SaveCloseTableViewCell: UITableViewCell, Reusable {
     var closeHandler: (() -> Void)?
     
     @IBOutlet weak var saveButton: RoundedButton!
-
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -18,6 +18,9 @@ class EventDetailsViewController: UIViewController {
     @IBOutlet var timeLabel: UILabel!
     @IBOutlet var mapView: MKMapView!
     
+    @IBOutlet var collectionViewHeight: NSLayoutConstraint!
+    @IBOutlet var collectionView: UICollectionView!
+    
     var event: Event? {
         didSet {
             self.refresh()
@@ -58,7 +61,7 @@ class EventDetailsViewController: UIViewController {
         a.coordinate = coords
         self.mapView.addAnnotation(a)
         
-        let region = MKCoordinateRegionMakeWithDistance(coords, 500, 500)
+        let region = MKCoordinateRegionMakeWithDistance(coords, 300, 300)
         self.mapView.setRegion(region, animated: true)
     }
     
@@ -84,7 +87,7 @@ class EventDetailsViewController: UIViewController {
         }
         
         ec.setEvent(e: decoded)
-        self.present(ec, animated: true) {
+        self.tabBarController?.present(ec, animated: true) {
             
         }
     }

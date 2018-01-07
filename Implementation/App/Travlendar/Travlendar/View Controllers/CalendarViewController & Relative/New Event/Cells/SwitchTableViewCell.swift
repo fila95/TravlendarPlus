@@ -15,6 +15,7 @@ class SwitchTableViewCell: UITableViewCell {
     
     private var switchHandler: (() -> Void)?
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -29,10 +29,9 @@
 		1E4C9AF11FFBEE08002F8E8B /* VPLoadingButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C9AF01FFBEE08002F8E8B /* VPLoadingButtonComponent.swift */; };
 		1E4C9AF31FFC18DB002F8E8B /* EventsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C9AF21FFC18DB002F8E8B /* EventsOperation.swift */; };
 		1E4C9AF51FFCF800002F8E8B /* Decoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C9AF41FFCF800002F8E8B /* Decoding.swift */; };
+		1E533F0B2002340D005AF438 /* PositionOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E533F0A2002340D005AF438 /* PositionOperation.swift */; };
 		1E543BEF1FE8F8B600DC5BE6 /* TabBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E543BEE1FE8F8B600DC5BE6 /* TabBarControllerViewController.swift */; };
 		1E68BB8F1FD6895200ED4765 /* NetworkOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E68BB8E1FD6895200ED4765 /* NetworkOperations.swift */; };
-		1E6DB0A41FEA4AD30051319E /* DatePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6DB09B1FEA4AD30051319E /* DatePicker.framework */; };
-		1E6DB0AB1FEA4AD30051319E /* DatePickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6DB0AA1FEA4AD30051319E /* DatePickerTests.swift */; };
 		1E6DB0AD1FEA4AD30051319E /* DatePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E6DB09D1FEA4AD30051319E /* DatePicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1E6DB0B01FEA4AD30051319E /* DatePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6DB09B1FEA4AD30051319E /* DatePicker.framework */; };
 		1E6DB0B11FEA4AD30051319E /* DatePicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6DB09B1FEA4AD30051319E /* DatePicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -90,8 +89,6 @@
 		1EAA18EC1FC9CE9F001B3612 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EAA18EA1FC9CE9F001B3612 /* LaunchScreen.storyboard */; };
 		1EAA18F71FC9CEA0001B3612 /* TravlendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAA18F61FC9CEA0001B3612 /* TravlendarTests.swift */; };
 		1EAA19021FC9CEA0001B3612 /* TravlendarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAA19011FC9CEA0001B3612 /* TravlendarUITests.swift */; };
-		1EAB5CC11FF5029A0052BC4B /* ViewPresenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EAB5CB81FF5029A0052BC4B /* ViewPresenter.framework */; };
-		1EAB5CC81FF5029A0052BC4B /* ViewPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAB5CC71FF5029A0052BC4B /* ViewPresenterTests.swift */; };
 		1EAB5CCA1FF5029B0052BC4B /* ViewPresenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EAB5CBA1FF5029A0052BC4B /* ViewPresenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1EAB5CCD1FF5029B0052BC4B /* ViewPresenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EAB5CB81FF5029A0052BC4B /* ViewPresenter.framework */; };
 		1EAB5CCE1FF5029B0052BC4B /* ViewPresenter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1EAB5CB81FF5029A0052BC4B /* ViewPresenter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -99,8 +96,6 @@
 		1EAB5CD81FF502B90052BC4B /* VPViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAB5CD71FF502B90052BC4B /* VPViewPresenter.swift */; };
 		1EAB5CDA1FF509BD0052BC4B /* VPComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAB5CD91FF509BD0052BC4B /* VPComponent.swift */; };
 		1EAB5CDD1FF50A080052BC4B /* VPButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAB5CDC1FF50A080052BC4B /* VPButtonComponent.swift */; };
-		1EAB5CEE1FF53C560052BC4B /* Utilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EAB5CE51FF53C560052BC4B /* Utilities.framework */; };
-		1EAB5CF51FF53C560052BC4B /* UtilitiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAB5CF41FF53C560052BC4B /* UtilitiesTests.swift */; };
 		1EAB5CF71FF53C560052BC4B /* Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EAB5CE71FF53C560052BC4B /* Utilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1EAB5CFA1FF53C560052BC4B /* Utilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EAB5CE51FF53C560052BC4B /* Utilities.framework */; };
 		1EAB5CFB1FF53C560052BC4B /* Utilities.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1EAB5CE51FF53C560052BC4B /* Utilities.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -141,20 +136,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1E6DB0A51FEA4AD30051319E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1EAA18D31FC9CE9F001B3612 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1E6DB09A1FEA4AD30051319E;
-			remoteInfo = DatePicker;
-		};
-		1E6DB0A71FEA4AD30051319E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1EAA18D31FC9CE9F001B3612 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1EAA18DA1FC9CE9F001B3612;
-			remoteInfo = Travlendar;
-		};
 		1E6DB0AE1FEA4AD30051319E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1EAA18D31FC9CE9F001B3612 /* Project object */;
@@ -176,40 +157,12 @@
 			remoteGlobalIDString = 1EAA18DA1FC9CE9F001B3612;
 			remoteInfo = Travlendar;
 		};
-		1EAB5CC21FF5029A0052BC4B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1EAA18D31FC9CE9F001B3612 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1EAB5CB71FF5029A0052BC4B;
-			remoteInfo = ViewPresenter;
-		};
-		1EAB5CC41FF5029A0052BC4B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1EAA18D31FC9CE9F001B3612 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1EAA18DA1FC9CE9F001B3612;
-			remoteInfo = Travlendar;
-		};
 		1EAB5CCB1FF5029B0052BC4B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1EAA18D31FC9CE9F001B3612 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 1EAB5CB71FF5029A0052BC4B;
 			remoteInfo = ViewPresenter;
-		};
-		1EAB5CEF1FF53C560052BC4B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1EAA18D31FC9CE9F001B3612 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1EAB5CE41FF53C560052BC4B;
-			remoteInfo = Utilities;
-		};
-		1EAB5CF11FF53C560052BC4B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1EAA18D31FC9CE9F001B3612 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1EAA18DA1FC9CE9F001B3612;
-			remoteInfo = Travlendar;
 		};
 		1EAB5CF81FF53C560052BC4B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -274,6 +227,7 @@
 		1E4CB7411FDD4AAF00FA8E52 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		1E4CB7431FDD4AFE00FA8E52 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1E4CB7451FDD4B6700FA8E52 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		1E533F0A2002340D005AF438 /* PositionOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionOperation.swift; sourceTree = "<group>"; };
 		1E543BEE1FE8F8B600DC5BE6 /* TabBarControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarControllerViewController.swift; sourceTree = "<group>"; };
 		1E543BF01FE8FA2700DC5BE6 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		1E68BB8E1FD6895200ED4765 /* NetworkOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkOperations.swift; sourceTree = "<group>"; };
@@ -281,7 +235,6 @@
 		1E6DB09B1FEA4AD30051319E /* DatePicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DatePicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E6DB09D1FEA4AD30051319E /* DatePicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatePicker.h; sourceTree = "<group>"; };
 		1E6DB09E1FEA4AD30051319E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1E6DB0A31FEA4AD30051319E /* DatePickerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DatePickerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E6DB0AA1FEA4AD30051319E /* DatePickerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerTests.swift; sourceTree = "<group>"; };
 		1E6DB0AC1FEA4AD30051319E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E6DB0B91FEA4B030051319E /* DPDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPDay.swift; sourceTree = "<group>"; };
@@ -348,7 +301,6 @@
 		1EAB5CB81FF5029A0052BC4B /* ViewPresenter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ViewPresenter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EAB5CBA1FF5029A0052BC4B /* ViewPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewPresenter.h; sourceTree = "<group>"; };
 		1EAB5CBB1FF5029A0052BC4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1EAB5CC01FF5029A0052BC4B /* ViewPresenterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ViewPresenterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EAB5CC71FF5029A0052BC4B /* ViewPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPresenterTests.swift; sourceTree = "<group>"; };
 		1EAB5CC91FF5029B0052BC4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1EAB5CD51FF502B00052BC4B /* VPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPView.swift; sourceTree = "<group>"; };
@@ -358,7 +310,6 @@
 		1EAB5CE51FF53C560052BC4B /* Utilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Utilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EAB5CE71FF53C560052BC4B /* Utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		1EAB5CE81FF53C560052BC4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1EAB5CED1FF53C560052BC4B /* UtilitiesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UtilitiesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EAB5CF41FF53C560052BC4B /* UtilitiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilitiesTests.swift; sourceTree = "<group>"; };
 		1EAB5CF61FF53C560052BC4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1EB2ECE41FCD4EB300A50EC3 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
@@ -391,14 +342,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1E6DB0A01FEA4AD30051319E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1E6DB0A41FEA4AD30051319E /* DatePicker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,26 +381,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1EAB5CBD1FF5029A0052BC4B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1EAB5CC11FF5029A0052BC4B /* ViewPresenter.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		1EAB5CE11FF53C560052BC4B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1EAB5CEA1FF53C560052BC4B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1EAB5CEE1FF53C560052BC4B /* Utilities.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -711,11 +638,8 @@
 				1EAA18F21FC9CEA0001B3612 /* TravlendarTests.xctest */,
 				1EAA18FD1FC9CEA0001B3612 /* TravlendarUITests.xctest */,
 				1E6DB09B1FEA4AD30051319E /* DatePicker.framework */,
-				1E6DB0A31FEA4AD30051319E /* DatePickerTests.xctest */,
 				1EAB5CB81FF5029A0052BC4B /* ViewPresenter.framework */,
-				1EAB5CC01FF5029A0052BC4B /* ViewPresenterTests.xctest */,
 				1EAB5CE51FF53C560052BC4B /* Utilities.framework */,
-				1EAB5CED1FF53C560052BC4B /* UtilitiesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -833,6 +757,7 @@
 				1EEE56A51FE3D18700621599 /* CalendarOperations.swift */,
 				1E4C9AF21FFC18DB002F8E8B /* EventsOperation.swift */,
 				1EEE56A71FE3D19500621599 /* NotificationOperations.swift */,
+				1E533F0A2002340D005AF438 /* PositionOperation.swift */,
 			);
 			path = "Network Operations";
 			sourceTree = "<group>";
@@ -985,25 +910,6 @@
 			productReference = 1E6DB09B1FEA4AD30051319E /* DatePicker.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		1E6DB0A21FEA4AD30051319E /* DatePickerTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1E6DB0B51FEA4AD30051319E /* Build configuration list for PBXNativeTarget "DatePickerTests" */;
-			buildPhases = (
-				1E6DB09F1FEA4AD30051319E /* Sources */,
-				1E6DB0A01FEA4AD30051319E /* Frameworks */,
-				1E6DB0A11FEA4AD30051319E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1E6DB0A61FEA4AD30051319E /* PBXTargetDependency */,
-				1E6DB0A81FEA4AD30051319E /* PBXTargetDependency */,
-			);
-			name = DatePickerTests;
-			productName = DatePickerTests;
-			productReference = 1E6DB0A31FEA4AD30051319E /* DatePickerTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		1EAA18DA1FC9CE9F001B3612 /* Travlendar */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1EAA19061FC9CEA0001B3612 /* Build configuration list for PBXNativeTarget "Travlendar" */;
@@ -1088,25 +994,6 @@
 			productReference = 1EAB5CB81FF5029A0052BC4B /* ViewPresenter.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		1EAB5CBF1FF5029A0052BC4B /* ViewPresenterTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1EAB5CD21FF5029B0052BC4B /* Build configuration list for PBXNativeTarget "ViewPresenterTests" */;
-			buildPhases = (
-				1EAB5CBC1FF5029A0052BC4B /* Sources */,
-				1EAB5CBD1FF5029A0052BC4B /* Frameworks */,
-				1EAB5CBE1FF5029A0052BC4B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1EAB5CC31FF5029A0052BC4B /* PBXTargetDependency */,
-				1EAB5CC51FF5029A0052BC4B /* PBXTargetDependency */,
-			);
-			name = ViewPresenterTests;
-			productName = ViewPresenterTests;
-			productReference = 1EAB5CC01FF5029A0052BC4B /* ViewPresenterTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		1EAB5CE41FF53C560052BC4B /* Utilities */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1EAB5CFC1FF53C560052BC4B /* Build configuration list for PBXNativeTarget "Utilities" */;
@@ -1125,25 +1012,6 @@
 			productReference = 1EAB5CE51FF53C560052BC4B /* Utilities.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		1EAB5CEC1FF53C560052BC4B /* UtilitiesTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1EAB5CFF1FF53C560052BC4B /* Build configuration list for PBXNativeTarget "UtilitiesTests" */;
-			buildPhases = (
-				1EAB5CE91FF53C560052BC4B /* Sources */,
-				1EAB5CEA1FF53C560052BC4B /* Frameworks */,
-				1EAB5CEB1FF53C560052BC4B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1EAB5CF01FF53C560052BC4B /* PBXTargetDependency */,
-				1EAB5CF21FF53C560052BC4B /* PBXTargetDependency */,
-			);
-			name = UtilitiesTests;
-			productName = UtilitiesTests;
-			productReference = 1EAB5CED1FF53C560052BC4B /* UtilitiesTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1157,11 +1025,6 @@
 					1E6DB09A1FEA4AD30051319E = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
-					};
-					1E6DB0A21FEA4AD30051319E = {
-						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 1EAA18DA1FC9CE9F001B3612;
 					};
 					1EAA18DA1FC9CE9F001B3612 = {
 						CreatedOnToolsVersion = 9.0;
@@ -1199,19 +1062,9 @@
 						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
-					1EAB5CBF1FF5029A0052BC4B = {
-						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 1EAA18DA1FC9CE9F001B3612;
-					};
 					1EAB5CE41FF53C560052BC4B = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
-					};
-					1EAB5CEC1FF53C560052BC4B = {
-						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 1EAA18DA1FC9CE9F001B3612;
 					};
 				};
 			};
@@ -1232,24 +1085,14 @@
 				1EAA18F11FC9CEA0001B3612 /* TravlendarTests */,
 				1EAA18FC1FC9CEA0001B3612 /* TravlendarUITests */,
 				1E6DB09A1FEA4AD30051319E /* DatePicker */,
-				1E6DB0A21FEA4AD30051319E /* DatePickerTests */,
 				1EAB5CB71FF5029A0052BC4B /* ViewPresenter */,
-				1EAB5CBF1FF5029A0052BC4B /* ViewPresenterTests */,
 				1EAB5CE41FF53C560052BC4B /* Utilities */,
-				1EAB5CEC1FF53C560052BC4B /* UtilitiesTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		1E6DB0991FEA4AD30051319E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1E6DB0A11FEA4AD30051319E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1307,21 +1150,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1EAB5CBE1FF5029A0052BC4B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		1EAB5CE31FF53C560052BC4B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1EAB5CEB1FF53C560052BC4B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1505,14 +1334,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1E6DB09F1FEA4AD30051319E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1E6DB0AB1FEA4AD30051319E /* DatePickerTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		1EAA18D71FC9CE9F001B3612 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1547,6 +1368,7 @@
 				1E3758A51FFD38B700D871FC /* EventCollectionViewCell.swift in Sources */,
 				1EB2ECE51FCD4EB300A50EC3 /* Database.swift in Sources */,
 				1E3758A11FFD320F00D871FC /* CollectionHeaderView.swift in Sources */,
+				1E533F0B2002340D005AF438 /* PositionOperation.swift in Sources */,
 				1E8753AD2000D5DD0026B06C /* RepetitionsPickerComponent.swift in Sources */,
 				1E8C1A431FFE928B00A7350B /* RepetitionsTableViewCell.swift in Sources */,
 				1E8C1A321FFE48BF00A7350B /* Reusable.swift in Sources */,
@@ -1598,14 +1420,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1EAB5CBC1FF5029A0052BC4B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1EAB5CC81FF5029A0052BC4B /* ViewPresenterTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		1EAB5CE01FF53C560052BC4B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1631,27 +1445,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1EAB5CE91FF53C560052BC4B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1EAB5CF51FF53C560052BC4B /* UtilitiesTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		1E6DB0A61FEA4AD30051319E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1E6DB09A1FEA4AD30051319E /* DatePicker */;
-			targetProxy = 1E6DB0A51FEA4AD30051319E /* PBXContainerItemProxy */;
-		};
-		1E6DB0A81FEA4AD30051319E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1EAA18DA1FC9CE9F001B3612 /* Travlendar */;
-			targetProxy = 1E6DB0A71FEA4AD30051319E /* PBXContainerItemProxy */;
-		};
 		1E6DB0AF1FEA4AD30051319E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1E6DB09A1FEA4AD30051319E /* DatePicker */;
@@ -1667,30 +1463,10 @@
 			target = 1EAA18DA1FC9CE9F001B3612 /* Travlendar */;
 			targetProxy = 1EAA18FE1FC9CEA0001B3612 /* PBXContainerItemProxy */;
 		};
-		1EAB5CC31FF5029A0052BC4B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1EAB5CB71FF5029A0052BC4B /* ViewPresenter */;
-			targetProxy = 1EAB5CC21FF5029A0052BC4B /* PBXContainerItemProxy */;
-		};
-		1EAB5CC51FF5029A0052BC4B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1EAA18DA1FC9CE9F001B3612 /* Travlendar */;
-			targetProxy = 1EAB5CC41FF5029A0052BC4B /* PBXContainerItemProxy */;
-		};
 		1EAB5CCC1FF5029B0052BC4B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1EAB5CB71FF5029A0052BC4B /* ViewPresenter */;
 			targetProxy = 1EAB5CCB1FF5029B0052BC4B /* PBXContainerItemProxy */;
-		};
-		1EAB5CF01FF53C560052BC4B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1EAB5CE41FF53C560052BC4B /* Utilities */;
-			targetProxy = 1EAB5CEF1FF53C560052BC4B /* PBXContainerItemProxy */;
-		};
-		1EAB5CF21FF53C560052BC4B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1EAA18DA1FC9CE9F001B3612 /* Travlendar */;
-			targetProxy = 1EAB5CF11FF53C560052BC4B /* PBXContainerItemProxy */;
 		};
 		1EAB5CF91FF53C560052BC4B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1768,38 +1544,6 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		1E6DB0B61FEA4AD30051319E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = DatePickerTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.giovannifilaferro.DatePickerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Travlendar.app/Travlendar";
-			};
-			name = Debug;
-		};
-		1E6DB0B71FEA4AD30051319E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = DatePickerTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.giovannifilaferro.DatePickerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Travlendar.app/Travlendar";
 			};
 			name = Release;
 		};
@@ -2069,40 +1813,6 @@
 			};
 			name = Release;
 		};
-		1EAB5CD31FF5029B0052BC4B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 498K6C2R6K;
-				INFOPLIST_FILE = ViewPresenterTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.giovannifilaferro.ViewPresenterTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Travlendar.app/Travlendar";
-			};
-			name = Debug;
-		};
-		1EAB5CD41FF5029B0052BC4B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 498K6C2R6K;
-				INFOPLIST_FILE = ViewPresenterTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.giovannifilaferro.ViewPresenterTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Travlendar.app/Travlendar";
-			};
-			name = Release;
-		};
 		1EAB5CFD1FF53C560052BC4B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2153,40 +1863,6 @@
 			};
 			name = Release;
 		};
-		1EAB5D001FF53C560052BC4B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 498K6C2R6K;
-				INFOPLIST_FILE = UtilitiesTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.giovannifilaferro.UtilitiesTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Travlendar.app/Travlendar";
-			};
-			name = Debug;
-		};
-		1EAB5D011FF53C560052BC4B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 498K6C2R6K;
-				INFOPLIST_FILE = UtilitiesTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.giovannifilaferro.UtilitiesTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Travlendar.app/Travlendar";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2195,15 +1871,6 @@
 			buildConfigurations = (
 				1E6DB0B31FEA4AD30051319E /* Debug */,
 				1E6DB0B41FEA4AD30051319E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		1E6DB0B51FEA4AD30051319E /* Build configuration list for PBXNativeTarget "DatePickerTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1E6DB0B61FEA4AD30051319E /* Debug */,
-				1E6DB0B71FEA4AD30051319E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2253,29 +1920,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1EAB5CD21FF5029B0052BC4B /* Build configuration list for PBXNativeTarget "ViewPresenterTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1EAB5CD31FF5029B0052BC4B /* Debug */,
-				1EAB5CD41FF5029B0052BC4B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		1EAB5CFC1FF53C560052BC4B /* Build configuration list for PBXNativeTarget "Utilities" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1EAB5CFD1FF53C560052BC4B /* Debug */,
 				1EAB5CFE1FF53C560052BC4B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		1EAB5CFF1FF53C560052BC4B /* Build configuration list for PBXNativeTarget "UtilitiesTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1EAB5D001FF53C560052BC4B /* Debug */,
-				1EAB5D011FF53C560052BC4B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -18,17 +18,19 @@ enum NStatusCode: Int {
     case forbidden = 403
     case notfound = 404
     case internalServerError = 500
+    case unavailable = 503
     
     public var description: String {
         switch self {
-        case .ok: return "ok"
-        case .created: return "created"
-        case .okNoContentNeeded: return "okNoContentNeeded"
-        case .badRequest: return "badRequest"
-        case .unauthorized: return "unauthorized"
-        case .forbidden: return "forbidden"
-        case .notfound: return "not found"
-        case .internalServerError: return "internalServerError"
+            case .ok: return "ok"
+            case .created: return "created"
+            case .okNoContentNeeded: return "okNoContentNeeded"
+            case .badRequest: return "badRequest"
+            case .unauthorized: return "unauthorized"
+            case .forbidden: return "forbidden"
+            case .notfound: return "not found"
+            case .internalServerError: return "internalServerError"
+            case .unavailable: return "unavailable"
         }
     }
 }
@@ -91,6 +93,7 @@ class NetworkOperation: Operation {
         let semaphore = DispatchSemaphore(value: 0)
         task = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
             
+            
             if error != nil {
                 print("Error \(endpoint.capitalized) Operation: \n\t\(error.debugDescription)")
                 self.completionHandler?(false, "Error")
@@ -102,6 +105,10 @@ class NetworkOperation: Operation {
             guard let sc = (response as? HTTPURLResponse)?.statusCode, let code = NStatusCode.init(rawValue: sc) else {
                 self.completionHandler?(false, "Response Unavailable")
                 print("Error \(endpoint.capitalized) Operation: \n\tResponse unavailable")
+                
+//                print(String.init(data: data!, encoding: .utf8))
+//                print(response)
+//                print(error)
                 return
             }
             

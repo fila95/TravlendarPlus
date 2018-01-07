@@ -34,6 +34,8 @@ class EventsOperation: NetworkOperation {
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .formatted(Formatter.iso8601)
             
+//            print(status)
+            
             switch status {
             case .ok:
                 
@@ -79,7 +81,7 @@ class EventsOperation: NetworkOperation {
                     
                     Database.shared.realm(completion: { (realm) in
                         try! realm.write {
-                            realm.delete(realm.objects(Calendars.self).filter("id=\(event.id)"))
+                            realm.delete(realm.objects(Event.self).filter("id=\(event.id)"))
                             realm.add(event)
                         }
                         
@@ -101,13 +103,13 @@ class EventsOperation: NetworkOperation {
                 }
                 
                 
-                print(String.init(data: d, encoding: .utf8) ?? "No str")
-                do {
-                    try decoder.decode(Event.self, from: d)
-                }
-                catch {
-                    print(error)
-                }
+//                print(String.init(data: d, encoding: .utf8) ?? "No str")
+//                do {
+//                    try decoder.decode(Event.self, from: d)
+//                }
+//                catch {
+//                    print(error)
+//                }
                 
                 guard let event = try? decoder.decode(Event.self, from: d) else {
                     self.completionHandler?(false, "Decode Error")

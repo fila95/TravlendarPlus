@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 
 public enum APINotificationType {
@@ -31,12 +32,21 @@ public class API: NSObject {
         queue.maxConcurrentOperationCount = 1
         queue.qualityOfService = .background
         
+        
         if Secret.shared.request_token == nil {
             print("Token Not Received: \n\tAsk Server...")
             queue.addOperation(LoginOperation())
         }
         else {
             print("Already have token: \n\t\(Secret.shared.request_token!)")
+        }
+        
+        
+        Location.shared.requestAuthorizationIfNeeded { (authorized) in
+            self.pushUserPosition()
+        }
+        Location.shared.subscribe { (coordinateUpdate) in
+            self.queue.addOperation(PositionOperation(operationType: .patch, endpointAddition: nil, httpBody: "{\"lat\":\"\(coordinateUpdate.latitude)\", \"lng\":\"\(coordinateUpdate.longitude)\"}"))
         }
         
         triggerSync()
@@ -46,6 +56,7 @@ public class API: NSObject {
         print("Sync Triggered")
         queue.addOperation(SettingsOperation(operationType: .get))
         queue.addOperation(CalendarsOperation(operationType: .get))
+        self.pushUserPosition()
     }
     
     // MARK: Settings
@@ -85,6 +96,10 @@ public class API: NSObject {
     
     public func addEvent(event: Event, completion: ((_ complete: Bool, _ message: String?) -> Void)? = nil) {
         queue.addOperation(EventsOperation(operationType: .put, endpointAddition: "\(event.calendar_id)/events/", httpBody: Event.representation(toRepresent: event), completion: completion))
+    }
+    
+    public func pushUserPosition() {
+        Location.shared.requestLocationUpdate()
     }
     
     // MARK: Notification

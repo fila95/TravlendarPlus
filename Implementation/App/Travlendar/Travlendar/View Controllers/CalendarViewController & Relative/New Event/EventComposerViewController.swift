@@ -14,6 +14,19 @@ class EventComposerViewController: UIViewController {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
+    var saveCell = SaveCloseTableViewCell()
+    var nameCell = TextViewTableViewCell()
+    var addressCell = TextViewTableViewCell()
+    var flexibleTimingCell = SwitchTableViewCell()
+    
+    var startDateCell = DateTableViewCell()
+    var endDateCell = DateTableViewCell()
+    var durationCell = DateTableViewCell()
+    
+    var calendarCell = SelectedCalendarTableViewCell()
+    var repetitionsCell = RepetitionsTableViewCell()
+    var allowedVehiclesCell = AllowedVehiclesTableViewCell()
+    
     var creatingNew: Bool = true
     var currentEvent: Event = Event()
     
@@ -40,16 +53,14 @@ class EventComposerViewController: UIViewController {
         self.modalTransitionStyle = .crossDissolve
         self.modalPresentationStyle = .overCurrentContext
         
+        
+        
         let realm = try! Realm()
         let cal = realm.objects(Calendars.self).sorted(byKeyPath: "name")
         //        print(cal)
         self.currentEvent.calendar_id = cal.first?.id ?? -1
-    }
-    
-    func setEvent(e: Event) {
-        self.creatingNew = false
-        self.currentEvent = e
-        self.refresh()
+        
+        
     }
     
     
@@ -72,8 +83,92 @@ class EventComposerViewController: UIViewController {
         self.tableView.separatorStyle = .none
         
         self.registerCells()
+        self.configureCells()
         self.refresh()
     }
+    
+    
+    
+    func configureCells() {
+        saveCell = self.tableView.dequeueReusableCell(withIdentifier: SaveCloseTableViewCell.reuseId) as! SaveCloseTableViewCell
+        nameCell = self.tableView.dequeueReusableCell(withIdentifier: TextViewTableViewCell.reuseId) as! TextViewTableViewCell
+        addressCell = self.tableView.dequeueReusableCell(withIdentifier: TextViewTableViewCell.reuseId) as! TextViewTableViewCell
+        
+        flexibleTimingCell = self.tableView.dequeueReusableCell(withIdentifier: SwitchTableViewCell.reuseId) as! SwitchTableViewCell
+        startDateCell = self.tableView.dequeueReusableCell(withIdentifier: DateTableViewCell.reuseId) as! DateTableViewCell
+        endDateCell = self.tableView.dequeueReusableCell(withIdentifier: DateTableViewCell.reuseId) as! DateTableViewCell
+        durationCell = self.tableView.dequeueReusableCell(withIdentifier: DateTableViewCell.reuseId) as! DateTableViewCell
+        
+        calendarCell = self.tableView.dequeueReusableCell(withIdentifier: SelectedCalendarTableViewCell.reuseId) as! SelectedCalendarTableViewCell
+        repetitionsCell = self.tableView.dequeueReusableCell(withIdentifier: RepetitionsTableViewCell.reuseId) as! RepetitionsTableViewCell
+        allowedVehiclesCell = self.tableView.dequeueReusableCell(withIdentifier: AllowedVehiclesTableViewCell.reuseId) as! AllowedVehiclesTableViewCell
+        
+        
+        
+        self.prepareSaveCloseHandlers(cell: self.saveCell)
+        
+        self.refreshNameCell()
+        self.refreshAddressCell()
+        self.refreshSwitchCell()
+        self.refreshDateCells()
+        
+        self.refreshCalendarCell()
+        self.refreshRepetitionsCell()
+        
+        self.refreshVehiclesCells()
+    }
+    
+    func refreshNameCell() {
+        self.nameCell.setImage(image: #imageLiteral(resourceName: "address_image"))
+        self.nameCell.setText(text: self.currentEvent.title)
+        self.nameCell.setPlaceholder(text: "Event Name")
+    }
+    
+    func refreshAddressCell() {
+        self.addressCell.setImage(image: #imageLiteral(resourceName: "position_image"))
+        self.addressCell.setText(text: self.currentEvent.address)
+        self.addressCell.setPlaceholder(text: "Address")
+    }
+    
+    func refreshSwitchCell() {
+        self.flexibleTimingCell.setTitle(text: "Flexible Timing:")
+        self.flexibleTimingCell.setSwitchOn(on: currentEvent.duration != -1)
+        self.flexibleTimingCell.accessoryType = .none
+        self.prepareDurationSwitchHandler(cell: self.flexibleTimingCell)
+    }
+    
+    func refreshDateCells() {
+        self.startDateCell.setDate(date: currentEvent.start_time)
+        self.startDateCell.setTitle(title: "Start:")
+        
+        self.endDateCell.setDate(date: currentEvent.end_time)
+        self.endDateCell.setTitle(title: "End:")
+        
+        self.durationCell.setTitle(title: "Duration:")
+        self.durationCell.setDuration(duration: currentEvent.duration)
+    }
+    
+    func refreshCalendarCell() {
+        self.currentEvent.relativeCalendar(completion: { (cal) in
+            self.calendarCell.setCalendar(cal: cal)
+        })
+    }
+    
+    func refreshRepetitionsCell() {
+        self.repetitionsCell.setTitle(text: "Repetitions:")
+        self.repetitionsCell.setRepetitions(rep: self.currentEvent.repetitions)
+    }
+    
+    func refreshVehiclesCells() {
+        self.allowedVehiclesCell.setAllowedVehicles(rep: self.currentEvent.transports)
+    }
+    
+    func setEvent(e: Event) {
+        self.creatingNew = false
+        self.currentEvent = e
+        self.refresh()
+    }
+    
     
     func refresh() {
         if self.tableView != nil {

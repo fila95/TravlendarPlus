@@ -8,4 +8,5 @@ router.use('/api/v1/calendars', auth, require('./calendars').router)
 router.use('/api/v1/calendars/:calendar_id/events', auth, require('./events').router)
 router.use('/api/v1/schedule', auth, require('./schedule').router)
 router.use('/api/v1/pushNotificationToken', auth, require('./pushNotificationToken').router)
+router.use('/api/v1/position', auth, require('./position').router)
 module.exports = router

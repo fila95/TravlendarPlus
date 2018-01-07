@@ -90,7 +90,7 @@ router.put('/', (req, res) => {
 					return res.status(201).json(result).end()
 				})
 			} else {
-				return res.status(500).end(err.message)
+				return res.status(500).end((err||'').toString())
 			}
 		})
 	})
