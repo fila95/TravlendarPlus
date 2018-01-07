@@ -19,6 +19,7 @@ class TextViewTableViewCell: UITableViewCell {
         self.selectionStyle = .none
         self.textField.tintColor = UIColor.application
     }
+    
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

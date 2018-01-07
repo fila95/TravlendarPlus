@@ -204,7 +204,6 @@ public class Event: Object, Codable {
         self.end_time = try container.decode(Date.self, forKey: .end_time)
         self.duration = try container.decodeIfPresent(Int.self, forKey: .duration) ?? -1
         
-        
         self.repetitions = try container.decode(String.self, forKey: .repetitions)
         self.transports = try container.decode(String.self, forKey: .transports)
         

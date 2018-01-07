@@ -35,68 +35,40 @@ extension EventComposerViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: SaveCloseTableViewCell.reuseId, for: indexPath) as! SaveCloseTableViewCell
-            self.prepareSaveCloseHandlers(cell: cell)
-            return cell
+            return saveCell
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: TextViewTableViewCell.reuseId, for: indexPath) as! TextViewTableViewCell
             if indexPath.row == 0 {
-                cell.setImage(image: #imageLiteral(resourceName: "address_image"))
-                cell.setText(text: currentEvent.title)
-                cell.setPlaceholder(text: "Event Name")
+                return nameCell
             }
             else {
-                cell.setImage(image: #imageLiteral(resourceName: "position_image"))
-                cell.setText(text: currentEvent.address)
-                cell.setPlaceholder(text: "Address")
+                return addressCell
             }
-            return cell
             
         case 2:
             if indexPath.row == 0 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: SwitchTableViewCell.reuseId, for: indexPath) as! SwitchTableViewCell
-                cell.setTitle(text: "Flexible Timing:")
-                cell.setSwitchOn(on: currentEvent.duration != -1)
-                cell.accessoryType = .none
-                self.prepareDurationSwitchHandler(cell: cell)
-                return cell
+                return flexibleTimingCell
             }
             else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: DateTableViewCell.reuseId, for: indexPath) as! DateTableViewCell
                 if indexPath.row == 1 {
-
-                    cell.setDate(date: currentEvent.start_time)
-                    cell.setTitle(title: "Start:")
+                    return startDateCell
                 }
                 else if indexPath.row == 2 {
-                    cell.setDate(date: currentEvent.end_time)
-                    cell.setTitle(title: "End:")
+                    return endDateCell
                 }
                 else if indexPath.row == 3 {
-                    cell.setTitle(title: "Duration:")
-                    cell.setDuration(duration: currentEvent.duration)
+                    return durationCell
                 }
-                return cell
             }
         case 3:
             if indexPath.row == 0 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: SelectedCalendarTableViewCell.reuseId, for: indexPath) as! SelectedCalendarTableViewCell
-                self.currentEvent.relativeCalendar(completion: { (cal) in
-                    cell.setCalendar(cal: cal)
-                })
-                return cell
+                return calendarCell
             }
             else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: RepetitionsTableViewCell.reuseId, for: indexPath) as! RepetitionsTableViewCell
-                cell.setTitle(text: "Repetitions:")
-                cell.setRepetitions(rep: self.currentEvent.repetitions)
-                return cell
+                return repetitionsCell
             }
             
         case 4:
-            let cell = tableView.dequeueReusableCell(withIdentifier: AllowedVehiclesTableViewCell.reuseId, for: indexPath) as! AllowedVehiclesTableViewCell
-            cell.setAllowedVehicles(rep: self.currentEvent.transports)
-            return cell
+            return allowedVehiclesCell
             
         default:
             break
@@ -126,7 +98,7 @@ extension EventComposerViewController: UITableViewDataSource {
                     vpv.addComponent(component: VPButtonComponent(type: .strong, text: "Ok", tapHandler: { (button) in
                         self.currentEvent.start_time = datePicker.date
                         
-                        self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+                        self.refreshDateCells()
                         vp.dismiss(animated: true, completion: nil)
                     }))
                     
@@ -139,7 +111,7 @@ extension EventComposerViewController: UITableViewDataSource {
                     vpv.addComponent(component: VPButtonComponent(type: .strong, text: "Ok", tapHandler: { (button) in
                         self.currentEvent.end_time = datePicker.date
                         
-                        self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+                        self.refreshDateCells()
                         vp.dismiss(animated: true, completion: nil)
                     }))
                 }
@@ -150,7 +122,7 @@ extension EventComposerViewController: UITableViewDataSource {
                     vpv.addComponent(component: VPButtonComponent(type: .strong, text: "Ok", tapHandler: { (button) in
                         self.currentEvent.duration = valuePicker.value
                         
-                        self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+                        self.refreshDateCells()
                         vp.dismiss(animated: true, completion: nil)
                     }))
                     
@@ -175,7 +147,7 @@ extension EventComposerViewController: UITableViewDataSource {
                 vpv.addComponent(component: calendarPicker)
                 vpv.addComponent(component: VPButtonComponent(type: .strong, text: "Ok", tapHandler: { (button) in
                     self.currentEvent.calendar_id = calendarPicker.currentCalendar
-                    self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+                    self.refreshCalendarCell()
                     vp.dismiss(animated: true, completion: nil)
                 }))
             }
@@ -185,7 +157,7 @@ extension EventComposerViewController: UITableViewDataSource {
                 vpv.addComponent(component: repetitionsPicker)
                 vpv.addComponent(component: VPButtonComponent(type: .strong, text: "Ok", tapHandler: { (button) in
                     self.currentEvent.repetitions = repetitionsPicker.getRepetitions()
-                    self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+                    self.refreshRepetitionsCell()
                     vp.dismiss(animated: true, completion: nil)
                 }))
             }
@@ -222,10 +194,12 @@ extension EventComposerViewController {
         cell.setSwitchChangedHandler {
             if cell.switchView.isOn {
                 self.currentEvent.duration = 0
+                self.refreshDateCells()
                 self.tableView.insertRows(at: [IndexPath.init(row: 3, section: 2)], with: UITableViewRowAnimation.automatic)
             }
             else {
                 self.currentEvent.duration = -1
+                self.refreshDateCells()
                 self.tableView.deleteRows(at: [IndexPath.init(row: 3, section: 2)], with: UITableViewRowAnimation.automatic)
             }
         }
@@ -240,25 +214,24 @@ extension EventComposerViewController {
     
     func save() {
         
-        let saveCell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! SaveCloseTableViewCell
-        saveCell.saveButton.loading = true
+        self.saveCell.saveButton.loading = true
         
         
-        guard let eventName = (self.tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! TextViewTableViewCell).textField.text, eventName != "" else {
+        guard let eventName = self.nameCell.textField.text, eventName != "" else {
             UIAlertController.show(title: "Error", message: "You should type a name in order to continue.", buttonTitle: "Ok", on: self)
             saveCell.saveButton.loading = false
             return
         }
         self.currentEvent.title = eventName
         
-        guard let eventAddress = (self.tableView.cellForRow(at: IndexPath(row: 1, section: 1)) as! TextViewTableViewCell).textField.text, eventAddress != "" else {
+        guard let eventAddress = self.addressCell.textField.text, eventAddress != "" else {
             UIAlertController.show(title: "Error", message: "You should type an address in order to continue.", buttonTitle: "Ok", on: self)
             saveCell.saveButton.loading = false
             return
         }
         self.currentEvent.address = eventAddress
         
-        self.currentEvent.transports = (self.tableView.cellForRow(at: IndexPath(row: 0, section: 4)) as! AllowedVehiclesTableViewCell).getAllowedVehicles()
+        self.currentEvent.transports = self.allowedVehiclesCell.getAllowedVehicles()
         guard self.currentEvent.transports.contains("1") else {
             UIAlertController.show(title: "Error", message: "You should select at least one transport mean in order to continue.", buttonTitle: "Ok", on: self)
             saveCell.saveButton.loading = false
@@ -283,7 +256,7 @@ extension EventComposerViewController {
         if self.creatingNew {
             API.shared.addEvent(event: self.currentEvent, completion: { (complete, error) in
                 DispatchQueue.main.async {
-                    saveCell.saveButton.loading = false
+                    self.saveCell.saveButton.loading = false
                     
                     if complete {
                         self.dismiss(animated: true)
@@ -298,7 +271,7 @@ extension EventComposerViewController {
         else {
             DispatchQueue.main.async {
                 API.shared.updateEvent(event: self.currentEvent, completion: { (complete, error) in
-                    saveCell.saveButton.loading = false
+                    self.saveCell.saveButton.loading = false
                     
                     if complete {
                         self.dismiss(animated: true)

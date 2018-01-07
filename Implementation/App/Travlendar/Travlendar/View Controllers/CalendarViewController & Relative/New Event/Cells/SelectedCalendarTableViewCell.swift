@@ -13,6 +13,7 @@ class SelectedCalendarTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var calendarNameLabel: UILabel!
     @IBOutlet weak var calendarColorView: UIView!
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()
