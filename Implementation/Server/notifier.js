@@ -19,15 +19,15 @@ let sendNotification = (user, properties, cb) => {
 	note.expiry = Math.floor(Date.now() / 1000) + 3600
 
 	user.getDevices().each((device) => {
-		console.log("Sending notification to " + device.access_token)
+		if(process.env.DEBUG) console.log("Sending notification to " + device.access_token)
 		if (device.push_token) {
-			console.log("Using Push Token: " + device.push_token)
+			if(process.env.DEBUG) console.log("Using Push Token: " + device.push_token)
 			apnProvider.send(note, device.push_token).then((result) => {
-				console.log(JSON.stringify(result))
+				if(process.env.DEBUG) console.log(JSON.stringify(result))
 				if(cb) {cb(result)}
 			})
 		} else {
-			console.log("Cannot send notification, no push token in the db")
+			if(process.env.DEBUG) console.log("Cannot send notification, no push token in the db")
 		}
 	})
 }
