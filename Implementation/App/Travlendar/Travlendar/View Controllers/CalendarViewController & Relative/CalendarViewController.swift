@@ -80,7 +80,7 @@ class CalendarViewController: UIViewController {
     private func refresh() {
         DispatchQueue.main.async {
             
-            print("Refresh.......")
+//            print("Refresh.......")
             
             // Get the default Realm
             let realm = try! Realm()

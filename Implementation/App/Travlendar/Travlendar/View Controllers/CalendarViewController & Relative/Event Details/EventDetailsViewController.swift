@@ -74,10 +74,6 @@ class EventDetailsViewController: UIViewController {
             self.refresh()
         }
         
-        
-        
-        
-        
     }
     
     private func refresh() {
@@ -107,8 +103,15 @@ class EventDetailsViewController: UIViewController {
             
             let region = MKCoordinateRegionMakeWithDistance(coords, 300, 300)
             self.mapView.setRegion(region, animated: true)
+            
+            self.refreshCollectionView()
         }
         
+    }
+    
+    private func refreshCollectionView() {
+        self.collectionView.reloadData()
+        self.collectionViewHeight.constant = self.collectionView.contentSize.height
     }
     
 

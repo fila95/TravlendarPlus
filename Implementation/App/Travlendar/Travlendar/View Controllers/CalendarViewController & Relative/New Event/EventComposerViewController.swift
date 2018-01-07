@@ -128,7 +128,7 @@ class EventComposerViewController: UIViewController {
     
     func refreshSwitchCell() {
         self.flexibleTimingCell.setTitle(text: "Flexible Timing:")
-        self.flexibleTimingCell.setSwitchOn(on: currentEvent.duration != -1)
+        self.flexibleTimingCell.setSwitchOn(on: currentEvent.duration > 0)
         self.flexibleTimingCell.accessoryType = .none
         self.prepareDurationSwitchHandler(cell: self.flexibleTimingCell)
     }
