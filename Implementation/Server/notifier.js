@@ -8,7 +8,7 @@ const apnProvider = new apn.Provider({
 		keyId: process.env.APN_KEYID,
 		teamId: process.env.APN_TEAMID
 	},
-	production: process.env.NODE_ENV == 'production'
+	production: false
 })
 
 /* istanbul ignore next */
