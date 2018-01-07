@@ -8,7 +8,6 @@ router.patch('/', (req, res) => {
 	req.user.last_known_position_lat = req.body.lat
 	req.user.last_known_position_lng = req.body.lng
 	req.user.save((err) => {
-		if (err) return res.status(500).end()
 		return res.status(204).end()
 	})
 })
