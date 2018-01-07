@@ -145,7 +145,6 @@ function model(db, cb) {
 				// the same list of strings without means of transportation that the user 
 				// can't travel with, depending on settings and time
 				parseTransports: function (distance, settings) {
-
 					let sTransports = ["walking", "bicycling", "transit", "sharing", "driving"]
 					let transports = this.transports.slice(1, sTransports.length + 1)
 					let mask = transports.split('').map(transport => transport == 1)
@@ -165,9 +164,10 @@ function model(db, cb) {
 					if (sTransports.indexOf('sharing') != -1) {
 						sTransports.splice(sTransports.indexOf('sharing'), 1)
 					}
+
 					//Checking if the time allows to use transits
 					if (sTransports.indexOf('transit') != -1) {
-						min_start_event = this.start_time.getHours() * 60 + this.start_time.getMinutes()
+						let min_start_event = this.start_time.getHours() * 60 + this.start_time.getMinutes()
 						min_start_transit = parseInt(settings.start_public_transportation.split(':')[0]) * 60 + parseInt(settings.start_public_transportation.split(':')[1])
 						min_end_transit = parseInt(settings.end_public_transportation.split(':')[0]) * 60 + parseInt(settings.end_public_transportation.split(':')[1])
 						if (min_start_event > min_end_transit || min_start_event < min_start_transit) {

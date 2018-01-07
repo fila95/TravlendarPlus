@@ -487,13 +487,13 @@ describe('Schedule', () => {
 			})
 		})
 
-		/*it('Should call the scheduler and return a 202', (done) => {
+		it('Should call the scheduler and return a 202', (done) => {
 			request(app)
 				.post('/api/v1/schedule/')
 				.set('X-Access-Token', device.access_token)
 				.expect(202)
 				.end(done)
-		})*/
+		})
 
 		/*it('Should call the scheduler and return a 400, timeslot length is 0', (done) => {
 			createEvent(calendar.id, nowPlus(6.5), nowPlus(7.5), 0.2, () => {
