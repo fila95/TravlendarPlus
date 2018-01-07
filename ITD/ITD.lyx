@@ -3126,40 +3126,11 @@ Installation instructions
 
 \begin_layout Subsection
 App installation
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-TODO GIO
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-The application is already compiled and published on Apple's App Store.
- It can be downloaded from the App Store by searching 
-\emph on
-Travlendar+
-\emph default
- or following this link: 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-LINKARE L'APP QUI E IN PRIMA PAGINA
-\end_layout
-
-\end_inset
-
-.
 \end_layout
 
 \begin_layout Standard
 Please note that the application is compatible only with iOS platform's
- smartphones (iPhone).
+ smartphones (iPhone) and it can only be compiled on OSX machines.
 \end_layout
 
 \begin_layout Subsubsection
@@ -3167,7 +3138,7 @@ Compiling instructions
 \end_layout
 
 \begin_layout Standard
-In case the reader would like to compile the app:
+In case the reader would like to compile the app: 
 \end_layout
 
 \begin_layout Enumerate
@@ -3175,7 +3146,7 @@ Download and install
 \emph on
 XCode
 \emph default
-: 
+*: 
 \begin_inset Flex URL
 status open
 
@@ -3190,7 +3161,49 @@ https://developer.apple.com/xcode/ide/
 \end_layout
 
 \begin_layout Enumerate
-Download the App package from the zip(s) attached to this file or 
+Download and install 
+\emph on
+Homebrew
+\emph default
+*: 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://brew.sh/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Download and install 
+\emph on
+Cocoapods
+\emph default
+*: 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://cocoapods.org/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Download the 
+\emph on
+App
+\emph default
+ package from the zip(s) attached to this file or 
 \emph on
 git clone
 \emph default
@@ -3220,6 +3233,18 @@ p/Travlendar
 \end_layout
 
 \begin_layout Enumerate
+Open the command line to 
+\emph on
+/App/Travlendar/ 
+\emph default
+and type 
+\emph on
+pod install
+\emph default
+ in order to install the dependencies.
+\end_layout
+
+\begin_layout Enumerate
 Import the project 
 \begin_inset Quotes eld
 \end_inset
@@ -3232,7 +3257,24 @@ Travlendar+
 \end_layout
 
 \begin_layout Enumerate
-Product >> Run to compile
+Product >> Run to compile >> Choose the platform (iPhone 8)
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/run.png
+	lyxscale 30
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+* If not already installed.
+ 
 \end_layout
 
 \begin_layout Subsection
