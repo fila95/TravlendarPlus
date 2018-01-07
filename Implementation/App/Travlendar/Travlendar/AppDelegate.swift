@@ -31,19 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             Secret.shared.appPreviouslyLaunched = true
         }
         
-        Location.shared.subscribe { (coordinates) in
-            print(coordinates)
-        }
-        
-        
-        Location.shared.requestLocationUpdate()
-        delay(10) {
-            Location.shared.requestLocationUpdate()
-        }
-        
         // Reset badge number
         Badge.reset()
-        
         
         let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
@@ -78,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func handleUserNotification(data: [AnyHashable : Any]) {
         print("Push notification received: \(data)")
-        API.shared.triggerSync()
+        self.sync(schedule: true)
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
@@ -98,7 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         
-        API.shared.triggerSync()
+        self.sync(schedule: false)
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -110,6 +99,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func setupGraphics() {
         UIApplication.shared.keyWindow?.tintColor = UIColor.application
         
+    }
+    
+    func sync(schedule: Bool) {
+        API.shared.triggerSync()
+        
+        if schedule {
+            API.shared.getSchedule()
+        }
     }
 
 }

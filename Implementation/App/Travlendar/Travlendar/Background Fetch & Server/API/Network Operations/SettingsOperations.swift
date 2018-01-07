@@ -30,7 +30,7 @@ class SettingsOperation: NetworkOperation {
             case .ok:
                 
                 guard let d = data else {
-                    self.completionHandler?(false, "Error Data Unavailable")
+                    self.completionHandler?(false, .dataUnavailable)
                     print("Error Settings Operation: \n\tData unavailable")
                     return
                 }
@@ -41,7 +41,7 @@ class SettingsOperation: NetworkOperation {
                 
                 guard let settings = try? decoder.decode(Settings.self, from: d) else {
                     print("Error Settings Operation: Unable to decode Settings")
-                    self.completionHandler?(false, "Decode Error")
+                    self.completionHandler?(false, .dataUnavailable)
                     return
                 }
                 Secret.shared.settings = settings
@@ -59,6 +59,7 @@ class SettingsOperation: NetworkOperation {
                 break
                 
             default:
+                self.completionHandler?(false, status)
                 print("Error Settings Operation: \n\tStatusCode: \(status)")
                 break
                 

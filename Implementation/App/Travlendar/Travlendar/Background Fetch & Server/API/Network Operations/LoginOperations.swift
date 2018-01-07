@@ -28,7 +28,7 @@ class LoginOperation: NetworkOperation {
             case .ok:
                 
                 guard let d = data else {
-                    self.completionHandler?(false, "Data Unavailable")
+                    self.completionHandler?(false, .dataUnavailable)
                     print("Error LoginOperation: \n\tData unavailable")
                     return
                 }
@@ -39,10 +39,11 @@ class LoginOperation: NetworkOperation {
                 print("LoginOperation: \n\tAccess Token: \(access_token)")
                 Secret.shared.request_token = access_token
                 self.completionHandler?(true, nil)
+                
                 break
                 
             default:
-                self.completionHandler?(false, "Error Status")
+                self.completionHandler?(false, status)
                 print("Error LoginOperation: \n\tStatusCode: \(status)")
                 break
                 

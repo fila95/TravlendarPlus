@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import Utilities
+import RealmSwift
 
 class EventDetailsViewController: UIViewController {
 
@@ -23,16 +24,42 @@ class EventDetailsViewController: UIViewController {
     
     var event: Event? {
         didSet {
-            self.refresh()
+            if event != nil {
+                self.id = event!.id
+                self.refresh()
+            }
         }
     }
+    
+    var id: Int?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        
+        // Events Refresh
+        let refreshEvents: (() -> Void) = {
+            DispatchQueue.main.async {
+                self.refreshEvent()
+            }
+            
+        }
+        
+        let refreshCal = {
+            DispatchQueue.main.async {
+                self.refreshEvent()
+            }
+        }
+        API.shared.addHandlers(handlers: [(refreshEvents, type: .events), (refreshCal, type: .calendars)])
+        
+        
         self.refresh()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,10 +67,23 @@ class EventDetailsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    private func refreshEvent() {
+        if self.id != nil {
+            let realm = try! Realm()
+            self.event = realm.object(ofType: Event.self, forPrimaryKey: self.id!)
+        }
+        
+        
+        self.refresh()
+        
+    }
+    
     private func refresh() {
         guard self.presentationController != nil else {
             return
         }
+        
+        
         guard let e = self.event else {
             return
         }
