@@ -18,6 +18,7 @@ class TextViewTableViewCell: UITableViewCell {
         // Initialization code
         self.selectionStyle = .none
         self.textField.tintColor = UIColor.application
+        self.textField.delegate = self
     }
     
 
@@ -52,7 +53,12 @@ extension TextViewTableViewCell: Reusable {
         return UINib(nibName: "TextViewTableViewCell", bundle: Bundle.main)
     }
     
+}
+
+extension TextViewTableViewCell: UITextFieldDelegate {
     
-    
-    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }

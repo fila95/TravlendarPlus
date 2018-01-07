@@ -91,6 +91,7 @@ class NetworkOperation: Operation {
         let semaphore = DispatchSemaphore(value: 0)
         task = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
             
+            
             if error != nil {
                 print("Error \(endpoint.capitalized) Operation: \n\t\(error.debugDescription)")
                 self.completionHandler?(false, "Error")
@@ -102,6 +103,10 @@ class NetworkOperation: Operation {
             guard let sc = (response as? HTTPURLResponse)?.statusCode, let code = NStatusCode.init(rawValue: sc) else {
                 self.completionHandler?(false, "Response Unavailable")
                 print("Error \(endpoint.capitalized) Operation: \n\tResponse unavailable")
+                
+                print(String.init(data: data!, encoding: .utf8))
+                print(response)
+                print(error)
                 return
             }
             

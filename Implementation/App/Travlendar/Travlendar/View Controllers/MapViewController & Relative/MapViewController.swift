@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import RealmSwift
 
 class MapViewController: UIViewController {
     
@@ -15,6 +16,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var map: MKMapView!
     
     private var currentDate = Date()
+    private var events: Results<Event>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +29,11 @@ class MapViewController: UIViewController {
         
         picker.setDateChangeHandler { (newDate) in
             self.currentDate = newDate
+            DispatchQueue.main.async {
+                self.refreshUptoDate()
+            }
+            
         }
-        
         
         // Location Management
         Location.shared.requestAuthorizationIfNeeded { (complete) in
@@ -36,10 +41,11 @@ class MapViewController: UIViewController {
         }
         Location.shared.subscribe { (coordinates) in
             // Zoom to user location
-            let viewRegion = MKCoordinateRegionMakeWithDistance(coordinates, 1000, 1000)
-            self.map.setRegion(viewRegion, animated: false)
+            self.map.fitAllMarkers(shouldIncludeCurrentLocation: true)
         }
         Location.shared.requestLocationUpdate()
+        
+        self.refreshUptoDate()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -54,7 +60,27 @@ class MapViewController: UIViewController {
         }
         
         // Refresh View known Current Date
+        let realm = try! Realm()
         
+        let predicate = NSPredicate(format: "start_time >= %@ AND end_time <=  %@", self.currentDate.dateFor(.startOfDay) as NSDate, self.currentDate.dateFor(.endOfDay) as NSDate)
+        self.events = realm.objects(Event.self).filter(predicate).sorted(byKeyPath: "start_time")
+        self.refreshAnnotations()
+    }
+    
+    private func refreshAnnotations() {
+        guard let ev = self.events else {
+            return
+        }
+        
+        self.map.removeAnnotations(self.map.annotations)
+        
+        for e in ev {
+            let ann = MKPointAnnotation()
+            ann.coordinate = CLLocationCoordinate2D(latitude: e.lat, longitude: e.lng)
+            self.map.addAnnotation(ann)
+        }
+        
+        self.map.fitAllMarkers(shouldIncludeCurrentLocation: true)
     }
     
     
@@ -64,5 +90,38 @@ class MapViewController: UIViewController {
 extension MapViewController: MKMapViewDelegate {
     
     
+    
+}
+
+
+extension MKMapView {
+    
+    func fitAllMarkers(shouldIncludeCurrentLocation: Bool) {
+        
+        if !shouldIncludeCurrentLocation {
+            showAnnotations(annotations, animated: true)
+        }
+        else {
+            var zoomRect = MKMapRectNull
+            
+            let point = MKMapPointForCoordinate(userLocation.coordinate)
+            let pointRect = MKMapRectMake(point.x, point.y, 0, 0)
+            zoomRect = MKMapRectUnion(zoomRect, pointRect)
+            
+            for annotation in annotations {
+                
+                let annotationPoint = MKMapPointForCoordinate(annotation.coordinate)
+                let pointRect = MKMapRectMake(annotationPoint.x, annotationPoint.y, 0, 0)
+                
+                if (MKMapRectIsNull(zoomRect)) {
+                    zoomRect = pointRect
+                } else {
+                    zoomRect = MKMapRectUnion(zoomRect, pointRect)
+                }
+            }
+            
+            setVisibleMapRect(zoomRect, edgePadding: UIEdgeInsetsMake(150, 10, 10, 10), animated: true)
+        }
+    }
     
 }

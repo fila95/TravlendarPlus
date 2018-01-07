@@ -34,6 +34,8 @@ class EventsOperation: NetworkOperation {
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .formatted(Formatter.iso8601)
             
+//            print(status)
+            
             switch status {
             case .ok:
                 

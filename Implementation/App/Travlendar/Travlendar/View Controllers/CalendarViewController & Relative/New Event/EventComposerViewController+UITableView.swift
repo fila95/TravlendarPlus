@@ -213,6 +213,8 @@ extension EventComposerViewController {
 extension EventComposerViewController {
     
     func save() {
+        self.tableView.isUserInteractionEnabled = false
+        
         
         self.saveCell.saveButton.loading = true
         
@@ -220,6 +222,7 @@ extension EventComposerViewController {
         guard let eventName = self.nameCell.textField.text, eventName != "" else {
             UIAlertController.show(title: "Error", message: "You should type a name in order to continue.", buttonTitle: "Ok", on: self)
             saveCell.saveButton.loading = false
+            self.tableView.isUserInteractionEnabled = true
             return
         }
         self.currentEvent.title = eventName
@@ -227,6 +230,7 @@ extension EventComposerViewController {
         guard let eventAddress = self.addressCell.textField.text, eventAddress != "" else {
             UIAlertController.show(title: "Error", message: "You should type an address in order to continue.", buttonTitle: "Ok", on: self)
             saveCell.saveButton.loading = false
+            self.tableView.isUserInteractionEnabled = true
             return
         }
         self.currentEvent.address = eventAddress
@@ -235,18 +239,21 @@ extension EventComposerViewController {
         guard self.currentEvent.transports.contains("1") else {
             UIAlertController.show(title: "Error", message: "You should select at least one transport mean in order to continue.", buttonTitle: "Ok", on: self)
             saveCell.saveButton.loading = false
+            self.tableView.isUserInteractionEnabled = true
             return
         }
         
         guard self.currentEvent.calendar_id >= 0 else {
             UIAlertController.show(title: "Error", message: "You should select a calendar in order to continue. If you don't have one just add it from settings view!", buttonTitle: "Ok", on: self)
             saveCell.saveButton.loading = false
+            self.tableView.isUserInteractionEnabled = true
             return
         }
         
         guard self.currentEvent.start_time < self.currentEvent.end_time else {
             UIAlertController.show(title: "Error", message: "Start and end dates selected results incorrect...", buttonTitle: "Ok", on: self)
             saveCell.saveButton.loading = false
+            self.tableView.isUserInteractionEnabled = true
             return
         }
         
@@ -257,6 +264,7 @@ extension EventComposerViewController {
             API.shared.addEvent(event: self.currentEvent, completion: { (complete, error) in
                 DispatchQueue.main.async {
                     self.saveCell.saveButton.loading = false
+                    self.tableView.isUserInteractionEnabled = true
                     
                     if complete {
                         self.dismiss(animated: true)
@@ -272,6 +280,7 @@ extension EventComposerViewController {
             DispatchQueue.main.async {
                 API.shared.updateEvent(event: self.currentEvent, completion: { (complete, error) in
                     self.saveCell.saveButton.loading = false
+                    self.tableView.isUserInteractionEnabled = true
                     
                     if complete {
                         self.dismiss(animated: true)
