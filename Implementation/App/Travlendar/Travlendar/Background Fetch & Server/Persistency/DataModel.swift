@@ -91,15 +91,15 @@ public class Settings: NSObject, Codable {
     
 }
 
-class Routes: Object {
+class Routes: Object, Codable {
     
-    @objc dynamic var id: Int = 0
+    @objc dynamic var id: String = ""
     @objc dynamic var time: Int = 0
     var travels = List<Travel>()
     
-    override public static func primaryKey() -> String? {
-        return "id"
-    }
+//    override public static func primaryKey() -> String? {
+//        return "id"
+//    }
     
     private enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -129,7 +129,7 @@ class Routes: Object {
     public func decode(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        self.id = try container.decode(Int.self, forKey: .id)
+        self.id = try container.decode(String.self, forKey: .id)
         self.time = try container.decode(Int.self, forKey: .time)
         
         let travelsArray = try container.decodeIfPresent([Travel].self, forKey: .travels) ?? []
@@ -150,7 +150,7 @@ class Routes: Object {
 }
 
 
-class Travel: Object {
+class Travel: Object, Codable {
     
     @objc dynamic var id: Int = 0
     @objc dynamic var time: Int = 0
@@ -162,9 +162,9 @@ class Travel: Object {
     
     @objc dynamic var waypoints = ""
     
-    override static func primaryKey() -> String? {
-        return "id"
-    }
+//    override static func primaryKey() -> String? {
+//        return "id"
+//    }
     
     private enum CodingKeys: String, CodingKey {
         case id = "id"

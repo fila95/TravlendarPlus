@@ -25,7 +25,7 @@ class EventDetailsViewController: UIViewController {
     var event: Event? {
         didSet {
             if event != nil {
-                print(event)
+                print(event ?? "")
                 self.id = event!.id
                 self.refresh()
             }

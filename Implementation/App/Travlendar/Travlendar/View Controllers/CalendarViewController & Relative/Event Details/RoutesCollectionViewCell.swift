@@ -53,8 +53,8 @@ class RoutesCollectionViewCell: UICollectionViewCell {
         super.init(coder: aDecoder)
     }
     
-    func setRoute(travel: Routes) {
-        
+    func setRoute(route: Routes) {
+        print(route)
     }
 
 }

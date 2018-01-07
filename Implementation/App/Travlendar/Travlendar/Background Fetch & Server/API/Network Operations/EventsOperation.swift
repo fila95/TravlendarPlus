@@ -47,13 +47,13 @@ class EventsOperation: NetworkOperation {
                 
                 if self.operationType == .get {
                     
-//                    print(String.init(data: d, encoding: .utf8) ?? "No str")
-//                    do {
-//                        try decoder.decode([Event].self, from: d)
-//                    }
-//                    catch {
-//                        print(error)
-//                    }
+                    print(String.init(data: d, encoding: .utf8) ?? "No str")
+                    do {
+                        try decoder.decode([Event].self, from: d)
+                    }
+                    catch {
+                        print(error)
+                    }
 
                     
                     guard let events = try? decoder.decode([Event].self, from: d) else {

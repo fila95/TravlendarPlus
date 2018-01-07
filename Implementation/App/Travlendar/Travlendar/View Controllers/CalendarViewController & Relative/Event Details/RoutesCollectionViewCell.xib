@@ -23,7 +23,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="412" height="101"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cell_arrow_gray" translatesAutoresizingMaskIntoConstraints="NO" id="IP6-jI-tBN">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IP6-jI-tBN">
                         <rect key="frame" x="387" y="38" width="10" height="24"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="24" id="lFN-mh-q9X"/>
@@ -70,7 +70,4 @@
             <point key="canvasLocation" x="-13" y="34.5"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="cell_arrow_gray" width="10" height="25"/>
-    </resources>
 </document>

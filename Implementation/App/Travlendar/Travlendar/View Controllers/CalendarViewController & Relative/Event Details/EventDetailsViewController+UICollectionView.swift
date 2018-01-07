@@ -15,14 +15,17 @@ extension EventDetailsViewController: UICollectionViewDataSource, UICollectionVi
     
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.event?.routes.count ?? 0
+        guard let e = event else {
+            return 0
+        }
+        return e.routes.count
     }
     
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RoutesCollectionViewCell.reuseId, for: indexPath) as! RoutesCollectionViewCell
-        cell.setRoute(travel: event!.routes[indexPath.row])
+        cell.setRoute(route: event!.routes[indexPath.row])
         return cell
         
     }
