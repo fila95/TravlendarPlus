@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 		for (calendar of calendars) {
 			calendar_ids.push(calendar.id)
 		}
-		req.models.events.find({ calendar_id: calendar_ids }, (err, events) => {
+		req.models.events.find({ calendar_id: calendar_ids }, async (err, events) => {
 			for (let event of events) {
 				// Get the travels with await, so we can cycle through all with an async function
 				let travels = await new Promise((resolve, reject) => {
