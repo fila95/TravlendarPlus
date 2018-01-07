@@ -22,6 +22,10 @@ Here we publish the final Design Document
 - `Version 1.1.0` file can be found [here](https://github.com/fila95/CalzavaraFilaferroNespoli/blob/master/DeliveryFolder/DD1.1.0.pdf)
 - `Version 1.0.0` file can be found [here](https://github.com/fila95/CalzavaraFilaferroNespoli/blob/master/DeliveryFolder/DD1.0.0.pdf)
 
+### DD
+Here we publish the final Implementation and Test Document
+- `Version 1.0.0` file can be found [here](https://github.com/fila95/CalzavaraFilaferroNespoli/blob/master/DeliveryFolder/ITD1.0.0.pdf)
+
 ### Implementation and Testing
 
 [![Build Status](https://travis-ci.com/fila95/CalzavaraFilaferroNespoli.svg?token=iWtSkcs2Smmuu8wbpWZU&branch=production)](https://travis-ci.com/fila95/CalzavaraFilaferroNespoli)

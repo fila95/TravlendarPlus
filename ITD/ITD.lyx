@@ -890,17 +890,13 @@ In this section the developing team describes more in depth the frameworks
 Above all, on top of these two system, the developing team as used some
  external tools to check and balance the developing process: 
 \emph on
-Trevis CI
+Travis CI
 \emph default
  to test and deploy the code, 
 \emph on
 Codecov
 \emph default
- to check the test coverage client side and server side, 
-\emph on
-Codeclimate
-\emph default
- to index the level of maintainability of the code, and finally 
+ to check the test coverage client side and server side, and finally 
 \emph on
 Gitential
 \emph default
@@ -917,7 +913,7 @@ The client application is designed to be utilized on
 \emph on
 iOS
 \emph default
- smartphones (iPhones).
+ smartphones (iPhones, iPad).
  The code was build using Apple's proprietary IDE 
 \emph on
 XCode
@@ -982,7 +978,7 @@ Server side
 \begin_layout Standard
 The server side application is written in 
 \emph on
-NodeJS
+Node.JS
 \emph default
 , a server environment wrapped over 
 \emph on
@@ -993,7 +989,7 @@ JavaScript V8 Runtime
  event driven I/O APIs, the simplicity of set up the lightweight that it
  implies and its ability achieve great horizontal scalability though multiple
  instances.
- Node is also an open source platform.
+ Node.JS is also an open source platform.
 \end_layout
 
 \begin_layout Standard
@@ -1001,7 +997,7 @@ Above all,
 \emph on
 npm
 \emph default
- was used as package manager for NodeJS.
+ was used as package manager for Node.JS.
  It allows to manage dependencies and packages within the project boundaries.
 \end_layout
 
@@ -1054,7 +1050,7 @@ node-supertest
 \emph on
 crypto
 \emph default
- library was used to generate random access token and 
+ library was used to generate secure random access token and 
 \emph on
 node-uuidv4
 \emph default
@@ -1337,7 +1333,7 @@ Result
 \begin_inset Text
 
 \begin_layout Plain Layout
-PASSED (417ms) 
+PASSED (41ms) 
 \end_layout
 
 \end_inset
@@ -1496,7 +1492,7 @@ Result
 \begin_inset Text
 
 \begin_layout Plain Layout
-PASSED (280ms) 
+PASSED (28ms) 
 \end_layout
 
 \end_inset
@@ -1655,7 +1651,7 @@ Result
 \begin_inset Text
 
 \begin_layout Plain Layout
-PASSED (278ms) 
+PASSED (27ms) 
 \end_layout
 
 \end_inset
@@ -1814,7 +1810,7 @@ Result
 \begin_inset Text
 
 \begin_layout Plain Layout
-PASSED (355ms)
+PASSED (35ms)
 \end_layout
 
 \end_inset
@@ -1969,7 +1965,7 @@ Result
 \begin_inset Text
 
 \begin_layout Plain Layout
-PASSED (354ms)
+PASSED (35ms)
 \end_layout
 
 \end_inset
@@ -2127,7 +2123,7 @@ Result
 \begin_inset Text
 
 \begin_layout Plain Layout
-PASSED (460ms)
+PASSED (46ms)
 \end_layout
 
 \end_inset
@@ -2296,7 +2292,7 @@ Result
 \begin_inset Text
 
 \begin_layout Plain Layout
-PASSED (542ms)
+PASSED (54ms)
 \end_layout
 
 \end_inset
@@ -2454,7 +2450,7 @@ Result
 \begin_inset Text
 
 \begin_layout Plain Layout
-PASSED (597ms) 
+PASSED (59ms) 
 \end_layout
 
 \end_inset
@@ -2612,7 +2608,7 @@ Result
 \begin_inset Text
 
 \begin_layout Plain Layout
-PASSED (632ms)
+PASSED (63ms)
 \end_layout
 
 \end_inset
@@ -2778,7 +2774,7 @@ Result
 \begin_inset Text
 
 \begin_layout Plain Layout
-PASSED (647ms)
+PASSED (64ms)
 \end_layout
 
 \end_inset
@@ -2933,7 +2929,7 @@ Result
 \begin_inset Text
 
 \begin_layout Plain Layout
-PASSED (272ms)
+PASSED (27ms)
 \end_layout
 
 \end_inset
@@ -3090,7 +3086,7 @@ Result
 \begin_inset Text
 
 \begin_layout Plain Layout
-PASSED (268ms)
+PASSED (26ms)
 \end_layout
 
 \end_inset
@@ -3126,40 +3122,11 @@ Installation instructions
 
 \begin_layout Subsection
 App installation
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-TODO GIO
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-The application is already compiled and published on Apple's App Store.
- It can be downloaded from the App Store by searching 
-\emph on
-Travlendar+
-\emph default
- or following this link: 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-LINKARE L'APP QUI E IN PRIMA PAGINA
-\end_layout
-
-\end_inset
-
-.
 \end_layout
 
 \begin_layout Standard
 Please note that the application is compatible only with iOS platform's
- smartphones (iPhone).
+ smartphones (iPhone) and it can only be compiled on OSX machines.
 \end_layout
 
 \begin_layout Subsubsection
@@ -3167,7 +3134,7 @@ Compiling instructions
 \end_layout
 
 \begin_layout Standard
-In case the reader would like to compile the app:
+In case the reader would like to compile the app: 
 \end_layout
 
 \begin_layout Enumerate
@@ -3175,7 +3142,7 @@ Download and install
 \emph on
 XCode
 \emph default
-: 
+*: 
 \begin_inset Flex URL
 status open
 
@@ -3190,7 +3157,49 @@ https://developer.apple.com/xcode/ide/
 \end_layout
 
 \begin_layout Enumerate
-Download the App package from the zip(s) attached to this file or 
+Download and install 
+\emph on
+Homebrew
+\emph default
+*: 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://brew.sh/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Download and install 
+\emph on
+Cocoapods
+\emph default
+*: 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://cocoapods.org/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Download the 
+\emph on
+App
+\emph default
+ package from the zip(s) attached to this file or 
 \emph on
 git clone
 \emph default
@@ -3220,6 +3229,18 @@ p/Travlendar
 \end_layout
 
 \begin_layout Enumerate
+Open the command line to 
+\emph on
+/App/Travlendar/ 
+\emph default
+and type 
+\emph on
+pod install
+\emph default
+ in order to install the dependencies.
+\end_layout
+
+\begin_layout Enumerate
 Import the project 
 \begin_inset Quotes eld
 \end_inset
@@ -3232,7 +3253,24 @@ Travlendar+
 \end_layout
 
 \begin_layout Enumerate
-Product >> Run to compile
+Product >> Run to compile >> Choose the platform (iPhone 8)
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/run.png
+	lyxscale 30
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+* If not already installed.
+ 
 \end_layout
 
 \begin_layout Subsection
@@ -3242,7 +3280,7 @@ Server installation
 \begin_layout Enumerate
 Download and install 
 \emph on
-NodeJS
+Node.JS
 \emph default
  from the official NodeJS website: 
 \begin_inset Flex URL
@@ -3323,16 +3361,36 @@ Please verify that an instance of PostgreSQL is running on port 5432.
 Effort spent
 \end_layout
 
-\begin_layout Itemize
-Filippo Calzavara: 5.30h
+\begin_layout Standard
+Time spent on this document: 10h
 \end_layout
 
 \begin_layout Itemize
-Giovanni Filaferro: 5.00h
+Filippo Calzavara: 6.00h
 \end_layout
 
 \begin_layout Itemize
-Benedetto Maria Nespoli: 5.00h
+Giovanni Filaferro: 2.00h
+\end_layout
+
+\begin_layout Itemize
+Benedetto Maria Nespoli: 2.00h
+\end_layout
+
+\begin_layout Standard
+Time spent on the code: 110h
+\end_layout
+
+\begin_layout Itemize
+Filippo Calzavara: 30.00h
+\end_layout
+
+\begin_layout Itemize
+Giovanni Filaferro: 40.00h
+\end_layout
+
+\begin_layout Itemize
+Benedetto Maria Nespoli: 40.00h
 \end_layout
 
 \end_body
