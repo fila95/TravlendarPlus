@@ -9,7 +9,7 @@ let auth = (req, res, next) => {
 				device.getUser((err, user) => {
 					req.user = user
 					user.getSettings((err, settings) => {
-						req.user.settings = settings
+						req.user.settings = settings[0]
 						return next()
 					})
 				})
