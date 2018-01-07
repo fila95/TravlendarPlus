@@ -41,16 +41,12 @@ class EventDetailsViewController: UIViewController {
         
         // Events Refresh
         let refreshEvents: (() -> Void) = {
-            DispatchQueue.main.async {
-                self.refreshEvent()
-            }
+            self.refreshEvent()
             
         }
         
         let refreshCal = {
-            DispatchQueue.main.async {
-                self.refreshEvent()
-            }
+            self.refreshEvent()
         }
         API.shared.addHandlers(handlers: [(refreshEvents, type: .events), (refreshCal, type: .calendars)])
         
@@ -68,41 +64,51 @@ class EventDetailsViewController: UIViewController {
     }
     
     private func refreshEvent() {
-        if self.id != nil {
-            let realm = try! Realm()
-            self.event = realm.object(ofType: Event.self, forPrimaryKey: self.id!)
+        
+        DispatchQueue.main.async {
+            if self.id != nil {
+                let realm = try! Realm()
+                self.event = realm.object(ofType: Event.self, forPrimaryKey: self.id!)
+            }
+            
+            self.refresh()
         }
         
         
-        self.refresh()
+        
+        
         
     }
     
     private func refresh() {
-        guard self.presentationController != nil else {
-            return
+        
+        DispatchQueue.main.async {
+            guard self.presentationController != nil else {
+                return
+            }
+            
+            
+            guard let e = self.event else {
+                return
+            }
+            
+            self.nameLabel.text = e.title
+            self.addressLabel.text = e.address
+            
+            self.dateLabel.text = Formatter.readableDate.string(from: e.start_time)
+            self.timeLabel.text = "\(Formatter.timeShort.string(from: e.start_time)) - \(Formatter.timeShort.string(from: e.end_time))"
+            
+            self.mapView.removeAnnotations(self.mapView.annotations)
+            
+            let coords = CLLocationCoordinate2D.init(latitude: e.lat, longitude: e.lng)
+            let a = MKPointAnnotation.init()
+            a.coordinate = coords
+            self.mapView.addAnnotation(a)
+            
+            let region = MKCoordinateRegionMakeWithDistance(coords, 300, 300)
+            self.mapView.setRegion(region, animated: true)
         }
         
-        
-        guard let e = self.event else {
-            return
-        }
-        
-        self.nameLabel.text = e.title
-        self.addressLabel.text = e.address
-        
-        self.dateLabel.text = Formatter.readableDate.string(from: e.start_time)
-        self.timeLabel.text = "\(Formatter.timeShort.string(from: e.start_time)) - \(Formatter.timeShort.string(from: e.end_time))"
-        
-        mapView.removeAnnotations(self.mapView.annotations)
-        
-        let coords = CLLocationCoordinate2D.init(latitude: e.lat, longitude: e.lng)
-        let a = MKPointAnnotation.init()
-        a.coordinate = coords
-        self.mapView.addAnnotation(a)
-        
-        let region = MKCoordinateRegionMakeWithDistance(coords, 300, 300)
-        self.mapView.setRegion(region, animated: true)
     }
     
 

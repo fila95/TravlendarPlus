@@ -80,19 +80,10 @@ class CalendarViewController: UIViewController {
     private func refresh() {
         DispatchQueue.main.async {
             
+            print("Refresh.......")
+            
             // Get the default Realm
             let realm = try! Realm()
-            
-//            if let vc = self.navigationController?.presentedViewController as? EventDetailsViewController {
-//                if let e = vc.event {
-//                    if let newEvent = realm.objects(Event.self).filter("id=\(e.id)").first {
-//                        vc.event = newEvent
-//                    }
-//                    else {
-//                        vc.navigationController?.popViewController(animated: true)
-//                    }
-//                }
-//            }
             
             if self.pickedDate.isToday {
                 var predicate = NSPredicate(format: "start_time >= %@ AND end_time <=  %@", Date() as NSDate, Date().addingTimeInterval(3600*3) as NSDate)
@@ -103,6 +94,10 @@ class CalendarViewController: UIViewController {
                 
                 predicate = NSPredicate(format: "start_time >= %@ AND end_time <=  %@", Date().dateFor(.startOfDay) as NSDate, Date() as NSDate)
                 self.previous = realm.objects(Event.self).filter(predicate)
+                
+//                print(self.upNext ?? "no upNext")
+//                print(self.events ?? "no events")
+//                print(self.previous ?? "no previous")
             }
             else {
                 self.upNext = nil
@@ -111,8 +106,6 @@ class CalendarViewController: UIViewController {
                 let predicate = NSPredicate(format: "start_time >= %@ AND end_time <=  %@", self.pickedDate.dateFor(.startOfDay) as NSDate, self.pickedDate.dateFor(.endOfDay) as NSDate)
                 self.events = realm.objects(Event.self).filter(predicate).sorted(byKeyPath: "start_time")
             }
-            
-            
             
             self.collectionView.reloadData()
         }

@@ -61,6 +61,8 @@ class NetworkOperation: Operation {
     
     var completionHandler: ((_ complete: Bool, _ code: NStatusCode?) -> Void)?
     
+    internal let semaphore = DispatchSemaphore(value: 0)
+    
     override init() {
         session = URLSession.shared
         
@@ -99,7 +101,7 @@ class NetworkOperation: Operation {
 //        print(request.allHTTPHeaderFields)
 //        print(self.httpBody)
         
-        let semaphore = DispatchSemaphore(value: 0)
+        
         task = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
             
             
@@ -125,7 +127,7 @@ class NetworkOperation: Operation {
 //            }
             
             completion(code, data)
-            semaphore.signal()
+            self.semaphore.signal()
         }
         task!.resume()
         semaphore.wait()
@@ -133,6 +135,7 @@ class NetworkOperation: Operation {
     
     override func cancel() {
         task?.cancel()
+        semaphore.signal()
         super.cancel()
     }
     

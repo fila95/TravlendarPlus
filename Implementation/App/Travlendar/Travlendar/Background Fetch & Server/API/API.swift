@@ -48,6 +48,7 @@ public class API: NSObject {
         Location.shared.subscribe { (coordinateUpdate) in
             self.cancelOperationsOfType(t: PositionOperation.classForCoder())
             self.queue.addOperation(PositionOperation(operationType: .patch, endpointAddition: nil, httpBody: "{\"lat\":\"\(coordinateUpdate.latitude)\", \"lng\":\"\(coordinateUpdate.longitude)\"}"))
+            self.triggerSchedule()
         }
         
         triggerSync()
@@ -55,13 +56,10 @@ public class API: NSObject {
     
     public func triggerSync() {
         
-        
-        if self.queue.operationCount < 2 {
-            print("Sync Triggered")
-            queue.addOperation(SettingsOperation(operationType: .get))
-            queue.addOperation(CalendarsOperation(operationType: .get))
-            self.pushUserPosition()
-        }
+        print("Sync Triggered")
+        queue.addOperation(SettingsOperation(operationType: .get))
+        queue.addOperation(CalendarsOperation(operationType: .get))
+        self.pushUserPosition()
         
     }
     
@@ -106,6 +104,7 @@ public class API: NSObject {
     }
     
     public func triggerSchedule(completion: ((_ complete: Bool, _ code: NStatusCode?) -> Void)? = nil) {
+        cancelOperationsOfType(t: ScheduleOperation.classForCoder())
         queue.addOperation(ScheduleOperation(operationType: .post, endpointAddition: "", httpBody: nil, completion: completion))
     }
     
@@ -116,8 +115,6 @@ public class API: NSObject {
     
     public func pushUserPosition() {
         Location.shared.requestLocationUpdate()
-        
-        self.triggerSchedule()
     }
     
     // MARK: Notification
@@ -130,10 +127,12 @@ public class API: NSObject {
     
     // MARK: Utilities
     private func cancelOperationsOfType(t: AnyClass) {
-        for op in queue.operations {
-            if op.classForCoder == t {
-                op.cancel()
+        
+        for (_, num) in self.queue.operations.enumerated().reversed() {
+            if num.classForCoder == t {
+                num.cancel()
             }
+            
         }
     }
     

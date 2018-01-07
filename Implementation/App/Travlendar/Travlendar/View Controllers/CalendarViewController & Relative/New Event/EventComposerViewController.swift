@@ -53,14 +53,10 @@ class EventComposerViewController: UIViewController {
         self.modalTransitionStyle = .crossDissolve
         self.modalPresentationStyle = .overCurrentContext
         
-        
-        
         let realm = try! Realm()
         let cal = realm.objects(Calendars.self).sorted(byKeyPath: "name")
         //        print(cal)
         self.currentEvent.calendar_id = cal.first?.id ?? -1
-        
-        
     }
     
     
