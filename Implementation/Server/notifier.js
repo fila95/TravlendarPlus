@@ -13,7 +13,7 @@ const apnProvider = new apn.Provider({
 
 /* istanbul ignore next */
 let sendNotification = (user, properties, cb) => {
-	properties = properties || { priority: 5 }
+	properties = properties || { badge: 0 }
 	let note = new apn.Notification(properties)
 	note.topic = 'com.giovannifilaferro.TravlendarPlus'
 	note.expiry = Math.floor(Date.now() / 1000) + 3600
