@@ -84,26 +84,30 @@ class CalendarViewController: UIViewController {
             
             // Get the default Realm
             let realm = try! Realm()
+            realm.refresh()
             
             if self.pickedDate.isToday {
-                var predicate = NSPredicate(format: "start_time >= %@ AND end_time <=  %@", Date() as NSDate, Date().addingTimeInterval(3600*3) as NSDate)
+                var predicate = NSPredicate(format: "start_time >= %@ AND start_time <=  %@", Date() as NSDate, Date().addingTimeInterval(3600*3) as NSDate)
                 self.upNext = realm.objects(Event.self).filter(predicate)
                 
-                predicate = NSPredicate(format: "start_time >= %@ AND end_time <=  %@", Date().addingTimeInterval(3600*3) as NSDate, Date().dateFor(.endOfDay) as NSDate)
+                predicate = NSPredicate(format: "start_time >= %@ AND start_time <=  %@", Date().addingTimeInterval(3600*3) as NSDate, Date().dateFor(.endOfDay) as NSDate)
                 self.events = realm.objects(Event.self).filter(predicate)
                 
-                predicate = NSPredicate(format: "start_time >= %@ AND end_time <=  %@", Date().dateFor(.startOfDay) as NSDate, Date() as NSDate)
+                predicate = NSPredicate(format: "start_time >= %@ AND start_time <=  %@", Date().dateFor(.startOfDay) as NSDate, Date() as NSDate)
                 self.previous = realm.objects(Event.self).filter(predicate)
                 
 //                print(self.upNext ?? "no upNext")
 //                print(self.events ?? "no events")
 //                print(self.previous ?? "no previous")
+//                
+//                predicate = NSPredicate(format: "start_time >= %@ AND end_time <=  %@", Date().dateFor(.startOfDay) as NSDate, Date().dateFor(.endOfDay) as NSDate)
+//                print(realm.objects(Event.self).filter(predicate))
             }
             else {
                 self.upNext = nil
                 self.previous = nil
                 
-                let predicate = NSPredicate(format: "start_time >= %@ AND end_time <=  %@", self.pickedDate.dateFor(.startOfDay) as NSDate, self.pickedDate.dateFor(.endOfDay) as NSDate)
+                let predicate = NSPredicate(format: "start_time >= %@ AND start_time <=  %@", self.pickedDate.dateFor(.startOfDay) as NSDate, self.pickedDate.dateFor(.endOfDay) as NSDate)
                 self.events = realm.objects(Event.self).filter(predicate).sorted(byKeyPath: "start_time")
             }
             
