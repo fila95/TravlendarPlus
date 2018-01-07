@@ -25,6 +25,7 @@ class EventDetailsViewController: UIViewController {
     var event: Event? {
         didSet {
             if event != nil {
+                print(event)
                 self.id = event!.id
                 self.refresh()
             }
@@ -37,6 +38,9 @@ class EventDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        collectionView.register(RoutesCollectionViewCell.self, forCellWithReuseIdentifier: RoutesCollectionViewCell.reuseId)
+        collectionView.register(RoutesCollectionViewCell.nib!, forCellWithReuseIdentifier: RoutesCollectionViewCell.reuseId)
         
         
         // Events Refresh
