@@ -26,6 +26,10 @@ Here we publish the final Design Document
 Here we publish the final Implementation and Test Document
 - `Version 1.0.0` file can be found [here](https://github.com/fila95/CalzavaraFilaferroNespoli/blob/master/DeliveryFolder/ITD1.0.0.pdf)
 
+### iOS App
+Here we publish the final version of the Implemented iOS App
+- `Version 1.0.0` file can be found [here](https://github.com/fila95/CalzavaraFilaferroNespoli/blob/master/DeliveryFolder/TravlendarPlus.zip)
+
 ### Implementation and Testing
 
 [![Build Status](https://travis-ci.com/fila95/CalzavaraFilaferroNespoli.svg?token=iWtSkcs2Smmuu8wbpWZU&branch=production)](https://travis-ci.com/fila95/CalzavaraFilaferroNespoli)
