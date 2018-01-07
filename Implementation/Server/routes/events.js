@@ -84,7 +84,7 @@ router.put('/', (req, res) => {
 			if (reachable) {
 				// Create the event
 				req.models.events.create(event, (err, result) => {
-					if(err) {
+					if (err) {
 						return res.status(500).end()
 					}
 					return res.status(201).json(result).end()
@@ -128,10 +128,17 @@ router.patch('/:event_id', (req, res) => {
 				if (eventUpdated == null) return res.sendStatus(400).end()
 				// Copy attribute in eventUpdated to eventTarget
 				delete eventUpdated.calendar_id
-				Object.assign(eventTarget, eventUpdated)
-				eventTarget.save((err, result) => {
-					//if (err) return res.sendStatus(500).end()
-					return res.json(result).end()
+
+				basicChecks(req.user, eventUpdated, (err, reachable) => {
+					if (reachable) {
+						// Create the event
+						Object.assign(eventTarget, eventUpdated)
+						eventTarget.save((err, result) => {
+							return res.json(result).end()
+						})
+					} else {
+						return res.status(412).end('not reachable')
+					}
 				})
 			})
 		})
