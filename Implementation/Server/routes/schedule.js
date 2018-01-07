@@ -353,7 +353,7 @@ let basicChecks = (user, event, cb) => {
 // updated to at least 30 minutes before the start of the event
 let getReliableUserLocation = (user, event) => {
 	// Check whether the location is no reliable:
-	if(event==null) {event = {start_time: new Date()}}
+	if (event == null) { event = { start_time: new Date() } }
 	if (!user.updated_at || user.last_known_position_lat == 0 && user.last_known_position_lng == 0 || new Date(event.start_time) - user.updated_at > 30 * 60 * 1000) return null
 	return { lat: user.last_known_position_lat, lng: user.last_known_position_lng }
 }
@@ -365,7 +365,17 @@ router.get('/', (req, res) => {
 		for (calendar of calendars) {
 			calendar_ids.push(calendar.id)
 		}
-		req.user.getAllEventsOfCalendarFromNowOn(calendar_ids, (err, events) => {
+		req.user.getAllEventsOfCalendarFromNowOn(calendar_ids, async (err, events) => {
+			for (let event of events) {
+				// Get the travels with await, so we can cycle through all with an async function
+				let travels = await new Promise((resolve, reject) =>  {
+					event.getTravels((err, travels) => {
+						if (err) { return reject(err) }
+						else { return resolve(travels) }
+					})
+				})
+				event.travels = travels
+			}
 			return res.json(events).end()
 		})
 	})
@@ -431,7 +441,7 @@ router.post('/', (req, res) => {
 						// determine if the event e is reachable
 						let prev = getEventPreviousTo(events, timeSlot.start_time)
 						let loc = getReliableUserLocation(req.user, prev)
-						
+
 						if (!prev && !loc) {
 							// If both the previous event and the user location are not defined, insert the event anyway
 							e.suggested_start_time = new Date(timeSlot.start_time)
@@ -453,7 +463,7 @@ router.post('/', (req, res) => {
 							}
 						}
 						// implicit else: use the previous event position
-						
+
 						// Ask if reachable with await
 						// Using async/await, we can loop over an asynchronous function
 						// without spawning thousands of async calls

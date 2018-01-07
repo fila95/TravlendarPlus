@@ -107,6 +107,7 @@ describe('Schedule', () => {
 
 			// All time slots can't overlap with themselves
 			if (schedule.overlap(timeSlots)) {
+				// TODO FIX randomly happening
 				throw new Error('Overlapping time slots')
 			}
 		})
@@ -418,22 +419,20 @@ describe('Schedule', () => {
 		})
 	})
 
-	
-	/*describe('GET /', () => {
+	describe('GET /', () => {
 		it('Should return a list of events ', (done) => {
 			request(app)
 				.get('/api/v1/schedule/')
 				.set('X-Access-Token', device.access_token)
 				.expect(200)
 				.expect(res => {
-					console.log(res.body)
 					if (!res.body || res.body.length <= 0) {
 						throw new Error('No event list received')
 					}
 				})
 				.end(done)
 		})
-	})*/
+	})
 
 	describe('POST /schedule', () => {
 		let calendar, event
