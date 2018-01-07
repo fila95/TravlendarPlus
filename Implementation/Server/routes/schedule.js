@@ -373,7 +373,23 @@ router.get('/', (req, res) => {
 						else { return resolve(travels) }
 					})
 				})
-				event.travels = travels
+
+				let routes = {}
+				for(travel of travels) {
+					let route_id = travel.route
+					delete travel.route
+					if(!routes[route_id]) {
+						routes[route_id] = {time: 0, travels: []}
+					}
+					routes[route_id].travels.push(travel)
+					routes[route_id].time += travel.time
+				}
+				
+				let routes_ar = []
+				for(let k in routes) {
+					routes_ar.push(routes[k])
+				}
+				event.routes = routes_ar
 			}
 			return res.json(events).end()
 		})
