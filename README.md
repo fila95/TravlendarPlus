@@ -22,7 +22,7 @@ Here we publish the final Design Document
 - `Version 1.1.0` file can be found [here](https://github.com/fila95/CalzavaraFilaferroNespoli/blob/master/DeliveryFolder/DD1.1.0.pdf)
 - `Version 1.0.0` file can be found [here](https://github.com/fila95/CalzavaraFilaferroNespoli/blob/master/DeliveryFolder/DD1.0.0.pdf)
 
-### DD
+### ITD
 Here we publish the final Implementation and Test Document
 - `Version 1.0.0` file can be found [here](https://github.com/fila95/CalzavaraFilaferroNespoli/blob/master/DeliveryFolder/ITD1.0.0.pdf)
 

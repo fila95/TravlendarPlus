@@ -118,10 +118,19 @@ Calzavara Filippo, Filaferro Giovanni, Benedetto Maria Nespoli
 \begin_layout Quote
 \noindent
 \align center
-Link to the application developed: View Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Installation-instructions"
+Link to the zip attachments:
+\end_layout
+
+\begin_layout Quote
+\noindent
+\align center
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://github.com/fila95/CalzavaraFilaferroNespoli/tree/master/DeliveryFolder
+\end_layout
 
 \end_inset
 
@@ -688,7 +697,7 @@ As first release of the application, the developing team ensures to meet
 \end_layout
 
 \begin_layout Itemize
-[G3]Allow people to view the details of each event
+[G3] Allow people to view the details of each event
 \end_layout
 
 \begin_deeper
@@ -702,10 +711,6 @@ As first release of the application, the developing team ensures to meet
 \end_layout
 
 \end_deeper
-\begin_layout Itemize
-[G3.2][R14] Allow people to explore a specific route
-\end_layout
-
 \end_deeper
 \begin_layout Itemize
 [G4] Allow the users to create an event
@@ -737,10 +742,6 @@ As first release of the application, the developing team ensures to meet
 \begin_layout Itemize
 [G4.4] Allow the user to set a starting time and ending time on non-flexible
  events
-\end_layout
-
-\begin_layout Itemize
-[G4.5][R18] Allow the user to repeat the event regularly throughout the week
 \end_layout
 
 \begin_layout Itemize
@@ -790,15 +791,6 @@ As first release of the application, the developing team ensures to meet
  transits
 \end_layout
 
-\begin_layout Itemize
-[G6.6][R25] Allow users to set if they own a car and/or their favorite car
- sharing providers
-\end_layout
-
-\begin_layout Itemize
-[G6.7][R26] Allow users to set the preferred ride sharing services
-\end_layout
-
 \end_deeper
 \begin_layout Itemize
 [G7][R27][R28] Allow the users to create calendars
@@ -814,10 +806,6 @@ As first release of the application, the developing team ensures to meet
 \end_layout
 
 \end_deeper
-\begin_layout Itemize
-[G8][R29][R30][R31] Notify the user that it's time to leave for the appointment
-\end_layout
-
 \begin_layout Subsection
 Second Release of Travlendar+
 \end_layout
@@ -830,15 +818,10 @@ The developing team has chosen to not proceed with the implementation of
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Per ultimo
+[G3.2][R14] Allow people to explore a specific route
 \end_layout
 
-\end_inset
-
+\begin_layout Itemize
 [G3.2.1][R10] Allow people to purchase the transit ticket.
  Chosen not to be developed because involves primitives of the Operation
  System
@@ -852,9 +835,22 @@ Per ultimo
 \end_layout
 
 \begin_layout Itemize
+[G4.5][R18] Allow the user to repeat the event regularly throughout the week
+\end_layout
+
+\begin_layout Itemize
 [G6.1] Allow the user to set the eco-friendly mode.
  Chosen not to be developed in order to prioritize better quality of the
  scheduling
+\end_layout
+
+\begin_layout Itemize
+[G6.6][R25] Allow users to set if they own a car and/or their favorite car
+ sharing providers
+\end_layout
+
+\begin_layout Itemize
+[G6.7][R26] Allow users to set the preferred ride sharing services
 \end_layout
 
 \begin_layout Itemize
@@ -862,6 +858,10 @@ Per ultimo
  the suggested mean of transportation.
  Chosen not to be developed since it could be considered as an additional
  feature
+\end_layout
+
+\begin_layout Itemize
+[G8][R29][R30][R31] Notify the user that it's time to leave for the appointment
 \end_layout
 
 \begin_layout Standard
@@ -913,7 +913,7 @@ The client application is designed to be utilized on
 \emph on
 iOS
 \emph default
- smartphones (iPhones, iPad).
+ smartphones (iPhones).
  The code was build using Apple's proprietary IDE 
 \emph on
 XCode
@@ -3199,33 +3199,7 @@ Download the
 \emph on
 App
 \emph default
- package from the zip(s) attached to this file or 
-\emph on
-git clone
-\emph default
- the code from the production repository
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-Could require authentication process
-\end_layout
-
-\end_inset
-
-: 
-\begin_inset Flex URL
-status collapsed
-
-\begin_layout Plain Layout
-
-https://github.com/fila95/CalzavaraFilaferroNespoli/tree/master/Implementation/Ap
-p/Travlendar
-\end_layout
-
-\end_inset
-
-
+ package from the zip(s) attached to this file
 \end_layout
 
 \begin_layout Enumerate
@@ -3278,6 +3252,21 @@ Server installation
 \end_layout
 
 \begin_layout Enumerate
+Donwload and install an instance of PostgreSQL: 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://www.postgresql.org/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
 Download and install 
 \emph on
 Node.JS
@@ -3297,33 +3286,11 @@ https://nodejs.org/en/download/
 \end_layout
 
 \begin_layout Enumerate
-Download the Server package from the zip(s) attached to this file or 
+Download the 
 \emph on
-git clone
+Server
 \emph default
- the code from the production repository
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-Could require an authentication process
-\end_layout
-
-\end_inset
-
-: 
-\begin_inset Flex URL
-status open
-
-\begin_layout Plain Layout
-
-https://github.com/fila95/CalzavaraFilaferroNespoli/tree/master/Implementation/Se
-rver
-\end_layout
-
-\end_inset
-
-
+ package from the zip(s) attached to this file
 \end_layout
 
 \begin_layout Enumerate
@@ -3347,7 +3314,8 @@ npm start
 \end_layout
 
 \begin_layout Standard
-Please verify that an instance of PostgreSQL is running on port 5432.
+Please verify that an instance of PostgreSQL is running on port localhost
+ 5432.
 \end_layout
 
 \begin_layout Standard
