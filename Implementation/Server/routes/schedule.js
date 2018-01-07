@@ -380,7 +380,7 @@ router.post('/', (req, res) => {
 			// Get all the events of the current calendar
 			req.user.getAllEventsOfCalendarFromNowOn(calendar.id, async (err, events) => {
 				if (events.length == 0) {
-					notifier.sendNotifictaion(req.user, "ok")
+					notifier(req.user, "ok")
 					return
 				}
 
@@ -395,7 +395,7 @@ router.post('/', (req, res) => {
 						e.save(err => {
 							if (err) throw err
 						})
-						notifier.sendNotifictaion(req.user, "err")
+						notifier(req.user, "err")
 						return
 					}
 				}
@@ -468,7 +468,7 @@ router.post('/', (req, res) => {
 						})
 					} else {
 						e.reachable = false
-						notifier.sendNotifictaion(req.user, "err")
+						notifier(req.user, "err")
 						return e.save(err => {
 							if (err) { throw err }
 						})
