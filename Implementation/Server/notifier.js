@@ -11,7 +11,7 @@ const notifier = () => {
 		production: process.env.NODE_ENV == 'production'
 	})
 
-	let sendNotification = (text, user) => {
+	let sendNotification = (user, text) => {
 		let note = new apn.Notification()
 		note.topic = 'com.giovannifilaferro.TravlendarPlus'
 		note.expiry = Math.floor(Date.now() / 1000) + 3600

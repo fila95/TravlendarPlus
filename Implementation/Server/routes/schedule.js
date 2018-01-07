@@ -140,16 +140,16 @@ let timeSlots = (fixedEventList, _flexibleEvent) => {
 		end_time: fixedEventListInWhichSearch[0].start_time
 	})
 	timeSlots.push({
-		start_time: fixedEventListInWhichSearch[fixedEventListInWhichSearch.length-1].end_time,
+		start_time: fixedEventListInWhichSearch[fixedEventListInWhichSearch.length - 1].end_time,
 		end_time: flexibleEvent.end_time
 	})
 
 	// Remove the time slot if it is too short
 	for (let i = 0; i < timeSlots.length; i++) {
 		let timeSlotDuration = timeSlots[i].end_time - timeSlots[i].start_time
-		if (timeSlots[i].end_time<timeSlots[i].startTime || timeSlotDuration < flexibleEvent.duration) {
+		if (timeSlots[i].end_time < timeSlots[i].startTime || timeSlotDuration < flexibleEvent.duration) {
 			timeSlots.splice(i, 1)
-		}			
+		}
 	}
 	return timeSlots
 }
@@ -230,7 +230,7 @@ let eventIsReachable = (from, to, opt) => {
 
 		// Step 2: Google Maps Directions API
 		let parsed_transport = to.parseTransports(dist, opt.settings)
-		
+
 		let responses = []
 		let query = {
 			origin: from,
@@ -247,7 +247,7 @@ let eventIsReachable = (from, to, opt) => {
 				query.mode = 'walking'
 			}
 			let response = await googleMapsClient.directions(query).asPromise()
-			
+
 			let durations = []
 			for (let route of response.json.routes) {
 				let duration = 0
@@ -278,7 +278,7 @@ let eventIsReachable = (from, to, opt) => {
 // Given a stram of JSON text from Google Directions API, 
 // extracts the most useful info pre db insertion
 let filterUsefulTravelInfo = (responseJSON) => {
-	let new_routes = [], new_step, new_steps, route = Math.floor(Math.random()*2147483647)
+	let new_routes = [], new_step, new_steps, route = Math.floor(Math.random() * 2147483647)
 	first_route = responseJSON[0]
 	for (step_n in first_route.legs[0].steps) {
 		step = first_route.legs[0].steps[step_n]
@@ -309,9 +309,7 @@ let createTravel = async (response) => {
 			}
 		})
 	})
-
 }
-
 
 let basicChecks = (user, event, cb) => {
 	user.getAllEventsOfCalendarFromNowOn(event.calendar_id, (err, events) => {
@@ -371,17 +369,19 @@ router.get('/', (req, res) => {
 
 let isScheduling = {}
 router.post('/', (req, res) => {
+	// We suddenly return a 202 - Accepted status code,
+	// and the scheduler will notify the user when the results are ready
+	res.status(202).end()
+
 	// For each calendar
 	let calendars = req.user.getCalendars()
 	calendars.count((err, n) => {
-		if (n == 0) {
-			return res.status(202).end()
-		}
 		calendars.each((calendar) => {
 			// Get all the events of the current calendar
 			req.user.getAllEventsOfCalendarFromNowOn(calendar.id, async (err, events) => {
 				if (events.length == 0) {
-					return res.status(202).end()
+					notifier.sendNotifictaion(req.user, "ok")
+					return
 				}
 
 				let fixedEvents = events.filter((e) => { return !e.duration })
@@ -391,14 +391,14 @@ router.post('/', (req, res) => {
 				for (let e of flexibleEvents) {
 					e.timeSlots = timeSlots(fixedEvents, e)
 					if (e.timeSlots.length == 0) {
-						return res.status(400).end('timeslot length is 0 for event: ' + e.id)
+						e.reachable = false
+						e.save(err => {
+							if (err) throw err
+						})
+						notifier.sendNotifictaion(req.user, "err")
+						return
 					}
 				}
-
-				// From now on, the real scheduler is going on, so we suddenly return a
-				// 202 - Accepted status code, and the scheduler will notify the user
-				// when the results are ready
-				res.status(202).end()
 
 				// Assign a scheduler id to this task.
 				// Whenever a new schedule start for the same user, this
@@ -431,9 +431,10 @@ router.post('/', (req, res) => {
 							// If both the previous event and the user location are not defined, insert the event anyway
 							e.suggested_start_time = new Date(timeSlot.start_time)
 							e.suggested_end_time = new Date(e.suggested_start_time + e.duration)
-							return e.save(err => {
+							e.save(err => {
 								if (err) throw err
 							})
+							continue
 						} else if ((!prev && loc) || (prev && loc && req.user.updated_at > prev.end_time)) {
 							// If the previous event is known, but the last real user position is
 							// closer to the end of the previouus event,
@@ -461,7 +462,14 @@ router.post('/', (req, res) => {
 							}
 						}
 						e.travels = travels
+						e.reachable = true
 						e.save(err => {
+							if (err) { throw err }
+						})
+					} else {
+						e.reachable = false
+						notifier.sendNotifictaion(req.user, "err")
+						return e.save(err => {
 							if (err) { throw err }
 						})
 					}
@@ -470,7 +478,8 @@ router.post('/', (req, res) => {
 		})
 	})
 
-	// Finish scheduler for all the events of all the calendars
+	// The scheduler finished the schedule for all the events
+	// of all the calendars successfuully
 	// notifier.sendNotification(text, user)
 })
 
