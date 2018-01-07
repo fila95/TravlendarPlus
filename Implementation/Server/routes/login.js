@@ -13,7 +13,20 @@ let createUser = (user_tkoen, req, cb) => {
 	req.models.users.create({
 		user_token: req.body.user_token
 	}, (err, user) => {
-		createSettings(user, req, cb)
+		createSettings(user, req, (err, user) => {
+			createCalendar(user, req, cb)
+		})
+	})
+}
+
+// Create settings in the database for the user user
+let createCalendar = (user, req, cb) => {
+	req.models.calendars.create({
+		user_id: user.id,
+		name: "Default",
+		color: "#F85155"
+	}, () => {
+		cb(null, user)
 	})
 }
 
