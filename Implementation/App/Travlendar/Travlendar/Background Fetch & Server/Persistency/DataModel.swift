@@ -179,7 +179,7 @@ public class Event: Object, Codable {
     
     @objc dynamic var start_time: Date = Date()
     @objc dynamic var end_time: Date = Date().addingTimeInterval(3600)
-    @objc dynamic var duration: Int = -1
+    @objc dynamic var duration: Int = 0
     
     @objc dynamic var repetitions: String = "0000000"
     @objc dynamic var transports: String = "11111"
@@ -261,7 +261,11 @@ public class Event: Object, Codable {
         
         self.start_time = try container.decode(Date.self, forKey: .start_time)
         self.end_time = try container.decode(Date.self, forKey: .end_time)
-        self.duration = try container.decodeIfPresent(Int.self, forKey: .duration) ?? -1
+        self.duration = try container.decodeIfPresent(Int.self, forKey: .duration) ?? 0
+        
+        if self.duration != 0 {
+            self.duration  = Int(Float(self.duration) / 60000)
+        }
         
         self.repetitions = try container.decode(String.self, forKey: .repetitions)
         self.transports = try container.decode(String.self, forKey: .transports)
@@ -291,7 +295,7 @@ public class Event: Object, Codable {
         
         try container.encode(self.start_time, forKey: .start_time)
         try container.encode(self.end_time, forKey: .end_time)
-        try container.encode(self.duration == -1 ? 0 : self.duration, forKey: .duration)
+        try container.encode(self.duration == 0 ? 0 : self.duration * 60000, forKey: .duration)
         
         try container.encode(self.repetitions, forKey: .repetitions)
         try container.encode(self.transports, forKey: .transports)

@@ -19,7 +19,7 @@ extension EventComposerViewController: UITableViewDataSource {
         case 1:
             return 2
         case 2:
-            if currentEvent.duration != -1 {
+            if currentEvent.duration > 0 {
                 return 4
             }
             return 3
@@ -122,7 +122,9 @@ extension EventComposerViewController: UITableViewDataSource {
                     vpv.addComponent(component: VPButtonComponent(type: .strong, text: "Ok", tapHandler: { (button) in
                         self.currentEvent.duration = valuePicker.value
                         
+                        self.refreshSwitchCell()
                         self.refreshDateCells()
+                        self.tableView.reloadData()
                         vp.dismiss(animated: true, completion: nil)
                     }))
                     
@@ -193,12 +195,12 @@ extension EventComposerViewController {
     func prepareDurationSwitchHandler(cell: SwitchTableViewCell) {
         cell.setSwitchChangedHandler {
             if cell.switchView.isOn {
-                self.currentEvent.duration = 0
+                self.currentEvent.duration = 10
                 self.refreshDateCells()
                 self.tableView.insertRows(at: [IndexPath.init(row: 3, section: 2)], with: UITableViewRowAnimation.automatic)
             }
             else {
-                self.currentEvent.duration = -1
+                self.currentEvent.duration = 0
                 self.refreshDateCells()
                 self.tableView.deleteRows(at: [IndexPath.init(row: 3, section: 2)], with: UITableViewRowAnimation.automatic)
             }

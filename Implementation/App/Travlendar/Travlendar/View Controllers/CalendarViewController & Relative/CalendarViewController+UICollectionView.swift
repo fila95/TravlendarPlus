@@ -129,6 +129,7 @@ extension CalendarViewController: UICollectionViewDelegate, UICollectionViewData
                 assert(false, "Unexpected element kind")
         }
         
+        return UICollectionReusableView()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
