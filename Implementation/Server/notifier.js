@@ -1,6 +1,11 @@
 const apn = require('apn')
 require('dotenv').config()
 
+if(!process.env.APN_P8) {
+	console.log("No APN_P8 set, Notifications will not be send")
+	return module.exports = () => {}
+}
+
 /* istanbul ignore next */
 const apnProvider = new apn.Provider({
 	token: {
