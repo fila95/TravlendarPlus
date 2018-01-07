@@ -61,8 +61,12 @@ class SettingsViewController: UIViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        
-        refreshCalendars()
+        self.refreshCalendars()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.refreshCalendars()
     }
     
     func refreshToSettings(s: Settings?) {

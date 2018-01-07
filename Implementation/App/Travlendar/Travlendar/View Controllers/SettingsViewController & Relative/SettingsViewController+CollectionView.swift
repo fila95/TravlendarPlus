@@ -37,6 +37,7 @@ extension SettingsViewController: UICollectionViewDataSource, UICollectionViewDe
                     API.shared.deleteCalendarFromServer(calendar: self.calendars![index], completion: { (complete, message) in
                         if complete {
                             DispatchQueue.main.async {
+                                API.shared.triggerSync()
                                 self.refreshCalendars()
                             }
                             

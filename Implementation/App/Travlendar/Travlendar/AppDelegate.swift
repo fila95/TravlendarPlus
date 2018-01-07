@@ -24,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         _ = Secret.shared
         _ = Database.shared
-        _ = API.shared
         
         
         if !Secret.shared.appPreviouslyLaunched {
@@ -67,6 +66,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func handleUserNotification(data: [AnyHashable : Any]) {
         print("Push notification received: \(data)")
+        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         self.sync(schedule: true)
     }
     
@@ -87,7 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         
-        self.sync(schedule: false)
+//        self.sync(schedule: true)
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -102,7 +103,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func sync(schedule: Bool) {
-        API.shared.triggerSync()
+//        API.shared.triggerSync()
         
         if schedule {
             API.shared.getSchedule()

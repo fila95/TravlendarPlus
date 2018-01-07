@@ -29,9 +29,7 @@ class MapViewController: UIViewController {
         
         picker.setDateChangeHandler { (newDate) in
             self.currentDate = newDate
-            DispatchQueue.main.async {
-                self.refreshUptoDate()
-            }
+            self.refreshUptoDate()
             
         }
         
@@ -55,67 +53,73 @@ class MapViewController: UIViewController {
     }
     
     func refreshUptoDate(newDate: Date? = nil) {
-        if newDate != nil {
-            self.currentDate = newDate!
+        DispatchQueue.main.async { [unowned self] in
+            if newDate != nil {
+                self.currentDate = newDate!
+            }
+            
+            // Refresh View known Current Date
+            let realm = try! Realm()
+            
+            let predicate = NSPredicate(format: "start_time >= %@ AND end_time <=  %@", self.currentDate.dateFor(.startOfDay) as NSDate, self.currentDate.dateFor(.endOfDay) as NSDate)
+            self.events = realm.objects(Event.self).filter(predicate).sorted(byKeyPath: "start_time")
+            self.refreshAnnotations()
         }
-        
-        // Refresh View known Current Date
-        let realm = try! Realm()
-        
-        let predicate = NSPredicate(format: "start_time >= %@ AND end_time <=  %@", self.currentDate.dateFor(.startOfDay) as NSDate, self.currentDate.dateFor(.endOfDay) as NSDate)
-        self.events = realm.objects(Event.self).filter(predicate).sorted(byKeyPath: "start_time")
-        self.refreshAnnotations()
     }
     
     private func refreshAnnotations() {
-        guard let ev = self.events else {
-            return
+        DispatchQueue.main.async {
+            guard let ev = self.events else {
+                return
+            }
+            self.map.removeOverlays(self.map.overlays)
+            self.map.removeAnnotations(self.map.annotations)
+            
+            for e in ev {
+                let ann = MKPointAnnotation()
+                ann.coordinate = CLLocationCoordinate2D(latitude: e.lat, longitude: e.lng)
+                self.map.addAnnotation(ann)
+            }
+            
+            self.map.fitAllMarkers(shouldIncludeCurrentLocation: true)
+            self.showRouteOnMap()
         }
-        self.map.removeOverlays(self.map.overlays)
-        self.map.removeAnnotations(self.map.annotations)
-        
-        for e in ev {
-            let ann = MKPointAnnotation()
-            ann.coordinate = CLLocationCoordinate2D(latitude: e.lat, longitude: e.lng)
-            self.map.addAnnotation(ann)
-        }
-        
-        self.map.fitAllMarkers(shouldIncludeCurrentLocation: true)
-        self.showRouteOnMap()
     }
     
     func showRouteOnMap() {
-        let c = map.annotations.count
-        
-        for idx in 0..<c {
-            guard idx+1 < c else {
-                return
-            }
+        DispatchQueue.main.async {
+            let c = self.map.annotations.count
             
-            let a = map.annotations[idx]
-            let a1 = map.annotations[idx+1]
-            
-            let request = MKDirectionsRequest()
-            request.source = MKMapItem(placemark: MKPlacemark(coordinate: a.coordinate, addressDictionary: nil))
-            request.destination = MKMapItem(placemark: MKPlacemark(coordinate: a1.coordinate, addressDictionary: nil))
-            request.requestsAlternateRoutes = true
-            request.transportType = .any
-            
-            let directions = MKDirections(request: request)
-            
-            
-            directions.calculate(completionHandler: { (response, error) in
-                guard let unwrappedResponse = response else { return }
-                
-                if (unwrappedResponse.routes.count > 0) {
-                    self.map.add(unwrappedResponse.routes[0].polyline)
-                    self.map.setVisibleMapRect(unwrappedResponse.routes[0].polyline.boundingMapRect, animated: true)
+            for idx in 0..<c {
+                guard idx+1 < c else {
+                    return
                 }
-            })
-            
-            
-            
-            
+                
+                let a = self.map.annotations[idx]
+                let a1 = self.map.annotations[idx+1]
+                
+                let request = MKDirectionsRequest()
+                request.source = MKMapItem(placemark: MKPlacemark(coordinate: a.coordinate, addressDictionary: nil))
+                request.destination = MKMapItem(placemark: MKPlacemark(coordinate: a1.coordinate, addressDictionary: nil))
+                request.requestsAlternateRoutes = true
+                request.transportType = .any
+                
+                let directions = MKDirections(request: request)
+                
+                
+                directions.calculate(completionHandler: { (response, error) in
+                    guard let unwrappedResponse = response else { return }
+                    
+                    if (unwrappedResponse.routes.count > 0) {
+                        self.map.add(unwrappedResponse.routes[0].polyline)
+                        self.map.setVisibleMapRect(unwrappedResponse.routes[0].polyline.boundingMapRect, animated: true)
+                    }
+                })
+                
+                
+                
+                
+            }
         }
     }
     
