@@ -30,8 +30,12 @@ Here we publish the final Design Document
 [![Coding Hours](https://api.gitential.com/accounts/170/projects/222/badges/coding-hours.svg)](https://gitential.com/accounts/170/projects/222/share?uuid=9f506af9-262f-4f7c-b205-120bf590a814&utm_source=shield&utm_medium=shield&utm_campaign=222)
 [![Code Volume](https://api.gitential.com/accounts/170/projects/222/badges/code-volume.svg)](https://gitential.com/accounts/170/projects/222/share?uuid=9f506af9-262f-4f7c-b205-120bf590a814&utm_source=shield&utm_medium=shield&utm_campaign=222)
 
+#### App Installation
+[here](itms-services://?action=download-manifest&url=https%3A%2F%2Fgithub.com%2Ffila95%2FCalzavaraFilaferroNespoli%2FDeliveryFolder%2Fapp%2Fmanifest.plist)
+
 #### Test Coverage
 [![Test Coverage](https://codecov.io/gh/fila95/CalzavaraFilaferroNespoli/branch/production/graphs/sunburst.svg?token=j9U8t3J9rD)](https://codecov.io/gh/fila95/CalzavaraFilaferroNespoli/branch/production/graphs/sunburst.svg?token=j9U8t3J9rD)
+
 
 ## Contributors:
 - Calzavara Filippo
