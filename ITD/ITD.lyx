@@ -118,18 +118,10 @@ Calzavara Filippo, Filaferro Giovanni, Benedetto Maria Nespoli
 \begin_layout Quote
 \noindent
 \align center
-Link to the iOS App: 
-\end_layout
-
-\begin_layout Quote
-\noindent
-\align center
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-LINKARE L'APP QUI E NELLA SEZIONE INSTALLAZIONE
-\end_layout
+Link to the application developed: View Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Installation-instructions"
 
 \end_inset
 
@@ -426,7 +418,7 @@ Acronyms
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="6" columns="2">
+<lyxtabular version="3" rows="5" columns="2">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -511,7 +503,7 @@ Operative System
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -520,31 +512,11 @@ APN
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Apple Push Notification
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+Apple Push Notification
 \end_layout
 
 \end_inset
@@ -667,31 +639,11 @@ Reference Documents
 \end_layout
 
 \begin_layout Itemize
-RASD version 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-VERSIONE1.2.0
-\end_layout
-
-\end_inset
-
-
+RASD version 1.3.0
 \end_layout
 
 \begin_layout Itemize
-Design Document 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-VERSIONE1.2.0
-\end_layout
-
-\end_inset
-
-
+Design Document 1.2.1
 \end_layout
 
 \begin_layout Standard
@@ -1136,16 +1088,32 @@ Client side
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-TODO GIO
-\end_layout
-
-\end_inset
-
-
+The developed code is available at the path 
+\emph on
+/Travlendar
+\emph default
+.
+ The subfolder 
+\emph on
+UI Components 
+\emph default
+contains the swift code of the tools that regards the UI, such as the date
+ picker calendar view.
+ The subfolder 
+\emph on
+Background Fetch & Server 
+\emph default
+contains the codes used by background processes such as the Network operation
+ and position handling.
+ 
+\emph on
+CalendarViewController & Relative
+\emph default
+ and 
+\emph on
+SettingsViewController & Relative
+\emph default
+ contains foreground operations for calendars and settings.
 \end_layout
 
 \begin_layout Subsection
@@ -3147,11 +3115,27 @@ PASSED (268ms)
 \end_layout
 
 \begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Installation-instructions"
+
+\end_inset
+
 Installation instructions
 \end_layout
 
 \begin_layout Subsection
 App installation
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TODO GIO
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -3180,16 +3164,6 @@ Please note that the application is compatible only with iOS platform's
 
 \begin_layout Subsubsection
 Compiling instructions 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-TODO GIO
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
