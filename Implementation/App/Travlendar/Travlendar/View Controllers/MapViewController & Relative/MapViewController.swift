@@ -71,7 +71,7 @@ class MapViewController: UIViewController {
         guard let ev = self.events else {
             return
         }
-        
+        self.map.removeOverlays(self.map.overlays)
         self.map.removeAnnotations(self.map.annotations)
         
         for e in ev {
@@ -81,7 +81,45 @@ class MapViewController: UIViewController {
         }
         
         self.map.fitAllMarkers(shouldIncludeCurrentLocation: true)
+        self.showRouteOnMap()
     }
+    
+    func showRouteOnMap() {
+        let c = map.annotations.count
+        
+        for idx in 0..<c {
+            guard idx+1 < c else {
+                return
+            }
+            
+            let a = map.annotations[idx]
+            let a1 = map.annotations[idx+1]
+            
+            let request = MKDirectionsRequest()
+            request.source = MKMapItem(placemark: MKPlacemark(coordinate: a.coordinate, addressDictionary: nil))
+            request.destination = MKMapItem(placemark: MKPlacemark(coordinate: a1.coordinate, addressDictionary: nil))
+            request.requestsAlternateRoutes = true
+            request.transportType = .any
+            
+            let directions = MKDirections(request: request)
+            
+            
+            directions.calculate(completionHandler: { (response, error) in
+                guard let unwrappedResponse = response else { return }
+                
+                if (unwrappedResponse.routes.count > 0) {
+                    self.map.add(unwrappedResponse.routes[0].polyline)
+                    self.map.setVisibleMapRect(unwrappedResponse.routes[0].polyline.boundingMapRect, animated: true)
+                }
+            })
+            
+            
+            
+            
+        }
+    }
+    
+    
     
     
 }
@@ -89,6 +127,15 @@ class MapViewController: UIViewController {
 
 extension MapViewController: MKMapViewDelegate {
     
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if overlay is MKPolyline {
+            let polylineRenderer = MKPolylineRenderer(overlay: overlay)
+            polylineRenderer.strokeColor = UIColor.generateVibrantColor()
+            polylineRenderer.lineWidth = 3
+            return polylineRenderer
+        }
+        return MKOverlayRenderer()
+    }
     
     
 }

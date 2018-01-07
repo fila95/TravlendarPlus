@@ -270,7 +270,13 @@ extension EventComposerViewController {
                         self.dismiss(animated: true)
                     }
                     else {
-                        UIAlertController.show(title: "Error", message: "An error occurred while adding this event", buttonTitle: "Ok", on: self)
+                        if error == NStatusCode.preconditionFailed {
+                            UIAlertController.show(title: "Error", message: "This event will not be reachable! Fix it and try again...", buttonTitle: "Ok", on: self)
+                        }
+                        else {
+                            UIAlertController.show(title: "Error", message: "An error occurred while adding this event", buttonTitle: "Ok", on: self)
+                        }
+                        
                     }
                 }
                 
@@ -286,7 +292,12 @@ extension EventComposerViewController {
                         self.dismiss(animated: true)
                     }
                     else {
-                        UIAlertController.show(title: "Error", message: "An error occurred while updating this event", buttonTitle: "Ok", on: self)
+                        if error == NStatusCode.preconditionFailed {
+                            UIAlertController.show(title: "Error", message: "This event will not be reachable! Fix it and try again...", buttonTitle: "Ok", on: self)
+                        }
+                        else {
+                            UIAlertController.show(title: "Error", message: "An error occurred while adding this event", buttonTitle: "Ok", on: self)
+                        }
                     }
                     
                 })

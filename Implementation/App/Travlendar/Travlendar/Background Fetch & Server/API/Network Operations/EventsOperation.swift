@@ -40,17 +40,24 @@ class EventsOperation: NetworkOperation {
             case .ok:
                 
                 guard let d = data else {
-                    self.completionHandler?(false, "Data Unavailable")
+                    self.completionHandler?(false, .dataUnavailable)
                     print("Error Events Operation: \n\tData unavailable")
                     return
                 }
                 
                 if self.operationType == .get {
                     
-                   
+//                    print(String.init(data: d, encoding: .utf8) ?? "No str")
+//                    do {
+//                        try decoder.decode([Event].self, from: d)
+//                    }
+//                    catch {
+//                        print(error)
+//                    }
+
                     
                     guard let events = try? decoder.decode([Event].self, from: d) else {
-                        self.completionHandler?(false, "Decode Error")
+                        self.completionHandler?(false, .dataUnavailable)
                         print("Error Events Operation: Unable to decode Events")
                         return
                     }
@@ -74,7 +81,7 @@ class EventsOperation: NetworkOperation {
                 else if self.operationType == .patch {
                     
                     guard let event = try? decoder.decode(Event.self, from: d) else {
-                        self.completionHandler?(false, "Decode Error")
+                        self.completionHandler?(false, .dataUnavailable)
                         print("Error Events Operation: Unable to decode Events")
                         return
                     }
@@ -97,7 +104,7 @@ class EventsOperation: NetworkOperation {
                 
             case .created:
                 guard let d = data else {
-                    self.completionHandler?(false, "Data Unavailable")
+                    self.completionHandler?(false, .dataUnavailable)
                     print("Error Events Operation: \n\tData unavailable")
                     return
                 }
@@ -112,7 +119,7 @@ class EventsOperation: NetworkOperation {
 //                }
                 
                 guard let event = try? decoder.decode(Event.self, from: d) else {
-                    self.completionHandler?(false, "Decode Error")
+                    self.completionHandler?(false, .dataUnavailable)
                     print("Error Events Operation: Unable to decode Event")
                     return
                 }
@@ -134,7 +141,7 @@ class EventsOperation: NetworkOperation {
                 
                 Database.shared.realm(completion: { (realm) in
                     guard let id: Int = Int(self.endpointAddition) else {
-                        self.completionHandler?(false, "Error deleting...")
+                        self.completionHandler?(false, .dataUnavailable)
                         return
                     }
                     
@@ -151,7 +158,7 @@ class EventsOperation: NetworkOperation {
                 break
                 
             default:
-                self.completionHandler?(false, "Error")
+                self.completionHandler?(false, status)
                 print("Error Events Operation: \n\tStatusCode: \(status)")
                 break
                 

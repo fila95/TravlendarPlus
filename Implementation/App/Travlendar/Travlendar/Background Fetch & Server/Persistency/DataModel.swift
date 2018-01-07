@@ -99,7 +99,7 @@ class Travel: Object {
     
     @objc dynamic var route: Int = 0
     @objc dynamic var time: Int = 0
-    @objc private dynamic var transport_mean_private = TransportMean.walking.rawValue
+    @objc private dynamic var transport_mean_private: String = TransportMean.walking.rawValue
     var transport_mean: TransportMean {
         get { return TransportMean(rawValue: transport_mean_private)! }
         set { transport_mean_private = newValue.rawValue }
@@ -111,6 +111,58 @@ class Travel: Object {
         return "id"
     }
     
+    private enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case event_id = "event_id"
+        case route = "route"
+        case time = "time"
+        case transport_mean_private = "transport_mean"
+        case waypoints = "waypoints"
+    }
+    
+    
+    public required init(from decoder: Decoder) throws {
+        super.init()
+        try self.decode(from: decoder)
+    }
+    
+    required public init() {
+        super.init()
+    }
+    
+    required public init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    required public init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+    
+    
+    public func decode(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decode(Int.self, forKey: .id)
+        self.event_id = try container.decode(Int.self, forKey: .event_id)
+        
+        self.route = try container.decode(Int.self, forKey: .route)
+        self.time = try container.decode(Int.self, forKey: .time)
+        
+        self.transport_mean_private = try container.decode(String.self, forKey: .transport_mean_private)
+        self.waypoints = try container.decode(String.self, forKey: .waypoints)
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encode(self.id, forKey: .id)
+        try container.encode(self.event_id, forKey: .event_id)
+        
+        try container.encode(self.route, forKey: .route)
+        try container.encode(self.time, forKey: .time)
+        
+        try container.encode(self.transport_mean_private, forKey: .transport_mean_private)
+        try container.encode(self.waypoints, forKey: .waypoints)
+    }
     
 }
 
@@ -134,6 +186,10 @@ public class Event: Object, Codable {
     
     @objc dynamic var suggested_start_time: Date = Date.init(timeIntervalSince1970: 0)
     @objc dynamic var suggested_end_time: Date = Date.init(timeIntervalSince1970: 0)
+    
+    @objc dynamic var reachable: Bool = true
+    
+    var travels = List<Travel>()
     
     override public static func primaryKey() -> String? {
         return "id"
@@ -168,6 +224,9 @@ public class Event: Object, Codable {
         
         case suggested_start_time = "suggested_start_time"
         case suggested_end_time = "suggested_end_time"
+        
+        case reachable = "reachable"
+        case travels = "travels"
     }
     
     
@@ -209,6 +268,13 @@ public class Event: Object, Codable {
         
         self.suggested_start_time = (try container.decodeIfPresent(Date.self, forKey: .suggested_start_time)) ?? Date.init(timeIntervalSince1970: 0)
         self.suggested_end_time = (try container.decodeIfPresent(Date.self, forKey: .suggested_end_time)) ?? Date.init(timeIntervalSince1970: 0)
+        
+        self.reachable = try container.decodeIfPresent(Bool.self, forKey: .reachable) ?? true
+        
+        let travelsArray = try container.decodeIfPresent([Travel].self, forKey: .travels) ?? []
+        let travelsList = List<Travel>()
+        travelsList.append(objectsIn: travelsArray)
+        self.travels = travelsList
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -232,6 +298,8 @@ public class Event: Object, Codable {
         
         try container.encode(self.suggested_start_time, forKey: .suggested_start_time)
         try container.encode(self.suggested_end_time, forKey: .suggested_end_time)
+        
+        try container.encode(self.reachable, forKey: .reachable)
     }
     
 }
