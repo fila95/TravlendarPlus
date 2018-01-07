@@ -1,7 +1,6 @@
 const app = require('../index')
 const schedule = require('../routes/schedule.js').testFunctions
 const request = require('supertest')
-const polyline = require('polyline')
 
 describe('Schedule', () => {
 	let db, user, device, customEvent
@@ -347,81 +346,84 @@ describe('Schedule', () => {
 			customEvent.save(err => {
 				if (err) { throw err }
 			})
+			
 		}).timeout(10000); // Google Requests could take a while
-	})
 
-	it('eventIsReachable with all the checks, google included, should return false', async () => {
-		let p1 = { lat: 45.478336, lng: 9.228263 }
-		customEvent.lat = 45.464257
-		customEvent.lng = 9.190209
-		customEvent.start_time = new Date(2017, 11, 12, 8, 0)
-		customEvent.end_time = new Date(2017, 11, 12, 9, 20)
-		customEvent.duration = 1000 * 60 * 60
 
-		let data = await schedule.eventIsReachable(p1, customEvent, { settings: user.settings })
-		// Google routes have all the copyrights field
-		if (data != false) {
-			throw new Error('Google route returned, but noone expected')
-		}
+		it('eventIsReachable with all the checks, google included, should return false', async () => {
+			let p1 = { lat: 45.478336, lng: 9.228263 }
+			customEvent.lat = 45.464257
+			customEvent.lng = 9.190209
+			customEvent.start_time = new Date(2017, 11, 12, 8, 0)
+			customEvent.end_time = new Date(2017, 11, 12, 9, 20)
+			customEvent.duration = 1000 * 60 * 60
 
-	}).timeout(10000); // Google Requests could take a while
-
-	it('basicChecks without any params', (done) => {
-		let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: 45, lng: 9 }
-
-		schedule.basicChecks(user, e, (err, data) => {
-			if (data != true) {
-				throw new Error('Basic checks failed')
+			let data = await schedule.eventIsReachable(p1, customEvent, { settings: user.settings })
+			// Google routes have all the copyrights field
+			if (data != false) {
+				throw new Error('Google route returned, but noone expected')
 			}
-			done()
+		}).timeout(10000); // Google Requests could take a while
+
+
+		it('basicChecks without any params', (done) => {
+			let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: 45, lng: 9 }
+
+			schedule.basicChecks(user, e, (err, data) => {
+				if (data != true) {
+					throw new Error('Basic checks failed')
+				}
+				done()
+			})
+		})
+
+		it('basicChecks with user location should retuurn true', (done) => {
+			user.last_known_position_lat = 45
+			user.last_known_position_lng = 9
+			user.updated_at = new Date(2017, 11, 12, 5, 59)
+
+			let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), duration: 4 * 60 * 60 * 1000, lat: 45, lng: 9, calendar_id: customEvent.calendar_id }
+
+			schedule.basicChecks(user, e, (err, data) => {
+				done(data != true ? new Error('Basic checks failed') : null)
+			})
+		})
+
+		it('basicChecks with user location should return false', (done) => {
+			user.last_known_position_lat = 40
+			user.last_known_position_lng = 9
+			user.updated_at = new Date(2017, 11, 12, 5, 59)
+
+			let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: 45, lng: 9, calendar_id: customEvent.calendar_id }
+
+			schedule.basicChecks(user, e, (err, data) => {
+				done(data == true ? new Error('Basic checks failed') : null)
+			})
+		})
+
+		it('basicChecks with previous event should return true', (done) => {
+			let e = { id: 1, start_time: new Date(2017, 11, 12, 15, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: customEvent.lat + 0.1, lng: customEvent.lng + 0.1 }
+
+			schedule.basicChecks(user, e, (err, data) => {
+				done(data != true ? new Error('Basic checks failed') : null)
+			})
+		})
+
+		it('basicChecks with previous event should return false', (done) => {
+			let e = { id: 1, start_time: new Date(2017, 11, 12, 13, 22), end_time: new Date(2017, 11, 13, 4, 30), lat: 45, lng: 9, calendar_id: customEvent.calendar_id }
+
+			schedule.basicChecks(user, e, (data) => {
+				done(data == true ? new Error('Basic checks failed') : null)
+			})
 		})
 	})
 
-	it('basicChecks with user location should retuurn true', (done) => {
-		user.last_known_position_lat = 45
-		user.last_known_position_lng = 9
-		user.updated_at = new Date(2017, 11, 12, 5, 59)
-
-		let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), duration: 4 * 60 * 60 * 1000, lat: 45, lng: 9, calendar_id: customEvent.calendar_id }
-
-		schedule.basicChecks(user, e, (err, data) => {
-			done(data != true ? new Error('Basic checks failed') : null)
-		})
-	})
-
-	it('basicChecks with user location should return false', (done) => {
-		user.last_known_position_lat = 40
-		user.last_known_position_lng = 9
-		user.updated_at = new Date(2017, 11, 12, 5, 59)
-
-		let e = { id: 1, start_time: new Date(2017, 11, 12, 6, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: 45, lng: 9, calendar_id: customEvent.calendar_id }
-
-		schedule.basicChecks(user, e, (err, data) => {
-			done(data == true ? new Error('Basic checks failed') : null)
-		})
-	})
-
-	it('basicChecks with previous event should return true', (done) => {
-		let e = { id: 1, start_time: new Date(2017, 11, 12, 15, 00), end_time: new Date(2017, 11, 13, 4, 30), lat: customEvent.lat + 0.1, lng: customEvent.lng + 0.1 }
-
-		schedule.basicChecks(user, e, (err, data) => {
-			done(data != true ? new Error('Basic checks failed') : null)
-		})
-	})
-
-	it('basicChecks with previous event should return false', (done) => {
-		let e = { id: 1, start_time: new Date(2017, 11, 12, 13, 22), end_time: new Date(2017, 11, 13, 4, 30), lat: 45, lng: 9, calendar_id: customEvent.calendar_id }
-
-		schedule.basicChecks(user, e, (data) => {
-			done(data == true ? new Error('Basic checks failed') : null)
-		})
-	})
-	/*
-	describe('GET /', () => {
-		it('Should call the scheduler', (done) => {
+	
+	/*describe('GET /', () => {
+		it('Should return a list of events ', (done) => {
 			request(app)
 				.get('/api/v1/schedule/')
-				.set('X-Access-Token', 'X-Access-Token:/2YtLVDu9ZdP85L8Eo0maDdJJFRjYRoMvSTkL5yvfOyQ5VbcOxwg7fG3gDisa5CU')
+				.set('X-Access-Token', device.access_token)
 				.expect(200)
 				.expect(res => {
 					console.log(res.body)
@@ -487,13 +489,13 @@ describe('Schedule', () => {
 			})
 		})
 
-		/*it('Should call the scheduler and return a 202', (done) => {
+		it('Should call the scheduler and return a 202', (done) => {
 			request(app)
 				.post('/api/v1/schedule/')
 				.set('X-Access-Token', device.access_token)
 				.expect(202)
 				.end(done)
-		})*/
+		})
 
 		/*it('Should call the scheduler and return a 400, timeslot length is 0', (done) => {
 			createEvent(calendar.id, nowPlus(6.5), nowPlus(7.5), 0.2, () => {

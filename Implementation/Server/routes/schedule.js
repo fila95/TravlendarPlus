@@ -1,6 +1,7 @@
 const express = require('express')
 const notifier = require('../notifier')
 const router = express.Router()
+const polyline = require('polyline')
 
 const token = process.env.GOOGLE_MAPS_TOKEN
 /* istanbul ignore if */
@@ -292,7 +293,7 @@ let filterUsefulTravelInfo = (responseJSON) => {
 			route: route,
 			time: step.duration.value,
 			transport_mean: step.travel_mode,
-			waypoints: step.polyline.points
+			waypoints: polyline.decode(step.polyline.points).join(";")
 		}
 		new_routes.push(new_route)
 	}
