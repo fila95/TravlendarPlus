@@ -40,8 +40,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dVd-cW-Qws">
                         <rect key="frame" x="0.0" y="0.0" width="80" height="85"/>
                         <constraints>
-                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="G8T-0J-HM3"/>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="KU9-7C-Hjv"/>
+                            <constraint firstAttribute="width" constant="80" id="KU9-7C-Hjv"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="24"/>
                         <nil key="textColor"/>
@@ -55,7 +54,7 @@
                         </constraints>
                     </view>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Qmd-yc-4q9">
-                        <rect key="frame" x="96" y="24" width="237" height="39"/>
+                        <rect key="frame" x="96" y="23" width="237" height="39"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Software Engineering Exam" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MCU-Wb-11Z">
                                 <rect key="frame" x="0.0" y="0.0" width="237" height="23.5"/>

@@ -17,12 +17,19 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var bikeMaxDistanceSlider: UISlider!
     @IBOutlet weak var bikeLabel: UILabel!
     
+    var notificationToken: NotificationToken?
+    
     @IBOutlet weak var transitTimesPicker: UIPickerView!
     
     @IBOutlet weak var calendarsCollectionView: UICollectionView!
     @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
     
     var calendars: Results<Calendars>?
+    
+    deinit{
+        //In latest Realm versions you just need to use this one-liner
+        notificationToken?.invalidate()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,13 +57,22 @@ class SettingsViewController: UIViewController {
             }
         }
         
-        let refreshCal = {
-            DispatchQueue.main.async {
-                self.refreshCalendars()
-            }
-        }
+//        let refreshCal = {
+//            DispatchQueue.main.async {
+//                self.refreshCalendars()
+//            }
+//        }
         
-        API.shared.addHandlers(handlers: [(refreshSett, type: .settings), (refreshCal, type: .calendars)])
+        API.shared.addHandlers(handlers: [(refreshSett, type: .settings)])
+        
+        let realm = try! Realm()
+        notificationToken = realm.observe { [unowned self] changes, realm in
+<<<<<<< HEAD
+            print("refresh")
+=======
+>>>>>>> f1624421c21454962bf076aa7a4da77865b016c0
+            self.refreshCalendars()
+        }
     }
     
     override func viewWillLayoutSubviews() {

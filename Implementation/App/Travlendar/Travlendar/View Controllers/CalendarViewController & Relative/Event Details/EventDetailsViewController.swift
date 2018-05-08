@@ -17,7 +17,13 @@ class EventDetailsViewController: UIViewController {
     @IBOutlet var addressLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var timeLabel: UILabel!
+    
     @IBOutlet var mapView: MKMapView!
+    @IBOutlet var mapViewHeight: NSLayoutConstraint!
+    
+    var notificationToken: NotificationToken?
+    
+    var notificationToken: NotificationToken?
     
     @IBOutlet var collectionViewHeight: NSLayoutConstraint!
     @IBOutlet var collectionView: UICollectionView!
@@ -34,6 +40,11 @@ class EventDetailsViewController: UIViewController {
     
     var id: Int?
     
+    deinit{
+        //In latest Realm versions you just need to use this one-liner
+        notificationToken?.invalidate()
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,17 +57,35 @@ class EventDetailsViewController: UIViewController {
         self.collectionView.dataSource = self
         
         
-        // Events Refresh
-        let refreshEvents: (() -> Void) = {
-            self.refreshEvent()
-            
-        }
+//        // Events Refresh
+//        let refreshEvents: (() -> Void) = {
+//            self.refreshEvent()
+//
+//        }
+<<<<<<< HEAD
         
-        let refreshCal = {
+//        let refreshCal = {
+//            self.refreshEvent()
+//        }
+//        API.shared.addHandlers(handlers: [(refreshEvents, type: .events), (refreshCal, type: .calendars)])
+//
+        
+        let realm = try! Realm()
+        notificationToken = realm.observe { [unowned self] changes, realm in
+            print("refresh")
+=======
+        
+//        let refreshCal = {
+//            self.refreshEvent()
+//        }
+//        API.shared.addHandlers(handlers: [(refreshEvents, type: .events), (refreshCal, type: .calendars)])
+//
+        
+        let realm = try! Realm()
+        notificationToken = realm.observe { [unowned self] changes, realm in
+>>>>>>> f1624421c21454962bf076aa7a4da77865b016c0
             self.refreshEvent()
         }
-        API.shared.addHandlers(handlers: [(refreshEvents, type: .events), (refreshCal, type: .calendars)])
-        
         
         self.refresh()
     }
@@ -96,20 +125,48 @@ class EventDetailsViewController: UIViewController {
             }
             
             self.nameLabel.text = e.title
-            self.addressLabel.text = e.address
             
-            self.dateLabel.text = Formatter.readableDate.string(from: e.start_time)
-            self.timeLabel.text = "\(Formatter.timeShort.string(from: e.start_time)) - \(Formatter.timeShort.string(from: e.end_time))"
+            if e.address == "" && e.lat == 1 && e.lng == 1 {
+                self.addressLabel.text = ""
+                self.mapViewHeight.constant = 10
+                self.mapView.isHidden = true
+                
+                e.relativeCalendar(completion: { (cal) in
+                    if cal != nil {
+                        DispatchQueue.main.async {
+                            self.addressLabel.text = "Found in: \(cal!.name)"
+                        }
+                    }
+                })
+            }
+            else {
+                self.addressLabel.text = e.address
+                self.mapViewHeight.constant = 120
+                self.mapView.isHidden = false
+                
+                for a in self.mapView.annotations {
+                    if !(a is MKUserLocation) {
+                        self.mapView.removeAnnotation(a)
+                    }
+                }
+                
+                let coords = CLLocationCoordinate2D.init(latitude: e.lat, longitude: e.lng)
+                let a = MKPointAnnotation.init()
+                a.coordinate = coords
+                self.mapView.addAnnotation(a)
+                
+                let region = MKCoordinateRegionMakeWithDistance(coords, 300, 300)
+                self.mapView.setRegion(region, animated: true)
+            }
             
-            self.mapView.removeAnnotations(self.mapView.annotations)
-            
-            let coords = CLLocationCoordinate2D.init(latitude: e.lat, longitude: e.lng)
-            let a = MKPointAnnotation.init()
-            a.coordinate = coords
-            self.mapView.addAnnotation(a)
-            
-            let region = MKCoordinateRegionMakeWithDistance(coords, 300, 300)
-            self.mapView.setRegion(region, animated: true)
+            if e.suggested_start_time == Event.defaultSuggestionDate && e.suggested_end_time == Event.defaultSuggestionDate {
+                self.dateLabel.text = Formatter.readableDate.string(from: e.start_time)
+                self.timeLabel.text = "\(Formatter.timeShort.string(from: e.start_time)) - \(Formatter.timeShort.string(from: e.end_time))"
+            }
+            else {
+                self.dateLabel.text = Formatter.readableDate.string(from: e.suggested_start_time)
+                self.timeLabel.text = "\(Formatter.timeShort.string(from: e.suggested_start_time)) - \(Formatter.timeShort.string(from: e.suggested_end_time))"
+            }
             
             self.refreshCollectionView()
         }
@@ -117,8 +174,16 @@ class EventDetailsViewController: UIViewController {
     }
     
     private func refreshCollectionView() {
-        self.collectionView.reloadData()
-        self.collectionViewHeight.constant = self.collectionView.contentSize.height
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+            delay(0.3, closure: {
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.collectionViewHeight.constant = self.collectionView.contentSize.height < 20 ? 200 : self.collectionView.contentSize.height
+                })
+                
+            })
+            
+        }
     }
     
 

@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreLocation
-
+import Utilities
 
 public enum APINotificationType {
     case settings
@@ -20,13 +20,11 @@ public class API: NSObject {
     
     public static let shared: API = API()
     public static let baseURL: String = "https://polimi-travlendarplus.herokuapp.com/api/v1/"
-//    public static let baseURL: String = "http://localhost:8080/api/v1/"
+//    public static let baseURL: String = "http://192.168.2.10:8080/api/v1/"
     
-    private let queue: OperationQueue!
+    private let queue: OperationQueue = OperationQueue()
     
     override public init() {
-        queue = OperationQueue()
-//        queue.underlyingQueue = DispatchQueue(label: "background_networking", qos: .background, attributes: .concurrent, autoreleaseFrequency: .inherit, target: DispatchQueue.main)
         super.init()
         
         queue.maxConcurrentOperationCount = 1
@@ -91,10 +89,12 @@ public class API: NSObject {
     
     public func deleteEventFromServer(event: Event, completion: ((_ complete: Bool, _ code: NStatusCode?) -> Void)? = nil) {
         queue.addOperation(EventsOperation(operationType: .delete, endpointAddition: "\(event.calendar_id)/events/\(event.id)", completion: completion))
+        self.triggerSchedule()
     }
     
     public func updateEvent(event: Event, completion: ((_ complete: Bool, _ code: NStatusCode?) -> Void)? = nil) {
         queue.addOperation(EventsOperation(operationType: .patch, endpointAddition: "\(event.calendar_id)/events/\(event.id)", httpBody: Event.representation(toRepresent: event), completion: completion))
+        self.triggerSchedule()
     }
     
     public func addEvent(event: Event, completion: ((_ complete: Bool, _ code: NStatusCode?) -> Void)? = nil) {
@@ -105,11 +105,13 @@ public class API: NSObject {
     public func triggerSchedule(completion: ((_ complete: Bool, _ code: NStatusCode?) -> Void)? = nil) {
         cancelOperationsOfType(t: ScheduleOperation.classForCoder())
         queue.addOperation(ScheduleOperation(operationType: .post, endpointAddition: "", httpBody: nil, completion: completion))
+//        queue.addOperation(CalendarsOperation(operationType: .get))
     }
     
     public func getSchedule(completion: ((_ complete: Bool, _ code: NStatusCode?) -> Void)? = nil) {
         cancelOperationsOfType(t: ScheduleOperation.classForCoder())
-        queue.addOperation(ScheduleOperation(operationType: .get, endpointAddition: "", httpBody: nil, completion: completion))
+        self.queue.addOperation(ScheduleOperation(operationType: .get, endpointAddition: "", httpBody: nil, completion: completion))
+        
     }
     
     public func pushUserPosition() {
@@ -131,7 +133,6 @@ public class API: NSObject {
             if num.classForCoder == t {
                 num.cancel()
             }
-            
         }
     }
     

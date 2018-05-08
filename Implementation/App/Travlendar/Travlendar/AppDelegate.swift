@@ -56,6 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         handleUserNotification(data: userInfo)
+//        completionHandler(.newData)
     }
 
     // Push notification received
@@ -65,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func handleUserNotification(data: [AnyHashable : Any]) {
-        print("Push notification received: \(data)")
+//        print("Push notification received: \(data)")
         UNUserNotificationCenter.current().removeAllDeliveredNotifications()
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         self.sync(schedule: true)

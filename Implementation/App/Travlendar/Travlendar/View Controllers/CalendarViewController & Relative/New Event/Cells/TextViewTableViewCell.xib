@@ -34,7 +34,7 @@
                         <rect key="frame" x="55" y="0.0" width="352" height="86"/>
                         <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
-                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="yes" keyboardType="alphabet" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="yes" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
                     </textField>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" semanticContentAttribute="spatial" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="position_image" translatesAutoresizingMaskIntoConstraints="NO" id="qZh-gk-wKd">
                         <rect key="frame" x="20" y="32" width="20" height="20"/>

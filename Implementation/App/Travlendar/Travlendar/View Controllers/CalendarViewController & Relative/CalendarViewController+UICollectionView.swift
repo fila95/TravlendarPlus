@@ -37,26 +37,53 @@ extension CalendarViewController: UICollectionViewDelegate, UICollectionViewData
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EventCollectionViewCell.reuseIdentifier, for: indexPath) as! EventCollectionViewCell
+        
+        var e: Event!
         if indexPath.section == 0 {
             if self.previous != nil && self.previous!.count != 0 {
-                cell.setEvent(event: self.previous![indexPath.row])
+                e = self.previous![indexPath.row]
+                cell.setEvent(event: e)
             }
-            
         }
         else if indexPath.section == 1  {
             if self.upNext != nil && self.upNext!.count != 0 {
-                cell.setEvent(event: self.upNext![indexPath.row])
+                e = self.upNext![indexPath.row]
+                cell.setEvent(event: e)
             }
             
         }
         else if indexPath.section == 2  {
             if self.events != nil && self.events!.count != 0 {
-                cell.setEvent(event: self.events![indexPath.row])
+                e = self.events![indexPath.row]
+                cell.setEvent(event: e)
             }
-            
         }
-        return cell
         
+        
+        
+        cell.setLongPressHandler {
+            let ac = UIAlertController(title: "Warning", message: "Are you sure you want to delete this event?", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in }))
+            ac.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
+                API.shared.deleteEventFromServer(event: e, completion: { (complete, message) in
+                    if complete {
+                        API.shared.triggerSync()
+                        self.refresh()
+                    }
+                    else {
+                        // Error
+                        print(message as Any)
+                        UIAlertController.show(title: "Error", message: "Error deleting event...", buttonTitle: "Cancel", on: self)
+                    }
+                    
+                })
+            }))
+            self.present(ac, animated: true, completion: {
+                
+            })
+        }
+        
+        return cell
     }
     
     
@@ -89,7 +116,7 @@ extension CalendarViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        let cellWidth: CGFloat = 300
+        let cellWidth: CGFloat = collectionView.frame.size.width - 20
         
         let numberOfCells = floor(self.view.frame.size.width / cellWidth)
         let edgeInsets = (self.view.frame.size.width - (numberOfCells * cellWidth)) / (numberOfCells + 1)
@@ -104,22 +131,26 @@ extension CalendarViewController: UICollectionViewDelegate, UICollectionViewData
             case UICollectionElementKindSectionHeader:
                 let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionHeaderView.reuseIdentifier, for: indexPath) as! CollectionHeaderView
                 headerView.titleLabel.text = ""
+                headerView.titleLabel.isHidden = true
                 
                 if indexPath.section == 0 {
                     if self.previous != nil && self.previous!.count != 0 {
                         headerView.titleLabel.text = "Previous"
+                        headerView.titleLabel.isHidden = false
                     }
                     
                 }
                 else if indexPath.section == 1  {
                     if self.upNext != nil && self.upNext!.count != 0 {
                         headerView.titleLabel.text = "Up Next"
+                        headerView.titleLabel.isHidden = false
                     }
                     
                 }
                 else if indexPath.section == 2  {
                     if self.events != nil && self.events!.count != 0 {
                         headerView.titleLabel.text = "Later"
+                        headerView.titleLabel.isHidden = false
                     }
                     
                 }
@@ -137,7 +168,7 @@ extension CalendarViewController: UICollectionViewDelegate, UICollectionViewData
             if !(self.previous != nil && self.previous!.count != 0) {
                 return CGSize.init(width: collectionView.frame.size.width, height: 0)
             }
-            
+
         }
         else if section == 1  {
             if !(self.upNext != nil && self.upNext!.count != 0) {

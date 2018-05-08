@@ -63,6 +63,10 @@ class NetworkOperation: Operation {
     
     internal let semaphore = DispatchSemaphore(value: 0)
     
+    deinit {
+        semaphore.signal()
+    }
+    
     override init() {
         session = URLSession.shared
         
@@ -84,8 +88,6 @@ class NetworkOperation: Operation {
     func runRequest(endpoint: String, completion: @escaping ((_ status: NStatusCode, _ data: Data?) -> Void)) {
         var request: URLRequest = URLRequest(url: URL.init(string: API.baseURL + endpoint + "/" + endpointAddition)!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 60)
         
-//        print(request)
-        
         request.httpMethod = self.operationType.rawValue.uppercased()
         request.httpBody = self.httpBody.data(using: .utf8)
         
@@ -106,7 +108,7 @@ class NetworkOperation: Operation {
             
             
             if error != nil {
-                print("Error \(endpoint.capitalized) Operation: \n\t\(error.debugDescription)")
+                print("Error \(endpoint.capitalized) Operation: \n\t Task Failed or Cancelled")
                 self.completionHandler?(false, nil)
                 return
             }
@@ -125,19 +127,23 @@ class NetworkOperation: Operation {
 //                print(response)
 //                print(error)
 //            }
-            
-            completion(code, data)
-            self.semaphore.signal()
+            DispatchQueue.global().sync {
+                completion(code, data)
+                self.semaphore.signal()
+            }
         }
-        task!.resume()
-        semaphore.wait()
+        self.task!.resume()
+        self.semaphore.wait()
     }
     
     override func cancel() {
-        task?.cancel()
-        semaphore.signal()
         super.cancel()
+        self.task?.cancel()
+        self.semaphore.signal()
+        
     }
+    
+
     
 }
 

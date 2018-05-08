@@ -65,8 +65,9 @@ class EventsOperation: NetworkOperation {
                     Database.shared.realm(completion: { (realm) in
                         if events.count > 0 {
                             try! realm.write {
-                                realm.delete(realm.objects(Event.self).filter("calendar_id=\(events.first!.calendar_id)"))
-                                realm.add(events)
+//                                realm.delete(realm.objects(Event.self).filter("calendar_id=\(events.first!.calendar_id)"))
+//                                realm.add(events)
+                                realm.add(events, update: true)
                             }
                         }
                         
@@ -88,8 +89,8 @@ class EventsOperation: NetworkOperation {
                     
                     Database.shared.realm(completion: { (realm) in
                         try! realm.write {
-                            realm.delete(realm.objects(Event.self).filter("id=\(event.id)"))
-                            realm.add(event)
+//                            realm.delete(realm.objects(Event.self).filter("id=\(event.id)"))
+                            realm.add(event, update: true)
                         }
                         
                         self.completionHandler?(true, nil)
@@ -127,7 +128,7 @@ class EventsOperation: NetworkOperation {
                 Database.shared.realm(completion: { (realm) in
                     try! realm.write {
 //                        realm.delete(realm.objects(Event.self).filter("id=\(event.id)"))
-                        realm.add(event)
+                        realm.add(event, update: true)
                     }
                     
                     self.completionHandler?(true, nil)
@@ -140,13 +141,15 @@ class EventsOperation: NetworkOperation {
             case .okNoContentNeeded:
                 
                 Database.shared.realm(completion: { (realm) in
-                    guard let id: Int = Int(self.endpointAddition) else {
+                    guard let id: Int = Int(self.endpointAddition.split(separator: "/").last!) else {
                         self.completionHandler?(false, .dataUnavailable)
                         return
                     }
                     
+                    print(id)
+                    
                     try! realm.write {
-                        realm.delete(realm.objects(Calendars.self).filter("id=\(id)"))
+                        realm.delete(realm.objects(Event.self).filter("id=\(id)"))
                     }
                     
                     self.completionHandler?(true, nil)

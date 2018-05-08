@@ -26,9 +26,18 @@ Here we publish the final Design Document
 Here we publish the final Implementation and Test Document
 - `Version 1.0.0` file can be found [here](https://github.com/fila95/CalzavaraFilaferroNespoli/blob/master/DeliveryFolder/ITD1.0.0.pdf)
 
+### Presentation
+Here we publish the final Presentation of the project
+- `Version 1.0.0`  `Keynote` file can be found [here](https://github.com/fila95/CalzavaraFilaferroNespoli/blob/master/DeliveryFolder/Presentation1.0.0.key)
+- `Version 1.0.0`  `PDF` file can be found [here](https://github.com/fila95/CalzavaraFilaferroNespoli/blob/master/DeliveryFolder/Presentation1.0.0.pdf)
+
 ### iOS App
 Here we publish the final version of the Implemented iOS App
-- `Version 1.0.0` file can be found [here](https://github.com/fila95/CalzavaraFilaferroNespoli/blob/master/DeliveryFolder/App.zip)
+- `ZIP` file can be found [here](https://github.com/fila95/CalzavaraFilaferroNespoli/blob/master/DeliveryFolder/App.zip)
+
+### Node.JS Server
+Here we publish the final version of the Implemented Server
+- `ZIP` file can be found [here](https://github.com/fila95/CalzavaraFilaferroNespoli/blob/master/DeliveryFolder/Server.zip)
 
 ### Implementation and Testing
 

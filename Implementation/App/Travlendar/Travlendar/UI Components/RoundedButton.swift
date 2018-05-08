@@ -82,18 +82,21 @@ class RoundedButton: UIButton {
     }
     
     private func applyLoading() {
-        if loading {
-            activityIndicator.startAnimating()
-            activityIndicator.isHidden = false
-            
-            self.titleLabel?.alpha = 0.0
+        DispatchQueue.main.async {
+            if self.loading {
+                self.activityIndicator.startAnimating()
+                self.activityIndicator.isHidden = false
+                
+                self.titleLabel?.alpha = 0.0
+            }
+            else {
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.isHidden = true
+                
+                self.titleLabel?.alpha = 1.0
+            }
         }
-        else {
-            activityIndicator.stopAnimating()
-            activityIndicator.isHidden = true
-            
-            self.titleLabel?.alpha = 1.0
-        }
+        
     }
     
     override func layoutSubviews() {

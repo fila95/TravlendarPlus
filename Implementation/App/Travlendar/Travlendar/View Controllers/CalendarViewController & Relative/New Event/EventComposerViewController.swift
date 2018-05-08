@@ -118,12 +118,14 @@ class EventComposerViewController: UIViewController {
         self.nameCell.setImage(image: #imageLiteral(resourceName: "address_image"))
         self.nameCell.setText(text: self.currentEvent.title)
         self.nameCell.setPlaceholder(text: "Event Name")
+        self.nameCell.textField.autocapitalizationType = .sentences
     }
     
     func refreshAddressCell() {
         self.addressCell.setImage(image: #imageLiteral(resourceName: "position_image"))
         self.addressCell.setText(text: self.currentEvent.address)
         self.addressCell.setPlaceholder(text: "Address")
+        self.addressCell.textField.keyboardType = .asciiCapable
     }
     
     func refreshSwitchCell() {

@@ -73,8 +73,8 @@ let eventFactory = (req, cb) => {
 	let event = {
 		calendar_id: req.params.calendar_id,
 		title: title.trim(),
-		start_time: start_time,
-		end_time: end_time,
+		start_time: new Date(new Date(start_time.setMilliseconds(0)).setSeconds(0)),
+		end_time: new Date(new Date(end_time.setMilliseconds(0)).setSeconds(0)),
 		address: address.trim()
 	}
 
@@ -95,12 +95,12 @@ let eventFactory = (req, cb) => {
 			}
 
 			let repetitions = (req.body.repetitions || '').trim()
-			if (repetitions.match("B[01]{7}")) {
+			if (repetitions.match("[01]{7}")) {
 				event.repetitions = repetitions
 			}
 
 			let transports = (req.body.transports || '').trim()
-			if (transports.match("B[01]{5}")) {
+			if (transports.match("[01]{5}")) {
 				event.transports = transports
 			}
 			return cb(event)

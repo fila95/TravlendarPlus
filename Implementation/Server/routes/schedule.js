@@ -146,10 +146,13 @@ let timeSlots = (fixedEventList, _flexibleEvent) => {
 	})
 
 	// Remove the time slot if it is too short
-	for (let i = 0; i < timeSlots.length; i++) {
+	let l = timeSlots.length
+	for (let i = 0; i < l; i++) {
 		let timeSlotDuration = timeSlots[i].end_time - timeSlots[i].start_time
 		if (timeSlots[i].end_time < timeSlots[i].startTime || timeSlotDuration < flexibleEvent.duration) {
 			timeSlots.splice(i, 1)
+			i--
+			l--
 		}
 	}
 	return timeSlots
@@ -160,7 +163,7 @@ let getEventPreviousTo = (events, dateTime) => {
 	let prev_event = { end_time: 0 }
 	dateTime = new Date(dateTime)
 	events.filter(event => {
-		return new Date(event.end_time) < dateTime
+		return new Date(event.end_time) <= dateTime
 	}).forEach(event => {
 		if (event.end_time > prev_event.end_time) {
 			prev_event = event
@@ -212,10 +215,23 @@ let eventIsReachable = (from, to, opt) => {
 		// If one of the location is not defined, throw an error
 		throw new Error("from or to parameter doesn't have lat or lng")
 	}
-
 	// timeSlotDuration - flexible event duration
-	let availableTime = (to.end_time.getTime() - to.start_time.getTime() - to.duration) / 1000
 
+	let availableTime
+	if (from.start_time != null) {
+		availableTime = (to.end_time.getTime() - from.start_time.getTime()) / 1000
+	} else {
+		availableTime = (to.start_time - new Date())
+	}
+
+	let flexi = false
+	if (!to.duration) {
+		to.duration = 0
+	} else {
+		flexi = true
+		availableTime += (to.end_time.getTime() - to.start_time.getTime() - to.duration) / 1000
+	}
+	//console.log(JSON.stringify(from))
 	return new Promise(async (resolve, reject) => {
 		// Step 1: As the Crow Flies
 		let dist = distance(from, to)
@@ -231,12 +247,12 @@ let eventIsReachable = (from, to, opt) => {
 
 		// Step 2: Google Maps Directions API
 		let parsed_transport = to.parseTransports(dist, opt.settings)
-
 		let responses = []
 		let query = {
 			origin: from,
 			destination: to,
-			alternatives: true
+			alternatives: true,
+			arrival_time: to.start_time / 1000
 		}
 
 		for (transport in parsed_transport) {
@@ -263,8 +279,13 @@ let eventIsReachable = (from, to, opt) => {
 			let googlePreferredDuration = durations[0]
 			if (googlePreferredDuration <= availableTime) {
 				// Try to use the google preferred route
-				to.suggested_start_time = new Date(to.start_time + googlePreferredDuration * 1000)
-				to.suggested_end_time = new Date(to.suggested_start_time + to.duration)
+				if (flexi) {
+					to.suggested_start_time = new Date(opt.timeSlot.start_time.getTime() + googlePreferredDuration * 1000)
+					to.suggested_end_time = new Date(to.suggested_start_time.getTime() + to.duration)
+				} else {
+					to.suggested_start_time = new Date(to.start_time)
+					to.suggested_end_time = new Date(to.end_time)
+				}
 				responses.push(filterUsefulTravelInfo(response.json.routes))
 			}
 		}
@@ -279,16 +300,16 @@ let eventIsReachable = (from, to, opt) => {
 // extracts the most useful info pre db insertion
 let filterUsefulTravelInfo = (responseJSON) => {
 	let new_routes = [], new_step, new_steps, route = Math.floor(Math.random() * 2147483647)
-	first_route = responseJSON[0]
+	let first_route = responseJSON[0]
 	for (step_n in first_route.legs[0].steps) {
-		step = first_route.legs[0].steps[step_n]
+		let step = first_route.legs[0].steps[step_n]
 		if (step.travel_mode == 'TRANSIT') {
 			step.travel_mode = 'PUBLIC'
 		}
 		if (step.travel_mode == 'DRIVING') {
 			step.travel_mode = 'CAR'
 		}
-		new_route = {
+		let new_route = {
 			route: route,
 			time: step.duration.value,
 			transport_mean: step.travel_mode,
@@ -299,9 +320,9 @@ let filterUsefulTravelInfo = (responseJSON) => {
 	return new_routes
 }
 
-let createTravel = async (response) => {
+let createTravel = async (req, response) => {
 	return new Promise((resolve, reject) => {
-		db.models.travels.create(response, (err, travel) => {
+		req.models.travels.create(response, (err, travel) => {
 			if (err) {
 				reject(err)
 			} else {
@@ -315,9 +336,12 @@ let basicChecks = (user, event, cb) => {
 	user.getAllEventsOfCalendarFromNowOn(event.calendar_id, (err, events) => {
 		let fixedEvents = events.filter((e) => { return !e.duration })
 
-		// Check for overlapping fixed events
-		let overlapping = overlap(event, fixedEvents)
-		if (overlapping) return cb(new Error('overlapping: ' + overlapping), false)
+		// If the event is fixed
+		if (!event.duration) {
+			// Check for overlapping fixed events
+			let overlapping = overlap(event, fixedEvents)
+			if (overlapping) return cb(new Error('overlapping: ' + overlapping), false)
+		}
 
 		// Basic route check: is reachable as the crow flies
 		let prev
@@ -327,12 +351,14 @@ let basicChecks = (user, event, cb) => {
 			if (from && user.updated_at < from.end_time) {
 				// The last event is the most recent known location
 				prev = {
+					starting_time: new Date(),
 					lat: from.lat,
 					lng: from.lng
 				}
 			} else if (loc && loc.lat && loc.lng) {
 				// The user location is the most recent known location
 				prev = {
+					starting_time: new Date(),
 					lat: loc.lat,
 					lng: loc.lng
 				}
@@ -410,7 +436,6 @@ router.post('/', (req, res) => {
 	// We suddenly return a 202 - Accepted status code,
 	// and the scheduler will notify the user when the results are ready
 	res.status(202).end()
-
 	// For each calendar
 	let calendars = req.user.getCalendars()
 	calendars.count((err, n) => {
@@ -445,6 +470,60 @@ router.post('/', (req, res) => {
 				let scheduler_id = Math.random().toString().split(".")[1]
 				isScheduling[req.user.id] = scheduler_id
 
+
+				for (e of fixedEvents) {
+
+					let prev = getEventPreviousTo(events, e.start_time)
+					let loc = getReliableUserLocation(req.user, prev)
+					let previous_flexi = false
+					if (!prev && !loc) {
+						// If both the previous event and the user location are not defined, insert the event anyway
+						e.suggested_start_time = new Date(e.start_time)
+						e.suggested_end_time = new Date(e.end_time)
+						e.save(err => {
+							if (err) throw err
+						})
+						continue
+					} else if ((!prev && loc) || (prev && loc && req.user.updated_at > prev.end_time)) {
+						// If the previous event is known, but the last real user position is
+						// closer to the end of the previouus event,
+						// use that instead of the previous event position
+						// Create a fake event that will be used in asking if reachable
+						if (prev && prev.duration != 0) {
+							previous_flexi = true
+						}
+						prev = {
+							start_time: req.user.updated_at,
+							end_time: req.user.updated_at,
+							lat: loc.lat,
+							lng: loc.lng
+						}
+					}
+
+
+					let routes = await eventIsReachable(prev, e, { settings: req.user.settings, previous_flexi: previous_flexi })
+					if (routes) {
+						let travels = []
+						for (route of routes) {
+							for (travel of route) {
+								let traveldb = await createTravel(req, travel)
+								travels.push(traveldb)
+							}
+						}
+						e.travels = travels
+						e.reachable = true
+						e.save(err => {
+							if (err) { throw err }
+						})
+					} else {
+						e.reachable = false
+						notifier(req.user, { alert: 'Scheduler: the event ' + e.title + ' is not reachable in time, according to Google Maps', badge: 1 })
+						e.save(err => {
+							if (err) { throw err }
+						})
+					}
+				}
+
 				let sortedFlexibleEvents = sortWithFitness(flexibleEvents)
 
 				// Try to fit each flexible event from the less fittable to the most one
@@ -465,7 +544,6 @@ router.post('/', (req, res) => {
 						// determine if the event e is reachable
 						let prev = getEventPreviousTo(events, timeSlot.start_time)
 						let loc = getReliableUserLocation(req.user, prev)
-
 						if (!prev && !loc) {
 							// If both the previous event and the user location are not defined, insert the event anyway
 							e.suggested_start_time = new Date(timeSlot.start_time)
@@ -486,17 +564,17 @@ router.post('/', (req, res) => {
 								lng: loc.lng
 							}
 						}
-						// implicit else: use the previous event position
+
 
 						// Ask if reachable with await
 						// Using async/await, we can loop over an asynchronous function
 						// without spawning thousands of async calls
-						let routes = await eventIsReachable(prev, e, { settings: req.user.settings })
+						let routes = await eventIsReachable(prev, e, { settings: req.user.settings, timeSlot: timeSlot })
 						if (routes) {
 							let travels = []
 							for (route of routes) {
 								for (travel of route) {
-									let traveldb = await schedule.createTravel(travel)
+									let traveldb = await createTravel(req, travel)
 									travels.push(traveldb)
 								}
 							}

@@ -117,9 +117,9 @@ class Routes: Object, Codable {
     @objc dynamic var time: Int = 0
     var travels = List<Travel>()
     
-//    override public static func primaryKey() -> String? {
-//        return "id"
-//    }
+    override public static func primaryKey() -> String? {
+        return "id"
+    }
     
     private enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -182,9 +182,9 @@ class Travel: Object, Codable {
     
     @objc dynamic var waypoints = ""
     
-//    override static func primaryKey() -> String? {
-//        return "id"
-//    }
+    override static func primaryKey() -> String? {
+        return "id"
+    }
     
     private enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -235,6 +235,8 @@ class Travel: Object, Codable {
 
 public class Event: Object, Codable {
     
+    static public let defaultSuggestionDate: Date = Date.init(timeIntervalSince1970: 0)
+    
     @objc dynamic var id = 0
     @objc dynamic var calendar_id = -1
     
@@ -251,8 +253,8 @@ public class Event: Object, Codable {
     @objc dynamic var repetitions: String = "0000000"
     @objc dynamic var transports: String = "11111"
     
-    @objc dynamic var suggested_start_time: Date = Date.init(timeIntervalSince1970: 0)
-    @objc dynamic var suggested_end_time: Date = Date.init(timeIntervalSince1970: 0)
+    @objc dynamic var suggested_start_time: Date = Event.defaultSuggestionDate
+    @objc dynamic var suggested_end_time: Date = Event.defaultSuggestionDate
     
     @objc dynamic var reachable: Bool = true
     
@@ -321,7 +323,7 @@ public class Event: Object, Codable {
         self.calendar_id = try container.decode(Int.self, forKey: .calendar_id)
         
         self.title = try container.decode(String.self, forKey: .title)
-        self.address = try container.decode(String.self, forKey: .address)
+        self.address = try container.decodeIfPresent(String.self, forKey: .address) ?? ""
         
         self.lat = try container.decodeIfPresent(Double.self, forKey: .lat) ?? 1
         self.lng = try container.decodeIfPresent(Double.self, forKey: .lng) ?? 1

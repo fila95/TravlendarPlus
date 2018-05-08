@@ -9,7 +9,7 @@
 import UIKit
 import Utilities
 
-class EventCollectionViewCell: UICollectionViewCell {
+class EventCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDelegate {
     
     static let reuseIdentifier: String = "eventCollectionViewCell"
     
@@ -64,6 +64,8 @@ class EventCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var warningView: UIView!
     @IBOutlet weak var calendarColorView: UIView!
     
+    var longPressHandler: (() -> Void)?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -79,8 +81,23 @@ class EventCollectionViewCell: UICollectionViewCell {
         
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        let gr = UILongPressGestureRecognizer.init(target: self, action: #selector(self.handleGesture(sender:)))
+        gr.delegate = self
+        gr.delaysTouchesBegan = true
+        self.addGestureRecognizer(gr)
+    }
+    
     func setEvent(event: Event) {
-        timeLabel.text = Formatter.timeShort.string(from: event.start_time)
+        
+        if event.suggested_start_time == Event.defaultSuggestionDate {
+            timeLabel.text = Formatter.timeShort.string(from: event.start_time)
+        }
+        else {
+            timeLabel.text = Formatter.timeShort.string(from: event.suggested_start_time)
+        }
         
         titleLabel.text = event.title
         addressLabel.text = event.address
@@ -99,6 +116,18 @@ class EventCollectionViewCell: UICollectionViewCell {
             }
         }
         
+    }
+    
+    @objc private func handleGesture(sender: UILongPressGestureRecognizer) {
+        if sender.state != .began {
+            return
+        }
+        
+        self.longPressHandler?()
+    }
+    
+    func setLongPressHandler(handler: @escaping (() -> Void)) {
+        self.longPressHandler = handler
     }
 
 }

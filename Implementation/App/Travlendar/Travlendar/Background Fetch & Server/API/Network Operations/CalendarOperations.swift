@@ -57,8 +57,8 @@ class CalendarsOperation: NetworkOperation {
                     
                     Database.shared.realm(completion: { (realm) in
                         try! realm.write {
-                            realm.delete(realm.objects(Calendars.self))
-                            realm.add(calendars)
+//                            realm.delete(realm.objects(Calendars.self))
+                            realm.add(calendars, update: true)
                         }
                         
                         self.completionHandler?(true, nil)
@@ -79,8 +79,8 @@ class CalendarsOperation: NetworkOperation {
                     
                     Database.shared.realm(completion: { (realm) in
                         try! realm.write {
-                            realm.delete(realm.objects(Calendars.self).filter("id=\(calendar.id)"))
-                            realm.add(calendar)
+//                            realm.delete(realm.objects(Calendars.self).filter("id=\(calendar.id)"))
+                            realm.add(calendar, update: true)
                         }
                         
                         self.completionHandler?(true, nil)
@@ -108,8 +108,8 @@ class CalendarsOperation: NetworkOperation {
                 
                 Database.shared.realm(completion: { (realm) in
                     try! realm.write {
-                        realm.delete(realm.objects(Calendars.self).filter("id=\(calendar.id)"))
-                        realm.add(calendar)
+//                        realm.delete(realm.objects(Calendars.self).filter("id=\(calendar.id)"))
+                        realm.add(calendar, update: true)
                     }
                     
                     self.completionHandler?(true, nil)

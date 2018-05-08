@@ -53,10 +53,12 @@ class ScheduleOperation: NetworkOperation {
                 }
                 
                 Database.shared.realm(completion: { (realm) in
+                    
+//                    print(events)
                     if events.count > 0 {
                         try! realm.write {
-                            realm.delete(realm.objects(Event.self).filter("calendar_id=\(events.first!.calendar_id)"))
-                            realm.add(events)
+//                            realm.delete(realm.objects(Event.self).filter("calendar_id=\(events.first!.calendar_id)"))
+                            realm.add(events, update: true)
                         }
                     }
                     

@@ -98,6 +98,9 @@ extension EventComposerViewController: UITableViewDataSource {
                     vpv.addComponent(component: VPButtonComponent(type: .strong, text: "Ok", tapHandler: { (button) in
                         self.currentEvent.start_time = datePicker.date
                         
+                        if self.currentEvent.end_time.timeIntervalSince1970 - self.currentEvent.start_time.timeIntervalSince1970 < 1 {
+                            self.currentEvent.end_time = self.currentEvent.start_time.addingTimeInterval(3600)
+                        }
                         self.refreshDateCells()
                         vp.dismiss(animated: true, completion: nil)
                     }))
@@ -229,12 +232,13 @@ extension EventComposerViewController {
         }
         self.currentEvent.title = eventName
         
-        guard let eventAddress = self.addressCell.textField.text, eventAddress != "" else {
-            UIAlertController.show(title: "Error", message: "You should type an address in order to continue.", buttonTitle: "Ok", on: self)
-            saveCell.saveButton.loading = false
-            self.tableView.isUserInteractionEnabled = true
-            return
-        }
+//        guard let eventAddress = self.addressCell.textField.text, eventAddress != "" else {
+//            UIAlertController.show(title: "Error", message: "You should type an address in order to continue.", buttonTitle: "Ok", on: self)
+//            saveCell.saveButton.loading = false
+//            self.tableView.isUserInteractionEnabled = true
+//            return
+//        }
+        let eventAddress = self.addressCell.textField.text ?? ""
         self.currentEvent.address = eventAddress
         
         self.currentEvent.transports = self.allowedVehiclesCell.getAllowedVehicles()

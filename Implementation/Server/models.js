@@ -146,7 +146,7 @@ function model(db, cb) {
 				// can't travel with, depending on settings and time
 				parseTransports: function (distance, settings) {
 					let sTransports = ["walking", "bicycling", "transit", "sharing", "driving"]
-					let transports = this.transports.slice(1, sTransports.length + 1)
+					let transports = this.transports
 					let mask = transports.split('').map(transport => transport == 1)
 					sTransports = sTransports.filter((transport, index) => mask[index])
 

@@ -73,12 +73,21 @@ class MapViewController: UIViewController {
                 return
             }
             self.map.removeOverlays(self.map.overlays)
-            self.map.removeAnnotations(self.map.annotations)
+            
+            for a in self.map.annotations {
+                if !(a is MKUserLocation) {
+                    self.map.removeAnnotation(a)
+                }
+            }
             
             for e in ev {
-                let ann = MKPointAnnotation()
-                ann.coordinate = CLLocationCoordinate2D(latitude: e.lat, longitude: e.lng)
-                self.map.addAnnotation(ann)
+                
+                if e.address != "" {
+                    let ann = MKPointAnnotation()
+                    ann.coordinate = CLLocationCoordinate2D(latitude: e.lat, longitude: e.lng)
+                    self.map.addAnnotation(ann)
+                }
+                
             }
             
             self.map.fitAllMarkers(shouldIncludeCurrentLocation: true)
