@@ -43,7 +43,7 @@ public class VPView: UIView {
     private var titleLabel: UILabel = UILabel()
     
     override public init(frame: CGRect) {
-        super.init(frame: CGRect.init(origin: CGPoint.zero, size: intrinsicContentSize))
+        super.init(frame: frame)
         commonInit()
     }
     
@@ -90,6 +90,7 @@ public class VPView: UIView {
         self.titleLabel.text = self.titleText
         self.addSubview(titleLabel)
         
+        self.frame = CGRect.init(origin: CGPoint.zero, size: intrinsicContentSize)
     }
     
     override public func layoutSubviews() {

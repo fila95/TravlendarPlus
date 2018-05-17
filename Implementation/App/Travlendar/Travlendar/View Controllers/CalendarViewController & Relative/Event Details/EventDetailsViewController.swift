@@ -23,8 +23,6 @@ class EventDetailsViewController: UIViewController {
     
     var notificationToken: NotificationToken?
     
-    var notificationToken: NotificationToken?
-    
     @IBOutlet var collectionViewHeight: NSLayoutConstraint!
     @IBOutlet var collectionView: UICollectionView!
     
@@ -62,7 +60,7 @@ class EventDetailsViewController: UIViewController {
 //            self.refreshEvent()
 //
 //        }
-<<<<<<< HEAD
+
         
 //        let refreshCal = {
 //            self.refreshEvent()
@@ -72,18 +70,6 @@ class EventDetailsViewController: UIViewController {
         
         let realm = try! Realm()
         notificationToken = realm.observe { [unowned self] changes, realm in
-            print("refresh")
-=======
-        
-//        let refreshCal = {
-//            self.refreshEvent()
-//        }
-//        API.shared.addHandlers(handlers: [(refreshEvents, type: .events), (refreshCal, type: .calendars)])
-//
-        
-        let realm = try! Realm()
-        notificationToken = realm.observe { [unowned self] changes, realm in
->>>>>>> f1624421c21454962bf076aa7a4da77865b016c0
             self.refreshEvent()
         }
         

@@ -16,7 +16,7 @@ open class VPComponent: UIView {
     }
     
     override public init(frame: CGRect) {
-        super.init(frame: CGRect(x: 0, y: 0, width: 200, height: desiredheight()))
+        super.init(frame: frame)
         commonInit()
     }
     
@@ -26,7 +26,7 @@ open class VPComponent: UIView {
     }
     
     open func commonInit() {
-        
+        self.frame = CGRect(x: 0, y: 0, width: 200, height: desiredheight())
     }
     
 }

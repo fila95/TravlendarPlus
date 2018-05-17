@@ -28,11 +28,8 @@ class CalendarViewController: UIViewController {
     var upNext: Results<Event>?
     var events: Results<Event>?
     
-<<<<<<< HEAD
-    deinit{
-=======
+
     deinit {
->>>>>>> f1624421c21454962bf076aa7a4da77865b016c0
         //In latest Realm versions you just need to use this one-liner
         notificationToken?.invalidate()
     }
@@ -75,10 +72,6 @@ class CalendarViewController: UIViewController {
         
         let realm = try! Realm()
         notificationToken = realm.observe { [unowned self] changes, realm in
-<<<<<<< HEAD
-            print("refresh")
-=======
->>>>>>> f1624421c21454962bf076aa7a4da77865b016c0
             self.refresh()
         }
         

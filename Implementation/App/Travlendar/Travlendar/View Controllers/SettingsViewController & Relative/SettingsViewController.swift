@@ -67,10 +67,6 @@ class SettingsViewController: UIViewController {
         
         let realm = try! Realm()
         notificationToken = realm.observe { [unowned self] changes, realm in
-<<<<<<< HEAD
-            print("refresh")
-=======
->>>>>>> f1624421c21454962bf076aa7a4da77865b016c0
             self.refreshCalendars()
         }
     }
