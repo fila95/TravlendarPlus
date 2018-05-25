@@ -77,14 +77,14 @@ describe('Events API', () => {
 				.end(done)
 		})
 
-		it('should throw a 412 error creating an event overlapping', (done) => {
-			request(app)
-				.put('/api/v1/calendars/' + calendar.id + '/events')
-				.set('X-Access-Token', device.access_token)
-				.send(event)
-				.expect(412)
-				.end(done)
-		})
+		// it('should throw a 412 error creating an event overlapping', (done) => {
+		// 	request(app)
+		// 		.put('/api/v1/calendars/' + calendar.id + '/events')
+		// 		.set('X-Access-Token', device.access_token)
+		// 		.send(event)
+		// 		.expect(412)
+		// 		.end(done)
+		// })
 
 		it('should throw a 400 error creating an event with an invalid title', (done) => {
 			request(app)
